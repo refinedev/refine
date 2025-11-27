@@ -38,8 +38,8 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
         "landing-sm:py-3 landing-sm:pr-4 landing-sm:pl-6",
         "text-xs landing-sm:text-base",
         "font-semibold",
-        "dark:text-orange-400 text-refine-blue",
-        "dark:bg-[#3A261A] bg-refine-blue/10",
+        "text-orange-400",
+        "bg-[#3A261A]",
         "overflow-hidden",
       )}
     >
@@ -63,7 +63,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
           "group-hover/cta-button:opacity-100",
           "group-hover/cta-button:scale-100",
           "pointer-events-none",
-          "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+          "bg-landing-copy-command-hover-bg-dark",
         )}
       />
     </Link>
@@ -99,8 +99,8 @@ export const LandingSectionCtaButtonAlt: FC<PropsWithChildren<Props>> = ({
         "py-3 pr-4 pl-6",
         "text-base",
         "font-semibold",
-        "dark:text-refine-cyan-alt text-refine-blue",
-        "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
+        "text-refine-blue",
+        "bg-refine-blue/10",
         "overflow-hidden",
       )}
     >
@@ -124,7 +124,7 @@ export const LandingSectionCtaButtonAlt: FC<PropsWithChildren<Props>> = ({
           "group-hover/cta-button:opacity-100",
           "group-hover/cta-button:scale-100",
           "pointer-events-none",
-          "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+          "bg-landing-copy-command-hover-bg-dark",
         )}
       />
     </Link>

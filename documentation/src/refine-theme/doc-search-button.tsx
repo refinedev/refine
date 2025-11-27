@@ -6,7 +6,7 @@ export type DocSearchButtonProps = React.ComponentProps<"button"> & {
   iconOnly?: boolean;
   iconClassName?: string;
   placeholder?: string;
-  isPermanentDark?: boolean;
+  shortcutClassName?: string;
 };
 
 export const DocSearchButton = React.forwardRef<
@@ -18,7 +18,7 @@ export const DocSearchButton = React.forwardRef<
     iconClassName,
     className,
     placeholder,
-    isPermanentDark,
+    shortcutClassName,
     ...props
   },
   ref,
@@ -36,7 +36,7 @@ export const DocSearchButton = React.forwardRef<
         "duration-200",
         "ease-in-out",
         "bg-gray-100 dark:bg-zinc-800",
-        "text-gray-500 dark:text-gray-400",
+        "text-gray-500 dark:text-zinc-300",
         "rounded-lg",
         {
           "justify-center": iconOnly,
@@ -49,21 +49,10 @@ export const DocSearchButton = React.forwardRef<
         className,
       )}
     >
-      <MagnifierIcon
-        className={clsx(
-          "text-gray-500 dark:text-zinc-300",
-          "w-4 h-4",
-          iconClassName,
-        )}
-      />
+      <MagnifierIcon className={clsx("w-4 h-4", iconClassName)} />
       {!iconOnly && (
         <>
-          <span
-            className={clsx(
-              "text-gray-500 dark:text-zinc-300 text-left flex-1",
-              "text-base",
-            )}
-          >
+          <span className={clsx("text-left flex-1", "text-base")}>
             {placeholder ?? "Search"}
           </span>
           <div
@@ -74,6 +63,7 @@ export const DocSearchButton = React.forwardRef<
               "rounded-[0.25rem]",
               "text-xs",
               "font-normal",
+              shortcutClassName,
             )}
           >
             ⌘K

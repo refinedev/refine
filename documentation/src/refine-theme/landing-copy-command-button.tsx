@@ -51,9 +51,9 @@ export const LandingCopyCommandButton = ({
         "pr-6",
         "pl-3",
         "rounded-lg",
-        "bg-refine-blue dark:bg-zinc-800",
-        "bg-opacity-10 dark:bg-opacity-100",
-        "text-refine-blue dark:text-white",
+        "bg-zinc-800",
+        "bg-opacity-100",
+        "text-white",
         "text-sm",
         "font-jetBrains-mono",
         "overflow-hidden",
@@ -65,13 +65,7 @@ export const LandingCopyCommandButton = ({
     >
       {/*  @ts-expect-error - lucide-react type incompatibility with React 17 */}
       <TerminalIcon
-        className={clsx(
-          "text-refine-blue dark:text-zinc-500",
-          "inline-block",
-          "w-5",
-          "h-5",
-          "mr-2",
-        )}
+        className={clsx("text-zinc-500", "inline-block", "w-5", "h-5", "mr-2")}
       />
       <div
         className={clsx(
@@ -90,7 +84,7 @@ export const LandingCopyCommandButton = ({
           "group-hover/copy-button:opacity-100",
           "group-hover/copy-button:scale-100",
           "pointer-events-none",
-          "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+          "bg-landing-copy-command-hover-bg-dark",
         )}
       />
       <ChangingTextElement
@@ -114,11 +108,7 @@ export const LandingCopyCommandButton = ({
           fadedOut && "opacity-0",
           !fadedOut && "opacity-100",
         )}
-        activeClassName={clsx(
-          "text-gray-500 dark:text-gray-0",
-          "relative",
-          "z-[1]",
-        )}
+        activeClassName={clsx("text-gray-0", "relative", "z-[1]")}
       />
       <div
         className={clsx(

@@ -3,16 +3,11 @@ import clsx from "clsx";
 import { LandingHeroGithubStars } from "./landing-hero-github-stars";
 import { LandingStartActionIcon } from "./icons/landing-start-action";
 
-import { LandingHeroAnimation } from "./landing-hero-animation";
 import { LandingCopyCommandButton } from "./landing-copy-command-button";
 import Link from "@docusaurus/Link";
 import { LandingHeroShowcaseSection } from "./landing-hero-showcase-section";
-import { useColorMode } from "@docusaurus/theme-common";
 
 export const LandingHeroSection = ({ className }: { className?: string }) => {
-  const { colorMode } = useColorMode();
-  const isDarkTheme = colorMode === "dark";
-
   return (
     <div
       className={clsx(
@@ -60,7 +55,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                 "landing-sm:max-w-[588px]",
                 "landing-sm:tracking-[-2%]",
                 "font-extrabold",
-                "text-gray-900 dark:text-gray-0",
+                "text-gray-0",
               )}
             >
               Open-source Retool for Enterprise
@@ -69,7 +64,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
               className={clsx(
                 "font-normal",
                 "text-base",
-                "text-gray-600 dark:text-gray-300",
+                "text-gray-300",
                 "landing-xs:max-w-[384px]",
               )}
             >
@@ -85,8 +80,8 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
               className={clsx(
                 "self-start",
                 "rounded-lg",
-                "!text-gray-0 dark:!text-white",
-                "bg-refine-blue dark:bg-orange-500",
+                "!text-white",
+                "bg-orange-500",
                 "transition-[filter]",
                 "duration-150",
                 "ease-in-out",
@@ -110,36 +105,23 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             />
           </div>
         </div>
-        {isDarkTheme ? (
-          <div
-            className={clsx(
-              "hidden landing-lg:block",
-              "absolute",
-              "top-0",
-              "right-0",
-            )}
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              width={690}
-              src="https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/refine-core-hero.mp4"
-            />
-          </div>
-        ) : (
-          <div
-            className={clsx(
-              "hidden landing-md:block",
-              "absolute",
-              "top-0",
-              "right-0",
-            )}
-          >
-            <LandingHeroAnimation />
-          </div>
-        )}
+        <div
+          className={clsx(
+            "hidden landing-lg:block",
+            "absolute",
+            "top-0",
+            "right-0",
+          )}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            width={690}
+            src="https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/refine-core-hero.mp4"
+          />
+        </div>
       </div>
       <LandingHeroShowcaseSection />
     </div>

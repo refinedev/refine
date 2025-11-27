@@ -31,7 +31,7 @@ export const LandingSolidFoundationDesktop: FC<Props> = ({ className }) => {
           "w-full",
           "h-[400px]",
           "px-10",
-          "dark:bg-zinc-800 bg-gray-50",
+          "bg-zinc-800",
           "rounded-2xl landing-sm:rounded-3xl",
           "flex",
           "flex-col landing-lg:flex-row",
@@ -46,7 +46,7 @@ export const LandingSolidFoundationDesktop: FC<Props> = ({ className }) => {
               "text-[2rem]",
               "leading-10",
               "font-medium",
-              "text-gray-800 dark:text-white",
+              "text-white",
               "p-0",
               "m-0",
             )}
@@ -59,7 +59,7 @@ export const LandingSolidFoundationDesktop: FC<Props> = ({ className }) => {
               "leading-6",
               "font-normal",
               "tracking-[-0.004rem]",
-              "text-gray-600 dark:text-zinc-300",
+              "text-zinc-300",
               "max-w-[446px]",
               "p-0",
               "m-0",
@@ -69,25 +69,15 @@ export const LandingSolidFoundationDesktop: FC<Props> = ({ className }) => {
             <span
               className={clsx(
                 "font-jetBrains-mono",
-                "dark:text-orange-400 dark:drop-shadow-none",
-                "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
+                "text-orange-400 drop-shadow-none",
               )}
             >
               CORE
             </span>{" "}
             is backed by{" "}
-            <span className={clsx("text-zinc-800 dark:text-white")}>
-              Y Combinator
-            </span>{" "}
-            (YC S23),{" "}
-            <span className={clsx("text-zinc-800 dark:text-white")}>
-              500 Emerging Europe
-            </span>{" "}
-            and{" "}
-            <span className={clsx("text-zinc-800 dark:text-white")}>
-              Senovo
-            </span>
-            .
+            <span className={clsx("text-white")}>Y Combinator</span> (YC S23),{" "}
+            <span className={clsx("text-white")}>500 Emerging Europe</span> and{" "}
+            <span className={clsx("text-white")}>Senovo</span>.
           </p>
         </div>
         <div
@@ -117,7 +107,7 @@ export const LandingSolidFoundationMobile: FC<Props> = ({ className }) => {
             "text-start",
             "font-medium",
             "p-0",
-            "dark:text-white text-gray-900",
+            "text-white",
           )}
         >
           Built on a solid foundation
@@ -128,20 +118,17 @@ export const LandingSolidFoundationMobile: FC<Props> = ({ className }) => {
             "max-w-md",
             "text-base",
             "tracking-[-0.004rem]",
-            "dark:text-gray-400 text-gray-300",
+            "text-zinc-300",
           )}
         >
           Refine{" "}
-          <span
-            className={clsx(
-              "font-jetBrains-mono",
-              "dark:text-orange-400 dark:drop-shadow-none",
-              "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
-            )}
-          >
+          <span className={clsx("font-jetBrains-mono", "text-orange-400")}>
             CORE
           </span>{" "}
-          is backed by Y Combinator (YC S23), 500 Emerging Europe and Senovo.
+          is backed by <span className={clsx("text-white")}>Y Combinator</span>{" "}
+          (YC S23),{" "}
+          <span className={clsx("text-white")}>500 Emerging Europe</span> and{" "}
+          <span className={clsx("text-white")}>Senovo</span>.
         </p>
       </div>
       <div
@@ -152,7 +139,7 @@ export const LandingSolidFoundationMobile: FC<Props> = ({ className }) => {
           "items-center",
           "justify-center",
           "h-[400px]",
-          "dark:bg-zinc-800 bg-gray-50",
+          "bg-zinc-800",
         )}
       >
         <img

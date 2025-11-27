@@ -46,17 +46,11 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             "tracking-normal",
             "text-start",
             "p-0",
-            "dark:text-white text-gray-900",
+            "text-white",
           )}
         >
           Feel the power of a{" "}
-          <span
-            className={clsx(
-              "font-semibold",
-              "dark:text-orange-400 dark:drop-shadow-none",
-              "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
-            )}
-          >
+          <span className={clsx("font-semibold", "text-orange-400")}>
             great community
           </span>
           .
@@ -89,7 +83,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 "flex",
                 "flex-col",
                 "gap-2",
-                "dark:bg-zinc-800 bg-gray-50",
+                "bg-zinc-800",
                 "rounded-xl",
                 item.href && "cursor-pointer hover:brightness-95",
               )}
@@ -98,7 +92,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 className={clsx(
                   "text-4xl landing-sm:text-5xl",
                   "font-bold",
-                  "dark:text-white text-gray-900",
+                  "text-white",
                 )}
               >
                 {item.stat}
@@ -106,7 +100,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               <div
                 className={clsx(
                   "text-sm landing-sm:text-base",
-                  "dark:text-zinc-300 text-gray-600",
+                  "text-zinc-300",
                 )}
               >
                 {item.description}

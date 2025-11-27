@@ -27,7 +27,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
             "tracking-normal",
             "text-start",
             "p-0",
-            "dark:text-white text-gray-900",
+            "text-white",
           )}
         >
           The difference that Refine{" "}
@@ -35,8 +35,7 @@ export const LandingTestimonial: FC<Props> = ({ className }) => {
             className={clsx(
               "font-bold",
               "font-jetBrains-mono",
-              "dark:text-orange-400 dark:drop-shadow-none",
-              "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
+              "text-orange-400",
             )}
           >
             CORE
@@ -139,9 +138,7 @@ const TestimonialCard = ({
   className,
 }) => {
   return (
-    <div
-      className={clsx("dark:bg-zinc-800 bg-gray-50", "rounded-xl", className)}
-    >
+    <div className={clsx("bg-zinc-800", "rounded-xl", className)}>
       <div
         className={clsx(
           "not-prose",
@@ -153,11 +150,7 @@ const TestimonialCard = ({
         )}
       >
         <div
-          className={clsx(
-            "text-sm",
-            "dark:text-zinc-300 text-gray-900",
-            "tracking-[-0.007rem]",
-          )}
+          className={clsx("text-sm", "text-zinc-300", "tracking-[-0.007rem]")}
         >
           {description}
         </div>
@@ -181,7 +174,7 @@ const TestimonialCard = ({
             <div
               className={clsx(
                 "text-xs",
-                "dark:text-zinc-400 text-gray-600",
+                "text-zinc-400",
                 "tracking-[-0.006rem]",
               )}
             >
@@ -190,7 +183,7 @@ const TestimonialCard = ({
             <div
               className={clsx(
                 "text-xs",
-                "dark:text-zinc-400 text-gray-600",
+                "text-zinc-400",
                 "tracking-[-0.006rem]",
               )}
             >

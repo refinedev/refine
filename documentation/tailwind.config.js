@@ -159,10 +159,6 @@ module.exports = {
         "menu-blog-light": "0px 0px 0px 4px #99A1B31A",
         "landing-sweet-spot-code-dark":
           "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.07), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.11), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.13), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.15), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.19), 0px 82px 80px 0px rgba(0, 0, 0, 0.26)",
-        "landing-sweet-spot-code-light":
-          "0px 2.26915px 2.21381px 0px rgba(0, 0, 0, 0.02), 0px 5.45308px 5.32008px 0px rgba(0, 0, 0, 0.04), 0px 10.26767px 10.01724px 0px rgba(0, 0, 0, 0.04), 0px 18.31577px 17.86905px 0px rgba(0, 0, 0, 0.05), 0px 34.25764px 33.42209px 0px rgba(0, 0, 0, 0.06), 0px 82px 80px 0px rgba(0, 0, 0, 0.09)",
-        "landing-wai-shadow-light": "0px -1.5px 0px rgba(237,242,247,0.5)",
-        "landing-wai-shadow-dark": "0px -1.5px 0px rgba(20,20,31,0.5)",
       },
       backgroundColor: {
         "landing-header-bg": "rgba(10, 10, 41, 0.70)",
@@ -212,8 +208,6 @@ module.exports = {
           "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%)",
         "landing-text-bg-alt":
           "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.4) 80%, rgba(255,255,255,0.4) 100%)",
-        "landing-sliding-highlight-bg":
-          "linear-gradient(180deg, #3FDCF7 0%, rgba(63, 220, 247, 0.6) 100%)",
         "landing-rainbow":
           "conic-gradient(from 180deg at 50% 50%, #3FDCF7 0deg, #1890FF 51.43deg, #6813CB 102.86deg, #FF003D 154.29deg, #FF8A00 205.71deg, #FFD600 257.14deg, #67BE23 308.57deg, #3FDCF7 360deg)",
         "landing-ghost":
@@ -268,12 +262,6 @@ module.exports = {
           "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-left.svg')",
         "landing-playground-slide-right-bg":
           "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
-        "landing-trusted-by-developers-dark": [
-          "linear-gradient(0deg, #27272a 0%, #27272a 100%)",
-        ],
-        "landing-trusted-by-developers": [
-          "radial-gradient(40% 100% at 110% 20%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
-        ],
         "ai-landing-hero-dark-md": [
           "radial-gradient(50% 50% at 50% 50%, rgba(38, 217, 126, 0.2) 20%, rgba(38, 217, 126, 0) 100%)",
         ],
@@ -325,34 +313,6 @@ module.exports = {
           "",
           "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
         ],
-        "landing-sweet-spot-glow-red-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(210, 45, 45, 0.05) 0%, rgba(210, 45, 45, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(210, 45, 45, 0.15) 0%, rgba(210, 45, 45, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-yellow-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(244, 106, 37, 0.05) 0%, rgba(244, 106, 37, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(244, 106, 37, 0.15) 0%, rgba(244, 106, 37, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-orange-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(255, 159, 26, 0.05) 0%, rgba(255, 159, 26, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(255, 159, 26, 0.15) 0%, rgba(255, 159, 26, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-cyan-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(8, 145, 145, 0.05) 0%, rgba(8, 145, 145, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(8, 145, 145, 0.15) 0%, rgba(8, 145, 145, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-blue-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(31, 128, 224, 0.05) 0%, rgba(31, 128, 224, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(31, 128, 224, 0.15) 0%, rgba(31, 128, 224, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-indigo-light": [
-          "radial-gradient(50% 50% at 70% 0%, rgba(105, 59, 198, 0.05) 0%, rgba(105, 59, 198, 0.00) 100%)",
-          "radial-gradient(50% 50% at 50% 50%, rgba(105, 59, 198, 0.15) 0%, rgba(105, 59, 198, 0.00) 100%)",
-        ],
-        "landing-packages-text":
-          "linear-gradient(180deg, #14141F 0%, #474E6B 100%)",
-        "landing-packages-text-dark":
-          "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
         "hackathon-button-bg":
           "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
         "refine-week-supabase-timeline-item-bg":
@@ -411,18 +371,10 @@ module.exports = {
           "radial-gradient(104% 104% at 0% 0%, rgba(249, 210, 54, 0.10) 0%, rgba(249, 210, 54, 0.00) 100%)",
         "landing-hero-beam-bottom":
           "linear-gradient(90deg, rgba(255,255,255,0), #47EBEB, rgba(255,255,255,0))",
-        "landing-hero-beam-bottom-light":
-          "linear-gradient(90deg, rgba(255,255,255,0), #0080FF, rgba(255,255,255,0))",
         "landing-hero-xray-dot-center-bg":
           "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0FBDBD 50%, #0FBDBD 100%)",
         "landing-hero-xray-dot-center-bg-light":
           "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0080FF 50%, #0080FF 100%)",
-        "landing-wizard-option-bg-dark": [
-          "linear-gradient(180deg, #27272A 0%, #27272A 100%)",
-        ],
-        "landing-wizard-option-bg-light": [
-          "radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0) 100%)",
-        ],
         "landing-hero-beam-bg":
           "conic-gradient(from 280deg, currentColor 6%, transparent 14%, transparent 100%)",
         "footer-landing-dark-bg": [
@@ -434,17 +386,8 @@ module.exports = {
         "footer-blog-light-bg": [
           "linear-gradient(180deg, #F6F7F9 0%, rgba(246, 247, 249, 0) 100%)",
         ],
-        "landing-wizard-side-bg": [
-          "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.38) 50%, rgba(48, 52, 80, 0.00) 100%)",
-        ],
-        "landing-wizard-side-bg-light": [
-          "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.1) 50%, rgba(48, 52, 80, 0.00) 100%)",
-        ],
         "landing-copy-command-hover-bg-dark": [
           "radial-gradient(transparent 30%, rgba(249, 115, 22, 0.10))",
-        ],
-        "landing-copy-command-hover-bg-light": [
-          "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
         ],
         "enterprise-copy-command-hover-bg-dark": [
           "radial-gradient(transparent 30%, rgba(128, 0, 255, 0.30))",
@@ -520,16 +463,11 @@ module.exports = {
           "radial-gradient(100% 375% at 100% 50%, #8000FF 0%, #3333FF 100%)",
         "enterprise-cta-button-bg-dark":
           "radial-gradient(100% 375% at 100% 50%, #26D97F 0%, #47EBEB 100%)",
-        "landing-wai-sunshine-light":
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-light.png)",
         "landing-wai-sunshine-dark":
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-sunshine-normal.webp)",
-        "landing-wai-grid-light":
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal-light.png)",
         "landing-wai-grid-dark":
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal.png)",
-        "landing-wai-bg-dark":
-          "radial-gradient(57.03% 100% at 50% 0%, rgba(71, 235, 235, 0.25) 0%, rgba(71, 235, 235, 0) 100%)",
+
         "refine-ai-page-bg-dark": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-ai-page-bg-dark.png)",
           "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(38, 217, 126, 0.25) 0%, rgba(38, 217, 126, 0) 100%)",
@@ -541,10 +479,6 @@ module.exports = {
         ],
       },
       backgroundPosition: {
-        "landing-wizard-option-right": "top -350px right -350px, center",
-        "landing-wizard-option-left": "bottom -350px left -350px, center",
-        "landing-wizard-side-left-position": "center left",
-        "landing-wizard-side-right-position": "center right",
         "landing-sweet-spot-glow-position-lg":
           "center, calc(50% + 800px) calc(50% - 300px)",
         "landing-sweet-spot-glow-position-md":

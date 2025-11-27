@@ -35,20 +35,23 @@ export const CommonHeader = ({
     ["0%", "100%"],
   );
 
+  const isLanding = variant === "landing";
+
   return (
     <>
       <TopAnnouncement />
       <MobileMenuModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        variant={variant}
       />
       <header
         className={clsx(
           "sticky",
           "top-0",
           "z-10",
-          "dark:border-b",
-          "dark:border-b-zinc-700",
+          !isLanding && "dark:border-b dark:border-b-zinc-700",
+          isLanding && "border-b border-b-zinc-700",
         )}
       >
         <div
@@ -58,8 +61,9 @@ export const CommonHeader = ({
             "backdrop-blur-[6px]",
             "landing-md:backdrop-blur-[12px]",
             "z-[-1]",
-            "bg-gray-0 dark:bg-zinc-900",
-            "bg-opacity-80 dark:bg-opacity-80",
+            !isLanding &&
+              "bg-gray-0 bg-opacity-80 dark:bg-zinc-900 dark:bg-opacity-80",
+            isLanding && "bg-zinc-900 bg-opacity-80",
             "pointer-events-none",
             className,
           )}
@@ -87,13 +91,19 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineCoreLogoIcon className="text-gray-900 dark:text-gray-0" />
+                <RefineCoreLogoIcon
+                  className={clsx(
+                    !isLanding && "text-gray-900 dark:text-gray-0",
+                    isLanding && "text-gray-0",
+                  )}
+                />
               </Link>
             </div>
             <button
               type="button"
               className={clsx(
-                "text-gray-900 dark:text-gray-0",
+                !isLanding && "text-gray-900 dark:text-gray-0",
+                isLanding && "text-gray-0",
                 "block landing-md:hidden",
               )}
               onClick={() => setIsModalOpen(true)}
@@ -101,7 +111,7 @@ export const CommonHeader = ({
               <HamburgerIcon />
             </button>
             <div className={clsx("hidden landing-md:flex", "items-center")}>
-              <NavLinksDesktop />
+              <NavLinksDesktop variant={variant} />
             </div>
             <div
               className={clsx(
@@ -112,17 +122,38 @@ export const CommonHeader = ({
               )}
             >
               <SearchBar
-                CustomButton={() => (
-                  <>
-                    <DocSearchButton
-                      className={clsx("hidden", "landing-lg:flex")}
-                    />
-                    <DocSearchButton
-                      iconOnly
-                      className={clsx("flex", "landing-lg:hidden")}
-                    />
-                  </>
-                )}
+                CustomButton={React.forwardRef<
+                  HTMLButtonElement,
+                  React.PropsWithChildren<{}>
+                >(function CustomButton(props, ref) {
+                  return (
+                    <>
+                      <DocSearchButton
+                        ref={ref}
+                        {...props}
+                        className={clsx(
+                          "hidden",
+                          "landing-lg:flex",
+                          "bg-zinc-800",
+                          "text-zinc-300",
+                        )}
+                        shortcutClassName={clsx("bg-zinc-900", "text-zinc-400")}
+                      />
+                      <DocSearchButton
+                        ref={ref}
+                        iconOnly
+                        {...props}
+                        className={clsx(
+                          "flex",
+                          "landing-lg:hidden",
+                          "bg-zinc-800",
+                          "text-zinc-300",
+                        )}
+                        shortcutClassName={clsx("bg-zinc-900", "text-zinc-400")}
+                      />
+                    </>
+                  );
+                })}
               />
               <LandingGithubStarButton />
               <CommonThemeToggle />
@@ -135,7 +166,8 @@ export const CommonHeader = ({
               "w-full",
               "h-[1px]",
               "translate",
-              "bg-refine-react-3 dark:bg-refine-react-7",
+              !isLanding && "bg-refine-react-3 dark:bg-refine-react-7",
+              isLanding && "bg-refine-react-7",
             )}
           >
             {/* @ts-expect-error - framer-motion type issue */}
@@ -143,7 +175,9 @@ export const CommonHeader = ({
               // @ts-expect-error - framer-motion type issue
               className={clsx(
                 "h-full",
-                "bg-refine-react-light-link dark:bg-refine-react-dark-link",
+                !isLanding &&
+                  "bg-refine-react-light-link dark:bg-refine-react-dark-link",
+                isLanding && "bg-refine-react-dark-link",
               )}
               style={{ width: progressPercentage }}
             />
@@ -177,7 +211,11 @@ const LINKS = [
   },
 ];
 
-const NavLinksDesktop = () => {
+const NavLinksDesktop = ({
+  variant = "landing",
+}: { variant?: "landing" | "blog" }) => {
+  const isLanding = variant === "landing";
+
   return (
     <nav
       className={clsx(
@@ -199,8 +237,9 @@ const NavLinksDesktop = () => {
             to={link.to}
             className={clsx(
               "whitespace-nowrap",
-              "text-gray-900 dark:text-gray-0",
-              "hover:text-gray-900 dark:hover:text-gray-0",
+              !isLanding &&
+                "text-gray-900 dark:text-gray-0 hover:text-gray-900 dark:hover:text-gray-0",
+              isLanding && "text-gray-0 hover:text-gray-0",
               "hover:no-underline",
               "transition-colors",
             )}
@@ -210,15 +249,21 @@ const NavLinksDesktop = () => {
         );
       })}
       <div
-        className={clsx("h-6", "w-[1px]", "bg-gray-300", "dark:bg-zinc-600")}
+        className={clsx(
+          "h-6",
+          "w-[1px]",
+          !isLanding && "bg-gray-300 dark:bg-zinc-600",
+          isLanding && "bg-zinc-600",
+        )}
       />
       <Link
         key="Refine Home"
         to="https://ai.refine.dev/"
         className={clsx(
           "whitespace-nowrap",
-          "text-gray-900 dark:text-gray-0",
-          "hover:text-gray-900 dark:hover:text-gray-0",
+          !isLanding &&
+            "text-gray-900 dark:text-gray-0 hover:text-gray-900 dark:hover:text-gray-0",
+          isLanding && "text-gray-0 hover:text-gray-0",
           "hover:no-underline",
           "transition-colors",
         )}
@@ -232,9 +277,14 @@ const NavLinksDesktop = () => {
 type MobileMenuModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  variant?: "landing" | "blog";
 };
 
-const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
+const MobileMenuModal = ({
+  isOpen,
+  onClose,
+  variant,
+}: MobileMenuModalProps) => {
   React.useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -249,13 +299,16 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
 
   if (!isOpen) return null;
 
+  const isLanding = variant === "landing";
+
   return (
     <div
       className={clsx(
         "fixed",
         "inset-0",
         "z-[999]",
-        "bg-gray-0 dark:bg-zinc-900",
+        !isLanding && "bg-gray-0 dark:bg-zinc-900",
+        isLanding && "bg-zinc-900",
         "flex",
         "flex-col",
       )}
@@ -269,11 +322,17 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
           "px-4",
           "h-16",
           "border-b",
-          "border-gray-200 dark:border-zinc-700",
+          !isLanding && "border-gray-200 dark:border-zinc-700",
+          isLanding && "border-zinc-700",
         )}
       >
         <Link to="/" onClick={onClose}>
-          <RefineCoreLogoIcon className="text-gray-900 dark:text-white" />
+          <RefineCoreLogoIcon
+            className={clsx(
+              !isLanding && "text-gray-900 dark:text-white",
+              isLanding && "text-gray-0",
+            )}
+          />
         </Link>
         <button
           type="button"
@@ -282,7 +341,8 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
             "flex",
             "items-center",
             "gap-2",
-            "text-gray-900 dark:text-white",
+            !isLanding && "text-gray-900 dark:text-white",
+            isLanding && "text-gray-0",
             "text-sm",
             "font-normal",
           )}
@@ -329,10 +389,10 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
                 "justify-start",
                 "px-4",
                 "py-3.5",
-                "bg-gray-100 dark:bg-zinc-800",
-                "hover:bg-gray-200 dark:hover:bg-zinc-700",
-                "rounded-lg",
-                "text-gray-900 dark:text-white",
+                !isLanding &&
+                  "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded-lg text-gray-900 dark:text-white",
+                isLanding &&
+                  "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-gray-0",
                 "text-sm",
                 "font-normal",
                 "hover:no-underline",
@@ -346,7 +406,12 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
 
         {/* Divider */}
         <div
-          className={clsx("h-[1px]", "bg-gray-200 dark:bg-zinc-700", "my-6")}
+          className={clsx(
+            "h-[1px]",
+            !isLanding && "bg-gray-200 dark:bg-zinc-700",
+            isLanding && "bg-zinc-700",
+            "my-6",
+          )}
         />
 
         {/* Refine Home Link */}
@@ -361,10 +426,9 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
             "landing-sm:w-1/2",
             "px-4",
             "py-3.5",
-            "bg-gray-100 dark:bg-zinc-800",
-            "hover:bg-gray-200 dark:hover:bg-zinc-700",
-            "rounded-lg",
-            "text-gray-900 dark:text-white",
+            !isLanding &&
+              "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded-lg text-gray-900 dark:text-white",
+            isLanding && "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-gray-0",
             "text-sm",
             "font-normal",
             "hover:no-underline",
@@ -381,14 +445,21 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
           "px-6",
           "py-6",
           "border-t",
-          "border-gray-200 dark:border-zinc-700",
-          "bg-gray-50 dark:bg-black",
+          !isLanding &&
+            "border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-black",
+          isLanding && "border-zinc-700 bg-black",
         )}
       >
         <Link to="https://github.com/refinedev/refine" className="no-underline">
           <div className={clsx("flex items-center")}>
             <GithubBigStarIcon />
-            <div className={clsx("ml-4", "text-gray-900 dark:text-white")}>
+            <div
+              className={clsx(
+                "ml-4",
+                !isLanding && "text-gray-900 dark:text-white",
+                isLanding && "text-gray-0",
+              )}
+            >
               If you like Refine, don’t forget to star us on GitHub!
             </div>
           </div>

@@ -61,8 +61,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
           "w-full",
           "px-10",
           "py-6 landing-lg:py-3",
-          "dark:bg-landing-trusted-by-developers-dark bg-landing-trusted-by-developers",
-          "dark:bg-zinc-800 bg-gray-50",
+          "bg-zinc-800",
           "rounded-xl landing-sm:rounded-[1.25rem]",
           "flex",
           "flex-col landing-lg:flex-row",
@@ -75,7 +74,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
             "whitespace-nowrap",
             "text-base landing-sm:text-sm",
             "font-semibold",
-            "dark:text-white text-gray-600",
+            "text-white",
           )}
         >
           <span className={clsx("landing-lg:block")}>
@@ -102,6 +101,7 @@ export const LandingTrustedByDevelopers: FC<Props> = ({ className }) => {
             >
               <div
                 className={clsx(
+                  "text-white",
                   "animate-opacity-reveal",
                   "flex",
                   "items-center",

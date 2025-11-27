@@ -88,7 +88,7 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
             "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
             "font-semibold",
             "tracking-normal",
-            "text-gray-900 dark:text-white",
+            "text-white",
           )}
         >
           Get started now!
@@ -98,7 +98,7 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
             "text-base",
             "font-normal",
             "tracking-[-0.004rem]",
-            "text-gray-600 dark:text-zinc-300",
+            "text-zinc-300",
             "landing-sm:max-w-[446px]",
           )}
         >
@@ -172,9 +172,7 @@ const LandingTryItOptionsSection = ({
           "pt-4 landing-sm:pt-8",
           "pb-4 landing-sm:pb-8",
           "px-4 landing-sm:px-10",
-          "bg-gray-50 dark:bg-zinc-800",
-          "landing-md:bg-landing-wizard-option-bg-light dark:landing-md:bg-landing-wizard-option-bg-dark",
-          "landing-md:bg-landing-wizard-option-left landing-md:bg-landing-wizard-option",
+          "bg-zinc-800",
         )}
         style={{
           backgroundRepeat: "no-repeat, repeat",
@@ -183,7 +181,7 @@ const LandingTryItOptionsSection = ({
         <div
           className={clsx(
             "text-base landing-lg:text-2xl",
-            "text-gray-600 dark:text-white",
+            "text-white",
             "landing-md:max-w-[318px]",
             "landing-lg:max-w-[446px]",
           )}
@@ -199,8 +197,8 @@ const LandingTryItOptionsSection = ({
             "focus:outline-none",
             "self-start",
             "rounded-lg",
-            "!text-gray-0 dark:!text-white",
-            "bg-refine-blue dark:bg-orange-500",
+            "!text-white",
+            "bg-orange-500",
             "pr-6",
             "pl-3",
             "py-3",
@@ -239,7 +237,7 @@ const LandingTryItOptionsSection = ({
             "top-0",
             "h-[272px]",
             "w-2",
-            "bg-gray-0 dark:bg-gray-900",
+            "bg-gray-900",
           )}
         />
         <div
@@ -249,8 +247,8 @@ const LandingTryItOptionsSection = ({
             "landing-md:top-32 landing-md:-left-1",
             "landing-md:-translate-x-1/2",
             "landing-md:-translate-y-1/2",
-            "bg-gray-0 dark:bg-zinc-900",
-            "text-gray-600 dark:text-white",
+            "bg-zinc-900",
+            "text-white",
             "w-16 h-16 landing-md:w-[78px] landing-md:h-[78px]",
             "rounded-full",
             "text-base",
@@ -270,9 +268,7 @@ const LandingTryItOptionsSection = ({
           "pt-4 landing-sm:pt-8",
           "pb-4 landing-sm:pb-8",
           "px-4 landing-sm:px-10",
-          "bg-gray-50 dark:bg-zinc-800",
-          "landing-md:bg-landing-wizard-option-bg-light dark:landing-md:bg-landing-wizard-option-bg-dark",
-          "landing-md:bg-landing-wizard-option-right landing-md:bg-landing-wizard-option",
+          "bg-zinc-800",
           "landing-md:items-end",
         )}
         style={{
@@ -291,14 +287,14 @@ const LandingTryItOptionsSection = ({
           <div
             className={clsx(
               "text-base landing-lg:text-2xl",
-              "text-gray-600 dark:text-white",
+              "text-white",
               "landing-lg:max-w-[446px]",
             )}
           >
             <div>Run the npm command in Terminal and</div>
             <div>follow the wizard instructions.</div>
           </div>
-          <LandingCopyCommandButton className={"dark:!bg-zinc-700"} />
+          <LandingCopyCommandButton className={"!bg-zinc-700"} />
         </div>
       </div>
     </div>
@@ -351,15 +347,12 @@ const LandingTryItWizardSection = ({
       <div
         className={clsx(
           "flex-1",
-          "bg-gray-0 dark:bg-zinc-900",
+          "bg-zinc-900",
           "opacity-0",
           visible && "opacity-100",
           "transition-[background-color,background,opacity]",
           "duration-150",
           "ease-in-out",
-          "bg-landing-wizard-side-bg-light dark:bg-landing-wizard-side-bg",
-          "bg-landing-wizard-side-left-position",
-          "bg-landing-wizard-side-size",
           "bg-no-repeat",
         )}
       />
@@ -369,7 +362,7 @@ const LandingTryItWizardSection = ({
           "box-content",
           "flex-shrink-0",
           "rounded-2xl landing-md:rounded-3xl",
-          "bg-gray-50 dark:bg-zinc-800",
+          "bg-zinc-800",
           "border border-solid",
           "transition-[border-color,width,height,opacity,background-color]",
           "mx-auto",
@@ -379,10 +372,7 @@ const LandingTryItWizardSection = ({
           "scrollbar-hidden",
           !visible && ["pointer-events-none", "select-none"],
           !visible && ["landing-md:border-transparent"],
-          visible && [
-            "landing-md:border-gray-200 dark:border-zinc-700",
-            "landing-md:bg-gray-50 dark:bg-zinc-800",
-          ],
+          visible && ["landing-md:border-zinc-700", "landing-md:bg-zinc-800"],
           !visible && [
             "landing-md:opacity-0",
             "landing-md:h-0",
@@ -421,15 +411,12 @@ const LandingTryItWizardSection = ({
       <div
         className={clsx(
           "flex-1",
-          "bg-gray-0 dark:bg-zinc-900",
+          "bg-zinc-900",
           "opacity-0",
           visible && "opacity-100",
           "transition-[background-color,background,opacity]",
           "duration-150",
           "ease-in-out",
-          "bg-landing-wizard-side-bg-light dark:bg-landing-wizard-side-bg",
-          "bg-landing-wizard-side-right-position",
-          "bg-landing-wizard-side-size",
           "bg-no-repeat",
         )}
       />

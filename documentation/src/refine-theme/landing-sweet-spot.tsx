@@ -1,6 +1,5 @@
 import React, { type FC, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { useColorMode } from "@docusaurus/theme-common";
 import {
   AuthenticationIcon,
   ChartsIcon,
@@ -22,8 +21,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
 
   const isBrowser = useIsBrowser();
 
-  const { colorMode } = useColorMode();
-  const isDarkTheme = colorMode === "dark";
+  const isDarkTheme = true;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const activeListItem = list[activeIndex];
@@ -55,18 +53,10 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "text-start",
             "font-medium",
             "p-0",
-            "dark:text-white text-gray-900",
+            "text-white",
           )}
         >
-          The{" "}
-          <span
-            className={clsx(
-              "dark:text-orange-400 dark:drop-shadow-none",
-              "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
-            )}
-          >
-            sweet spot
-          </span>{" "}
+          The <span className={clsx("text-orange-400")}>sweet spot</span>{" "}
           between low-code and full-code.
         </h2>
         <p
@@ -75,7 +65,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "max-w-md",
             "text-base",
             "tracking-[-0.004rem]",
-            "dark:text-gray-300 text-gray-600",
+            "text-zinc-300",
           )}
         >
           Drag-and-drop tools shine initially but collapse under the weight of
@@ -94,7 +84,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "pt-4 landing-sm:pt-10 landing-lg:pt-20",
             "pb-4 landing-lg:pb-0",
             "pl-4 landing-sm:pl-10",
-            "dark:bg-zinc-800 bg-gray-50",
+            "bg-zinc-800",
             "rounded-2xl landing-sm:rounded-3xl",
             "overflow-hidden",
           )}
@@ -148,18 +138,12 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
               <h3
                 className={clsx(
                   "text-base landing-sm:text-xl font-semibold",
-                  "dark:text-gray-300 text-gray-700",
+                  "text-white",
                 )}
               >
                 {activeListItem.title}
               </h3>
-              <p
-                className={clsx(
-                  "mt-6",
-                  "text-base",
-                  "dark:text-gray-400 text-gray-600",
-                )}
-              >
+              <p className={clsx("mt-6", "text-base", "text-zinc-300")}>
                 {activeListItem.description}
               </p>
               <div
@@ -187,10 +171,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "appearance-none",
                         "focus:outline-none",
                         "cursor-pointer",
-                        active
-                          ? "dark:bg-gray-900 bg-gray-0"
-                          : "dark:bg-gray-900/50 bg-gray-0/50",
-
+                        active && "bg-gray-900",
+                        !active && "bg-gray-900/50",
                         "w-max",
                         "flex",
                         "items-center",
@@ -206,9 +188,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                       </div>
                       <div
                         className={clsx(
-                          active
-                            ? "dark:text-gray-0 text-gray-900"
-                            : "dark:text-gray-400 text-gray-600",
+                          active && "text-gray-0",
+                          !active && "text-gray-400",
                         )}
                       >
                         {item.iconText}
@@ -279,9 +260,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "bottom-0 landing-sm:bottom-[4px] landing-lg:bottom-[78px]",
                         "-left-2 landing-lg:-left-20",
                         "rounded-xl",
-                        "dark:bg-zinc-800 bg-gray-0",
-                        "dark:shadow-landing-sweet-spot-code-dark",
-                        "shadow-landing-sweet-spot-code-light",
+                        "bg-zinc-800",
+                        "shadow-landing-sweet-spot-code-dark",
                         active && "delay-300",
                         active ? "translate-y-0" : "translate-y-full",
                         active ? "opacity-100" : "opacity-0",
@@ -314,7 +294,8 @@ const list = [
     icon: (props: { active: boolean }) => (
       <DataTablesIcon
         className={clsx(
-          props.active ? "dark:text-[#FA3852] text-[#D22D2D]" : "text-gray-500",
+          props.active && "text-[#FA3852]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -327,8 +308,7 @@ const list = [
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-red-dark bg-landing-sweet-spot-glow-red-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-red-dark",
   },
   {
     title:
@@ -339,7 +319,8 @@ const list = [
     icon: (props: { active: boolean }) => (
       <ListIcon
         className={clsx(
-          props.active ? "dark:text-[#F98C1F] text-[#F46A25]" : "text-gray-500",
+          props.active && "text-[#F46A25]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -352,8 +333,7 @@ const list = [
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-orange-dark bg-landing-sweet-spot-glow-orange-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-orange-dark",
   },
   {
     title:
@@ -364,7 +344,8 @@ your UI elements to enterprise-grade:`,
     icon: (props: { active: boolean }) => (
       <ChartsIcon
         className={clsx(
-          props.active ? "dark:text-[#F9D51F] text-[#FF9F1A]" : "text-gray-500",
+          props.active && "text-[#F9D51F]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -377,8 +358,7 @@ your UI elements to enterprise-grade:`,
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-yellow-dark bg-landing-sweet-spot-glow-yellow-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-yellow-dark",
   },
   {
     title:
@@ -389,7 +369,8 @@ your UI elements to enterprise-grade:`,
     icon: (props: { active: boolean }) => (
       <FormsIcon
         className={clsx(
-          props.active ? "dark:text-[#47D1BF] text-[#089191]" : "text-gray-500",
+          props.active && "text-[#47D1BF]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -402,8 +383,7 @@ your UI elements to enterprise-grade:`,
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-cyan-dark bg-landing-sweet-spot-glow-cyan-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-cyan-dark",
   },
   {
     title:
@@ -414,7 +394,8 @@ your UI elements to enterprise-grade:`,
     icon: (props: { active: boolean }) => (
       <WizardsIcon
         className={clsx(
-          props.active ? "dark:text-[#3DB8F5] text-[#1F80E0]" : "text-gray-500",
+          props.active && "text-[#3DB8F5]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -427,8 +408,7 @@ your UI elements to enterprise-grade:`,
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-blue-dark bg-landing-sweet-spot-glow-blue-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-blue-dark",
   },
   {
     title:
@@ -439,7 +419,8 @@ your UI elements to enterprise-grade:`,
     icon: (props: { active: boolean }) => (
       <AuthenticationIcon
         className={clsx(
-          props.active ? "dark:text-[#5959FF] text-[#693BC6]" : "text-gray-500",
+          props.active && "text-[#5959FF]",
+          !props.active && "text-gray-500",
         )}
       />
     ),
@@ -452,7 +433,6 @@ your UI elements to enterprise-grade:`,
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-code-dark.png",
     image2Light:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-code.png",
-    backgroundImage:
-      "dark:bg-landing-sweet-spot-glow-indigo-dark bg-landing-sweet-spot-glow-indigo-light",
+    backgroundImage: "bg-landing-sweet-spot-glow-indigo-dark",
   },
 ];

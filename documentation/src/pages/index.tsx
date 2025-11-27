@@ -31,9 +31,12 @@ function Home() {
           as="document"
         />
       </Head>
-      <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+      <CommonLayout
+        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+        className={clsx("bg-zinc-900")}
+      >
         <div className={clsx()}>
-          <CommonHeader />
+          <CommonHeader variant="landing" />
           <div
             className={clsx(
               "flex flex-col",
@@ -67,10 +70,14 @@ function Home() {
                 )}
               >
                 <LandingAlreadyInvented
-                  className={clsx("w-full landing-md:w-[50%] ")}
+                  className={clsx(
+                    "w-full landing-md:w-[50%] landing-lg:w-auto landing-lg:min-w-[538px]",
+                  )}
                 />
                 <LandingPureReactCode
-                  className={clsx("w-full landing-md:w-[50%] ")}
+                  className={clsx(
+                    "w-full landing-md:w-[50%] landing-lg:w-auto landing-lg:min-w-[640px]",
+                  )}
                 />
               </div>
             </div>

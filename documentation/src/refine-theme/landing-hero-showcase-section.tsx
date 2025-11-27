@@ -15,7 +15,7 @@ export const LandingHeroShowcaseSection = () => {
   return (
     <div
       className={clsx(
-        "bg-gray-50 dark:bg-zinc-800",
+        "bg-zinc-800",
         "flex",
         "flex-col",
         "w-full",
@@ -36,7 +36,7 @@ export const LandingHeroShowcaseSection = () => {
             "scrollbar-hidden",
             "snap snap-x snap-mandatory",
             "snap-mandatory",
-            "bg-gray-50 dark:bg-zinc-800",
+            "bg-zinc-800",
             "p-4",
           )}
         >
@@ -49,7 +49,7 @@ export const LandingHeroShowcaseSection = () => {
               "justify-start",
               "gap-2",
               "relative",
-              "bg-gray-100 dark:bg-zinc-900",
+              "bg-zinc-900",
               "rounded-lg",
               "p-1",
             )}
@@ -64,9 +64,9 @@ export const LandingHeroShowcaseSection = () => {
                 "transition-transform",
                 "duration-150",
                 "ease-out",
-                "bg-gray-200 dark:bg-zinc-700",
+                "bg-zinc-700",
                 "rounded-md",
-                "dark:shadow-[inset_0_1px_0_0_rgb(82_82_91)]",
+                "shadow-[inset_0_1px_0_0_rgb(82_82_91)]",
               )}
               style={{
                 width: "calc((100% - (3 * 8px) - 8px) / 4)",
@@ -108,13 +108,11 @@ export const LandingHeroShowcaseSection = () => {
                   "ease-in-out",
                   "duration-150",
                   activeApp.name !== app.name && "bg-transparent",
-                  activeApp.name === app.name && "bg-gray-200 dark:bg-zinc-800",
-                  activeApp.name !== app.name &&
-                    "text-gray-600 dark:text-zinc-400",
-                  activeApp.name === app.name &&
-                    "text-gray-900 dark:text-white",
+                  activeApp.name === app.name && "bg-zinc-800",
+                  activeApp.name !== app.name && "text-zinc-400",
+                  activeApp.name === app.name && "text-white",
                   "landing-sm:bg-transparent",
-                  "dark:landing-sm:bg-transparent",
+                  "landing-sm:bg-transparent",
                   "transition-colors",
                   "duration-150",
                   "ease-out",
@@ -129,12 +127,7 @@ export const LandingHeroShowcaseSection = () => {
         </div>
       </div>
       <div
-        className={clsx(
-          "overflow-hidden",
-          "shadow-sm shadow-gray-200 dark:shadow-none",
-          "relative",
-          "group/showcase-inner",
-        )}
+        className={clsx("overflow-hidden", "relative", "group/showcase-inner")}
       >
         <div
           className={clsx(
@@ -212,15 +205,15 @@ export const LandingHeroShowcaseSection = () => {
               "items-center",
               "justify-center",
               "gap-2",
-              "bg-refine-blue dark:bg-[#3A261A]",
-              "bg-opacity-10 dark:bg-opacity-10",
-              "landing-lg:bg-opacity-100 dark:landing-lg:bg-opacity-100",
-              "text-refine-blue dark:text-orange-400",
-              "landing-lg:text-gray-0 dark:landing-lg:text-orange-400",
+              "bg-[#3A261A]",
+              "bg-opacity-10",
+              "landing-lg:bg-opacity-100",
+              "text-orange-400",
+              "landing-lg:text-orange-400",
               "hover:brightness-125",
               "landing-lg:hover:scale-105 landing-lg:hover:brightness-100",
-              "hover:text-refine-blue dark:hover:text-orange-400",
-              "landing-lg:hover:text-gray-0 dark:landing-lg:hover:text-orange-400",
+              " hover:text-orange-400",
+              "landing-lg:hover:text-orange-400",
               "landing-lg:border-8 landing-lg:border-solid",
               activeApp.dark
                 ? "landing-lg:border-gray-900"
