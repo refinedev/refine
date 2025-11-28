@@ -548,7 +548,7 @@ useDataGrid({
 
 ### queryOptions
 
-`useDataGrid` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({

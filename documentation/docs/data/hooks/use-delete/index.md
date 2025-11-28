@@ -4,7 +4,7 @@ siderbar_label: useDelete
 source: packages/core/src/hooks/data/useDelete.ts
 ---
 
-`useDelete` is used when you want to delete a record. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
+`useDelete` is used when you want to delete a record. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
 It uses the `deleteOne` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -38,7 +38,7 @@ When the `useDelete` mutation runs successfully, it will call the `publish` meth
 
 When the `useDelete` mutation runs successfully, it will invalidate the following queries from the current `resource`: `"list"` and `"many"` by default. Which means that, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
+> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v5/docs/react/guides/query-invalidation)
 
 ## Audit Logs
 
@@ -52,7 +52,7 @@ When the `useDelete` mutation runs successfully, it will call the `log` method f
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ```tsx
 useDelete({
@@ -326,7 +326,7 @@ Returns an object with `mutation`, `mutate`, `mutateAsync`, and `overtime` prope
 
 The `mutation` property contains all TanStack Query's `useMutation` return values.
 
-> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ### Additional Values
 
@@ -375,7 +375,7 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 | Property    | Description                                | Type                                                                                                                                            |
 | ----------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { id: BaseKey; }, DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { id: BaseKey; }, DeleteContext>`](https://tanstack.com/query/v5/docs/react/reference/useMutation) |
 | mutate      | Mutation function                          | `(params?: { resource?: string, id?: BaseKey, ... }) => void`                                                                                   |
 | mutateAsync | Async mutation function                    | `(params?: { resource?: string, id?: BaseKey, ... }) => Promise<{ data: TData }>`                                                               |
 | overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                      |
