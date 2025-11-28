@@ -43,8 +43,8 @@ export const DocSearchButton = React.forwardRef<
         isLanding && "bg-zinc-800",
         isLanding && "text-zinc-300",
         !isLanding && "bg-transparent",
-        !isLanding && "text-gray-500 dark:text-zinc-300",
-        !isLanding && "border border-gray-300 dark:border-zinc-700",
+        !isLanding && "text-zinc-500 dark:text-zinc-300",
+        !isLanding && "border border-zinc-200 dark:border-zinc-700",
         {
           "justify-center": iconOnly,
           "hover:brightness-110": iconOnly,
@@ -59,19 +59,27 @@ export const DocSearchButton = React.forwardRef<
       <MagnifierIcon className={clsx("w-4 h-4", iconClassName)} />
       {!iconOnly && (
         <>
-          <span className={clsx("text-left flex-1", "text-base")}>
+          <span
+            className={clsx(
+              "text-left flex-1",
+              "text-base",
+              "font-medium",
+              "tracking-[-0.007rem]",
+            )}
+          >
             {placeholder ?? "Search"}
           </span>
           <div
             className={clsx(
               isLanding && "bg-zinc-900",
               isLanding && "text-zinc-400",
-              !isLanding && "bg-gray-50 dark:bg-zinc-900",
-              !isLanding && "text-gray-500 dark:text-zinc-400",
+              !isLanding && "bg-zinc-200 dark:bg-zinc-900",
+              !isLanding && "text-zinc-500 dark:text-zinc-400",
               "py-0.5 px-1.5",
               "rounded-[0.25rem]",
               "text-xs",
               "font-normal",
+              "tracking-[-0.006rem]",
               shortcutClassName,
             )}
           >

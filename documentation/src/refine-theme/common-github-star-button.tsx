@@ -18,26 +18,29 @@ export const CommonGithubStarButton = ({ className }: Props) => {
       rel="noreferrer"
       className={clsx(
         "flex gap-2 items-center justify-center",
-        "font-normal",
+        "font-medium",
         "text-base",
-        "text-gray-500 dark:text-zinc-300",
+        "text-zinc-500 dark:text-zinc-300",
         "hover:no-underline",
         "pl-2.5",
         "pr-4",
         "h-10",
         "min-w-[102px]",
         "rounded-lg",
-        "border border-gray-300 dark:border-zinc-700",
+        "border border-zinc-200 dark:border-zinc-700",
         "font-jetBrains-mono",
         "tabular-nums",
+        "tracking-normal",
       )}
     >
       {/* @ts-expect-error - lucide-react type issue */}
-      <StarIcon className={clsx("w-4 h-4", "text-orange-400")} />
+      <StarIcon
+        className={clsx("w-4 h-4", "text-orange-500", "dark:text-orange-400")}
+      />
       <div className={clsx("flex items-center")}>
         {loading ? (
           <Spinner
-            className={clsx("w-5 h-5")}
+            className={clsx("w-12 h-5")}
             wrapperProps={{
               className: clsx("mx-auto"),
             }}

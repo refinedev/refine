@@ -41,7 +41,7 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
               className={clsx(
                 "appearance-none",
                 "focus:outline-none",
-                "border border-solid border-gray-300 dark:border-zinc-700",
+                "border border-solid border-zinc-200 dark:border-zinc-700",
                 "rounded-[8px]",
                 "px-2.5",
                 "h-10",
@@ -53,20 +53,22 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                 "gap-2",
                 "select-none",
                 "text-gray-500 dark:text-zinc-300",
+                "font-medium",
                 className,
               )}
             >
               <span
                 className={clsx(
-                  "text-sm leading-5",
-                  "text-gray-500 dark:text-zinc-300",
+                  "text-sm",
+                  "text-zinc-500 dark:text-zinc-300",
+                  "tracking-[-0.007rem]",
                   "block",
                 )}
               >
                 {docContext.activeVersion.label}
               </span>
               {/* @ts-expect-error - lucide-react has issues with react 17 */}
-              <ChevronDownIcon className="w-5 h-5 text-gray-500 dark:text-zinc-300" />
+              <ChevronDownIcon className="w-5 h-5 text-zinc-500 dark:text-zinc-300" />
             </Menu.Button>
 
             <Transition
@@ -94,7 +96,7 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                   "p-2",
                   "bg-white dark:bg-[#202023]",
                   "rounded-lg",
-                  "border border-gray-300 dark:border-zinc-700",
+                  "border border-zinc-200 dark:border-zinc-700",
                 )}
               >
                 {links.map((version) => {

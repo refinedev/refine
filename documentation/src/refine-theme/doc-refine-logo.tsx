@@ -42,9 +42,9 @@ export const DocRefineLogo = ({ className }: Props) => {
       <Link to="/docs" className={clsx("no-underline")}>
         <span
           className={clsx(
-            "text-gray-1000 dark:text-white",
+            "text-gray-900 dark:text-white",
             "text-base font-normal",
-            "tracking-[-0.0007rem]",
+            "tracking-[-0.007rem]",
           )}
         >
           Documentation

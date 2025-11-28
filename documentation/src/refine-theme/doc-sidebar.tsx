@@ -149,7 +149,7 @@ const SidebarCategory = ({
           !isHeader && "text-zinc-400 dark:text-zinc-300",
           isHeader && "text-zinc-500 dark:text-zinc-400",
           isHeader && "font-semibold",
-          !isHeader && "hover:bg-zinc-100 dark:hover:bg-[#303035]",
+          !isHeader && "hover:bg-zinc-200 dark:hover:bg-[#303035]",
           "font-normal",
           "flex items-center",
           isHeader ? "pt-2 pb-4" : "py-2",
@@ -192,7 +192,7 @@ const SidebarCategory = ({
             "duration-200 ease-in-out",
             "top-0",
             {
-              "group-hover:bg-zinc-100 dark:group-hover:bg-[#303035]":
+              "group-hover:bg-zinc-200 dark:group-hover:bg-[#303035]":
                 !isActive && !isSame,
               "right-0": variant === "desktop",
               "-left-2": variant === "mobile",
@@ -257,10 +257,8 @@ const EnterpriseEditionItem = ({
         "relative",
         "min-h-[28px]",
         "rounded-md",
-        "bg-refine-enterprise-purple-2 bg-opacity-10",
-        "dark-bg-refine-enterprise-purple-2 dark:bg-opacity-30",
-        "text-refine-enterprise-purple",
-        "dark:text-refine-enterprise-purple-3",
+        "bg-sky-950",
+        "text-sky-400",
         "pl-6 pr-3 py-2",
         "text-sm font-normal",
         "flex items-start justify-start",
@@ -429,7 +427,7 @@ const SidebarLink = ({
           "transition-opacity",
           "duration-200 ease-in-out",
           {
-            "group-hover:bg-zinc-100 dark:group-hover:bg-[#303035]":
+            "group-hover:bg-zinc-200 dark:group-hover:bg-[#303035]":
               !isActive && !isSame,
             "bg-zinc-200 dark:bg-zinc-700": isActive && isSame,
             "right-0": variant === "desktop",
@@ -497,7 +495,7 @@ const SidebarHtml = ({
           "z-[1]",
           "-ml-1",
           "px-1",
-          "bg-zinc-0",
+          "bg-zinc-50",
           "dark:bg-zinc-900",
         )}
         // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
@@ -589,7 +587,7 @@ export const DocSidebar = () => {
         "left-0",
         "overflow-auto",
         "w-full",
-        "rounded-tl-xl",
+        "rounded-tr-xl",
         "bg-zinc-50 dark:bg-[#27272A80]",
       )}
       style={{

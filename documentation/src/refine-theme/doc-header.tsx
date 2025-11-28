@@ -24,7 +24,7 @@ export const DocHeader = () => {
           "sticky",
           "top-0",
           "py-4 sm:py-3 px-4 sm:px-6",
-          "bg-white dark:bg-[#202023]",
+          "bg-zinc-50 dark:bg-[#202023]",
         )}
       >
         <Desktop />
