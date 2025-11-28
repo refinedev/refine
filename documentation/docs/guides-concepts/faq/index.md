@@ -375,7 +375,7 @@ When working without a network connection, `@tanstack/query` prevents requests f
 
 > Why can't I work with my own data? Must I use an internet connection to run this library?
 
-Don't worry; according to the `@tanstack/query` [documentation](https://tanstack.com/query/latest/docs/react/guides/network-mode), you can simply add the `networkMode: "always"` option to the `reactQuery` props on the `<Refine/>` component.
+Don't worry; according to the `@tanstack/query` [documentation](https://tanstack.com/query/v5/docs/react/guides/network-mode), you can simply add the `networkMode: "always"` option to the `reactQuery` props on the `<Refine/>` component.
 
 ```javascript
 <Refine

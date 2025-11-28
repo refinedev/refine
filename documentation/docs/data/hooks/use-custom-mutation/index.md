@@ -3,7 +3,7 @@ title: useCustomMutation
 source: packages/core/src/hooks/data/useCustomMutation.ts
 ---
 
-`useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/latest/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
+`useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
 It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -11,7 +11,7 @@ It uses the `custom` method as the **mutation function** from the [`dataProvider
 
 `useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/data/hooks/use-create), [useUpdate](/docs/data/hooks/use-update) or [useDelete](/docs/data/hooks/use-delete).
 
-This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
+This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/v5/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
 If you need to custom query request, use the [useCustom](/docs/data/hooks/use-custom) hook.
 
@@ -53,7 +53,7 @@ console.log(mutation.error); // mutation error
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
-> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ```tsx
 useCustomMutation({
@@ -268,7 +268,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ### Additional Values
 
@@ -308,9 +308,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Property    | Description                                | Type                                                                                                                                                                   |
-| ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
-| mutate      | Mutation function                          | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => void`                                                                                       |
-| mutateAsync | Async mutation function                    | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => Promise<{ data: TData }>`                                                                   |
-| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                             |
+| Property    | Description                                | Type                                                                                                                                                               |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v5/docs/react/reference/useMutation) |
+| mutate      | Mutation function                          | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => void`                                                                                   |
+| mutateAsync | Async mutation function                    | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => Promise<{ data: TData }>`                                                               |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                         |

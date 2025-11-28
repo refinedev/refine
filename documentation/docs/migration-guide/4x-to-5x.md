@@ -274,7 +274,7 @@ useLogin({
 
 ## 5. Upgrade TanStack Query to v5
 
-You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanStack Query migration guide](https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5) for detailed instructions on this upgrade.
+You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanStack Query migration guide](https://tanstack.com/query/v5/docs/react/guides/migrating-to-v5) for detailed instructions on this upgrade.
 
 ## 6. Upgrade React to v19 (optional)
 
