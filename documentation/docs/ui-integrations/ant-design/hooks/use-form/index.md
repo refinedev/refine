@@ -734,7 +734,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 ### queryOptions
 
-In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
+In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/latest/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
 
 ```tsx
 useForm({
@@ -746,7 +746,7 @@ useForm({
 
 ### createMutationOptions
 
-In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
+In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/latest/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
 
 ```tsx
 useForm({
@@ -758,7 +758,7 @@ useForm({
 
 ### updateMutationOptions
 
-In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
+In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/latest/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
 
 ```tsx
 useForm({
@@ -1170,7 +1170,7 @@ You can use the `meta` property to pass common values to the mutation and the qu
 | saveButtonProps          | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
 | redirect                 | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
 | query                    | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
-| mutation                 | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://tanstack.com/query/v5/docs/react/reference/useMutation)                                                                         |
+| mutation                 | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://tanstack.com/query/latest/docs/react/reference/useMutation)                                                                     |
 | formLoading              | Loading state of form request                           | `boolean`                                                                                                                                                        |
 | id                       | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
 | setId                    | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |

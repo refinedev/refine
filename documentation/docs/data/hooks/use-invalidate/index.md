@@ -10,7 +10,7 @@ This hook will be called when a mutation hook is successful. For example, creati
 :::simple Good to know
 
 - This hook is used internally by Refine. In most cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
-- Refine uses [TanStack Query](https://tanstack.com/query/v5) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v5/docs/react/guides/query-invalidation) docs.
+- Refine uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) docs.
 
 :::
 
@@ -111,13 +111,13 @@ By default settings, all the targeted queries are invalidated and the active one
 
 ### Invalidation Parameters
 
-| Property                         | Description                                                       | Type                                                                                                                    | Default                                  |
-| -------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| invalidated <PropTag asterisk /> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                                                 |                                          |
-| resource                         | Resource name for State invalidation.                             | `string`                                                                                                                |                                          |
-| id                               | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/docs/core/interface-references#basekey)                                                                    |                                          |
-| dataProviderName                 | The name of the data provider whose state you want to invalidate. | `string`                                                                                                                | `default`                                |
-| invalidationFilters              | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/v5/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
-| invalidationOptions              | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/v5/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
+| Property                         | Description                                                       | Type                                                                                                                        | Default                                  |
+| -------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| invalidated <PropTag asterisk /> | The states you want to invalidate.                                | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                                                     |                                          |
+| resource                         | Resource name for State invalidation.                             | `string`                                                                                                                    |                                          |
+| id                               | The `id` to use when invalidating the "detail" state.             | [`BaseKey`](/docs/core/interface-references#basekey)                                                                        |                                          |
+| dataProviderName                 | The name of the data provider whose state you want to invalidate. | `string`                                                                                                                    | `default`                                |
+| invalidationFilters              | The filters to use when picking queries to invalidate             | [`InvalidateQueryFilters`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries) | `{ type: "all", refetchType: "active" }` |
+| invalidationOptions              | The options to use in the invalidation process                    | [`InvalidateOptions`](https://tanstack.com/query/latest/docs/react/reference/QueryClient#queryclientinvalidatequeries)      | `{ cancelRefetch: false }`               |
 
 [data-provider]: /docs/data/data-provider

@@ -285,7 +285,7 @@ useSimpleList({
 
 ### queryOptions
 
-`useSimpleList` uses the [`useTable`](/docs/data/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) to it like this:
+`useSimpleList` uses the [`useTable`](/docs/data/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/latest/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useSimpleList({

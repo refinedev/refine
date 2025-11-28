@@ -9,7 +9,7 @@ import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 import SortingLivePreview from "./\_sorting-live-preview.md";
 import FilteringLivePreview from "./\_filtering-live-preview.md";
 
-The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/v5/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
+The `useInfiniteList` hook is an extended version of TanStack Query's [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) used for retrieving items from a `resource` with pagination, sort, and filter configurations. It is ideal for lists where the total number of records is unknown and the user loads the next pages with a button.
 
 - It uses the `getList` method as the query function from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -185,7 +185,7 @@ useInfiniteList({
 });
 ```
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
 
 ### meta
 
@@ -330,7 +330,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 Returns an object with TanStack Query's `useInfiniteQuery` return values.
 
-> For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useInfiniteQuery)
+> For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
 
 ### Additional Values
 
@@ -445,10 +445,10 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return Values
 
-| Description                                       | Type                                                                                                                                            |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v5/docs/react/reference/useInfiniteQuery) |
-| overtime                                          | `{ elapsedTime?: number }`                                                                                                                      |
+| Description                                       | Type                                                                                                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
+| overtime                                          | `{ elapsedTime?: number }`                                                                                                                          |
 
 ## Example
 

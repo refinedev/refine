@@ -4,7 +4,7 @@ siderbar_label: useDeleteMany
 source: packages/core/src/hooks/data/useDeleteMany.ts
 ---
 
-`useDeleteMany` is used when you want to delete multiple records at once. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
+`useDeleteMany` is used when you want to delete multiple records at once. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/latest/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
 It uses the `deleteMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -42,7 +42,7 @@ When the `useDeleteMany` mutation runs successfully, it will call the `publish` 
 
 When the `useDeleteMany` mutation runs successfully, it will invalidate the following queries from the current `resource`: `"list"` and `"many"` by default. Which means that, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v5/docs/react/guides/query-invalidation)
+> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/latest/docs/react/guides/query-invalidation)
 
 ## Properties
 
@@ -50,7 +50,7 @@ When the `useDeleteMany` mutation runs successfully, it will invalidate the foll
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
 
 ```tsx
 useDeleteMany({
@@ -323,7 +323,7 @@ mutate({
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
 
 ### Additional Values
 
@@ -370,9 +370,9 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 ### Return value
 
-| Property    | Description                                | Type                                                                                                                                                                   |
-| ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; ids: BaseKey[]; }, DeleteContext>`](https://tanstack.com/query/v5/docs/react/reference/useMutation)\* |
-| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], ... }) => void`                                                                                                       |
-| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], ... }) => Promise<{ data: TData }>`                                                                                   |
-| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                             |
+| Property    | Description                                | Type                                                                                                                                                                       |
+| ----------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; ids: BaseKey[]; }, DeleteContext>`](https://tanstack.com/query/latest/docs/react/reference/useMutation)\* |
+| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], ... }) => void`                                                                                                           |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], ... }) => Promise<{ data: TData }>`                                                                                       |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                                 |

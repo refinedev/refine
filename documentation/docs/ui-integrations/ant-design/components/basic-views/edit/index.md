@@ -1470,24 +1470,24 @@ It also accepts all props of Ant Design [Form](https://ant.design/components/for
 
 ### Return values
 
-| Property            | Description                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `query`             | If the `query` prop is given, it will be returned. Otherwise, it will return `undefined`.                          |
-| `mutation`          | Mutation result from `react-query`. [Check here →](https://tanstack.com/query/v5/docs/react/reference/useMutation) |
-| `saveButtonProps`   | Props for a save button.                                                                                           |
-| `cancelButtonProps` | Props for a cancel button.                                                                                         |
-| `deleteButtonProps` | Props for a delete button.                                                                                         |
-| `formProps`         | Props for the `<Form>` component.                                                                                  |
-| `formLoading`       | Loading state of form.                                                                                             |
-| `setId`             | `id` setter.                                                                                                       |
-| `id`                | Record id for edit action. The record to edit.                                                                     |
-| `defaultValues`     | Default form values.                                                                                               |
-| `formValues`        | Form values.                                                                                                       |
-| `submit`            | Submit method, the parameter is the values to update a record.                                                     |
-| `reset`             | Reset method, reset the form values to initial values.                                                             |
-| `redirect`          | Redirect function, will be called after form is submitted successfully.                                            |
-| `goBack`            | Go back function, will be called when the cancel button is clicked.                                                |
-| `query`             | Query result from `react-query`. [Check here →](https://tanstack.com/query/v5/docs/react/reference/useQuery)       |
+| Property            | Description                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `query`             | If the `query` prop is given, it will be returned. Otherwise, it will return `undefined`.                              |
+| `mutation`          | Mutation result from `react-query`. [Check here →](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
+| `saveButtonProps`   | Props for a save button.                                                                                               |
+| `cancelButtonProps` | Props for a cancel button.                                                                                             |
+| `deleteButtonProps` | Props for a delete button.                                                                                             |
+| `formProps`         | Props for the `<Form>` component.                                                                                      |
+| `formLoading`       | Loading state of form.                                                                                                 |
+| `setId`             | `id` setter.                                                                                                           |
+| `id`                | Record id for edit action. The record to edit.                                                                         |
+| `defaultValues`     | Default form values.                                                                                                   |
+| `formValues`        | Form values.                                                                                                           |
+| `submit`            | Submit method, the parameter is the values to update a record.                                                         |
+| `reset`             | Reset method, reset the form values to initial values.                                                                 |
+| `redirect`          | Redirect function, will be called after form is submitted successfully.                                                |
+| `goBack`            | Go back function, will be called when the cancel button is clicked.                                                    |
+| `query`             | Query result from `react-query`. [Check here →](https://tanstack.com/query/latest/docs/react/reference/useQuery)       |
 
 [list-button]: /docs/ui-integrations/ant-design/components/buttons/list-button
 [refresh-button]: /docs/ui-integrations/ant-design/components/buttons/refresh-button
