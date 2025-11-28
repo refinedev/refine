@@ -330,7 +330,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 Returns an object with TanStack Query's `useInfiniteQuery` return values.
 
-> For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useInfiniteQuery)
+> For more information, refer to the [`useInfiniteQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery)
 
 ### Additional Values
 
@@ -445,10 +445,10 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return Values
 
-| Description                                       | Type                                                                                                                                            |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v5/docs/react/reference/useInfiniteQuery) |
-| overtime                                          | `{ elapsedTime?: number }`                                                                                                                      |
+| Description                                       | Type                                                                                                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useInfiniteQuery` | [`InfiniteQueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/latest/docs/react/reference/useInfiniteQuery) |
+| overtime                                          | `{ elapsedTime?: number }`                                                                                                                          |
 
 ## Example
 

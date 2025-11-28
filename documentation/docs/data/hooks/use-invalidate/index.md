@@ -10,7 +10,7 @@ This hook will be called when a mutation hook is successful. For example, creati
 :::simple Good to know
 
 - This hook is used internally by Refine. In most cases, you won't need this hook, but we export it as it may be useful for some use-cases that may require customized invalidation.
-- Refine uses [TanStack Query](https://tanstack.com/query/v5) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v5/docs/react/guides/query-invalidation) docs.
+- Refine uses [TanStack Query](https://tanstack.com/query/latest) to fetch and manage the state of the data. For more information about invalidation, please read the TanStack Query's [invalidation](https://tanstack.com/query/v5/docs/react/guides/query-invalidation) docs.
 
 :::
 
