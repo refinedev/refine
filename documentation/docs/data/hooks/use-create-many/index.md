@@ -3,7 +3,7 @@ title: useCreateMany
 source: packages/core/src/hooks/data/useCreateMany.ts
 ---
 
-`useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/latest/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
+`useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
 It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine />`.
 
@@ -51,7 +51,7 @@ When the `useCreateMany` mutation runs successfully, it will call the `publish` 
 
 When the `useCreateMany` mutation runs successfully, it will invalidate the following queries from the current `resource`: `"list"` and `"many"` by default. Which means that, if you use `useList` or `useMany` hooks in the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/latest/docs/react/guides/query-invalidation)
+> For more information, refer to the [invalidation documentation &#8594](https://tanstack.com/query/v5/docs/react/guides/query-invalidation)
 
 ## Audit Logs
 
@@ -65,7 +65,7 @@ When the `useCreateMany` mutation runs successfully, it will call the `log` meth
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ```tsx
 useCreateMany({
@@ -282,7 +282,7 @@ mutate({
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
+> For more information, refer to the [`useMutation` documentation &#8594](https://tanstack.com/query/v5/docs/react/reference/useMutation)
 
 ### Additional Values
 
@@ -320,9 +320,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Property    | Description                                | Type                                                                                                                                                                      |
-| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
-| mutate      | Mutation function                          | `(params?: { resource?: string, values?: TVariables[], ... }) => void`                                                                                                    |
-| mutateAsync | Async mutation function                    | `(params?: { resource?: string, values?: TVariables[], ... }) => Promise<{ data: TData[] }>`                                                                              |
-| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                                |
+| Property    | Description                                | Type                                                                                                                                                                  |
+| ----------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`](https://tanstack.com/query/v5/docs/react/reference/useMutation) |
+| mutate      | Mutation function                          | `(params?: { resource?: string, values?: TVariables[], ... }) => void`                                                                                                |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, values?: TVariables[], ... }) => Promise<{ data: TData[] }>`                                                                          |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                            |

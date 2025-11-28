@@ -6,7 +6,7 @@ source: /packages/core/src/hooks/auth/useOnError/index.ts
 
 `useOnError` calls the [`onError`][on-error] method from the [`authProvider`][auth-provider] under the hood.
 
-It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/latest/docs/react/reference/useMutation), which includes many properties like `isSuccess` and `isError`.
+It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v5/docs/react/reference/useMutation), which includes many properties like `isSuccess` and `isError`.
 
 Data that is resolved from the [`onError`][on-error] will be returned as the `data` in the query result with the following type:
 

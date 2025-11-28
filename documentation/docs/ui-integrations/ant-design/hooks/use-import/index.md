@@ -291,6 +291,6 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [papaparse]: https://www.papaparse.com/docs
-[usemutation]: https://tanstack.com/query/latest/docs/react/reference/useMutation
+[usemutation]: https://tanstack.com/query/v5/docs/react/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [use-import-core]: /docs/core/hooks/utilities/use-import

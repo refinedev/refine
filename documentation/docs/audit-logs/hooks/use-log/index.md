@@ -57,9 +57,9 @@ mutate({
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                       |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
+| Description                               | Type                                                                                                                                                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://tanstack.com/query/v5/docs/react/reference/useMutation) |
 
 ## rename
 
@@ -94,6 +94,6 @@ mutate({
 
 ### Return value
 
-| Description                               | Type                                                                                                                                                       |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
+| Description                               | Type                                                                                                                                                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Result of the `react-query`'s useMutation | [`UseMutationResult<{ data: TData}, TError, { id: BaseKey; name: string; }, unknown>`](https://tanstack.com/query/v5/docs/react/reference/useMutation) |

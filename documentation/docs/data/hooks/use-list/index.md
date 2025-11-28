@@ -9,7 +9,7 @@ import PaginationLivePreview from "./\_pagination-live-preview.md";
 import FilteringLivePreview from "./\_filtering-live-preview.md";
 import SortingLivePreview from "./\_sorting-live-preview.md";
 
-`useList` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/latest/docs/react/reference/useQuery) that supports all of its features and also adds some more.
+`useList` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v5/docs/react/reference/useQuery) that supports all of its features and also adds some more.
 
 When you need to fetch data according to sort, filter, pagination, etc. from a `resource` , you can use the `useList` hook. It will return the data and some functions to control the query.
 
@@ -180,7 +180,7 @@ useList({
 });
 ```
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
 
 ### meta
 
@@ -328,7 +328,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 Returns an object with TanStack Query's `useQuery` return values.
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
 
 ### Additional Values
 
@@ -361,10 +361,10 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return Values
 
-| Description                               | Type                                                                                                                                |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/latest/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                                                          |
+| Description                               | Type                                                                                                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v5/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                                      |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
