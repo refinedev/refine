@@ -29,7 +29,7 @@
   max-width: 100% !important;
   @apply prose prose-invert font-normal;
   @apply 2xl:prose-base;
-  @apply prose-strong:dark:text-gray-100 prose-strong:text-gray-800;
+  @apply prose-strong:dark:text-white prose-strong:text-zinc-800;
   @apply prose-a:text-refine-react-light-link prose-a:dark:text-refine-react-dark-link  prose-a:font-normal prose-a:no-underline;
 
   @apply prose-h1:font-semibold;
@@ -58,14 +58,14 @@
   @apply prose-li:text-sm sm:prose-li:text-base;
   @apply prose-li:my-0 2xl:prose-li:text-base;
   @apply prose-li:pl-0;
-  @apply prose-ul:pl-[18px] prose-ul:ml-0 prose-ul:dark:text-gray-100 prose-ul:text-gray-800;
-  @apply prose-ol:pl-[18px] prose-ol:ml-0 prose-ol:dark:text-gray-100 prose-ol:text-gray-800;
+  @apply prose-ul:pl-[18px] prose-ul:ml-0 prose-ul:dark:text-white prose-ul:text-zinc-800;
+  @apply prose-ol:pl-[18px] prose-ol:ml-0 prose-ol:dark:text-white prose-ol:text-zinc-800;
 
   @apply prose-pre:font-jetBrains-mono;
 
   @apply prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:pl-3 prose-blockquote:font-normal prose-blockquote:not-italic;
-  @apply prose-blockquote:bg-gray-100 prose-blockquote:text-gray-800 prose-blockquote:border-l-gray-400;
-  @apply prose-blockquote:dark:bg-gray-700 prose-blockquote:dark:text-gray-100 prose-blockquote:dark:border-l-gray-500;
+  @apply prose-blockquote:bg-zinc-100 prose-blockquote:text-zinc-800 prose-blockquote:border-l-zinc-400;
+  @apply prose-blockquote:dark:bg-zinc-700 prose-blockquote:dark:text-white prose-blockquote:dark:border-l-zinc-500;
 
   @apply prose-code:text-base 2xl:prose-code:text-base;
   /* @apply prose-code:translate-y-0.5; */
@@ -89,7 +89,7 @@
 }
 
 .refine-prose li::marker {
-  @apply text-gray-500;
+  @apply text-zinc-500;
 }
 
 .refine-prose ul li::marker {
@@ -126,11 +126,11 @@
 .refine-prose a.hash-link::before {
   content: "";
   background-size: 12px 12px;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><path fill="%23667084" fill-rule="evenodd" d="M9.172 1.172a4 4 0 1 1 5.656 5.656l-2 2a.5.5 0 1 1-.707-.707l2-2A3 3 0 1 0 9.88 1.88l-2 2a.5.5 0 0 1-.707-.707l2-2Zm2.182 3.474a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0ZM3.879 7.172a.5.5 0 0 1 0 .707l-2 2A3 3 0 1 0 6.12 14.12l2-2a.5.5 0 0 1 .707.707l-2 2a4 4 0 0 1-5.656-5.656l2-2a.5.5 0 0 1 .707 0Z" clip-rule="evenodd"/></svg>');
-  @apply bg-gray-400 bg-opacity-10;
-  @apply leading-7;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2318181B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>');
+  @apply bg-zinc-200 dark:bg-zinc-800;
+  @apply leading-8;
   @apply absolute;
-  @apply w-7 h-7 inline-flex rounded-[10px];
+  @apply w-8 h-8 inline-flex rounded-lg;
   @apply bg-center bg-no-repeat bg-[size:0.875rem];
   @apply top-1/2 -translate-y-1/2;
   @apply transition-all duration-200 ease-in-out;
@@ -142,7 +142,7 @@
 }
 
 html[data-theme="dark"] .refine-prose a.hash-link::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><path fill="%2399A1B3" fill-rule="evenodd" d="M9.172 1.172a4 4 0 1 1 5.656 5.656l-2 2a.5.5 0 1 1-.707-.707l2-2A3 3 0 1 0 9.88 1.88l-2 2a.5.5 0 0 1-.707-.707l2-2Zm2.182 3.474a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0ZM3.879 7.172a.5.5 0 0 1 0 .707l-2 2A3 3 0 1 0 6.12 14.12l2-2a.5.5 0 0 1 .707.707l-2 2a4 4 0 0 1-5.656-5.656l2-2a.5.5 0 0 1 .707 0Z" clip-rule="evenodd"/></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23D4D4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>');
 }
 
 .refine-prose blockquote,
@@ -250,7 +250,7 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
 }
 
 .refine-toc-item code {
-  @apply rounded !border-none py-0.5 px-1 !align-bottom font-jetBrains-mono !text-inherit dark:bg-gray-600 dark:bg-opacity-30 dark:!text-inherit;
+  @apply rounded !border-none py-0.5 px-1 !align-bottom font-jetBrains-mono !text-inherit dark:bg-zinc-600 dark:bg-opacity-30 dark:!text-inherit;
   font-size: 12px;
 }
 
@@ -259,13 +259,13 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-  @apply !text-sky-700 dark:!text-sky-400 !align-baseline;
-  @apply !bg-sky-100 dark:!bg-sky-950;
+  @apply text-sky-700 dark:text-sky-400 !align-baseline;
+  @apply bg-sky-100 dark:bg-sky-950;
 }
 
 a:has(> code):hover code {
-  @apply !bg-sky-200 dark:!bg-sky-400;
-  @apply dark:!text-white;
+  @apply bg-sky-200 dark:bg-sky-400;
+  @apply dark:text-white;
 }
 
 p:has(> code) code {
@@ -279,11 +279,11 @@ li a:has(> code) code {
 /* admonition overrides */
 
 .admonition.admonition-caution code:not(pre > code) {
-  @apply dark:bg-refine-react-dark-orange dark:bg-opacity-[0.15] bg-refine-react-dark-orange bg-opacity-[15%];
+  @apply bg-orange-700/15 dark:bg-orange-400/15;
 }
 
 .admonition.admonition-caution li::marker {
-  @apply dark:text-refine-react-dark-orange text-refine-react-light-orange text-xl leading-7;
+  @apply text-orange-700 dark:text-orange-400 text-xl leading-7;
 }
 
 .admonition.admonition-danger code:not(pre > code) {
@@ -302,20 +302,28 @@ li a:has(> code) code {
   @apply dark:text-refine-react-dark-purple text-refine-react-light-purple text-xl leading-7;
 }
 
+.admonition.admonition-info-tip code:not(pre > code) {
+  @apply bg-blue-700/15 dark:bg-blue-400/15;
+}
+
+.admonition.admonition-info-tip li::marker {
+  @apply text-blue-700 dark:text-blue-400 text-xl leading-7;
+}
+
 .admonition.admonition-tip code:not(pre > code) {
-  @apply dark:bg-refine-react-dark-green-alt dark:bg-opacity-[0.15] bg-refine-react-light-green-alt bg-opacity-[15%];
+  @apply bg-green-700/15 dark:bg-green-400/15;
 }
 
 .admonition.admonition-tip li::marker {
-  @apply dark:text-refine-react-dark-green-alt text-refine-react-light-green-alt text-xl leading-7;
+  @apply text-green-700 dark:text-green-400 text-xl leading-7;
 }
 
 .admonition.admonition-note code:not(pre > code) {
-  @apply dark:bg-refine-react-dark-green dark:bg-opacity-[0.15] bg-refine-react-light-green bg-opacity-[15%];
+  @apply bg-teal-700/15 dark:bg-teal-400/15;
 }
 
 .admonition.admonition-note li::marker {
-  @apply dark:text-refine-react-dark-green text-refine-react-light-green text-xl leading-7;
+  @apply text-teal-700 dark:text-teal-400 text-xl leading-7;
 }
 
 .admonition pre.prism-code code {
@@ -323,11 +331,11 @@ li a:has(> code) code {
 }
 
 .refine-prose blockquote li::marker {
-  @apply dark:text-gray-500 text-gray-400 text-xl leading-7;
+  @apply dark:text-zinc-500 text-zinc-400 text-xl leading-7;
 }
 
 .refine-prose blockquote code:not(pre > code) {
-  @apply dark:bg-gray-500 dark:bg-opacity-[0.10] bg-gray-400 bg-opacity-[15%];
+  @apply dark:bg-zinc-500 dark:bg-opacity-[0.10] bg-zinc-400 bg-opacity-[15%];
 }
 
 .refine-prose blockquote .refine-common-code-block {
@@ -367,7 +375,7 @@ html .no-underline {
 
 html[data-active-page="index"],
 html[data-active-page="index"] body {
-  @apply bg-gray-800;
+  @apply bg-zinc-800;
 }
 
 @keyframes element-animation {
@@ -464,7 +472,7 @@ html[data-active-page="index"] body {
 }
 
 .sp-preview .sp-loading + .sp-custom-loading {
-  @apply bg-gray-0 dark:bg-gray-800;
+  @apply bg-white dark:bg-zinc-800;
   display: flex;
   position: absolute;
   left: 0;
@@ -521,7 +529,7 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(
 }
 
 .admonition-simple .admonition-content ul li::marker {
-  @apply text-gray-700 dark:text-gray-100;
+  @apply text-zinc-900 dark:text-white;
 }
 
 .admonition .admonition-header code {
@@ -598,11 +606,11 @@ h2 del code,
 h3 del code,
 h4 del code {
   @apply !line-through;
-  @apply !text-gray-400 dark:!text-gray-500;
+  @apply !text-zinc-400 dark:!text-zinc-500;
 }
 
 .docs-wrapper *::selection {
-  @apply bg-refine-selection text-gray-800;
+  @apply bg-refine-selection text-zinc-800;
 }
 
 .sp-bridge-frame {
@@ -613,7 +621,7 @@ h4 del code {
   @apply !bg-none !bg-transparent !border-none;
 }
 .sp-console-list .sp-console-item {
-  @apply !px-2 !py-px text-gray-600 dark:text-gray-200;
+  @apply !px-2 !py-px text-zinc-600 dark:text-zinc-200;
 }
 
 .cm-gutter.cm-lineNumbers {

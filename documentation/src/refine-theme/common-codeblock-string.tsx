@@ -44,14 +44,14 @@ const CodeBlockTitle = ({
       className={clsx(
         "py-3",
         "px-4",
-        "bg-gray-100 dark:bg-gray-700",
-        "text-gray-800",
-        "dark:text-gray-100",
+        "bg-zinc-200 dark:bg-zinc-800",
+        "text-zinc-900",
+        "dark:text-white",
         "text-xs",
         "flex items-center",
         "gap-2",
-        "rounded-tl-lg",
-        "rounded-tr-lg",
+        "rounded-tl-xl",
+        "rounded-tr-xl",
       )}
     >
       {icon}

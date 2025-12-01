@@ -13,8 +13,9 @@ function CardContainer({ href, children }) {
       href={href}
       className={clsx(
         "no-underline",
-        "rounded-lg",
-        "dark:bg-gray-800 bg-gray-50",
+        "rounded-xl",
+        "bg-zinc-100 dark:bg-zinc-800",
+        "hover:bg-zinc-100 hover:dark:bg-zinc-700",
         "p-4",
         "flex flex-col",
         "gap-2 sm:gap-4 2xl:gap-6",

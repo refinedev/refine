@@ -36,31 +36,32 @@ const icons = {
 };
 
 const colorTextClasses = {
-  caution: "text-refine-react-light-orange dark:text-refine-react-dark-orange",
+  caution: "text-orange-700 dark:text-orange-400",
   info: "text-refine-react-light-purple dark:text-refine-react-dark-purple",
-  tip: "text-refine-react-light-green-alt dark:text-refine-react-dark-green-alt",
-  note: "text-refine-react-light-green dark:text-refine-react-dark-green",
-  "info-tip": "text-refine-blue dark:text-[#6EB3F7]",
+  tip: "text-green-700 dark:text-green-400",
+  note: "text-teal-700 dark:text-teal-400",
+  "info-tip": "text-blue-700 dark:text-blue-400",
   danger: "text-refine-red",
   "command-line": "text-refine-purple",
   sourcecode: "text-refine-pink",
   additional: "text-refine-cyan",
-  simple: "text-gray-700 dark:text-gray-100",
+  simple: "text-zinc-900 dark:text-white",
 };
 
 const colorWrapperClasses = {
   caution:
-    "bg-refine-react-light-orange bg-opacity-[0.15] dark:bg-refine-react-dark-orange dark:bg-opacity-[0.15] border-l-refine-react-light-orange dark:border-l-refine-dark-orange",
+    "bg-[#FEEADC] dark:bg-[#3A261A] border-l-orange-700 dark:border-l-orange-400",
   info: "bg-refine-react-light-purple bg-opacity-[0.15] dark:bg-refine-react-dark-purple dark:bg-opacity-[0.15] border-l-refine-react-light-purple dark:border-l-refine-react-dark-purple",
-  tip: "bg-refine-react-light-green-alt bg-opacity-[0.05] dark:bg-refine-react-dark-green-alt dark:bg-opacity-[0.05] border-l-refine-react-light-green-alt dark:border-l-refine-react-dark-green-alt",
-  note: "bg-refine-react-light-green-bg dark:bg-refine-react-light-green dark:bg-opacity-[0.2] border-l-refine-react-light-green dark:border-l-refine-react-dark-green",
+  tip: "bg-[#E4FAEC] dark:bg-[#1A3225] border-l-green-700 dark:border-l-green-400",
+  note: "bg-[#DCF4F2] dark:bg-[#173030] border-l-teal-700 dark:border-l-teal-400",
   "info-tip":
-    "bg-refine-blue/10 dark:bg-[#6EB3F7]/10 bg-opacity-10  dark:bg-opacity-10 border-l-refine-blue",
+    "bg-[#E7F2FE] dark:bg-[#1D283C] border-l-blue-700 dark:border-l-blue-400",
   "command-line": "bg-refine-purple bg-opacity-10 border-l-refine-purple",
   danger: "bg-refine-red bg-opacity-10 border-l-refine-red",
   sourcecode: "bg-refine-pink bg-opacity-10 border-l-refine-pink",
   additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
-  simple: "border dark:border-gray-700 border-gray-300",
+  simple:
+    "bg-[#FAFAFA] dark:bg-[#27272A] border-l-zinc-400 dark:border-l-zinc-600",
 };
 
 const titles = {
@@ -130,7 +131,7 @@ export const Admonition = ({ type, title, children }: Props) => {
             <span className="uppercase">{title ?? titles[type] ?? ""}</span>
           </h6>
         )}
-        <div className={clsx("text-gray-0", "text-base", "last:mb-0")}>
+        <div className={clsx("text-white", "text-base", "last:mb-0")}>
           {children}
         </div>
       </div>
@@ -170,7 +171,7 @@ const Simple = ({ type, title, children }: Props) => {
         )}
         <div
           className={clsx(
-            "text-gray-0",
+            "text-white",
             "text-base",
             "last:mb-0",
             "px-4 pb-4",
