@@ -42,7 +42,7 @@ export default function BrowserWindow({
         className={clsx(
           "flex-shrink-0",
           "p-2",
-          "rounded-[0.25rem]",
+          "rounded",
           "flex items-center justify-start",
           "gap-2",
           "relative",
@@ -60,7 +60,7 @@ export default function BrowserWindow({
         className={clsx(
           "flex-1",
           "overflow-hidden",
-          "rounded-[0.25rem]",
+          "rounded",
           "bg-zinc-50 dark:bg-zinc-950",
           "p-0.5",
           !hasBottom && "rounded-bl-lg rounded-br-lg",
@@ -70,7 +70,7 @@ export default function BrowserWindow({
           className={clsx(
             "flex-1",
             "overflow-hidden",
-            "rounded-[0.25rem]",
+            "rounded",
             "bg-zinc-50 dark:bg-zinc-950",
             !hasBottom && "rounded-bl-lg rounded-br-lg",
           )}

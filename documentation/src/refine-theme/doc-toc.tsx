@@ -94,7 +94,7 @@ export const DocTOC = () => {
         "overflow-auto",
         "h-[calc(100vh-69px)]",
         "rounded-tl-xl",
-        "bg-gray-50 dark:bg-[#27272A80]",
+        "bg-zinc-50 dark:bg-[#27272A80]",
         "p-4",
         !hasTOC && "invisible",
       )}

@@ -76,7 +76,7 @@ export const DocSearchButton = React.forwardRef<
               !isLanding && "bg-zinc-200 dark:bg-zinc-900",
               !isLanding && "text-zinc-500 dark:text-zinc-400",
               "py-0.5 px-1.5",
-              "rounded-[0.25rem]",
+              "rounded",
               "text-xs",
               "font-normal",
               "tracking-[-0.006rem]",

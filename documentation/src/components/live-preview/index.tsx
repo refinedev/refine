@@ -154,7 +154,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
           "flex items-center gap-2",
           "bg-zinc-50 dark:bg-zinc-900",
           visible && "rounded-t-[0.25rem]",
-          !visible && "rounded-[0.25rem]",
+          !visible && "rounded",
           !visible && "delay-200",
           "transition-[border-radius] ease-in-out duration-200",
           "group",

@@ -96,7 +96,7 @@ function TabList({
                 "px-2 py-1.5",
                 "flex items-center justify-center",
                 "min-w-[70px]",
-                "rounded-[0.25rem]",
+                "rounded",
                 "cursor-pointer",
                 "transition-all duration-200 ease-in-out",
                 "select-none",
