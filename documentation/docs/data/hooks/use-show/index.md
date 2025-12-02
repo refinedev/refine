@@ -155,7 +155,7 @@ useShow({
 });
 ```
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
 
 ### successNotification
 
@@ -259,7 +259,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 It is TanStack Query's `useQuery` return values.
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
 
 ### showId
 
