@@ -28,7 +28,7 @@ export const LandingHeroGithubStars = () => {
         "pl-2",
         "border",
         "border-zinc-800",
-        "bg-gray-950",
+        "bg-zinc-950",
         "backdrop-blur-[8px]",
       )}
     >
@@ -39,7 +39,6 @@ export const LandingHeroGithubStars = () => {
             "font-normal",
             "text-xs",
             "tracking-[-0.006rem]",
-            "text-gray-900",
             "text-white",
           )}
         >

@@ -171,8 +171,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "appearance-none",
                         "focus:outline-none",
                         "cursor-pointer",
-                        active && "bg-gray-900",
-                        !active && "bg-gray-900/50",
+                        active && "bg-zinc-900",
+                        !active && "bg-zinc-900/50",
                         "w-max",
                         "flex",
                         "items-center",
@@ -188,8 +188,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                       </div>
                       <div
                         className={clsx(
-                          active && "text-gray-0",
-                          !active && "text-gray-400",
+                          active && "text-white",
+                          !active && "text-zinc-400",
                         )}
                       >
                         {item.iconText}
@@ -295,7 +295,7 @@ const list = [
       <DataTablesIcon
         className={clsx(
           props.active && "text-[#FA3852]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),
@@ -320,7 +320,7 @@ const list = [
       <ListIcon
         className={clsx(
           props.active && "text-[#F46A25]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),
@@ -345,7 +345,7 @@ your UI elements to enterprise-grade:`,
       <ChartsIcon
         className={clsx(
           props.active && "text-[#F9D51F]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),
@@ -370,7 +370,7 @@ your UI elements to enterprise-grade:`,
       <FormsIcon
         className={clsx(
           props.active && "text-[#47D1BF]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),
@@ -395,7 +395,7 @@ your UI elements to enterprise-grade:`,
       <WizardsIcon
         className={clsx(
           props.active && "text-[#3DB8F5]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),
@@ -420,7 +420,7 @@ your UI elements to enterprise-grade:`,
       <AuthenticationIcon
         className={clsx(
           props.active && "text-[#5959FF]",
-          !props.active && "text-gray-500",
+          !props.active && "text-zinc-500",
         )}
       />
     ),

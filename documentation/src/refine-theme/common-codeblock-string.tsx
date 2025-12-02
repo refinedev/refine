@@ -97,12 +97,9 @@ export const CodeBlockString = ({
       className={clsx(
         "refine-common-code-block",
         language && `language-${language}`,
-        "rounded-lg",
+        "rounded-xl",
         "bg-refine-react-light-code",
         "dark:bg-refine-react-dark-code",
-        "border",
-        "border-gray-300",
-        "dark:border-0",
         "mb-6",
         "relative",
         "refine-wider-container",

@@ -54,7 +54,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "leading-5",
           isLanding && "text-zinc-400",
           !isLanding && "text-refine-react-5 dark:text-refine-react-4",
-          "hover:text-gray-800 dark:hover:text-zinc-200",
+          "hover:text-zinc-900 dark:hover:text-zinc-200",
           "hover:no-underline",
         )}
       >
@@ -103,7 +103,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               className={clsx(
                 isLanding && "text-zinc-400",
                 !isLanding && "text-refine-react-5 dark:text-refine-react-4",
-                "hover:text-gray-800 dark:hover:text-zinc-200",
+                "hover:text-zinc-900 dark:hover:text-zinc-200",
                 "hover:no-underline",
               )}
             >
@@ -152,7 +152,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               className={clsx(
                 "hover:no-underline",
                 isLanding && "text-white",
-                !isLanding && "text-gray-900 dark:text-white",
+                !isLanding && "text-zinc-900 dark:text-white",
               )}
             >
               <RefineLogoSingleIcon />
@@ -229,7 +229,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                         isLanding && "text-zinc-400",
                         !isLanding &&
                           "text-refine-react-5 dark:text-refine-react-4",
-                        "hover:text-gray-800 dark:hover:text-zinc-200",
+                        "hover:text-zinc-900 dark:hover:text-zinc-200",
                       )}
                     >
                       <div className={clsx("flex", "items-center", "gap-2")}>
@@ -310,7 +310,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                   isLanding && "text-zinc-400",
                   !isLanding && "text-refine-react-5 dark:text-refine-react-4",
                   "hover:no-underline",
-                  "hover:text-gray-800 dark:hover:text-zinc-200",
+                  "hover:text-zinc-900 dark:hover:text-zinc-200",
                 )}
               >
                 {menu.label}

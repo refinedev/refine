@@ -10,8 +10,8 @@ export const TutorialFooter = () => {
         "hidden tutorial-md:block",
         "py-4",
         "px-4",
-        "dark:bg-gray-800 bg-gray-0",
-        "border-t dark:border-t-gray-700 border-t-gray-300",
+        "dark:bg-zinc-800 bg-white",
+        "border-t dark:border-t-zinc-700 border-t-zinc-300",
       )}
     >
       <div
@@ -25,8 +25,7 @@ export const TutorialFooter = () => {
           className={clsx(
             "text-sm",
             "leading-6",
-            "dark:text-gray-400 text-gray-500",
-            // "mt-4 sm:mt-0",
+            "dark:text-zinc-400 text-zinc-500",
           )}
         >
           Refine © {new Date().getFullYear()}
@@ -69,7 +68,7 @@ export const TutorialFooter = () => {
           >
             <div
               className={clsx(
-                "dark:text-gray-100 text-gray-800",
+                "dark:text-white text-zinc-800",
                 "text-sm leading-6",
                 "sm:mr-4",
               )}
@@ -79,7 +78,7 @@ export const TutorialFooter = () => {
             <div
               className={clsx(
                 "flex gap-4",
-                "dark:text-gray-400 text-gray-500",
+                "dark:text-zinc-400 text-zinc-500",
                 "mt-4 sm:mt-0",
               )}
             >

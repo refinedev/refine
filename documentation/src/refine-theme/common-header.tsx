@@ -61,7 +61,7 @@ export const CommonHeader = ({
             "landing-md:backdrop-blur-[12px]",
             "z-[-1]",
             !isLanding &&
-              "bg-gray-0 bg-opacity-80 dark:bg-zinc-900 dark:bg-opacity-80",
+              "bg-white bg-opacity-80 dark:bg-zinc-900 dark:bg-opacity-80",
             isLanding && "bg-zinc-900 bg-opacity-80",
             "pointer-events-none",
             className,
@@ -92,8 +92,8 @@ export const CommonHeader = ({
               <Link to="/" onContextMenu={openFigma}>
                 <RefineCoreLogoIcon
                   className={clsx(
-                    !isLanding && "text-gray-900 dark:text-gray-0",
-                    isLanding && "text-gray-0",
+                    !isLanding && "text-zinc-900 dark:text-white",
+                    isLanding && "text-white",
                   )}
                 />
               </Link>
@@ -101,8 +101,8 @@ export const CommonHeader = ({
             <button
               type="button"
               className={clsx(
-                !isLanding && "text-gray-900 dark:text-gray-0",
-                isLanding && "text-gray-0",
+                !isLanding && "text-zinc-900 dark:text-white",
+                isLanding && "text-white",
                 "block landing-md:hidden",
               )}
               onClick={() => setIsModalOpen(true)}
@@ -226,8 +226,8 @@ const NavLinksDesktop = ({
             className={clsx(
               "whitespace-nowrap",
               !isLanding &&
-                "text-gray-900 dark:text-gray-0 hover:text-gray-900 dark:hover:text-gray-0",
-              isLanding && "text-gray-0 hover:text-gray-0",
+                "text-zinc-900 dark:text-white hover:text-zinc-900 dark:hover:text-white",
+              isLanding && "text-white hover:text-white",
               "hover:no-underline",
               "transition-colors",
             )}
@@ -240,7 +240,7 @@ const NavLinksDesktop = ({
         className={clsx(
           "h-6",
           "w-[1px]",
-          !isLanding && "bg-gray-300 dark:bg-zinc-600",
+          !isLanding && "bg-zinc-300 dark:bg-zinc-600",
           isLanding && "bg-zinc-600",
         )}
       />
@@ -250,8 +250,8 @@ const NavLinksDesktop = ({
         className={clsx(
           "whitespace-nowrap",
           !isLanding &&
-            "text-gray-900 dark:text-gray-0 hover:text-gray-900 dark:hover:text-gray-0",
-          isLanding && "text-gray-0 hover:text-gray-0",
+            "text-zinc-900 dark:text-white hover:text-zinc-900 dark:hover:text-white",
+          isLanding && "text-white hover:text-white",
           "hover:no-underline",
           "transition-colors",
         )}
@@ -295,7 +295,7 @@ const MobileMenuModal = ({
         "fixed",
         "inset-0",
         "z-[999]",
-        !isLanding && "bg-gray-0 dark:bg-zinc-900",
+        !isLanding && "bg-white dark:bg-zinc-900",
         isLanding && "bg-zinc-900",
         "flex",
         "flex-col",
@@ -310,15 +310,15 @@ const MobileMenuModal = ({
           "px-4",
           "h-16",
           "border-b",
-          !isLanding && "border-gray-200 dark:border-zinc-700",
+          !isLanding && "border-zinc-200 dark:border-zinc-700",
           isLanding && "border-zinc-700",
         )}
       >
         <Link to="/" onClick={onClose}>
           <RefineCoreLogoIcon
             className={clsx(
-              !isLanding && "text-gray-900 dark:text-white",
-              isLanding && "text-gray-0",
+              !isLanding && "text-zinc-900 dark:text-white",
+              isLanding && "text-white",
             )}
           />
         </Link>
@@ -329,8 +329,8 @@ const MobileMenuModal = ({
             "flex",
             "items-center",
             "gap-2",
-            !isLanding && "text-gray-900 dark:text-white",
-            isLanding && "text-gray-0",
+            !isLanding && "text-zinc-900 dark:text-white",
+            isLanding && "text-white",
             "text-sm",
             "font-normal",
           )}
@@ -378,9 +378,9 @@ const MobileMenuModal = ({
                 "px-4",
                 "py-3.5",
                 !isLanding &&
-                  "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded-lg text-gray-900 dark:text-white",
+                  "bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-lg text-zinc-900 dark:text-white",
                 isLanding &&
-                  "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-gray-0",
+                  "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-white",
                 "text-sm",
                 "font-normal",
                 "hover:no-underline",
@@ -396,7 +396,7 @@ const MobileMenuModal = ({
         <div
           className={clsx(
             "h-[1px]",
-            !isLanding && "bg-gray-200 dark:bg-zinc-700",
+            !isLanding && "bg-zinc-200 dark:bg-zinc-700",
             isLanding && "bg-zinc-700",
             "my-6",
           )}
@@ -415,8 +415,8 @@ const MobileMenuModal = ({
             "px-4",
             "py-3.5",
             !isLanding &&
-              "bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded-lg text-gray-900 dark:text-white",
-            isLanding && "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-gray-0",
+              "bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-lg text-zinc-900 dark:text-white",
+            isLanding && "bg-zinc-800 hover:bg-zinc-700 rounded-lg text-white",
             "text-sm",
             "font-normal",
             "hover:no-underline",
@@ -434,7 +434,7 @@ const MobileMenuModal = ({
           "py-6",
           "border-t",
           !isLanding &&
-            "border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-black",
+            "border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-black",
           isLanding && "border-zinc-700 bg-black",
         )}
       >
@@ -444,8 +444,8 @@ const MobileMenuModal = ({
             <div
               className={clsx(
                 "ml-4",
-                !isLanding && "text-gray-900 dark:text-white",
-                isLanding && "text-gray-0",
+                !isLanding && "text-zinc-900 dark:text-white",
+                isLanding && "text-white",
               )}
             >
               If you like Refine, don’t forget to star us on GitHub!

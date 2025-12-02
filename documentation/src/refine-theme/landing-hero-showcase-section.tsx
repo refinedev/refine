@@ -137,7 +137,7 @@ export const LandingHeroShowcaseSection = () => {
             "transition-colors",
             "duration-150",
             "ease-in-out",
-            activeApp.dark ? "bg-gray-900" : "bg-gray-0",
+            activeApp.dark ? "bg-zinc-900" : "bg-white",
           )}
         />
         <ShowcaseComponent
@@ -201,7 +201,7 @@ export const LandingHeroShowcaseSection = () => {
               "z-[3]",
               "py-2 landing-sm:py-4",
               "pl-4 pr-4 landing-sm:pl-6 landing-sm:pr-4",
-              "rounded-[16px]",
+              "rounded-2xl",
               "items-center",
               "justify-center",
               "gap-2",
@@ -216,8 +216,8 @@ export const LandingHeroShowcaseSection = () => {
               "landing-lg:hover:text-orange-400",
               "landing-lg:border-8 landing-lg:border-solid",
               activeApp.dark
-                ? "landing-lg:border-gray-900"
-                : "landing-lg:border-gray-0",
+                ? "landing-lg:border-zinc-900"
+                : "landing-lg:border-white",
             )}
           >
             <span

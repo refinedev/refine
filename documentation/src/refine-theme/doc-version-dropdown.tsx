@@ -42,17 +42,17 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                 "appearance-none",
                 "focus:outline-none",
                 "border border-solid border-zinc-200 dark:border-zinc-700",
-                "rounded-[8px]",
+                "rounded-lg",
                 "px-2.5",
                 "h-10",
-                "bg-gray-0 dark:bg-gray-800",
+                "bg-white dark:bg-zinc-800",
                 "lg:bg-transparent lg:dark:bg-transparent",
                 "flex",
                 "items-center",
                 "justify-center",
                 "gap-2",
                 "select-none",
-                "text-gray-500 dark:text-zinc-300",
+                "text-zinc-500 dark:text-zinc-300",
                 "font-medium",
                 className,
               )}
@@ -110,13 +110,13 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                             to={version.to}
                             className={clsx(
                               "px-2 py-1",
-                              "rounded-[4px]",
+                              "rounded",
                               "no-underline",
                               {
                                 "text-white hover:text-white": isActive,
                                 "bg-orange-600": isActive,
-                                "text-gray-700 dark:text-zinc-300": !isActive,
-                                "hover:bg-gray-100 hover:dark:bg-zinc-800 hover:text-gray-700 dark:hover:text-zinc-300":
+                                "text-zinc-700 dark:text-zinc-300": !isActive,
+                                "hover:bg-zinc-100 hover:dark:bg-zinc-800 hover:text-zinc-700 dark:hover:text-zinc-300":
                                   !isActive,
                               },
                             )}

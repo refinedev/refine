@@ -35,7 +35,7 @@ const TutorialModal = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-0 dark:bg-gray-800" />
+          <div className="fixed inset-0 bg-white dark:bg-zinc-800" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -74,7 +74,7 @@ const TutorialModal = ({
                     "flex-col",
                     "mx-auto",
                     "rounded-lg",
-                    "border border-gray-300 dark:border-gray-600",
+                    "border border-zinc-300 dark:border-zinc-600",
                     "flex flex-col gap-0",
                   )}
                 >
@@ -90,8 +90,8 @@ const TutorialModal = ({
                     <span
                       className={clsx(
                         "text-sm",
-                        "text-gray-800",
-                        "dark:text-gray-100",
+                        "text-zinc-800",
+                        "dark:text-white",
                       )}
                     >
                       Appearance
@@ -104,7 +104,7 @@ const TutorialModal = ({
                       "gap-10",
                       "px-4",
                       "py-4",
-                      "border-b border-b-gray-200 dark:border-b-gray-600",
+                      "border-b border-b-zinc-200 dark:border-b-zinc-600",
                     )}
                   >
                     <Link
@@ -114,7 +114,7 @@ const TutorialModal = ({
                         "no-underline",
                         "hover:no-underline",
                         "font-semibold",
-                        "text-gray-800 dark:text-gray-100",
+                        "text-zinc-800 dark:text-white",
                       )}
                     >
                       Refine Home
@@ -136,7 +136,7 @@ const TutorialModal = ({
                         "no-underline",
                         "hover:no-underline",
                         "font-semibold",
-                        "text-gray-800 dark:text-gray-100",
+                        "text-zinc-800 dark:text-white",
                       )}
                     >
                       Documentation
@@ -147,14 +147,14 @@ const TutorialModal = ({
                       "flex items-start justify-between",
                       "px-4",
                       "py-4",
-                      "bg-gray-100 dark:bg-gray-700",
+                      "bg-zinc-100 dark:bg-zinc-700",
                       "flex-col tutorial-sm:flex-row",
                       "gap-4",
                     )}
                   >
                     <div
                       className={clsx(
-                        "dark:text-gray-100 text-gray-800",
+                        "dark:text-white text-zinc-800",
                         "text-sm leading-6",
                       )}
                     >
@@ -163,7 +163,7 @@ const TutorialModal = ({
                     <div
                       className={clsx(
                         "flex gap-4",
-                        "dark:text-gray-400 text-gray-500",
+                        "dark:text-zinc-400 text-zinc-500",
                       )}
                     >
                       {socialLinks.map(({ href, icon: Icon }, i) => {
@@ -310,8 +310,8 @@ export const TutorialHeader = React.memo(function TutorialHeaderComponent() {
         "sticky",
         "top-0",
         "py-4 pb-[15px] tutorial-sm:pt-[15px] tutorial-sm:pb-[16px] px-4 tutorial-md:px-6 tutorial-md:pt-[11px] tutorial-md:pb-[10px]",
-        "bg-gray-0 dark:bg-gray-800",
-        "border-b border-gray-300 dark:border-gray-700",
+        "bg-white dark:bg-zinc-800",
+        "border-b border-zinc-300 dark:border-zinc-700",
       )}
     >
       <Header />
