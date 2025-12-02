@@ -67,8 +67,7 @@
   @apply prose-blockquote:bg-zinc-100 prose-blockquote:text-zinc-800 prose-blockquote:border-l-zinc-400;
   @apply prose-blockquote:dark:bg-zinc-700 prose-blockquote:dark:text-white prose-blockquote:dark:border-l-zinc-500;
 
-  @apply prose-code:text-base 2xl:prose-code:text-base;
-  /* @apply prose-code:translate-y-0.5; */
+  @apply prose-code:text-sm;
   @apply prose-code:inline-block;
   @apply prose-code:text-zinc-200 prose-code:bg-zinc-900;
   @apply prose-code:dark:text-zinc-100 prose-code:dark:bg-zinc-700;

@@ -54,13 +54,13 @@ module.exports = {
           pink: "#ED5EC9",
           bg: "#0A0A29",
           kdb: "#DBDBF0",
-          "react-dark-orange": "#DB7D27",
-          "react-dark-purple": "#8891EC",
-          "react-dark-green": "#44AC99",
+          "react-dark-orange": "#FB923C", // orange-400
+          "react-dark-purple": "#C084FC", // purple-400
+          "react-dark-green": "#4ADE80", // green-400
           "react-dark-green-alt": "#26D97F",
-          "react-light-orange": "#C76A15",
-          "react-light-purple": "#575FB7",
-          "react-light-green": "#2B6E62",
+          "react-light-orange": "#C2410C", // orange-700
+          "react-light-purple": "#8200db", // purple-700
+          "react-light-green": "#15803D", // green-700
           "react-light-green-alt": "#24A866",
           "react-light-orange-bg": "#FEF5E7",
           "react-light-purple-bg": "#F3F4FD",
