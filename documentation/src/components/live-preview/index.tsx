@@ -140,7 +140,9 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
   };
 
   return (
-    <>
+    <div
+      className={clsx("bg-zinc-200 dark:bg-zinc-800", "p-1", "rounded-b-lg")}
+    >
       <button
         type="button"
         className={clsx(
@@ -148,20 +150,15 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
           "w-full",
           "focus:outline-none",
           "appearance-none",
-          "px-4",
-          "py-2",
-          "border",
-          "border-t-0",
-          "border-gray-300 dark:border-gray-700",
+          "px-2.5 py-2",
           "flex items-center gap-2",
-          "bg-gray-100 dark:bg-gray-700",
-          visible && "border-b-0",
-          !visible && "rounded-bl-lg",
-          !visible && "rounded-br-lg",
-          "transition-[border-radius] ease-in-out duration-200",
+          "bg-zinc-50 dark:bg-zinc-900",
+          visible && "rounded-t-[0.25rem]",
+          !visible && "rounded-[0.25rem]",
           !visible && "delay-200",
+          "transition-[border-radius] ease-in-out duration-200",
           "group",
-          "text-gray-800 dark:text-gray-100",
+          "text-zinc-900 dark:text-white",
         )}
         onClick={onToggle}
       >
@@ -187,7 +184,6 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
             className={clsx(
               "block",
               "transition-transform duration-200 ease-in-out",
-              "bg-gray-100 dark:bg-gray-700",
               visible && "-translate-y-6",
             )}
           >
@@ -219,7 +215,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
           {code}
         </CodeBlock>
       </div>
-    </>
+    </div>
   );
 }
 

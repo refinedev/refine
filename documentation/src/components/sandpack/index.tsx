@@ -83,7 +83,7 @@ const SandpackBase = ({
       "sp-layout": "!rounded-lg !border-zinc-200 dark:!border-zinc-700",
       "sp-editor": "!gap-0 border-r !border-r-zinc-200 dark:!border-r-zinc-700",
       "sp-tabs":
-        "!border-b-zinc-200 dark:!border-b-zinc-700 !bg-zinc-200 dark:!bg-zinc-900",
+        "!border-b-zinc-200 dark:!border-b-zinc-700 !bg-zinc-100 dark:!bg-zinc-900",
       "sp-tabs-scrollable-container": "!min-h-[32px] !pl-8",
       "sp-input": "!text-zinc-900 dark:!text-white",
       "sp-cm": clsx(

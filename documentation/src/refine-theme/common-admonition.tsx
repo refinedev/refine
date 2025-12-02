@@ -61,7 +61,7 @@ const colorWrapperClasses = {
   sourcecode: "bg-refine-pink bg-opacity-10 border-l-refine-pink",
   additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
   simple:
-    "bg-[#FAFAFA] dark:bg-[#27272A] border-l-zinc-400 dark:border-l-zinc-600",
+    "bg-zinc-50 dark:bg-zinc-800 border-l-zinc-400 dark:border-l-zinc-600",
 };
 
 const titles = {

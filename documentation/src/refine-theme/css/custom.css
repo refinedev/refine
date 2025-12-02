@@ -64,12 +64,12 @@
   @apply prose-pre:font-jetBrains-mono;
 
   @apply prose-blockquote:border-l-4 prose-blockquote:rounded-lg prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:pl-3 prose-blockquote:font-normal prose-blockquote:not-italic;
-  @apply prose-blockquote:bg-zinc-100 prose-blockquote:text-zinc-800 prose-blockquote:border-l-zinc-400;
-  @apply prose-blockquote:dark:bg-zinc-700 prose-blockquote:dark:text-white prose-blockquote:dark:border-l-zinc-500;
+  @apply prose-blockquote:bg-zinc-50 prose-blockquote:text-zinc-800 prose-blockquote:border-l-zinc-400;
+  @apply prose-blockquote:dark:bg-zinc-800 prose-blockquote:dark:text-white prose-blockquote:dark:border-l-zinc-500;
 
   @apply prose-code:text-sm;
   @apply prose-code:inline-block;
-  @apply prose-code:text-zinc-200 prose-code:bg-zinc-900;
+  @apply prose-code:text-zinc-900 prose-code:bg-zinc-200;
   @apply prose-code:dark:text-zinc-100 prose-code:dark:bg-zinc-700;
   @apply prose-code:px-1 prose-code:py-0 prose-code:rounded prose-code:font-jetBrains-mono prose-code:before:content-none prose-code:after:content-none;
   @apply prose-code:font-normal;
@@ -505,6 +505,10 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(
 
 .refine-tab-content > *:last-child {
   @apply mb-0;
+}
+
+.refine-tab-content {
+  @apply p-2 bg-zinc-50 dark:bg-zinc-900 rounded-t-[0.25rem] rounded-b-xl;
 }
 
 .admonition-simple ul {

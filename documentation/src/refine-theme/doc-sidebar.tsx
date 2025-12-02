@@ -219,7 +219,6 @@ const SidebarCategory = ({
           !collapsed && settled && "max-h-max",
           "flex",
           "flex-col",
-          "gap-1",
         )}
       >
         {

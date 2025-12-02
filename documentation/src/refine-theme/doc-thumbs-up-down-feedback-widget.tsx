@@ -94,11 +94,11 @@ export const DocThumbsUpDownFeedbackWidget = (
           "z-popover",
           "hidden md:flex",
           "items-center",
-          "gap-5",
+          "gap-2",
           "w-max h-[40px]",
           "pt-1 pr-1 pb-1 pl-4",
-          "bg-[#99A1B31A] dark:bg-[#2F333C]",
-          "rounded-[28px]",
+          "bg-zinc-100 dark:bg-zinc-800",
+          "rounded-lg",
           "transition-all duration-300 ease-in-out",
           !isPopoverVisible && "opacity-0",
           "group-hover:opacity-100",
@@ -108,13 +108,14 @@ export const DocThumbsUpDownFeedbackWidget = (
           className={clsx(
             "text-xs",
             "whitespace-nowrap",
-            "text-[#23272F] dark:text-[#E3E4E5]",
+            "text-zinc-700 dark:text-zinc-300",
+            "tracking-[-0.006rem]",
           )}
         >
           Was this helpful?
         </div>
         <div
-          className={clsx("flex", "items-center", "gap-1", "widget-actions")}
+          className={clsx("flex", "items-center", "gap-0.5", "widget-actions")}
         >
           <button
             type="button"
@@ -122,8 +123,8 @@ export const DocThumbsUpDownFeedbackWidget = (
             className={clsx(
               "w-8 h-8",
               "flex items-center justify-center",
-              "rounded-full",
-              "text-gray-500",
+              "rounded-lg",
+              "text-zinc-500 dark:text-zinc-400",
               "hover:text-green-500 hover:bg-green-500/20",
               "transition-all duration-200 ease-in-out",
               selectedThumb === 1 && "text-green-500 bg-green-500/20",
@@ -137,8 +138,8 @@ export const DocThumbsUpDownFeedbackWidget = (
             className={clsx(
               "w-8 h-8",
               "flex items-center justify-center",
-              "rounded-full",
-              "text-gray-500",
+              "rounded-lg",
+              "text-zinc-500 dark:text-zinc-400",
               "hover:text-red-500 hover:bg-red-500/20",
               "transition-all duration-200 ease-in-out",
               selectedThumb === 2 && "text-red-500 bg-red-500/20",
@@ -178,8 +179,8 @@ export const DocThumbsUpDownFeedbackWidget = (
                 value={feedbackText}
                 className={clsx(
                   "w-full",
-                  "bg-white dark:bg-[#343A46]",
-                  "text-[#23272F] dark:text-[#E3E4E5]",
+                  "bg-white dark:bg-zinc-700",
+                  "text-zinc-900 dark:text-zinc-100",
                   "resize-none",
                   "rounded-xl",
                   "text-xs",
@@ -208,7 +209,7 @@ export const DocThumbsUpDownFeedbackWidget = (
                 "flex items-center",
                 "p-4",
                 "text-xs",
-                "text-gray-500",
+                "text-zinc-700 dark:text-zinc-300",
               )}
             >
               <span>Thank you for your feedback!</span>
@@ -288,10 +289,11 @@ const FeedbackTextPopover = (
             {...getFloatingProps()}
             className={clsx(
               "w-[320px]",
-              "bg-[#EAEBEF] dark:bg-refine-react-dark-code",
-              "border border-[#E3E4E5] dark:border-[#343A46]",
+              "bg-zinc-100 dark:bg-zinc-800",
+              "border border-zinc-200 dark:border-zinc-700",
               "rounded-[20px]",
               "relative",
+              "shadow-lg",
             )}
           >
             {props.children}
@@ -328,7 +330,7 @@ const PopoverPointer = (props: SVGProps<SVGSVGElement>) => {
     >
       <title>Popover Pointer</title>
       <path
-        fill={isDarkTheme ? "#16181D" : "#EAEBEF"}
+        fill={isDarkTheme ? "#27272a" : "#f4f4f5"}
         stroke="url(#a)"
         d="M18.303 2.077C18.892 1.105 19.9.5 21 .5s2.108.605 2.697 1.577l3.026 4.992c.928 1.532 2.476 2.431 4.11 2.431H41.5v8H.5v-8h10.667c1.634 0 3.182-.899 4.11-2.431l3.026-4.992Z"
       />
@@ -341,10 +343,10 @@ const PopoverPointer = (props: SVGProps<SVGSVGElement>) => {
           y2={16}
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.59} stopColor={isDarkTheme ? "#343A46" : "#E3E4E5"} />
+          <stop offset={0.59} stopColor={isDarkTheme ? "#3f3f46" : "#e4e4e7"} />
           <stop
             offset={0.602}
-            stopColor={isDarkTheme ? "#343A46" : "#E3E4E5"}
+            stopColor={isDarkTheme ? "#3f3f46" : "#e4e4e7"}
             stopOpacity={0}
           />
         </linearGradient>
