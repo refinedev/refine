@@ -77,20 +77,23 @@ export const CommonHeader = ({
               "h-16",
               "flex",
               "items-center",
-              "justify-between",
               "max-w-[896px]",
               "px-4 landing-md:px-0",
               "landing-lg:max-w-[1200px]",
             )}
           >
-            <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
+            <div className={clsx("w-[152px]", "landing-lg:w-[204px]")}>
               <Link to="/" onContextMenu={openFigma}>
                 <RefineCoreLogoIcon className={clsx("!text-white")} />
               </Link>
             </div>
             <button
               type="button"
-              className={clsx("text-white", "block landing-md:hidden")}
+              className={clsx(
+                "text-white",
+                "block landing-md:hidden",
+                "ml-auto",
+              )}
               onClick={() => setIsModalOpen(true)}
             >
               <HamburgerIcon />
@@ -104,6 +107,7 @@ export const CommonHeader = ({
                 "items-center",
                 "justify-end",
                 "gap-4",
+                "ml-auto",
               )}
             >
               <SearchBar
