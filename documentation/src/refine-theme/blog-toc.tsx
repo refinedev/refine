@@ -27,7 +27,7 @@ export const BlogTOC = (props) => {
         "px-3",
         "pb-10",
         "pt-4 blog-lg:pt-9",
-        "border-l dark:border-l-gray-700 border-l-gray-100",
+        "border-l dark:border-l-zinc-700 border-l-zinc-100",
         !hasTOC && "invisible",
         "not-prose",
       )}

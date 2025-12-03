@@ -84,7 +84,7 @@ const TutorialModal = ({
                       "gap-10",
                       "px-4",
                       "py-4",
-                      "border-b border-b-gray-200 dark:border-b-gray-600",
+                      "border-b border-b-zinc-200 dark:border-b-zinc-600",
                     )}
                   >
                     <span
@@ -126,7 +126,7 @@ const TutorialModal = ({
                       "gap-10",
                       "px-4",
                       "py-4",
-                      "border-b border-b-gray-200 dark:border-b-gray-600",
+                      "border-b border-b-zinc-200 dark:border-b-zinc-600",
                     )}
                   >
                     <Link

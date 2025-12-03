@@ -36,7 +36,7 @@ function Home() {
         className={clsx("bg-zinc-900")}
       >
         <div className={clsx()}>
-          <CommonHeader variant="landing" />
+          <CommonHeader showThemeToggle={false} />
           <div
             className={clsx(
               "flex flex-col",

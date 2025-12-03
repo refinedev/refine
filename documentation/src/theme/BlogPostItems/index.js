@@ -13,7 +13,7 @@ export default function BlogPostItems({
   isTagsPage,
 }) {
   return (
-    <div className={clsx("w-full", "bg-white dark:bg-refine-react-8")}>
+    <div className={clsx("w-full")}>
       <div
         className={clsx(
           "blog-sm:max-w-[592px]",

@@ -39,7 +39,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
             "text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
           )}
         >
-          <div className={clsx("dark:text-gray-0 text-gray-900")}>Refine </div>
+          <div className={clsx("dark:text-white text-zinc-900")}>Refine </div>
           <div
             className={clsx(
               "font-semibold",
@@ -56,7 +56,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
             "text-base",
             "text-start landing-md:text-center",
             "max-w-[588px]",
-            "dark:text-gray-400 text-gray-600",
+            "dark:text-zinc-400 text-zinc-600",
             "pb-2",
           )}
         >

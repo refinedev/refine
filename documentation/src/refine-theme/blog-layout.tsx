@@ -38,15 +38,7 @@ export const RefineBlogLayout = (props: Props) => {
     >
       {/* If there's TOC, then we can say that this is a blog post page. */}
       {/* Then we can pass `trackProgress` prop to the header. */}
-      <CommonHeader
-        hasSticky={true}
-        trackProgress={!!toc}
-        variant="blog"
-        className={clsx(
-          "!bg-white dark:!bg-refine-react-8",
-          "!bg-opacity-100 dark:!bg-opacity-100",
-        )}
-      />
+      <CommonHeader hasSticky={true} trackProgress={!!toc} />
       {props.showHero && <BlogHero />}
       <div
         className={clsx(
