@@ -109,7 +109,7 @@ const List = (
         className={clsx(
           "pl-4",
           "text-sm",
-          "dark:text-gray-500 text-gray-700",
+          "dark:text-zinc-500 text-zinc-700",
           props.className,
         )}
       >
@@ -142,8 +142,8 @@ const ListItem = (props: {
         "gap-2",
         "rounded-full",
         "cursor-pointer",
-        "border dark:border-gray-700 border-gray-200",
-        props.isSelected && "dark:bg-gray-700 bg-gray-50",
+        "border dark:border-zinc-700 border-zinc-200",
+        props.isSelected && "dark:bg-zinc-700 bg-zinc-50",
         "transition-colors duration-200 ease-in-out",
       )}
     >
@@ -151,8 +151,8 @@ const ListItem = (props: {
       <span
         className={clsx(
           "text-sm",
-          !props.isSelected && "dark:text-gray-400 text-gray-600",
-          props.isSelected && "dark:text-gray-0 text-gray-900",
+          !props.isSelected && "dark:text-zinc-400 text-zinc-600",
+          props.isSelected && "dark:text-white text-zinc-900",
         )}
       >
         {props.label}

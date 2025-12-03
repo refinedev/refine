@@ -62,7 +62,7 @@ export const BlogPostPageView = ({ children }) => {
         <Link
           to="/blog"
           className={clsx(
-            "text-refine-react-5 dark:text-refine-react-4",
+            "text-zinc-600 dark:text-zinc-400",
             "text-sm no-underline",
             "flex",
             "items-center",
@@ -72,7 +72,7 @@ export const BlogPostPageView = ({ children }) => {
           <ChevronLeft /> Back to blog
         </Link>
         <div className="flex items-center gap-3 px-2 py-1 not-prose">
-          <span className="text-refine-react-5 dark:text-refine-react-4 text-sm">
+          <span className="text-zinc-600 dark:text-zinc-400 text-sm">
             Share on
           </span>
           <TwitterShareButton
@@ -119,14 +119,14 @@ export const BlogPostPageView = ({ children }) => {
         <div className="mt-6 blog-lg:mt-10 mb-6 text-sm">
           <div
             className={clsx(
-              "flex items-center gap-2 text-refine-reac-5 dark:text-refine-react-4 not-prose",
+              "flex items-center gap-2 text-zinc-600 dark:text-zinc-400 not-prose",
               "ml-4 blog-md:ml-0",
             )}
           >
             <Date date={date} formattedDate={formattedDate} />
             {typeof readingTime !== "undefined" && (
               <>
-                <span className="w-[4px] h-[4px] rounded-full bg-refine-reac-5 dark:bg-refine-react-4 " />
+                <span className="w-[4px] h-[4px] rounded-full bg-zinc-600 dark:bg-zinc-400 " />
                 <ReadingTime readingTime={readingTime} />
               </>
             )}

@@ -25,7 +25,7 @@ const Card: React.FC<LargeCardProps> = ({
         "flex gap-4 sm:gap-8",
         "no-underline",
         "p-4 sm:p-8",
-        "border border-gray-200 dark:border-gray-700",
+        "border border-zinc-200 dark:border-zinc-700",
         "rounded-2xl",
       )}
       rel="noreferrer"
@@ -36,13 +36,13 @@ const Card: React.FC<LargeCardProps> = ({
 
       <div className={clsx("flex flex-col gap-2")}>
         <div
-          className={clsx("text-gray-700 dark:text-gray-200", "font-semibold")}
+          className={clsx("text-zinc-700 dark:text-zinc-200", "font-semibold")}
         >
           {title}
         </div>
         <div
           className={clsx(
-            "text-gray-600 dark:text-gray-300",
+            "text-zinc-600 dark:text-zinc-300",
             "text-xs sm:text-sm",
           )}
           // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
@@ -75,7 +75,7 @@ const Card: React.FC<LargeCardProps> = ({
                       fill="#FF4C4D"
                     />
                   </svg>
-                  <span className={clsx("text-gray-500")}>by</span>
+                  <span className={clsx("text-zinc-500")}>by</span>
                   <span className={clsx("underline")}>{contributor.name}</span>
                 </a>
               );

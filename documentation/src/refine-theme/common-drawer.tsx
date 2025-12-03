@@ -91,7 +91,7 @@ const DrawerComponent: FC<PropsWithChildren<Props>> = ({
           "ml-auto",
           "p-4",
           variant === "templates" && "bg-zinc-0 dark:bg-zinc-900 ",
-          variant === "blog" && "bg-white dark:bg-refine-react-7",
+          variant === "blog" && "bg-white dark:bg-zinc-700",
           "border-l dark:border-zinc-800",
           "dark:shadow-[0_0_72px_24px_#14141F]",
           "shadow-[0_0_72px_24px_rgba(20, 20, 31, 0.50)]",

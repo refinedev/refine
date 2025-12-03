@@ -76,7 +76,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
           <Link
             to="/blog"
             className={clsx(
-              "text-refine-react-5 dark:text-refine-react-4",
+              "text-zinc-600 dark:text-zinc-400",
               "text-sm no-underline",
               "flex",
               "items-center",

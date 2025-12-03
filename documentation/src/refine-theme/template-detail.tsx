@@ -368,7 +368,7 @@ const IntegrationBadge = (props: {
 
   return (
     <div className={clsx("flex", "flex-col", "gap-3", "not-prose")}>
-      <h6 className={clsx("text-xs", "dark:text-gray-400 text-gray-600")}>
+      <h6 className={clsx("text-xs", "dark:text-zinc-400 text-zinc-600")}>
         {props.label}
       </h6>
       <div
@@ -379,7 +379,7 @@ const IntegrationBadge = (props: {
           "pl-2 pr-4",
           "gap-2",
           "rounded-full",
-          "border dark:border-gray-700 border-gray-200",
+          "border dark:border-zinc-700 border-zinc-200",
           "w-min",
         )}
       >

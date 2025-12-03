@@ -181,7 +181,7 @@ const SidebarCategory = ({
             )}
           />
         )}
-        <span className="z-[1] text-refine-react-6 dark:text-refine-react-3">
+        <span className="z-[1] text-zinc-600 dark:text-zinc-300">
           {item.label}
         </span>
         <div

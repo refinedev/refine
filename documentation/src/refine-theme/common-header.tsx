@@ -137,12 +137,7 @@ export const CommonHeader = ({
         </div>
         {trackProgress && (
           <div
-            className={clsx(
-              "w-full",
-              "h-[1px]",
-              "translate",
-              "bg-refine-react-7",
-            )}
+            className={clsx("w-full", "h-[1px]", "translate", "bg-zinc-700")}
           >
             {/* @ts-expect-error - framer-motion type issue */}
             <motion.div

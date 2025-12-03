@@ -152,7 +152,7 @@ const Templates: React.FC = () => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-gray-300 text-gray-900",
+                    "dark:text-zinc-300 text-zinc-900",
                     "pl-4",
                   )}
                 >

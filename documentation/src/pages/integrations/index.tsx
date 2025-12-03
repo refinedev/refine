@@ -14,7 +14,7 @@ const Title = ({
     <div
       className={clsx(
         "font-semibold",
-        "text-gray-700 dark:text-gray-200",
+        "text-zinc-700 dark:text-zinc-200",
         "text-base sm:text-2xl",
         className,
       )}
@@ -74,7 +74,7 @@ const Integrations: React.FC = () => {
         <div
           className={clsx(
             "font-semibold",
-            "text-gray-700 dark:text-gray-200",
+            "text-zinc-700 dark:text-zinc-200",
             "text-xl sm:text-[40px] sm:leading-[56px]",
           )}
         >
@@ -83,7 +83,7 @@ const Integrations: React.FC = () => {
         <div
           className={clsx(
             "font-semibold",
-            "text-gray-700 dark:text-gray-300",
+            "text-zinc-700 dark:text-zinc-300",
             "text-xs sm:text-base",
             "mt-4 sm:mt-8",
           )}
@@ -96,7 +96,7 @@ const Integrations: React.FC = () => {
       <div
         className={clsx(
           "my-10",
-          "border-b border-gray-200 dark:border-gray-700",
+          "border-b border-zinc-200 dark:border-zinc-700",
         )}
       />
 

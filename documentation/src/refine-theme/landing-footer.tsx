@@ -30,7 +30,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "text-sm",
           "leading-6",
           isLanding && "text-white",
-          !isLanding && "text-refine-react-8 dark:text-refine-react-3",
+          !isLanding && "text-zinc-900 dark:text-zinc-300",
         )}
       >
         Refine Inc.
@@ -41,7 +41,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "text-sm",
           "leading-5",
           isLanding && "text-zinc-400",
-          !isLanding && "text-refine-react-5 dark:text-refine-react-4",
+          !isLanding && "text-zinc-600 dark:text-zinc-400",
         )}
       >
         256 Chapman Road STE 105-4 Newark, DE 19702
@@ -53,7 +53,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "text-sm",
           "leading-5",
           isLanding && "text-zinc-400",
-          !isLanding && "text-refine-react-5 dark:text-refine-react-4",
+          !isLanding && "text-zinc-600 dark:text-zinc-400",
           "hover:text-zinc-900 dark:hover:text-zinc-200",
           "hover:no-underline",
         )}
@@ -79,7 +79,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
             "leading-6",
             "font-semibold",
             isLanding && "text-white",
-            !isLanding && "text-refine-react-8 dark:text-refine-react-3",
+            !isLanding && "text-zinc-900 dark:text-zinc-300",
             "landing-lg:text-right",
           )}
         >
@@ -102,7 +102,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               rel="noreferrer"
               className={clsx(
                 isLanding && "text-zinc-400",
-                !isLanding && "text-refine-react-5 dark:text-refine-react-4",
+                !isLanding && "text-zinc-600 dark:text-zinc-400",
                 "hover:text-zinc-900 dark:hover:text-zinc-200",
                 "hover:no-underline",
               )}
@@ -123,7 +123,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
         className={clsx(
           "border-t border-t-solid",
           isLanding && "border-t-zinc-700",
-          !isLanding && "border-t-refine-react-3 dark:border-t-refine-react-7",
+          !isLanding && "border-t-zinc-200 dark:border-t-zinc-700",
           isLanding && "bg-zinc-800",
           !isLanding && "bg-footer-blog-light-bg dark:bg-footer-blog-dark-bg",
         )}
@@ -166,9 +166,9 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               <PHBadgeIcon
                 className={clsx(
                   isLanding && "text-white",
-                  !isLanding && "text-refine-react-5 dark:text-white",
+                  !isLanding && "text-zinc-600 dark:text-white",
                   isLanding && "fill-zinc-900",
-                  !isLanding && "fill-refine-react-2 dark:fill-refine-react-7",
+                  !isLanding && "fill-zinc-100 dark:fill-zinc-700",
                 )}
               />
             </a>
@@ -206,7 +206,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                     "leading-6",
                     "font-semibold",
                     isLanding && "text-white",
-                    !isLanding && "text-refine-react-5 dark:text-white",
+                    !isLanding && "text-zinc-600 dark:text-white",
                   )}
                 >
                   {menu.label}
@@ -227,8 +227,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                         "leading-5",
                         "hover:no-underline",
                         isLanding && "text-zinc-400",
-                        !isLanding &&
-                          "text-refine-react-5 dark:text-refine-react-4",
+                        !isLanding && "text-zinc-600 dark:text-zinc-400",
                         "hover:text-zinc-900 dark:hover:text-zinc-200",
                       )}
                     >
@@ -264,9 +263,9 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
         className={clsx(
           "border-t border-t-solid",
           isLanding && "border-t-zinc-700",
-          !isLanding && "border-t-refine-react-3 dark:border-t-refine-react-7",
+          !isLanding && "border-t-zinc-200 dark:border-t-zinc-700",
           isLanding && "bg-zinc-900",
-          !isLanding && "bg-refine-react-1 dark:bg-refine-react-7",
+          !isLanding && "bg-zinc-100 dark:bg-zinc-700",
         )}
       >
         <div
@@ -308,7 +307,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                   "leading-5",
                   "font-normal",
                   isLanding && "text-zinc-400",
-                  !isLanding && "text-refine-react-5 dark:text-refine-react-4",
+                  !isLanding && "text-zinc-600 dark:text-zinc-400",
                   "hover:no-underline",
                   "hover:text-zinc-900 dark:hover:text-zinc-200",
                 )}
@@ -325,7 +324,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               "pr-6 landing-sm:pr-0",
               "leading-5",
               isLanding && "text-white",
-              !isLanding && "text-refine-react-8 dark:text-refine-react-3",
+              !isLanding && "text-zinc-900 dark:text-zinc-300",
               "font-normal",
             )}
           >

@@ -17,8 +17,8 @@ export const Tags = () => {
             "rounded-full",
             "py-1",
             "px-3",
-            "text-refine-react-8 dark:text-refine-react-3",
-            "bg-refine-react-3 dark:bg-refine-react-7",
+            "text-zinc-900 dark:text-zinc-300",
+            "bg-zinc-200 dark:bg-zinc-700",
             "whitespace-nowrap",
           )}
           key={tag.permalink}

@@ -34,7 +34,7 @@ export const RefineBlogLayout = (props: Props) => {
   return (
     <CommonLayout
       {...layoutProps}
-      className={clsx("bg-white dark:bg-refine-react-8")}
+      className={clsx("bg-white dark:bg-zinc-900")}
     >
       {/* If there's TOC, then we can say that this is a blog post page. */}
       {/* Then we can pass `trackProgress` prop to the header. */}

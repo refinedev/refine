@@ -40,8 +40,8 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 "relative",
                 "flex",
                 "flex-col",
-                "dark:bg-gray-800 bg-gray-50",
-                "border dark:border-gray-700 border-transparent",
+                "dark:bg-zinc-800 bg-zinc-50",
+                "border dark:border-zinc-700 border-transparent",
                 "rounded-2xl",
                 "hover:no-underline",
                 "not-prose",
@@ -64,8 +64,8 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-gray-300",
-                    "text-gray-900",
+                    "dark:text-zinc-300",
+                    "text-zinc-900",
                   )}
                 >
                   {item.title}
@@ -73,8 +73,8 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 <div
                   className={clsx(
                     "text-sm",
-                    "dark:text-gray-400",
-                    "text-gray-600",
+                    "dark:text-zinc-400",
+                    "text-zinc-600",
                     "mt-4",
                     "mb-6",
                   )}
@@ -100,15 +100,15 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                           "gap-2",
                           "py-2 pl-2 pr-4",
                           "rounded-full",
-                          "dark:bg-gray-900 bg-gray-0",
+                          "dark:bg-zinc-900 bg-zinc-0",
                         )}
                       >
                         <Icon id={"template-list"} />
                         <div
                           className={clsx(
                             "text-xs",
-                            "dark:text-gray-400",
-                            "text-gray-500",
+                            "dark:text-zinc-400",
+                            "text-zinc-500",
                           )}
                         >
                           {integration.label}

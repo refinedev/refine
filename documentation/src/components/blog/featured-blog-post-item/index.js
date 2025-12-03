@@ -50,8 +50,8 @@ export const FeaturedBlogPostItem = () => {
             <Link
               className={clsx(
                 "text-xs",
-                "bg-refine-react-3 dark:bg-refine-react-7",
-                "text-refine-react-8 dark:text-refine-react-3",
+                "bg-zinc-200 dark:bg-zinc-700",
+                "text-zinc-900 dark:text-zinc-300",
                 "no-underline",
                 "rounded-full",
                 "px-2 py-1",
@@ -73,7 +73,7 @@ export const FeaturedBlogPostItem = () => {
             <div
               className={clsx(
                 "mb-4",
-                "text-gray-700 dark:text-refine-react-3",
+                "text-zinc-700 dark:text-zinc-300",
                 "text-xl",
                 "font-lg",
                 "font-bold",
@@ -85,7 +85,7 @@ export const FeaturedBlogPostItem = () => {
           <div
             className={clsx(
               "line-clamp-3",
-              "text-gray-700 dark:text-refine-react-4",
+              "text-zinc-700 dark:text-zinc-400",
               "text-sm",
             )}
           >
@@ -96,7 +96,7 @@ export const FeaturedBlogPostItem = () => {
         <div className="flex items-center gap-2">
           <span
             className={clsx(
-              "text-gray-600 dark:text-refine-react-5",
+              "text-zinc-600 dark:text-zinc-500",
               "text-xs",
               "leading-6",
               "no-underline",
