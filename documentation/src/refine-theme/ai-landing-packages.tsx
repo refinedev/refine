@@ -286,9 +286,7 @@ const PackageItem = (props: {
         className={clsx(
           "text-sm",
           "font-medium",
-          "dark:bg-landing-packages-text-dark bg-landing-packages-text",
-          "bg-clip-text",
-          "text-transparent",
+          "text-gray-900 dark:text-white",
           "whitespace-nowrap",
         )}
       >

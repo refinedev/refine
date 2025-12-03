@@ -30,9 +30,12 @@ const Enterprise: React.FC = () => {
           as="document"
         />
       </Head>
-      <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+      <CommonLayout
+        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+        className={clsx("dark:bg-[#14141F] bg-[#FFF]")}
+      >
         <div className={clsx()}>
-          <CommonHeader />
+          <CommonHeader className={clsx("dark:bg-[#14141F] bg-[#FFF]")} />
           <div
             className={clsx(
               "flex flex-col",
