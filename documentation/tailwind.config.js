@@ -289,30 +289,18 @@ module.exports = {
           "radial-gradient(50% 100% at 100% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
           "radial-gradient(50% 100% at 0% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
         ],
-        "landing-sweet-spot-glow-red-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(250, 56, 82, 0.15) 0%, rgba(250, 56, 82, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-yellow-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(249, 213, 31, 0.15) 0%, rgba(249, 213, 31, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-orange-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(249, 140, 31, 0.15) 0%, rgba(249, 140, 31, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-cyan-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(71, 209, 191, 0.15) 0%, rgba(71, 209, 191, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-blue-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(61, 184, 245, 0.15) 0%, rgba(61, 184, 245, 0.00) 100%)",
-        ],
-        "landing-sweet-spot-glow-indigo-dark": [
-          "",
-          "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
-        ],
+        "landing-sweet-spot-glow-red-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0.15) 25%, rgba(239, 68, 68, 0.08) 40%, rgba(239, 68, 68, 0.04) 60%, rgba(239, 68, 68, 0.01) 80%, rgba(239, 68, 68, 0.00) 100%)",
+        "landing-sweet-spot-glow-yellow-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(234, 179, 8, 0.25) 0%, rgba(234, 179, 8, 0.15) 25%, rgba(234, 179, 8, 0.08) 40%, rgba(234, 179, 8, 0.04) 60%, rgba(234, 179, 8, 0.01) 80%, rgba(234, 179, 8, 0.00) 100%)",
+        "landing-sweet-spot-glow-orange-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(249, 115, 22, 0.25) 0%, rgba(249, 115, 22, 0.15) 25%, rgba(249, 115, 22, 0.08) 40%, rgba(249, 115, 22, 0.04) 60%, rgba(249, 115, 22, 0.01) 80%, rgba(249, 115, 22, 0.00) 100%)",
+        "landing-sweet-spot-glow-cyan-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(6, 182, 212, 0.25) 0%, rgba(6, 182, 212, 0.15) 25%, rgba(6, 182, 212, 0.08) 40%, rgba(6, 182, 212, 0.04) 60%, rgba(6, 182, 212, 0.01) 80%, rgba(6, 182, 212, 0.00) 100%)",
+        "landing-sweet-spot-glow-blue-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.15) 25%, rgba(59, 130, 246, 0.08) 40%, rgba(59, 130, 246, 0.04) 60%, rgba(59, 130, 246, 0.01) 80%, rgba(59, 130, 246, 0.00) 100%)",
+        "landing-sweet-spot-glow-indigo-dark":
+          "radial-gradient(80% 80% at 100% 0%, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.15) 25%, rgba(139, 92, 246, 0.08) 40%, rgba(139, 92, 246, 0.04) 60%, rgba(139, 92, 246, 0.01) 80%, rgba(139, 92, 246, 0.00) 100%)",
         "hackathon-button-bg":
           "linear-gradient(90deg, rgba(255, 76, 166, 0.3) 0%, rgba(128, 0, 255, 0.3) 50%, rgba(0, 128, 255, 0.3) 100%);",
         "refine-week-supabase-timeline-item-bg":
@@ -479,19 +467,11 @@ module.exports = {
         ],
       },
       backgroundPosition: {
-        "landing-sweet-spot-glow-position-lg":
-          "center, calc(50% + 800px) calc(50% - 300px)",
-        "landing-sweet-spot-glow-position-md":
-          "center, calc(50% + 490px) calc(50% + 180px)",
-        "landing-sweet-spot-glow-position-xs":
-          "center, calc(50% - 30px) calc(50% + 300px)",
         "wheel-already-invented-position": "center",
       },
       backgroundSize: {
         "landing-wizard-option": "600px 600px, auto",
         "landing-wizard-side-size": "512px 512px",
-        "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
-        "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
         "wheel-already-invented-size": "100% 1px",
       },
       animation: {

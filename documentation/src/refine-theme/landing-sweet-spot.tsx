@@ -21,8 +21,6 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
 
   const isBrowser = useIsBrowser();
 
-  const isDarkTheme = true;
-
   const [activeIndex, setActiveIndex] = useState(0);
   const activeListItem = list[activeIndex];
 
@@ -106,16 +104,12 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                 "absolute",
                 "inset-0",
                 "z-0",
-                "landing-xs:bg-landing-sweet-spot-glow-position-xs",
-                "landing-lg:bg-landing-sweet-spot-glow-position-lg",
-                "landing-md:bg-landing-sweet-spot-glow-position-md",
-                "landing-xs:bg-landing-sweet-spot-glow-size-xs",
-                "landing-lg:bg-landing-sweet-spot-glow-size-lg",
                 activeListItem.backgroundImage,
+                "landing-xs:bg-landing-sweet-spot-glow-position-xs",
+                "landing-md:bg-landing-sweet-spot-glow-position-md",
+                "landing-lg:bg-landing-sweet-spot-glow-position-lg",
+                "bg-landing-sweet-spot-glow-size",
               )}
-              style={{
-                backgroundRepeat: "repeat, no-repeat",
-              }}
             />
           </AnimatePresence>
           <div
@@ -225,7 +219,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                     return (
                       <img
                         key={index}
-                        src={isDarkTheme ? item.image1Dark : item.image1Light}
+                        src={item.image}
                         alt="UI of refine"
                         className={clsx(
                           "block",
@@ -268,10 +262,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "transition-[transform,opacity] duration-500 ease-in-out",
                       )}
                     >
-                      <img
-                        src={isDarkTheme ? item.image2Dark : item.image2Light}
-                        alt="Code of refine"
-                      />
+                      <img src={item.imageCode} alt="Code of refine" />
                     </div>
                   );
                 })}
@@ -299,15 +290,11 @@ const list = [
         )}
       />
     ),
-    iconText: "Tables",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-ui-dark.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/datatables-code.png",
+    iconText: "Datatables",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/datatables.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/datatables-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-red-dark",
   },
   {
@@ -325,14 +312,10 @@ const list = [
       />
     ),
     iconText: "List",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-ui-dark.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/list-code.png",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/list.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/list-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-orange-dark",
   },
   {
@@ -350,14 +333,10 @@ your UI elements to enterprise-grade:`,
       />
     ),
     iconText: "Charts",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-ui-dark.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/charts-code.png",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/charts.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/charts-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-yellow-dark",
   },
   {
@@ -375,14 +354,10 @@ your UI elements to enterprise-grade:`,
       />
     ),
     iconText: "Forms",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-ui-dark.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/forms-code.png",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/forms.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/forms-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-cyan-dark",
   },
   {
@@ -400,14 +375,10 @@ your UI elements to enterprise-grade:`,
       />
     ),
     iconText: "Wizards",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-ui-dark.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/wizards-code.png",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/wizards.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/wizards-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-blue-dark",
   },
   {
@@ -425,14 +396,10 @@ your UI elements to enterprise-grade:`,
       />
     ),
     iconText: "Authentication",
-    image1Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-ui.png",
-    image1Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-ui-light.png",
-    image2Dark:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-code-dark.png",
-    image2Light:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/sweet-spot/authentication-code.png",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/authentication.png",
+    imageCode:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/authentication-code.png",
     backgroundImage: "bg-landing-sweet-spot-glow-indigo-dark",
   },
 ];

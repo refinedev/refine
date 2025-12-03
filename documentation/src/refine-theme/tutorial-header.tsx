@@ -305,13 +305,13 @@ export const TutorialHeader = React.memo(function TutorialHeaderComponent() {
       className={clsx(
         "flex items-center justify-center",
         "flex-col",
-        // "h-16",
+        "min-h-16",
+        "pb-4 tutorial-sm:pb-0",
         "z-10",
         "sticky",
         "top-0",
-        "py-4 pb-[15px] tutorial-sm:pt-[15px] tutorial-sm:pb-[16px] px-4 tutorial-md:px-6 tutorial-md:pt-[11px] tutorial-md:pb-[10px]",
-        "bg-white dark:bg-zinc-800",
-        "border-b border-zinc-300 dark:border-zinc-700",
+        "pr-4 tutorial-md:pr-6",
+        "bg-white dark:bg-neutral-900",
       )}
     >
       <Header />
