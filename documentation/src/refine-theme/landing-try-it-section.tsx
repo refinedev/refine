@@ -158,25 +158,25 @@ const LandingTryItOptionsSection = ({
         "relative",
         "flex",
         "flex-col landing-md:flex-row",
+        "gap-1",
         className,
       )}
     >
       <div
         className={clsx(
           "flex-1",
-          "rounded-2xl landing-md:rounded-3xl",
-          "landing-md:rounded-tr-none landing-md:rounded-br-none",
           "flex",
           "flex-col",
           "gap-6 landing-sm:gap-10",
-          "pt-4 landing-sm:pt-8",
-          "pb-4 landing-sm:pb-8",
-          "px-4 landing-sm:px-10",
-          "bg-zinc-800",
+          "pt-10",
+          "pb-20",
+          "px-10",
+          "bg-zinc-800 landing-md:bg-transparent",
+          "rounded-tl-[0.75rem]",
+          "rounded-tr-[0.75rem]",
+          "rounded-br-[0.75rem]",
+          "rounded-bl-[3rem]",
         )}
-        style={{
-          backgroundRepeat: "no-repeat, repeat",
-        }}
       >
         <div
           className={clsx(
@@ -221,59 +221,37 @@ const LandingTryItOptionsSection = ({
       </div>
       <div
         className={clsx(
-          "h-4 landing-md:h-full",
-          "w-full landing-md:w-0",
-          "relative",
-          "flex-shrink-0",
+          "landing-md:hidden",
+          "absolute",
+          "top-1/2",
+          "left-20",
+          "-translate-x-1/2",
+          "-translate-y-1/2",
+          "text-white",
+          "w-20 h-20",
+          "rounded-full",
+          "text-xl",
+          "uppercase",
+          "flex items-center justify-center",
+          "bg-zinc-900",
         )}
       >
-        <div
-          className={clsx(
-            "hidden",
-            "landing-md:block",
-            "absolute",
-            "-left-2",
-            "skew-x-[14deg]",
-            "top-0",
-            "h-[272px]",
-            "w-2",
-            "bg-gray-900",
-          )}
-        />
-        <div
-          className={clsx(
-            "absolute",
-            "-top-6 left-8",
-            "landing-md:top-32 landing-md:-left-1",
-            "landing-md:-translate-x-1/2",
-            "landing-md:-translate-y-1/2",
-            "bg-zinc-900",
-            "text-white",
-            "w-16 h-16 landing-md:w-[78px] landing-md:h-[78px]",
-            "rounded-full",
-            "text-base",
-            "uppercase",
-            "flex items-center justify-center",
-          )}
-        >
-          or
-        </div>
+        or
       </div>
       <div
         className={clsx(
-          "flex-1",
-          "rounded-2xl landing-md:rounded-3xl",
           "flex flex-col",
-          "landing-md:rounded-tl-none landing-md:rounded-bl-none",
-          "pt-4 landing-sm:pt-8",
-          "pb-4 landing-sm:pb-8",
-          "px-4 landing-sm:px-10",
-          "bg-zinc-800",
+          "flex-1",
+          "pt-20",
+          "pb-10",
+          "px-10",
           "landing-md:items-end",
+          "bg-zinc-800 landing-md:bg-transparent",
+          "rounded-tl-[0.75rem]",
+          "rounded-tr-[3rem]",
+          "rounded-br-[0.75rem]",
+          "rounded-bl-[0.75rem]",
         )}
-        style={{
-          backgroundRepeat: "no-repeat, repeat",
-        }}
       >
         <div
           className={clsx(
@@ -294,7 +272,7 @@ const LandingTryItOptionsSection = ({
             <div>Run the npm command in Terminal and</div>
             <div>follow the wizard instructions.</div>
           </div>
-          <LandingCopyCommandButton className={"!bg-zinc-700"} />
+          <LandingCopyCommandButton />
         </div>
       </div>
     </div>
@@ -344,25 +322,13 @@ const LandingTryItWizardSection = ({
         "landing-md:flex",
       )}
     >
-      <div
-        className={clsx(
-          "flex-1",
-          "bg-zinc-900",
-          "opacity-0",
-          visible && "opacity-100",
-          "transition-[background-color,background,opacity]",
-          "duration-150",
-          "ease-in-out",
-          "bg-no-repeat",
-        )}
-      />
+      {!visible && <BackgroundGraphicDesktop />}
       <div
         ref={ref}
         className={clsx(
           "box-content",
           "flex-shrink-0",
           "rounded-2xl landing-md:rounded-3xl",
-          "bg-zinc-800",
           "border border-solid",
           "transition-[border-color,width,height,opacity,background-color]",
           "mx-auto",
@@ -372,7 +338,7 @@ const LandingTryItWizardSection = ({
           "scrollbar-hidden",
           !visible && ["pointer-events-none", "select-none"],
           !visible && ["landing-md:border-transparent"],
-          visible && ["landing-md:border-zinc-700", "landing-md:bg-zinc-800"],
+          visible && ["landing-md:border-zinc-700"],
           !visible && [
             "landing-md:opacity-0",
             "landing-md:h-0",
@@ -408,18 +374,56 @@ const LandingTryItWizardSection = ({
           />
         ) : null}
       </div>
+    </div>
+  );
+};
+
+const BackgroundGraphicDesktop = (props) => {
+  return (
+    <div
+      className={clsx(
+        "absolute",
+        "top-0",
+        "left-0",
+        "w-full",
+        "h-full",
+        "overflow-hidden",
+        "pointer-events-none",
+        "z-0",
+      )}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 1200 208"
+        fill="none"
+        preserveAspectRatio="none"
+        {...props}
+      >
+        <path
+          fill="#27272A"
+          d="M640.76 196.648c2.447 5.3-1.425 11.352-7.263 11.352H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h476.576c37.445 0 71.473 21.772 87.164 55.77l65.02 140.878ZM1200 196c0 6.627-5.37 12-12 12H711.424c-37.445 0-71.473-21.772-87.164-55.77L559.24 11.353C556.793 6.051 560.665 0 566.503 0H1188c6.63 0 12 5.373 12 12v184Z"
+        />
+      </svg>
       <div
         className={clsx(
-          "flex-1",
+          "absolute",
+          "top-1/2",
+          "left-1/2",
+          "-translate-x-1/2",
+          "-translate-y-1/2",
+          "text-white",
+          "w-20 h-20",
+          "rounded-full",
+          "text-xl",
+          "uppercase",
+          "flex items-center justify-center",
           "bg-zinc-900",
-          "opacity-0",
-          visible && "opacity-100",
-          "transition-[background-color,background,opacity]",
-          "duration-150",
-          "ease-in-out",
-          "bg-no-repeat",
         )}
-      />
+      >
+        or
+      </div>
     </div>
   );
 };

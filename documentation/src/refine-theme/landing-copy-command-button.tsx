@@ -51,7 +51,7 @@ export const LandingCopyCommandButton = ({
         "pr-6",
         "pl-3",
         "rounded-lg",
-        "bg-zinc-800",
+        "bg-zinc-700",
         "bg-opacity-100",
         "text-white",
         "text-sm",

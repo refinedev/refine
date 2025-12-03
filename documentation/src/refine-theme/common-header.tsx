@@ -85,7 +85,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineCoreLogoIcon className={clsx("text-white")} />
+                <RefineCoreLogoIcon className={clsx("!text-white")} />
               </Link>
             </div>
             <button
@@ -267,7 +267,7 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
         )}
       >
         <Link to="/" onClick={onClose}>
-          <RefineCoreLogoIcon className={clsx("text-white")} />
+          <RefineCoreLogoIcon className={clsx("!text-white")} />
         </Link>
         <button
           type="button"
