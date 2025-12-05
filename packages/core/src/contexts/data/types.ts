@@ -248,6 +248,8 @@ export type ContextQuery<T = BaseRecord> = {
 // | ------------------- | --------------------------------- |
 // | `eq`                | Equal                             |
 // | ne                  | Not equal                         |
+// | eqs                 | Equal, case sensitive             |
+// | nes                 | Not equal, case sensitive         |
 // | lt                  | Less than                         |
 // | gt                  | Greater than                      |
 // | lte                 | Less than or equal to             |
@@ -270,6 +272,8 @@ export type ContextQuery<T = BaseRecord> = {
 export type CrudOperators =
   | "eq"
   | "ne"
+  | "eqs"
+  | "nes"
   | "lt"
   | "gt"
   | "lte"
