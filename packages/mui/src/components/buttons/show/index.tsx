@@ -11,7 +11,7 @@ import VisibilityOutlined from "@mui/icons-material/VisibilityOutlined";
 import type { ShowButtonProps } from "../types";
 
 /**
- * `<ShowButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
+ * `<ShowButton>` uses uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button>`} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the show page with the record id route of resource.
  *
@@ -19,7 +19,6 @@ import type { ShowButtonProps } from "../types";
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   recordItemId,
   hideText = false,
   accessControl,
@@ -30,47 +29,42 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useShowButton({
-    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    resource: resourceNameFromProps,
     id: recordItemId,
     accessControl,
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
+      startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
+      title={title}
+      sx={{ minWidth: 0, ...sx }}
+      data-testid={RefineButtonTestIds.ShowButton}
+      className={RefineButtonClassNames.ShowButton}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-        if (onClick) {
-          e.preventDefault();
+        if (onClick && !isDisabled) {
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      {...restProps}
     >
-      <Button
-        disabled={disabled}
-        startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.ShowButton}
-        className={RefineButtonClassNames.ShowButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <VisibilityOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <VisibilityOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
