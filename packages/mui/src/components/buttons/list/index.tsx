@@ -11,7 +11,7 @@ import ListOutlined from "@mui/icons-material/ListOutlined";
 import type { ListButtonProps } from "../types";
 
 /**
- * `<ListButton>` is using uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
+ * `<ListButton>` is using uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button>`} component.
  * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
@@ -19,7 +19,6 @@ import type { ListButtonProps } from "../types";
  */
 export const ListButton: React.FC<ListButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   hideText = false,
   accessControl,
   svgIconProps,
@@ -29,46 +28,41 @@ export const ListButton: React.FC<ListButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useListButton({
-    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    resource: resourceNameFromProps,
     meta,
     accessControl,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
+      startIcon={!hideText && <ListOutlined {...svgIconProps} />}
+      title={title}
+      sx={{ minWidth: 0, ...sx }}
+      data-testid={RefineButtonTestIds.ListButton}
+      className={RefineButtonClassNames.ListButton}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-        if (onClick) {
-          e.preventDefault();
+        if (onClick && !isDisabled) {
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      {...restProps}
     >
-      <Button
-        disabled={disabled}
-        startIcon={!hideText && <ListOutlined {...svgIconProps} />}
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.ListButton}
-        className={RefineButtonClassNames.ListButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <ListOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <ListOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
