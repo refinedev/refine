@@ -11,7 +11,7 @@ import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 import type { CreateButtonProps } from "../types";
 
 /**
- * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
+ * <CreateButton> uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful to redirect the app to the create page route of resource}.
  *
@@ -19,59 +19,52 @@ import type { CreateButtonProps } from "../types";
  */
 export const CreateButton: React.FC<CreateButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   hideText = false,
   accessControl,
   svgIconProps,
   meta,
   children,
   onClick,
-  ...rest
+  ...props
 }) => {
   const { to, label, title, disabled, hidden, LinkComponent } = useCreateButton(
     {
-      resource: resourceNameFromProps ?? resourceNameOrRouteName,
+      resource: resourceNameFromProps,
       meta,
       accessControl,
     },
   );
+  const isDisabled = disabled || props.disabled;
+  const isHidden = hidden || props.hidden;
 
-  if (hidden) return null;
+  if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, ...restProps } = props;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
+      startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
+      title={title}
+      variant="contained"
+      sx={{ minWidth: 0, ...sx }}
+      data-testid={RefineButtonTestIds.CreateButton}
+      className={RefineButtonClassNames.CreateButton}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-        if (onClick) {
-          e.preventDefault();
+        if (onClick && !isDisabled) {
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      {...restProps}
     >
-      <Button
-        disabled={disabled}
-        startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
-        title={title}
-        variant="contained"
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.CreateButton}
-        className={RefineButtonClassNames.CreateButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <AddBoxOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <AddBoxOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
