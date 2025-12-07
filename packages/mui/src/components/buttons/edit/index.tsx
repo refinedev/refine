@@ -11,7 +11,7 @@ import EditOutlined from "@mui/icons-material/EditOutlined";
 import type { EditButtonProps } from "../types";
 
 /**
- * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
+ * `<EditButton>` uses uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button>`} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
@@ -19,7 +19,6 @@ import type { EditButtonProps } from "../types";
  */
 export const EditButton: React.FC<EditButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   recordItemId,
   hideText = false,
   accessControl,
@@ -30,51 +29,46 @@ export const EditButton: React.FC<EditButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useEditButton({
-    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    resource: resourceNameFromProps,
     id: recordItemId,
     accessControl,
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
+      startIcon={
+        !hideText && (
+          <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
+        )
+      }
+      title={title}
+      sx={{ minWidth: 0, ...sx }}
+      data-testid={RefineButtonTestIds.EditButton}
+      className={RefineButtonClassNames.EditButton}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
-          e.preventDefault();
-          return;
-        }
-        if (onClick) {
-          e.preventDefault();
+        if (onClick && !isDisabled) {
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      {...restProps}
     >
-      <Button
-        disabled={disabled}
-        startIcon={
-          !hideText && (
-            <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
-          )
-        }
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.EditButton}
-        className={RefineButtonClassNames.EditButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <EditOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <EditOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
