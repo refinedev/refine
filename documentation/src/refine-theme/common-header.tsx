@@ -13,7 +13,7 @@ import { TopAnnouncement } from "./top-announcement";
 
 import { LandingGithubStarButton } from "./landing-github-star-button";
 import SearchBar from "../theme/SearchBar";
-import { RefineLogoIcon } from "./icons/refine-logo";
+import { RefineLogoXmas } from "./icons/refine-logo-xmas";
 
 type Props = {
   hasSticky?: boolean;
@@ -82,7 +82,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
+                <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
               </Link>
             </div>
             <button
