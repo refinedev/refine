@@ -73,8 +73,6 @@ const checkExistingLinks = async (sitemapUrl, deploymentUrl) => {
 
   console.log(`\nResults: ${success.length} successful, ${fail.length} failed`);
 
-  console.log(`\nResults: ${success.length} successful, ${fail.length} failed`);
-
   if (fail.length > 0) {
     console.log("Broken links:");
     fail.forEach((link) => {
