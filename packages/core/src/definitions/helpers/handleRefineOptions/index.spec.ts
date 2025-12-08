@@ -16,6 +16,7 @@ describe("handleRefineOptions", () => {
     const options: IRefineOptions = {
       mutationMode: "optimistic",
       disableTelemetry: true,
+      disableRouteChangeHandler: false,
       liveMode: "auto",
       reactQuery: {
         clientConfig: {
@@ -61,6 +62,7 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      disableRouteChangeHandler: false,
       title: expect.objectContaining({
         icon: expect.any(Object),
         text: "Refine Project",
@@ -131,6 +133,7 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      disableRouteChangeHandler: false,
       title: expect.objectContaining({
         icon: expect.any(Object),
         text: "Refine Project",
@@ -188,6 +191,7 @@ describe("handleRefineOptions", () => {
         singular: expect.any(Function),
       },
       disableServerSideValidation: false,
+      disableRouteChangeHandler: false,
       title: expect.objectContaining({
         icon: expect.any(Object),
         text: "Refine Project",

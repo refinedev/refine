@@ -473,6 +473,10 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 > For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
+### disableRouteChangeHandler
+
+`RouteChangeHandler` is a component that handles route changes within your Refine application. You can disable this by setting `disableRouteChangeHandler` to `true`.
+
 ### redirect
 
 By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/data/hooks/use-form/#actions), set `redirect` as follows:
