@@ -475,7 +475,7 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 ### disableRouteChangeHandler
 
-`RouteChangeHandler` is a component that handles route changes within your Refine application. You can disable this by setting `disableRouteChangeHandler` to `true`.
+`RouteChangeHandler` hooks into route changes to trigger navigation-side effects such as auth checks and redirect logic. Setting `disableRouteChangeHandler` to `true` disables these route-change side effects—not routing itself.
 
 ### redirect
 
