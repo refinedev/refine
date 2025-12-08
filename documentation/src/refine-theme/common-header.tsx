@@ -13,6 +13,7 @@ import SearchBar from "../theme/SearchBar";
 import { RefineCoreLogoIcon } from "./icons/refine-logo";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
+import { RefineLogoXmas } from "./icons/refine-logo-xmas";
 
 type Props = {
   hasSticky?: boolean;
@@ -84,7 +85,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[152px]", "landing-lg:w-[204px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineCoreLogoIcon className={clsx("!text-white")} />
+                <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
               </Link>
             </div>
             <button

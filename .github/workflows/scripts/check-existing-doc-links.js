@@ -30,16 +30,9 @@ const checkUrl = async (url, retries = 3) => {
   }
 };
 
-const toChunks = (array, chunkSize) => {
-  const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    chunks.push(array.slice(i, i + chunkSize));
-  }
-  return chunks;
-};
-
-const checkChunk = async (chunk, deploymentUrl, success, fail) => {
-  for (const url of chunk) {
+const checkUrls = async (urls, deploymentUrl, success, fail) => {
+  for (let i = 0; i < urls.length; i++) {
+    const url = urls[i];
     const [status, pathname] = await checkUrl(
       getUrlToCheck(url, deploymentUrl),
     );
@@ -48,11 +41,20 @@ const checkChunk = async (chunk, deploymentUrl, success, fail) => {
     } else {
       fail.push(pathname);
     }
+
+    // Log progress every 50 URLs
+    if ((i + 1) % 50 === 0 || i === urls.length - 1) {
+      console.log(
+        `Progress: ${i + 1}/${urls.length} URLs checked (${
+          success.length
+        } successful, ${fail.length} failed)`,
+      );
+    }
+
     // Small delay between requests to avoid overwhelming the server
     await sleep(100);
   }
 };
-
 const checkExistingLinks = async (sitemapUrl, deploymentUrl) => {
   const data = await (await fetch(sitemapUrl)).text();
 
@@ -67,19 +69,9 @@ const checkExistingLinks = async (sitemapUrl, deploymentUrl) => {
   console.log("Deployment url:", deploymentUrl);
   console.log(`Total URLs to check: ${urls.length}`);
 
-  const chunks = toChunks(urls, 50);
+  await checkUrls(urls, deploymentUrl, success, fail);
 
-  let done = 0;
-
-  for (const chunk of chunks) {
-    done++;
-    console.log(
-      `Checking chunk ${done}/${chunks.length} (${
-        success.length + fail.length
-      }/${urls.length} URLs processed)`,
-    );
-    await checkChunk(chunk, deploymentUrl, success, fail);
-  }
+  console.log(`\nResults: ${success.length} successful, ${fail.length} failed`);
 
   console.log(`\nResults: ${success.length} successful, ${fail.length} failed`);
 
