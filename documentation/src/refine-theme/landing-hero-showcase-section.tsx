@@ -37,7 +37,7 @@ export const LandingHeroShowcaseSection = () => {
             "snap snap-x snap-mandatory",
             "snap-mandatory",
             "bg-zinc-800",
-            "p-4",
+            "p-2.5",
           )}
         >
           <div
@@ -101,8 +101,7 @@ export const LandingHeroShowcaseSection = () => {
                   "break-keep",
                   "whitespace-nowrap",
                   "landing-sm:min-w-[244px]",
-                  "py-2",
-                  "landing-sm:py-3.5",
+                  "py-2.5",
                   "px-4",
                   "transition-colors",
                   "ease-in-out",

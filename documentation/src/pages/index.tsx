@@ -50,7 +50,7 @@ function Home() {
             <div
               className={clsx("mt-0", "landing-sm:mt-8", "landing-lg:mt-20")}
             >
-              <LandingHeroSection className={clsx("mt-8")} />
+              <LandingHeroSection className={clsx("mt-0")} />
               <LandingTrustedByDevelopers
                 className={clsx(
                   "mt-12",

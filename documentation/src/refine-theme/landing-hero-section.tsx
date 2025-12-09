@@ -41,7 +41,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             "justify-center",
             "gap-6",
             "z-[1]",
-            "landing-lg:justify-between",
+            "landing-lg:justify-start",
             "landing-lg:py-8",
           )}
         >
@@ -53,8 +53,8 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                 "tracking-[-0.5%]",
                 "landing-sm:text-[56px] landing-sm:leading-[72px]",
                 "landing-sm:max-w-[588px]",
-                "landing-sm:tracking-[-2%]",
-                "font-extrabold",
+                "landing-sm:tracking-[-0.06rem]",
+                "font-semibold",
                 "text-gray-0",
               )}
             >
@@ -65,7 +65,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
                 "font-normal",
                 "text-base",
                 "text-gray-300",
-                "landing-xs:max-w-[384px]",
+                "landing-xs:max-w-[388px]",
               )}
             >
               Build React-based internal tools, admin panels, dashboards & B2B
@@ -73,7 +73,13 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             </p>
           </div>
           <div
-            className={clsx("flex", "items-center", "justify-start", "gap-4")}
+            className={clsx(
+              "flex",
+              "items-center",
+              "justify-start",
+              "gap-4",
+              "landing-lg:mt-7",
+            )}
           >
             <Link
               to="/docs"
