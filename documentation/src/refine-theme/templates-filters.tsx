@@ -61,7 +61,7 @@ export const TemplatesFilters: FC<Props> = ({
           );
         })}
       </List>
-      <List label="UI Frameworks" className={clsx("mt-10")}>
+      <List label="UI Frameworks" className={clsx("mt-5")}>
         {data.uiFrameworks.map((item) => {
           const isSelected = selected.uiFramework.includes(item.label);
           const Icon = item.icon;
@@ -77,7 +77,7 @@ export const TemplatesFilters: FC<Props> = ({
           );
         })}
       </List>
-      <List label="Backends" className={clsx("mt-10")}>
+      <List label="Backends" className={clsx("mt-5")}>
         {data.backends.map((item) => {
           const isSelected = selected.backend.includes(item.label);
           const Icon = item.icon;
@@ -107,15 +107,15 @@ const List = (
     <>
       <h4
         className={clsx(
-          "pl-4",
+          "pl-3",
           "text-sm",
-          "dark:text-zinc-500 text-zinc-700",
+          "dark:text-zinc-400 text-zinc-700",
           props.className,
         )}
       >
         {props.label}
       </h4>
-      <div className={clsx("flex", "flex-col", "items-start", "gap-4", "mt-3")}>
+      <div className={clsx("flex", "flex-col", "items-start", "gap-2", "mt-4")}>
         {props.children}
       </div>
     </>
@@ -133,14 +133,16 @@ const ListItem = (props: {
       onClick={props.onClick}
       className={clsx(
         "appearance-none",
+        "w-full",
         "flex",
         "items-center",
-        "h-10",
+        "h-8",
         "pr-4",
-        props.icon && "pl-2",
-        !props.icon && "pl-4",
-        "gap-2",
+        props.icon && "pl-1.5",
+        !props.icon && "pl-2.5",
+        "gap-1.5",
         "rounded-full",
+        "font-medium",
         "cursor-pointer",
         "border dark:border-zinc-700 border-zinc-200",
         props.isSelected && "dark:bg-zinc-700 bg-zinc-50",
@@ -150,8 +152,8 @@ const ListItem = (props: {
       {props.icon}
       <span
         className={clsx(
-          "text-sm",
-          !props.isSelected && "dark:text-zinc-400 text-zinc-600",
+          "text-xs",
+          !props.isSelected && "dark:text-white text-zinc-600",
           props.isSelected && "dark:text-white text-zinc-900",
         )}
       >
