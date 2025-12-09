@@ -57,6 +57,9 @@ export const Refine: React.FC<RefineProps> = ({
     options,
   });
 
+  const disableRouteChangeHandler =
+    optionsWithDefaults.disableRouteChangeHandler;
+
   const queryClient = useDeepMemo(() => {
     if (reactQueryWithDefaults.clientConfig instanceof QueryClient) {
       return reactQueryWithDefaults.clientConfig;
@@ -127,7 +130,9 @@ export const Refine: React.FC<RefineProps> = ({
                               <React.Fragment>
                                 {children}
                                 {!disableTelemetryWithDefault && <Telemetry />}
-                                <RouteChangeHandler />
+                                {!disableRouteChangeHandler && (
+                                  <RouteChangeHandler />
+                                )}
                               </React.Fragment>
                             </UnsavedWarnContextProvider>
                           </RefineContextProvider>
