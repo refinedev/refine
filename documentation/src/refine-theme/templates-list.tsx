@@ -25,7 +25,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
         className={clsx(
           "grid",
           "grid-cols-1 landing-sm:grid-cols-2 landing-lg:grid-cols-3",
-          "gap-8 landing-sm:gap-6",
+          "gap-1",
           "not-prose",
           className,
         )}
@@ -41,14 +41,14 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 "flex",
                 "flex-col",
                 "dark:bg-zinc-800 bg-zinc-50",
-                "border dark:border-zinc-700 border-transparent",
-                "rounded-2xl",
+                "rounded-xl",
                 "hover:no-underline",
+                "p-2",
                 "not-prose",
               )}
             >
               <img
-                className={clsx("aspect-[590/405]", "rounded-t-2xl")}
+                className={clsx("aspect-[590/405]", "rounded-t-md")}
                 src={item.image}
               />
               <div
@@ -64,8 +64,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-zinc-300",
-                    "text-zinc-900",
+                    "dark:text-white",
                   )}
                 >
                   {item.title}
@@ -73,8 +72,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 <div
                   className={clsx(
                     "text-sm",
-                    "dark:text-zinc-400",
-                    "text-zinc-600",
+                    "dark:text-zinc-300",
                     "mt-4",
                     "mb-6",
                   )}
@@ -98,17 +96,17 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                           "flex",
                           "items-center",
                           "gap-2",
-                          "py-2 pl-2 pr-4",
-                          "rounded-full",
+                          "py-1.5 pl-1.5 pr-2.5",
+                          "rounded-md",
                           "dark:bg-zinc-900 bg-zinc-0",
                         )}
                       >
-                        <Icon id={"template-list"} />
+                        <Icon id={"template-list"} height={20} width={20} />
                         <div
                           className={clsx(
-                            "text-xs",
-                            "dark:text-zinc-400",
-                            "text-zinc-500",
+                            "text-sm",
+                            "font-medium",
+                            "dark:text-white",
                           )}
                         >
                           {integration.label}
@@ -119,7 +117,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 </div>
               </div>
               {item.edition === "Enterprise" && (
-                <div className={clsx("absolute", "-top-1", "-right-1")}>
+                <div className={clsx("absolute", "top-1", "right-1")}>
                   <img
                     src="/assets/badge-enterprise.png"
                     alt="enterprise badge"

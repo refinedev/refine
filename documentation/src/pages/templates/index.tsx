@@ -114,7 +114,6 @@ const Templates: React.FC = () => {
                 "w-full",
                 "mx-auto",
                 "px-2 landing-sm:px-8 landing-md:px-0",
-                "pt-4",
                 "landing-sm:pt-12",
                 "landing-md:pt-0",
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-full",
@@ -122,7 +121,7 @@ const Templates: React.FC = () => {
             >
               <TemplatesHero />
               <TemplatesFilterButton
-                className={clsx("flex landing-md:hidden", "mt-6")}
+                className={clsx("flex landing-md:hidden", "my-4 mb-2")}
                 onClick={() => {
                   setIsFilterDrawerOpen(true);
                 }}
@@ -133,9 +132,8 @@ const Templates: React.FC = () => {
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                 "flex",
                 "items-start",
-                "gap-6",
+                "gap-8",
                 "mx-auto",
-                "mt-12",
                 "relative",
                 "not-prose",
               )}
@@ -152,11 +150,11 @@ const Templates: React.FC = () => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-zinc-300 text-zinc-900",
-                    "pl-4",
+                    "dark:text-white text-zinc-900",
+                    "pl-3",
                   )}
                 >
-                  Filter Templates
+                  Filter templates
                 </h3>
                 <TemplatesFilters
                   svgId={"sider"}
@@ -169,7 +167,7 @@ const Templates: React.FC = () => {
                   onUIFrameworkChange={(uiFramework) => {
                     handleFilterChange(uiFramework, "uiFramework");
                   }}
-                  className={clsx("min-w-[180px]", "mt-10")}
+                  className={clsx("min-w-[164px]", "mt-5")}
                   selected={filters}
                   data={dataFilters}
                 />
