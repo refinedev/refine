@@ -14,7 +14,6 @@ import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 import { EnterpriseTemplateContactUsModal } from "./enterprise-template-contact-us-modal";
-import { CommonCircleChevronLeft } from "./common-circle-chevron-left";
 import { ShareIcon } from "./icons/share";
 import * as Icons from "@site/src/assets/integration-icons";
 import { CommonRunLocalPrompt } from "./common-run-local-prompt";
@@ -22,6 +21,8 @@ import { GithubIcon } from "./icons/github";
 import { TutorialIcon } from "./icons/tutorial";
 import { LockedIcon } from "./icons/locked";
 import { TemplateEdition } from "../types/integrations";
+import { ChevronLeft } from "../components/blog/icons";
+import { ChevronLeftIcon } from "@radix-ui/react-icons";
 
 type Props = {
   data: {
@@ -62,10 +63,10 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             <Link
               to="/templates"
               className={clsx(
-                "text-base",
-                "font-semibold",
-                "dark:text-gray-400 text-gray-500",
-                "hover:dark:text-gray-400 hover:text-gray-500",
+                "text-sm",
+                "font-medium",
+                "dark:text-zinc-400 text-gray-500",
+                "hover:dark:text-zinc-300 hover:text-gray-500",
                 "hover:no-underline",
                 "flex",
                 "items-center",
@@ -74,16 +75,15 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                 "landing-md:px-2 landing-md:py-3",
               )}
             >
-              <CommonCircleChevronLeft />
+              <ChevronLeftIcon height={20} width={20} />
               Back to templates
             </Link>
             <h1
               className={clsx(
                 "dark:text-gray-0 text-gray-900",
-                "text-4xl landing-sm:text-[56px] landing-sm:leading-[72px]",
-                "font-bold",
+                "text-4xl landing-sm:text-[48px] landing-sm:leading-[64px]",
+                "font-semibold",
                 "px-0 landing-sm:px-8 landing-md:px-10",
-                "mt-6",
               )}
             >
               {data.title}
@@ -93,7 +93,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             className={clsx(
               "relative",
               "flex",
-              "mt-8 landing-sm:mt-12 landing-md:mt-16",
+              "mt-6 landing-sm:mt-8 landing-md:mt-12",
               "-mx-4 landing-sm:-mx-0",
               "landing-sm:px-4",
               "aspect-[1168/736]",
@@ -126,7 +126,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               "flex",
               "items-start",
               "gap-6",
-              "mt-8 landing-sm:mt-12 landing-md:mt-16",
+              "mt-8 landing-sm:mt-12 landing-md:mt-10",
               "px-0 landing-sm:pl-10 landing-md:pl-14 landing-lg:pl-10",
               "px-0 landing-sm:pr-10 landing-md:pr-10 landing-lg:pr-10",
               "not-prose",
@@ -154,8 +154,8 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     <ShareIcon width={16} height={16} />
                     <span
                       className={clsx(
-                        "font-semibold",
-                        "text-xs landing-md:text-base",
+                        "font-normal",
+                        "text-xs landing-md:text-sm",
                       )}
                     >
                       Live demo
@@ -167,8 +167,8 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     <TutorialIcon width={16} height={16} />
                     <span
                       className={clsx(
-                        "font-semibold",
-                        "text-xs landing-md:text-base",
+                        "font-normal",
+                        "text-xs landing-md:text-sm",
                       )}
                     >
                       Tutorial
@@ -219,10 +219,11 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                 </div>
                 <ReactMarkdown
                   className={clsx(
+                    "text-sm",
                     "mt-4 landing-sm:gap-6",
                     "whitespace-pre-wrap",
                     "not-prose",
-                    "dark:!text-gray-200 !text-gray-900",
+                    "dark:!text-zinc-300 !text-gray-900",
                     "template-detail-markdown",
                   )}
                   remarkPlugins={[remarkGfm, remarkRehype]}
@@ -236,7 +237,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               className={clsx(
                 "hidden landing-md:grid",
                 "grid-cols-1 landing-lg:grid-cols-2",
-                "landing-md:gap-10",
+                "landing-md:gap-6",
                 "pl-0 landing-lg:pl-10",
                 "landing-md:ml-6 landing-lg:ml-0",
                 "flex-shrink-0",
@@ -279,16 +280,15 @@ const ProjectLink: FC<
         "w-max",
         "flex",
         "items-center",
+        "h-10",
         "gap-1 landing-md:gap-2",
         "pl-2 py-2 pr-3",
-        "landing-md:pl-3 landing-md:py-3 landing-md:pr-6",
-        "rounded-full",
-        to && "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
-        to && "dark:text-refine-cyan-alt text-refine-blue",
-        !to &&
-          "dark:text-refine-enterprise-purple-5 text-refine-enterprise-purple-2",
-        !to &&
-          "dark:bg-refine-enterprise-purple-5/10 bg-refine-enterprise-purple-2/10",
+        "landing-md:pl-3 landing-md:py-2 landing-md:pr-6",
+        "rounded-lg",
+        to && "dark:bg-sky-600/20 bg-refine-blue/10",
+        to && "dark:text-sky-300 text-refine-blue",
+        !to && "dark:text-rose-300 text-refine-enterprise-purple-2",
+        !to && "dark:bg-rose-600/20 bg-refine-enterprise-purple-2/10",
         "hover:no-underline",
         "overflow-hidden",
       )}
@@ -297,7 +297,7 @@ const ProjectLink: FC<
       <div
         className={clsx(
           "select-none",
-          "rounded-3xl",
+          "rounded-lg",
           "absolute",
           "left-0",
           "top-0",
@@ -368,27 +368,34 @@ const IntegrationBadge = (props: {
 
   return (
     <div className={clsx("flex", "flex-col", "gap-3", "not-prose")}>
-      <h6 className={clsx("text-xs", "dark:text-zinc-400 text-zinc-600")}>
+      <h6
+        className={clsx(
+          "text-sm font-medium",
+          "dark:text-zinc-400 text-zinc-600",
+        )}
+      >
         {props.label}
       </h6>
       <div
         className={clsx(
           "flex",
           "items-center",
-          "h-8",
-          "pl-2 pr-4",
+          "h-10",
+          "pl-3 pr-4",
           "gap-2",
           "rounded-full",
           "border dark:border-zinc-700 border-zinc-200",
-          "w-min",
+          "w-full",
+          "md:min-w-[180px]",
         )}
       >
         <Icon id={props.svgId} width={16} height={16} />
         <span
           className={clsx(
-            "text-sm",
+            "text-xs",
+            "font-medium",
             "whitespace-nowrap",
-            "dark:text-gray-400 text-gray-900",
+            "dark:text-white text-gray-900",
           )}
         >
           {props.integration}
@@ -401,8 +408,8 @@ const IntegrationBadge = (props: {
 const SourceCode = (props: { url: string }) => {
   return (
     <ProjectLink to={props.url}>
-      <GithubIcon width={16} height={16} />
-      <span className={clsx("font-semibold", "text-xs landing-md:text-base")}>
+      <GithubIcon width={20} height={20} />
+      <span className={clsx("font-normal", "text-xs landing-md:text-sm")}>
         Source code
       </span>
     </ProjectLink>
@@ -415,8 +422,8 @@ const SourceCodeLocked = (props: { data: Props["data"] }) => {
   return (
     <>
       <ProjectLink onClick={() => setIsModalOpen(true)}>
-        <LockedIcon width={16} height={16} />
-        <span className={clsx("font-semibold", "text-xs landing-md:text-base")}>
+        <LockedIcon width={20} height={20} />
+        <span className={clsx("font-normal", "text-xs landing-md:text-sm")}>
           Source code
         </span>
       </ProjectLink>
