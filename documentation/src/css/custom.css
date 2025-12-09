@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://rsms.me/inter/inter.css");
 @import url("https://refine.ams3.cdn.digitaloceanspaces.com/website/static/fonts/disket.css");
 
 @layer utilities {
@@ -180,6 +180,10 @@
   /* aliemir theme overrides end */
   --tutorial-card-bg: var(--ifm-card-background-color);
   ---tutorial-card-bg-hover: var(--ifm-card-background-color);
+}
+
+body {
+  font-feature-settings: "ss01", "cv11";
 }
 
 html.docs-wrapper {
