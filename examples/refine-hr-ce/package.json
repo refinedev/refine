@@ -31,7 +31,7 @@
     "@mui/x-date-pickers": "^7.23.3",
     "@mui/x-date-pickers-pro": "^7.23.3",
     "@refinedev/cli": "^2.16.50",
-    "@refinedev/core": "^5.0.6",
+    "@refinedev/core": "^5.0.7",
     "@refinedev/devtools": "^2.0.3",
     "@refinedev/mui": "^7.0.1",
     "@refinedev/nestjsx-crud": "^6.0.1",
