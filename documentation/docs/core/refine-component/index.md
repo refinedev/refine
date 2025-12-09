@@ -475,7 +475,7 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 ### disableRouteChangeHandler
 
-`RouteChangeHandler` hooks into route changes to trigger navigation-side effects such as auth checks and redirect logic. Setting `disableRouteChangeHandler` to `true` disables these route-change side effects—not routing itself.
+`RouteChangeHandler` hooks into route changes to trigger navigation-side effects such as auth checks and redirect logic. Currently it invokes auth provider's check method and redirects to a different page if the user isn't authenticated. Setting `disableRouteChangeHandler` to `true` disables these route-change side effects—not routing itself.
 
 ### redirect
 
