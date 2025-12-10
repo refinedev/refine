@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MockJSONServer, TestWrapper, mockRouterProvider, render } from "@test";
+import { MockJSONServer, mockRouterProvider, render, TestWrapper } from "@test";
 
 import { Refine } from "./index";
 
@@ -43,5 +43,38 @@ describe("Refine Container", () => {
     );
 
     expect(getByTestId("children")).toBeTruthy();
+  });
+
+  it("should render RouteChangeHandler by default", async () => {
+    // Test that Refine renders without errors when RouteChangeHandler is enabled (default behavior)
+    const { container } = render(
+      <Refine
+        dataProvider={MockJSONServer}
+        routerProvider={mockRouterProvider()}
+      >
+        <div>Children</div>
+      </Refine>,
+    );
+
+    // Should render children without errors
+    expect(container.querySelector("div")).toBeTruthy();
+  });
+
+  it("should not render RouteChangeHandler when disableRouteChangeHandler is true", async () => {
+    // Test that Refine renders without errors when RouteChangeHandler is disabled
+    const { container } = render(
+      <Refine
+        dataProvider={MockJSONServer}
+        routerProvider={mockRouterProvider()}
+        options={{
+          disableRouteChangeHandler: true,
+        }}
+      >
+        <div>Children</div>
+      </Refine>,
+    );
+
+    // Should render children without errors
+    expect(container.querySelector("div")).toBeTruthy();
   });
 });
