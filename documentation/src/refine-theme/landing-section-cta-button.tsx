@@ -83,14 +83,12 @@ const DefaultIcon = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill="currentColor"
-      d="M10.646 14.146a.5.5 0 0 0 .708.708l2.5-2.5a.5.5 0 0 0 0-.708l-2.5-2.5a.5.5 0 0 0-.708.708L12.793 12l-2.147 2.146Z"
-    />
-    <path
-      fill="currentColor"
-      fillRule="evenodd"
-      d="M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm0 1a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"
-      clipRule="evenodd"
+      xmlns="http://www.w3.org/2000/svg"
+      d="M10 8L14 12L10 16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 );

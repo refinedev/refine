@@ -78,7 +78,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
         className={clsx(
           "w-full",
           "relative",
-          "mt-8 landing-sm:mt-12",
+          "mt-6 landing-sm:mt-12",
           "pb-4 landing-md:pb-10",
           "bg-landing-packages-dark",
           "bg-zinc-800",
@@ -86,7 +86,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
           "overflow-hidden",
         )}
       >
-        <div className={clsx("landing-packages-mask", "pt-4 landing-md:pt-10")}>
+        <div className={clsx("landing-packages-mask", "pt-4 landing-md:pt-6")}>
           <PackagesContainer animDirection="right">
             {[...listOne, ...listOne].map(
               ({ icon: Icon, label, tooltip }, index) => (

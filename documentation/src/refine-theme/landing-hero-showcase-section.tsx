@@ -117,6 +117,8 @@ export const LandingHeroShowcaseSection = () => {
                   "ease-out",
                   "text-xs",
                   "landing-sm:text-sm",
+                  activeApp.name !== app.name && "hover:bg-zinc-800",
+                  activeApp.name !== app.name && "hover:text-white",
                 )}
               >
                 {app.name}

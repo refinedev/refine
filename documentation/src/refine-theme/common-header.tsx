@@ -217,6 +217,7 @@ const NavLinksDesktop = () => {
         to="https://ai.refine.dev/"
         className={clsx(
           "whitespace-nowrap",
+          "font-light",
           "text-white hover:text-white",
           "hover:no-underline",
           "transition-colors",

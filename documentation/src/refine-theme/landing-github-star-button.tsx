@@ -14,7 +14,7 @@ export const LandingGithubStarButton = () => {
       rel="noreferrer"
       className={clsx(
         "flex gap-2 items-center justify-center",
-        "font-normal",
+        "font-medium",
         "text-base",
         "text-zinc-300",
         "hover:text-zinc-200",
@@ -33,7 +33,7 @@ export const LandingGithubStarButton = () => {
       )}
     >
       {/* @ts-expect-error - lucide-react type issue */}
-      <StarIcon className={clsx("w-4 h-4", "text-orange-400")} />
+      <StarIcon className={clsx("w-5 h-5", "text-orange-400")} />
       <div className={clsx("flex items-center")}>
         {loading ? (
           <Spinner

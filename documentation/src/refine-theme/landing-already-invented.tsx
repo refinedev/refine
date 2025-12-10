@@ -17,7 +17,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
           "not-prose",
           "flex-shrink-0",
           "h-full",
-          "p-2 landing-sm:p-4",
+          "p-2 landing-sm:p-6",
           "rounded-xl",
           "bg-zinc-800",
         )}
@@ -67,7 +67,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
               industry’s best practices.
             </p>
             <LandingSectionCtaButton to="/docs">
-              Learn more
+              See documentation
             </LandingSectionCtaButton>
           </div>
         </div>

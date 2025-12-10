@@ -60,16 +60,16 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
         </h2>
         <p
           className={clsx(
-            "mt-4 landing-sm:mt-6",
+            "mt-4 landing-sm:mt-7",
             "max-w-md",
             "text-base",
             "tracking-[-0.004rem]",
             "text-zinc-300",
           )}
         >
-          Drag-and-drop tools shine initially but collapse under the weight of
-          complexity. Refine offers comparable speed at the start and infinite
-          scaling in the long run.
+          Drag-and-drop tools shine initially, but collapse under the weight of
+          complexity. Refine Core offers comparable speed at the start and
+          infinite scaling in the long run.
         </p>
       </div>
 
@@ -125,20 +125,20 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
               className={clsx(
                 "not-prose",
                 "pr-6 landing-sm:pr-0",
-                "landing-sm:max-w-[540px] landing-md:max-w-[760px] landing-lg:max-w-[416px]",
+                "landing-sm:max-w-[540px] landing-md:max-w-[760px] landing-lg:max-w-[435px]",
                 "landing-lg:col-span-5",
                 "landing-lg:mt-16",
               )}
             >
               <h3
                 className={clsx(
-                  "text-base landing-sm:text-xl font-semibold",
+                  "text-base landing-sm:text-2xl font-normal",
                   "text-white",
                 )}
               >
                 {activeListItem.title}
               </h3>
-              <p className={clsx("mt-6", "text-base", "text-zinc-300")}>
+              <p className={clsx("mt-6", "text-sm", "text-zinc-300")}>
                 {activeListItem.description}
               </p>
               <div
@@ -173,15 +173,15 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "appearance-none",
                         "focus:outline-none",
                         "cursor-pointer",
-                        active && "bg-zinc-900",
-                        !active && "bg-zinc-900/50",
+                        active && "bg-black",
+                        !active && "bg-zinc-900",
                         "w-max",
                         "flex",
                         "items-center",
                         "justify-start",
                         "gap-1",
-                        "px-4 py-2",
-                        "rounded-full",
+                        "pl-2 pr-5 py-3",
+                        "rounded-lg",
                         "text-sm landing-sm:text-base",
                       )}
                     >
@@ -209,6 +209,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                   "mt-4 landing-sm:mt-[72px] landing-lg:mt-0",
                   "flex",
                   "landing-lg:col-start-7 landing-lg:col-end-13",
+                  "-ml-8",
                 )}
               >
                 <div
@@ -287,11 +288,12 @@ const list = [
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-        state management. Let Refine automatically transform
-        your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <DataTablesIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#FA3852]",
           !props.active && "text-zinc-500",
@@ -308,11 +310,12 @@ const list = [
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-      state management. Let Refine automatically transform
-      your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <ListIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#F46A25]",
           !props.active && "text-zinc-500",
@@ -329,11 +332,12 @@ const list = [
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-state management. Let Refine automatically transform
-your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <ChartsIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#F9D51F]",
           !props.active && "text-zinc-500",
@@ -350,11 +354,12 @@ your UI elements to enterprise-grade:`,
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-  state management. Let Refine automatically transform
-  your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <FormsIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#47D1BF]",
           !props.active && "text-zinc-500",
@@ -371,11 +376,12 @@ your UI elements to enterprise-grade:`,
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-  state management. Let Refine automatically transform
-  your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <WizardsIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#3DB8F5]",
           !props.active && "text-zinc-500",
@@ -392,11 +398,12 @@ your UI elements to enterprise-grade:`,
   {
     title:
       "Business applications not only share fundamental UI elements, but also the underlying logic.",
-    description: `Stop writing repetitive code for CRUD, security and
-  state management. Let Refine automatically transform
-  your UI elements to enterprise-grade:`,
+    description:
+      "Stop writing repetitive code for CRUD, security and state management. Let Refine Core automatically transform your UI elements to enterprise-grade:",
     icon: (props: { active: boolean }) => (
       <AuthenticationIcon
+        height={24}
+        width={24}
         className={clsx(
           props.active && "text-[#5959FF]",
           !props.active && "text-zinc-500",

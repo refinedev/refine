@@ -51,18 +51,18 @@ export const DocSearchButton = React.forwardRef<
           "w-10 h-10": iconOnly,
           "py-3 px-2.5": !iconOnly,
           "justify-between": !iconOnly,
-          "w-[154px] h-10": !iconOnly,
+          "w-[152px] h-10": !iconOnly,
         },
         className,
       )}
     >
-      <MagnifierIcon className={clsx("w-4 h-4", iconClassName)} />
+      <MagnifierIcon className={clsx("w-5 h-5", iconClassName)} />
       {!iconOnly && (
         <>
           <span
             className={clsx(
               "text-left flex-1",
-              "text-base",
+              "text-sm",
               "font-medium",
               "tracking-[-0.007rem]",
             )}

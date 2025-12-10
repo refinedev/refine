@@ -79,10 +79,10 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
                 : {})}
               className={clsx(
                 "not-prose",
-                "p-4 landing-sm:p-6",
+                "p-4 landing-sm:px-10 landing-sm:py-4",
                 "flex",
                 "flex-col",
-                "gap-2",
+                "gap-4",
                 "bg-zinc-800",
                 "rounded-xl",
                 item.href && "cursor-pointer hover:brightness-95",
