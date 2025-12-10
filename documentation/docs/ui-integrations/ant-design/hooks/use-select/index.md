@@ -18,8 +18,13 @@ This hook uses the `useList` hook for fetching data.
 
 ## Usage
 
-Here is a basic example that uses the `useSelect` hook.
+> [!NOTE]
+> The `useSelect` hook is designed primarily for data fetching (managing options, loading, pagination). It does not manage the controlled state (the selected value) of the component.
 
+> [!NOTE]
+> If you are using the `<Select>` component standalone, you must manage the `value` and `onChange` props using `useState`. If you are using it within a Form (like Ant Design's `<Form>`), the form item will handle the state for you.
+
+Here is a basic example that uses the `useSelect` hook.
 <BasicUsageLivePreview />
 
 ## Realtime Updates
