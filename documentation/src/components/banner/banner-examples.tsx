@@ -67,7 +67,7 @@ export const BannerExamples: FC<Props> = ({
         href={button.href}
         onClick={button.onClick}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
       >
         <div className={clsx("text-gray-900", "text-base", "font-bold")}>
           {button.text}

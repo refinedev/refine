@@ -58,7 +58,7 @@ export const CommonFooter = () => {
                   key={i}
                   href={href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener"
                   className={clsx("flex items-center no-underline")}
                 >
                   <Icon className={clsx("w-9 h-9 sm:w-6 sm:h-6")} />

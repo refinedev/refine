@@ -42,7 +42,7 @@ export const BannerSidebar = ({ shouldShowBanner }) => {
       <Link
         to={"https://s.refine.dev/blog-sidebar-ai?ref=banner-sidebar"}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className={clsx(
           "flex",
           "w-full h-auto xl:h-[152px]",
@@ -62,7 +62,7 @@ export const BannerSidebar = ({ shouldShowBanner }) => {
         buttonClassname={clsx("!px-4", "!py-2")}
         href={"https://s.refine.dev/blog-sidebar-ai?ref=banner-sidebar"}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
       >
         <div className={clsx("text-gray-900", "text-base", "font-bold")}>
           Learn more
