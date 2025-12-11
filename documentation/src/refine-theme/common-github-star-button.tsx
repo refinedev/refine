@@ -15,7 +15,7 @@ export const CommonGithubStarButton = ({ className }: Props) => {
     <a
       href="https://github.com/refinedev/refine"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener"
       className={clsx(
         "text-sm",
         "text-gray-500 dark:text-gray-400",

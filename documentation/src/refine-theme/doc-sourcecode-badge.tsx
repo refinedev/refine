@@ -13,7 +13,7 @@ export const SourceCodeBadge = ({ path }: { path?: string }) => {
     <a
       href={sourcePath}
       target="_blank"
-      rel="noreferrer noopener"
+      rel="noopener"
       className={clsx(
         "text-xs",
         "font-mono",

@@ -67,7 +67,7 @@ export const BannerImageWithText: FC<Props> = ({
       <Link
         to={image?.href ?? button?.href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className={clsx(
           "flex",
           "max-w-[360px]",
@@ -104,7 +104,7 @@ export const BannerImageWithText: FC<Props> = ({
           href={button.href}
           onClick={button.onClick}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
         >
           <div
             className={clsx(
