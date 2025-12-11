@@ -1,8 +1,7 @@
 ---
+title: <ErrorComponent />
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/layout/error-component.tsx
 ---
-
-# `<ErrorComponent />`
 
 When users encounter broken links or navigate to pages that don't exist, you want to show them a helpful error page instead of a browser's default 404 message. The `ErrorComponent` provides a polished error page that keeps users engaged and helps them get back to working parts of your admin dashboard.
 
