@@ -33,19 +33,16 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
           "font-semibold tracking-[-0.002rem] text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
         )}
       >
-        <span className={clsx("dark:text-gray-0 text-gray-900")}>Refine </span>
+        <span className={clsx("text-gray-0")}>Refine </span>
         <span
           className={clsx(
             "font-extrabold font-jetBrains-mono",
-            "dark:text-orange-400 dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
-            "text-orange-400 drop-shadow-[0_0_30px_rgba(255,165,0,0.3)]",
+            "text-orange-400 drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
           )}
         >
           CORE
         </span>
-        <span className={clsx("dark:text-gray-0 text-gray-900")}>
-          Templates{" "}
-        </span>
+        <span className={clsx("text-gray-0")}>Templates </span>
       </h2>
       <p
         className={clsx(
@@ -53,7 +50,7 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
           "tracking-[-0.0053rem]",
           "text-center",
           "max-w-[586px]",
-          "dark:text-zinc-300 text-zinc-300",
+          "text-zinc-300",
         )}
       >
         Explore a range of pre-designed Refine templates, perfect for everything

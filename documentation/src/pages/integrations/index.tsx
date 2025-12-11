@@ -14,7 +14,7 @@ const Title = ({
     <div
       className={clsx(
         "font-semibold",
-        "text-zinc-700 dark:text-zinc-200",
+        "text-zinc-200",
         "text-base sm:text-2xl",
         className,
       )}
@@ -74,7 +74,7 @@ const Integrations: React.FC = () => {
         <div
           className={clsx(
             "font-semibold",
-            "text-zinc-700 dark:text-zinc-200",
+            "text-zinc-200",
             "text-xl sm:text-[40px] sm:leading-[56px]",
           )}
         >
@@ -83,7 +83,7 @@ const Integrations: React.FC = () => {
         <div
           className={clsx(
             "font-semibold",
-            "text-zinc-700 dark:text-zinc-300",
+            "text-zinc-300",
             "text-xs sm:text-base",
             "mt-4 sm:mt-8",
           )}
@@ -93,12 +93,7 @@ const Integrations: React.FC = () => {
         </div>
       </div>
 
-      <div
-        className={clsx(
-          "my-10",
-          "border-b border-zinc-200 dark:border-zinc-700",
-        )}
-      />
+      <div className={clsx("my-10", "border-b border-zinc-700")} />
 
       <Title>UI Framework Packages</Title>
       <List data={uiPackages} />

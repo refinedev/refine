@@ -40,7 +40,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 "relative",
                 "flex",
                 "flex-col",
-                "dark:bg-zinc-800 bg-zinc-50",
+                "bg-zinc-800",
                 "rounded-xl",
                 "hover:no-underline",
                 "p-2",
@@ -61,21 +61,12 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 )}
               >
                 <div
-                  className={clsx(
-                    "text-base",
-                    "font-semibold",
-                    "dark:text-white",
-                  )}
+                  className={clsx("text-base", "font-semibold", "text-white")}
                 >
                   {item.title}
                 </div>
                 <div
-                  className={clsx(
-                    "text-sm",
-                    "dark:text-zinc-300",
-                    "mt-4",
-                    "mb-6",
-                  )}
+                  className={clsx("text-sm", "text-zinc-300", "mt-4", "mb-6")}
                 >
                   {item.description}
                 </div>
@@ -98,15 +89,20 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                           "gap-2",
                           "py-1.5 pl-1.5 pr-2.5",
                           "rounded-md",
-                          "dark:bg-zinc-900 bg-zinc-0",
+                          "bg-zinc-900",
                         )}
                       >
-                        <Icon id={"template-list"} height={20} width={20} />
+                        <Icon
+                          id={"template-list"}
+                          height={20}
+                          width={20}
+                          className="!text-white"
+                        />
                         <div
                           className={clsx(
                             "text-sm",
                             "font-medium",
-                            "dark:text-white",
+                            "text-white",
                           )}
                         >
                           {integration.label}

@@ -85,13 +85,19 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[152px]", "landing-lg:w-[204px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
+                <RefineLogoXmas
+                  className={clsx(
+                    !showThemeToggle && "!text-white",
+                    showThemeToggle && "text-gray-900 dark:text-white",
+                  )}
+                />
               </Link>
             </div>
             <button
               type="button"
               className={clsx(
-                "text-white",
+                !showThemeToggle && "text-white",
+                showThemeToggle && "text-gray-900 dark:text-white",
                 "block landing-md:hidden",
                 "ml-auto",
               )}

@@ -69,7 +69,7 @@ export const TemplatesFilters: FC<Props> = ({
           return (
             <ListItem
               key={item.label}
-              icon={<Icon id={svgId} />}
+              icon={<Icon id={svgId} className="!text-white" />}
               label={item.label}
               isSelected={isSelected}
               onClick={() => onUIFrameworkChange(item.label)}
@@ -85,7 +85,7 @@ export const TemplatesFilters: FC<Props> = ({
           return (
             <ListItem
               key={item.label}
-              icon={<Icon id={svgId} />}
+              icon={<Icon id={svgId} className="!text-white" />}
               label={item.label}
               isSelected={isSelected}
               onClick={() => onBackendChange(item.label)}
@@ -105,14 +105,7 @@ const List = (
 ) => {
   return (
     <>
-      <h4
-        className={clsx(
-          "pl-3",
-          "text-sm",
-          "dark:text-zinc-400 text-zinc-700",
-          props.className,
-        )}
-      >
+      <h4 className={clsx("pl-3", "text-sm", "text-zinc-400", props.className)}>
         {props.label}
       </h4>
       <div className={clsx("flex", "flex-col", "items-start", "gap-2", "mt-4")}>
@@ -144,21 +137,13 @@ const ListItem = (props: {
         "rounded-full",
         "font-medium",
         "cursor-pointer",
-        "border dark:border-zinc-700 border-zinc-200",
-        props.isSelected && "dark:bg-zinc-700 bg-zinc-50",
+        "border border-zinc-700 ",
+        props.isSelected && "bg-zinc-700 ",
         "transition-colors duration-200 ease-in-out",
       )}
     >
       {props.icon}
-      <span
-        className={clsx(
-          "text-xs",
-          !props.isSelected && "dark:text-white text-zinc-600",
-          props.isSelected && "dark:text-white text-zinc-900",
-        )}
-      >
-        {props.label}
-      </span>
+      <span className={clsx("text-xs", "text-white")}>{props.label}</span>
     </button>
   );
 };

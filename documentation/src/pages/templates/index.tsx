@@ -99,14 +99,18 @@ const Templates: React.FC = () => {
           as="document"
         />
       </Head>
-      <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+      <CommonLayout
+        className="!bg-zinc-900"
+        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+      >
         <div>
-          <CommonHeader />
+          <CommonHeader showThemeToggle={false} className="dark" />
           <div
             className={clsx(
               "flex flex-col",
               "pb-12 landing-sm:pb-16 landing-md:pb-20",
               "px-2 landing-sm:px-0",
+              "dark",
             )}
           >
             <div
@@ -150,7 +154,7 @@ const Templates: React.FC = () => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-white text-zinc-900",
+                    "text-zinc-900",
                     "pl-3",
                   )}
                 >

@@ -44,9 +44,12 @@ type Props = {
 
 export const TemplatesDetail: FC<Props> = ({ data }) => {
   return (
-    <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+    <CommonLayout
+      className="!bg-zinc-900"
+      description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+    >
       <div>
-        <CommonHeader />
+        <CommonHeader showThemeToggle={false} />
         <div
           className={clsx(
             "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
@@ -57,6 +60,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             "mt-8 landing-lg:mt-20",
             "px-6 landing-sm:px-0",
             "pb-8 landing-sm:pb-12 landing-md:pb-16 landing-lg:pb-40",
+            "dark",
           )}
         >
           <div>
@@ -65,8 +69,8 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               className={clsx(
                 "text-sm",
                 "font-medium",
-                "dark:text-zinc-400 text-gray-500",
-                "hover:dark:text-zinc-300 hover:text-gray-500",
+                "text-zinc-400",
+                "hover:text-zinc-300",
                 "hover:no-underline",
                 "flex",
                 "items-center",
@@ -80,7 +84,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             </Link>
             <h1
               className={clsx(
-                "dark:text-gray-0 text-gray-900",
+                "text-gray-0",
                 "text-4xl landing-sm:text-[48px] landing-sm:leading-[64px]",
                 "font-semibold",
                 "px-0 landing-sm:px-8 landing-md:px-10",
@@ -202,7 +206,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                 )}
               >
                 {data.runOnYourLocalPath && (
-                  <div className={clsx("mb-2 landing-sm:mb-4")}>
+                  <div className={clsx("mb-2 landing-sm:mb-4", "dark")}>
                     <CommonRunLocalPrompt path={data.runOnYourLocalPath} />
                   </div>
                 )}
@@ -210,7 +214,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                   <h2
                     className={clsx(
                       "text-xl landing-sm:text-2xl",
-                      "dark:text-gray-0 text-gray-900",
+                      "text-gray-0",
                       "font-semibold",
                     )}
                   >
@@ -223,7 +227,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     "mt-4 landing-sm:gap-6",
                     "whitespace-pre-wrap",
                     "not-prose",
-                    "dark:!text-zinc-300 !text-gray-900",
+                    "!text-zinc-300",
                     "template-detail-markdown",
                   )}
                   remarkPlugins={[remarkGfm, remarkRehype]}
@@ -285,10 +289,10 @@ const ProjectLink: FC<
         "pl-2 py-2 pr-3",
         "landing-md:pl-3 landing-md:py-2 landing-md:pr-6",
         "rounded-lg",
-        to && "dark:bg-sky-600/20 bg-refine-blue/10",
-        to && "dark:text-sky-300 text-refine-blue",
-        !to && "dark:text-rose-300 text-refine-enterprise-purple-2",
-        !to && "dark:bg-rose-600/20 bg-refine-enterprise-purple-2/10",
+        to && "bg-sky-600/20",
+        to && "text-sky-300",
+        !to && "text-rose-300",
+        !to && "bg-rose-600/20",
         "hover:no-underline",
         "overflow-hidden",
       )}
@@ -312,10 +316,8 @@ const ProjectLink: FC<
           "group-hover/project-link-button:opacity-100",
           "group-hover/project-link-button:scale-100",
           "pointer-events-none",
-          to &&
-            "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
-          !to &&
-            "bg-enterprise-copy-command-hover-bg-light dark:bg-enterprise-copy-command-hover-bg-dark",
+          to && "bg-landing-copy-command-hover-bg-dark",
+          !to && "bg-enterprise-copy-command-hover-bg-dark",
         )}
       />
     </Component>
@@ -334,7 +336,7 @@ const Integrations = (props: {
     props;
 
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className, "dark")}>
       <IntegrationBadge
         svgId={`${props.svgId}-react`}
         label="React Platform"
@@ -368,12 +370,7 @@ const IntegrationBadge = (props: {
 
   return (
     <div className={clsx("flex", "flex-col", "gap-3", "not-prose")}>
-      <h6
-        className={clsx(
-          "text-sm font-medium",
-          "dark:text-zinc-400 text-zinc-600",
-        )}
-      >
+      <h6 className={clsx("text-sm font-medium", "text-zinc-400")}>
         {props.label}
       </h6>
       <div
@@ -384,18 +381,19 @@ const IntegrationBadge = (props: {
           "pl-3 pr-4",
           "gap-2",
           "rounded-full",
-          "border dark:border-zinc-700 border-zinc-200",
+          "border border-zinc-700",
           "w-full",
           "md:min-w-[180px]",
+          "!text-white",
         )}
       >
-        <Icon id={props.svgId} width={16} height={16} />
+        <Icon id={props.svgId} width={16} height={16} className="!text-white" />
         <span
           className={clsx(
             "text-xs",
             "font-medium",
             "whitespace-nowrap",
-            "dark:text-white text-gray-900",
+            "text-white",
           )}
         >
           {props.integration}
