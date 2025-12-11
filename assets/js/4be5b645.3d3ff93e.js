@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[88162],{82486:e=>{e.exports=JSON.parse('{"label":"rtk-query","permalink":"/blog/tags/rtk-query","allTagsPath":"/blog/tags","count":1}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[37512],{66538:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/rtk-query","page":1,"postsPerPage":12,"totalPages":1,"totalCount":1,"blogDescription":"A resource for Refine, front-end ecosystem, and web development","blogTitle":"Blog"}')}}]);
