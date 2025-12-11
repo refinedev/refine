@@ -24,12 +24,19 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
       >
         <img
           src="https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/wheel-already-invented.png"
-          className={clsx("w-full", "h-auto")}
+          className={clsx(
+            "w-full",
+            "h-auto",
+            "landing-md:w-auto",
+            "landing-md:h-[288px]",
+            "landing-lg:h-[299px]",
+            "landing-md:object-contain",
+          )}
         />
         <div
           className={clsx(
             "not-prose",
-            "mt-4 landing-sm:mt-6 landing-lg:mt-10",
+            "mt-4 landing-sm:mt-6 landing-md:mt-4 landing-lg:mt-[26px]",
             "px-4 landing-sm:px-6",
           )}
         >

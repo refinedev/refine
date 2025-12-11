@@ -49,7 +49,7 @@ export const LandingPureReactCode: FC<Props> = ({
         <div
           className={clsx(
             "not-prose",
-            "mt-4 landing-sm:mt-6",
+            "mt-4 landing-sm:mt-6 landing-lg:mt-6",
             "px-4 landing-sm:px-6",
           )}
         >
@@ -105,7 +105,7 @@ const CodeSlide = () => {
       <div
         className={clsx(
           "text-[10px] leading-[16px]",
-          "h-[268px] landing-md:h-[299px]",
+          "h-[268px] landing-md:h-[288px] landing-lg:h-[309px]",
           "font-jetBrains-mono",
           "select-none",
           "overflow-hidden",
