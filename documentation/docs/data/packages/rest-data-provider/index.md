@@ -152,7 +152,7 @@ The `getList` configuration object provides these methods to transform requests 
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   getList: {
     // 1. Define the endpoint (optional - defaults to resource name)
     getEndpoint: ({ resource }) => resource, // "posts" → "/posts"
@@ -286,7 +286,7 @@ The `getOne` configuration object provides these methods to transform requests a
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   getOne: {
     // Build the endpoint with the ID
     getEndpoint: ({ resource, id }) => `${resource}/${id}`, // "posts/123"
@@ -400,7 +400,7 @@ The `create` configuration object provides these methods to transform requests a
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   create: {
     // Build the endpoint for creating records
     getEndpoint: ({ resource }) => resource, // "posts" → "/posts"
@@ -552,7 +552,7 @@ The `update` configuration object provides these methods to transform requests a
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   update: {
     // Build the endpoint with the record ID
     getEndpoint: ({ resource, id }) => `${resource}/${id}`, // "posts/123"
@@ -711,7 +711,7 @@ The `deleteOne` configuration object provides these methods to transform request
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   deleteOne: {
     // Build the endpoint with the record ID
     getEndpoint: ({ resource, id }) => `${resource}/${id}`, // "posts/123"
@@ -913,7 +913,7 @@ The `getMany` configuration object provides these methods to transform requests 
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   getMany: {
     // Build the endpoint for batch requests
     getEndpoint: ({ resource, ids }) => {
@@ -1079,7 +1079,7 @@ The `createMany` configuration object provides these methods to transform reques
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   createMany: {
     // Build the endpoint for batch creation
     getEndpoint: ({ resource }) => `${resource}/batch`, // "posts/batch"
@@ -1271,7 +1271,7 @@ The `updateMany` configuration object provides these methods to transform reques
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   updateMany: {
     // Build the endpoint for batch updates
     getEndpoint: ({ resource }) => `${resource}/batch`, // "posts/batch"
@@ -1471,7 +1471,7 @@ The `custom` configuration object provides these methods to transform requests a
 <h3>Implementation Example</h3>
 
 ```tsx
-export const myDataProvider: CreateDataProviderOptions = {
+export const { dataProvider, kyInstance }: CreateDataProviderOptions = {
   custom: {
     // Add required headers for custom requests
     buildHeaders: async ({ url, method, payload, query, headers, meta }) => {
@@ -1644,7 +1644,7 @@ import {
   authHeaderBeforeRequestHook,
 } from "@refinedev/rest";
 
-const { dataProvider } = createDataProvider(
+const { dataProvider, kyInstance } = createDataProvider(
   "https://api.example.com",
   {}, // Data provider options
   {
@@ -1685,7 +1685,7 @@ Automatically adds Bearer token authentication to all requests:
 ```tsx
 import { authHeaderBeforeRequestHook } from "@refinedev/rest";
 
-const { dataProvider } = createDataProvider(
+const { dataProvider, kyInstance } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1719,7 +1719,7 @@ Automatically handles token refresh when receiving 401 responses:
 ```tsx
 import { refreshTokenAfterResponseHook } from "@refinedev/rest";
 
-const { dataProvider } = createDataProvider(
+const { dataProvider, kyInstance } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1831,7 +1831,7 @@ const customAuthHeaderHook =
     }
   };
 
-const { dataProvider } = createDataProvider(
+const { dataProvider, kyInstance } = createDataProvider(
   "https://api.example.com",
   {},
   {
