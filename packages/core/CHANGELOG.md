@@ -1,5 +1,15 @@
 # @refinedev/core
 
+## 5.0.7
+
+### Patch Changes
+
+- [#7150](https://github.com/refinedev/refine/pull/7150) [`0ceb0f6e5cf57ba50760e55709d7e70c69b13461`](https://github.com/refinedev/refine/commit/0ceb0f6e5cf57ba50760e55709d7e70c69b13461) Thanks [@pcfreak30](https://github.com/pcfreak30)! - feat(core): add option to disable RouteChangeHandler
+
+  Added `disableRouteChangeHandler` option to Refine context and props
+
+  Resolves #7148
+
 ## 5.0.6
 
 ### Patch Changes

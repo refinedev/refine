@@ -82,7 +82,7 @@ const PricingCardStarter = () => {
     name: "Starter",
     description: "Get hands-on with the fundamentals.",
     features: ["Core features for exploration", "Preview your builds"],
-    refineTokenCount: 150,
+    refineTokenCount: 300,
     monthlyPriceCents: 0,
   };
 
