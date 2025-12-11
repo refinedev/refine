@@ -5,12 +5,14 @@ type Props = {
   x: string | number;
   y: string | number;
   className?: string;
+  dark?: boolean;
 };
 
 export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
   x,
   y,
   className,
+  dark,
 }: Props) {
   return (
     <div
@@ -50,7 +52,7 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
               "justify-center",
             )}
           >
-            <IndicatorSvg />
+            <IndicatorSvg dark={dark} />
           </div>
         ))}
       </div>
@@ -58,7 +60,9 @@ export const ShowcaseIndicator = React.memo(function ShowcaseIndicatorBase({
   );
 });
 
-const IndicatorSvg = (props: React.SVGProps<SVGSVGElement>) => (
+const IndicatorSvg = (
+  props: React.SVGProps<SVGSVGElement> & { dark?: boolean },
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={20}
@@ -66,10 +70,15 @@ const IndicatorSvg = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 20 20"
     fill="none"
     {...props}
+    className={clsx(
+      !props.dark && "text-zinc-900",
+      props.dark && "text-white",
+      props.className,
+    )}
   >
-    <path fill="#18181B" d="M4 4h12v12H4z" />
+    <path fill="currentColor" d="M4 4h12v12H4z" />
     <path
-      fill="#18181B"
+      fill="currentColor"
       d="M8 0v2H2v6H0V0h8ZM8 20v-2H2v-6H0v8h8ZM20 8h-2V2h-6V0h8v8ZM20 12h-2v6h-6v2h8v-8Z"
     />
   </svg>
