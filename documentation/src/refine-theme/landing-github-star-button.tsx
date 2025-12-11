@@ -11,7 +11,7 @@ export const LandingGithubStarButton = () => {
     <a
       href="https://github.com/refinedev/refine"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener"
       className={clsx(
         "flex gap-2 items-center justify-center",
         "font-normal",

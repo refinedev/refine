@@ -262,7 +262,7 @@ const SocialButton = (props: {
     <a
       target="_blank"
       href={variant[props.type].url}
-      rel="noreferrer"
+      rel="noopener"
       className={clsx(
         "relative",
         "h-max w-full",
@@ -363,7 +363,7 @@ const OurTeam = () => {
           <a
             href={linkedin}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener"
             key={name}
             className={clsx(
               "not-prose",

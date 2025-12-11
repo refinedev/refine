@@ -160,7 +160,7 @@ const TestimonialCard = ({
         <a
           href={link}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className={clsx(
             "flex gap-4",
             "items-center",

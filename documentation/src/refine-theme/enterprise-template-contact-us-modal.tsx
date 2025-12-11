@@ -108,7 +108,7 @@ export const EnterpriseTemplateContactUsModal = ({
                       <a
                         href="https://refine.dev/enterprise"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener"
                         className={clsx(
                           "dark:text-refine-link-dark text-refine-link-light",
                           "underline",
