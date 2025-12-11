@@ -1,6 +1,6 @@
 ---
-title: Refine v5 is here!
-description: Refine v5 brings React 19 support, TanStack Query v5, cleaner APIs, and automatic migration with codemods.
+title: Refine CORE v5 is here!
+description: Refine CORE v5 brings React 19 support, TanStack Query v5, cleaner APIs, and automatic migration with codemods.
 slug: refine-v5-announcement
 authors: ozgur
 tags: [refine, react, announcement]

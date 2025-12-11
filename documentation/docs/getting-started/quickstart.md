@@ -20,7 +20,7 @@ npm create refine-app@latest
 ```
 
 <figure>
-   <img className="w-full rounded-lg border border-solid border-gray-200 dark:border-gray-700" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-vite-mui-rest-auth-screenshot.webp" alt="Example result" />
+   <img className="w-full rounded-lg border border-solid border-zinc-200 dark:border-zinc-700" src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-vite-mui-rest-auth-screenshot.webp" alt="Example result" />
     <figcaption className="text-center">A Refine app created with CLI using Vite + Material UI + REST API + Custom Auth Provider</figcaption>
 </figure>
 

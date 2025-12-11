@@ -44,14 +44,14 @@ const CodeBlockTitle = ({
       className={clsx(
         "py-3",
         "px-4",
-        "bg-gray-100 dark:bg-gray-700",
-        "text-gray-800",
-        "dark:text-gray-100",
+        "bg-zinc-200 dark:bg-zinc-800",
+        "text-zinc-900",
+        "dark:text-white",
         "text-xs",
         "flex items-center",
         "gap-2",
-        "rounded-tl-lg",
-        "rounded-tr-lg",
+        "rounded-tl-xl",
+        "rounded-tr-xl",
       )}
     >
       {icon}
@@ -97,12 +97,9 @@ export const CodeBlockString = ({
       className={clsx(
         "refine-common-code-block",
         language && `language-${language}`,
-        "rounded-lg",
+        "rounded-xl",
         "bg-refine-react-light-code",
         "dark:bg-refine-react-dark-code",
-        "border",
-        "border-gray-300",
-        "dark:border-0",
         "mb-6",
         "relative",
         "refine-wider-container",

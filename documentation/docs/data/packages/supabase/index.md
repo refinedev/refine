@@ -1370,7 +1370,7 @@ You will find the Google Auth option in the Auth providers section; enable it an
 
 Here is the result:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login-min.gif" className="border border-gray-200 rounded" alt="socialLogin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/social-login-min.gif" className="border border-zinc-200 rounded" alt="socialLogin" />
 
 ## Let's recap what we have done so far
 
@@ -1423,7 +1423,7 @@ For live features to work automatically, we set `liveMode: "auto"` in the option
 
 ### Let see how real-time feature works in the app
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-gray-200 rounded" alt="realTime" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/data-provider/supabase/real-time-min.gif" className="border border-zinc-200 rounded" alt="realTime" />
 
 :::tip
 

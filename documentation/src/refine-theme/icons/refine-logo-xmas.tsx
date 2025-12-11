@@ -1,11 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import { RefineLogoIcon } from "./refine-logo";
+import { RefineCoreLogoIcon } from "./refine-logo";
 
 export const RefineLogoXmas = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <div className={clsx("relative")}>
-      <RefineLogoIcon {...props} />
+      <RefineCoreLogoIcon {...props} />
       <XmasEffectLight
         className={clsx(
           "block dark:hidden",

@@ -72,7 +72,7 @@ export const DocBreadcrumbs = () => {
             itemType="https://schema.org/ListItem"
           >
             <Link href="/docs" itemProp="item">
-              <HomeIcon className="text-gray-400 dark:text-gray-500" />
+              <HomeIcon className="text-zinc-500 dark:text-zinc-400" />
               <span className="sr-only" itemProp="name">
                 Documentation
               </span>
@@ -94,7 +94,7 @@ export const DocBreadcrumbs = () => {
                 itemProp="itemListElement"
                 itemType="https://schema.org/ListItem"
               >
-                <ChevronRightIcon className="text-gray-400 dark:text-gray-500" />
+                <ChevronRightIcon className="text-gray-300 dark:text-gray-400" />
                 {item.href && !isLast ? (
                   <Link
                     href={item.href}
@@ -111,8 +111,8 @@ export const DocBreadcrumbs = () => {
                   <span
                     className={clsx(
                       isLast
-                        ? "text-gray-400 dark:text-gray-500"
-                        : "text-gray-500 dark:text-gray-400",
+                        ? "text-gray-500 dark:text-gray-400"
+                        : "text-gray-700 dark:text-gray-300",
                     )}
                     itemProp="item"
                     itemID="#"
@@ -124,7 +124,7 @@ export const DocBreadcrumbs = () => {
               </li>
               {idx === 0 && breadcrumbList.length > 1 && renderDots ? (
                 <li className={clsx("flex flex-row flex-nowrap")}>
-                  <ChevronRightIcon className="text-gray-400 dark:text-gray-500" />
+                  <ChevronRightIcon className="text-gray-300 dark:text-gray-400" />
                   <div className="text-gray-500 dark:text-gray-400">
                     {hiddenBreadcrumbText}
                   </div>

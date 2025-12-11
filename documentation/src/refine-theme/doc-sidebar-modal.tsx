@@ -7,9 +7,9 @@ import { RefineLogo } from "./common-refine-logo";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
 import { useSidebarItems } from "./doc-sidebar";
 import { DocVersionTabs } from "./doc-version-tabs";
-import { DocRefineLogo } from "./doc-refine-logo";
 import { DocVersionDropdown } from "./doc-version-dropdown";
 import { CommonThemeToggleAlt } from "./common-theme-toggle";
+import { RefineCoreLogoIcon } from "./icons/refine-logo";
 
 type Props = {
   isOpen: boolean;
@@ -60,7 +60,7 @@ export const DocSidebarModal = ({ isOpen, onClose }: Props) => {
                     "flex items-center justify-between",
                   )}
                 >
-                  <DocRefineLogo />
+                  <RefineCoreLogoIcon />
                   <div className={clsx("flex items-center gap-4")}>
                     <CommonHamburgerIcon onClick={onClose} active={true} />
                   </div>

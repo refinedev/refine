@@ -1,55 +1,60 @@
 import clsx from "clsx";
 import React from "react";
 import { socialLinks } from "./footer-data";
+import { RefineCoreLogoIcon } from "./icons/refine-logo";
+import Link from "@docusaurus/Link";
 
 export const CommonFooter = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer
-      className={clsx(
-        "py-4",
-        "px-4",
-        "dark:bg-gray-800 bg-gray-0",
-        "border-t dark:border-t-gray-700 border-t-gray-300",
-      )}
-    >
+    <footer className={clsx("py-4", "px-4", "dark:bg-[#202023] bg-zinc-50")}>
       <div
         className={clsx(
           "mx-auto",
           "flex w-full items-center justify-between",
-          "flex-col-reverse sm:flex-row gap-8",
+          "flex-col-reverse md:flex-row gap-8",
+          "text-sm",
+          "dark:text-white text-zinc-900",
         )}
       >
-        <div
+        <Link
+          to="/"
           className={clsx(
-            "text-sm",
-            "leading-6",
-            "dark:text-gray-400 text-gray-500",
-            // "mt-4 sm:mt-0",
+            "appearance-none",
+            "hover:no-underline",
+            "flex",
+            "items-center",
           )}
         >
-          Refine © {currentYear}
-        </div>
+          <RefineCoreLogoIcon /> <div className="ml-1">© {currentYear}</div>
+        </Link>
 
         <div
           className={clsx(
-            "flex flex-col sm:flex-row justify-center items-center",
+            "flex flex-col md:flex-row justify-center items-center",
           )}
         >
-          <div
+          <a
+            href="https://ai.refine.dev/"
+            className={clsx("hover:no-underline", "md:mr-12")}
+          >
+            Refine Home
+          </a>
+          <Link
             className={clsx(
-              "dark:text-gray-100 text-gray-800",
-              "text-sm leading-6",
-              "sm:mr-4",
+              "appearance-none",
+              "hover:no-underline",
+              "md:mr-12",
             )}
           >
-            Join us on
-          </div>
+            Tutorial
+          </Link>
+          <div className={clsx("md:mr-4")}>Join us on</div>
           <div
             className={clsx(
               "flex gap-4",
-              "dark:text-gray-400 text-gray-500",
-              "mt-4 sm:mt-0",
+              "dark:text-zinc-400 text-zinc-500",
+              "mt-4 md:mt-0",
             )}
           >
             {socialLinks.map(({ href, icon: Icon }, i) => {

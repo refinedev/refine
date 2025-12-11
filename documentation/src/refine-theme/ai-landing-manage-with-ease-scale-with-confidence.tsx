@@ -21,7 +21,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
           "tracking-tight",
           "text-start",
           "pl-4 landing-sm:pl-10",
-          "dark:text-gray-0 text-gray-900",
+          "dark:text-white text-gray-900",
         )}
       >
         Manage with{" "}

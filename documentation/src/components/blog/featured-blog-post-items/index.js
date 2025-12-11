@@ -6,12 +6,7 @@ import clsx from "clsx";
 
 export const FeaturedBlogPostItems = ({ items }) => {
   return (
-    <div
-      className={clsx(
-        "w-screen",
-        "bg-refine-react-1 dark:bg-refine-react-dark-code",
-      )}
-    >
+    <div className={clsx("w-screen", "bg-zinc-100 dark:bg-zinc-900")}>
       <div
         className={clsx(
           "blog-sm:max-w-[592px]",

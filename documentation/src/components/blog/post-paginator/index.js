@@ -22,7 +22,7 @@ export const PostPaginator = ({ posts, title }) => {
       )}
     >
       <div className="blog-sm:px-6 w-full px-4">
-        <h2 className="m-0 mb-4 p-0 pl-4 text-2xl font-semibold text-refine-react-8 dark:text-refine-react-1">
+        <h2 className="m-0 mb-4 p-0 pl-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
           {title}
         </h2>
         <div className="flex flex-col not-prose">
@@ -38,9 +38,9 @@ export const PostPaginator = ({ posts, title }) => {
                 "p-5",
                 "mb-5",
                 "rounded-lg",
-                "border border-refine-react-3 dark:border-refine-react-6",
-                "bg-white dark:bg-refine-react-8",
-                "hover:bg-gray-100 dark:hover:bg-refine-react-7",
+                "border border-zinc-200 dark:border-zinc-700",
+                "bg-white dark:bg-zinc-800",
+                "hover:bg-zinc-100 dark:hover:bg-zinc-700",
                 "not-prose",
                 "no-underline",
               )}
@@ -50,26 +50,23 @@ export const PostPaginator = ({ posts, title }) => {
                 rel="dofollow"
                 className={clsx(
                   "font-bold",
-                  "text-refine-react-8 dark:text-refine-react-1",
+                  "text-zinc-900 dark:text-zinc-100",
                   "no-underline",
-                  "hover:text-gray-800 hover:no-underline dark:hover:text-gray-200",
+                  "hover:text-zinc-800 hover:no-underline dark:hover:text-zinc-200",
                 )}
               >
                 {post.title}
               </div>
 
               <p
-                className={clsx(
-                  "font-sm",
-                  "text-refine-react-5 dark:text-refine-react-4",
-                )}
+                className={clsx("font-sm", "text-zinc-600 dark:text-zinc-400")}
               >
                 {post.description}
               </p>
 
               <div
                 id="post-info"
-                className="flex items-center gap-2 text-sm text-refine-react-4 dark:text-refine-react-5"
+                className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400"
               >
                 <Date date={post.date} formattedDate={post.formattedDate} />
               </div>

@@ -21,11 +21,11 @@ export default function Tag({
         size === "medium" && "text-sm",
         size === "medium" && "py-2",
         size === "medium" && "px-4",
-        !isActive && "bg-gray-100 dark:bg-gray-700",
-        !isActive && "text-gray-600 dark:text-gray-400",
-        "text-refine-react-8 dark:text-refine-react-3",
-        variant === "default" && "bg-refine-react-3 dark:bg-refine-react-7",
-        variant === "inverted" && "bg-refine-react-3 dark:bg-refine-react-8",
+        !isActive && "bg-zinc-100 dark:bg-zinc-700",
+        !isActive && "text-zinc-600 dark:text-zinc-400",
+        "text-zinc-900 dark:text-zinc-300",
+        variant === "default" && "bg-zinc-200 dark:bg-zinc-700",
+        variant === "inverted" && "bg-zinc-200 dark:bg-zinc-900",
       )}
     >
       {label}

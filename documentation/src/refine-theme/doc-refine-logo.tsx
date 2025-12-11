@@ -21,7 +21,11 @@ export const DocRefineLogo = ({ className }: Props) => {
     >
       <Link
         to="/"
-        className={clsx("no-underline", "flex items-center gap-2")}
+        className={clsx(
+          "no-underline",
+          "flex items-center gap-2",
+          "hover:text-white",
+        )}
         onContextMenu={openFigma}
       >
         <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
@@ -32,14 +36,16 @@ export const DocRefineLogo = ({ className }: Props) => {
           "h-6",
           "w-px",
           "mx-1",
-          "bg-gray-300 dark:bg-gray-600",
+          "bg-zinc-200 dark:bg-zinc-600",
         )}
       />
       <Link to="/docs" className={clsx("no-underline")}>
         <span
           className={clsx(
-            "text-gray-1000 dark:text-gray-0",
+            "block",
+            "text-zinc-900 dark:text-white",
             "text-base font-normal",
+            "tracking-[-0.007rem]",
           )}
         >
           Documentation
@@ -48,23 +54,3 @@ export const DocRefineLogo = ({ className }: Props) => {
     </div>
   );
 };
-
-const Logo = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
-    viewBox="0 0 24 24"
-    fill="none"
-    {...props}
-  >
-    <g fill="currentColor">
-      <path
-        fillRule="evenodd"
-        d="M13.789.422a4 4 0 0 0-3.578 0l-8 4A4 4 0 0 0 0 8v8a4 4 0 0 0 2.211 3.578l8 4a4 4 0 0 0 3.578 0l8-4A4 4 0 0 0 24 16V8a4 4 0 0 0-2.211-3.578l-8-4ZM8 8a4 4 0 1 1 8 0v8a4 4 0 0 1-8 0V8Z"
-        clipRule="evenodd"
-      />
-      <path d="M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
-    </g>
-  </svg>
-);

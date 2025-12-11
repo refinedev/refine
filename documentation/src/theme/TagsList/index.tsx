@@ -61,7 +61,7 @@ const Desktop = ({
   return (
     <div
       className={clsx(
-        "bg-refine-react-1 dark:bg-refine-react-dark-code",
+        "bg-zinc-100 dark:bg-zinc-900",
         "justify-between",
         "items-start",
         "p-5",
@@ -109,8 +109,8 @@ const Desktop = ({
           "pl-3",
           "pr-1",
           "mt-1",
-          "text-refine-react-8 dark:text-refine-react-3",
-          "bg-refine-react-3 dark:bg-refine-react-7",
+          "text-zinc-900 dark:text-zinc-300",
+          "bg-zinc-200 dark:bg-zinc-700",
         )}
       >
         Show More{" "}
@@ -144,8 +144,8 @@ const Mobile = ({ tags, className }: { tags: any; className?: string }) => {
             "gap-2",
             "rounded-full",
             "px-6 py-3",
-            "bg-refine-react-3 dark:bg-refine-react-6",
-            "text-refine-react-8 dark:text-white",
+            "bg-zinc-200 dark:bg-zinc-600",
+            "text-zinc-900 dark:text-white",
           )}
         >
           <FilterIcon />

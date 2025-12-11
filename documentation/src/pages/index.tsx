@@ -15,7 +15,7 @@ import { LandingHeroSection } from "../refine-theme/landing-hero-section";
 import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
 import { CommonHeader } from "../refine-theme/common-header";
 import { LandingTestimonial } from "../refine-theme/landing-testimonial";
-import { LandingAiHeroSection } from "../refine-theme/landing-ai-hero-section";
+import { LandingSolidFoundation } from "../refine-theme/landing-solid-foundation";
 
 function Home() {
   const title = "Refine | Open-source Retool for Enterprise";
@@ -31,13 +31,16 @@ function Home() {
           as="document"
         />
       </Head>
-      <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+      <CommonLayout
+        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+        className={clsx("bg-zinc-900")}
+      >
         <div className={clsx()}>
-          <CommonHeader />
+          <CommonHeader showThemeToggle={false} />
           <div
             className={clsx(
               "flex flex-col",
-              "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-40",
+              "gap-16 landing-sm:gap-20 landing-md:gap-28 landing-lg:gap-32",
               "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
               "px-2 landing-sm:px-0",
               "pb-12 landing-sm:pb-16 landing-md:pb-20 landing-lg:pb-40",
@@ -47,8 +50,7 @@ function Home() {
             <div
               className={clsx("mt-0", "landing-sm:mt-8", "landing-lg:mt-20")}
             >
-              <LandingAiHeroSection />
-              <LandingHeroSection className={clsx("mt-8")} />
+              <LandingHeroSection className={clsx("mt-0")} />
               <LandingTrustedByDevelopers
                 className={clsx(
                   "mt-12",
@@ -59,22 +61,22 @@ function Home() {
               />
             </div>
             <LandingSweetSpot />
-            <div className={clsx("flex flex-col", "gap-12 landing-md:gap-6")}>
+            <div className={clsx("flex flex-col", "gap-4 landing-md:gap-1")}>
               <LandingPackages />
               <div
                 className={clsx(
                   "flex flex-col landing-md:flex-row",
-                  "gap-12 landing-md:gap-6",
+                  "gap-4 landing-md:gap-1",
                 )}
               >
                 <LandingAlreadyInvented
                   className={clsx(
-                    "w-full landing-md:w-[50%] landing-lg:w-[538px]",
+                    "w-full landing-md:w-[50%] landing-lg:w-auto landing-lg:min-w-[538px]",
                   )}
                 />
                 <LandingPureReactCode
                   className={clsx(
-                    "w-full landing-md:w-[50%] landing-lg:w-[640px]",
+                    "w-full landing-md:w-[50%] landing-lg:w-auto landing-lg:min-w-[640px]",
                   )}
                 />
               </div>
@@ -82,6 +84,7 @@ function Home() {
             <LandingEnterpriseDevelopers />
             <LandingCommunity />
             <LandingTestimonial />
+            <LandingSolidFoundation />
             <LandingTryItSection />
           </div>
           <LandingFooter />

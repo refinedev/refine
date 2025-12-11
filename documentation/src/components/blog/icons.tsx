@@ -74,7 +74,7 @@ export const Twitter = (props: React.SVGProps<SVGSVGElement>): JSX.Element => (
       height={24}
       fill="currentColor"
       rx={12}
-      className={clsx("text-refine-react-1 dark:text-black", props.className)}
+      className={clsx("text-zinc-100 dark:text-black", props.className)}
     />
     <path
       fill="currentColor"

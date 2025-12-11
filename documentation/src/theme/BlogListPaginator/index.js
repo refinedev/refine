@@ -43,7 +43,7 @@ export default function BlogListPaginator(props) {
             className={clsx(
               "rounded-full",
               "hover:no-underline",
-              "text-refine-react-5 dark:text-refine-react-4",
+              "text-zinc-600 dark:text-zinc-400",
               currentPage !== 1 && "opacity-70",
               currentPage === 1 && "pointer-events-none opacity-20",
             )}
@@ -85,11 +85,10 @@ export default function BlogListPaginator(props) {
                   "h-[32px] w-[32px]",
                   "no-underline",
                   pageNumber !== currentPage &&
-                    "text-refine-react-5 dark:text-refine-react-4",
+                    "text-zinc-600 dark:text-zinc-400",
                   pageNumber === currentPage &&
-                    "text-refine-react-8 dark:text-refine-react-3",
-                  pageNumber === currentPage &&
-                    "bg-refine-react-3 dark:bg-refine-react-7",
+                    "text-zinc-900 dark:text-zinc-300",
+                  pageNumber === currentPage && "bg-zinc-200 dark:bg-zinc-700",
                 )}
               >
                 {pageNumber}
@@ -108,7 +107,7 @@ export default function BlogListPaginator(props) {
             className={clsx(
               "rounded-full",
               "hover:no-underline",
-              "text-refine-react-5 dark:text-refine-react-4",
+              "text-zinc-600 dark:text-zinc-400",
               currentPage !== lastPage && "opacity-70",
               currentPage === lastPage && "pointer-events-none opacity-20",
             )}

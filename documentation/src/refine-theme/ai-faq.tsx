@@ -48,11 +48,11 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
         "rounded-2xl",
         "text-gray-900 dark:text-white",
         "border",
-        "border-gray-200 dark:border-gray-700",
+        "border-gray-200 dark:border-zinc-700",
         "transition-colors",
         "duration-300",
         {
-          "bg-gray-50 dark:bg-gray-800": isOpen,
+          "bg-gray-50 dark:bg-zinc-800": isOpen,
           "bg-transparent": !isOpen,
         },
       )}
@@ -77,11 +77,11 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
         >
           {isOpen ? (
             <MinusRectangle
-              className={clsx("text-gray-400 dark:text-gray-500")}
+              className={clsx("text-gray-400 dark:text-zinc-400")}
             />
           ) : (
             <PlusRectangle
-              className={clsx("text-gray-400 dark:text-gray-500")}
+              className={clsx("text-gray-400 dark:text-zinc-400")}
             />
           )}
         </motion.span>
@@ -106,7 +106,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
                   "w-full",
                   "h-[1px]",
                   "border-t",
-                  "border-gray-200 dark:border-gray-700",
+                  "border-gray-200 dark:border-zinc-700",
                 )}
               />
               <p

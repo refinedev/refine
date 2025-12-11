@@ -76,13 +76,13 @@ export const AiLandingHero = ({
           className={clsx(
             "text-base",
             "text-gray-600",
-            "dark:text-gray-200",
+            "dark:text-zinc-300",
             "mt-6",
             "max-w-[588px]",
           )}
         >
           Powered by AI, secure by default and fully React. Export or deploy
-          whenever you’re ready.
+          whenever you're ready.
         </p>
         <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>

@@ -36,7 +36,7 @@ module.exports = {
     {
       type: "link",
       href: "/docs/migration-guide/4x-to-5x/",
-      label: "Refine v5 is here! 🎉",
+      label: "Refine CORE v5 is here!",
       className: "enterprise-badge",
     },
     {

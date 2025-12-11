@@ -194,7 +194,7 @@ export const Login: React.FC = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login-min.gif" alt="ethereum-login" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login-min.gif" alt="ethereum-login" className="border border-zinc-200 rounded" />
 
 ## Create Dashboard
 
@@ -258,7 +258,7 @@ export const DashboardPage: React.FC = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.jpg" alt="refine-dashboard" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/dashboard.jpg" alt="refine-dashboard" className="border border-zinc-200 rounded" />
 
 Now lets customize **Refine** dashboard. Send your test ethereum via **Refine** dashboard and Metamask.
 
@@ -411,11 +411,11 @@ export const DashboardPage: React.FC = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.jpg" alt="refine-customize" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/customize.jpg" alt="refine-customize" className="border border-zinc-200 rounded" />
 
 We can now request to send ethereum through our **Refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.gif" alt="refine-overview" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.gif" alt="refine-overview" className="border border-zinc-200 rounded" />
 
 ## Example
 

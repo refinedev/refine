@@ -99,14 +99,18 @@ const Templates: React.FC = () => {
           as="document"
         />
       </Head>
-      <CommonLayout description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility.">
+      <CommonLayout
+        className="!bg-zinc-900"
+        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+      >
         <div>
-          <CommonHeader />
+          <CommonHeader showThemeToggle={false} className="dark" />
           <div
             className={clsx(
               "flex flex-col",
               "pb-12 landing-sm:pb-16 landing-md:pb-20",
               "px-2 landing-sm:px-0",
+              "dark",
             )}
           >
             <div
@@ -114,7 +118,6 @@ const Templates: React.FC = () => {
                 "w-full",
                 "mx-auto",
                 "px-2 landing-sm:px-8 landing-md:px-0",
-                "pt-4",
                 "landing-sm:pt-12",
                 "landing-md:pt-0",
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-full",
@@ -122,7 +125,7 @@ const Templates: React.FC = () => {
             >
               <TemplatesHero />
               <TemplatesFilterButton
-                className={clsx("flex landing-md:hidden", "mt-6")}
+                className={clsx("flex landing-md:hidden", "my-4 mb-2")}
                 onClick={() => {
                   setIsFilterDrawerOpen(true);
                 }}
@@ -133,9 +136,8 @@ const Templates: React.FC = () => {
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                 "flex",
                 "items-start",
-                "gap-6",
+                "gap-8",
                 "mx-auto",
-                "mt-12",
                 "relative",
                 "not-prose",
               )}
@@ -152,11 +154,11 @@ const Templates: React.FC = () => {
                   className={clsx(
                     "text-base",
                     "font-semibold",
-                    "dark:text-gray-300 text-gray-900",
-                    "pl-4",
+                    "text-zinc-900",
+                    "pl-3",
                   )}
                 >
-                  Filter Templates
+                  Filter templates
                 </h3>
                 <TemplatesFilters
                   svgId={"sider"}
@@ -169,7 +171,7 @@ const Templates: React.FC = () => {
                   onUIFrameworkChange={(uiFramework) => {
                     handleFilterChange(uiFramework, "uiFramework");
                   }}
-                  className={clsx("min-w-[180px]", "mt-10")}
+                  className={clsx("min-w-[164px]", "mt-5")}
                   selected={filters}
                   data={dataFilters}
                 />

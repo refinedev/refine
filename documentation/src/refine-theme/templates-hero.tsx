@@ -9,54 +9,48 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
     <div
       className={clsx(
         "relative",
+        "pt-3.5",
         "flex",
         "flex-col",
         "items-start landing-md:items-center landing-md:justify-center",
-        "gap-6 landing-md:gap-12",
+        "gap-6 landing-md:gap-6",
         "not-prose",
         "landing-md:mx-auto",
         "w-full",
-        "landing-md:h-[264px]",
+        "landing-md:h-[328px]",
         "landing-md:overflow-hidden",
+        "bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
+        "before:absolute before:inset-0 before:bg-[url('/assets/hero-cubics.svg')] before:bg-cover before:bg-center  before:mix-blend-overlay before:pointer-events-none",
         className,
       )}
     >
-      <CommonThemedImage
-        className={clsx(
-          "absolute",
-          "hidden landing-md:block",
-          "w-[1200px]",
-          "max-w-[1200px]",
-        )}
-        srcDark="https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-dark.png"
-        srcLight="https://refine.ams3.cdn.digitaloceanspaces.com/templates/templates-hero-light.png"
-        alt="Refine Templates"
-      />
       <h2
         className={clsx(
           "flex",
           "items-center",
           "justify-center",
           "gap-2",
-          "text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
+          "font-semibold tracking-[-0.002rem] text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
         )}
       >
-        <span className={clsx("dark:text-gray-0 text-gray-900")}>Refine </span>
+        <span className={clsx("text-gray-0")}>Refine </span>
         <span
           className={clsx(
-            "font-semibold",
-            "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
-            "text-refine-blue drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
+            "font-extrabold font-jetBrains-mono",
+            "text-orange-400 drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
           )}
         >
-          Templates
+          CORE
         </span>
+        <span className={clsx("text-gray-0")}>Templates </span>
       </h2>
       <p
         className={clsx(
-          "text-base",
-          "max-w-[588px]",
-          "dark:text-gray-400 text-gray-600",
+          "font-normal",
+          "tracking-[-0.0053rem]",
+          "text-center",
+          "max-w-[586px]",
+          "text-zinc-300",
         )}
       >
         Explore a range of pre-designed Refine templates, perfect for everything

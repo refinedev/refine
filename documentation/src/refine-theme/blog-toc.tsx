@@ -27,7 +27,7 @@ export const BlogTOC = (props) => {
         "px-3",
         "pb-10",
         "pt-4 blog-lg:pt-9",
-        "border-l dark:border-l-gray-700 border-l-gray-100",
+        "border-l dark:border-l-zinc-700 border-l-zinc-100",
         !hasTOC && "invisible",
         "not-prose",
       )}
@@ -102,7 +102,7 @@ export const BlogTOCItem = ({
         activeId === id && "bg-refine-blue-2-light dark:bg-refine-blue-2/10",
         activeId === id &&
           "text-refine-react-light-link dark:text-refine-react-dark-link",
-        activeId !== id && "text-refine-react-8 dark:text-refine-react-3",
+        activeId !== id && "text-zinc-900 dark:text-zinc-300",
         activeId !== id &&
           "hover:bg-refine-blue-2-light/40 hover:dark:bg-refine-blue-2/5",
         activeId !== id &&
