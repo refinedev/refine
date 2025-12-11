@@ -3,8 +3,6 @@ title: Forms
 source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form
 ---
 
-# Building Forms with Refine and shadcn/ui
-
 This guide explains how to create and manage forms in your Refine applications using the [`@refinedev/react-hook-form`](/docs/packages/react-hook-form/use-form/) adapter and [`shadcn/ui`](https://ui.shadcn.com/) [form components](https://ui.shadcn.com/docs/components/form). We'll cover complete setup, validation with [Zod](https://zod.dev/), and provide examples for create and edit scenarios.
 
 ## Key Features
