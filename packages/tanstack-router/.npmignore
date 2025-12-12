@@ -1,0 +1,11 @@
+src/
+tsconfig.json
+tsconfig.declarations.json
+tsup.config.ts
+jest.config.js
+.DS_Store
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
