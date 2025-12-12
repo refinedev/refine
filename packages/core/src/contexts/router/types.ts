@@ -29,7 +29,7 @@
 import type { BaseKey, CrudFilter, CrudSort } from "../data/types";
 import type { IResourceItem } from "../resource/types";
 
-export type Action = "create" | "edit" | "list" | "show" | "clone";
+export type Action = "create" | "edit" | "list" | "show" | "clone" | "custom";
 
 export type GoConfig = {
   to?: string;

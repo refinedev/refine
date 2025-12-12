@@ -62,6 +62,7 @@ export default function App() {
             // create: "/my-products/new",
             // edit: "/my-products/:id/edit",
             // clone: "/my-products/:id/clone",
+            // custom: ["/my-products/setttings", "/my-products/statistics", "/my-products/etc"],
           },
         ]}
       >

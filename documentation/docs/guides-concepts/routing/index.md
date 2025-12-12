@@ -167,6 +167,7 @@ All you have to do is to define your resource and their routes.
       create: "/my-products/new", // http://localhost:3000/my-products/new
       edit: "/my-products/:id/edit", // http://localhost:3000/my-products/1/edit
       clone: "/my-products/:id/clone", // http://localhost:3000/my-products/1/clone
+      custom: ["/my-products/{custom-route}"], // http://localhost:3000/my-products/{custom-route}
     },
   ]}
 />
