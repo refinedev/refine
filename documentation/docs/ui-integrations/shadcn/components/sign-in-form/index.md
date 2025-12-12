@@ -1,8 +1,7 @@
 ---
+title: <SignInForm />
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/sign-in-form.tsx
 ---
-
-# `<SignInForm />`
 
 The `SignInForm` component provides a ready-to-use sign-in interface for Refine applications. It handles user authentication through email/password and can be extended for social logins.
 
