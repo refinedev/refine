@@ -17,15 +17,25 @@ const {
   edit,
   show,
   clone,
-  push,
-  replace,
-  goBack,
   listUrl,
   createUrl,
   editUrl,
   showUrl,
   cloneUrl,
 } = useNavigation();
+
+/*
+  Deprecated:
+  - push
+  - replace
+  - goBack
+
+  These methods were removed.
+  Use:
+  • useGo()  
+  • useGetToPath()  
+  • or router-native navigation (react-router: useNavigate)
+*/
 ```
 
 ## Return Values
@@ -181,6 +191,10 @@ cloneUrl("posts", "1"); // It returns the `/posts/clone/1` URL
 | editUrl   | Method that returns the edit page URL                       | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
 | showUrl   | Method that returns the show page URL                       | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
 | cloneUrl  | Method that returns the clone page URL                      | `(resource: string, id: BaseKey, meta?: Record<string, any>) => string`                  |
+
+git add documentation/docs/routing/hooks/use-navigation/index.md
+git commit -m "docs(useNavigation): remove deprecated push/replace/goBack from docs (fix #7125)"
+git push origin fix/docs/remove-deprecated-useNavigation-methods
 
 #### Interfaces
 
