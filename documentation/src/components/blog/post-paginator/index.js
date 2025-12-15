@@ -66,7 +66,7 @@ export const PostPaginator = ({ posts, title }) => {
 
               <div
                 id="post-info"
-                className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400"
+                className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
               >
                 <Date date={post.date} formattedDate={post.formattedDate} />
               </div>

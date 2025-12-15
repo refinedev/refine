@@ -65,8 +65,8 @@ export const BlogPostPageView = ({ children }) => {
         <Link
           to="/blog"
           className={clsx(
-            "text-zinc-400",
-            "hover:text-white",
+            "text-zinc-600 dark:text-zinc-400",
+            "hover:text-zinc-900 dark:hover:text-white",
             "no-underline",
             "flex",
             "items-center",
@@ -77,7 +77,7 @@ export const BlogPostPageView = ({ children }) => {
           <span className={clsx("text-xs", "font-medium")}>Back to blog</span>
         </Link>
         <div className="flex items-center gap-2 px-2 py-1 not-prose">
-          <span className="text-zinc-400 text-xs tracking-[-0.06em] font-medium mr-2">
+          <span className="text-zinc-600 dark:text-zinc-400 text-xs tracking-[-0.06em] font-medium mr-2">
             Share on:
           </span>
           <TwitterShareButton
@@ -92,12 +92,12 @@ export const BlogPostPageView = ({ children }) => {
               className={clsx(
                 "w-8",
                 "h-8",
-                "bg-zinc-800",
+                "bg-zinc-100 dark:bg-zinc-800",
                 "rounded-[0.25rem]",
                 "flex",
                 "items-center",
                 "justify-center",
-                "hover:bg-zinc-700",
+                "hover:bg-zinc-200 dark:hover:bg-zinc-700",
               )}
             >
               <TwitterIcon />
@@ -114,12 +114,12 @@ export const BlogPostPageView = ({ children }) => {
               className={clsx(
                 "w-8",
                 "h-8",
-                "bg-zinc-800",
+                "bg-zinc-200 dark:bg-zinc-800",
                 "rounded-[0.25rem]",
                 "flex",
                 "items-center",
                 "justify-center",
-                "hover:bg-zinc-700",
+                "hover:bg-zinc-300 dark:hover:bg-zinc-700",
               )}
             >
               <RedditIcon />
@@ -136,12 +136,12 @@ export const BlogPostPageView = ({ children }) => {
               className={clsx(
                 "w-8",
                 "h-8",
-                "bg-zinc-800",
+                "bg-zinc-200 dark:bg-zinc-800",
                 "rounded-[0.25rem]",
                 "flex",
                 "items-center",
                 "justify-center",
-                "hover:bg-zinc-700",
+                "hover:bg-zinc-300 dark:hover:bg-zinc-700",
               )}
             >
               <LinkedinIcon size={24} round />
@@ -163,14 +163,14 @@ export const BlogPostPageView = ({ children }) => {
         <div className="mt-6 blog-lg:mt-10 mb-6 text-sm">
           <div
             className={clsx(
-              "flex items-center gap-2 text-zinc-400 not-prose",
+              "flex items-center gap-2 text-zinc-600 dark:text-zinc-400 not-prose",
               "ml-4 blog-md:ml-0",
             )}
           >
             <Date date={date} formattedDate={formattedDate} />
             {typeof readingTime !== "undefined" && (
               <>
-                <span className="w-[4px] h-[4px] rounded-full bg-zinc-400 " />
+                <span className="w-[4px] h-[4px] rounded-full bg-zinc-600 dark:bg-zinc-400 " />
                 <ReadingTime readingTime={readingTime} />
               </>
             )}

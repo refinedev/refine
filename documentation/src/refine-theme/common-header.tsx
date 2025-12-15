@@ -14,6 +14,7 @@ import { RefineCoreLogoIcon } from "./icons/refine-logo";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
 import { RefineLogoXmas } from "./icons/refine-logo-xmas";
+import { CommonGithubStarButton } from "./common-github-star-button";
 
 type Props = {
   hasSticky?: boolean;
@@ -47,8 +48,10 @@ export const CommonHeader = ({
         className={clsx(
           "sticky",
           "top-0",
-          "z-10",
-          "border-b border-b-zinc-700",
+          "z-20",
+          !showThemeToggle && "border-b border-b-zinc-700",
+          showThemeToggle &&
+            "border-b border-b-gray-200 dark:border-b-zinc-700",
         )}
       >
         <div
@@ -58,7 +61,8 @@ export const CommonHeader = ({
             "backdrop-blur-[6px]",
             "landing-md:backdrop-blur-[12px]",
             "z-[-1]",
-            "bg-zinc-900 bg-opacity-80",
+            !showThemeToggle && "bg-zinc-900 ",
+            showThemeToggle && "bg-zinc-50 dark:bg-zinc-900",
             "pointer-events-none",
             className,
           )}
@@ -106,7 +110,7 @@ export const CommonHeader = ({
               <HamburgerIcon />
             </button>
             <div className={clsx("hidden landing-md:flex", "items-center")}>
-              <NavLinksDesktop />
+              <NavLinksDesktop showThemeToggle={showThemeToggle} />
             </div>
             <div
               className={clsx(
@@ -128,32 +132,47 @@ export const CommonHeader = ({
                         ref={ref}
                         {...props}
                         className={clsx("hidden", "landing-lg:flex")}
-                        variant="landing"
+                        variant={showThemeToggle ? "doc" : "landing"}
                       />
                       <DocSearchButton
                         ref={ref}
                         iconOnly
                         {...props}
                         className={clsx("flex", "landing-lg:hidden")}
-                        variant="landing"
+                        variant={showThemeToggle ? "doc" : "landing"}
                       />
                     </>
                   );
                 })}
               />
-              <LandingGithubStarButton />
+              {showThemeToggle ? (
+                <CommonGithubStarButton />
+              ) : (
+                <LandingGithubStarButton />
+              )}
               {showThemeToggle && <CommonThemeToggle />}
             </div>
           </div>
         </div>
         {trackProgress && (
           <div
-            className={clsx("w-full", "h-[1px]", "translate", "bg-zinc-700")}
+            className={clsx(
+              "w-full",
+              "h-[1px]",
+              "translate",
+              !showThemeToggle && "bg-zinc-700",
+              showThemeToggle && "bg-gray-200 dark:bg-zinc-700",
+            )}
           >
             {/* @ts-expect-error - framer-motion type issue */}
             <motion.div
               // @ts-expect-error - framer-motion type issue
-              className={clsx("h-full", "bg-refine-react-dark-link")}
+              className={clsx(
+                "h-full",
+                !showThemeToggle && "bg-refine-react-dark-link",
+                showThemeToggle &&
+                  "bg-refine-blue dark:bg-refine-react-dark-link",
+              )}
               style={{ width: progressPercentage }}
             />
           </div>
@@ -186,7 +205,9 @@ const LINKS = [
   },
 ];
 
-const NavLinksDesktop = () => {
+const NavLinksDesktop = ({
+  showThemeToggle,
+}: { showThemeToggle?: boolean }) => {
   return (
     <nav
       className={clsx(
@@ -208,7 +229,9 @@ const NavLinksDesktop = () => {
             to={link.to}
             className={clsx(
               "whitespace-nowrap",
-              "text-white hover:text-white",
+              !showThemeToggle && "text-white hover:text-white",
+              showThemeToggle &&
+                "text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white",
               "hover:no-underline",
               "transition-colors",
             )}
@@ -217,14 +240,23 @@ const NavLinksDesktop = () => {
           </Link>
         );
       })}
-      <div className={clsx("h-6", "w-[1px]", "bg-zinc-600")} />
+      <div
+        className={clsx(
+          "h-6",
+          "w-[1px]",
+          !showThemeToggle && "bg-zinc-600",
+          showThemeToggle && "bg-gray-300 dark:bg-zinc-600",
+        )}
+      />
       <Link
         key="Refine Home"
         to="https://ai.refine.dev/"
         className={clsx(
           "whitespace-nowrap",
           "font-light",
-          "text-white hover:text-white",
+          !showThemeToggle && "text-white hover:text-white",
+          showThemeToggle &&
+            "text-gray-900 dark:text-white hover:text-gray-900 dark:hover:text-white",
           "hover:no-underline",
           "transition-colors",
         )}

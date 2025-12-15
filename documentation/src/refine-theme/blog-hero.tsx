@@ -10,6 +10,8 @@ export const BlogHero: FC<Props> = ({ className }) => {
         "relative",
         "w-full",
         "bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
+        "dark:bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
+        "bg-[radial-gradient(50%_100%_at_50%_0%,#FED7AA_0%,rgba(254,215,170,0)_100%)]",
         "before:absolute before:inset-0 before:bg-[url('/assets/hero-cubics.svg')] before:bg-cover before:bg-center before:mix-blend-overlay before:pointer-events-none before:z-0",
         className,
       )}
@@ -57,7 +59,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
             "gap-2",
             "text-[32px] leading-[40px] landing-sm:text-[56px] landing-sm:leading-[72px]",
             "font-semibold",
-            "text-white",
+            "text-zinc-900 dark:text-white",
             "tracking-[-0.02em]",
           )}
         >
@@ -66,7 +68,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
             className={clsx(
               "font-bold",
               "font-jetBrains-mono",
-              "text-orange-400",
+              "text-orange-500 dark:text-orange-400",
             )}
           >
             CORE
@@ -78,7 +80,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
             "text-base",
             "text-start landing-md:text-center",
             "max-w-[588px]",
-            "text-zinc-300",
+            "text-zinc-600 dark:text-zinc-300",
             "pb-2",
           )}
         >

@@ -24,7 +24,7 @@ export const CommonThemeToggle = ({ className }: Props) => {
         "focus:outline-none",
         "relative",
         "w-10 h-10",
-        "rounded",
+        "rounded-lg",
         "text-zinc-500 dark:text-zinc-300",
         "border border-solid border-zinc-200 dark:border-zinc-700",
         "transition-colors",

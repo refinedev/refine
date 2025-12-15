@@ -43,8 +43,8 @@ export default function BlogListPaginator(props) {
             className={clsx(
               "rounded-lg",
               "hover:no-underline",
-              "text-zinc-400",
-              "hover:text-white",
+              "text-zinc-600 dark:text-zinc-400",
+              "hover:text-zinc-900 dark:hover:text-white",
               currentPage !== 1 && "opacity-70",
               currentPage === 1 && "pointer-events-none opacity-20",
             )}
@@ -60,7 +60,7 @@ export default function BlogListPaginator(props) {
                 key={`page:${pageNumber}`}
                 className={clsx(
                   "flex items-center justify-center",
-                  "text-zinc-400",
+                  "text-zinc-600 dark:text-zinc-400",
                   "rounded-lg",
                   "hover:no-underline",
                   "no-underline",
@@ -83,13 +83,14 @@ export default function BlogListPaginator(props) {
                   "flex items-center justify-center",
                   "rounded-lg",
                   "hover:no-underline",
-                  "hover:text-white",
-                  "hover:bg-zinc-700",
+                  "hover:text-zinc-900 dark:hover:text-white",
+                  "hover:bg-zinc-200 dark:hover:bg-zinc-700",
                   "h-[40px] w-[40px]",
                   "no-underline",
-                  pageNumber !== currentPage && "text-zinc-400",
-                  pageNumber === currentPage && "text-white",
-                  pageNumber === currentPage && "bg-zinc-800",
+                  pageNumber !== currentPage &&
+                    "text-zinc-600 dark:text-zinc-400",
+                  pageNumber === currentPage && "text-zinc-900 dark:text-white",
+                  pageNumber === currentPage && "bg-zinc-200 dark:bg-zinc-800",
                 )}
               >
                 {pageNumber}
@@ -108,8 +109,8 @@ export default function BlogListPaginator(props) {
             className={clsx(
               "rounded-lg",
               "hover:no-underline",
-              "text-zinc-400",
-              "hover:text-white",
+              "text-zinc-600 dark:text-zinc-400",
+              "hover:text-zinc-900 dark:hover:text-white",
               currentPage !== lastPage && "opacity-70",
               currentPage === lastPage && "pointer-events-none opacity-20",
             )}

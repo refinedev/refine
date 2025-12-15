@@ -125,7 +125,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           isLanding && "border-t-zinc-700",
           !isLanding && "border-t-zinc-200 dark:border-t-zinc-700",
           isLanding && "bg-zinc-800",
-          !isLanding && "bg-footer-blog-light-bg dark:bg-footer-blog-dark-bg",
+          !isLanding && "bg-zinc-50 dark:bg-footer-blog-dark-bg",
         )}
       >
         <div

@@ -61,7 +61,7 @@ const Desktop = ({
   return (
     <div
       className={clsx(
-        "bg-zinc-800",
+        "bg-zinc-50 dark:bg-zinc-800",
         "justify-between",
         "items-start",
         "p-4",
@@ -110,15 +110,15 @@ const Desktop = ({
           "pl-2.5",
           "py-1.5",
           "mt-0.5",
-          "text-white",
-          "bg-zinc-700",
+          "text-zinc-900 dark:text-white",
+          "bg-zinc-200 dark:bg-zinc-700",
           "tracking-[-0.07em]",
         )}
       >
         Show More{" "}
         <ChevronDownIcon
           className={clsx(
-            "transition-transform duration-200 ease-in-out text-zinc-400",
+            "transition-transform duration-200 ease-in-out text-zinc-600 dark:text-zinc-400",
             {
               "rotate-180 transform": !collapsed,
             },
@@ -145,8 +145,8 @@ const Mobile = ({ tags, className }: { tags: any; className?: string }) => {
             "gap-2",
             "rounded-full",
             "px-6 py-3",
-            "bg-zinc-700",
-            "text-white",
+            "bg-zinc-200 dark:bg-zinc-700",
+            "text-zinc-900 dark:text-white",
           )}
         >
           <FilterIcon />

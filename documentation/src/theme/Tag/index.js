@@ -31,9 +31,9 @@ export default function Tag({
         size === "medium" && "text-sm",
         size === "medium" && "py-2",
         size === "medium" && "px-4",
-        "text-white",
-        variant === "default" && "bg-zinc-700",
-        variant === "inverted" && "bg-zinc-700",
+        "text-zinc-900 dark:text-white",
+        variant === "default" && "bg-zinc-200 dark:bg-zinc-700",
+        variant === "inverted" && "bg-zinc-200 dark:bg-zinc-700",
       )}
     >
       {label}

@@ -19,7 +19,9 @@ export const FeaturedBlogPostItem = () => {
   } = metadata;
 
   return (
-    <BlogPostItemContainer className={clsx("bg-zinc-800", "p-4", "rounded-xl")}>
+    <BlogPostItemContainer
+      className={clsx("bg-zinc-50 dark:bg-zinc-800", "p-4", "rounded-xl")}
+    >
       <Link
         itemProp="url"
         to={permalink}
@@ -60,8 +62,8 @@ export const FeaturedBlogPostItem = () => {
                   isRefineTag && "capitalize",
                   "text-xs",
                   "font-medium",
-                  "text-white",
-                  "bg-zinc-700",
+                  "text-zinc-900 dark:text-white",
+                  "bg-zinc-200 dark:bg-zinc-700",
                   "no-underline",
                   "rounded-sm",
                   "px-1.5 py-1",
@@ -85,7 +87,7 @@ export const FeaturedBlogPostItem = () => {
             <div
               className={clsx(
                 "mb-4",
-                "text-white",
+                "text-zinc-900 dark:text-white",
                 "text-base",
                 "font-medium",
                 "tracking-[-0.04em]",
@@ -97,7 +99,7 @@ export const FeaturedBlogPostItem = () => {
           <div
             className={clsx(
               "line-clamp-3",
-              "text-zinc-400",
+              "text-zinc-600 dark:text-zinc-400",
               "text-sm",
               "tracking-[-0.07em]",
             )}
@@ -109,7 +111,7 @@ export const FeaturedBlogPostItem = () => {
         <div className="flex items-center gap-2">
           <span
             className={clsx(
-              "text-zinc-400",
+              "text-zinc-600 dark:text-zinc-400",
               "text-xs",
               "leading-6",
               "no-underline",

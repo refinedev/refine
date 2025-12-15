@@ -26,7 +26,7 @@ export const FeaturedBlogPostItems = ({ items }) => {
             "px-6",
             "mb-6 blog-lg:mb-12",
             "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
-            "text-white",
+            "text-zinc-900 dark:text-white",
             "font-medium",
           )}
         >

@@ -27,8 +27,8 @@ export const Tags = () => {
               "rounded-sm",
               "py-1",
               "px-1.5",
-              "text-white",
-              "bg-zinc-700",
+              "text-zinc-900 dark:text-white",
+              "bg-zinc-200 dark:bg-zinc-700",
               "tracking-[-0.06em]",
               "whitespace-nowrap",
             )}

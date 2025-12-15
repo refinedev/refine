@@ -363,9 +363,6 @@ module.exports = {
         "footer-blog-dark-bg": [
           "linear-gradient(180deg, rgba(52, 58, 70, 0) 0%, rgba(52, 58, 70, 0.5) 100%)",
         ],
-        "footer-blog-light-bg": [
-          "linear-gradient(180deg, #F6F7F9 0%, rgba(246, 247, 249, 0) 100%)",
-        ],
         "landing-copy-command-hover-bg-dark": [
           "radial-gradient(transparent 30%, rgba(249, 115, 22, 0.10))",
         ],
