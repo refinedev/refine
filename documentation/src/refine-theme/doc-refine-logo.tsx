@@ -28,7 +28,7 @@ export const DocRefineLogo = ({ className }: Props) => {
         )}
         onContextMenu={openFigma}
       >
-        <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
+        <RefineLogoXmas className="text-zinc-900 dark:text-zinc-0" />
       </Link>
       <span
         className={clsx(

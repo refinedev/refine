@@ -34,7 +34,7 @@ function CardLayout({ href, icon, title, description }) {
         className={clsx(
           "line-clamp-1",
           "text-xs sm:text-base 2xl:text-xl",
-          "dark:text-gray-200 text-gray-900",
+          "dark:text-zinc-200 text-zinc-900",
           "font-semibold",
           "m-0",
         )}
@@ -49,7 +49,7 @@ function CardLayout({ href, icon, title, description }) {
             "line-clamp-3",
             "m-0",
             "text-xs sm:text-sm 2xl:text-lg",
-            "dark:text-gray-400 text-gray-700",
+            "dark:text-zinc-400 text-zinc-700",
             "font-normal",
             "refine-prose",
           )}
