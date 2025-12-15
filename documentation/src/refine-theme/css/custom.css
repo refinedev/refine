@@ -630,3 +630,36 @@ h4 del code {
 .cm-gutter.cm-lineNumbers {
   @apply !text-xs !leading-5;
 }
+
+/* Blog specific styles - force dark mode */
+.blog-wrapper .refine-prose {
+  @apply prose-strong:text-white;
+  @apply prose-a:text-refine-react-dark-link;
+  @apply prose-h1:text-white;
+  @apply prose-h2:text-white;
+  @apply prose-h3:text-white;
+  @apply prose-h4:text-white;
+  @apply prose-p:text-zinc-300;
+  @apply prose-ul:text-white;
+  @apply prose-ol:text-white;
+  @apply prose-blockquote:bg-zinc-800 prose-blockquote:text-white prose-blockquote:border-l-zinc-500;
+  @apply prose-code:text-zinc-100 prose-code:bg-zinc-700;
+}
+
+.blog-wrapper .refine-prose table th {
+  @apply text-white;
+}
+
+.blog-wrapper .refine-prose table td {
+  @apply text-zinc-300;
+}
+
+.blog-wrapper .refine-prose table th,
+.blog-wrapper .refine-prose table td {
+  @apply border-zinc-700;
+}
+
+.blog-wrapper .refine-prose a.hash-link::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23D4D4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>');
+  @apply bg-zinc-800;
+}
