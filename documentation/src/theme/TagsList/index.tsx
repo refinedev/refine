@@ -61,12 +61,12 @@ const Desktop = ({
   return (
     <div
       className={clsx(
-        "bg-zinc-100 dark:bg-zinc-900",
+        "bg-zinc-800",
         "justify-between",
         "items-start",
-        "p-5",
-        collapsed && "rounded-full",
-        !collapsed && "rounded-3xl",
+        "p-4",
+        collapsed && "rounded-2.5xl",
+        !collapsed && "rounded-xl",
         "not-prose",
         className,
       )}
@@ -75,7 +75,7 @@ const Desktop = ({
         className={clsx(
           "overflow-hidden",
           "flex-1",
-          !collapsed && "h-24",
+          !collapsed && "h-16",
           collapsed && "h-8",
           "m-0 p-0",
           "mr-16",
@@ -84,7 +84,7 @@ const Desktop = ({
       >
         {tags.map((tag) => (
           <li
-            className={clsx("inline-flex", "m-1", "mr-3")}
+            className={clsx("inline-flex", "m-1", "mr-3", "tracking-[-0.07em]")}
             key={tag.permalink}
           >
             <Tag {...tag} label={mapLabel(tag.label)} />
@@ -104,20 +104,21 @@ const Desktop = ({
           "flex-shrink",
           "no-underline hover:no-underline",
           "text-xs",
-          "rounded-full",
-          "py-1",
-          "pl-3",
-          "pr-1",
-          "mt-1",
-          "text-zinc-900 dark:text-zinc-300",
-          "bg-zinc-200 dark:bg-zinc-700",
+          "font-medium",
+          "rounded-sm",
+          "pr-1.5",
+          "pl-2.5",
+          "py-1.5",
+          "mt-0.5",
+          "text-white",
+          "bg-zinc-700",
+          "tracking-[-0.07em]",
         )}
       >
         Show More{" "}
         <ChevronDownIcon
           className={clsx(
-            "opacity-30",
-            "transition-transform duration-200 ease-in-out",
+            "transition-transform duration-200 ease-in-out text-zinc-400",
             {
               "rotate-180 transform": !collapsed,
             },
@@ -144,8 +145,8 @@ const Mobile = ({ tags, className }: { tags: any; className?: string }) => {
             "gap-2",
             "rounded-full",
             "px-6 py-3",
-            "bg-zinc-200 dark:bg-zinc-600",
-            "text-zinc-900 dark:text-white",
+            "bg-zinc-700",
+            "text-white",
           )}
         >
           <FilterIcon />

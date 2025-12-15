@@ -118,7 +118,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                 <div
                   className={clsx(
                     "text-base",
-                    "tracking-[-0.004rem]",
+                    "tracking-[-0.04em]",
                     "font-semibold",
                     "text-white",
                   )}
@@ -128,7 +128,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                 <div
                   className={clsx(
                     "text-sm",
-                    "tracking-[-0.007rem]",
+                    "tracking-[-0.07em]",
                     "text-zinc-300",
                   )}
                 >

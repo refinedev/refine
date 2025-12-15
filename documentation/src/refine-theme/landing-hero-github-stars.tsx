@@ -38,7 +38,7 @@ export const LandingHeroGithubStars = () => {
           className={clsx(
             "font-normal",
             "text-xs",
-            "tracking-[-0.006rem]",
+            "tracking-[-0.06em]",
             "text-white",
           )}
         >

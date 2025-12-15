@@ -190,7 +190,10 @@ If you see `ERROR: 42P01: relation "public.employees" does not exist`:
   :::
 
 :::tip No results or NULL department values?
-`LEFT JOIN` will keep employees visible even when `department_id` isn’t set yet. To see department names, edit the employee and paste the UUID of the correct department into `department_id`.
+
+`LEFT JOIN` will keep employees visible even when `department_id` isn’t set yet. To see department names, edit the employee and paste the UUID of the
+correct department into `department_id`.
+
 :::
 
 ## This flexibility means you can build relational structures that Refine AI (or any frontend) can use directly.

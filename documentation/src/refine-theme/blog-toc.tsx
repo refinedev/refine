@@ -27,13 +27,13 @@ export const BlogTOC = (props) => {
         "px-3",
         "pb-10",
         "pt-4 blog-lg:pt-9",
-        "border-l dark:border-l-zinc-700 border-l-zinc-100",
+        "border-l border-l-zinc-700 ",
         !hasTOC && "invisible",
         "not-prose",
       )}
     >
       <Tags />
-      <ul className="list-none m-0 p-0 pt-10 mt-1 not-prose">
+      <ul className="list-none m-0 p-0 pt-10 mt-1 not-prose space-y-1">
         {toc.map((item) => {
           return (
             <li key={item.id}>
@@ -90,29 +90,29 @@ export const BlogTOCItem = ({
     }
   }, [id]);
 
+  const isActive = activeId === id;
+
   return (
     <a
       href={`#${id}`}
       className={clsx(
         "refine-toc-item",
-        level === 2 && "pl-3",
-        level === 3 && "pl-7",
-        level === 4 && "pl-11",
         "py-2 pr-4",
-        activeId === id && "bg-refine-blue-2-light dark:bg-refine-blue-2/10",
-        activeId === id &&
-          "text-refine-react-light-link dark:text-refine-react-dark-link",
-        activeId !== id && "text-zinc-900 dark:text-zinc-300",
-        activeId !== id &&
-          "hover:bg-refine-blue-2-light/40 hover:dark:bg-refine-blue-2/5",
-        activeId !== id &&
-          "hover:text-refine-react-light-link hover:dark:text-refine-react-dark-link",
-        "rounded-[18px]",
-        "transition-colors duration-200 ease-in-out",
+        level === 2 && "pl-4",
+        level === 3 && "pl-6",
+        level === 4 && "pl-8",
+        level === 5 && "pl-8",
+        isActive && "bg-zinc-700",
+        isActive && "text-white",
+        !isActive && "text-zinc-300",
+        !isActive && "hover:bg-[#303035]",
+        "hover:text-white",
+        "rounded-md",
         "block",
         "text-sm",
-        "leading-6",
         "no-underline hover:no-underline",
+        "transition-colors duration-200 ease-in-out",
+        "tracking-[-0.07em]",
       )}
       // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
       dangerouslySetInnerHTML={{

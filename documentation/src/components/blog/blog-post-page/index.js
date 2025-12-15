@@ -9,15 +9,18 @@ import {
   LinkedinShareButton,
   RedditShareButton,
   TwitterShareButton,
-  RedditIcon,
-  LinkedinIcon,
 } from "react-share";
 import clsx from "clsx";
 
 import { Date, ReadingTime } from "@site/src/components/blog/common";
 import { BannerRandom } from "@site/src/components/banner/banner-random";
 
-import { ChevronLeft, Twitter } from "../icons";
+import {
+  ChevronLeftCircle,
+  RedditIcon,
+  TwitterIcon,
+  LinkedinIcon,
+} from "../icons";
 
 export const BlogPostPageView = ({ children }) => {
   const { metadata, isBlogPostPage } = useBlogPost();
@@ -62,18 +65,20 @@ export const BlogPostPageView = ({ children }) => {
         <Link
           to="/blog"
           className={clsx(
-            "text-zinc-600 dark:text-zinc-400",
-            "text-sm no-underline",
+            "text-zinc-400",
+            "hover:text-white",
+            "no-underline",
             "flex",
             "items-center",
             "gap-2",
           )}
         >
-          <ChevronLeft /> Back to blog
+          <ChevronLeftCircle />
+          <span className={clsx("text-xs", "font-medium")}>Back to blog</span>
         </Link>
-        <div className="flex items-center gap-3 px-2 py-1 not-prose">
-          <span className="text-zinc-600 dark:text-zinc-400 text-sm">
-            Share on
+        <div className="flex items-center gap-2 px-2 py-1 not-prose">
+          <span className="text-zinc-400 text-xs tracking-[-0.06em] font-medium mr-2">
+            Share on:
           </span>
           <TwitterShareButton
             windowWidth={750}
@@ -83,7 +88,20 @@ export const BlogPostPageView = ({ children }) => {
             title={title}
             hashtags={tags.map((tag) => tag.label)}
           >
-            <Twitter width={24} height={24} />
+            <div
+              className={clsx(
+                "w-8",
+                "h-8",
+                "bg-zinc-800",
+                "rounded-[0.25rem]",
+                "flex",
+                "items-center",
+                "justify-center",
+                "hover:bg-zinc-700",
+              )}
+            >
+              <TwitterIcon />
+            </div>
           </TwitterShareButton>
           <RedditShareButton
             className="flex"
@@ -92,7 +110,20 @@ export const BlogPostPageView = ({ children }) => {
             url={url + permalink}
             title={title}
           >
-            <RedditIcon size={24} round />
+            <div
+              className={clsx(
+                "w-8",
+                "h-8",
+                "bg-zinc-800",
+                "rounded-[0.25rem]",
+                "flex",
+                "items-center",
+                "justify-center",
+                "hover:bg-zinc-700",
+              )}
+            >
+              <RedditIcon />
+            </div>
           </RedditShareButton>
           <LinkedinShareButton
             url={url + permalink}
@@ -101,7 +132,20 @@ export const BlogPostPageView = ({ children }) => {
             summary={description}
             className="flex"
           >
-            <LinkedinIcon size={24} round />
+            <div
+              className={clsx(
+                "w-8",
+                "h-8",
+                "bg-zinc-800",
+                "rounded-[0.25rem]",
+                "flex",
+                "items-center",
+                "justify-center",
+                "hover:bg-zinc-700",
+              )}
+            >
+              <LinkedinIcon size={24} round />
+            </div>
           </LinkedinShareButton>
         </div>
       </div>
@@ -119,14 +163,14 @@ export const BlogPostPageView = ({ children }) => {
         <div className="mt-6 blog-lg:mt-10 mb-6 text-sm">
           <div
             className={clsx(
-              "flex items-center gap-2 text-zinc-600 dark:text-zinc-400 not-prose",
+              "flex items-center gap-2 text-zinc-400 not-prose",
               "ml-4 blog-md:ml-0",
             )}
           >
             <Date date={date} formattedDate={formattedDate} />
             {typeof readingTime !== "undefined" && (
               <>
-                <span className="w-[4px] h-[4px] rounded-full bg-zinc-600 dark:bg-zinc-400 " />
+                <span className="w-[4px] h-[4px] rounded-full bg-zinc-400 " />
                 <ReadingTime readingTime={readingTime} />
               </>
             )}

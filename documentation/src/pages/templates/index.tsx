@@ -118,8 +118,7 @@ const Templates: React.FC = () => {
                 "w-full",
                 "mx-auto",
                 "px-2 landing-sm:px-8 landing-md:px-0",
-                "landing-sm:pt-12",
-                "landing-md:pt-0",
+                "pt-0",
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-full",
               )}
             >

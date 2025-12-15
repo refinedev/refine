@@ -61,7 +61,7 @@ export const DocVersionDropdown = ({ className, wrapperClassName }: Props) => {
                 className={clsx(
                   "text-sm",
                   "text-zinc-500 dark:text-zinc-300",
-                  "tracking-[-0.007rem]",
+                  "tracking-[-0.07em]",
                   "block",
                 )}
               >

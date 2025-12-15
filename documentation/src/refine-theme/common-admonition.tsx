@@ -58,6 +58,7 @@ const colorWrapperClasses = {
     "bg-[#E7F2FE] dark:bg-[#1D283C] border-l-blue-700 dark:border-l-blue-400",
   "command-line": "bg-refine-purple bg-opacity-10 border-l-refine-purple",
   danger: "bg-refine-red bg-opacity-10 border-l-refine-red",
+  warning: "bg-refine-red bg-opacity-10 border-l-refine-red",
   sourcecode: "bg-refine-pink bg-opacity-10 border-l-refine-pink",
   additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
   simple:
@@ -67,6 +68,7 @@ const colorWrapperClasses = {
 const titles = {
   danger: "DANGER",
   caution: "CAUTION",
+  warning: "WARNING",
   "command-line": "COMMAND LINE",
   sourcecode: "SOURCE CODE",
   info: "INFORMATION",

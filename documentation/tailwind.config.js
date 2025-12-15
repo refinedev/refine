@@ -457,6 +457,10 @@ module.exports = {
           "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(51, 51, 255, 0.15) 0%, rgba(51, 51, 255, 0)100%)",
           "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0) 100%)",
         ],
+        "blog-hero-bg": [
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/refine-ai/landing/landing-hero-bg-texture.png)",
+          "radial-gradient(50% 100% at 50% 0%, #431407 0%, rgba(67, 20, 7, 0) 100%)",
+        ],
       },
       backgroundPosition: {
         "wheel-already-invented-position": "center",

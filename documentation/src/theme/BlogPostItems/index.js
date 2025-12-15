@@ -45,8 +45,8 @@ export default function BlogPostItems({
                   "!m-0 !mt-0 !mb-0 p-0",
                   "blog-lg:mb-12 blog-md:mb-8 mb-8",
                   "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
-                  "text-zinc-900 dark:text-zinc-300",
-                  "font-semibold",
+                  "text-white",
+                  "font-medium",
                   "whitespace-nowrap",
                 )}
               >
@@ -60,7 +60,7 @@ export default function BlogPostItems({
         <div
           className={clsx(
             "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
-            "gap-6",
+            "gap-1",
           )}
         >
           {items.map(({ content: BlogPostContent }) => (

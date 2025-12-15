@@ -24,7 +24,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
       onClick={onClick}
       className={clsx(
         className,
-        "tracking-[-0.004rem]",
+        "tracking-[-0.04em]",
         "select-none",
         "group/cta-button",
         "relative",
