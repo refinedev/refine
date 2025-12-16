@@ -30,6 +30,226 @@ describe("useCustom Hook", () => {
     expect(data).toHaveLength(2);
   });
 
+  describe("result.data undefined handling (Issue #7088)", () => {
+    it("should have undefined result.data during loading state", async () => {
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                custom: () => {
+                  return new Promise((resolve) => {
+                    setTimeout(() => resolve({ data: [{ id: 1 }] }), 100);
+                  });
+                },
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      // Initially, result.data should be undefined
+      expect(result.current.result.data).toBeUndefined();
+      expect(result.current.query.isPending).toBeTruthy();
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      // After success, result.data should be defined
+      expect(result.current.result.data).toBeDefined();
+      expect(result.current.result.data).toHaveLength(1);
+    });
+
+    it("should have undefined result.data when query is disabled", async () => {
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+            queryOptions: {
+              enabled: false,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      // Query is disabled, so data should remain undefined
+      expect(result.current.result.data).toBeUndefined();
+      expect(result.current.query.isPending).toBeFalsy();
+      expect(result.current.query.isSuccess).toBeFalsy();
+    });
+
+    it("should have undefined result.data on error", async () => {
+      const customMock = vi.fn().mockRejectedValue(new Error("API Error"));
+
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                custom: customMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isError).toBeTruthy();
+      });
+
+      // On error, result.data should be undefined
+      expect(result.current.result.data).toBeUndefined();
+    });
+
+    it("should handle empty data response correctly", async () => {
+      const customMock = vi.fn().mockResolvedValue({ data: [] });
+
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                custom: customMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      // Empty array is still defined data
+      expect(result.current.result.data).toBeDefined();
+      expect(result.current.result.data).toHaveLength(0);
+    });
+
+    it("should handle null data in response", async () => {
+      const customMock = vi.fn().mockResolvedValue({ data: null });
+
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                custom: customMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      // Null data should be reflected in result.data
+      expect(result.current.result.data).toBeNull();
+    });
+
+    it("should allow safe optional chaining on result.data", async () => {
+      const { result } = renderHook(
+        () =>
+          useCustom<{ items: string[] }>({
+            url: "remoteUrl",
+            method: "get",
+            queryOptions: {
+              enabled: false,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      // This should not throw - optional chaining should work
+      const items = result.current.result.data?.items;
+      expect(items).toBeUndefined();
+    });
+
+    it("should transition from undefined to defined on successful fetch", async () => {
+      const customMock = vi.fn().mockResolvedValue({
+        data: { id: 1, title: "Test Post" },
+      });
+
+      const { result } = renderHook(
+        () =>
+          useCustom({
+            url: "remoteUrl",
+            method: "get",
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                custom: customMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      // Track the transition
+      const dataStates: (any | undefined)[] = [];
+      
+      // Initial state
+      dataStates.push(result.current.result.data);
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      // Final state
+      dataStates.push(result.current.result.data);
+
+      // Verify transition from undefined to defined
+      expect(dataStates[0]).toBeUndefined();
+      expect(dataStates[1]).toBeDefined();
+      expect(dataStates[1]).toEqual({ id: 1, title: "Test Post" });
+    });
+  });
+
   describe("without custom query key", () => {
     const config = { sorters: [{ field: "id", order: "desc" }] } as any;
     const meta = { meta: "meta" };
