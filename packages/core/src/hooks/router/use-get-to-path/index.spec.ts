@@ -132,5 +132,23 @@ describe("useGetToPath Hook", () => {
 
       expect(path).toEqual("/featured");
     });
+
+    it("should match resource by identifier when used used as name", () => {
+      const { result } = renderHook(() => useGetToPath(), {
+        wrapper: TestWrapper({
+          resources: [
+            { name: "posts", list: "/posts" },
+            { name: "posts", identifier: "featured-posts", list: "/featured" },
+          ],
+        }),
+      });
+
+      const path = result.current({
+        action: "list",
+        resource: { name: "featured-posts" },
+      });
+
+      expect(path).toEqual("/featured");
+    });
   });
 });
