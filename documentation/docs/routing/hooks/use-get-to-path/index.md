@@ -23,7 +23,9 @@ const MyComponent = () => {
       onClick={() => {
         go({
           to: getToPath({
-            resource: "posts",
+            resource: {
+              name: "posts",
+            },
             action: "edit",
             meta: {
               id: 1,
@@ -60,7 +62,3 @@ This is the name of the action that you want to navigate to.
 ### meta
 
 This is the meta object that you want to use to compose the URL. It will be merged with the `params` object that is parsed from the URL.
-
-### legacy
-
-This is a boolean value that indicates whether the legacy URL format should be used or not. If it is set to `true`, the URL will be composed for the legacy routers. Default value is `false`.
