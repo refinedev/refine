@@ -110,7 +110,12 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
 export type UseCustomReturnType<TData, TError> = {
   query: QueryObserverResult<CustomResponse<TData>, TError>;
   result: {
-    data: CustomResponse<TData>["data"];
+    /**
+     * The data returned from the custom request.
+     * This will be `undefined` when the query is loading or has not yet been executed.
+     * Always check for undefined before accessing this property.
+     */
+    data: TData | undefined;
   };
 } & UseLoadingOvertimeReturnType;
 
@@ -233,7 +238,7 @@ export const useCustom = <
     return {
       query: queryResponse,
       result: {
-        data: queryResponse.data?.data || EMPTY_OBJECT,
+        data: queryResponse.data?.data,
       },
       overtime: { elapsedTime },
     };
