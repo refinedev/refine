@@ -100,7 +100,7 @@ export const Create: React.FC<CreateProps> = ({
       >
         <Spin spinning={isLoading}>
           <Card
-            variant="borderless"
+            bordered={false}
             actions={[
               <Space
                 key="action-buttons"
