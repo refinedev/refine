@@ -36,8 +36,14 @@ export const useGetToPath = (): GetToPathFn => {
       }
 
       // Always get the full resource from resources array to ensure we have all action routes
+      // Priority: identifier match > name match
       const fullResource =
-        resources.find((r) => r.name === selectedResource.name) ||
+        resources.find(
+          (r) =>
+            r.identifier === selectedResource.identifier ||
+            r.name === selectedResource.identifier,
+        ) ??
+        resources.find((r) => r.name === selectedResource.name) ??
         selectedResource;
 
       const actionRoutes = getActionRoutesFromResource(fullResource, resources);

@@ -114,5 +114,23 @@ describe("useGetToPath Hook", () => {
 
       expect(path).toEqual("/posts/show/123");
     });
+
+    it("should match resource by identifier", () => {
+      const { result } = renderHook(() => useGetToPath(), {
+        wrapper: TestWrapper({
+          resources: [
+            { name: "posts", list: "/posts" },
+            { name: "posts", identifier: "featured-posts", list: "/featured" },
+          ],
+        }),
+      });
+
+      const path = result.current({
+        action: "list",
+        resource: { name: "posts", identifier: "featured-posts" },
+      });
+
+      expect(path).toEqual("/featured");
+    });
   });
 });
