@@ -166,7 +166,7 @@ export const Show: React.FC<ShowProps> = ({
       >
         <Spin spinning={isLoading}>
           <Card
-            variant="borderless"
+            bordered={false}
             actions={
               footerButtons
                 ? [
