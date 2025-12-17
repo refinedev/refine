@@ -75,10 +75,6 @@ export const menuItems = [
         href: "/about",
       },
       {
-        label: "Store",
-        href: "https://store.refine.dev",
-      },
-      {
         label: "Contact Us",
         href: "https://form.typeform.com/to/H54hLD9r",
       },
