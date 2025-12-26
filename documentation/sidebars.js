@@ -518,6 +518,13 @@ module.exports = {
                     "ui-integrations/shadcn/components/buttons/show-button/index",
                   ],
                 },
+                {
+                  type: "category",
+                  label: "Layout",
+                  items: [
+                    "ui-integrations/shadcn/components/layout/layout-01/index",
+                  ],
+                },
                 "ui-integrations/shadcn/components/forms/index",
                 "ui-integrations/shadcn/components/data-table/index",
                 "ui-integrations/shadcn/components/themed-layout/index",

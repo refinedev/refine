@@ -141,7 +141,8 @@ Refine provides a growing collection of components through the shadcn/ui registr
 
 ### Layout Components
 
-- **[Themed Layout](/docs/ui-integrations/shadcn/components/themed-layout/)** - Complete layout wrapper with sidebar navigation, dark/light theme and responsive design.
+- **[Layout 01](/docs/ui-integrations/shadcn/components/layout/layout-01/)** - Complete application layout with sidebar navigation, header and light/dark theme support.
+- **[Theme Provider](/docs/ui-integrations/shadcn/components/themed-layout/)** - Theme provider with light/dark theme support.
 
 ### View Components
 
