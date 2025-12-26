@@ -20,7 +20,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
     <Link
       to={to}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       onClick={onClick}
       className={clsx(
         className,

@@ -346,10 +346,6 @@ const siteConfig = {
               label: "About",
               to: "about",
             },
-            {
-              label: "Store 🎁",
-              to: "https://store.refine.dev",
-            },
           ],
         },
         {

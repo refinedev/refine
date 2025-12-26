@@ -1,18 +1,12 @@
 import clsx from "clsx";
 import React, { type FC, useMemo } from "react";
-import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "../context/CommunityStats";
-import useIsBrowser from "@docusaurus/useIsBrowser";
 
 type Props = {
   className?: string;
 };
 
 export const LandingCommunity: FC<Props> = ({ className }) => {
-  const isBrowser = useIsBrowser();
-
-  const { colorMode } = useColorMode();
-
   const { githubStarCountText } = useCommunityStatsContext();
 
   const list = useMemo(() => {

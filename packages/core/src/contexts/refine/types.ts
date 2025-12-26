@@ -73,6 +73,7 @@ export interface IRefineOptions {
   undoableTimeout?: number;
   liveMode?: LiveModeProps["liveMode"];
   disableTelemetry?: boolean;
+  disableRouteChangeHandler?: boolean;
   redirect?: {
     afterCreate?: RedirectAction;
     afterClone?: RedirectAction;
@@ -118,6 +119,7 @@ export interface IRefineContextOptions {
   overtime: UseLoadingOvertimeRefineContext;
   textTransformers: Required<TextTransformers>;
   disableServerSideValidation: boolean;
+  disableRouteChangeHandler: boolean;
   projectId?: string;
   title: {
     icon?: React.ReactNode;

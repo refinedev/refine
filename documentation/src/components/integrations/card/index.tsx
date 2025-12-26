@@ -28,7 +28,7 @@ const Card: React.FC<LargeCardProps> = ({
         "border border-zinc-700",
         "rounded-2xl",
       )}
-      rel="noreferrer"
+      rel="noopener"
     >
       <div className={clsx()}>
         <Icon className={clsx("w-6 h-6 sm:w-12 sm:h-12", "!text-white")} />
@@ -48,7 +48,7 @@ const Card: React.FC<LargeCardProps> = ({
                 <a
                   key={contributor.name}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener"
                   href={contributor.url}
                   className={clsx(
                     "no-underline flex items-center gap-1 text-xs mt-2 sm:mt-4",

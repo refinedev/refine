@@ -10,7 +10,6 @@ import {
   UseCasesIcon,
   RefineWeekIcon,
   AboutUsIcon,
-  RefineStoreIcon,
   RefineIcon,
 } from "./popover-icons";
 
@@ -101,19 +100,13 @@ export const POPOVERMENUS: NavMenu[] = [
         icon: AboutUsIcon,
       },
       {
-        label: "Swag Store",
-        description: "T-shirts, caps, and more",
-        link: "https://store.refine.dev",
-        icon: RefineStoreIcon,
-      },
-      {
         label: "Meet Refine",
         description: "Call us for any questions",
         link: "https://form.typeform.com/to/Z9wS06kE",
         icon: RefineIcon,
       },
     ],
-    imageLink: "https://store.refine.dev",
+    imageLink: "/about",
     imageURL:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/company.png",
   },

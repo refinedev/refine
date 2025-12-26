@@ -30,7 +30,7 @@ export const EnterpriseGetInTouchButton: FC<Props> = ({
       <Link
         href={href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className={clsx(
           "self-start",
           "rounded-full",

@@ -22,7 +22,7 @@
     "@dnd-kit/sortable": "^7.0.2",
     "@refinedev/antd": "^6.0.3",
     "@refinedev/cli": "^2.16.50",
-    "@refinedev/core": "^5.0.6",
+    "@refinedev/core": "^5.0.7",
     "@refinedev/devtools": "^2.0.3",
     "@refinedev/nestjs-query": "^2.0.1",
     "@refinedev/react-router": "^2.0.3",

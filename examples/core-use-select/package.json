@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.50",
-    "@refinedev/core": "^5.0.6",
+    "@refinedev/core": "^5.0.7",
     "@refinedev/react-router": "^2.0.3",
     "@refinedev/simple-rest": "^6.0.1",
     "react": "^19.1.0",

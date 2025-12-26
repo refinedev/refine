@@ -275,40 +275,6 @@ This admin panel template can be used in for various app requirements like B2B a
 `,
   },
   {
-    slug: "next-js-ecommerce-store",
-    title: "Swag Store",
-    images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-store.png",
-    ],
-    runOnYourLocalPath: "store",
-    edition: "Community",
-    liveDemo: "https://store.refine.dev/",
-    github: "https://github.com/refinedev/refine/tree/main/examples/store",
-    reactPlatform: "Next.js",
-    uiFramework: "Ant Design",
-    dataProvider: "Medusa",
-    authProvider: "Medusa",
-    description: `
-This template is a comprehensive e-commerce storefront app created using Refine, Medusa.js, Next.js, and Stripe, encompassing all the necessary features for an e-commerce web application. Its source code is open-source, allowing you to freely use or explore it to gain a deeper understanding of how Refine integrates with Next.js and Tailwind CSS.
-
-The app interfaces with the Medusa API through Refine's Medusa data provider, and its user interface is crafted with Tailwind CSS. This template is designed to showcase the effectiveness of the Refine framework in streamlining and accelerating the development process for storefront apps, providing an optimal approach to using Refine in storefront app development.
-
-With its production-ready status, this template offers a solid foundation for building your own storefront, whether you choose to use it as a starting point or implement it directly as it is.
-
-
-### Key Features:
-
-- **Authentication & Authorization**: Securely manages user logins and permissions.
-- **Product Listing**: Displays a catalog of products available for purchase.
-- **Account Information Pages**: Allows users to view and edit their account details.
-- **Product Detail**: Provides detailed information about each product, including descriptions, prices, and images.
-- **Shopping Cart**: Enables customers to add products to a virtual cart and manage their selections before checkout.
-- **Payment with Stripe**: Offers a secure payment system through Stripe for processing transactions.
-- **Gift Code Feature**: Allows gift codes for discounts or special offers during the checkout process.
-- **Email Send and Verification**: Handles the sending of emails for purposes like account verification and marketing, and verifies email addresses.
-                `,
-  },
-  {
     slug: "supabase-crud-app",
     title: "Pixels",
     images: [

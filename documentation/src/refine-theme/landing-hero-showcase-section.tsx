@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { LandingArrowRightIcon } from "./icons/landing-arrow-right";
 import { ShowcaseWrapper } from "../components/landing/showcase-wrapper";
 import { LandingSectionCtaButton } from "./landing-section-cta-button";
 import { CircleChevronRight } from "lucide-react";
@@ -186,7 +185,7 @@ export const LandingHeroShowcaseSection = () => {
           <a
             href={activeApp.link}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className={clsx(
               "hidden",
               "landing-lg:flex",
@@ -471,11 +470,11 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
           codePosition: "left",
           code: `
                     import { useGetIdentity, useList } from "@refinedev/core";
-                  
+
                     const { data: { employeeId } } = useGetIdentity();
-                  
+
                     const { result: { data } } = useList({
-                      resource: "time-offs", 
+                      resource: "time-offs",
                       pagination: { current: 1, pageSize: 1 },
                       filters: [
                         {

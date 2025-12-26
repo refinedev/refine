@@ -99,7 +99,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               href={href}
               key={href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
               className={clsx(
                 isLanding && "text-zinc-400",
                 !isLanding && "text-zinc-600 dark:text-zinc-400",
@@ -160,7 +160,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
             <a
               href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
               className={clsx("hover:no-underline")}
             >
               <PHBadgeIcon
@@ -219,7 +219,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                       {...(item.href.startsWith("http")
                         ? {
                             target: "_blank",
-                            rel: "noopener noreferrer",
+                            rel: "noopener",
                           }
                         : {})}
                       className={clsx(
@@ -298,7 +298,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                 {...(menu.href.startsWith("http")
                   ? {
                       target: "_blank",
-                      rel: "noopener noreferrer",
+                      rel: "noopener",
                     }
                   : {})}
                 className={clsx(

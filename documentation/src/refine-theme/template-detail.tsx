@@ -268,7 +268,7 @@ const ProjectLink: FC<
     ? {
         to,
         target: "_blank",
-        rel: "noopener noreferrer",
+        rel: "noopener",
       }
     : {
         onClick,

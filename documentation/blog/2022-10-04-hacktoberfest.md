@@ -23,6 +23,6 @@ We've already labeled a bunch of **Refine** issues with `hacktoberfest` so you c
 
 <br/>
 
-Participating is not only fun, but you can also win prizes by taking part. If one of your PR's is merged to core framework, you'll be rewarded with a stylish [Refine t-shirt ](https://store.refine.dev/product/develop-tshirt). In case you've got 2+ PR's merged, we'll send you a complete Refine SWAG Kit, incl.[t-shirt, cap & bottle](https://store.refine.dev/)
+Participating is not only fun, but you can also win prizes by taking part. If one of your PR's is merged to core framework, you'll be rewarded with a stylish Refine t-shirt. In case you've got 2+ PR's merged, we'll send you a complete Refine SWAG Kit, incl. t-shirt, cap & bottle.
 
 Happy coding to everyone!
