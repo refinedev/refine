@@ -1,21 +1,20 @@
 import Head from "@docusaurus/Head";
+import { CommonHeader } from "@site/src/refine-theme/common-header";
+import { CommonLayout } from "@site/src/refine-theme/common-layout";
+import { LandingAlreadyInvented } from "@site/src/refine-theme/landing-already-invented";
+import { LandingCommunity } from "@site/src/refine-theme/landing-community";
+import { LandingEnterpriseDevelopers } from "@site/src/refine-theme/landing-enterprise-developers";
+import { LandingFooter } from "@site/src/refine-theme/landing-footer";
+import { LandingHeroSection } from "@site/src/refine-theme/landing-hero-section";
+import { LandingPackages } from "@site/src/refine-theme/landing-packages";
+import { LandingPureReactCode } from "@site/src/refine-theme/landing-pure-react-code";
+import { LandingSolidFoundation } from "@site/src/refine-theme/landing-solid-foundation";
+import { LandingSweetSpot } from "@site/src/refine-theme/landing-sweet-spot";
+import { LandingTestimonial } from "@site/src/refine-theme/landing-testimonial";
+import { LandingTrustedByDevelopers } from "@site/src/refine-theme/landing-trusted-by-developers";
+import { LandingTryItSection } from "@site/src/refine-theme/landing-try-it-section";
 import clsx from "clsx";
 import React from "react";
-
-import { CommonLayout } from "../refine-theme/common-layout";
-import { LandingFooter } from "../refine-theme/landing-footer";
-import { LandingCommunity } from "../refine-theme/landing-community";
-import { LandingEnterpriseDevelopers } from "../refine-theme/landing-enterprise-developers";
-import { LandingTrustedByDevelopers } from "../refine-theme/landing-trusted-by-developers";
-import { LandingPackages } from "../refine-theme/landing-packages";
-import { LandingAlreadyInvented } from "../refine-theme/landing-already-invented";
-import { LandingPureReactCode } from "../refine-theme/landing-pure-react-code";
-import { LandingSweetSpot } from "../refine-theme/landing-sweet-spot";
-import { LandingHeroSection } from "../refine-theme/landing-hero-section";
-import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
-import { CommonHeader } from "../refine-theme/common-header";
-import { LandingTestimonial } from "../refine-theme/landing-testimonial";
-import { LandingSolidFoundation } from "../refine-theme/landing-solid-foundation";
 
 function Home() {
   const title = "Refine | Open-source Retool for Enterprise";

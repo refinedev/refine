@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { type SVGProps, type FC } from "react";
+import React, { type FC, type SVGProps } from "react";
 import {
   AccessControlIcon,
   BlackBoxIcon,
@@ -141,7 +141,7 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
       </div>
 
       <LandingSectionCtaButton
-        to="/enterprise"
+        to="/core/enterprise"
         className={clsx("w-max", "mx-auto")}
       >
         Check out Enterprise Edition

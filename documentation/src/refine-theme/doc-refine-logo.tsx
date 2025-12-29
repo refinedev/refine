@@ -20,7 +20,7 @@ export const DocRefineLogo = ({ className }: Props) => {
       )}
     >
       <Link
-        to="/"
+        to="/core"
         className={clsx(
           "no-underline",
           "flex items-center gap-2",
@@ -39,7 +39,7 @@ export const DocRefineLogo = ({ className }: Props) => {
           "bg-zinc-200 dark:bg-zinc-600",
         )}
       />
-      <Link to="/docs" className={clsx("no-underline")}>
+      <Link to="/core/docs" className={clsx("no-underline")}>
         <span
           className={clsx(
             "block",

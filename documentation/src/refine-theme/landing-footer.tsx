@@ -1,11 +1,11 @@
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import { openFigma } from "../utils/open-figma";
 import { menuItems, secondaryMenuItems, socialLinks } from "./footer-data";
 import { HeartOutlinedIcon } from "./icons/heart-outlined";
-import Link from "@docusaurus/Link";
-import { RefineLogoSingleIcon } from "./icons/refine-logo-single";
 import { PHBadgeIcon } from "./icons/ph-badge";
+import { RefineLogoSingleIcon } from "./icons/refine-logo-single";
 
 export type Props = {
   variant?: "landing" | "blog";
@@ -147,7 +147,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
             )}
           >
             <Link
-              to="/"
+              to="/core"
               onContextMenu={openFigma}
               className={clsx(
                 "hover:no-underline",

@@ -37,36 +37,38 @@ function singleReact() {
 const siteConfig = {
   title: "Refine",
   tagline: "Build your React-based CRUD applications, without constraints",
-  url: "https://refine.dev",
+  url: "https://develop.ai.refine.dev",
   baseUrl: "/",
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
   favicon: "img/favicon.ico",
+  onBrokenLinks: "ignore",
+
   scripts: [
-    "https://platform.twitter.com/widgets.js",
-    {
-      src: "https://widget.kapa.ai/kapa-widget.bundle.js",
-      "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
-      "data-project-name": "Refine",
-      "data-project-color": "#303450",
-      "data-modal-header-bg-color": "#303450",
-      "data-modal-title-color": "#ffffff",
-      "data-button-border-radius": "100%",
-      "data-button-text-font-size": "0px",
-      "data-button-text-color": "#303450",
-      "data-button-bg-color": "transparent",
-      "data-button-text": "",
-      "data-button-box-shadow": "none",
-      "data-button-image-height": "60px",
-      "data-button-image-width": "60px",
-      "data-modal-title": "",
-      "data-modal-image":
-        "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
-      "data-project-logo":
-        "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
-      async: true,
-    },
+    // "https://platform.twitter.com/widgets.js",
+    // {
+    //   src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+    //   "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
+    //   "data-project-name": "Refine",
+    //   "data-project-color": "#303450",
+    //   "data-modal-header-bg-color": "#303450",
+    //   "data-modal-title-color": "#ffffff",
+    //   "data-button-border-radius": "100%",
+    //   "data-button-text-font-size": "0px",
+    //   "data-button-text-color": "#303450",
+    //   "data-button-bg-color": "transparent",
+    //   "data-button-text": "",
+    //   "data-button-box-shadow": "none",
+    //   "data-button-image-height": "60px",
+    //   "data-button-image-width": "60px",
+    //   "data-modal-title": "",
+    //   "data-modal-image":
+    //     "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
+    //   "data-project-logo":
+    //     "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
+    //   async: true,
+    // },
   ],
   presets: [
     [
@@ -76,6 +78,7 @@ const siteConfig = {
           ? false
           : {
               path: "./docs",
+              routeBasePath: "/core/docs",
               sidebarPath: require.resolve("./sidebars.js"),
               editUrl:
                 "https://github.com/refinedev/refine/tree/main/documentation",
@@ -88,9 +91,6 @@ const siteConfig = {
                   : {
                       "4.xx.xx": {
                         label: "4.xx.xx",
-                      },
-                      "3.xx.xx": {
-                        label: "3.xx.xx",
                       },
                     }),
                 current: {
@@ -127,9 +127,9 @@ const siteConfig = {
             require.resolve("./src/css/demo-page.css"),
           ],
         },
-        gtag: {
-          trackingID: "G-27Z1WY952H",
-        },
+        // gtag: {
+        //   trackingID: "G-27Z1WY952H",
+        // },
         sitemap: {
           ignorePatterns: ["**/_*.md"],
         },
@@ -137,20 +137,20 @@ const siteConfig = {
     ],
   ],
   plugins: [
-    [
-      "@docusaurus/plugin-client-redirects",
-      {
-        redirects: redirectJson.redirects,
-        createRedirects(existingPath) {
-          if (existingPath.includes("/api-reference/core/")) {
-            return [
-              existingPath.replace("/api-reference/core/", "/api-references/"),
-            ];
-          }
-          return undefined; // Return a falsy value: no redirect created
-        },
-      },
-    ],
+    // [
+    //   "@docusaurus/plugin-client-redirects",
+    //   {
+    //     redirects: redirectJson.redirects,
+    //     createRedirects(existingPath) {
+    //       if (existingPath.includes("/api-reference/core/")) {
+    //         return [
+    //           existingPath.replace("/api-reference/core/", "/api-references/"),
+    //         ];
+    //       }
+    //       return undefined; // Return a falsy value: no redirect created
+    //     },
+    //   },
+    // ],
     [
       "docusaurus-plugin-copy",
       {
@@ -192,17 +192,17 @@ const siteConfig = {
             },
           ],
         ]),
-    "./plugins/clarity.js",
-    "./plugins/ahref.js",
+    // "./plugins/clarity.js",
+    // "./plugins/ahref.js",
     "./plugins/templates.js",
-    "./plugins/example-redirects.js",
+    // "./plugins/example-redirects.js",
     "./plugins/tutorial-navigation.js",
     [
       "@docusaurus/plugin-content-docs",
       {
         id: "tutorial",
         path: "tutorial",
-        routeBasePath: "tutorial",
+        routeBasePath: "/core/tutorial",
         sidebarPath: false,
         docLayoutComponent: "@theme/TutorialPage",
         docItemComponent: "@theme/TutorialItem",
@@ -310,11 +310,11 @@ const siteConfig = {
           items: [
             {
               label: "Getting Started",
-              to: "docs",
+              to: "/core/docs",
             },
             {
               label: "Tutorials",
-              to: "tutorial",
+              to: "/core/tutorial",
             },
             {
               label: "Blog",
@@ -327,15 +327,15 @@ const siteConfig = {
           items: [
             {
               label: "Examples",
-              to: "examples",
+              to: "/core/examples",
             },
             {
               label: "Integrations",
-              to: "integrations",
+              to: "/core/integrations",
             },
             {
               label: "Become an Expert",
-              to: "become-a-refine-expert",
+              to: "/core/become-a-refine-expert",
             },
           ],
         },
@@ -344,7 +344,7 @@ const siteConfig = {
           items: [
             {
               label: "About",
-              to: "about",
+              to: "/core/about",
             },
           ],
         },

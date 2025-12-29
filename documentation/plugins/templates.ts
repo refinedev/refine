@@ -15,7 +15,7 @@ export default async function RefineTemplates(): Promise<Plugin> {
           );
 
           addRoute({
-            path: `/templates/${data.slug}`,
+            path: `/core/templates/${data.slug}`,
             component: "@site/src/components/templates-detail-page/index",
             exact: true,
             modules: {

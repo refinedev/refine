@@ -1,16 +1,16 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 import SearchBar from "../theme/SearchBar";
 
-import { TutorialRefineLogo } from "./tutorial-refine-logo";
+import { Dialog, Transition } from "@headlessui/react";
 import { CommonHamburgerIcon } from "./common-hamburger-icon";
 import { CommonThemeToggle, CommonThemeToggleAlt } from "./common-theme-toggle";
 import { DocSearchButton } from "./doc-search-button";
-import { TutorialParameterDropdown } from "./tutorial-parameter-dropdown";
-import { TutorialNavigation } from "./tutorial-navigation";
-import { Dialog, Transition } from "@headlessui/react";
 import { socialLinks } from "./footer-data";
+import { TutorialNavigation } from "./tutorial-navigation";
+import { TutorialParameterDropdown } from "./tutorial-parameter-dropdown";
+import { TutorialRefineLogo } from "./tutorial-refine-logo";
 
 import Link from "@docusaurus/Link";
 
@@ -108,7 +108,7 @@ const TutorialModal = ({
                     )}
                   >
                     <Link
-                      to="/"
+                      to="/core"
                       className={clsx(
                         "text-sm",
                         "no-underline",
@@ -130,7 +130,7 @@ const TutorialModal = ({
                     )}
                   >
                     <Link
-                      to="/docs"
+                      to="/core/docs"
                       className={clsx(
                         "text-sm",
                         "no-underline",
