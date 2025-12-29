@@ -459,29 +459,6 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/next-js-ecommerce-store",
-    title: "Swag Store",
-    description:
-      "A complete headless e-commerce template was built on top of Medusa with Refine. Features a fully working solution with product listings, a shopping cart, and checkout. Supports SSR with NextJS.",
-    image:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/swag-store.jpg",
-    edition: TemplateEdition.Community,
-    integrations: [
-      {
-        label: "Headless",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Headless width={16} height={16} {...props} />
-        ),
-      },
-      {
-        label: "Medusa",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Medusa width={16} height={16} {...props} />
-        ),
-      },
-    ],
-  },
-  {
     to: "/templates/supabase-crud-app",
     title: "Pixels",
     description:

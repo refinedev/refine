@@ -62,7 +62,7 @@ There are 3 chances to win, there will be prizes for:
 - **Most Visually Pleasing** => **$300** in GitHub Sponsorship
 - **Most Technically Impressive** => **$300** in GitHub Sponsorship
 
-The all winners will get [Refine Special Swag Kit](https://store.refine.dev/product/hackathon-swag-kit) + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
+The all winners will get Refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
 <div>
 <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />

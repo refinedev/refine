@@ -1,10 +1,6 @@
 import { REFINE_API_URL } from "./constants";
 
-import type {
-  MeResponse,
-  MeUpdateVariables,
-  RaffleResponse,
-} from "src/interfaces/api";
+import type { MeResponse, MeUpdateVariables } from "src/interfaces/api";
 
 export const getMe = async () => {
   try {
@@ -43,25 +39,4 @@ export const updateMe = async (variables: MeUpdateVariables) => {
   }
 
   return false;
-};
-
-export const raffle = async (): Promise<RaffleResponse> => {
-  try {
-    const response = await fetch(`${REFINE_API_URL}/users/me/raffle`);
-
-    const data = (await response.json()) as RaffleResponse;
-
-    return data;
-  } catch (_) {
-    //
-  }
-  return { raffle: false };
-};
-
-export const acknowledgeRaffle = async () => {
-  try {
-    await fetch(`${REFINE_API_URL}/users/me/raffle/acknowledge`);
-  } catch (_) {
-    //
-  }
 };

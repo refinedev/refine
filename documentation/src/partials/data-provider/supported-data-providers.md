@@ -25,5 +25,7 @@
 - [PocketBase](https://pocketbase.io/) by [kruschid](https://github.com/kruschid)
 - [PostgREST](https://github.com/ffimnsr/refine-postgrest-ts) by [ffimnsr](https://github.com/ffimnsr)
 - [Refine SQL X](https://github.com/medz/refine-sqlx) by [Seven Du (@medz)](https://github.com/medz)
+- [Refine SQLX](https://github.com/zuohuadong/refine-sqlx) by [zuohuadong](https://github.com/zuohuadong)
+
 
 _If you have created a custom data provider and would like to share it with the community, feel free to create a PR. We would be happy to include it on this page for others to use._

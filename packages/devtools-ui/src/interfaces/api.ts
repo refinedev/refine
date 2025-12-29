@@ -1,12 +1,3 @@
-export type RaffleResponse =
-  | {
-      raffle: true;
-      calendlyURL: string;
-    }
-  | {
-      raffle: false;
-    };
-
 export type MeResponse = {
   company: string | null;
   createdAt: string;

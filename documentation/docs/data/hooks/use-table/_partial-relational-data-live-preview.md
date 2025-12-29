@@ -105,7 +105,7 @@ setRefineProps({
   resources: [
     {
       name: "posts",
-      list: PostList,
+      list: "/posts",
     },
   ],
 });

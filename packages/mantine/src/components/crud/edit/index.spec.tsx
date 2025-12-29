@@ -714,4 +714,53 @@ describe("auto save", () => {
     // check saved message
     expect(getByText("auto save failure")).toBeTruthy();
   });
+
+  it("debounces multiple rapid changes into a single API call", async () => {
+    vi.useFakeTimers();
+
+    const updateMock = vi
+      .fn()
+      .mockResolvedValue({ data: { id: "1", title: "ok" } });
+
+    const { getByTestId } = render(
+      <Routes>
+        <Route path="/:resource/edit/:id" element={<EditPageWithAutoSave />} />
+      </Routes>,
+      {
+        wrapper: TestWrapper({
+          resources: [{ name: "posts", meta: { canDelete: false } }],
+          routerInitialEntries: ["/posts/edit/1"],
+          routerProvider: MockRouterProvider({
+            pathname: "/posts/edit/1",
+            params: { id: "1" },
+            action: "edit",
+            id: "1",
+            resource: {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/1",
+              meta: { canDelete: false },
+            },
+          }),
+          dataProvider: { ...MockJSONServer, update: updateMock },
+        }),
+      },
+    );
+
+    await act(async () => {
+      fireEvent.change(getByTestId("title"), { target: { value: "a" } });
+      vi.advanceTimersByTime(300);
+      fireEvent.change(getByTestId("title"), { target: { value: "ab" } });
+      vi.advanceTimersByTime(300);
+      fireEvent.change(getByTestId("title"), { target: { value: "abc" } });
+      vi.advanceTimersByTime(300);
+    });
+    expect(updateMock).toHaveBeenCalledTimes(0);
+
+    await act(async () => {
+      vi.advanceTimersByTime(1100);
+    });
+    expect(updateMock).toHaveBeenCalledTimes(1);
+  });
 });

@@ -307,4 +307,65 @@ describe("useDataGrid Hook", () => {
       );
     });
   });
+
+  it("should not change sortModel when page changes", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          sorters: {
+            initial: [
+              {
+                field: "title",
+                order: "asc",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    // Capture initial sortModel
+    const initialSortModel = result.current.dataGridProps.sortModel;
+    expect(initialSortModel).toEqual([
+      {
+        field: "title",
+        sort: "asc",
+      },
+    ]);
+
+    // Change page using onPaginationModelChange from dataGridPaginationValues
+    await act(async () => {
+      result.current.dataGridProps.onPaginationModelChange!(
+        {
+          page: 3,
+          pageSize: 25,
+        },
+        {} as any,
+      );
+    });
+
+    await waitFor(() => {
+      expect(result.current.currentPage).toBe(4);
+    });
+
+    // sortModel should remain the same object reference after page change
+    const sortModelAfterPageChange = result.current.dataGridProps.sortModel;
+    expect(sortModelAfterPageChange).toBe(initialSortModel);
+    expect(sortModelAfterPageChange).toEqual([
+      {
+        field: "title",
+        sort: "asc",
+      },
+    ]);
+  });
 });

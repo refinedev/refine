@@ -473,6 +473,10 @@ Refine implements a simple and transparent telemetry module for collecting usage
 
 > For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
 
+### disableRouteChangeHandler
+
+`RouteChangeHandler` hooks into route changes to trigger navigation-side effects such as auth checks and redirect logic. Currently it invokes auth provider's check method and redirects to a different page if the user isn't authenticated. Setting `disableRouteChangeHandler` to `true` disables these route-change side effects—not routing itself.
+
 ### redirect
 
 By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/data/hooks/use-form/#actions), set `redirect` as follows:

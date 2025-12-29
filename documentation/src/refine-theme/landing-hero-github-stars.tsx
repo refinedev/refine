@@ -11,7 +11,7 @@ export const LandingHeroGithubStars = () => {
     <a
       href="https://github.com/refinedev/refine"
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className={clsx(
         "self-start",
         "relative",

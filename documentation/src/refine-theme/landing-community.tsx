@@ -83,7 +83,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               <a
                 href={item?.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 key={index}
                 className={clsx(
                   "block",
@@ -159,7 +159,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             <a
               href="https://www.ycombinator.com/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className={clsx(
                 "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline",
               )}
@@ -170,7 +170,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             <a
               href="https://ee.500.co/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className={clsx(
                 "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
               )}
@@ -181,7 +181,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             <a
               href="https://senovo.vc/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className={clsx(
                 "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
               )}

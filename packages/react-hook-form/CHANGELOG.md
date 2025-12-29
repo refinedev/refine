@@ -1,5 +1,19 @@
 # @refinedev/react-hook-form
 
+## 5.0.3
+
+### Patch Changes
+
+- [#7100](https://github.com/refinedev/refine/pull/7100) [`64625bb337a222ef80727862c758cae86371fa4b`](https://github.com/refinedev/refine/commit/64625bb337a222ef80727862c758cae86371fa4b) Thanks [@AkprasadoP](https://github.com/AkprasadoP)! - Fix modal visibility issue when switching between actions in useModalForm hook. The modal now properly shows when switching from edit to create action.
+
+## 5.0.2
+
+### Patch Changes
+
+- [#7086](https://github.com/refinedev/refine/pull/7086) [`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: disable minify
+
+  Resolves #6417
+
 ## 5.0.1
 
 ### Patch Changes

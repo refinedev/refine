@@ -82,7 +82,7 @@ const PricingCardStarter = () => {
     name: "Starter",
     description: "Get hands-on with the fundamentals.",
     features: ["Core features for exploration", "Preview your builds"],
-    refineTokenCount: 150,
+    refineTokenCount: 300,
     monthlyPriceCents: 0,
   };
 
@@ -151,7 +151,7 @@ const PricingCardStarter = () => {
         <a
           href="https://s.refine.dev/ai-landing-pricing-card-starter"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           className={clsx("appearance-none", "no-underline")}
         >
           <SubscribeButton
@@ -412,7 +412,7 @@ const PricingCardPro = () => {
         <a
           href={`https://s.refine.dev/ai-landing-pricing-card-${selectedTier?.planKey}`}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           className={clsx("appearance-none", "no-underline")}
         >
           <SubscribeButton

@@ -145,8 +145,10 @@ export const ProductList = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: {
+      getHeaderGroups,
+      getRowModel,
+    },
     setOptions,
     refineCore: {
       setCurrentPage,

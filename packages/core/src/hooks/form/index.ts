@@ -302,11 +302,27 @@ export const useForm = <
     return submissionPromise;
   };
 
-  const onFinishAutoSave = asyncDebounce(
-    (values: TVariables) => onFinish(values, { isAutosave: true }),
-    props.autoSave?.debounce || 1000,
-    "Cancelled by debounce",
+  const onFinishRef = React.useRef(onFinish);
+  React.useEffect(() => {
+    onFinishRef.current = onFinish;
+  }, [onFinish]);
+
+  const onFinishAutoSave = React.useMemo(
+    () =>
+      asyncDebounce(
+        (values: TVariables) =>
+          onFinishRef.current(values, { isAutosave: true }),
+        props.autoSave?.debounce ?? 1000,
+        "Cancelled by debounce",
+      ),
+    [props.autoSave?.debounce],
   );
+
+  React.useEffect(() => {
+    return () => {
+      onFinishAutoSave.cancel();
+    };
+  }, [onFinishAutoSave]);
 
   const overtime = {
     elapsedTime,

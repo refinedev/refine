@@ -140,7 +140,7 @@ export const BannerModal: FC<Props> = ({
                     <Link
                       to={image?.href ?? button?.href}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener"
                       className={clsx(
                         "flex",
                         "h-auto xl:h-[192px]",
@@ -175,7 +175,7 @@ export const BannerModal: FC<Props> = ({
                       href={button.href}
                       onClick={button.onClick}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener"
                     >
                       <div
                         className={clsx(

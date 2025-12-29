@@ -1,5 +1,22 @@
 # @refinedev/mui
 
+## 7.0.1
+
+### Patch Changes
+
+- [#7105](https://github.com/refinedev/refine/pull/7105) [`fb46cddfb8eb33b2490fc4f05a8bc7caba2b3691`](https://github.com/refinedev/refine/commit/fb46cddfb8eb33b2490fc4f05a8bc7caba2b3691) Thanks [@francoa](https://github.com/francoa)! - fix: Prevent DataGrid Pagination reset. #7099
+
+  Fixed an issue in useDataGrid in which the sortModel sent in response was constantly receiving a new Object, even though the content of it was not changing
+
+  Fixes #7099
+
+- [#7107](https://github.com/refinedev/refine/pull/7107) [`3edacb0832090c5d0cfd36f933cb97a86328ea7c`](https://github.com/refinedev/refine/commit/3edacb0832090c5d0cfd36f933cb97a86328ea7c) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: update TSDoc links in MUI button components
+
+  Fixed Material UI documentation links in button components to point to the correct URL.
+
+- Updated dependencies [[`64625bb337a222ef80727862c758cae86371fa4b`](https://github.com/refinedev/refine/commit/64625bb337a222ef80727862c758cae86371fa4b)]:
+  - @refinedev/react-hook-form@5.0.3
+
 ## 7.0.0
 
 ### Major Changes

@@ -3,7 +3,7 @@ title: useCustom
 source: packages/core/src/hooks/data/useCustom.ts
 ---
 
-`useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
+`useCustom` is used to send custom query requests using the Tanstack Query advantages. It is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v5/docs/react/reference/useQuery) and not only supports all features of the mutation but also adds some extra features.
 
 It uses the `custom` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -32,15 +32,12 @@ interface PostUniqueCheckResponse {
 
 const apiUrl = useApiUrl();
 
-const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
+const { query } = useCustom<PostUniqueCheckResponse>({
   url: `${apiUrl}/posts-unique-check`,
   method: "get",
   config: {
     headers: {
       "x-custom-header": "foo-bar",
-    },
-    query: {
-      title: "Foo bar",
     },
   },
 });
@@ -149,7 +146,7 @@ useCustom({
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.
 
-> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v5/docs/react/reference/useQuery)
 
 ```tsx
 useCustom({
@@ -316,10 +313,10 @@ useCustom({
 
 ### Return value
 
-| Description                             | Type                                                                                                                |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                | `{ elapsedTime?: number }`                                                                                          |
+| Name     | Description                          | Type                                                                                                                |
+| -------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| query    | Result of the TanStack Query's Query | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v5/docs/react/reference/useQuery) |
+| overtime | Overtime loading props               | `{ elapsedTime?: number }`                                                                                          |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

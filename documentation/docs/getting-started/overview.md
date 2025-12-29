@@ -40,9 +40,9 @@ Offering the best from both worlds, Refine mitigates all risks of “from scratc
 
 ## Overview of the Refine structure
 
-import { MUIExample } from './example/mui';
+<!-- import { MUIExample } from './example/mui'; -->
 
-<MUIExample />
+<!-- <MUIExample /> -->
 
 <br/>
 

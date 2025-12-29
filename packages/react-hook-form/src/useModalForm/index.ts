@@ -309,7 +309,7 @@ export const useModalForm = <
         show();
       }
     },
-    [id],
+    [id, action, setId, show],
   );
 
   const title = translate(

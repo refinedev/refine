@@ -7,14 +7,14 @@ export default function Example() {
       showNavigator
       previewOnly
       dependencies={{
-        "@refinedev/chakra-ui": "^2.26.17",
+        "@refinedev/chakra-ui": "^3.0.2",
         "@tabler/icons-react": "^3.1.0",
-        "@refinedev/core": "^4.45.1",
+        "@refinedev/core": "^5.0.0",
         "@refinedev/react-router": "latest",
-        "@refinedev/simple-rest": "^4.5.4",
-        "@refinedev/react-table": "^5.6.4",
+        "@refinedev/simple-rest": "^6.0.0",
+        "@refinedev/react-table": "latest",
         "@tanstack/react-table": "^8.2.6",
-        "@refinedev/react-hook-form": "^4.8.12",
+        "@refinedev/react-hook-form": "^5.0.2",
         "@chakra-ui/react": "^2.5.1",
         "react-dom": "^18.0.0",
         "react-router": "^7.0.2",
@@ -333,9 +333,7 @@ export const ProductList = () => {
     );
 
     const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
+        reactTable: { getHeaderGroups, getRowModel, setOptions },
         refineCore: {
             setCurrentPage,
             pageCount,

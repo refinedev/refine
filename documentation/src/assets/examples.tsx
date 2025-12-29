@@ -51,21 +51,6 @@ export const SHOW_CASES: Examples = [
     source:
       "https://github.com/refinedev/refine/tree/main/examples/finefoods-material-ui",
   },
-  {
-    title: "Refine Swag Store",
-    description:
-      "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
-    image: "/examples/swag-store.jpg",
-    image2x: "/examples/swag-store2x.jpg",
-    buttons: [
-      {
-        text: "Demo",
-        link: "https://store.refine.dev",
-        icon: (props) => <ShareIcon {...props} />,
-      },
-    ],
-    source: "https://github.com/refinedev/refine/tree/main/examples/store",
-  },
 ];
 
 export const EXAMPLES: Examples = [

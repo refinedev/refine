@@ -48,7 +48,7 @@ const ProductList: React.FC = () => {
     <div>
       {/* highlight-start */}
       <button onClick={() => setCurrentPage((prev) => prev - 1)}>{"<"}</button>
-      <span> page: {current} </span>
+      <span> page: {currentPage} </span>
       <button onClick={() => setCurrentPage((prev) => prev + 1)}>{">"}</button>
       <span> per page: </span>
       <select

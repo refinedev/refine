@@ -56,6 +56,7 @@ export const defaultRefineOptions: IRefineContextOptions = {
     singular: pluralize.singular,
   },
   disableServerSideValidation: false,
+  disableRouteChangeHandler: false,
   title: defaultTitle,
 };
 

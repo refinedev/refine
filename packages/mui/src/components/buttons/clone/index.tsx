@@ -11,7 +11,7 @@ import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 import type { CloneButtonProps } from "../types";
 
 /**
- * `<CloneButton>` uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
+ * `<CloneButton>` uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *

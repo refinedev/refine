@@ -550,7 +550,9 @@ export const PostList: React.FC = () => {
     [],
   );
 
-  const { getHeaderGroups, getRowModel } = useTable<IPost>({
+  const {
+    reactTable: { getHeaderGroups, getRowModel },
+  } = useTable<IPost>({
     columns,
   });
 
@@ -683,8 +685,7 @@ export const PostList: React.FC = () => {
 
   //highlight-start
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     setOptions,
     refineCore: { result },
   } = useTable<IPost>({ columns });
@@ -1521,8 +1522,7 @@ export const PostList: React.FC = () => {
 
   // highlight-start
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     setOptions,
     refineCore: { result },
     getState,

@@ -58,8 +58,7 @@ const UserList: React.FC = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     refineCore: { setCurrentPage, pageCount, currentPage },
   } = useTable({
     columns,

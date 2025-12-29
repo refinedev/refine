@@ -27,7 +27,7 @@ export const CommonShowSourcePrompt = ({ path }: Props) => {
       <a
         href={path}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className={clsx(
           "text-base",
           "leading-8",

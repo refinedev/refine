@@ -1,5 +1,36 @@
 # @refinedev/core
 
+## 5.0.7
+
+### Patch Changes
+
+- [#7150](https://github.com/refinedev/refine/pull/7150) [`0ceb0f6e5cf57ba50760e55709d7e70c69b13461`](https://github.com/refinedev/refine/commit/0ceb0f6e5cf57ba50760e55709d7e70c69b13461) Thanks [@pcfreak30](https://github.com/pcfreak30)! - feat(core): add option to disable RouteChangeHandler
+
+  Added `disableRouteChangeHandler` option to Refine context and props
+
+  Resolves #7148
+
+## 5.0.6
+
+### Patch Changes
+
+- [#7106](https://github.com/refinedev/refine/pull/7106) [`5a79da5cf4ce38bed776dd63a935dd3102b3d4df`](https://github.com/refinedev/refine/commit/5a79da5cf4ce38bed776dd63a935dd3102b3d4df) Thanks [@angelodirb](https://github.com/angelodirb)! - fix: memoize queryOptions.select in useList to prevent multiple executions
+
+- [#7083](https://github.com/refinedev/refine/pull/7083) [`3ece8335935ff3e8c27f5883cd2f06ef29c2c746`](https://github.com/refinedev/refine/commit/3ece8335935ff3e8c27f5883cd2f06ef29c2c746) Thanks [@a28689604](https://github.com/a28689604)! - fix(core): stabilize autosave debounce and cancel on unmount in useForm
+
+  Fixes #7082
+
+## 5.0.5
+
+### Patch Changes
+
+- [#7086](https://github.com/refinedev/refine/pull/7086) [`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: disable minify
+
+  Resolves #6417
+
+- Updated dependencies [[`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3)]:
+  - @refinedev/devtools-internal@2.0.1
+
 ## 5.0.4
 
 ### Patch Changes

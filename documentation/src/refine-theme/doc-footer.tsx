@@ -39,7 +39,7 @@ function EditMetaRow({
         <a
           href={editUrl}
           target="_blank"
-          rel="noreferrer noopener"
+          rel="noopener"
           className={clsx(
             "text-refine-link-light dark:text-refine-link-dark",
             "text-xs content-4xl:text-sm",

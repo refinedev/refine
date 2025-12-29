@@ -7,7 +7,7 @@ export const JoinWaitlist = ({ className }: { className?: string }) => {
       <a
         href="https://s.refine.dev/ai-join"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener"
         className={clsx(
           "flex",
           "items-center",

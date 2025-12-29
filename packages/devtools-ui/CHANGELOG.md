@@ -1,5 +1,22 @@
 # @refinedev/devtools-ui
 
+## 2.0.2
+
+### Patch Changes
+
+- [#7116](https://github.com/refinedev/refine/pull/7116) [`05b71de508071e910bbeb0dc818343c9410fa6f5`](https://github.com/refinedev/refine/commit/05b71de508071e910bbeb0dc818343c9410fa6f5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: remove raffle request
+
+## 2.0.1
+
+### Patch Changes
+
+- [#7086](https://github.com/refinedev/refine/pull/7086) [`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: disable minify
+
+  Resolves #6417
+
+- Updated dependencies [[`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3)]:
+  - @refinedev/devtools-shared@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

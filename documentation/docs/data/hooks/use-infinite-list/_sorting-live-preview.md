@@ -23,12 +23,8 @@ const ProductList: React.FC = () => {
   const [order, setOrder] = useState<"asc" | "desc">("asc");
 
   const {
-    data,
-    isLoading,
-    isError,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage,
+    result: { data, hasNextPage, hasPreviousPage },
+    query: { isError, isLoading, fetchNextPage, isFetchingNextPage },
   } = useInfiniteList<IProduct, HttpError>({
     resource: "products",
     //highlight-start

@@ -89,7 +89,6 @@ export const TutorialFooter = () => {
                     key={i}
                     href={href}
                     target="_blank"
-                    rel="noreferrer"
                     className={clsx(
                       "flex items-center no-underline",
                       "hover:text-refine-link-light",

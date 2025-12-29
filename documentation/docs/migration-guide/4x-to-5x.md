@@ -471,25 +471,6 @@ const {
 + const posts = result.data;
 ```
 
-### Authentication Hooks
-
-🚨 **Affects:** All authentication hooks (`useLogin`, `useLogout`, `useRegister`, `useForgotPassword`, `useUpdatePassword`)
-
-Authentication hooks now follow the same mutation pattern as other mutation hooks:
-
-```diff
-const {
--  isPending,
--  isError,
-   mutate,
-} = useLogin();
-
-const {
-+  mutation: { isPending, isError },
-   mutate,
-} = useLogin();
-```
-
 ### Mutation Hooks
 
 🚨 **Affects:** All other mutation hooks (`useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany`, `useDeleteMany`, `useCustomMutation`)

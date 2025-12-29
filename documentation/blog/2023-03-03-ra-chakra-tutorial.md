@@ -383,7 +383,9 @@ export const PostList = () => {
     [],
   );
 
-  const { getHeaderGroups, getRowModel, setOptions } = useTable({
+  const {
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
+  } = useTable({
     columns,
   });
 
@@ -508,7 +510,9 @@ We will populate records with a `category id` field from the `/posts` endpoint w
 We'll use the populate parameter to specify which fields should be filled in. we will assign an array to the populate parameter which will contain the map the values from the `/categories` endpoint to the records with a `category id` on the `/posts` endpoint. The `populate` parameter will be a property of the `meta` property which is subsequently a property of the `refineCoreProps` object.
 
 ```tsx title="src/pages/posts/list.tsx"
-const { getHeaderGroups, getRowModel, setOptions } = useTable({
+const {
+  reactTable: { getHeaderGroups, getRowModel, setOptions },
+} = useTable({
   columns,
   // highlight-start
   refineCoreProps: {
@@ -637,8 +641,7 @@ import { Pagination } from "../../components/pagination";
 export const PostList = () => {
   //...
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     setOptions,
     // highlight-next-line
     refineCore: {

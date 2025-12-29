@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ui-types",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "Type definitions package for Refine UI components, enhancing TypeScript support.",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/core": "^5.0.5",
     "dayjs": "^1.10.7",
     "tslib": "^2.6.2"
   },

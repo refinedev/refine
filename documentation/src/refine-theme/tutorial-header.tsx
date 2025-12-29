@@ -172,7 +172,7 @@ const TutorialModal = ({
                             key={i}
                             href={href}
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener"
                             className={clsx("flex items-center no-underline")}
                           >
                             <Icon

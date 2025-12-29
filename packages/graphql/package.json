@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/graphql",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "private": false,
   "description": "GraphQL support for Refine, enabling GraphQL-powered data operations.",
   "repository": {
@@ -51,8 +51,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/cli": "^2.16.50",
+    "@refinedev/core": "^5.0.5",
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",
     "@types/pluralize": "^0.0.29",

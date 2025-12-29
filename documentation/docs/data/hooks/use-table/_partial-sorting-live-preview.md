@@ -21,7 +21,10 @@ interface IPost {
 }
 
 const PostList: React.FC = () => {
-  const { result, tableQuery, sorter, setSorter } = useTable<IPost, HttpError>({
+  const { result, tableQuery, sorters, setSorters } = useTable<
+    IPost,
+    HttpError
+  >({
     // highlight-start
     sorters: {
       initial: [
@@ -42,9 +45,9 @@ const PostList: React.FC = () => {
   const currentSorterOrders = useMemo(() => {
     return {
       createdAt:
-        sorter.find((item) => item.field === "createdAt")?.order || "desc",
-      id: sorter.find((item) => item.field === "id")?.order || "desc",
-      title: sorter.find((item) => item.field === "title")?.order || "asc",
+        sorters.find((item) => item.field === "createdAt")?.order || "desc",
+      id: sorters.find((item) => item.field === "id")?.order || "desc",
+      title: sorters.find((item) => item.field === "title")?.order || "asc",
     };
   }, [sorter]);
   // highlight-end

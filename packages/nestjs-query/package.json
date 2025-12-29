@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/nestjs-query",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "NestJS CRUD integration for Refine, simplifying CRUD operations.",
   "repository": {
@@ -51,8 +51,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/cli": "^2.16.50",
+    "@refinedev/core": "^5.0.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",

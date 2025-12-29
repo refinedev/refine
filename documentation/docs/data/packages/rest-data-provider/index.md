@@ -12,7 +12,7 @@ When using `createDataProvider`, you pass three arguments:
 
 1. **Base URL** – the root endpoint of your REST API.
 
-2. **Data provider options** – defines how each standard method (`getList`, `getOne`, `create`, `update`, etc.) works.  
+2. **Data provider options** – defines how each standard method (`getList`, `getOne`, `create`, `update`, etc.) works.
    Inside each method, you can customize helpers like:
 
    - `getEndpoint`
@@ -33,7 +33,7 @@ When using `createDataProvider`, you pass three arguments:
 ```tsx
 import { createDataProvider } from "@refinedev/rest";
 
-const MyDataProvider = createDataProvider(
+const { dataProvider, kyInstance } = createDataProvider(
   "https://example.com",
   {}, // Create Data Provider Options
   {}, // KY Options
@@ -1644,7 +1644,7 @@ import {
   authHeaderBeforeRequestHook,
 } from "@refinedev/rest";
 
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {}, // Data provider options
   {
@@ -1685,7 +1685,7 @@ Automatically adds Bearer token authentication to all requests:
 ```tsx
 import { authHeaderBeforeRequestHook } from "@refinedev/rest";
 
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1719,7 +1719,7 @@ Automatically handles token refresh when receiving 401 responses:
 ```tsx
 import { refreshTokenAfterResponseHook } from "@refinedev/rest";
 
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1786,7 +1786,7 @@ const errorTransformHook: NonNullable<Hooks["beforeError"]>[number] = async (
   return error;
 };
 
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1831,7 +1831,7 @@ const customAuthHeaderHook =
     }
   };
 
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {},
   {
@@ -1922,7 +1922,7 @@ const globalErrorHook: NonNullable<Hooks["beforeError"]>[number] = async (
 Hooks execute in the order they're defined in the array:
 
 ```tsx
-const dataProvider = createDataProvider(
+const { dataProvider } = createDataProvider(
   "https://api.example.com",
   {},
   {

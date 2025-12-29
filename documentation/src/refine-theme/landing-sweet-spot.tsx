@@ -29,9 +29,10 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
   const activeListItem = list[activeIndex];
 
   const [shouldIncrement, setShouldIncrement] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    if (!shouldIncrement) {
+    if (!shouldIncrement || isHovering) {
       return;
     }
 
@@ -43,7 +44,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
     }
 
     return () => clearInterval(interval);
-  }, [shouldIncrement, inView]);
+  }, [shouldIncrement, inView, isHovering]);
 
   return (
     <div ref={ref} className={clsx(className, "w-full")}>
@@ -179,6 +180,13 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                       onClick={() => {
                         setShouldIncrement(false);
                         setActiveIndex(index);
+                      }}
+                      onMouseEnter={() => {
+                        setIsHovering(true);
+                        setActiveIndex(index);
+                      }}
+                      onMouseLeave={() => {
+                        setIsHovering(false);
                       }}
                       className={clsx(
                         "appearance-none",

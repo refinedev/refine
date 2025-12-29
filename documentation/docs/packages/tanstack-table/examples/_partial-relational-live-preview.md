@@ -75,9 +75,7 @@ const PostList: React.FC = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
     refineCore: { result },
   } = useTable<IPost, HttpError>({
     columns,
