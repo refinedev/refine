@@ -93,6 +93,11 @@ const siteConfig = {
                   : {
                       "4.xx.xx": {
                         label: "4.xx.xx",
+                        noIndex: true,
+                      },
+                      "3.xx.xx": {
+                        label: "3.xx.xx",
+                        noIndex: true,
                       },
                     }),
                 current: {
