@@ -182,8 +182,8 @@ const siteConfig = {
             },
           ],
         ]),
-    IS_PRODUCTION ? "./plugins/clarity.js" : undefined,
-    IS_PRODUCTION ? "./plugins/ahref.js" : undefined,
+    ...(IS_PRODUCTION ? ["./plugins/clarity.js"] : []),
+    ...(IS_PRODUCTION ? ["./plugins/ahref.js"] : []),
     "./plugins/templates.js",
     "./plugins/tutorial-navigation.js",
     [
