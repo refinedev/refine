@@ -185,19 +185,19 @@ export const CommonHeader = ({
 const LINKS = [
   {
     label: "Documentation",
-    to: "/docs/",
+    to: "/core/docs/",
   },
   {
     label: "Tutorial",
-    to: "/tutorial/essentials/intro/",
+    to: "/core/tutorial/essentials/intro/",
   },
   {
     label: "Templates",
-    to: "/templates/",
+    to: "/core/templates/",
   },
   {
     label: "Integrations",
-    to: "/integrations/",
+    to: "/core/integrations/",
   },
   {
     label: "Blog",
@@ -312,7 +312,7 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
           "border-zinc-700",
         )}
       >
-        <Link to="/" onClick={onClose}>
+        <Link to="/core" onClick={onClose}>
           <RefineCoreLogoIcon className={clsx("!text-white")} />
         </Link>
         <button

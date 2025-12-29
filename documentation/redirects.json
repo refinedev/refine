@@ -2221,6 +2221,14 @@
     {
       "from": "/ai",
       "to": "/"
+    },
+    {
+      "from": "/become-a-refine-expert",
+      "to": "/"
+    },
+    {
+      "from": "/use-cases",
+      "to": "/"
     }
   ]
 }
