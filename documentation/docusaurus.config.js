@@ -37,7 +37,7 @@ function singleReact() {
 const siteConfig = {
   title: "Refine",
   tagline: "Build your React-based CRUD applications, without constraints",
-  url: "https://develop.ai.refine.dev",
+  url: "https://refine.dev",
   baseUrl: "/",
   projectName: "refine",
   organizationName: "refinedev",
