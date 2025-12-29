@@ -104,19 +104,8 @@ export const EnterpriseTemplateContactUsModal = ({
                         "dark:text-gray-300 text-gray-600",
                       )}
                     >
-                      The source code of this project is exclusive to Refine's{" "}
-                      <a
-                        href="https://refine.dev/enterprise"
-                        target="_blank"
-                        rel="noopener"
-                        className={clsx(
-                          "dark:text-refine-link-dark text-refine-link-light",
-                          "underline",
-                        )}
-                      >
-                        Enterprise Edition
-                      </a>
-                      . For more information please:
+                      The source code of this project is exclusive to Refine's
+                      Enterprise Edition. For more information please:
                     </p>
                     <EnterpriseGetInTouchButton
                       variant="default"
