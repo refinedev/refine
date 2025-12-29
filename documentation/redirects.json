@@ -2213,6 +2213,10 @@
     {
       "from": "/about",
       "to": "/"
+    },
+    {
+      "from": "/enterprise",
+      "to": "/"
     }
   ]
 }
