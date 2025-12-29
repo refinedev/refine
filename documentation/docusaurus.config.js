@@ -7,7 +7,6 @@
 
 require("dotenv").config();
 
-const redirectJson = require("./redirects.json");
 const tutorialData = require("./tutorial-units");
 const thumbsUpDownFeedbackWidget = require("./plugins/thumbs-up-down-feedback-widget");
 const path = require("path");
@@ -33,6 +32,8 @@ function singleReact() {
   };
 }
 
+const IS_PRODUCTION = process.env.DEPLOY_CONTEXT === "production";
+
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
   title: "Refine",
@@ -44,32 +45,33 @@ const siteConfig = {
   trailingSlash: true,
   favicon: "assets/favicon.ico",
   onBrokenLinks: "ignore",
-
-  scripts: [
-    // "https://platform.twitter.com/widgets.js",
-    // {
-    //   src: "https://widget.kapa.ai/kapa-widget.bundle.js",
-    //   "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
-    //   "data-project-name": "Refine",
-    //   "data-project-color": "#303450",
-    //   "data-modal-header-bg-color": "#303450",
-    //   "data-modal-title-color": "#ffffff",
-    //   "data-button-border-radius": "100%",
-    //   "data-button-text-font-size": "0px",
-    //   "data-button-text-color": "#303450",
-    //   "data-button-bg-color": "transparent",
-    //   "data-button-text": "",
-    //   "data-button-box-shadow": "none",
-    //   "data-button-image-height": "60px",
-    //   "data-button-image-width": "60px",
-    //   "data-modal-title": "",
-    //   "data-modal-image":
-    //     "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
-    //   "data-project-logo":
-    //     "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
-    //   async: true,
-    // },
-  ],
+  scripts: IS_PRODUCTION
+    ? [
+        "https://platform.twitter.com/widgets.js",
+        {
+          src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+          "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
+          "data-project-name": "Refine",
+          "data-project-color": "#303450",
+          "data-modal-header-bg-color": "#303450",
+          "data-modal-title-color": "#ffffff",
+          "data-button-border-radius": "100%",
+          "data-button-text-font-size": "0px",
+          "data-button-text-color": "#303450",
+          "data-button-bg-color": "transparent",
+          "data-button-text": "",
+          "data-button-box-shadow": "none",
+          "data-button-image-height": "60px",
+          "data-button-image-width": "60px",
+          "data-modal-title": "",
+          "data-modal-image":
+            "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
+          "data-project-logo":
+            "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
+          async: true,
+        },
+      ]
+    : [],
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -127,9 +129,11 @@ const siteConfig = {
             require.resolve("./src/css/demo-page.css"),
           ],
         },
-        // gtag: {
-        //   trackingID: "G-27Z1WY952H",
-        // },
+        gtag: IS_PRODUCTION
+          ? {
+              trackingID: "G-27Z1WY952H",
+            }
+          : false,
         sitemap: {
           ignorePatterns: ["**/_*.md"],
         },
@@ -137,20 +141,6 @@ const siteConfig = {
     ],
   ],
   plugins: [
-    // [
-    //   "@docusaurus/plugin-client-redirects",
-    //   {
-    //     redirects: redirectJson.redirects,
-    //     createRedirects(existingPath) {
-    //       if (existingPath.includes("/api-reference/core/")) {
-    //         return [
-    //           existingPath.replace("/api-reference/core/", "/api-references/"),
-    //         ];
-    //       }
-    //       return undefined; // Return a falsy value: no redirect created
-    //     },
-    //   },
-    // ],
     [
       "docusaurus-plugin-copy",
       {
@@ -187,15 +177,14 @@ const siteConfig = {
               blogSidebarCount: 0,
               feedOptions: {
                 type: "all",
-                copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                copyright: `Copyright © ${new Date().getFullYear()} Refine.`,
               },
             },
           ],
         ]),
-    // "./plugins/clarity.js",
-    // "./plugins/ahref.js",
+    IS_PRODUCTION ? "./plugins/clarity.js" : undefined,
+    IS_PRODUCTION ? "./plugins/ahref.js" : undefined,
     "./plugins/templates.js",
-    // "./plugins/example-redirects.js",
     "./plugins/tutorial-navigation.js",
     [
       "@docusaurus/plugin-content-docs",
@@ -351,18 +340,6 @@ const siteConfig = {
               label: "License",
               to: "https://github.com/refinedev/refine/blob/main/LICENSE",
             },
-            // {
-            //     label: "Terms",
-            //     to: "/enterprise",
-            // },
-            // {
-            //     label: "Privacy",
-            //     to: "/privacy-policy",
-            // },
-            // {
-            //     label: "info@refine.dev",
-            //     to: "mailto:info@refine.dev",
-            // },
           ],
         },
         {
