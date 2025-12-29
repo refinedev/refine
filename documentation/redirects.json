@@ -2209,6 +2209,10 @@
     {
       "from": "/advanced-tutorials/mutation-mode.md",
       "to": "/docs/advanced-tutorials/mutation-mode/"
+    },
+    {
+      "from": "/about",
+      "to": "/"
     }
   ]
 }
