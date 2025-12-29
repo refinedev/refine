@@ -2211,10 +2211,6 @@
       "to": "/docs/advanced-tutorials/mutation-mode/"
     },
     {
-      "from": "/about",
-      "to": "/"
-    },
-    {
       "from": "/enterprise",
       "to": "/"
     },

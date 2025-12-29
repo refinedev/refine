@@ -1,5 +1,3 @@
-/about / 301
-
 /advanced-tutorials/mutation-mode.md /docs/advanced-tutorials/mutation-mode/ 301
 
 /ai / 301
@@ -33,6 +31,8 @@
 /blog/simple-web-application-with-refine/ /blog/ 301
 
 /blog/web3-with-refine/ /blog/ 301
+
+/core/tutorial /core/tutorial/essentials/intro/ 301
 
 /docs/advanced-tutorials/custom-pages/ /core/docs/guides-concepts/routing/ 301
 
