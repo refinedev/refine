@@ -42,7 +42,7 @@ const siteConfig = {
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
-  favicon: "img/favicon.ico",
+  favicon: "assets/favicon.ico",
   onBrokenLinks: "ignore",
 
   scripts: [
@@ -333,10 +333,6 @@ const siteConfig = {
               label: "Integrations",
               to: "/core/integrations",
             },
-            {
-              label: "Become an Expert",
-              to: "/core/become-a-refine-expert",
-            },
           ],
         },
         {
@@ -344,7 +340,7 @@ const siteConfig = {
           items: [
             {
               label: "About",
-              to: "/core/about",
+              to: "/about",
             },
           ],
         },
