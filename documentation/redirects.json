@@ -2229,6 +2229,11 @@
     {
       "from": "/use-cases",
       "to": "/"
+    },
+
+    {
+      "from": "/core/tutorial",
+      "to": "/core/tutorial/essentials/intro"
     }
   ]
 }
