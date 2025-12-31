@@ -355,18 +355,6 @@ const siteConfig = {
               label: "License",
               to: "https://github.com/refinedev/refine/blob/main/LICENSE",
             },
-            // {
-            //     label: "Terms",
-            //     to: "/enterprise",
-            // },
-            // {
-            //     label: "Privacy",
-            //     to: "/privacy-policy",
-            // },
-            // {
-            //     label: "info@refine.dev",
-            //     to: "mailto:info@refine.dev",
-            // },
           ],
         },
         {
