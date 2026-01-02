@@ -14,6 +14,8 @@ title: Handling Filters
 type CrudOperators =
   | "eq"
   | "ne"
+  | "eqs"
+  | "nes"
   | "lt"
   | "gt"
   | "lte"

@@ -40,6 +40,8 @@ type ConditionalFilter = {
 type CrudOperators =
   | "eq" // Equal
   | "ne" // Not equal
+  | "eqs" // Equal, case sensitive
+  | "nes" // Not equal, case sensitive
   | "lt" // Less than
   | "gt" // Greater than
   | "lte" // Less than or equal to
@@ -67,6 +69,12 @@ type CrudOperators =
   | "or" // Logical OR
   | "and"; // Logical AND
 ```
+
+:::note
+
+The `eq` and `ne` operators in most data-provider integrations are case-sensitive. The explicit `eqs` and `nes` operators are mainly intended for custom data-providers.
+
+:::
 
 ### CrudSorting
 

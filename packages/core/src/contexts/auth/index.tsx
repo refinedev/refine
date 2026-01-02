@@ -1,6 +1,7 @@
 import React, { type PropsWithChildren } from "react";
 
 import type { IAuthContext } from "./types";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const AuthProviderContext = React.createContext<Partial<IAuthContext>>(
   {},
@@ -9,6 +10,8 @@ export const AuthProviderContext = React.createContext<Partial<IAuthContext>>(
 export const AuthProviderContextProvider: React.FC<
   PropsWithChildren<IAuthContext>
 > = ({ children, isProvided, ...authProvider }) => {
+  const queryClient = useQueryClient();
+
   const handleLogin = async (params: unknown) => {
     try {
       const result = await authProvider.login?.(params);
@@ -40,6 +43,7 @@ export const AuthProviderContextProvider: React.FC<
   const handleLogout = async (params: unknown) => {
     try {
       const result = await authProvider.logout?.(params);
+      queryClient.invalidateQueries();
 
       return result;
     } catch (error) {

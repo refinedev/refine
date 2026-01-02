@@ -1,4 +1,5 @@
 import React from "react";
+import warnOnce from "warn-once";
 
 import type { IResourceItem } from "../../../contexts/resource/types";
 import type { Action } from "../../../contexts/router/types";
@@ -34,22 +35,40 @@ export const useGetToPath = (): GetToPathFn => {
         return undefined;
       }
 
-      const actionRoutes = getActionRoutesFromResource(
-        selectedResource,
-        resources,
-      );
+      // Always get the full resource from resources array to ensure we have all action routes
+      // Priority: identifier match > name match
+      const fullResource =
+        resources.find((r) => {
+          // to avoid matching undefined identifiers
+          if (!r.identifier) return false;
+          if (!selectedResource.identifier) return false;
+          return r.identifier === selectedResource.identifier;
+        }) ??
+        resources.find((r) => {
+          // to avoid matching undefined identifiers
+          if (!r.identifier) return false;
+          return r.identifier === selectedResource.name;
+        }) ??
+        resources.find((r) => r.name === selectedResource.name) ??
+        selectedResource;
+
+      const actionRoutes = getActionRoutesFromResource(fullResource, resources);
 
       const actionRoute = actionRoutes.find(
         (item) => item.action === action,
       )?.route;
 
       if (!actionRoute) {
+        warnOnce(
+          true,
+          `[useGetToPath]: Could not find a route for the "${action}" action of the "${selectedResource.name}" resource. Please make sure that the resource has the "${action}" property defined.`,
+        );
         return undefined;
       }
 
       const composed = composeRoute(
         actionRoute,
-        selectedResource?.meta,
+        fullResource?.meta,
         parsed,
         meta,
       );
