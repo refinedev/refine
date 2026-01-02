@@ -32,8 +32,6 @@ function singleReact() {
   };
 }
 
-const IS_PRODUCTION = process.env.DEPLOY_CONTEXT === "production";
-
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
   title: "Refine",
@@ -45,33 +43,31 @@ const siteConfig = {
   trailingSlash: true,
   favicon: "assets/favicon.ico",
   onBrokenLinks: "warn",
-  scripts: IS_PRODUCTION
-    ? [
-        "https://platform.twitter.com/widgets.js",
-        {
-          src: "https://widget.kapa.ai/kapa-widget.bundle.js",
-          "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
-          "data-project-name": "Refine",
-          "data-project-color": "#303450",
-          "data-modal-header-bg-color": "#303450",
-          "data-modal-title-color": "#ffffff",
-          "data-button-border-radius": "100%",
-          "data-button-text-font-size": "0px",
-          "data-button-text-color": "#303450",
-          "data-button-bg-color": "transparent",
-          "data-button-text": "",
-          "data-button-box-shadow": "none",
-          "data-button-image-height": "60px",
-          "data-button-image-width": "60px",
-          "data-modal-title": "",
-          "data-modal-image":
-            "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
-          "data-project-logo":
-            "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
-          async: true,
-        },
-      ]
-    : [],
+  scripts: [
+    "https://platform.twitter.com/widgets.js",
+    {
+      src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+      "data-website-id": "fa91d75a-5c82-4272-a893-a21d92245578",
+      "data-project-name": "Refine",
+      "data-project-color": "#303450",
+      "data-modal-header-bg-color": "#303450",
+      "data-modal-title-color": "#ffffff",
+      "data-button-border-radius": "100%",
+      "data-button-text-font-size": "0px",
+      "data-button-text-color": "#303450",
+      "data-button-bg-color": "transparent",
+      "data-button-text": "",
+      "data-button-box-shadow": "none",
+      "data-button-image-height": "60px",
+      "data-button-image-width": "60px",
+      "data-modal-title": "",
+      "data-modal-image":
+        "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-white-icon.png",
+      "data-project-logo":
+        "https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-ai-bot-logo.png",
+      async: true,
+    },
+  ],
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -134,11 +130,9 @@ const siteConfig = {
             require.resolve("./src/css/demo-page.css"),
           ],
         },
-        gtag: IS_PRODUCTION
-          ? {
-              trackingID: "G-27Z1WY952H",
-            }
-          : false,
+        gtag: {
+          trackingID: "G-27Z1WY952H",
+        },
         sitemap: {
           ignorePatterns: ["**/_*.md"],
         },
@@ -187,8 +181,8 @@ const siteConfig = {
             },
           ],
         ]),
-    ...(IS_PRODUCTION ? ["./plugins/clarity.js"] : []),
-    ...(IS_PRODUCTION ? ["./plugins/ahref.js"] : []),
+    "./plugins/clarity.js",
+    "./plugins/ahref.js",
     "./plugins/templates.js",
     "./plugins/tutorial-navigation.js",
     [
