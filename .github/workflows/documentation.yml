@@ -45,44 +45,20 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - name: Add key to allow access to repository
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "${{ secrets.GH_PAGES_DEPLOY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          cat <<EOT >> ~/.ssh/config
-          Host github.com
-          HostName github.com
-          IdentityFile ~/.ssh/id_rsa
-          EOT
       - name: Install & build dependencies
         run: pnpm install
       - name: Install dependencies (Docs)
         run: |
           cd documentation
           pnpm install
-      - name: Release to GitHub Pages
-        if: github.ref == 'refs/heads/main'
+      - name: Build Documentation
         env:
-          USE_SSH: true
-          GIT_USER: pankod-bot
           NODE_ENV: production
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           cd documentation
-          git config --global user.email "bot@pankod.com"
-          git config --global user.name "pankod-bot"
-          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm run deploy
-      - name: Build Documentation
-        if: github.ref != 'refs/heads/main'
-        run: |
-          cd documentation
           LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm build
       - name: Deploy to Netlify
-        if: github.ref != 'refs/heads/main'
         id: netlify-deploy
         uses: nwtgck/actions-netlify@v1.2
         with:
@@ -91,7 +67,8 @@ jobs:
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false
-          github-deployment-environment: "deploy-preview-website-${{ github.event.number }}"
+          github-deployment-environment: ${{ github.ref == 'refs/heads/main' && 'production' || format('deploy-preview-website-{0}', github.event.number) }}
+          production-deploy: ${{ github.ref == 'refs/heads/main' }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
