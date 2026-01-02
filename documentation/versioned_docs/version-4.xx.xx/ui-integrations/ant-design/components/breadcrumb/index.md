@@ -3,7 +3,7 @@ title: Breadcrumb
 swizzle: true
 ---
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/docs/core/hooks/utilities/use-breadcrumb) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. The `<Breadcrumb>` component was built with Ant Design's [Breadcrumb][antd-breadcrumb] components using the [`useBreadcrumb`](/core/docs/core/hooks/utilities/use-breadcrumb) hook.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
@@ -114,7 +114,7 @@ render(
 
 :::simple Good to know
 
-- You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+- You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 - In the earlier versions of Refine, `<Refine>` component had accepted `DashboardPage`, which could be used to add an index page to your app. With the changes in the `routerProvider` API of Refine however, `DashboardPage` is deprecated. You can now define an index route yourself manually by your router package.
 

@@ -63,7 +63,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 
 <Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 
-We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/docs/ui-integrations/ant-design/hooks/use-select) hook can be used to populate the props of `<Select>`
+We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/core/docs/ui-integrations/ant-design/hooks/use-select) hook can be used to populate the props of `<Select>`
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -94,7 +94,7 @@ function mapValue(selectedKeys: React.Key[], event: "onChange" | "value"): any;
   - `onChange`: The event that is triggered when the value of the dropdown changes. It is used to map the value to the format that the Refine expects(data provider, syncWithLocation etc.).
   - `value`: When the value needs to be mapped for the child component.
 
-For example when using [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/) for [`<Select />`](https://ant.design/components/select/) component, in which case, the values must be mapped to `number`s using `mapValue`.
+For example when using [`useSelect`](/core/docs/ui-integrations/ant-design/hooks/use-select/) for [`<Select />`](https://ant.design/components/select/) component, in which case, the values must be mapped to `number`s using `mapValue`.
 
 ```tsx
 import { getDefaultFilter } from "@refinedev/antd";
@@ -247,7 +247,7 @@ export const rangePickerFilterMapper = (
 
 :::simple Good to know
 
-If [syncWithLocation](/docs/core/refine-component#syncwithlocation) is enabled, on page refresh, the filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.
+If [syncWithLocation](/core/docs/core/refine-component#syncwithlocation) is enabled, on page refresh, the filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.
 
 `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.
 

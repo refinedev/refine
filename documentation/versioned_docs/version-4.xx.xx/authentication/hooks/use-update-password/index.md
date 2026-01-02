@@ -4,7 +4,7 @@ description: useUpdatePassword data hook from Refine is a modified version of re
 source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---
 
-`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/docs/authentication/auth-provider) under the hood.
+`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/core/docs/authentication/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 

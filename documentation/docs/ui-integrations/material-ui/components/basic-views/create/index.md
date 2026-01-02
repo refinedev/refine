@@ -158,7 +158,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -351,7 +351,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/material-ui/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/material-ui/components/buttons/save-button)
 
 ### goBack
 
@@ -544,7 +544,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/material-ui/components/breadcrumb)
 
 ### wrapperProps
 
@@ -1163,4 +1163,4 @@ const SampleList = () => {
 };
 ```
 
-[save-button]: /docs/ui-integrations/material-ui/components/buttons/save-button
+[save-button]: /core/docs/ui-integrations/material-ui/components/buttons/save-button

@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 In this post, we add more CRUD views to the **Pdf Invoice Generator** app we have been building using **Refine** last few days. The resources we cover in this episode are: `missions` and `invoices`. We mainly continue leveraging `dataProvider` methods and adding to the `resources` prop as well as associated route definitions.
 
-We are on Day Four of [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series which is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
+We are on Day Four of [**#RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) series which is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ### RefineWeek ft. Strapi series
 
@@ -725,7 +725,7 @@ There are a couple of things important in the code above. First, the use of `<Cr
 
 The `<Create />` component by default places a **refine-Ant Design** `<SaveButton />` component as its child and `saveButtonProps` are passed to it. `saveButtonProps` include props for the form action, button loading and disabling states. Here, when the `<SaveButton />` is clicked `formProps.onFinish()` is triggered, which eventually invokes the `dataProvider.create` method via `useCreate()`.
 
-For the details about how the `<SaveButton />` works, feel free to read through the [docs here](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/).
+For the details about how the `<SaveButton />` works, feel free to read through the [docs here](https://refine.dev/core/docs/api-reference/antd/components/buttons/save-button/).
 
 ### Refine `edit` Views for `invoices`
 
@@ -841,7 +841,7 @@ This time, the `meta.populate` property includes multiple associated resources i
 
 **Refine `useSelect()` Hook**
 
-We are using multiple `useSelect()` hooks that allow us fetch `companies`, `missions` and `contacts` data and avail them to `<Form.Item />`s. Under the hood, a `useSelect()` hook counts on the `useList()` data hook to access and invoke the `dataProvider.getList` method for fetching data from our **Strapi** backend. The argument object passed is, therefore, the same as that of `useList()`. For more details, please see [the `useSelect()` API reference here](https://refine.dev/docs/api-reference/antd/hooks/field/useSelect/).
+We are using multiple `useSelect()` hooks that allow us fetch `companies`, `missions` and `contacts` data and avail them to `<Form.Item />`s. Under the hood, a `useSelect()` hook counts on the `useList()` data hook to access and invoke the `dataProvider.getList` method for fetching data from our **Strapi** backend. The argument object passed is, therefore, the same as that of `useList()`. For more details, please see [the `useSelect()` API reference here](https://refine.dev/core/docs/api-reference/antd/hooks/field/useSelect/).
 
 With these components added, we should be able to create, list and edit invoices.
 

@@ -200,7 +200,7 @@ We are organizing a raffle for those who create a ticket and share it on Twitter
 
 Refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/), which has significant contributions to the community. We're proud to host our second Hackathon in collaboration with the [DEV](https://dev.to/refine) platform.
 
-It's worth noting that Refine has built-in [data provider support](https://refine.dev/docs/packages/documentation/data-providers/supabase) for Supabase and [UI framework integration](https://refine.dev/docs/api-reference/mui/) for Material UI. So we believe they will be excellent backend and UI solutions for your hackathon project.
+It's worth noting that Refine has built-in [data provider support](https://refine.dev/core/docs/packages/documentation/data-providers/supabase) for Supabase and [UI framework integration](https://refine.dev/core/docs/api-reference/mui/) for Material UI. So we believe they will be excellent backend and UI solutions for your hackathon project.
 
 Supabase and MUI will also be providing swag kits for the winners.
 
@@ -299,7 +299,7 @@ The **Refine** team will be taking part in the Hackathon, and you'll find us liv
 ## Useful resources
 
 - You can step up to complete CRUD app tutorials to learn **Refine** and how it works.
-  - https://refine.dev/tutorial
+  - https://refine.dev/core/tutorial
 - You can look at a real use case example projects built with **Refine** to get inspiration.
   - https://refine.dev/examples/
 - Check out the Refine Supabase integration docs:

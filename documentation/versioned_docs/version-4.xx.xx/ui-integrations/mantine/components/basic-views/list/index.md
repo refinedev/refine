@@ -117,7 +117,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -207,7 +207,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### canCreate and createButtonProps
 
@@ -362,7 +362,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb)
 
 ### wrapperProps
 
@@ -706,4 +706,4 @@ render(
 
 <PropsTable module="@refinedev/mantine/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
 
-[create-button]: /docs/ui-integrations/mantine/components/buttons/create-button
+[create-button]: /core/docs/ui-integrations/mantine/components/buttons/create-button

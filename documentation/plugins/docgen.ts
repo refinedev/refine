@@ -82,12 +82,14 @@ const replacementProps: Record<string, string> = {
   "{ [key: string]: any; ids?: BaseKey[]; }":
     "{ [key]: any; ids?: BaseKey[]; }",
   "BaseKey | BaseKey[]":
-    "[BaseKey](/docs/core/interface-references/#basekey) | [BaseKey[]](/docs/core/interface-references/#basekey)",
-  BaseKey: "[BaseKey](/docs/core/interface-references/#basekey)",
+    "[BaseKey](/core/docs/core/interface-references/#basekey) | [BaseKey[]](/core/docs/core/interface-references/#basekey)",
+  BaseKey: "[BaseKey](/core/docs/core/interface-references/#basekey)",
   MetaDataQuery:
-    "[MetaDataQuery](/docs/core/interface-references/#metadataquery)",
-  CrudFilters: "[CrudFilters](/docs/core/interface-references/#crudfilters)",
-  CrudSorting: "[CrudSorting](/docs/core/interface-references/#crudsorting)",
+    "[MetaDataQuery](/core/docs/core/interface-references/#metadataquery)",
+  CrudFilters:
+    "[CrudFilters](/core/docs/core/interface-references/#crudfilters)",
+  CrudSorting:
+    "[CrudSorting](/core/docs/core/interface-references/#crudsorting)",
 };
 
 const spinner = ora("Generating Refine declarations...");

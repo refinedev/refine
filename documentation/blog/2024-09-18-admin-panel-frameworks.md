@@ -107,7 +107,7 @@ We see that Refine.js came well-stocked to the brim. They have core built-in Rea
 
 There are tons of examples of how to build different applications with features in Refine.js. For example, there are examples on building Access Control, Audit log, Calendar, Multi-tenancy etc.
 
-We can create a Refine project via [CLI or Browser-based scaffolder](https://refine.dev/docs/getting-started/quickstart/). It is a great way to get started with Refine.js.
+We can create a Refine project via [CLI or Browser-based scaffolder](https://refine.dev/core/docs/getting-started/quickstart/). It is a great way to get started with Refine.js.
 
 **Integration and Compatibility**
 Refine.js powerhouses a ton of features and components that we can use to build applications. It also allows us to integrate with other tools and services. We can integrate

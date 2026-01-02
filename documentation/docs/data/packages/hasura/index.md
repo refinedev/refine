@@ -11,8 +11,8 @@ Refine provides a data provider for APIs powered with [Hasura](https://hasura.io
 - This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
 - The [`graphql-ws@5`](https://the-guild.dev/graphql/ws) package, used to handle the realtime subscriptions is included in the package.
 - You can also use [`graphql-tag`](https://www.npmjs.com/package/graphql-tag) to write your queries and mutations.
-- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
-- To learn more about realtime features of Refine, check out the [Realtime](/docs/guides-concepts/realtime) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
+- To learn more about realtime features of Refine, check out the [Realtime](/core/docs/guides-concepts/realtime) guide.
 
 :::
 

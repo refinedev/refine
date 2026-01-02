@@ -1,10 +1,4 @@
 import Head from "@docusaurus/Head";
-import React, { type SVGProps } from "react";
-import { CommonHeader } from "@site/src/refine-theme/common-header";
-import { CommonLayout } from "@site/src/refine-theme/common-layout";
-import { LandingFooter } from "@site/src/refine-theme/landing-footer";
-import clsx from "clsx";
-import { TemplatesHero } from "@site/src/refine-theme/templates-hero";
 import {
   Antd,
   Appwrite,
@@ -18,14 +12,20 @@ import {
   Strapi,
   Supabase,
 } from "@site/src/assets/integration-icons";
-import { TemplatesList } from "@site/src/refine-theme/templates-list";
+import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
+import { CommonHeader } from "@site/src/refine-theme/common-header";
+import { CommonLayout } from "@site/src/refine-theme/common-layout";
+import { LandingFooter } from "@site/src/refine-theme/landing-footer";
+import { TemplatesFilterButton } from "@site/src/refine-theme/templates-filter-button";
 import {
   type Filters,
   TemplatesFilters,
 } from "@site/src/refine-theme/templates-filters";
-import { TemplatesFilterButton } from "@site/src/refine-theme/templates-filter-button";
-import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
+import { TemplatesHero } from "@site/src/refine-theme/templates-hero";
+import { TemplatesList } from "@site/src/refine-theme/templates-list";
 import { TemplateEdition } from "@site/src/types/integrations";
+import clsx from "clsx";
+import React, { type SVGProps } from "react";
 
 const Templates: React.FC = () => {
   const title = "Refine | Open-source Retool for Enterprise";
@@ -322,7 +322,7 @@ const dataTemplates: {
   integrations: (Integration["uiFrameworks"] | Integration["backends"])[];
 }[] = [
   {
-    to: "/templates/crm-application",
+    to: "/core/templates/crm-application",
     title: "CRM Application",
     description:
       "A comprehensive CRM app built using Refine, Ant Design, and GraphQL. It includes authentication, a dashboard, and over 10 CRUD interfaces, ranging from charts and sales kanban boards to user administration.",
@@ -345,7 +345,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/hr-application",
+    to: "/core/templates/hr-application",
     title: "HR Management App Example",
     description:
       "HR management app example built with Refine, demonstrating how quickly enterprise-level tools can be developed. This template features leave management, employee directory, and expense tracking.",
@@ -368,7 +368,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/multitenancy-strapi",
+    to: "/core/templates/multitenancy-strapi",
     title: "Multitenancy App with Strapi",
     description:
       "Implementing multitenancy architecture in Refine applications.",
@@ -391,7 +391,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/next-js-tailwind",
+    to: "/core/templates/next-js-tailwind",
     title: "E-Commerce Application Storefront",
     description:
       "A Headless storefront example built with Refine and Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
@@ -414,7 +414,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/react-admin-panel",
+    to: "/core/templates/react-admin-panel",
     title: "B2B Admin Panel with Material UI",
     description:
       "A comprehensive Admin panel template built using Refine and Material UI demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
@@ -437,7 +437,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/react-admin-panel-ant-design",
+    to: "/core/templates/react-admin-panel-ant-design",
     title: "B2B Internal tool with Ant Design",
     description:
       "A comprehensive Admin panel template built using Refine and Ant design demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
@@ -460,7 +460,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/supabase-crud-app",
+    to: "/core/templates/supabase-crud-app",
     title: "Pixels",
     description:
       "It is a funny app built with Refine and Supabase, along with a Realtime feature.",
@@ -483,7 +483,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/react-pdf-invoice-generator",
+    to: "/core/templates/react-pdf-invoice-generator",
     title: "Invoice Generator - Internal Tool",
     description:
       "The Internal Tool template features a PDF Invoice Generator along with CRUD functionalities.",
@@ -506,7 +506,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/win-95-style-admin-panel",
+    to: "/core/templates/win-95-style-admin-panel",
     title: "Win95 Style Admin Panel",
     description:
       "With the headless architecture of Refine, you have the flexibility to implement any custom design!",
@@ -529,7 +529,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/react-crud-app",
+    to: "/core/templates/react-crud-app",
     title: "Realworld Example",
     description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!`,
     image:
@@ -551,7 +551,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/ant-design-template",
+    to: "/core/templates/ant-design-template",
     title: "Generic Internal Tool Template with Ant Design",
     description:
       "Complete internal tool template built with Ant Design. Features authentication and CRUD screens.",
@@ -574,7 +574,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/material-ui-template",
+    to: "/core/templates/material-ui-template",
     title: "Generic Internal Tool Template with Material UI",
     description:
       "Complete internal tool template built with Material UI. Features authentication and CRUD screens.",
@@ -597,7 +597,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/chakra-ui-template",
+    to: "/core/templates/chakra-ui-template",
     title: "Generic Internal Tool Template with Chakra UI",
     description:
       "Complete internal tool template built with Chakra UI. Features authentication and CRUD screens.",
@@ -620,7 +620,7 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/mantine-template",
+    to: "/core/templates/mantine-template",
     title: "Generic Internal Tool Template with Mantine",
     description:
       "Complete internal tool template built with Mantine. Features authentication and CRUD screens.",

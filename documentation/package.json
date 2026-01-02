@@ -40,6 +40,7 @@
     "@docusaurus/theme-classic": "2.4.0",
     "@docusaurus/theme-common": "2.4.0",
     "@docusaurus/theme-search-algolia": "2.4.0",
+    "@docusaurus/types": "2",
     "@docusaurus/utils-common": "2.4.0",
     "@floating-ui/react": "^0.26.9",
     "@headlessui/react": "^1.7.15",

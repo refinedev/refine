@@ -52,7 +52,7 @@ const authProvider: AuthProvider = {
 };
 ```
 
-> For more information about data hooks, refer to the [Data Provider documentation&#8594](/docs/data/data-provider#supported-hooks)
+> For more information about data hooks, refer to the [Data Provider documentation&#8594](/core/docs/data/data-provider#supported-hooks)
 
 ## Usage
 
@@ -70,7 +70,7 @@ fetch("http://example.com/payment")
   .catch((error) => onError(error));
 ```
 
-We have a logic in [`authProvider`](/docs/authentication/auth-provider)'s `onError` method like below.
+We have a logic in [`authProvider`](/core/docs/authentication/auth-provider)'s `onError` method like below.
 
 ```tsx
 import type { AuthProvider } from "@refinedev/core";
@@ -93,5 +93,5 @@ const authProvider: AuthProvider = {
 };
 ```
 
-[on-error]: /docs/authentication/auth-provider#onerror-
-[auth-provider]: /docs/authentication/auth-provider
+[on-error]: /core/docs/authentication/auth-provider#onerror-
+[auth-provider]: /core/docs/authentication/auth-provider

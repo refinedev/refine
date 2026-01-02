@@ -67,7 +67,7 @@ There are a lot of benefits to using **Refine** in your applications, to name a 
 - Backend agnostic, you can connect with any backend technologies
 - Authentication, state management, data fetching routing, and more are prioritized.
 
-Visit [**Refine**'s documentation](https://refine.dev/docs/) to learn more about the framework.
+Visit [**Refine**'s documentation](https://refine.dev/core/docs/) to learn more about the framework.
 
 ## Project setup
 
@@ -305,9 +305,9 @@ That's it for the project setup, next we'll integrate React Hook Forms into our 
 
 But before we start implementing React Hook Form in our app, we need to first understand its fundamentals.
 
-The library provides a set of useful components and hooks, such as the controller component and the [`useForm`](/docs/packages/list-of-packages) hook, that let us register our form component into the hook, thus making its values available for both validation and submission.
+The library provides a set of useful components and hooks, such as the controller component and the [`useForm`](/core/docs/packages/list-of-packages) hook, that let us register our form component into the hook, thus making its values available for both validation and submission.
 
-The library performs most of these functionalities using the methods exposed by the [`useForm`](/docs/packages/list-of-packages) hook. Here are some of the available methods:
+The library performs most of these functionalities using the methods exposed by the [`useForm`](/core/docs/packages/list-of-packages) hook. Here are some of the available methods:
 
 - `register`: This method allows you to register an input for validation
 

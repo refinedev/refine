@@ -166,7 +166,7 @@ const generateFilter = (filters?: CrudFilters) => {
     filters.map((filter) => {
       if (filter.operator === "or" || filter.operator === "and") {
         throw new Error(
-          `[@refinedev/simple-rest]: /docs/data/data-provider#creating-a-data-provider`,
+          `[@refinedev/simple-rest]: /core/docs/data/data-provider#creating-a-data-provider`,
         );
       }
 

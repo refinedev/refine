@@ -1,11 +1,11 @@
 ---
 title: useCreateMany
-source: packages/core/src/hooks/data/useCreateMany.ts
+source: packages/core/src/data/hooks/useCreateMany.ts
 ---
 
 `useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine />`.
+It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider) which is passed to `<Refine />`.
 
 If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. This is not recommended, since it will make requests one by one for each record.
 
@@ -43,7 +43,7 @@ console.log(mutation.error); // mutation error
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
+> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider).
 
 When the `useCreateMany` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. It is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -55,7 +55,7 @@ When the `useCreateMany` mutation runs successfully, it will invalidate the foll
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/docs/audit-logs/audit-log-provider).
+> This feature is only available if you use a [Audit Log Provider](/core/docs/audit-logs/audit-log-provider).
 
 When the `useCreateMany` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. It is useful when you want to log the changes to the database.
 
@@ -137,11 +137,11 @@ mutate({
 });
 ```
 
-> For more information, refer to the [creating a data provider tutorial &#8594](/docs/data/data-provider)
+> For more information, refer to the [creating a data provider tutorial &#8594](/core/docs/data/data-provider)
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### values <PropTag required />
 
@@ -166,7 +166,7 @@ mutate({
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreateMany` calls the `open` function from `NotificationProvider`:
 
@@ -186,7 +186,7 @@ mutate({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreateMany` calls the `open` function from `NotificationProvider`
 
@@ -250,7 +250,7 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### dataProviderName
 
@@ -300,23 +300,23 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                      | Description                                                                                        | Type                                                                                   | Default                                                              |
-| ----------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| resource <PropTag asterisk /> | Resource name for API data interactions                                                            | `string`                                                                               |                                                                      |
-| values <PropTag asterisk />   | Values for mutation function                                                                       | `TVariables[]`                                                                         | [{}]                                                                 |
-| successNotification           | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "Successfully created `resource`s"                                   |
-| errorNotification             | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
-| meta                          | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           | {}                                                                   |
-| dataProviderName              | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               | `default`                                                            |
-| invalidates                   | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                | `["list", "many"]`                                                   |
+| Property                      | Description                                                                                        | Type                                                                                        | Default                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| resource <PropTag asterisk /> | Resource name for API data interactions                                                            | `string`                                                                                    |                                                                      |
+| values <PropTag asterisk />   | Values for mutation function                                                                       | `TVariables[]`                                                                              | [{}]                                                                 |
+| successNotification           | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/core/docs/core/interface-references#successerrornotification) | "Successfully created `resource`s"                                   |
+| errorNotification             | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/core/docs/core/interface-references#successerrornotification) | "There was an error creating `resource` (status code: `statusCode`)" |
+| meta                          | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/core/docs/core/interface-references#metaquery)                           | {}                                                                   |
+| dataProviderName              | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                    | `default`                                                            |
+| invalidates                   | You can use it to manage the invalidations that will occur at the end of the mutation.             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                                     | `["list", "many"]`                                                   |
 
 ### Type Parameters
 
-| Property   | Description                                                                                     | Type                                                       | Default                                                    |
-| ---------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/docs/core/interface-references#httperror)       | [`HttpError`](/docs/core/interface-references#httperror)   | [`HttpError`](/docs/core/interface-references#httperror)   |
-| TVariables | Values for mutation function                                                                    | `{}`                                                       | `{}`                                                       |
+| Property   | Description                                                                                          | Type                                                            | Default                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/core/docs/core/interface-references#httperror)       | [`HttpError`](/core/docs/core/interface-references#httperror)   | [`HttpError`](/core/docs/core/interface-references#httperror)   |
+| TVariables | Values for mutation function                                                                         | `{}`                                                            | `{}`                                                            |
 
 ### Return value
 

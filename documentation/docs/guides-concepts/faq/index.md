@@ -7,7 +7,7 @@ sidebar_label: FAQ
 
 You may need to modify the form data before it is sent to the API for various reasons. For example, you may want to add a field to the form data or change the value of a field before submitting it to the API. This can be achieved easily by Refine's `useForm` implementations.
 
-Check out the [Modifying Data Before Submission section in Forms guide](/docs/guides-concepts/forms/#modifying-data-before-submission) to learn how to achieve this.
+Check out the [Modifying Data Before Submission section in Forms guide](/core/docs/guides-concepts/forms/#modifying-data-before-submission) to learn how to achieve this.
 
 ## How can I refetch data?
 
@@ -69,7 +69,7 @@ invalidate({
 });
 ```
 
-[Refer to the Refine useInvalidate hook documentation for more information. →](/docs/core/hooks/data/use-invalidate)
+[Refer to the Refine useInvalidate hook documentation for more information. →](/core/docs/data/hooks/use-invalidate)
 
 </TabItem>
 </Tabs>
@@ -290,11 +290,11 @@ The third way is to use the `swizzle` command.
 
 You can use the command to copy the default `Sider` component to your project. This will allow you to customize the sider as you want.
 
-[Refer to the swizzle section of Development guide. &#8594](/docs/guides-concepts/development/#using-swizzle)
+[Refer to the swizzle section of Development guide. &#8594](/core/docs/guides-concepts/development/#using-swizzle)
 
 ## How to hide items from the Sider component?
 
-Refine's [`useMenu`](/docs/core/hooks/utilities/use-menu/) hook and `<Sider />` components use the `resources` property of the `<Refine>` component to render the navigation links. If a resource has a `list` property, it will be rendered as a navigation link in the sider. To hide a resource from the menu, you can use the `meta.hide` property of the resource.
+Refine's [`useMenu`](/core/docs/core/hooks/utilities/use-menu/) hook and `<Sider />` components use the `resources` property of the `<Refine>` component to render the navigation links. If a resource has a `list` property, it will be rendered as a navigation link in the sider. To hide a resource from the menu, you can use the `meta.hide` property of the resource.
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -353,11 +353,11 @@ By following these steps and updating to the latest module versions, you should 
 
 Until `@refinedev/core`'s version `4.28.2`, Refine had the `@tanstack/react-query-devtools` package available by default. However, this package has been removed from the core package and is no longer available by default.
 
-We're recommending [`@refinedev/devtools`](/docs/guides-concepts/development/#using-devtools) as an alternative to `@tanstack/react-query-devtools`. `@refinedev/devtools` is tailored for Refine and provides more detailed information about the queries and mutations with its monitoring panel and much more.
+We're recommending [`@refinedev/devtools`](/core/docs/guides-concepts/development/#using-devtools) as an alternative to `@tanstack/react-query-devtools`. `@refinedev/devtools` is tailored for Refine and provides more detailed information about the queries and mutations with its monitoring panel and much more.
 
 ## How do invalidation works in queries?
 
-Refine invalidates and refetches the related queries after a successful mutation. To have a better understanding of how invalidation works in Refine, check out the [State Management section of General Concepts guide.](/docs/guides-concepts/general-concepts/#state-management)
+Refine invalidates and refetches the related queries after a successful mutation. To have a better understanding of how invalidation works in Refine, check out the [State Management section of General Concepts guide.](/core/docs/guides-concepts/general-concepts/#state-management)
 
 ## How to handle filters and sorters when using client side pagination?
 
@@ -365,9 +365,9 @@ When you're implementing client side pagination with the `pagination.mode` set t
 
 ## How to handle server side validation errors?
 
-When working with forms and mutations, using only client side validation might not be enough. You may also need to validate the data on the server side. Refine provides an interface [`HttpError`](/docs/core/interface-references/#httperror) to propagate the server side validation errors to the form values. You can use this interface to handle server side validation errors.
+When working with forms and mutations, using only client side validation might not be enough. You may also need to validate the data on the server side. Refine provides an interface [`HttpError`](/core/docs/core/interface-references/#httperror) to propagate the server side validation errors to the form values. You can use this interface to handle server side validation errors.
 
-To learn more about server side validation and see an example, check out the [Server Side Validation section of the Forms guide.](/docs/guides-concepts/forms/#server-side-validation-)
+To learn more about server side validation and see an example, check out the [Server Side Validation section of the Forms guide.](/core/docs/guides-concepts/forms/#server-side-validation-)
 
 ## How to work offline in local environment?
 
@@ -406,11 +406,11 @@ Still, there two common errors that you may encounter when working with Refine i
 
 - `401 (Unauthorized) from :5001/api/.auth/sessions/whoami` - This error is related with the Refine's Devtools and logged if there are no active authentication sessions in Devtools. You can get rid of this error by logging in to the Devtools.
 
-- Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behind Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/docs/packages/inferencer/#how-the-fields-are-inferred).
+- Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behind Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/core/docs/packages/inferencer/#how-the-fields-are-inferred).
 
 If you have any other network errors thrown by Refine and have no relation with the above mentioned errors or not caused by your project's logic, please reach out to us via [GitHub Issues](https://github.com/refinedev/refine/issues) or our [Discord Community](https://discord.gg/refine).
 
-[use-form-core]: /docs/core/hooks/use-form/
-[use-form-react-hook-form]: /docs/packages/list-of-packages
-[use-form-antd]: /docs/ui-integrations/ant-design/hooks/use-form
-[edit-mui]: /docs/packages/list-of-packages
+[use-form-core]: /core/docs/core/hooks/use-form/
+[use-form-react-hook-form]: /core/docs/packages/list-of-packages
+[use-form-antd]: /core/docs/ui-integrations/ant-design/hooks/use-form
+[edit-mui]: /core/docs/packages/list-of-packages

@@ -35,7 +35,7 @@ It uses Mantine's [`<Button>`][button] component and native html [`<input>`][inp
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -226,6 +226,6 @@ render(
 
 <PropsTable module="@refinedev/mantine/ImportButton" />
 
-[useimport]: /docs/core/hooks/utilities/use-import
+[useimport]: /core/docs/core/hooks/utilities/use-import
 [button]: https://mantine.dev/core/button
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

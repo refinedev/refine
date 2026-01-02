@@ -73,13 +73,12 @@ import { MUISandpack } from './example/sandpack';
 
 **Refine** has a very friendly community and we are always happy to help you get started:
 
-- [🌟 Apply for the Priority support program!](https://s.refine.dev/enterprise) You can apply to priority support program and receive assistance from the Refine **core** team in your **private** channel.
 - [Join the Discord community!](https://discord.gg/refine) It is the easiest way to get help and ask questions to the community.
 - [Join the GitHub Discussions](https://github.com/refinedev/refine/discussions) to ask anything about the Refine project or give feedback; we would love to hear your thoughts!
-- [Learn how to contribute to the Refine!](/docs/guides-concepts/contributing/)
+- [Learn how to contribute to the Refine!](/core/docs/guides-concepts/contributing/)
 
 ## Next Steps
 
-👉 Continue with the [Quickstart guide](/docs/getting-started/quickstart/) to setup and run your first **Refine** project.
+👉 Continue with the [Quickstart guide](/core/docs/getting-started/quickstart/) to setup and run your first **Refine** project.
 
-👉 Jump directly to the [Tutorial](/tutorial) to learn Refine by building a full-blown CRUD application.
+👉 Jump directly to the [Tutorial](/core/tutorial) to learn Refine by building a full-blown CRUD application.

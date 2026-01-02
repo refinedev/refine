@@ -106,7 +106,7 @@ const SampleEdit = () => {
   </TabItem>
 </Tabs>
 
-To learn more about `@refinedev/inferencer` package, please check out [Docs](/docs/packages/list-of-packages)
+To learn more about `@refinedev/inferencer` package, please check out [Docs](/core/docs/packages/list-of-packages)
 
 ## Views
 

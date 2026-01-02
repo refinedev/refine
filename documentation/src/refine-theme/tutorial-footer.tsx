@@ -1,7 +1,7 @@
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import { socialLinks } from "./footer-data";
-import Link from "@docusaurus/Link";
 
 export const TutorialFooter = () => {
   return (
@@ -42,7 +42,7 @@ export const TutorialFooter = () => {
           )}
         >
           <Link
-            to="/"
+            to="/core"
             className={clsx(
               "hover:no-underline",
               "hover:text-refine-link-light",
@@ -52,7 +52,7 @@ export const TutorialFooter = () => {
             Refine Home
           </Link>
           <Link
-            to="/docs"
+            to="/core/docs"
             className={clsx(
               "hover:no-underline",
               "hover:text-refine-link-light",

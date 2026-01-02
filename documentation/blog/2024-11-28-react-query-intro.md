@@ -344,7 +344,7 @@ Following the steps above illustrates how best to use the `useMutation` hook and
 
 ## React Query and Frameworks
 
-React-based framework like [Refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. Refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/) and [useList](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
+React-based framework like [Refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. Refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/core/docs/api-reference/core/data/hooks/useUpdate/) and [useList](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
 
 The `useUpdate` hook in Refine is an extended version of the `useMutation` hook from React Query. This hook is used when you want to update a record. It uses the `update` method as the mutation function from the `dataProvider` that is passed to **Refine**.
 

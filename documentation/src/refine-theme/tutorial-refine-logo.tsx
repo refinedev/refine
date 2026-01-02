@@ -11,7 +11,7 @@ export const TutorialRefineLogo = ({ className }: Props) => {
   return (
     <div className={clsx("flex", "items-center justify-center", "gap-4")}>
       <Link
-        to="/"
+        to="/core"
         className={clsx(
           "no-underline",
           "flex",

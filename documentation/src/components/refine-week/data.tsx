@@ -1,8 +1,8 @@
-import React from "react";
 import {
   StrapiWithText,
   SupabaseWithText,
 } from "@site/src/assets/integration-icons";
+import React from "react";
 import { FooterDiscordIcon as DiscordIcon } from "../../refine-theme/icons/footer-discord";
 import { FooterGithubIcon as GithubIcon } from "../../refine-theme/icons/footer-github";
 import { FooterRedditIcon as RedditIcon } from "../../refine-theme/icons/footer-reddit";
@@ -15,13 +15,13 @@ import { FooterTwitterIcon as TwitterIcon } from "../../refine-theme/icons/foote
 
 const hashtags = "opensource";
 const supabaseShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-  "https://refine.dev/week-of-refine-supabase/",
+  "https://refine.dev/core/week-of-refine-supabase/",
 )}&text=${encodeURIComponent(
   "📚 RefineWeek ft Supabase: A week-long journey of building a complete CRUD app with @refine_dev and @supabase!\n\n",
 )}&hashtags=${hashtags}`;
 
 const strapiShareTweetURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-  "https://refine.dev/week-of-refine-strapi/",
+  "https://refine.dev/core/week-of-refine-strapi/",
 )}&text=${encodeURIComponent(
   "📚 RefineWeek ft Strapi: A week-long journey of building a complete CRUD app with @refine_dev and @strapijs!\n\n",
 )}&hashtags=${hashtags}`;

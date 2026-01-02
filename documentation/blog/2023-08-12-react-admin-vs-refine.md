@@ -188,7 +188,7 @@ These small features lead to a huge difference in the development experience, yo
 
 Check out the following example of multitenant app built with Refine:
 
-- [Multitenancy with Refine + Strapi](/docs/guides-concepts/multitenancy)
+- [Multitenancy with Refine + Strapi](/core/docs/guides-concepts/multitenancy)
 
 ## Differences in supported UI frameworks between Refine and react-admin,
 
@@ -246,17 +246,17 @@ While both react-admin and Refine offer access control features, Refine takes it
 
 6. **Multitenancy Support:**
 
-Refine provides built-in support for [multitenancy](/docs/guides-concepts/multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
+Refine provides built-in support for [multitenancy](/core/docs/guides-concepts/multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
 
 Refer to [this](#multitenancy) section for details.
 
 7. **KBAR - Command Palette:**
 
-Refine comes with a powerful feature called [KBAR](https://refine.dev/docs/packages/documentation/command-palette/), which is a command palette that enables users to execute various actions using keyboard shortcuts. With KBAR, users can quickly search for and execute commands, significantly enhancing the overall user experience and productivity.
+Refine comes with a powerful feature called [KBAR](https://refine.dev/core/docs/packages/documentation/command-palette/), which is a command palette that enables users to execute various actions using keyboard shortcuts. With KBAR, users can quickly search for and execute commands, significantly enhancing the overall user experience and productivity.
 
 8. **Notification Provider:**
 
-In Refine, developers have access to a [Notification Provider](https://refine.dev/docs/api-reference/core/providers/notification-provider) that allows them to send notifications to users within the application. This feature is essential for providing timely updates, alerts, and messages, enhancing communication and user engagement.
+In Refine, developers have access to a [Notification Provider](https://refine.dev/core/docs/api-reference/core/providers/notification-provider) that allows them to send notifications to users within the application. This feature is essential for providing timely updates, alerts, and messages, enhancing communication and user engagement.
 
 ## Common Features: Free in Refine, Requires enterprise package in react-admin
 
@@ -520,7 +520,7 @@ const MyComponent = () => {
 
 React-admin provides similar sorting and filtering features but lacks the customization and composability that Refine provides.
 
-Check out the [Sorting and Filtering](https://refine.dev/docs/tutorial/adding-crud-pages/mui/adding-sort-and-filters/) guide for more information on Refine's sorting and filtering features.
+Check out the [Sorting and Filtering](https://refine.dev/core/docs/tutorial/adding-crud-pages/mui/adding-sort-and-filters/) guide for more information on Refine's sorting and filtering features.
 
 ### Realtime
 
@@ -528,7 +528,7 @@ Refine provides a realtime feature that allows you to subscribe to the changes i
 
 Similar to Refine, react-admin also provides a realtime feature behind a paywall of their enterprise edition. However, it still lacks the customization and composability that Refine provides.
 
-Here's an example of using [Ably](https://refine.dev/docs/examples/live-provider/ably/) with Refine:
+Here's an example of using [Ably](https://refine.dev/core/docs/examples/live-provider/ably/) with Refine:
 
 ```tsx
 // highlight-next-line
@@ -551,7 +551,7 @@ const App = () => {
 };
 ```
 
-Check out the [Realtime](https://refine.dev/docs/advanced-tutorials/real-time/) documentation for more information about Refine's realtime features.
+Check out the [Realtime](https://refine.dev/core/docs/advanced-tutorials/real-time/) documentation for more information about Refine's realtime features.
 
 ### Undoable mode
 
@@ -590,7 +590,7 @@ const MyComponent = () => {
 };
 ```
 
-Check out the [Mutation Modes](https://refine.dev/docs/advanced-tutorials/mutation-mode/) documentation for more information about Refine's mutation modes.
+Check out the [Mutation Modes](https://refine.dev/core/docs/advanced-tutorials/mutation-mode/) documentation for more information about Refine's mutation modes.
 
 ### GraphQL
 
@@ -668,7 +668,7 @@ const MyComponent = () => {
 };
 ```
 
-Check out the [GraphQL](https://refine.dev/docs/packages/documentation/data-providers/graphql/) documentation for more information about Refine's GraphQL implementation.
+Check out the [GraphQL](https://refine.dev/core/docs/packages/documentation/data-providers/graphql/) documentation for more information about Refine's GraphQL implementation.
 
 ### Forms
 
@@ -712,7 +712,7 @@ export const MyComponent = () => {
 
 In React-admin, you'll be able to export the data to a CSV file but there's no built-in way to import CSV files.
 
-Check out the [CSV Import](https://refine.dev/docs/advanced-tutorials/import-export/csv-import/) documentation for more information about Refine's import/export features.
+Check out the [CSV Import & Export](/core/docs/guides-concepts/import-export) documentation for more information about Refine's import/export features.
 
 ### Access Control
 
@@ -763,7 +763,7 @@ And here's an example of using the `CanAccess` component:
 
 React-admin's access control is coupled with the `authProvider` which may not always be the case.
 
-Check out the [Access Control](https://refine.dev/docs/advanced-tutorials/access-control/) documentation for more information about Refine's access control and authorization features.
+Check out the [Access Control](https://refine.dev/core/docs/advanced-tutorials/access-control/) documentation for more information about Refine's access control and authorization features.
 
 ### Server Side Validation
 
@@ -789,7 +789,7 @@ This structure will let you show errors in the form fields with out of the box i
 
 React-admin also provides a similar feature but it does not have the i18n support out of the box.
 
-Check out the [Server Side Validation](https://refine.dev/docs/guides-concepts/forms/#server-side-validation-) documentation for more information about Refine's server side validation features.
+Check out the [Server Side Validation](https://refine.dev/core/docs/guides-concepts/forms/#server-side-validation-) documentation for more information about Refine's server side validation features.
 
 ### Auto Save
 
@@ -826,4 +826,4 @@ The `<AutoSaveIndicator>` components will give you a visual feedback about the a
 
 React-admin offers this feature in its enterprise package but it does not have the styling and modification options that Refine provides. Furthermore, this feature is available for free in Refine, while it requires the purchase of an enterprise package in React-admin.
 
-Check out the [Auto Save](https://refine.dev/docs/api-reference/core/hooks/useForm/#autosave)
+Check out the [Auto Save](https://refine.dev/core/docs/api-reference/core/hooks/useForm/#autosave)

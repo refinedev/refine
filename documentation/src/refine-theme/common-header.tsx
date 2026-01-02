@@ -8,13 +8,13 @@ import { HamburgerIcon } from "./icons/hamburger";
 import { openFigma } from "../utils/open-figma";
 import { TopAnnouncement } from "./top-announcement";
 
-import { LandingGithubStarButton } from "./landing-github-star-button";
-import SearchBar from "../theme/SearchBar";
-import { RefineCoreLogoIcon } from "./icons/refine-logo";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
-import { CommonThemeToggle } from "./common-theme-toggle";
-import { RefineLogoXmas } from "./icons/refine-logo-xmas";
+import SearchBar from "../theme/SearchBar";
 import { CommonGithubStarButton } from "./common-github-star-button";
+import { CommonThemeToggle } from "./common-theme-toggle";
+import { RefineCoreLogoIcon } from "./icons/refine-logo";
+import { RefineLogoXmas } from "./icons/refine-logo-xmas";
+import { LandingGithubStarButton } from "./landing-github-star-button";
 
 type Props = {
   hasSticky?: boolean;
@@ -88,7 +88,7 @@ export const CommonHeader = ({
             )}
           >
             <div className={clsx("w-[152px]", "landing-lg:w-[204px]")}>
-              <Link to="/" onContextMenu={openFigma}>
+              <Link to="/core" onContextMenu={openFigma}>
                 <RefineLogoXmas
                   className={clsx(
                     !showThemeToggle && "!text-white",
@@ -185,19 +185,19 @@ export const CommonHeader = ({
 const LINKS = [
   {
     label: "Documentation",
-    to: "/docs/",
+    to: "/core/docs/",
   },
   {
     label: "Tutorial",
-    to: "/tutorial/essentials/intro/",
+    to: "/core/tutorial/essentials/intro/",
   },
   {
     label: "Templates",
-    to: "/templates/",
+    to: "/core/templates/",
   },
   {
     label: "Integrations",
-    to: "/integrations/",
+    to: "/core/integrations/",
   },
   {
     label: "Blog",
@@ -207,7 +207,9 @@ const LINKS = [
 
 const NavLinksDesktop = ({
   showThemeToggle,
-}: { showThemeToggle?: boolean }) => {
+}: {
+  showThemeToggle?: boolean;
+}) => {
   return (
     <nav
       className={clsx(
@@ -310,7 +312,7 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
           "border-zinc-700",
         )}
       >
-        <Link to="/" onClick={onClose}>
+        <Link to="/core" onClick={onClose}>
           <RefineCoreLogoIcon className={clsx("!text-white")} />
         </Link>
         <button

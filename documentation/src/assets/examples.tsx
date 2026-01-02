@@ -113,7 +113,7 @@ export const EXAMPLES: Examples = [
     buttons: [
       {
         text: "Blog",
-        link: "https://refine.dev/week-of-refine-strapi/",
+        link: "https://refine.dev/core/week-of-refine-strapi/",
         icon: (props) => <PageIcon {...props} />,
       },
       {
@@ -134,7 +134,7 @@ export const EXAMPLES: Examples = [
     buttons: [
       {
         text: "Blog",
-        link: "https://refine.dev/week-of-refine-supabase/",
+        link: "https://refine.dev/core/week-of-refine-supabase/",
         icon: (props) => <PageIcon {...props} />,
       },
       {

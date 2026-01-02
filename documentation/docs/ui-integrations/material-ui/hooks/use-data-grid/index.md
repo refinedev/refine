@@ -7,7 +7,7 @@ import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-previe
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/docs/data/hooks/use-list) for the fetch.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/data/hooks/use-list) for the fetch.
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
@@ -263,7 +263,7 @@ const MyComponent = () => {
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -271,7 +271,7 @@ When the `useDataGrid` hook is mounted, it will call the `subscribe` method from
 
 The `useDataGrid` hook extends the editing capabilities provided by the [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component from MUI. To enable column editing, set `editable: "true"` on specific column definitions.
 
-`useDataGrid` leverages [`useUpdate`](https://refine.dev/docs/data/hooks/use-update/) for direct integration with update operations. This change enhances performance and simplifies the interaction model by directly using the update mechanisms provided by Refine.
+`useDataGrid` leverages [`useUpdate`](https://refine.dev/core/docs/data/hooks/use-update/) for direct integration with update operations. This change enhances performance and simplifies the interaction model by directly using the update mechanisms provided by Refine.
 
 Here is how you can define columns to be editable:
 
@@ -358,7 +358,7 @@ useDataGrid({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### dataProviderName
 
@@ -414,7 +414,7 @@ useDataGrid({
 
 `sorters.initial` sets the initial value of the sorter. The `initial` is not permanent. It will be cleared when the user changes the sorter. If you want to set a permanent value, use the `sorters.permanent` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/core/docs/core/interface-references#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -433,7 +433,7 @@ useDataGrid({
 
 `sorters.permanent` sets the permanent value of the sorter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the sorter. If you want to set a temporary value, use the `sorters.initial` prop.
 
-> For more information, refer to the [`CrudSorting` interface documentation &#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface documentation &#8594](/core/docs/core/interface-references#crudsorting)
 
 ```tsx
 useDataGrid({
@@ -467,7 +467,7 @@ useDataGrid({
 
 Sets the initial value of the filter. The `initial` is not permanent. It will be cleared when the user changes the filter. If you want to set a permanent value, use the `filters.permanent` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/core/docs/core/interface-references#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -487,7 +487,7 @@ useDataGrid({
 
 Sets the permanent value of the filter. The `permanent` is permanent and unchangeable. It will not be cleared when the user changes the filter. If you want to set a temporary value, use the `filters.initial` prop.
 
-> For more information, refer to the [`CrudFilters` interface documentation &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface documentation &#8594](/core/docs/core/interface-references#crudfilters)
 
 ```tsx
 useDataGrid({
@@ -548,7 +548,7 @@ useDataGrid({
 
 ### queryOptions
 
-`useDataGrid` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/core/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({
@@ -565,7 +565,7 @@ useDataGrid({
 - Customizing the data provider methods for specific use cases.
 - Generating GraphQL queries using plain JavaScript Objects (JSON).
 
-> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation for more information &#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
@@ -606,7 +606,7 @@ const myDataProvider = {
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useDataGrid` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -624,7 +624,7 @@ useDataGrid({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useDataGrid` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -642,11 +642,11 @@ useDataGrid({
 
 ### liveMode
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
-For more information, please refer to the [Live / Realtime documentation](/docs/realtime/live-provider#livemode)
+For more information, please refer to the [Live / Realtime documentation](/core/docs/realtime/live-provider#livemode)
 
 ```tsx
 useDataGrid({
@@ -656,7 +656,7 @@ useDataGrid({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -670,9 +670,9 @@ useDataGrid({
 
 ### liveParams
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
 ### overtimeOptions
 
@@ -775,11 +775,11 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 
 #### rows
 
-Contains the data to be displayed in the data grid. Values fetched with [`useList`](/docs/data/hooks/use-list) hook.
+Contains the data to be displayed in the data grid. Values fetched with [`useList`](/core/docs/data/hooks/use-list) hook.
 
 #### rowCount
 
-Total number of data. Value fetched with [`useList`](/docs/data/hooks/use-list) hook.
+Total number of data. Value fetched with [`useList`](/core/docs/data/hooks/use-list) hook.
 
 #### loading
 
@@ -791,7 +791,7 @@ Returns pagination configuration values(pageSize, currentPage, setCurrentPage, e
 
 ### tableQuery
 
-Returned values from [`useList`](/docs/data/hooks/use-list) hook.
+Returned values from [`useList`](/core/docs/data/hooks/use-list) hook.
 
 ### sorters
 
@@ -867,7 +867,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 
 ### How can I handle relational data?
 
-You can use [`useSelect`](/docs/data/hooks/use-select/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
+You can use [`useSelect`](/core/docs/data/hooks/use-select/) hook to fetch relational data and filter [`<DataGrid>`][data-grid] by categories.
 
 <RelationalPreview/>
 
@@ -949,13 +949,13 @@ useDataGrid({
 
 <CodeSandboxExample path="table-material-ui-use-data-grid" />
 
-[use-table-core]: /docs/data/hooks/use-table
-[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[crudsorting]: /docs/core/interface-references#crudsorting
-[crudfilters]: /docs/core/interface-references#crudfilters
+[use-table-core]: /core/docs/data/hooks/use-table
+[syncwithlocationparams]: /core/docs/core/interface-references#syncwithlocationparams
+[crudsorting]: /core/docs/core/interface-references#crudsorting
+[crudfilters]: /core/docs/core/interface-references#crudfilters
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
-[Refine swl]: /docs/core/refine-component#syncwithlocation
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror
+[Refine swl]: /core/docs/core/refine-component#syncwithlocation
 [data-grid]: https://mui.com/x/react-data-grid/
-[notification-provider]: /docs/notification/notification-provider
+[notification-provider]: /core/docs/notification/notification-provider

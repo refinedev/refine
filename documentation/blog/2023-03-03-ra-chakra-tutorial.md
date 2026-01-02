@@ -38,7 +38,7 @@ Before delving in to build the CRUD React admin tutorial app, we need to know th
 
 ### The `<Refine/>` Component
 
-The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-config/) acts as the entrypoint of the application. it is a component that receives the configurations passed into it as [react props](https://reactjs.org/docs/components-and-props.html).
+The [`<Refine/>`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) acts as the entrypoint of the application. it is a component that receives the configurations passed into it as [react props](https://reactjs.org/docs/components-and-props.html).
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -114,14 +114,14 @@ export default App;
 
 #### Resource
 
-A [resources](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
+A [resources](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept) is a fundamental component of a Refine application. A resource acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API.
 
 To create a resource; define our resources and their action paths. This will inform **Refine** to use these paths when generating the breadcrumbs, menus, handling redirections and inferring the current resource and action.
 In accordance with the path definitions in a resource object, we have to assign a `<Route />` for each path and an element to display at that path.
 
 The `<Route>` corresponding to the created actions is defined. It is important to remember that the path specified in the resource definition should match the `path` specified in the route definition.
 
-[Refer to React Router docs for more information](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#usage).
+[Refer to React Router docs for more information](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/#usage).
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -240,11 +240,11 @@ export const authProvider: AuthProvider = {
 
 ### Using `<Authentication>` Component
 
-The [`<Authenticated>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#basic-usage) component is used to manage authenticated routes. This component leverages the [`useIsAuthenticated`](https://refine.dev/docs/api-reference/core/hooks/authentication/useIsAuthenticated/) hook to determine the authentication status of the user. It handles redirection and rendering specific elements based on this status through children and `fallback` props.
+The [`<Authenticated>`](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/#basic-usage) component is used to manage authenticated routes. This component leverages the [`useIsAuthenticated`](https://refine.dev/core/docs/api-reference/core/hooks/authentication/useIsAuthenticated/) hook to determine the authentication status of the user. It handles redirection and rendering specific elements based on this status through children and `fallback` props.
 
 To achieve protected routes, the `<Outlet>` component from `react-router-dom` is utilized, ensuring routes are only accessible when the user is authenticated.
 
-To handle scenarios where a user is not authenticated, we've established a `/login` route. This utilizes the [`<AuthPage>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-auth-page/) component found in Refine UI packages, with the 'type' prop set to "login". This configuration effectively renders the login page.
+To handle scenarios where a user is not authenticated, we've established a `/login` route. This utilizes the [`<AuthPage>`](https://refine.dev/core/docs/api-reference/chakra-ui/components/chakra-auth-page/) component found in Refine UI packages, with the 'type' prop set to "login". This configuration effectively renders the login page.
 
 ```tsx title="src/App.tsx"
 import { Authenticated, Refine } from "@refinedev/core";
@@ -291,9 +291,9 @@ export default App;
 
 :::tip
 
-The [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page from the index route of your app.
+The [`<NavigateToResource>`](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) is a basic component to navigate to a resource page. It is useful when you want to navigate to a resource page from the index route of your app.
 
-The [`<ThemedLayout>`](https://refine.dev/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/)component offers a convenient way to integrate both a sidebar and a header into your application. This is a helpful feature if you aim to include these elements in your app's layout.
+The [`<ThemedLayout>`](https://refine.dev/core/docs/api-reference/chakra-ui/components/chakra-ui-themed-layout/)component offers a convenient way to integrate both a sidebar and a header into your application. This is a helpful feature if you aim to include these elements in your app's layout.
 
 :::
 
@@ -436,7 +436,7 @@ export const PostList = () => {
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook from the `@refinedev/react-table` package to fetch records from Strapi. the `useTable()` maps the records into rows based on the `columns` variable definition.
+In the code above, we use the [`useTable()`](https://refine.dev/core/docs/api-reference/core/hooks/useTable/) hook from the `@refinedev/react-table` package to fetch records from Strapi. the `useTable()` maps the records into rows based on the `columns` variable definition.
 
 After this, we need to add a path (`/posts`) for the `list` action to our `resources` in the `App.tsx` file.
 
@@ -490,7 +490,7 @@ function App() {
 export default App;
 ```
 
-To avoid encountering an empty screen when going to the homepage, we use the [`<NavigateToResource>`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `posts` resource.
+To avoid encountering an empty screen when going to the homepage, we use the [`<NavigateToResource>`](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `posts` resource.
 
 It will prompt you to log in to the app. Since we are using Refine's `fake strapi-v4 API`, Try these credentials:
 
@@ -503,7 +503,7 @@ Check that the URL is routed to /posts and that posts are present.
 
 When retrieving recorda, relations are not populated. Hence, We will use the `meta` option to populate the Strapi v4 API with relational data (category data in our case).
 
-[Refer to docs for handling relations with strapi](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
+[Refer to docs for handling relations with strapi](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 We will populate records with a `category id` field from the `/posts` endpoint with their respective titles. To automatically get `category titles` from the `/categories `endpoint for each record and display them on our table, we must use Strapi v4's populate feature.
 
@@ -678,7 +678,7 @@ export const PostList = () => {
 
 ### Viewing a record
 
-To view a record, we will use the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook, which is included in the `@refinedev/core` package.
+To view a record, we will use the [`useShow()`](https://refine.dev/core/docs/api-reference/core/hooks/show/useShow/) hook, which is included in the `@refinedev/core` package.
 The hook `useShow()` allows you to retrieve the desired record. It uses the `getOne` method from the dataProvider passed to `<Refine/>` as the query function.
 
 We'll add a `show.tsx` file in the `posts` folder under the `pages` folder next, with the following code:
@@ -803,7 +803,7 @@ At this point, the `Show` page looks like this:
 ### Creating a record
 
 To create a record, we will use the `@refinedev/react-hook-form` package.
-It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
+It provides the [`useForm()`](https://refine.dev/core/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
 Next, in the `posts` folder under the `pages` folder, we'll include a `create.tsx` file with the following code:
 
@@ -898,7 +898,7 @@ export const PostCreate = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@refinedev/react-hook-form)](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) which is a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [(@refinedev/react-hook-form)](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) which is a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. This library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/core/docs/packages/documentation/react-hook-form/useForm/).
 
 we use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into Strapi.
 The hooks also provide an object like `saveButtonProps` which accepts the properties shown below:
@@ -1617,7 +1617,7 @@ If you're looking to build a robust and dynamic admin panel for your web applica
 
 This article demonstrates the flexibility that comes with using Refine to create web applications. Refine is a fantastic tool that accelerates development by abstracting many time-consuming tasks, giving the developer more time to focus on the application's core business logic.
 
-It also comes with detailed documentation that will get you started. Visit [here](https://refine.dev/docs/getting-started/overview/) to access the documentation.
+It also comes with detailed documentation that will get you started. Visit [here](https://refine.dev/core/docs/getting-started/overview/) to access the documentation.
 
 ## Live CodeSandbox Example
 

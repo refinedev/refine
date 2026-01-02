@@ -21,9 +21,9 @@ Tables are essential in data-intensive applications, serving as the primary way 
 
 [`useTable`][use-table-core] allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`][use-list] for the fetch. Its designed to be headless, but Refine offers seamless integration with several popular UI libraries, simplifying the use of their table components.
 
-- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages)) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/examples/table/antd/useTable.md)
-- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/examples/table/mui/useDataGrid.md)
+- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages)) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/core/docs/examples/table/antd/useTable)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/core/docs/examples/table/mui/useDataGrid)
 
 ## Basic Usage
 
@@ -43,7 +43,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseTanStackTable />
 
-[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages#installation)
+[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages#installation)
 
 </TabItem>
 
@@ -51,7 +51,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseAntdTableExample />
 
-[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/ant-design/hooks/use-table)
+[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table)
 
 </TabItem>
 
@@ -59,7 +59,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseMaterialUITable />
 
-[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
 
 </TabItem>
 
@@ -67,7 +67,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseMantineTable />
 
-[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages#installation)
+[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages#installation)
 
 </TabItem>
 
@@ -75,7 +75,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseChakraUITable />
 
-[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/docs/packages/list-of-packages#installation)
+[Check out TanStack Table's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages#installation)
 
 </TabItem>
 
@@ -143,7 +143,7 @@ For example we can fetch product with the name that contains the search value.
 
 <SearchAntdTableExample />
 
-[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/ant-design/hooks/use-table)
+[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table)
 
 </TabItem>
 
@@ -151,7 +151,7 @@ For example we can fetch product with the name that contains the search value.
 
 <SearchMaterialUI />
 
-[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
 
 </TabItem>
 
@@ -172,7 +172,7 @@ useTable({
 
 ### Sync with Location <RouterBadge id="guides-concepts/routing/#usetable" /> <GlobalConfigBadge id="core/refine-component/#syncwithlocation" />
 
-When you use the [`syncWithLocation`](/docs/data/hooks/use-table#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
+When you use the [`syncWithLocation`](/core/docs/data/hooks/use-table#syncwithlocation) feature, the `useTable`'s state (e.g., sort order, filters, pagination) is automatically encoded in the query parameters of the URL, and when the URL changes, the `useTable` state is automatically updated to match. This makes it easy to share table state across different routes or pages, and to allow users to bookmark or share links to specific table views.
 
 ## Relationships <GuideBadge id="guides-concepts/data-fetching/#relationships" />
 
@@ -182,14 +182,14 @@ For example imagine each post has a many category. We can fetch the categories o
 
  <Relationship />
 
-[use-table-core]: /docs/data/hooks/use-table
-[use-list]: /docs/data/hooks/use-list
+[use-table-core]: /core/docs/data/hooks/use-table
+[use-list]: /core/docs/data/hooks/use-list
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references#baserecord
-[crudsorting]: /docs/core/interface-references#crudsorting
-[crudfilters]: /docs/core/interface-references#crudfilters
-[httperror]: /docs/core/interface-references#httperror
-[Refine swl]: /docs/core/refine-component#syncwithlocation
-[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/notification/notification-provider
-[data-provider]: /docs/data/data-provider
+[baserecord]: /core/docs/core/interface-references#baserecord
+[crudsorting]: /core/docs/core/interface-references#crudsorting
+[crudfilters]: /core/docs/core/interface-references#crudfilters
+[httperror]: /core/docs/core/interface-references#httperror
+[Refine swl]: /core/docs/core/refine-component#syncwithlocation
+[syncwithlocationparams]: /core/docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /core/docs/notification/notification-provider
+[data-provider]: /core/docs/data/data-provider

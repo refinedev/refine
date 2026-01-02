@@ -2,7 +2,7 @@
 title: useLink
 ---
 
-`useLink` is a hook that returns [`<Link />`](/docs/routing/components/link/) component. It is used to navigate to different pages in your application.
+`useLink` is a hook that returns [`<Link />`](/core/docs/routing/components/link/) component. It is used to navigate to different pages in your application.
 
 :::simple Good to know
 

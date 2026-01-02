@@ -170,7 +170,7 @@ const App: React.FC = () => {
 };
 ```
 
-You can see how themes change the look of the application in [this example &#8594](/docs/examples/themes/refine-themes-chakra-ui/)
+You can see how themes change the look of the application in [this example &#8594](/core/docs/examples/themes/refine-themes-chakra-ui/)
 
 If you want to use `<ThemedLayout>` you have to wrap your application with the `<ChakraProvider>` component and should give `theme` prop to it.
 
@@ -383,4 +383,4 @@ const App = () => {
 render(<App />);
 ```
 
-If you want to customize the default layout elements provided with `@refinedev/chakra-ui` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/chakra-ui` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout) tutorial.

@@ -172,7 +172,7 @@ const RefineProvider = () => {
 
 ### Usage with Authentication
 
-When handling authenticated routes, we can use [`<Authenticated>`](/docs/authentication/components/authenticated) to check if the user is authenticated or not. Internally, it uses the `useIsAuthenticated` hook and handles the redirection or showing the appropriate elements based on the authentication status by the `children` and `fallback` props.
+When handling authenticated routes, we can use [`<Authenticated>`](/core/docs/authentication/components/authenticated) to check if the user is authenticated or not. Internally, it uses the `useIsAuthenticated` hook and handles the redirection or showing the appropriate elements based on the authentication status by the `children` and `fallback` props.
 
 Additionally, we'll use the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router` to render our routes inside the `<Authenticated>` component. This will allow us to create protected routes and render the routes only when the user is authenticated.
 
@@ -260,7 +260,7 @@ We've also used the `<Outlet>` component inside the children of the `<Authentica
 
 ### Usage with Layouts
 
-When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<ThemedLayout>`](/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router` to render our routes inside the `<ThemedLayout>` component. This will allow us to define the common layout for our routes.
+When using layouts in your application, you can use the same approach as the authentication example. We'll use the [`<ThemedLayout>`](/core/docs/advanced-tutorials/custom-layout/#layout) component to wrap our routes and the [`<Outlet>`](https://reactrouter.com/en/main/components/outlet) component from `react-router` to render our routes inside the `<ThemedLayout>` component. This will allow us to define the common layout for our routes.
 
 In the below example, we'll wrap our resource routes with the `Layout` component from `@refinedev/antd` and render the routes inside the `<Outlet>` component.
 
@@ -339,7 +339,7 @@ Notice that we've wrapped the `<Outlet>` with `<ThemedLayout>` component. This w
 
 ### Usage with Access Control providers
 
-If you want to protect your routes with [Access Control Provider](/docs/authorization/access-control-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
+If you want to protect your routes with [Access Control Provider](/core/docs/authorization/access-control-provider), all you have to do is to wrap `Outlet` with `CanAccess` component.
 
 `CanAccess` component will infer resource name and action based on the current route and handle the **access control** from your Access Control Provider for you.
 
@@ -1368,8 +1368,8 @@ Default paths are:
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
 
-[routerprovider]: /docs/routing/router-provider
-[resources]: /docs/guides-concepts/general-concepts/#resource-concept
+[routerprovider]: /core/docs/routing/router-provider
+[resources]: /core/docs/guides-concepts/general-concepts/#resource-concept
 
 ### How to change the document title?
 

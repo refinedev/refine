@@ -266,6 +266,6 @@ Both libraries made React data fetching much easier. Pick one, learn it, and you
 
 - [TanStack Query Docs](https://tanstack.com/query/latest)
 - [SWR Docs](https://swr.vercel.app)
-- [Refine Docs](https://refine.dev/docs)
-- [Refine Data Fetching Guide](https://refine.dev/docs/guides-concepts/data-fetching)
+- [Refine Docs](https://refine.dev/core/docs)
+- [Refine Data Fetching Guide](https://refine.dev/core/docs/guides-concepts/data-fetching)
 - [TanStack Query DevTools](https://tanstack.com/query/latest/docs/react/devtools)

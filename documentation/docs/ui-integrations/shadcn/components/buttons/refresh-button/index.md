@@ -3,7 +3,7 @@ title: Refresh
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/refresh.tsx
 ---
 
-`<RefreshButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `invalidate` method from [`useInvalidate`](/docs/data/hooks/use-invalidate) under the hood.
+`<RefreshButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `invalidate` method from [`useInvalidate`](/core/docs/data/hooks/use-invalidate) under the hood.
 
 It can be useful when you want to refresh the data without navigating to another page.
 
@@ -102,7 +102,7 @@ const MyComponent = () => {
 
 ### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component).
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/core/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/core/docs/core/refine-component).
 
 ```tsx
 import { RefreshButton } from "@/components/refine-ui/buttons/refresh";

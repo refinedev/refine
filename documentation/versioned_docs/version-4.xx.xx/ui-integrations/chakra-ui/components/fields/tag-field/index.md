@@ -7,7 +7,7 @@ This field lets you display a value in a tag. It uses Chakra UI's [`<Tag>`](http
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 

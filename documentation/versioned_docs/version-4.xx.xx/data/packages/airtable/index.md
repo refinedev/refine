@@ -10,7 +10,7 @@ Refine provides a data provider for [Airtable](https://airtable.com/), a spreads
 
 - `@refinedev/airtable` uses API Tokens to authenticate requests. Personal access tokens of Airtable is currently not supported.
 - This integration uses [Airtable.js](https://github.com/Airtable/airtable.js) to handle the requests.
-- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
 
 :::
 

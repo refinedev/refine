@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -68,7 +68,7 @@ We created our missions and invoice collections fields. Our goal here is to defi
 
 ## Refine Missions Page
 
-Let's use the refine-antd package's [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook to create our page, and let's define the fields in our Table Component.
+Let's use the refine-antd package's [useTable](https://refine.dev/core/docs/ui-frameworks/antd/hooks/table/useTable/) hook to create our page, and let's define the fields in our Table Component.
 
 ```tsx title="src/pages/MissionList.tsx"
 import {
@@ -203,7 +203,7 @@ export const CreateMission: React.FC<CreateMissionProps> = ({
 </p>
 </details>
 
-Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **Refine** [**useModalForm**](https://refine.dev/docs/ui-frameworks/antd/hooks/form/useModalForm/).
+Let's define the `CreateMission` component we created above in our `MissionList` and fill its props with **Refine** [**useModalForm**](https://refine.dev/core/docs/ui-frameworks/antd/hooks/form/useModalForm/).
 
 ```tsx title="src/pages/MissionList.tsx"
 import { List, Table, useTable, TagField, useModalForm } from "@refinedev/antd";
@@ -277,7 +277,7 @@ Our next step is to create invoices according to these tasks and clients. Let's 
 
 Let's put the `Invoice Collections` fields that we created with Strapi into our Table by fetch the refine-antd useTable. Our Invoice collection has a relation with the client, company and missions collections.
 
-Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
+Thanks to the [refine-strapi-v4 dataProvider](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4/#relations-population), we can use the data of collections that are related to each other.
 
 In order to use the fields of the collections that are related to each other, we must populate the collections in `meta`.
 
@@ -403,9 +403,9 @@ Let's understand better by creating an invoice example from our **Refine** UI.
 
 ### Refine Create Invoice Page
 
-Here, we first fetch the company, contacts and missions using the **Refine**'s [useSelect](https://refine.dev/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
+Here, we first fetch the company, contacts and missions using the **Refine**'s [useSelect](https://refine.dev/core/docs/ui-frameworks/antd/hooks/field/useSelect/) hook, and by giving it to the Select component, we create selectable components to detail our invoice.
 
-Then, we fill our Refine [Create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
+Then, we fill our Refine [Create](https://refine.dev/core/docs/ui-frameworks/antd/components/basic-views/create/) and Form components with the fields of the collection in the strap to perform a creation process as we did in our previous examples.
 
 <details>
 <summary>Show Code</summary>

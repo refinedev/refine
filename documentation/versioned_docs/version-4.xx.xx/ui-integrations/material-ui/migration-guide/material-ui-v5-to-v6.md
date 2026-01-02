@@ -45,17 +45,17 @@ The following components has been deprecated since `@refinedev/mui@6` and remove
 | Deprecated Component   | Replacement               | Documentation                                                                                                       |
 | ---------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `useSiderVisible`      | `useThemedLayoutContext`  | [View Docs](https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useThemedLayoutContext/index.ts) |
-| `notificationProvider` | `useNotificationProvider` | [View Docs](/docs/ui-integrations/material-ui/introduction/#notifications)                                          |
-| `notificationProvider` | `useNotificationProvider` | [View Docs](/docs/ui-integrations/material-ui/introduction/#notifications)                                          |
-| `<Layout />`           | `<ThemedLayoutV2 />`      | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#usage)                                      |
-| `<ThemedLayout />`     | `<ThemedLayoutV2 />`      | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#usage)                                      |
-| `<Title />`            | `<ThemedTitleV2 />`       | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#title)                                      |
-| `<ThemedTitle />`      | `<ThemedTitleV2 />`       | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#title)                                      |
-| `<Sider />`            | `<ThemedSiderV2 />`       | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#sider)                                      |
-| `<ThemedSider />`      | `<ThemedSiderV2 />`       | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#sider)                                      |
-| `<Header />`           | `<ThemedHeaderV2 />`      | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#header)                                     |
-| `<ThemedHeader />`     | `<ThemedHeaderV2 />`      | [View Docs](/docs/ui-integrations/material-ui/components/themed-layout/#header)                                     |
-| `<LoginPage />`        | `<ThemedLoginPage />`     | [View Docs](/docs/api-reference/mui/components/mui-auth-page)                                                       |
+| `notificationProvider` | `useNotificationProvider` | [View Docs](/core/docs/ui-integrations/material-ui/introduction/#notifications)                                     |
+| `notificationProvider` | `useNotificationProvider` | [View Docs](/core/docs/ui-integrations/material-ui/introduction/#notifications)                                     |
+| `<Layout />`           | `<ThemedLayoutV2 />`      | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#usage)                                 |
+| `<ThemedLayout />`     | `<ThemedLayoutV2 />`      | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#usage)                                 |
+| `<Title />`            | `<ThemedTitleV2 />`       | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#title)                                 |
+| `<ThemedTitle />`      | `<ThemedTitleV2 />`       | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#title)                                 |
+| `<Sider />`            | `<ThemedSiderV2 />`       | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#sider)                                 |
+| `<ThemedSider />`      | `<ThemedSiderV2 />`       | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#sider)                                 |
+| `<Header />`           | `<ThemedHeaderV2 />`      | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#header)                                |
+| `<ThemedHeader />`     | `<ThemedHeaderV2 />`      | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#header)                                |
+| `<LoginPage />`        | `<ThemedLoginPage />`     | [View Docs](/core/docs/api-reference/mui/components/mui-auth-page)                                                  |
 | `<WelcomePage />`      | `@refinedev/core`         |                                                                                                                     |
 | `<ReadyPage />`        | no replacement            |                                                                                                                     |
 

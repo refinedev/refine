@@ -279,7 +279,7 @@ With our Fake store endpoint:
 
 Next, we’ll create a layout component for our app and pass it as a prop to the Refine component.
 
-[Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/core/docs/core/providers/data-provider/)
 
 ## Adding a Layout component
 
@@ -469,7 +469,7 @@ Then we chain the `getList` method to the `dataProvider` to specify the endpoint
 
 Lastly, we exposed the data variable by passing it to the props object.
 
-[Refer to official Refine docs for more information about Next.js usage. &#8594](https://refine.dev/docs/guides-and-concepts/ssr/nextjs/)
+[Refer to official Refine docs for more information about Next.js usage. &#8594](https://refine.dev/core/docs/guides-and-concepts/ssr/nextjs/)
 
 ## Creating product cards
 

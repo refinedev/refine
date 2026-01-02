@@ -273,7 +273,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
 :::tip
 
-`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/docs/data/hooks/use-infinite-list#how-to-use-cursor-based-pagination) for more information.
+`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/core/docs/data/hooks/use-infinite-list#how-to-use-cursor-based-pagination) for more information.
 
 :::
 
@@ -311,7 +311,7 @@ create: async ({ resource, variables, meta }) => {
 | variables | `TVariables`                 | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/docs/data/hooks/use-create#type-parameters) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/core/docs/data/hooks/use-create#type-parameters) to type `variables`.
 
 ### update <PropTag required />
 
@@ -338,7 +338,7 @@ update: async ({ resource, id, variables, meta }) => {
 | variables | `TVariables`                 | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/docs/data/hooks/use-update#type-parameters) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/data/hooks/use-update#type-parameters) to type `variables`.
 
 ### deleteOne <PropTag required />
 
@@ -365,7 +365,7 @@ deleteOne: async ({ resource, id, variables, meta }) => {
 | variables | `TVariables[]`               | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/docs/data/hooks/use-delete) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/data/hooks/use-delete) to type `variables`.
 
 ### getOne <PropTag required />
 
@@ -447,7 +447,7 @@ custom: async ({
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/docs/core/hooks/utilities/use-import) and [`export`](/docs/core/hooks/utilities/use-export), and are also atomic, meaning that they are treated as a single unit.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/core/docs/core/hooks/utilities/use-import) and [`export`](/core/docs/core/hooks/utilities/use-export), and are also atomic, meaning that they are treated as a single unit.
 
 If your API supports bulk actions, you can implement them in your data provider.
 
@@ -731,24 +731,24 @@ const myDataProvider = {
 <Refine dataProvider={myDataProvider}>{/* ... */}</Refine>;
 ```
 
-[basekey]: /docs/core/interface-references#basekey
-[create-a-data-provider]: https://refine.dev/tutorial/essentials/data-fetching/intro/#creating-a-data-provider
-[swizzle-a-data-provider]: /docs/packages/cli/#swizzle
-[data-provider-tutorial]: https://refine.dev/tutorial/essentials/data-fetching/intro/
-[use-api-url]: /docs/data/hooks/use-api-url
-[use-create]: /docs/data/hooks/use-create
-[use-create-many]: /docs/data/hooks/use-create
-[use-custom]: /docs/data/hooks/use-custom
-[use-delete]: /docs/data/hooks/use-delete
-[use-delete-many]: /docs/data/hooks/use-delete
-[use-list]: /docs/data/hooks/use-list
-[use-infinite-list]: /docs/data/hooks/use-infinite-list
-[use-many]: /docs/data/hooks/use-many
-[use-one]: /docs/data/hooks/use-one
-[use-update]: /docs/data/hooks/use-update
-[use-update-many]: /docs/data/hooks/use-update
-[crud-sorting]: /docs/core/interface-references#crudsorting
-[crud-filters]: /docs/core/interface-references#crudfilters
-[pagination]: /docs/core/interface-references#pagination
-[http-error]: /docs/core/interface-references#httperror
-[meta-data]: /docs/core/interface-references#metaquery
+[basekey]: /core/docs/core/interface-references#basekey
+[create-a-data-provider]: https://refine.dev/core/tutorial/essentials/data-fetching/intro/#creating-a-data-provider
+[swizzle-a-data-provider]: /core/docs/packages/cli/#swizzle
+[data-provider-tutorial]: https://refine.dev/core/tutorial/essentials/data-fetching/intro/
+[use-api-url]: /core/docs/data/hooks/use-api-url
+[use-create]: /core/docs/data/hooks/use-create
+[use-create-many]: /core/docs/data/hooks/use-create
+[use-custom]: /core/docs/data/hooks/use-custom
+[use-delete]: /core/docs/data/hooks/use-delete
+[use-delete-many]: /core/docs/data/hooks/use-delete
+[use-list]: /core/docs/data/hooks/use-list
+[use-infinite-list]: /core/docs/data/hooks/use-infinite-list
+[use-many]: /core/docs/data/hooks/use-many
+[use-one]: /core/docs/data/hooks/use-one
+[use-update]: /core/docs/data/hooks/use-update
+[use-update-many]: /core/docs/data/hooks/use-update
+[crud-sorting]: /core/docs/core/interface-references#crudsorting
+[crud-filters]: /core/docs/core/interface-references#crudfilters
+[pagination]: /core/docs/core/interface-references#pagination
+[http-error]: /core/docs/core/interface-references#httperror
+[meta-data]: /core/docs/core/interface-references#metaquery

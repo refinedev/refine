@@ -5,7 +5,7 @@ source: packages/core/src/components/link/index.tsx
 
 `<Link />` is a component that is used to navigate to different pages in your application.
 
-It uses [`routerProvider.Link`](/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/docs/routing/router-provider) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
+It uses [`routerProvider.Link`](/core/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/core/docs/routing/router-provider) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
 
 ## Usage
 
@@ -45,12 +45,12 @@ const MyComponent = () => {
 
 ## Props
 
-The `<Link />` component takes all the props from the [`routerProvider.Link`](/docs/routing/router-provider/#link) and the props that an `<a>` HTML element uses. In addition to these props, it also accepts the `go`
+The `<Link />` component takes all the props from the [`routerProvider.Link`](/core/docs/routing/router-provider/#link) and the props that an `<a>` HTML element uses. In addition to these props, it also accepts the `go`
 and `to` props to navigate to a specific `resource` defined in the `<Refine />` component.
 
 ### go
 
-When `go` prop is provided, this component will use [`useGo`](/docs/routing/hooks/use-go/) to create the URL to navigate to. It's accepts all the props that `useGo.go` accepts.
+When `go` prop is provided, this component will use [`useGo`](/core/docs/routing/hooks/use-go/) to create the URL to navigate to. It's accepts all the props that `useGo.go` accepts.
 
 It's useful to use this prop when you want to navigate to a resource with a specific action.
 
@@ -67,7 +67,7 @@ The URL to navigate to.
 
 ## Type support with generics
 
-`<Link />` works with any routing library because it uses [`routerProvider.Link`](/docs/routing/router-provider/#link) internally. However, when importing it from `@refinedev/core`, it doesn't provide type support for your specific routing library. To enable full type support, you can use generics.
+`<Link />` works with any routing library because it uses [`routerProvider.Link`](/core/docs/routing/router-provider/#link) internally. However, when importing it from `@refinedev/core`, it doesn't provide type support for your specific routing library. To enable full type support, you can use generics.
 
 ```tsx
 import type { LinkProps } from "react-router";

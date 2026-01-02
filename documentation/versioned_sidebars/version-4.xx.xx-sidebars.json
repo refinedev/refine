@@ -9,12 +9,12 @@
         "getting-started/quickstart",
         {
           "type": "link",
-          "href": "/tutorial/essentials/intro",
+          "href": "/core/tutorial/essentials/intro",
           "label": "Tutorial"
         },
         {
           "type": "link",
-          "href": "https://s.refine.dev/examples",
+          "href": "https://github.com/refinedev/refine/tree/main/examples",
           "label": "Examples",
           "customProps": {
             "external": true
@@ -22,19 +22,13 @@
         },
         {
           "type": "link",
-          "href": "https://refine.dev/templates",
+          "href": "/core/templates",
           "label": "Templates",
           "customProps": {
             "external": true
           }
         }
       ]
-    },
-    {
-      "type": "link",
-      "href": "https://ai.refine.dev",
-      "label": "Refine AI",
-      "className": "enterprise-badge"
     },
     {
       "type": "category",
@@ -895,7 +889,6 @@
       "label": "Enterprise Edition",
       "className": "category-as-header",
       "items": [
-        "enterprise-edition/index",
         "enterprise-edition/okta/index",
         "enterprise-edition/devtools/index",
         "enterprise-edition/multitenancy/index"

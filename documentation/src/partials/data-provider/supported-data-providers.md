@@ -1,14 +1,14 @@
 **Refine** supports many data providers. To include them in your project, you can use `npm install [packageName]` or you can select the preferred data provider with the `npm create refine-app@latest projectName` during the project creation phase with CLI. This will allow you to easily use these data providers in your project.
 
-- [Simple REST API](/docs/data/packages/simple-rest)
-- [GraphQL](/docs/data/packages/graphql)
-- [NestJS CRUD](/docs/data/packages/nestjsx-crud)
-- [Nestjs-Query](/docs/data/packages/nestjs-query)
-- [Airtable](/docs/data/packages/airtable)
-- [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi) - [Strapi v4](/docs/data/packages/strapi-v4)
-- [Supabase](/docs/data/packages/supabase)
-- [Hasura](/docs/data/packages/hasura)
-- [Appwrite](/docs/data/packages/appwrite)
+- [Simple REST API](/core/docs/data/packages/simple-rest)
+- [GraphQL](/core/docs/data/packages/graphql)
+- [NestJS CRUD](/core/docs/data/packages/nestjsx-crud)
+- [Nestjs-Query](/core/docs/data/packages/nestjs-query)
+- [Airtable](/core/docs/data/packages/airtable)
+- [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi) - [Strapi v4](/core/docs/data/packages/strapi-v4)
+- [Supabase](/core/docs/data/packages/supabase)
+- [Hasura](/core/docs/data/packages/hasura)
+- [Appwrite](/core/docs/data/packages/appwrite)
 - [Medusa](https://github.com/refinedev/refine/tree/main/packages/medusa)
 
 **Community ❤️**
@@ -26,6 +26,5 @@
 - [PostgREST](https://github.com/ffimnsr/refine-postgrest-ts) by [ffimnsr](https://github.com/ffimnsr)
 - [Refine SQL X](https://github.com/medz/refine-sqlx) by [Seven Du (@medz)](https://github.com/medz)
 - [Refine SQLX](https://github.com/zuohuadong/refine-sqlx) by [zuohuadong](https://github.com/zuohuadong)
-
 
 _If you have created a custom data provider and would like to share it with the community, feel free to create a PR. We would be happy to include it on this page for others to use._

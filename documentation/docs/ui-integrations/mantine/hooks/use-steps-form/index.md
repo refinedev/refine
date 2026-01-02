@@ -962,7 +962,7 @@ const PostCreatePage: React.FC = () => {
 
 ### refineCoreProps
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1087,7 +1087,7 @@ useStepsForm({
 
 ## Return Values
 
-All [`useForm`](/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
+All [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
 
 ### steps
 
@@ -1156,8 +1156,8 @@ const UserCreate: React.FC = () => {
 ### Properties
 
 <PropsTable module="@refinedev/mantine/useStepsForm"
-refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/docs/data/hooks/use-form/#properties)"
-refineCoreProps-description="Configuration object for the core of the [useForm](/docs/data/hooks/use-form/)"
+refineCoreProps-type="[`UseFormCoreProps<TData, TError, TVariables>`](/core/docs/data/hooks/use-form/#properties)"
+refineCoreProps-description="Configuration object for the core of the [useForm](/core/docs/data/hooks/use-form/)"
 stepsProps-description="Configuration object for the steps. `defaultStep`: Allows you to set the initial step. `isBackValidate`: Whether to validation the current step when going back."
 stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
  />
@@ -1179,7 +1179,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 | Property                                  | Description                                                     | Type                                                                                                                                    |
 | ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | steps                                     | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                                                                                           |
-| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values)                                                                       |
+| refineCore                                | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/core/docs/data/hooks/use-form/#return-values)                                                                  |
 | `@mantine/form`'s `useForm` return values | See [useForm][use-form-refine-mantine] documentation            |
 | overtime                                  | Overtime loading props                                          | `{ elapsedTime?: number }`                                                                                                              |
 | autoSaveProps                             | Auto save props                                                 | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }` |
@@ -1188,7 +1188,7 @@ stepsProps-default="`defaultStep = 0` `isBackValidate = false`"
 
 <CodeSandboxExample path="form-mantine-use-steps-form" />
 
-[use-form-refine-mantine]: /docs/ui-integrations/mantine/hooks/use-form
-[use-form-core]: /docs/data/hooks/use-form/
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[use-form-refine-mantine]: /core/docs/ui-integrations/mantine/hooks/use-form
+[use-form-core]: /core/docs/data/hooks/use-form/
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

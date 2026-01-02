@@ -446,7 +446,7 @@ export const Posts = () => {
 };
 ```
 
-We first imported the `useState` hook to track the state of the app. Then we imported the [`useMany`](https://refine.dev/docs/core/hooks/data/useMany/) hook from Refine to access the records of the integrated data API.
+We first imported the `useState` hook to track the state of the app. Then we imported the [`useMany`](https://refine.dev/core/docs/data/hooks/useMany/) hook from Refine to access the records of the integrated data API.
 
 Then we imported all the components we created in the earlier phase of the tutorial, as well as the `framer-motion` library for animations and custom style rules to style the layout.
 
@@ -549,7 +549,7 @@ This is the root file of the Refine app, where we passed `routeProvider` for the
 
 Dataproviders are Refine components making it possible to consume different API's and data services conveniently.
 
-[Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to the dataProvider documentation for detailed usage. →](https://refine.dev/core/docs/core/providers/data-provider/)
 
 :::
 

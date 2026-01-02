@@ -14,7 +14,7 @@ You can always use the preferred methods of your routing library to navigate bet
 
 :::
 
-We'll use the [`useNavigation`](/docs/routing/hooks/use-navigation) hook and create buttons to navigate to the create, edit and show pages of the products. Additionally we'll provide a link to the list page of the products in the `<Header />` component.
+We'll use the [`useNavigation`](/core/docs/routing/hooks/use-navigation) hook and create buttons to navigate to the create, edit and show pages of the products. Additionally we'll provide a link to the list page of the products in the `<Header />` component.
 
 ## Adding a Link to the List Page and to the Create Page
 

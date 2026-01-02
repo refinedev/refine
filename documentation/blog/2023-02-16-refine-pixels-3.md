@@ -8,9 +8,9 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pix
 hide_table_of_contents: false
 ---
 
-In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/docs/data/data-provider) and [`authProvider`](https://refine.dev/docs/authentication/auth-provider) props of [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) and `routerProvider` props as well.
+In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/core/docs/data/data-provider) and [`authProvider`](https://refine.dev/core/docs/authentication/auth-provider) props of [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept) and `routerProvider` props as well.
 
-CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-supabase/) series.
+CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/core/week-of-refine-supabase/) series.
 
 This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
@@ -266,7 +266,7 @@ function App() {
 export default App;
 ```
 
-Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept) prop to [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
+Focusing on the top, in order to add a resource to our app, we have to introduce the [`resources`](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept) prop to [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/). The value of `resources` prop should be an **array** of resource items with RESTful routes in our app. A typical resource object contains properties and values related to the resource `name`, `options`, and intended actions:
 
 ```json title="Typical resource object inside resources array"
 {
@@ -278,7 +278,7 @@ Focusing on the top, in order to add a resource to our app, we have to introduce
 
 We can have as many resource items inside our `resources` array as the number of entities we have in our app.
 
-**Refine** simplifies CRUD actions and acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API. It's worth spending a few minutes exploring the possible properties of a resource item from the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) docs here.
+**Refine** simplifies CRUD actions and acts as a bridge between the Data/API layer and the Document/Page Layer. A resource enables the application's pages to interact with the API. It's worth spending a few minutes exploring the possible properties of a resource item from the [`resources`](https://refine.dev/core/docs/api-reference/core/components/refine-config/#resources) docs here.
 
 For the above `canvases` resource, the `name` property denotes the name of the resource. Behind the scenes, **Refine** auto-magically adds RESTful routes for the actions defined on a resource `name` to the `routerProvider` object - i.e. for us here along the `/canvases` path.
 
@@ -328,7 +328,7 @@ Before we move on, you need to add required page and components to the project i
 - styles: https://github.com/refinedev/refine/tree/main/examples/pixels/src/styles
 - assets: https://github.com/refinedev/refine/tree/main/examples/pixels/public
 
-After creating files above you need to add some imports and [routes](/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -538,18 +538,18 @@ We will use the **Ant Design** [`<List />`](https://ant.design/components/list#l
 
 [Refer to Ant Design documentation for more information About <List />. →](https://ant.design/components/list#list)
 
-[Refer to complete Refine CRUD app with Ant Design tutorial here. →](https://refine.dev/docs/ui-integrations/ant-design/introduction)
+[Refer to complete Refine CRUD app with Ant Design tutorial here. →](https://refine.dev/core/docs/ui-integrations/ant-design/introduction)
 
 **2. `useSimpleList()` Hook**
 
-The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook to fetch a resource collection. After fetching data according to the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
+The `useSimpleList()` is a `@refinedev/antd` hook built on top of the low level [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) hook to fetch a resource collection. After fetching data according to the value of the `resource` property, it prepares it according to the `listProps` of the **Ant Design**'s `<List />` component.
 
 In our `<CanvasList />` component, we are passing the `listProps` props to `<List />` in order to show a list of canvases.
 
-Please feel free to go through the [`useSimpleList` documentation here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) for as much as information as you need. It makes life a lot easier while creating a dashboard or list of items.
+Please feel free to go through the [`useSimpleList` documentation here](https://refine.dev/core/docs/api-reference/antd/hooks/list/useSimpleList/) for as much as information as you need. It makes life a lot easier while creating a dashboard or list of items.
 
 **3. Sorting**
-If you are already looking at the [`useSimpleList()` argument object's properties](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/#properties), notice that we are able to pass options for `pagination` and `sorters.initial` for the API call and get the response accordingly.
+If you are already looking at the [`useSimpleList()` argument object's properties](https://refine.dev/core/docs/api-reference/antd/hooks/list/useSimpleList/#properties), notice that we are able to pass options for `pagination` and `sorters.initial` for the API call and get the response accordingly.
 
 With this set up - and connected to the Internet - if we run the dev server with `npm run dev` and navigate to `http://localhost:5173`, we are faced with a `<CanvasFeaturedList/>` as a home page.
 
@@ -634,7 +634,7 @@ check: async () => {
 </p>
 </details>
 
-**Refine** provides [`<Authenticated/>`](/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/docs/authentication/components/authenticated) component.
+**Refine** provides [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component.
 
 Let's look at the routes implementation:
 
@@ -719,11 +719,11 @@ const App = () => {
 </p>
 </details>
 
-In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
+[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider)
 
 ### `<Refine />` `create` Action
 
@@ -868,7 +868,7 @@ Our `create` action involves the `useModalForm()` hook which manages UI, state, 
 
 In the `<Header />` component above, we are invoking the `useModalForm()` hook with its argument object containing `resource`, `action` and `redirect` properties. We are getting the `modalProps` and `formProps` properties that it prepares for us from the response data.
 
-There are loads of things happening here. So I recommend going through the [`useModalForm()` documentation](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/).
+There are loads of things happening here. So I recommend going through the [`useModalForm()` documentation](https://refine.dev/core/docs/api-reference/antd/hooks/form/useModalForm/).
 
 It is also important that we understand how the **Ant Design**
 `<Modal />` component accepts the `modalProps` props from [this page](https://ant.design/components/modal#api) and how the `<Form />` works with `formProps` from [here](https://ant.design/components/form#api).
@@ -975,7 +975,7 @@ Notice the use of the `formProps.onFinish()` method on `<Form />`'s `onFinish` p
 
 Behind the scenes, `useModalForm()` ultimately calls the `useCreate()` data hook which fetches the data with the `dataProvider.create()` method.
 
-For details about how the `useCreate()` hook works, please refer to [this **Refine** documentation](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/).
+For details about how the `useCreate()` hook works, please refer to [this **Refine** documentation](https://refine.dev/core/docs/api-reference/core/data/hooks/useCreate/).
 
 Notice also that we are passing the `redirect` property to the `useModalForm()` hook which specifies that we redirect to the `show` action of the resource. We'll come to this in the next section related to adding `show` action in our `canvases` resource.
 
@@ -1185,7 +1185,7 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-[Refer to the Auth Provider tutorial for more information. →](/docs/authentication/auth-provider)
+[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider)
 
 ```tsx title="src/App.tsx"
 <Refine
@@ -1431,9 +1431,9 @@ export default App;
 </p>
 </details>
 
-We are also using a customized version of the [`<AuthPage />`](https://refine.dev/docs/api-reference/antd/components/antd-auth-page/) component now. We will not discuss about customizing the `<AuthPage />` component since it is pretty straight forward. But you can find the updated `<AuthPage />` component in the `src/pages/auth` directory.
+We are also using a customized version of the [`<AuthPage />`](https://refine.dev/core/docs/api-reference/antd/components/antd-auth-page/) component now. We will not discuss about customizing the `<AuthPage />` component since it is pretty straight forward. But you can find the updated `<AuthPage />` component in the `src/pages/auth` directory.
 
-If you haven't already, it is definitely worth spending time to go over the `<AuthPage />` customization details [here](https://refine.dev/docs/api-reference/antd/components/antd-auth-page).
+If you haven't already, it is definitely worth spending time to go over the `<AuthPage />` customization details [here](https://refine.dev/core/docs/api-reference/antd/components/antd-auth-page).
 <br />
 
 **Registering an Account**

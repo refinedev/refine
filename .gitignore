@@ -41,3 +41,6 @@ examples/**/package-lock.json
 .cursorrules
 # claude
 .claude/
+
+# Local Netlify folder
+.netlify

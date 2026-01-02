@@ -125,7 +125,7 @@ After running the command, the **Refine** application should be up and running. 
 
 - **The `<Refine  />` component**: This component is the entry point of a Refine app. This is where we add the configurations the application needs.
 
-- **DataProvider**: A [DataProvider](https://refine.dev/docs/api-reference/core/providers/data-provider/) in Refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the Refine core package which enables a Refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
+- **DataProvider**: A [DataProvider](https://refine.dev/core/docs/api-reference/core/providers/data-provider/) in Refine is represented as a [React context](https://react.dev/learn/passing-data-deeply-with-context) provider in the Refine core package which enables a Refine app to interact with an API. It also enables the application to easily consume various APIs and data services. A data provider sends HTTP requests and receives responses via **predefined** **methods** shown below.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -139,7 +139,7 @@ const App: React.FC = () => {
 };
 ```
 
-[Refer to the Data Provider documentation for more information. → ](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[Refer to the Data Provider documentation for more information. → ](https://refine.dev/core/docs/api-reference/core/providers/data-provider/)
 
 - **resources**: A Resource can be referred to as the building block of a Refine application. A resource connects the Data/API layer with the document/page Layer by acting as a bridge between them. A resource allows the pages of the application interact with the API.
 
@@ -174,11 +174,11 @@ export default App;
 
 the `resources` property accepts an array of objects with each object specifying the pages route `name` and the basic operations the pages under that route name can perform which are the `list`(displaying records from an API or service), `create`(add or creating a record to an API or service), `edit`(modifying an existing record from an API or service), `show`(display a specific record from an API or service) operations.
 
-[Refer to the `resources` documentation for more information. → ](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
+[Refer to the `resources` documentation for more information. → ](https://refine.dev/core/docs/api-reference/core/components/refine-config/#resources)
 
 - **Routing**: We will use React Router v6 for routing in our application. **Refine** provides router bindings and utilities for React Router v6. It is built on top of the react-router-dom package. This package will provide easy integration between Refine and react-router-dom.
 
-[Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/docs/packages/documentation/routers/react-router-v6/)
+[Refer to the `React Router v6` documentation for more information. → ](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/)
 
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
@@ -450,7 +450,7 @@ When you navigate to `/posts` route, you can see our placeholder page. We will b
 
 ### Listing posts records
 
-First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
+First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/core/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
 
 ```bash
 npm i @refinedev/react-table @tanstack/react-table
@@ -607,9 +607,9 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
+In the code above, we use the [`useTable()`](https://refine.dev/core/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
 
-We also use the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
+We also use the [`useNavigation()`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
 #### Handling relationships
 
@@ -627,10 +627,10 @@ export interface ICategory {
 // highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) **Refine** hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/) **Refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
-To get more information about this hook, view its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useMany/).
+To get more information about this hook, view its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/).
 
 Update the `<PostList />` component with the highlighted code below:
 
@@ -889,7 +889,7 @@ export const PostShow: React.FC = () => {
 </p>
 </details>
 
-In the code above, we used the `useShow()` hook to obtain a record. The `useShow()` hook enables you to retrieve the desired record. It uses the `getOne` method as the query function from the dataProvider passed to `<Refine />`. More information about the `useShow()` hook can be obtained [here](https://refine.dev/docs/api-reference/core/hooks/show/useShow/).
+In the code above, we used the `useShow()` hook to obtain a record. The `useShow()` hook enables you to retrieve the desired record. It uses the `getOne` method as the query function from the dataProvider passed to `<Refine />`. More information about the `useShow()` hook can be obtained [here](https://refine.dev/core/docs/api-reference/core/hooks/show/useShow/).
 
 We also used the `useSelect()` hook to map the category fields on the record to the category base in order to get the category value and label from the base.
 
@@ -904,7 +904,7 @@ const { options } = useSelect({
 
 The hook accepts an object with properties `resource` which directs the hook to the base containing the records, `defaultValue` which specifies a default value for the options, `optionLabel`, which specifies the field on the base that will be mapped to the label and `optionValue`, which specifies the field on the base that will be mapped to the value.
 
-To get more information on the `useSelect()` hook, take a look at the documentation [here](https://refine.dev/docs/api-reference/core/hooks/useSelect/).
+To get more information on the `useSelect()` hook, take a look at the documentation [here](https://refine.dev/core/docs/api-reference/core/hooks/useSelect/).
 
 We'll add a View button to each row, so we'll need to update our `<PostList />` component to include one for each record. update the `<PostList />` component with the code below:
 
@@ -1106,7 +1106,7 @@ export const PostCreate: React.FC = () => {
 </p>
 </details>
 
-In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) which is inherently a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/).
+In the code above, we used the `useForm()` hook to create records. This hook comes from the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) which is inherently a Refine adapter of the [React Hook Form](https://react-hook-form.com/) library. In a nutshell, this library allows you to use the [React Hook Form](https://react-hook-form.com/) library with refine. More information about the `useForm()` hook can be obtained [here](https://refine.dev/core/docs/packages/documentation/react-hook-form/useForm/).
 
 We use methods provided by the `useForm()` hook like `register()` to validate the new post we will add into airtable. The hooks also provide methods like `handleSubmit()` and `onFinish()` methods which handle the submission of the contents from the form to Airtable.
 
@@ -1681,7 +1681,7 @@ export const PostList: React.FC = () => {
 
 ## Conclusion
 
-In this article, we covered how to create a headless **Refine** application using the `create refine-app` as well as creating a **React CRUD** application using **Refine**. There is no limit to what can be achieved using **Refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/docs/getting-started/overview/).
+In this article, we covered how to create a headless **Refine** application using the `create refine-app` as well as creating a **React CRUD** application using **Refine**. There is no limit to what can be achieved using **Refine** as you can quickly a fully API or **BAAS**-powered application with minimal effort and code. It also has well-detailed documentation which can soon get you started as well as guide you through your building process. To access the documentation, visit [here](https://refine.dev/core/docs/getting-started/overview/).
 
 ## Live CodeSandbox Example
 

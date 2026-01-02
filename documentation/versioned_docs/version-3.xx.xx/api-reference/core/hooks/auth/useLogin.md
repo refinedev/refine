@@ -5,7 +5,7 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for authentication.
 ---
 
-`useLogin` calls `login` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.  
+`useLogin` calls `login` method from [`authProvider`](/core/docs/3.xx.xx/api-reference/core/providers/auth-provider) under the hood.
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
 It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v4/docs/framework/react/reference/useMutation).
@@ -14,7 +14,7 @@ Data that is resolved from `login` will be returned as the `data` in the query r
 
 ## Usage
 
-Normally refine provides a default login page. If you prefer to use this default login page, there is no need to handle login flow manually.  
+Normally refine provides a default login page. If you prefer to use this default login page, there is no need to handle login flow manually.
 If we want to build a custom login page instead of default one that comes with refine, `useLogin` can be used like this:
 
 ```tsx title="pages/customLoginPage"
@@ -38,7 +38,7 @@ export const LoginPage = () => {
 ```
 
 :::tip
-`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` doesn't have a restriction on its parameters.
 A type parameter for the values can be provided to `useLogin`.
 
 ```tsx
@@ -53,7 +53,7 @@ We have 3 options for redirecting the app after login successfully .
 
 - If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
 
-- A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
+- A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/core/docs/3.xx.xx/api-reference/core/providers/auth-provider).
 
 ```tsx
 const authProvider: AuthProvider = {

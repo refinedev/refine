@@ -13,7 +13,7 @@ export const RefineLogo = ({ title, className }: Props) => {
   return (
     <div className={clsx("flex", "items-center", className)}>
       <Link
-        to="/docs"
+        to="/core/docs"
         className={clsx(
           "flex",
           "items-center justify-center",

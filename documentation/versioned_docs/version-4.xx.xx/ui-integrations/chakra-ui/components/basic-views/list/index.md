@@ -128,7 +128,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -215,7 +215,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### canCreate and createButtonProps
 
@@ -379,7 +379,7 @@ const App = () => {
 render(<App />);
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/chakra-ui/components/breadcrumb)
 
 ### wrapperProps
 
@@ -727,4 +727,4 @@ render(<App />);
 
 <PropsTable module="@refinedev/chakra-ui/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
 
-[create-button]: /docs/ui-integrations/chakra-ui/components/buttons/create-button
+[create-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/create-button

@@ -37,7 +37,7 @@ export const InfoBadge = ({ id, icon, color, text, description }: Props) => {
   return (
     <BadgeTooltip content={description}>
       <Link
-        to={`/docs/${id}`}
+        to={`/core/docs/${id}`}
         className={clsx(
           "-mt-px",
           "mr-1.5",

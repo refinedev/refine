@@ -2,7 +2,7 @@
 title: useLogList
 ---
 
-If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#get) under the hood.
+If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/core/docs/audit-logs/audit-log-provider#get) under the hood.
 
 ## Usage
 
@@ -40,5 +40,5 @@ const postAuditLogResults = useLogList({
 | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Result of the `react-query`'s `useQuery` | [`UseQueryResult<{ data: TData; }>`](https://react-query.tanstack.com/reference/useQuery) |
 
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-19-refine-p
 hide_table_of_contents: false
 ---
 
-In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series.
+In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**RefineWeek**](https://refine.dev/core/week-of-refine/) series.
 
 This is Day 6, and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**Refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **Refine** within a week.
 
@@ -199,7 +199,7 @@ Let's now work on the `can` method. We can see from the type definition that `re
 
 Basic implementation of `can` method looks like this:
 
-[Refer to the Access Control Provider documentation for more information. → ](/docs/api-reference/core/providers/accessControl-provider/)
+[Refer to the Access Control Provider documentation for more information. → ](/core/docs/api-reference/core/providers/accessControl-provider/)
 
 ```tsx title="src/providers/accessControlProvider.ts"
 import { newEnforcer } from "casbin";
@@ -222,11 +222,11 @@ We will modify this gradually to witness the functionality facilitated out-of-th
 
 But for now, notice in the above definition that we are passing the compulsory `resource` and `action` parameters to `can`. We expect the `useCan()` access control hook to take these two arguments.
 
-For more use cases and implementations of `can`, feel free to go through the elaborate examples in [this definitive and guiding post](https://refine.dev/docs/advanced-tutorials/access-control/).
+For more use cases and implementations of `can`, feel free to go through the elaborate examples in [this definitive and guiding post](https://refine.dev/core/docs/advanced-tutorials/access-control/).
 
 In the above code, we are initializing a **Casbin** `Enforcer` with the `model` and `adapter`. We want this `enforcer` to enforce the policies with its accepted arguments. At the end, we get the `Boolean` decision based on the model's policy effect.
 
-From inside a component, the `accessControlProvider.can` method will be invoked via the [`useCan()` hook](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
+From inside a component, the `accessControlProvider.can` method will be invoked via the [`useCan()` hook](https://refine.dev/core/docs/api-reference/core/hooks/accessControl/useCan/).
 
 With this code now, there should be no change in our UI. That is, we should be able to view the contents of both our `/users` and `/canvases` resources like they were before. When we visit the `/canvases` route, we should have all the buttons displayed.
 
@@ -246,7 +246,7 @@ This is because now our policy for `editor` has taken effect.
 
 The `Delete` button gets disabled because `@refinedev/antd`'s special buttons like the `<DeleteButton />` are enabled or disabled based on the result of access control enforcement. Our `editor` policies do not allow a `delete` action on `canvases` resource, so the `Delete` button is disabled.
 
-Visit [this section](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **Refine**.
+Visit [this section](https://refine.dev/core/docs/api-reference/core/providers/accessControl-provider/#buttons) of the [`accessControlProvider` API reference](https://refine.dev/core/docs/api-reference/core/providers/accessControl-provider/) for the complete list of buttons that check for and depend on user authorization state in **Refine**.
 
 At this point, we have manipulated the role with changes in our code. This should, however, come from the `authProvider`'s `getPermissions()` method.
 

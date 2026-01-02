@@ -12,11 +12,11 @@ export const menuItems = [
     items: [
       {
         label: "Documentation",
-        href: "/docs/getting-started/quickstart",
+        href: "/core/docs/getting-started/quickstart",
       },
       {
         label: "Tutorials",
-        href: "/tutorial/essentials/intro",
+        href: "/core/tutorial/essentials/intro",
       },
       {
         label: "Blog",
@@ -29,12 +29,12 @@ export const menuItems = [
     items: [
       {
         label: "Templates",
-        href: "/templates",
+        href: "/core/templates",
         icon: null,
       },
       {
         label: "Integrations",
-        href: "/integrations",
+        href: "/core/integrations",
         icon: null,
       },
     ],
@@ -62,7 +62,7 @@ export const secondaryMenuItems = [
   },
   {
     label: "Privacy Policy",
-    href: "/privacy-policy",
+    href: "/core/privacy-policy",
   },
   {
     label: "License",

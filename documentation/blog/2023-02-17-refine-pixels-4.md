@@ -8,14 +8,14 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-p
 hide_table_of_contents: false
 ---
 
-In this post, we implement realtime broadcast and subscription of `pixels` updates in our **Refine** based **Pixels** app. We do this with the [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) prop on `<Refine />` and [**Supabase**'s **Realtime servers**](https://supabase.com/docs/guides/realtime). Applying a PubSub feature allows us to receive instant updates in one part of our app for database changes triggered from another part or by a different client.
+In this post, we implement realtime broadcast and subscription of `pixels` updates in our **Refine** based **Pixels** app. We do this with the [`liveProvider`](https://refine.dev/core/docs/api-reference/core/providers/live-provider/) prop on `<Refine />` and [**Supabase**'s **Realtime servers**](https://supabase.com/docs/guides/realtime). Applying a PubSub feature allows us to receive instant updates in one part of our app for database changes triggered from another part or by a different client.
 
 Here's a quick rundown of the features we'll work on:
 
 1. Allow multiple users to draw pixels on a canvas.
 2. All contributors can see realtime updates on the canvas.
 
-This is Day 4 in the series titled [**RefineWeek**](https://refine.dev/week-of-refine/). **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
+This is Day 4 in the series titled [**RefineWeek**](https://refine.dev/core/week-of-refine/). **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ### RefineWeek series
 
@@ -29,9 +29,9 @@ This is Day 4 in the series titled [**RefineWeek**](https://refine.dev/week-of-r
 
 ## Overview
 
-On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) object under the hood.
+On Day Three, we implemented CRUD operations using **Supabase** `dataProvider` methods and the `resources` prop, which leveraged RESTful routes in the [`routerProvider`](https://refine.dev/core/docs/api-reference/core/providers/router-provider/) object under the hood.
 
-Today, we are going to explore the [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) prop as we implement realtime collaboration on a `canvas` so that `pixels` drawn on a `canvas` by one user is instantly seen by anyone else viewing it from another client.
+Today, we are going to explore the [`liveProvider`](https://refine.dev/core/docs/api-reference/core/providers/live-provider/) prop as we implement realtime collaboration on a `canvas` so that `pixels` drawn on a `canvas` by one user is instantly seen by anyone else viewing it from another client.
 
 There are two parts to our endeavor in this post, one in the **Supabase** backend and one in our **Refine** app:
 
@@ -58,7 +58,7 @@ Behind the scenes, **Supabase** spins up globally distributed **Realtime** serve
 
 We are using **Supabase** **Realtime**'s [**PostgreSQL Change Data Capture**](https://supabase.com/docs/guides/realtime#postgres-cdc) feature which will now allow our app to publish mutation events to the `pixels` channel and also listen to those changes from a subscriber component.
 
-This means mutation hooks such as [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) are able to get instant updates for any change to `pixels`.
+This means mutation hooks such as [`useCreate()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useCreate/) can now publish events to the `pixels` channel and consumer hooks like [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) are able to get instant updates for any change to `pixels`.
 
 ## `<Refine />`'s `liveProvider` Prop
 
@@ -197,7 +197,7 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 </p>
 </details>
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/docs/data/hooks/use-create) hook we invoke to create a pixel.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/core/docs/data/hooks/use-create) hook we invoke to create a pixel.
 
 ## Broadcasting
 
@@ -310,7 +310,7 @@ As we can see, with the call to `mutate` method of the `useCreate()` hook, a new
 And since we enabled realtime for the `pixels` table, each successful `create` action broadcasts the change to the `pixels` channel for subscribers to pick.
 <br />
 
-### Refine [`usePublish()`](https://refine.dev/docs/api-reference/core/hooks/live/usePublish/) Hook
+### Refine [`usePublish()`](https://refine.dev/core/docs/api-reference/core/hooks/live/usePublish/) Hook
 
 The exact way it happens looks like this:
 
@@ -330,7 +330,7 @@ The published event for `pixels` `create` action produces an object with the fol
 }
 ```
 
-Feel free to go through the [live hooks docs](https://refine.dev/docs/api-reference/core/providers/live-provider/#publish-events-from-hooks) for details about how live publishing is supported by `useCreate()` and other mutation hooks.
+Feel free to go through the [live hooks docs](https://refine.dev/core/docs/api-reference/core/providers/live-provider/#publish-events-from-hooks) for details about how live publishing is supported by `useCreate()` and other mutation hooks.
 
 ## Subscription
 
@@ -396,7 +396,7 @@ The actual subscription is done by the `liveProvider.subscribe()` method.
 
 The `subscribe()` method is called from inside the `useResourceSubscription()` hook in order to subscribe to the `pixels` channel.
 
-If you want to dive into the details, please feel free to do so in the [`liveProvider` docs here](https://refine.dev/docs/api-reference/core/providers/live-provider/).
+If you want to dive into the details, please feel free to do so in the [`liveProvider` docs here](https://refine.dev/core/docs/api-reference/core/providers/live-provider/).
 
 ## Summary
 

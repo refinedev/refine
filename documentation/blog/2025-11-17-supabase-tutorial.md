@@ -297,7 +297,7 @@ The quickest win now is to connect your Supabase database to Refine AI and gener
 - [Supabase Auth](https://supabase.com/docs/guides/auth) – configure access and security policies
 - [Local Development & CLI](https://supabase.com/docs/guides/local-development/overview) – run Supabase locally with migrations
 - [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) – how to enable and write policies
-- [Refine + Supabase Guide](https://refine.dev/docs/guides/supabase) – connect your schema to Refine AI
+- [Refine + Supabase Guide](https://refine.dev/core/docs/guides/supabase) – connect your schema to Refine AI
 - [Supabase Discord](https://discord.supabase.com) – join the community
 
 ---

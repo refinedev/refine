@@ -38,7 +38,7 @@ const App: React.FC = () => {
 };
 ```
 
-[You can see how themes change the look of the application in this example.](/docs/examples/themes/refine-themes-mui/)
+[You can see how themes change the look of the application in this example.](/core/docs/examples/themes/refine-themes-mui/)
 
 ## Theme Provider
 
@@ -937,9 +937,9 @@ render(<App />);
 
 If you want to use `notistack` snackbars with the default style, simply wrap `<Refine>` in `<SnackbarProvider>`.
 
-If you want to customize the default layout elements provided with `@refinedev/mui` package, check out the [Custom ThemedLayout](/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/mui` package, check out the [Custom ThemedLayout](/core/docs/advanced-tutorials/custom-layout) tutorial.
 
-[create-refine-app]: /docs/getting-started/quickstart.md
+[create-refine-app]: /core/docs/getting-started/quickstart
 
 ```tsx live shared
 import React, {

@@ -230,13 +230,13 @@ A React-based framework for building internal tools, rapidly. **Refine** offers 
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-[Refer to the **Refine** documentation for more information. →](https://refine.dev/docs/)
+[Refer to the **Refine** documentation for more information. →](https://refine.dev/core/docs/)
 
 ## How to Multipart File Upload with Refine and React Hook Form?
 
-It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/docs/packages/list-of-packages) it publishes with its **Refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **Refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
+It allows you to manage your forms and send data to your server with the [refine-react-hook-form adapter](/core/docs/packages/list-of-packages) it publishes with its **Refine** **headless** feature. With this adapter, you can use all the features of the React Hook Form in harmony with **Refine**. You can also perform `Multipart File Upload(multipart/form-data)` operation very easily using this adapter.
 
-[Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/list-of-packages)
+[Refer to the refine-react-hook-form adapter documentation for detailed information. →](/core/docs/packages/list-of-packages)
 
 [View Source](https://github.com/refinedev/refine/tree/main/examples/reactHookForm/useForm)
 

@@ -7,7 +7,7 @@ This field is used to display boolean values. It uses the [`<Tooltip>`](https://
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -103,9 +103,9 @@ render(
 
 ### Properties
 
-<PropsTable module="@refinedev/mui/BooleanField" 
-title-description="The text shown in the tooltip" 
-title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
+<PropsTable module="@refinedev/mui/BooleanField"
+title-description="The text shown in the tooltip"
+title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`"
 trueIcon-default="[`<CheckOutlined />`](https://mui.com/material-ui/material-icons/)"
 falseIcon-default="[`<CloseOutlined />`](https://mui.com/material-ui/material-icons/)"
 />

@@ -64,7 +64,7 @@ yarn create strapi-app project-name --quickstart
 
 #### Refine built-in Strapi data provider
 
-A [data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/#overview) is an interface a [Refine](https://refine.dev/) application uses to communicate with an API. Refine has data providers for most of the popular CMS and platforms. You can use Refine's [Strapi data provider](https://github.com/refinedev/refine/tree/main/packages/strapi-v4) to interact with your Strapi instance from a Refine application.
+A [data provider](https://refine.dev/core/docs/api-reference/core/providers/data-provider/#overview) is an interface a [Refine](https://refine.dev/) application uses to communicate with an API. Refine has data providers for most of the popular CMS and platforms. You can use Refine's [Strapi data provider](https://github.com/refinedev/refine/tree/main/packages/strapi-v4) to interact with your Strapi instance from a Refine application.
 
 You can install the Strapi data provider in a Refine application like so:
 
@@ -72,7 +72,7 @@ You can install the Strapi data provider in a Refine application like so:
 npm install @refinedev/strapi-v4
 ```
 
-The Refine documentation has comprehensive guides on [data providers](https://refine.dev/docs/api-reference/core/providers/data-provider/).
+The Refine documentation has comprehensive guides on [data providers](https://refine.dev/core/docs/api-reference/core/providers/data-provider/).
 
 #### Pros of using Strapi
 
@@ -124,7 +124,7 @@ You can install the Hasura data provider in your Refine application like so:
 npm install @refinedev/hasura
 ```
 
-Check the [Refine documentation](https://refine.dev/docs/api-reference/core/providers/data-provider/) on using data providers in a Refine application.
+Check the [Refine documentation](https://refine.dev/core/docs/api-reference/core/providers/data-provider/) on using data providers in a Refine application.
 
 #### Pros of Hasura
 

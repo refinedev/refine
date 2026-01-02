@@ -14,7 +14,7 @@ import CodeBlock from '@theme/CodeBlock';
 :::caution
 Before upgrading to Refine 5, make sure that you are using Refine 4.x.x.
 
-If you are using Refine 3.x.x, [refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/docs/migration-guide/3x-to-4x.md)
+If you are using Refine 3.x.x, [refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/core/docs/migration-guide/3x-to-4x)
 :::
 
 <h2>Migration Steps </h2>
@@ -58,7 +58,7 @@ values={[
 
 <TabItem value="refine-cli">
 
-⚡️ You can easily update Refine packages with the Refine CLI [`update`](/docs/packages/cli/#update) command.
+⚡️ You can easily update Refine packages with the Refine CLI [`update`](/core/docs/packages/cli/#update) command.
 
 ```bash
 npm run refine update
@@ -73,7 +73,7 @@ npm i @tanstack/react-query@5
 
 :::
 
-> [Want to add Refine CLI to an existing project?](/docs/packages/cli/#how-to-add-to-an-existing-project)
+> [Want to add Refine CLI to an existing project?](/core/docs/packages/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
 
@@ -253,7 +253,7 @@ If your project is still using the `legacyRouterProvider` provider, you'll need 
 Please refer these guides to refactor your project:
 
 - [Migrating Router Provider from 3.x.x to 4.x.x][router-provider-migration]
-- [React Router v6 to v7](/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
+- [React Router v6 to v7](/core/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
 
 ## 4. Refactor Legacy Auth Provider to use new Auth Provider
 
@@ -281,8 +281,8 @@ You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanSta
 Refine v5 supports both React 18 and React 19. If you want to take advantage of the latest React features, you can optionally upgrade to React 19. Please refer to the [React 19 release notes](https://react.dev/blog/2024/04/25/react-19) for more information about the new features and migration considerations.
 
 [refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
-[router-provider-migration]: /docs/migration-guide/router-provider/
-[auth-provider-migration]: /docs/migration-guide/auth-provider/
+[router-provider-migration]: /core/docs/migration-guide/router-provider/
+[auth-provider-migration]: /core/docs/migration-guide/auth-provider/
 
 ## Data & Mutation Hooks: Return Type Breaking Changes
 

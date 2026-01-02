@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **Refine** and [Supabase Data Provider](/docs/examples/data-provider/supabase/) features.
+In this tutorial, we will use [Supabase](https://supabase.com/) as the backend of our project. Our goal with this is to create a `Windows95`-style admin panel using **Refine** and [Supabase Data Provider](/core/docs/examples/data-provider/supabase/) features.
 
 ## Create a new Refine app
 
@@ -81,7 +81,7 @@ export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
 
 The `supabaseClient` will be used by the `@refinedev/supabase` package to create a `dataProvider` for us.
 
-You can learn more about the it in the [Data Provider](/docs/data/data-provider) section.
+You can learn more about the it in the [Data Provider](/core/docs/data/data-provider) section.
 
 ### AuthProvider
 
@@ -338,11 +338,11 @@ export default authProvider;
 
 The `authProvider` is a simple object that contains all the functions that are used to handle authentication.
 
-You can learn more about the it in the [Auth Provider](/docs/authentication/auth-provider) section.
+You can learn more about the it in the [Auth Provider](/core/docs/authentication/auth-provider) section.
 
 ### Root component: `App.tsx`
 
-Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/docs/core/refine-component) component. This component is the main component of **Refine**. It is used to configure the application and to provide the context to all the other components.
+Before we start, let's take a look at the `App.tsx` file. This is the root component of our application. It contains the [`<Refine />`](/core/docs/core/refine-component) component. This component is the main component of **Refine**. It is used to configure the application and to provide the context to all the other components.
 
 <details>
 
@@ -439,7 +439,7 @@ We import the `original` theme from the `react95` package and wrap our applicati
 
 ## Login Page
 
-We will create a simple login page to demonstrate the authentication flow. We will use the [`useLogin`](https://refine.dev/docs/api-reference/core/hooks/authentication/useLogin/) hook to handle the login process. This hook will call the `login` function that is defined in the `authProvider`.
+We will create a simple login page to demonstrate the authentication flow. We will use the [`useLogin`](https://refine.dev/core/docs/api-reference/core/hooks/authentication/useLogin/) hook to handle the login process. This hook will call the `login` function that is defined in the `authProvider`.
 
 Let's create a `<LoginPage />` component in the `src/pages/login/index.tsx` directory with the following code:
 
@@ -915,7 +915,7 @@ export default App;
 
 ### List Page
 
-After our login process, we'll get the posts from our supabase and display them in the table. We will use React95 components for the UI portion of our table, as well as [`@refinedev/react-table`](/docs/packages/list-of-packages) package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter.
+After our login process, we'll get the posts from our supabase and display them in the table. We will use React95 components for the UI portion of our table, as well as [`@refinedev/react-table`](/core/docs/packages/list-of-packages) package to handle pagination, sorting, and filtering. You can use all the features of [TanStack Table](https://react-table.tanstack.com/) with the `@refinedev/react-table` adapter.
 
 So, let's install the `@refinedev/react-table` and dependencies.
 
@@ -1176,13 +1176,13 @@ const pageSizeOptions = [
 
 We used the `useTable` hook to fetch the data for the table. It makes a request to the `/posts` endpoint with the query parameters. The query parameters are used to filter, sort, and paginate the posts. Since we defined the posts resource in `src/App.tsx`, the `useTable` hook knows which endpoint to use for fetching the data.
 
-After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/docs/data/hooks/use-delete) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
+After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/core/docs/data/hooks/use-delete) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.gif" alt="Refine List Page" className="border border-gray-200 rounded" />
 
 ### Create Page and Edit Page
 
-We have created our post list page. Now we will create page where we can create posts. **Refine** provides a [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **Refine**. We will use this to manage our form state.
+We have created our post list page. Now we will create page where we can create posts. **Refine** provides a [`@refinedev/react-hook-form`](/core/docs/packages/list-of-packages) adapter that you can use all the features of [React Hook Form](https://react-hook-form.com/) with **Refine**. We will use this to manage our form state.
 
 So, let's install the `@refinedev/react-hook-form` and dependencies.
 
@@ -1375,7 +1375,7 @@ export const PostEdit: React.FC = () => {
 
 </details>
 
-Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/docs/packages/list-of-packages) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
+Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/core/docs/packages/list-of-packages) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/edit-page.gif" alt="Refine Edit Page" className="border border-gray-200 rounded"/>
 

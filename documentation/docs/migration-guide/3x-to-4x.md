@@ -85,7 +85,7 @@ const App = () => {
 
 While this will allow you to use the old router provider, we do not recommend it. You should use the new `routerProvider` interface to take advantage of new features like nested routes with parameters, custom action routes, and more control over your routes overall.
 
-[Please refer to the Router Provider Migration Guide for more information and guidance. →](/docs/migration-guide/router-provider/)
+[Please refer to the Router Provider Migration Guide for more information and guidance. →](/core/docs/migration-guide/router-provider/)
 
 :::
 
@@ -117,7 +117,7 @@ This is only a resource definition, which must be handled within your router str
 
 In the above example, you can see how the new enterprise-grade routing structure allows for effortless handling of multi-tenant structures. The detail page of a product can have a nested structure and additional parameters, which can be passed along with the `meta` properties in hooks and components. When constructing the navigation path, existing parameters in the URL will also be used.
 
-The existing method for passing components to the actions is still supported, and it uses default paths when an action has a component value. However, the new `routerProvider` does not automatically create routes for it. However, you can use the `RefineRoutes` components from the router packages to create routes automatically. For more information on changes to routing in resources, please refer to the [Router Provider Migration Guide](/docs/migration-guide/router-provider/).
+The existing method for passing components to the actions is still supported, and it uses default paths when an action has a component value. However, the new `routerProvider` does not automatically create routes for it. However, you can use the `RefineRoutes` components from the router packages to create routes automatically. For more information on changes to routing in resources, please refer to the [Router Provider Migration Guide](/core/docs/migration-guide/router-provider/).
 
 We've also made changes in the structure of the resource definition such as the `identifier` property, which lets you define a custom identifier to a resource which can be used to select it in the hooks and components. This is useful when using multiple definitions with different paths and the same name.
 
@@ -189,7 +189,7 @@ const login = useLogin({
 });
 ```
 
-[Please refer to the Auth Provider Migration Guide for more information. →](/docs/migration-guide/auth-provider/)
+[Please refer to the Auth Provider Migration Guide for more information. →](/core/docs/migration-guide/auth-provider/)
 
 ### Import changes
 
@@ -479,7 +479,7 @@ If you still want to use the `useNavigation` hook and its returned functions in 
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/docs/routing/hooks/use-go), [`useParsed`](/docs/routing/hooks/use-parsed), [`useBack`](/docs/routing/hooks/use-back) or [`useLink`](/docs/routing/hooks/use-link).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/core/docs/routing/hooks/use-go), [`useParsed`](/core/docs/routing/hooks/use-parsed), [`useBack`](/core/docs/routing/hooks/use-back) or [`useLink`](/core/docs/routing/hooks/use-link).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -533,7 +533,7 @@ The `<ReadyPage>` component is deprecated and will be removed in the next major 
 
 Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
 
-[To upgrade now, visit the Migration Guide document >](/docs/ui-integrations/ant-design/migration-guide)
+[To upgrade now, visit the Migration Guide document >](/core/docs/ui-integrations/ant-design/migration-guide)
 
 :::
 
@@ -1473,7 +1473,7 @@ After that, you can import them from `react-hook-form` package directly.
 ```
 
 [refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
-[Refine]: /docs/core/refine-component
-[resources]: /docs/core/refine-component#resources
-[routerprovider]: /docs/routing/router-provider
-[auth-provider]: /docs/authentication/auth-provider
+[Refine]: /core/docs/core/refine-component
+[resources]: /core/docs/core/refine-component#resources
+[routerprovider]: /core/docs/routing/router-provider
+[auth-provider]: /core/docs/authentication/auth-provider

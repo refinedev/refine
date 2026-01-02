@@ -9,7 +9,7 @@ Refine provides a data provider for APIs powered with [Nest.js CRUD](https://git
 :::simple Good to know
 
 - This library uses [`axios`](https://axios-http.com) to handle the requests.
-- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
 
 :::
 

@@ -6,7 +6,7 @@ import { Sandpack, AddCustomTitleToLayout } from "./sandpack.tsx";
 
 <Sandpack>
 
-Having wrapped our app with the necessary styling components, we're now ready to add our layout into the application. Refine provides default layouts for its supported UI libraries through [`<ThemedLayout />`](/docs/ui-integrations/material-ui/components/themed-layout) components, delivering a two-column layout with a sidebar and a main content area.
+Having wrapped our app with the necessary styling components, we're now ready to add our layout into the application. Refine provides default layouts for its supported UI libraries through [`<ThemedLayout />`](/core/docs/ui-integrations/material-ui/components/themed-layout) components, delivering a two-column layout with a sidebar and a main content area.
 
 `<ThemedLayout />` components includes an header with user information (if an `authProvider` is provided), a sidebar with navigation links based on your resource definitions, a logout button (if an `authProvider` is provided), and a main content area where your content will be rendered.
 

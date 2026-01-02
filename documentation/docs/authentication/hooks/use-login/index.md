@@ -4,7 +4,7 @@ description: useLogin data hook from Refine is a modified version of react-query
 source: /packages/core/src/hooks/auth/useLogin/index.ts
 ---
 
-`useLogin` calls `login` method from [`authProvider`](/docs/authentication/auth-provider) under the hood.
+`useLogin` calls `login` method from [`authProvider`](/core/docs/authentication/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v5/docs/react/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 

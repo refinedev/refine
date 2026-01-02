@@ -5,7 +5,7 @@ source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registr
 
 `<DeleteButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) and [`<Popover>`](https://ui.shadcn.com/docs/components/popover) components.
 
-When you try to delete something, a popover shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
+When you try to delete something, a popover shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/core/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/core/docs/data/data-provider).
 
 ## Installation
 
@@ -127,7 +127,7 @@ const MyComponent = () => {
 
 ### meta
 
-It is used to pass additional parameters to the `delete` method of your [`dataProvider`](/docs/data/data-provider).
+It is used to pass additional parameters to the `delete` method of your [`dataProvider`](/core/docs/data/data-provider).
 
 ```tsx
 const MyComponent = () => {
@@ -149,7 +149,7 @@ const MyComponent = () => {
 
 ### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component).
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/core/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/core/docs/core/refine-component).
 
 ```tsx
 import { DeleteButton } from "@/components/refine-ui/buttons/delete";

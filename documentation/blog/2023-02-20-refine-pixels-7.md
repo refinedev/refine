@@ -63,7 +63,7 @@ A successful resource `create` action makes the following log `params` object av
 
 This object should be passed to the audit log provider's `create` method in order to create a new record in the `logs` table.
 
-Likewise, the `update` and `delete` actions of a resource - for example, `pixels` - emit an object with similar, overlapping variations. More on that [here](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/#create).
+Likewise, the `update` and `delete` actions of a resource - for example, `pixels` - emit an object with similar, overlapping variations. More on that [here](https://refine.dev/core/docs/api-reference/core/providers/audit-log-provider/#create).
 
 It is important **_not_** to confuse a resource `create` action with that of the `auditLogProvider`. The resource `create` action is carried out by the `dataProvider.create()` method and produces the log `params` object. The `auditLogProvider.create()` method consumes the `params` object and creates an entry in the `logs` table.
 
@@ -218,7 +218,7 @@ It is called when any of the three mutation actions, namely `create`, `update` a
 
 ### `update`
 
-The `update` method is similar. Our implementation allows updating the `name` of the log item. Hence we need to add a `name` column in our database. If you haven't already noticed it, we have a `name` column in our `logs` table and this is the reason. The `update` methods queries the database with the `id` of the log entry and allows updating its `name`. More information is available in [this section](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/#update).
+The `update` method is similar. Our implementation allows updating the `name` of the log item. Hence we need to add a `name` column in our database. If you haven't already noticed it, we have a `name` column in our `logs` table and this is the reason. The `update` methods queries the database with the `id` of the log entry and allows updating its `name`. More information is available in [this section](https://refine.dev/core/docs/api-reference/core/providers/audit-log-provider/#update).
 
 ### `get`
 
@@ -520,7 +520,7 @@ Prior to that, the `log` object here utilizes `react-query`'s `useMutation()` ho
 
 Inside mutation hooks, the `useLog()` hook is used to create a log automatically after a successful resource mutation. For example, the `useCreate()` data hook implements it with the `mutate` method on `log` object returned from `useLog()`:
 
-```tsx title="@refinedev/core/src/hooks/data/useCreate.ts"
+```tsx title="@refinedev/core/src/data/hooks/useCreate.ts"
 // v4.5.8
 
 log?.mutate({
@@ -552,13 +552,13 @@ In this **RefineWeek** series, built the following two apps with **Refine**:
 
 While building these twp apps, we have covered core **Refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
 
-- [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
-- [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
-- [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
-- [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
-- [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
-- [`notificationProvider`](https://refine.dev/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
+- [`authProvider`](https://refine.dev/core/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
+- [`dataProvider`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
+- [`routerProvider`](https://refine.dev/core/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
+- [`liveProvider`](https://refine.dev/core/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
+- [`accessControlProvider`](https://refine.dev/core/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
+- [`auditLogProvider`](https://refine.dev/core/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
+- [`notificationProvider`](https://refine.dev/core/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
 
 There are more to **Refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
 

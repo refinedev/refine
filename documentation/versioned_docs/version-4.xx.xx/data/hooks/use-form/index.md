@@ -17,11 +17,11 @@ const { onFinish, ... } = useForm({ ... });
 
 `@refinedev/antd`, `@refinedev/mantine` and `@refinedev/react-hook-form` packages provide their own extended versions of `useForm` hook with full support for their respective form implementations including validation, error handling, form values, and more.
 
-Refer to their respective documentation for more information and check out the [Forms in Refine](guides-concepts/forms/index.md) guide for detailed information on how to handle forms in Refine.
+Refer to their respective documentation for more information and check out the [Forms in Refine](guides-concepts/forms/index) guide for detailed information on how to handle forms in Refine.
 
-- [`@refinedev/antd`'s `useForm`](/docs/ui-integrations/ant-design/hooks/use-form)
-- [`@refinedev/mantine`'s `useForm`](/docs/ui-integrations/mantine/hooks/use-form)
-- [`@refinedev/react-hook-form`'s `useForm`](/docs/packages/list-of-packages)
+- [`@refinedev/antd`'s `useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form)
+- [`@refinedev/mantine`'s `useForm`](/core/docs/ui-integrations/mantine/hooks/use-form)
+- [`@refinedev/react-hook-form`'s `useForm`](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -48,44 +48,44 @@ In `create` action, `useForm` will follow the flow below:
 After form is submitted:
 
 1. `useForm` calls `onFinish` function with the form values.
-2. `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
-3. `useCreate` calls [`dataProvider`](/docs/data/data-provider)'s `create` function and returns the response.
+2. `onFinish` function calls [`useCreate`](/core/docs/data/hooks/use-create) with the form values.
+3. `useCreate` calls [`dataProvider`](/core/docs/data/data-provider)'s `create` function and returns the response.
 4. `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5. After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-6. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
+6. `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/core/docs/notification/notification-provider) to inform the user.
 7. `useForm` redirects to the `list` page.
 
 #### Edit
 
 In `edit` action, `useForm` will follow the flow below:
 
-When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/core/docs/data/hooks/use-one) hook to retrieve the record to be edited. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useUpdate`](/docs/data/hooks/use-update) with the form values.
+2.  `onFinish` function calls [`useUpdate`](/core/docs/data/hooks/use-update) with the form values.
 3.  If the mutation mode is `optimistic` or `undoable`, `useForm` will update the query cache with the form values immediately after the mutation is triggered.
 4.  If the mutation mode is `undoable`, `useForm` will display a notification with a countdown to undo the mutation.
-5.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
+5.  `useUpdate` calls [`dataProvider`](/core/docs/data/data-provider)'s `update` function and returns the response.
 6.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 7.  If the mutation fails, `useForm` will revert the query cache to the previous values made in step 3.
 8.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-9.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
+9.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/core/docs/notification/notification-provider) to inform the user.
 10. `useForm` redirects to the `list` page.
 
 #### Clone
 
-When `useForm` is mounted, it calls [`useOne`](/docs/data/hooks/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
+When `useForm` is mounted, it calls [`useOne`](/core/docs/data/hooks/use-one) hook to retrieve the record to be cloned. The `id` for the record is obtained from the props or the current route.
 
 After form is submitted:
 
 1.  `useForm` calls `onFinish` function with the form values.
-2.  `onFinish` function calls [`useCreate`](/docs/data/hooks/use-create) with the form values.
-3.  `useUpdate` calls [`dataProvider`](/docs/data/data-provider)'s `update` function and returns the response.
+2.  `onFinish` function calls [`useCreate`](/core/docs/data/hooks/use-create) with the form values.
+3.  `useUpdate` calls [`dataProvider`](/core/docs/data/data-provider)'s `update` function and returns the response.
 4.  `useForm` calls `onSuccess` or `onError` function with the response, depending on the response status.
 5.  After a successful mutation, `useForm` will invalidate the queries specified in `invalidates` prop.
-6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/docs/notification/notification-provider) to inform the user.
+6.  `onSuccess` or `onError` function then calls the `open` function of the [`notificationProvider`](/core/docs/notification/notification-provider) to inform the user.
 7.  `useForm` redirects to the `list` page.
 
 ### resource <GuideBadge id="guides-concepts/general-concepts" /> <RouterBadge />
@@ -182,7 +182,7 @@ useForm({ mutationMode: "optimistic" });
 
 ### successNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a successful mutation.
 
@@ -202,7 +202,7 @@ useForm({
 
 ### errorNotification <GuideBadge id="guides-concepts/forms#notifications" />
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 Customization options for the notification that will be shown after a failed mutation.
 
@@ -276,7 +276,7 @@ useForm({
 
 ### liveMode <GuideBadge id="guides-concepts/realtime" />
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 
@@ -476,7 +476,7 @@ This prop is deprecated and will be removed in the future versions. Use [`query`
 
 :::simple Global Configuration
 
-These props have default values in `RefineContext` and can also be set on [`<Refine />`](/docs/core/refine-component) component. `useForm` will use what is passed to `<Refine />` as default but a local value will override it.
+These props have default values in `RefineContext` and can also be set on [`<Refine />`](/core/docs/core/refine-component) component. `useForm` will use what is passed to `<Refine />` as default but a local value will override it.
 
 :::
 
@@ -493,14 +493,14 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 ### Return values
 
-| Property      | Description                                            | Type                                                                                                                                                         |
-| ------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish      | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                |
-| query         | Result of the query of a record                        | [`QueryObserverResult<TData, TError>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
-| mutation      | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                             |
-| formLoading   | Loading state of form request                          | `boolean`                                                                                                                                                    |
-| id            | Record id for `clone` and `create` action              | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                         |
-| setId         | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                             |
-| redirect      | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
-| overtime      | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                   |
-| autoSaveProps | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                      |
+| Property      | Description                                            | Type                                                                                                                                                              |
+| ------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish      | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                     |
+| query         | Result of the query of a record                        | [`QueryObserverResult<TData, TError>`](https://react-query.tanstack.com/reference/useQuery)                                                                       |
+| mutation      | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                  |
+| formLoading   | Loading state of form request                          | `boolean`                                                                                                                                                         |
+| id            | Record id for `clone` and `create` action              | [`BaseKey`](/core/docs/core/interface-references#basekey)                                                                                                         |
+| setId         | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                  |
+| redirect      | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/core/docs/core/interface-references#basekey)\|`undefined`) => `data` |
+| overtime      | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                        |
+| autoSaveProps | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                           |

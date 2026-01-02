@@ -161,7 +161,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -290,6 +290,6 @@ It also accepts all props of Chakra UI [Button](https://chakra-ui.com/docs/compo
 
 :::
 
-[useimport]: /docs/core/hooks/utilities/use-import
+[useimport]: /core/docs/core/hooks/utilities/use-import
 [button]: https://www.chakra-ui.com/docs/components/button#usage
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

@@ -187,7 +187,7 @@ You can think `resources` are bridge between the `dataProvider` and `routes`.
 
 After that, we need to define the routes for each page and `resource`. To do so, we'll use the `<Routes>` and `<Route>` components from the `react-router-dom` package.
 
-> You can find more information about [resources](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and adding routes in the [React Router v6](https://refine.dev/docs/packages/documentation/routers/react-router-v6).
+> You can find more information about [resources](https://refine.dev/core/docs/api-reference/core/components/refine-config/#resources) and adding routes in the [React Router v6](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6).
 
 You can simply copy and paste the code below into the `App.tsx` file:
 
@@ -365,7 +365,7 @@ export default function UserList() {
 }
 ```
 
-[`useTable`](/docs/ui-integrations/ant-design/hooks/use-table) in the code above is a Refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
+[`useTable`](/core/docs/ui-integrations/ant-design/hooks/use-table) in the code above is a Refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
 
 In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableProps` property. Then we set unique keys for each record from the API using the `rowkey` prop.
 
@@ -437,7 +437,7 @@ export default function UserCreate() {
 }
 ```
 
-[`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) is a Refine hook for handling form data. It offers adapters that let Refine integrate with Ant design's `<Form>` component.
+[`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) is a Refine hook for handling form data. It offers adapters that let Refine integrate with Ant design's `<Form>` component.
 
 In the code above, we destructured the **formProps** and `saveButtonProps` properties from the `useForm` hook, then we passed them to the `<Create>` and `<Form>` components, respectively.
 
@@ -1024,9 +1024,9 @@ export default function UserList() {
 }
 ```
 
-The `<EditButton>` component uses Ant's `Button` component and Refine's [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
+The `<EditButton>` component uses Ant's `Button` component and Refine's [`useNavigation`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) hook under the hood. It displays an edit icon with the functionality of redirecting users to the edit page of a record, whose `id` is passed to the `recordItemId` prop of the component, when clicked on.
 
-Refer to the `<EditButton>` [documentation](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) to learn more about the component.
+Refer to the `<EditButton>` [documentation](https://refine.dev/core/docs/api-reference/antd/components/buttons/edit-button/) to learn more about the component.
 
 In the example above, we're using the `render` prop to choose the appropriate record on the table, and passing its `id` to the `recordItemId` prop on the `<EditButton>` component. This way, the button will only redirect us to the edit page of the record being clicked on.
 
@@ -1180,7 +1180,7 @@ This is a duplicate of the form component we created inside the `UserCreate` pag
 
 That's it. We've successfully built an application that uses an API to post and edit response records using a **dynamic form**.
 
-As a challenge, visit Refine's [documentation](https://refine.dev/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application.
+As a challenge, visit Refine's [documentation](https://refine.dev/core/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application.
 
 ## FAQ's
 

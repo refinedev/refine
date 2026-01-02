@@ -70,11 +70,11 @@ Refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with Refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on Refine app.
 
-We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/tutorial) section first.
+We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/core/tutorial) section first.
 
-[Refer to docs for more information about data provider &#8594](/docs/data/data-provider)
+[Refer to docs for more information about data provider &#8594](/core/docs/data/data-provider)
 
-[Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/integrations/)
+[Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/core/integrations/)
 
 ## Project Setup
 
@@ -196,7 +196,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, Refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/docs/data/hooks/use-create)
+[Refer to documentation to learn more about how to use data hooks &#8594](/core/docs/data/hooks/use-create)
 
 ## Understanding the Auth Provider
 
@@ -208,7 +208,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a Refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/authentication/auth-provider)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/core/docs/authentication/auth-provider)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
@@ -465,7 +465,7 @@ export default authProvider;
 
 :::tip
 
-Auth provider functions are also consumed by [Refine authorization hooks](/docs/authentication/hooks/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [Refine authorization hooks](/core/docs/authentication/hooks/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
 
 :::
 
@@ -534,7 +534,7 @@ Before diving into Supabase features, we'll add simple CRUD pages to make the ap
 
 :::note
 
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/tutorial) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/core/tutorial) to learn more about creating CRUD pages.
 
 :::
 
@@ -1022,7 +1022,7 @@ Refine automatically matches the Supabase API endpoint with CRUD pages for us. I
 
 - The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
-[Refer to resources docs for more information &#8594](/docs/core/refine-component#resources)
+[Refer to resources docs for more information &#8594](/core/docs/core/refine-component#resources)
 
 ## Understanding the Login screen
 
@@ -1137,7 +1137,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 We'll show how to implement third party logins in the next sections.
 
-[Refer to AuthPage docs for more information &#8594](/docs/ui-integrations/ant-design/components/auth-page)
+[Refer to AuthPage docs for more information &#8594](/core/docs/ui-integrations/ant-design/components/auth-page)
 
 Sign in the app with followings credentials:
 
@@ -1376,7 +1376,7 @@ So far, we have implemented the followings:
 - We have reviewed Supabase Client and data provider concepts. We've seen benefits of using Refine and how it can handle complex setups for us.
 - We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of Refine's built-in authentication support.
 - We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
-- We have seen how the [`Authentication`](/docs/packages/list-of-packages#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+- We have seen how the [`Authentication`](/core/docs/packages/list-of-packages#usage-with-authentication) component works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
 - We have seen how authorization handling in Refine app by understanding the logic behind of `authProvider`, and `<AuthPage>` component.
 
 **Refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
@@ -1416,7 +1416,7 @@ function App() {
 
 For live features to work automatically, we set `liveMode: "auto"` in the options prop.
 
-[Refer to Live Provider docs for more information &#8594](/docs/realtime/live-provider#livemode)
+[Refer to Live Provider docs for more information &#8594](/core/docs/realtime/live-provider#livemode)
 
 ### Let see how real-time feature works in the app
 
@@ -1435,11 +1435,11 @@ Refine offers out-of-the-box live provider support:
 
 ## Using `meta` to pass values to data provider
 
-The [`meta`](/docs/guides-concepts/general-concepts/#meta-concept) property is used to pass additional information that can be read by data provider methods.
+The [`meta`](/core/docs/guides-concepts/general-concepts/#meta-concept) property is used to pass additional information that can be read by data provider methods.
 
 We'll show an example of getting relational data from different tables on Supabase API using `meta` property.
 
-Take a look at the useTable hook in List page we created on the [previous sections](/docs/packages/list-of-packages#adding-a-list-page).
+Take a look at the useTable hook in List page we created on the [previous sections](/core/docs/packages/list-of-packages#adding-a-list-page).
 
 ### `select` - Getting selected fields
 
@@ -1517,7 +1517,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-Refine's [useMany](/docs/data/hooks/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
+Refine's [useMany](/core/docs/data/hooks/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
@@ -1612,7 +1612,7 @@ By default the `exact` count is used.
 
 ### How can I use Supabase Realtime with relational queries?
 
-We use `meta.select` property to fetch relational data from foreign tables in Supabase. However, Supabase client doesn't have [Supabase Realtime](#supabase-realtime-support) support for the relational data changes. To handle this, we need to [manually subscribe](https://refine.dev/docs/realtime/hooks/use-subscription) and refetch the data when a change occurs in the related table.
+We use `meta.select` property to fetch relational data from foreign tables in Supabase. However, Supabase client doesn't have [Supabase Realtime](#supabase-realtime-support) support for the relational data changes. To handle this, we need to [manually subscribe](https://refine.dev/core/docs/realtime/hooks/use-subscription) and refetch the data when a change occurs in the related table.
 
 ```tsx
 import { useTable, useSubscription } from "@refinedev/core";

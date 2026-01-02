@@ -428,7 +428,7 @@ render(<App />);
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/docs/core/refine-component#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/core/docs/core/refine-component#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine
@@ -441,7 +441,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/docs/core/refine-comp
 
 <br />
 
-It can also be set in supported [data hooks](/docs/data/hooks/use-update#mutation-mode) and [form hooks](/docs/data/hooks/use-form/#properties) for fine-grained configuration.
+It can also be set in supported [data hooks](/core/docs/data/hooks/use-update#mutation-mode) and [form hooks](/core/docs/data/hooks/use-form/#properties) for fine-grained configuration.
 
 ```tsx
 import { useUpdate } from "@refinedev/core";
@@ -461,10 +461,10 @@ mutate({
 
 ### Supported data hooks
 
-- [`useUpdate` &#8594](/docs/data/hooks/use-update)
-- [`useUpdateMany` &#8594](/docs/data/hooks/use-update)
-- [`useDelete` &#8594](/docs/data/hooks/use-delete)
-- [`useDeleteMany` &#8594](/docs/data/hooks/use-delete)
+- [`useUpdate` &#8594](/core/docs/data/hooks/use-update)
+- [`useUpdateMany` &#8594](/core/docs/data/hooks/use-update)
+- [`useDelete` &#8594](/core/docs/data/hooks/use-delete)
+- [`useDeleteMany` &#8594](/core/docs/data/hooks/use-delete)
 
 <br />
 

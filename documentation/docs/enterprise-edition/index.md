@@ -4,7 +4,7 @@ title: Getting Started
 
 ## Overview
 
-While Refine Community Edition follows monthly release cycles, [Enterprise Edition](/enterprise) features are released continuously as they are merged to `next` branch.
+While Refine Community Edition follows monthly release cycles, Enterprise Edition features are released continuously as they are merged to `next` branch.
 
 Refine EE packages are distributed through our private NPM registry at `registry.refine.dev` under `@refinedev` scope.
 

@@ -7,13 +7,13 @@ swizzle: true
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
 ## Usage
 
-Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook:
+Let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) hook:
 
 ```tsx live previewHeight=360px
 setInitialRoutes(["/posts/edit/123"]);
@@ -81,7 +81,7 @@ render(
 );
 ```
 
-The [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
+The [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) hook exposes `saveButtonProps` to be passed to the `<SaveButton>` component which includes submitting the form action, button loading, and disable states.
 
 ## Properties
 

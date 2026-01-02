@@ -13,7 +13,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -21,7 +21,7 @@ Just be aware that the source code example in this post have been updated to ver
 
 ## Introduction
 
-We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/) feature using industry-standard best tools.
+We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/core/docs/guides-and-concepts/mutation-mode/) feature using industry-standard best tools.
 
 Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [Refine](https://refine.dev/) to build a high-quality admin panel.
 
@@ -53,10 +53,10 @@ Steps we'll cover includes:
 
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using.
 
-- [Refine](https://refine.dev/docs/)
-- [Refine StrapiV4 data provider ](https://refine.dev/docs/examples/data-provider/strapi-v4/)
+- [Refine](https://refine.dev/core/docs/)
+- [Refine StrapiV4 data provider ](https://refine.dev/core/docs/examples/data-provider/strapi-v4/)
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Refine Material UI Tutorial](https://refine.dev/tutorial)
+- [Refine Material UI Tutorial](https://refine.dev/core/tutorial)
 
 Your node version need to be minimum `v16.14.0`
 
@@ -120,9 +120,9 @@ To consume Refine's Fake Strapi API, we'll need to change the `API URL` in the p
 export const API_URL = "https://api.strapi-v4.refine.dev";
 ```
 
-[Refer to Refine docs for more detailed information about Refine Strapi V4 support&#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
+[Refer to Refine docs for more detailed information about Refine Strapi V4 support&#8594](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4)
 
-[Refer to Refine's data provider documentation for detailed information&#8594](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to Refine's data provider documentation for detailed information&#8594](https://refine.dev/core/docs/core/providers/data-provider/)
 
 [Refer to official Strapi v4 documentation&#8594](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html)
 
@@ -200,9 +200,9 @@ We import and use Material UI components from Refine's `@refinedev/mui` to show 
 
 [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
 
-Refine hook [`useDataGrid`](/docs/ui-integrations/material-ui/hooks/use-data-grid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+Refine hook [`useDataGrid`](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
-[Refer to Refine's useDataGrid hook doc to more information&#8594](/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Refer to Refine's useDataGrid hook doc to more information&#8594](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
@@ -218,7 +218,7 @@ Note you will need `src/App.tsx` file to find your pages and posts. In the `/pag
 export * from "./list";
 ```
 
-[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](/docs/ui-integrations/material-ui/introduction)
+[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](/core/docs/ui-integrations/material-ui/introduction)
 
 <br/>
 <div>
@@ -312,7 +312,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 
 Relations are not populated when fetching entries. We'll use `meta` option to use relational population for Strapi v4 API.
 
-The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record and show on our table, we need to use [`populate`](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population) feature of Strapi v4.
+The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record and show on our table, we need to use [`populate`](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4/#relations-population) feature of Strapi v4.
 
 We'll set `populate` parameter to define which fields will be populated.
 
@@ -354,11 +354,11 @@ To show category field in table, we need to add new column to the PostList compo
 
 We use benefits of Strapi V4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
 
-[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](/docs/guides-concepts/data-fetching)
+[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](/core/docs/guides-concepts/data-fetching)
 
 :::
 
-[Refer to Refine Strapi v4 documentation for more information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
+[Refer to Refine Strapi v4 documentation for more information &#8594](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Resource only List component" />
 <br/>
@@ -893,7 +893,7 @@ We'll implement `undoable` mutation mode. The mutation is applied locally, redir
 
 During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
-[Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4)
+[Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4)
 
 To activate mutation mode, we'll set `mutationMode` property in `options` to the `<Refine/>` component.
 

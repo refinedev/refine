@@ -1,8 +1,8 @@
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import { socialLinks } from "./footer-data";
 import { RefineCoreLogoIcon } from "./icons/refine-logo";
-import Link from "@docusaurus/Link";
 
 export const CommonFooter = () => {
   const currentYear = new Date().getFullYear();
@@ -18,7 +18,7 @@ export const CommonFooter = () => {
         )}
       >
         <Link
-          to="/"
+          to="/core"
           className={clsx(
             "appearance-none",
             "hover:no-underline",

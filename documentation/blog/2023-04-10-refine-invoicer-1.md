@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-i
 hide_table_of_contents: false
 ---
 
-This is the opening post of another 2023 [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series. It is intended to provide an introduction to the series itself as well as to present [**Refine**](https://github.com/refinedev/refine), a React framework that is used to rapidly build any data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
+This is the opening post of another 2023 [**#RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) series. It is intended to provide an introduction to the series itself as well as to present [**Refine**](https://github.com/refinedev/refine), a React framework that is used to rapidly build any data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
 This five part guide aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
@@ -67,8 +67,8 @@ import routerProvider from "@refinedev/react-router";
 />;
 ```
 
-The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.
-Hence, inside [`dataProvider`](https://refine.dev/docs/data/data-provider), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/authentication/auth-provider/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
+The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.
+Hence, inside [`dataProvider`](https://refine.dev/core/docs/data/data-provider), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/core/docs/authentication/auth-provider/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/core/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
 
 For example, a `dataProvider` object should have the following signature to which any definition of a data provider object should conform:
 
@@ -92,7 +92,7 @@ const dataProvider: DataProvider = {
 };
 ```
 
-The underlying architecture facilitates any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has appropriate hooks via which a consumer component is able to fetch data from the backend. For instance, [`useSimpleList()`](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/) is a high level data and UI hook via which the [`dataProvider.getList()`](https://refine.dev/docs/data/data-provider#getlist) provider method can be accessed.
+The underlying architecture facilitates any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has appropriate hooks via which a consumer component is able to fetch data from the backend. For instance, [`useSimpleList()`](https://refine.dev/core/docs/api-reference/antd/hooks/list/useSimpleList/) is a high level data and UI hook via which the [`dataProvider.getList()`](https://refine.dev/core/docs/data/data-provider#getlist) provider method can be accessed.
 
 An example hook usage from a UI component looks like this:
 
@@ -102,7 +102,7 @@ const { listProps } = useSimpleList<IClient>({
 });
 ```
 
-The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
+The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
 
 ```tsx title="Inside useList() hook"
 const queryResponse = useQuery<GetListResponse<TData>, TError>(
@@ -171,19 +171,19 @@ The following diagram illustrates the interactions:
 
 Common providers include:
 
-- [`authProvider`](https://refine.dev/docs/authentication/auth-provider/#what-is-auth-provider) - for authentication and authorization.
-- [`dataProvider`](https://refine.dev/docs/data/data-provider) - for CRUD operations.
-- [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/) - for dealing with routing.
+- [`authProvider`](https://refine.dev/core/docs/authentication/auth-provider/#what-is-auth-provider) - for authentication and authorization.
+- [`dataProvider`](https://refine.dev/core/docs/data/data-provider) - for CRUD operations.
+- [`routerProvider`](https://refine.dev/core/docs/packages/documentation/routers/) - for dealing with routing.
 
-For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
+For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/core/docs/api-reference/core/).
 
-As part of the core package, each method in these providers comes with a corresponding low level hook to be used from inside higher level hooks, partial UI components and pages. As mentioned above with the `useSimpleList()` hook, higher level hooks can be built on top of lower level hooks such as the `useList()` hook. For more details, please refer to the **Refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
+As part of the core package, each method in these providers comes with a corresponding low level hook to be used from inside higher level hooks, partial UI components and pages. As mentioned above with the `useSimpleList()` hook, higher level hooks can be built on top of lower level hooks such as the `useList()` hook. For more details, please refer to the **Refine** hooks documentation starting [here](https://refine.dev/core/docs/api-reference/core/hooks/accessControl/useCan/).
 
 ## Support Packages
 
-**Refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **Refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/) and [**Material UI**](https://refine.dev/docs/api-reference/mui/). Backend supplementary modules include [**Strapi**](https://strapi.io/), **GraphQL**, **NestJS** and .
+**Refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **Refine**'s UI support packages include [**Ant Design**](https://refine.dev/core/docs/api-reference/antd/) and [**Material UI**](https://refine.dev/core/docs/api-reference/mui/). Backend supplementary modules include [**Strapi**](https://strapi.io/), **GraphQL**, **NestJS** and .
 
-For a complete list of all these modules, check out [this page](https://refine.dev/docs/packages/list-of-packages/).
+For a complete list of all these modules, check out [this page](/core/docs/packages/list-of-packages/).
 
 ## A week of Refine ft. Strapi
 
@@ -248,7 +248,7 @@ We then wrap up the series by discussing the accomplishments we are about to ach
 
 ## Summary
 
-In this post, we introduced the **Refine** framework and the [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series itself. We talked about **Refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **Refine** framework and the [**#RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) series itself. We talked about **Refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We laid out the plans for building a **React Pdf Invoice Generator** app in considerable depth.
 

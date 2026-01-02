@@ -3,8 +3,8 @@ import React, { useMemo } from "react";
 
 import IntegrationsLayout from "@site/src/components/integrations/layout";
 import type { Integration } from "@site/src/types/integrations";
-import { integrations as integrationsData } from "../../assets/integrations";
-import Card from "../../components/integrations/card";
+import { integrations as integrationsData } from "../../../assets/integrations";
+import Card from "../../../components/integrations/card";
 
 const Title = ({
   children,

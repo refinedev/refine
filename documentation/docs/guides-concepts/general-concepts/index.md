@@ -101,7 +101,7 @@ const myDataProvider: DataProvider = {
 };
 ```
 
-> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/docs/data/data-provider) page for more information.
+> Refine offers various built-in data providers for popular data sources like REST, Strapi, AirTable, Supabase, GraphQL, and more. See the [Data Providers](/core/docs/data/data-provider) page for more information.
 
 #### Hooks
 
@@ -172,7 +172,7 @@ const MyPage = () => (
 );
 ```
 
-> See the [Authentication Components](/docs/guides-concepts/authentication#components) page for more information.
+> See the [Authentication Components](/core/docs/guides-concepts/authentication#components) page for more information.
 
 #### Hooks
 
@@ -190,7 +190,7 @@ export const DashboardPage = () => {
 };
 ```
 
-> See the [Authentication Hooks](/docs/guides-concepts/authentication#hooks) page for more information.
+> See the [Authentication Hooks](/core/docs/guides-concepts/authentication#hooks) page for more information.
 
 #### UI Integrations
 
@@ -551,10 +551,10 @@ const productsAuditLogResults = useLogList({
 
 While Refine itself is headless, it offers UI Integrations for popular UI libraries:
 
-- [Ant Design](/docs/ui-integrations/ant-design/introduction)
-- [Material UI](/docs/ui-integrations/material-ui/introduction)
-- [Chakra UI](/docs/ui-integrations/chakra-ui/introduction)
-- [Mantine](/docs/ui-integrations/mantine/introduction)
+- [Ant Design](/core/docs/ui-integrations/ant-design/introduction)
+- [Material UI](/core/docs/ui-integrations/material-ui/introduction)
+- [Chakra UI](/core/docs/ui-integrations/chakra-ui/introduction)
+- [Mantine](/core/docs/ui-integrations/mantine/introduction)
 
 These integrations use `@refinedev/core` under the hood, becomes a bridge between the UI library and the Refine framework.
 
@@ -598,17 +598,17 @@ import { MantineLayout } from './layout/mantine';
 
 Refine provides a set of hooks to handle form state, validation, submission, autosave, and more. These hooks seamlessly integrate with popular UI libraries, making it easier to use their form components.
 
-- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/docs/packages/list-of-packages) - [Example](/examples/form/react-hook-form/useForm.md)
-- [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-form) - [Example](/examples/form/antd/useForm.md)
-- [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/docs/ui-integrations/mantine/hooks/use-form) - [Example](/examples/form/mantine/useForm.md)
+- [React Hook Form](https://react-hook-form.com/) (for Headless, Material UI, Chakra UI) - [Documentation](/core/docs/packages/list-of-packages) - [Example](/core/docs/examples/form/react-hook-form/useForm)
+- [Ant Design Form](https://ant.design/components/form/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-form) - [Example](/core/docs/examples/form/antd/useForm)
+- [Mantine Form](https://mantine.dev/form/use-form) - [Documentation](/core/docs/ui-integrations/mantine/hooks/use-form) - [Example](/core/docs/examples/form/mantine/useForm)
 
 ### Tables <GuideBadge id="guides-concepts/tables" />
 
 Refine offers seamless integration with several popular UI libraries, simplifying the use of their table component features such as pagination, sorting, filtering, and more.
 
-- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/examples/table/antd/useTable.md)
-- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/examples/table/mui/useDataGrid.md)
+- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/core/docs/examples/table/antd/useTable)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/core/docs/examples/table/mui/useDataGrid)
 
 ### Layout
 
@@ -794,7 +794,7 @@ export const myAccessControlProvider = {
 
 These are some but not all examples of how you can use the `meta` property.
 
-> See the [Refine Component](/docs/core/refine-component) page for more information.
+> See the [Refine Component](/core/docs/core/refine-component) page for more information.
 
 ## State Management
 
@@ -806,15 +806,15 @@ Refine uses structured keys to identify and cache server responses for queries a
 
 By default, Refine has 5 minutes of cache time and 0 seconds of stale time for queries. This means that if a query is re-used in 5 minutes, it will be populated with cached data and in the meantime, it will be refetched in the background. If the query is not re-used in 5 minutes, it will be refetched immediately.
 
-To learn more about data fetching and caching, see the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+To learn more about data fetching and caching, see the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
 
 #### Invalidation and Refetching
 
 Structured key based state management of Refine also help with invalidation of related queries when a mutation occurs. For example, when a user creates a new record, Refine will automatically invalidate the related queries meaning that the data your users interact with is always fresh and consistent with the backend.
 
-By default, invalidation is done for every related query of a mutation but refetching is done only for the queries that are currently in use, this means that if a user is not on the list page of a resource, the list query will not be refetched but will be invalidated so that when the user navigates to the list page, the data will be freshly fetched. Invalidation and refetching behavior can be customized by providing an `invalidates` property to the mutation or globally via [`<Refine />`](/docs/core/refine-component) component.
+By default, invalidation is done for every related query of a mutation but refetching is done only for the queries that are currently in use, this means that if a user is not on the list page of a resource, the list query will not be refetched but will be invalidated so that when the user navigates to the list page, the data will be freshly fetched. Invalidation and refetching behavior can be customized by providing an `invalidates` property to the mutation or globally via [`<Refine />`](/core/docs/core/refine-component) component.
 
-To learn more about invalidation, see the [Invalidation section of Forms](/docs/guides-concepts/forms#invalidation-) guide.
+To learn more about invalidation, see the [Invalidation section of Forms](/core/docs/guides-concepts/forms#invalidation-) guide.
 
 #### Optimistic Updates and Rollbacks
 
@@ -828,9 +828,9 @@ By default,
 - **Create** mutations will perform optimistic updates to the related list and many queries of the target resource.
 - **Delete** mutations will perform optimistic updates to the related list and many queries of the target resource.
 
-You can customize the optimistic update behavior and mutation modes through `optimisticUpdateMap` and `mutationMode` properties of the hooks or globally via [`<Refine />`](/docs/core/refine-component) component.
+You can customize the optimistic update behavior and mutation modes through `optimisticUpdateMap` and `mutationMode` properties of the hooks or globally via [`<Refine />`](/core/docs/core/refine-component) component.
 
-To learn more about optimistic updates, see the [Optimistic Updates section of Forms](/docs/guides-concepts/forms#optimistic-updates) guide.
+To learn more about optimistic updates, see the [Optimistic Updates section of Forms](/core/docs/guides-concepts/forms#optimistic-updates) guide.
 
 #### Key Structure
 
@@ -892,7 +892,7 @@ const Component = () => {
 
 Refine CLI allows you to interact with your Refine project and perform certain tasks such as creating a new resource, managing version updates, swizzling components, running your project (build, start, dev).
 
-> See the [CLI](/docs/packages/list-of-packages) page for more information.
+> See the [CLI](/core/docs/packages/list-of-packages) page for more information.
 
 ### Devtools
 
@@ -904,7 +904,7 @@ Refine CLI allows you to interact with your Refine project and perform certain t
 
 `@refinedev/inferencer` is a package that automatically generates basic boilerplate code for your application based on API responses, serving as a starting point to save time. However, it's not always reliable for all cases and isn't intended for production use.
 
-> See the [Inferencer](/docs/packages/list-of-packages) page for more information.
+> See the [Inferencer](/core/docs/packages/list-of-packages) page for more information.
 
 For example, the following code:
 

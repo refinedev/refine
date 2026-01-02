@@ -8,11 +8,11 @@ import { Sandpack, AddRoutesToApp, AddResourcesToApp } from "./sandpack.tsx";
 
 So far, we've integrated the authentication logic into our routes. In this step, we'll be creating routes for these components and define our resources to inform Refine about their corresponding routes.
 
-To learn more about it, please refer to the [Resource Concept](/docs/guides-concepts/general-concepts/#resource-concept) section in the General Concepts guide.
+To learn more about it, please refer to the [Resource Concept](/core/docs/guides-concepts/general-concepts/#resource-concept) section in the General Concepts guide.
 
 ## Creating Routes
 
-We've wrapped our routes with the [`<Authenticated />`](/docs/authentication/components/authenticated) component in the previous step. Now we'll be creating routes under the `/products` path to place our components.
+We've wrapped our routes with the [`<Authenticated />`](/core/docs/authentication/components/authenticated) component in the previous step. Now we'll be creating routes under the `/products` path to place our components.
 We'll use the following routes to place our components:
 
 - `/products` - `<ListProducts />`
@@ -102,7 +102,7 @@ By defining our resources, we'll be unlocking the following features:
 - Ability to pass `meta` values to every data hook per resource from a single place.
 - Easily managing features like access control, i18n, and more.
 
-We'll be using the [`resources`](/docs/core/refine-component/#resources) prop of the `<Refine />` component to define our resources.
+We'll be using the [`resources`](/core/docs/core/refine-component/#resources) prop of the `<Refine />` component to define our resources.
 
 A resource definition consists of the following properties:
 

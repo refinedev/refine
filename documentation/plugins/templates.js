@@ -16,7 +16,7 @@ async function RefineTemplates() {
           );
 
           addRoute({
-            path: `/templates/${data.slug}`,
+            path: `/core/templates/${data.slug}`,
             component: "@site/src/components/templates-detail-page/index",
             exact: true,
             modules: {
@@ -286,7 +286,7 @@ This admin panel template can be used in for various app requirements like B2B a
     edition: "Community",
     liveDemo: "https://pixels.refine.dev/",
     github: "https://github.com/refinedev/refine/tree/main/examples/pixels",
-    tutorial: "https://refine.dev/week-of-refine-supabase/",
+    tutorial: "https://refine.dev/core/week-of-refine-supabase/",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Supabase",
@@ -425,7 +425,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     liveDemo:
       "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/main/examples/auth-antd",
     github: "https://github.com/refinedev/refine/tree/main/examples/auth-antd",
-    tutorial: "https://refine.dev/tutorial",
+    tutorial: "https://refine.dev/core/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Rest API",
@@ -446,7 +446,7 @@ Complete internal tool template built with Material UI. Features authentication 
       "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-material-ui",
     github:
       "https://github.com/refinedev/refine/tree/main/examples/auth-material-ui",
-    tutorial: "https://refine.dev/tutorial",
+    tutorial: "https://refine.dev/core/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Material UI",
     dataProvider: "Rest API",
@@ -467,7 +467,7 @@ Complete internal tool template built with Material UI. Features authentication 
       "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-mantine",
     github:
       "https://github.com/refinedev/refine/tree/main/examples/auth-mantine",
-    tutorial: "https://refine.dev/tutorial",
+    tutorial: "https://refine.dev/core/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Mantine",
     dataProvider: "Rest API",
@@ -488,7 +488,7 @@ Complete internal tool template built with Mantine. Features authentication and 
       "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-chakra-ui",
     github:
       "https://github.com/refinedev/refine/tree/main/examples/auth-chakra-ui",
-    tutorial: "https://refine.dev/tutorial",
+    tutorial: "https://refine.dev/core/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Chakra UI",
     dataProvider: "Rest API",

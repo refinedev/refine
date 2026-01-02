@@ -777,7 +777,7 @@ interface IPost {
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-Refer to [`useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select)
+Refer to [`useSelect` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/hooks/use-select)
 
 :::
 
@@ -992,7 +992,7 @@ interface IPost {
 
 ## Properties
 
-All of the [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/docs/ui-integrations/ant-design/hooks/use-form#properties).
+All of the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) props are also available in `useStepsForm`. You can find descriptions on [`useForm` documentation](/core/docs/ui-integrations/ant-design/hooks/use-form#properties).
 
 ### defaultCurrent
 
@@ -1152,7 +1152,7 @@ const { defaultFormValuesLoading } = useForm({
 
 ## Return Values
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 ### stepsProps
 
@@ -1250,7 +1250,7 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
 | stepsProps               | Ant Design steps props                                       | [`StepsProps`](https://ant.design/components/steps/#API)                                                                                |
 | current                  | Current step, counting from 0.                               | `number`                                                                                                                                |
 | gotoStep                 | Go to the target step                                        | `(step: number) => void`                                                                                                                |
-| formProps                | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#formprops)                                                                |
+| formProps                | Ant Design form props                                        | [`FormProps`](/core/docs/ui-integrations/ant-design/hooks/use-form#formprops)                                                           |
 | form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                          |
 | submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                            |
 | overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                              |
@@ -1261,6 +1261,6 @@ const { current, gotoStep, stepsProps, formProps, saveButtonProps, onFinish } =
 
 <CodeSandboxExample path="form-antd-use-steps-form" />
 
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
-[antd-use-form]: /docs/ui-integrations/ant-design/hooks/use-form
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror
+[antd-use-form]: /core/docs/ui-integrations/ant-design/hooks/use-form

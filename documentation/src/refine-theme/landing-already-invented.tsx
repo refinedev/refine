@@ -73,7 +73,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
               Start with a well-structured boilerplate, built around the
               industry’s best practices.
             </p>
-            <LandingSectionCtaButton to="/docs">
+            <LandingSectionCtaButton to="/core/docs">
               See documentation
             </LandingSectionCtaButton>
           </div>

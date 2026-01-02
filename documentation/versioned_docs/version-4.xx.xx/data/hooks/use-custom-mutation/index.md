@@ -1,19 +1,19 @@
 ---
 title: useCustomMutation
-source: packages/core/src/hooks/data/useCustomMutation.ts
+source: packages/core/src/data/hooks/useCustomMutation.ts
 ---
 
 `useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
+It uses the `custom` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider) which is passed to `<Refine>`.
 
 :::caution Use Cases
 
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/docs/data/hooks/use-create), [useUpdate](/docs/data/hooks/use-update) or [useDelete](/docs/data/hooks/use-delete).
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/core/docs/data/hooks/use-create), [useUpdate](/core/docs/data/hooks/use-update) or [useDelete](/core/docs/data/hooks/use-delete).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/docs/data/hooks/use-custom) hook.
+If you need to custom query request, use the [useCustom](/core/docs/data/hooks/use-custom) hook.
 
 :::
 
@@ -141,7 +141,7 @@ mutate({
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustomMutation` calls the `open` function from `NotificationProvider`:
 
@@ -161,7 +161,7 @@ mutate({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -219,7 +219,7 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### dataProviderName
 
@@ -281,25 +281,25 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Mutation Parameters
 
-| Property                    | Description                                                                                        | Type                                                                                   |
-| --------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| url <PropTag asterisk />    | URL                                                                                                | string                                                                                 |
-| method <PropTag asterisk /> | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                       |
-| values <PropTag asterisk /> | Values for mutation function                                                                       | `TVariables`                                                                           |
-| config                      | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                      |
-| successNotification         | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
-| errorNotification           | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/docs/core/interface-references#successerrornotification) |
-| meta                        | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/docs/core/interface-references#metaquery)                           |
-| dataProviderName            | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                               |
+| Property                    | Description                                                                                        | Type                                                                                        |
+| --------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| url <PropTag asterisk />    | URL                                                                                                | string                                                                                      |
+| method <PropTag asterisk /> | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                            |
+| values <PropTag asterisk /> | Values for mutation function                                                                       | `TVariables`                                                                                |
+| config                      | The config of your request. You can send `headers` using this field.                               | { headers?: {}; }                                                                           |
+| successNotification         | Successful mutation notification                                                                   | [`SuccessErrorNotification`](/core/docs/core/interface-references#successerrornotification) |
+| errorNotification           | Unsuccessful mutation notification                                                                 | [`SuccessErrorNotification`](/core/docs/core/interface-references#successerrornotification) |
+| meta                        | Meta data query for `dataProvider`                                                                 | [`MetaDataQuery`](/core/docs/core/interface-references#metaquery)                           |
+| dataProviderName            | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                                    |
 
 ### Type Parameters
 
-| Property | Description                                                                                  | Type                                                       | Default                                                    |
-| -------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/docs/core/interface-references#httperror)    | [`HttpError`](/docs/core/interface-references#httperror)   | [`HttpError`](/docs/core/interface-references#httperror)   |
-| TQuery   | Values for query params.                                                                     | `TQuery`                                                   | unknown                                                    |
-| TPayload | Values for params.                                                                           | `TPayload`                                                 | unknown                                                    |
+| Property | Description                                                                                       | Type                                                            | Default                                                         |
+| -------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| TData    | Result data of the query. Extends [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](/core/docs/core/interface-references#httperror)    | [`HttpError`](/core/docs/core/interface-references#httperror)   | [`HttpError`](/core/docs/core/interface-references#httperror)   |
+| TQuery   | Values for query params.                                                                          | `TQuery`                                                        | unknown                                                         |
+| TPayload | Values for params.                                                                                | `TPayload`                                                      | unknown                                                         |
 
 ### Return value
 

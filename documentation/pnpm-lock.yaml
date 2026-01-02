@@ -41,6 +41,9 @@ importers:
       '@docusaurus/theme-search-algolia':
         specifier: 2.4.0
         version: 2.4.0(@algolia/client-search@4.23.3)(@docusaurus/types@2.4.0(@swc/core@1.5.5)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))(@swc/core@1.5.5)(@types/react@17.0.80)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)(search-insights@2.13.0)(typescript@5.4.5)
+      '@docusaurus/types':
+        specifier: '2'
+        version: 2.4.0(@swc/core@1.5.5)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@docusaurus/utils-common':
         specifier: 2.4.0
         version: 2.4.0(@docusaurus/types@2.4.0(@swc/core@1.5.5)(react-dom@17.0.2(react@17.0.2))(react@17.0.2))
@@ -2572,8 +2575,8 @@ packages:
   caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
 
-  caniuse-lite@1.0.30001617:
-    resolution: {integrity: sha512-mLyjzNI9I+Pix8zwcrpxEbGlfqOkF9kM3ptzmKNw5tizSyYwMe+nGLTqMK9cO+0E+Bh6TsBxNAaHWEM8xwSsmA==}
+  caniuse-lite@1.0.30001761:
+    resolution: {integrity: sha512-JF9ptu1vP2coz98+5051jZ4PwQgd2ni8A+gYSN7EA7dPKIMf0pDlSUxhdmVOaV3/fYK5uWBkgSXJaRLr4+3A6g==}
 
   ccount@1.1.0:
     resolution: {integrity: sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==}
@@ -9968,7 +9971,7 @@ snapshots:
   autoprefixer@10.4.19(postcss@8.4.38):
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001761
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -10171,7 +10174,7 @@ snapshots:
 
   browserslist@4.23.0:
     dependencies:
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001761
       electron-to-chromium: 1.4.761
       node-releases: 2.0.14
       update-browserslist-db: 1.0.15(browserslist@4.23.0)
@@ -10252,11 +10255,11 @@ snapshots:
   caniuse-api@3.0.0:
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001761
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
 
-  caniuse-lite@1.0.30001617: {}
+  caniuse-lite@1.0.30001761: {}
 
   ccount@1.1.0: {}
 

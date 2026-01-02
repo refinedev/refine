@@ -55,11 +55,11 @@ The example above shows how to use the `resource` prop when the component is ren
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -183,7 +183,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/save-button)
 
 ### canDelete and deleteButtonProps
 
@@ -266,9 +266,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` documentation &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)
+> For more information, refer to the [`<DeleteButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/delete-button)
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
 
 ### resource
 
@@ -322,7 +322,7 @@ The example above shows how to use the `resource` prop when the component is ren
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### recordItemId
 
@@ -453,7 +453,7 @@ render(
 );
 ```
 
-> For more information, refer to the [mutation mode documentation &#8594](/docs/advanced-tutorials/mutation-mode)
+> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode)
 
 ### dataProviderName
 
@@ -697,7 +697,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
 
 ### wrapperProps
 
@@ -1489,7 +1489,7 @@ It also accepts all props of Ant Design [Form](https://ant.design/components/for
 | `goBack`            | Go back function, will be called when the cancel button is clicked.                                                    |
 | `query`             | Query result from `react-query`. [Check here →](https://tanstack.com/query/latest/docs/react/reference/useQuery)       |
 
-[list-button]: /docs/ui-integrations/ant-design/components/buttons/list-button
-[refresh-button]: /docs/ui-integrations/ant-design/components/buttons/refresh-button
-[save-button]: /docs/ui-integrations/ant-design/components/buttons/save-button
-[delete-button]: /docs/ui-integrations/ant-design/components/buttons/delete-button
+[list-button]: /core/docs/ui-integrations/ant-design/components/buttons/list-button
+[refresh-button]: /core/docs/ui-integrations/ant-design/components/buttons/refresh-button
+[save-button]: /core/docs/ui-integrations/ant-design/components/buttons/save-button
+[delete-button]: /core/docs/ui-integrations/ant-design/components/buttons/delete-button

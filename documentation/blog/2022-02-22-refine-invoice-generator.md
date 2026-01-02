@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -50,7 +50,7 @@ npm create refine-app@latest refine-invoice-generator -- -p refine-react -b v3
 ✔ i18n - Internationalization: · No
 ```
 
-superplate will quickly create our Refine project according to the features we choose. Let's continue by install the [Refine Strapi-v4 Data Provider](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4) that we will use later.
+superplate will quickly create our Refine project according to the features we choose. Let's continue by install the [Refine Strapi-v4 Data Provider](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4) that we will use later.
 
 ```bash
 npm i @refinedev/strapi-v4
@@ -320,7 +320,7 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
 
 ### Company List Page
 
-Let's place the `CompanyItem` component that we created above in the [refine-antd List](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and display company information.
+Let's place the `CompanyItem` component that we created above in the [refine-antd List](https://refine.dev/core/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and display company information.
 
 ```tsx title="src/pages/company/CompanyList.tsx"
 //highlight-next-line
@@ -392,7 +392,7 @@ We fetch the data of the `Company` collection that we created by Strapi, thanks 
 
 ## Contact Page
 
-Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **Refine** [useTable](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
+Our `Contact Page` is a page related to `Clients`. Communication with client companies will be through the contacts we create here. The Contact Page will contain the information of the people we will contact. Let's create our list using **Refine** [useTable](https://refine.dev/core/docs/ui-frameworks/antd/hooks/table/useTable/) hook.
 
 ```tsx title="src/pages/contact/ContactList.tsx"
 import {

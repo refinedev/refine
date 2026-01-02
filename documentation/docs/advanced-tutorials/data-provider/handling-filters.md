@@ -278,7 +278,7 @@ Data providers that support `or` and `and` filtering logic are as follows:
 
 ## Handle Custom GraphQL Variables
 
-The [GraphQLQueryOptions](https://refine.dev/docs/core/interface-references/#graphqlqueryoptions) property `gqlVariables` enables dynamic GraphQL variables to be passed to the data provider for more advanced GraphQL queries.
+The [GraphQLQueryOptions](https://refine.dev/core/docs/core/interface-references/#graphqlqueryoptions) property `gqlVariables` enables dynamic GraphQL variables to be passed to the data provider for more advanced GraphQL queries.
 
 Packages that support custom GraphQL variables for more advanced filtering are as follows:
 

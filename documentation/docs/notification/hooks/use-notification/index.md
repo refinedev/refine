@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
-`useNotification` can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/docs/notification/notification-provider) under the hood.
+`useNotification` can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/core/docs/notification/notification-provider) under the hood.
 
 ## Usage
 
@@ -31,7 +31,7 @@ open?.({
 });
 ```
 
-> For more information, refer to the [`Open Notification Params` interface→](/docs/core/interface-references#open-notification-params)
+> For more information, refer to the [`Open Notification Params` interface→](/core/docs/core/interface-references#open-notification-params)
 
 ### close
 
@@ -68,7 +68,7 @@ open?.({
 
 ### Return Values
 
-| Property | Description               | Type                                                                                   |
-| -------- | ------------------------- | -------------------------------------------------------------------------------------- |
-| open     | Open Notification Params  | [`Open Notification Params`](/docs/core/interface-references#open-notification-params) |
-| close    | Close Notification Params | `(key: string) => void;`                                                               |
+| Property | Description               | Type                                                                                        |
+| -------- | ------------------------- | ------------------------------------------------------------------------------------------- |
+| open     | Open Notification Params  | [`Open Notification Params`](/core/docs/core/interface-references#open-notification-params) |
+| close    | Close Notification Params | `(key: string) => void;`                                                                    |

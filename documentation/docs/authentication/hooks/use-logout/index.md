@@ -4,7 +4,7 @@ description: useLogout data hook from Refine is a modified version of react-quer
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 
-`useLogout` calls the `logout` method from the [`authProvider`](/docs/authentication/auth-provider) under the hood.
+`useLogout` calls the `logout` method from the [`authProvider`](/core/docs/authentication/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v5/docs/react/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 

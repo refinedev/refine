@@ -3,7 +3,7 @@ title: List
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/list.tsx
 ---
 
-`<ListButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `list` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood.
+`<ListButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `list` method from [`useNavigation`](/core/docs/routing/hooks/use-navigation) under the hood.
 
 It can be useful when redirecting the app to the list page of the resource.
 
@@ -48,11 +48,11 @@ const MyComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `list` action path of the resource.
+Clicking the button will trigger the `list` method of [`useNavigation`](/core/docs/routing/hooks/use-navigation) and then redirect the app to the `list` action path of the resource.
 
 ### meta
 
-It is used to pass additional parameters to the `list` method of [`useNavigation`](/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
+It is used to pass additional parameters to the `list` method of [`useNavigation`](/core/docs/routing/hooks/use-navigation). By default, existing parameters in the route are used by the `list` method. You can pass additional parameters or override the existing ones using the `meta` prop.
 
 If the `list` action route is defined by the pattern: `/posts/:authorId`, the `meta` prop can be used as follows:
 
@@ -76,7 +76,7 @@ const MyComponent = () => {
 
 ### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component).
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/core/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/core/docs/core/refine-component).
 
 ```tsx
 import { ListButton } from "@/components/refine-ui/buttons/list";

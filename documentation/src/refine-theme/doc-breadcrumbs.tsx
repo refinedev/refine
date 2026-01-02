@@ -1,14 +1,14 @@
-import React, { useMemo, useRef } from "react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import {
-  useSidebarBreadcrumbs,
   useHomePageRoute,
+  useSidebarBreadcrumbs,
 } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
-import { HomeIcon } from "./icons/home";
-import { ChevronRightIcon } from "./icons/chevron-right";
+import clsx from "clsx";
+import React, { useMemo, useRef } from "react";
 import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
+import { ChevronRightIcon } from "./icons/chevron-right";
+import { HomeIcon } from "./icons/home";
 
 const hiddenBreadcrumbText = "...";
 
@@ -71,7 +71,7 @@ export const DocBreadcrumbs = () => {
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
           >
-            <Link href="/docs" itemProp="item">
+            <Link href="/core/docs" itemProp="item">
               <HomeIcon className="text-zinc-500 dark:text-zinc-400" />
               <span className="sr-only" itemProp="name">
                 Documentation

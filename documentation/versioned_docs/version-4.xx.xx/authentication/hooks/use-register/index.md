@@ -4,7 +4,7 @@ description: useRegister data hook from Refine is a modified version of react-qu
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 
-`useRegister` calls `register` method from [`authProvider`](/docs/authentication/auth-provider) under the hood.
+`useRegister` calls `register` method from [`authProvider`](/core/docs/authentication/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being isSuccess and isError.
 
