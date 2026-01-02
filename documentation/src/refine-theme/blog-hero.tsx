@@ -73,7 +73,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
           >
             CORE
           </div>
-          <div className={clsx()}>Technical Blog</div>
+          <div className={clsx()}>Blog</div>
         </h2>
         <p
           className={clsx(

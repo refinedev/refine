@@ -78,8 +78,8 @@ export const AboutWindow = () => {
 
                   <InfoItemLabel>Address:</InfoItemLabel>
                   <InfoItemParagraph>
-                    <p>256 Chapman Road STE</p>
-                    <p>105-4 Newark, DE 19702</p>
+                    <p>447 Sutter St 405</p>
+                    <p>San Francisco</p>
                   </InfoItemParagraph>
                 </InfoItem>
               </InfoContainer>

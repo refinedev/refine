@@ -56,10 +56,10 @@ export const menuItems = [
 ];
 
 export const secondaryMenuItems = [
-  // {
-  //     label: "Terms & Conditions",
-  //     href: "#",
-  // },
+  {
+    label: "Terms & Conditions",
+    href: "/terms-and-conditions",
+  },
   {
     label: "Privacy Policy",
     href: "/core/privacy-policy",

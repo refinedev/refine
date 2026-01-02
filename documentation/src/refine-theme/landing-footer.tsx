@@ -44,7 +44,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           !isLanding && "text-zinc-600 dark:text-zinc-400",
         )}
       >
-        256 Chapman Road STE 105-4 Newark, DE 19702
+        447 Sutter St 405, San Francisco
       </div>
       <a
         href="mailto:info@refine.dev"

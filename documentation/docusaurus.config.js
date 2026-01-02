@@ -390,7 +390,7 @@ const siteConfig = {
     contactTitle: "Contact",
     contactDescription: [
       "Refine Development Inc.",
-      "256 Chapman Road STE 105-4 Newark, DE 19702",
+      "447 Sutter St 405 San Francisco",
     ],
     contactEmail: "info@refine.dev",
     /** ---- */
