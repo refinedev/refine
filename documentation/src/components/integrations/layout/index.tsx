@@ -3,7 +3,7 @@ import Head from "@docusaurus/Head";
 import clsx from "clsx";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
-import { BlogFooter } from "@site/src/refine-theme/blog-footer";
+import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 
 const IntegrationsLayout = ({ children }: React.PropsWithChildren<{}>) => {
   return (
@@ -17,7 +17,7 @@ const IntegrationsLayout = ({ children }: React.PropsWithChildren<{}>) => {
           {children}
         </div>
       </div>
-      <BlogFooter />
+      <LandingFooter />
     </CommonLayout>
   );
 };

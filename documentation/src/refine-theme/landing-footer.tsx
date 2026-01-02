@@ -125,7 +125,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           isLanding && "border-t-zinc-700",
           !isLanding && "border-t-zinc-200 dark:border-t-zinc-700",
           isLanding && "bg-zinc-800",
-          !isLanding && "bg-zinc-50 dark:bg-footer-blog-dark-bg",
+          !isLanding && "bg-zinc-50 dark:bg-zinc-800",
         )}
       >
         <div
@@ -328,7 +328,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               "font-normal",
             )}
           >
-            {"© 2025, Refine from San Francisco to wherever you're with "}
+            {"© 2026, Refine from SF to wherever you are"}
             <HeartOutlinedIcon
               className={clsx("ml-1", "text-red-400", "inline", "leading-5")}
             />
