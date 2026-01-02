@@ -295,7 +295,7 @@ export const Login: React.FC = () => {
   text-align: center;
   color: #626262;
   font-size: 30px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.004em;
 }
 
 .imageContainer {
@@ -439,7 +439,7 @@ export const Signup: React.FC = () => {
   text-align: center;
   color: #626262;
   font-size: 30px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.004em;
 }
 
 .imageContainer {
