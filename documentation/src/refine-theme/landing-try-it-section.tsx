@@ -97,7 +97,7 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
           className={clsx(
             "text-base",
             "font-normal",
-            "tracking-[-0.04em]",
+            "tracking-[-0.004em]",
             "text-zinc-300",
             "landing-sm:max-w-[446px]",
           )}

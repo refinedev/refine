@@ -109,7 +109,7 @@ export const DocThumbsUpDownFeedbackWidget = (
             "text-xs",
             "whitespace-nowrap",
             "text-zinc-700 dark:text-zinc-300",
-            "tracking-[-0.06em]",
+            "tracking-[-0.006em]",
           )}
         >
           Was this helpful?

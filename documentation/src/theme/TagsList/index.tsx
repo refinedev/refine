@@ -84,7 +84,12 @@ const Desktop = ({
       >
         {tags.map((tag) => (
           <li
-            className={clsx("inline-flex", "m-1", "mr-3", "tracking-[-0.07em]")}
+            className={clsx(
+              "inline-flex",
+              "m-1",
+              "mr-3",
+              "tracking-[-0.007em]",
+            )}
             key={tag.permalink}
           >
             <Tag {...tag} label={mapLabel(tag.label)} />
@@ -112,7 +117,7 @@ const Desktop = ({
           "mt-0.5",
           "text-zinc-900 dark:text-white",
           "bg-zinc-200 dark:bg-zinc-700",
-          "tracking-[-0.07em]",
+          "tracking-[-0.007em]",
         )}
       >
         Show More{" "}

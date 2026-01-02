@@ -149,7 +149,9 @@ const TestimonialCard = ({
           "p-4 landing-sm:p-10",
         )}
       >
-        <div className={clsx("text-sm", "text-zinc-300", "tracking-[-0.07em]")}>
+        <div
+          className={clsx("text-sm", "text-zinc-300", "tracking-[-0.007em]")}
+        >
           {description}
         </div>
         <a
@@ -170,12 +172,20 @@ const TestimonialCard = ({
           />
           <div className={clsx("flex flex-col")}>
             <div
-              className={clsx("text-xs", "text-zinc-400", "tracking-[-0.06em]")}
+              className={clsx(
+                "text-xs",
+                "text-zinc-400",
+                "tracking-[-0.006em]",
+              )}
             >
               {name}
             </div>
             <div
-              className={clsx("text-xs", "text-zinc-400", "tracking-[-0.06em]")}
+              className={clsx(
+                "text-xs",
+                "text-zinc-400",
+                "tracking-[-0.006em]",
+              )}
             >
               {title}
             </div>

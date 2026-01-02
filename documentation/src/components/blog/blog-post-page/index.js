@@ -77,7 +77,7 @@ export const BlogPostPageView = ({ children }) => {
           <span className={clsx("text-xs", "font-medium")}>Back to blog</span>
         </Link>
         <div className="flex items-center gap-2 px-2 py-1 not-prose">
-          <span className="text-zinc-600 dark:text-zinc-400 text-xs tracking-[-0.06em] font-medium mr-2">
+          <span className="text-zinc-600 dark:text-zinc-400 text-xs tracking-[-0.006em] font-medium mr-2">
             Share on:
           </span>
           <TwitterShareButton

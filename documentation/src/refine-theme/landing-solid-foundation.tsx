@@ -58,7 +58,7 @@ export const LandingSolidFoundationDesktop: FC<Props> = ({ className }) => {
               "text-base",
               "leading-6",
               "font-normal",
-              "tracking-[-0.04em]",
+              "tracking-[-0.004em]",
               "text-zinc-300",
               "max-w-[446px]",
               "p-0",
@@ -117,7 +117,7 @@ export const LandingSolidFoundationMobile: FC<Props> = ({ className }) => {
             "mt-4 landing-sm:mt-6",
             "max-w-md",
             "text-base",
-            "tracking-[-0.04em]",
+            "tracking-[-0.004em]",
             "text-zinc-300",
           )}
         >

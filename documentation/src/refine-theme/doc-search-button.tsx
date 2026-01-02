@@ -64,7 +64,7 @@ export const DocSearchButton = React.forwardRef<
               "text-left flex-1",
               "text-sm",
               "font-medium",
-              "tracking-[-0.07em]",
+              "tracking-[-0.007em]",
             )}
           >
             {placeholder ?? "Search"}
@@ -79,7 +79,7 @@ export const DocSearchButton = React.forwardRef<
               "rounded",
               "text-xs",
               "font-normal",
-              "tracking-[-0.06em]",
+              "tracking-[-0.006em]",
               shortcutClassName,
             )}
           >

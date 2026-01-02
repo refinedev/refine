@@ -24,7 +24,7 @@ export default function Tag({
         "no-underline hover:no-underline",
         "rounded-sm",
         "font-medium",
-        "tracking-[-0.06em]",
+        "tracking-[-0.006em]",
         size === "small" && "text-xs",
         size === "small" && "py-1",
         size === "small" && "px-1.5",

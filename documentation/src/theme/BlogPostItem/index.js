@@ -74,7 +74,7 @@ export default function BlogPostItem({ className }) {
                   "no-underline",
                   "rounded-sm",
                   "px-1.5 py-1",
-                  "tracking-[-0.06em]",
+                  "tracking-[-0.006em]",
                 )}
                 href={tag.permalink}
                 key={tag.permalink}
@@ -97,7 +97,7 @@ export default function BlogPostItem({ className }) {
                 "text-zinc-900 dark:text-white",
                 "text-base",
                 "font-semibold",
-                "tracking-[-0.04em]",
+                "tracking-[-0.004em]",
               )}
             >
               {title}
@@ -108,7 +108,7 @@ export default function BlogPostItem({ className }) {
               "line-clamp-3",
               "text-zinc-600 dark:text-zinc-400",
               "text-sm",
-              "tracking-[-0.07em]",
+              "tracking-[-0.007em]",
             )}
           >
             {description}

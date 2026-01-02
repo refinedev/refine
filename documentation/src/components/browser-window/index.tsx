@@ -47,7 +47,7 @@ export default function BrowserWindow({
           "gap-2",
           "relative",
           "bg-zinc-50 dark:bg-zinc-950",
-          "tracking-[-0.04em]",
+          "tracking-[-0.004em]",
           "text-zinc-900 dark:text-white",
         )}
       >

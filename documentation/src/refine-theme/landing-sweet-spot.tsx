@@ -63,7 +63,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "mt-4 landing-sm:mt-7",
             "max-w-md",
             "text-base",
-            "tracking-[-0.04em]",
+            "tracking-[-0.004em]",
             "text-zinc-300",
           )}
         >

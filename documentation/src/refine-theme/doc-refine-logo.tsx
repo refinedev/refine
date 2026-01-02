@@ -45,7 +45,7 @@ export const DocRefineLogo = ({ className }: Props) => {
             "block",
             "text-zinc-900 dark:text-white",
             "text-base font-normal",
-            "tracking-[-0.07em]",
+            "tracking-[-0.007em]",
           )}
         >
           Documentation

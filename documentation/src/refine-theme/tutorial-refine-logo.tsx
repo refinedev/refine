@@ -35,7 +35,7 @@ export const TutorialRefineLogo = ({ className }: Props) => {
           "text-sm",
           "font-semibold",
           "text-zinc-900 dark:text-white",
-          "tracking-[-0.07em]",
+          "tracking-[-0.007em]",
         )}
       >
         Tutorial

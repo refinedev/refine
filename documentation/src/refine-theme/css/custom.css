@@ -49,11 +49,11 @@
 
   @apply prose-h4:font-semibold;
   @apply prose-h4:text-zinc-900 prose-h4:dark:text-white;
-  @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:tracking-[-0.04em];
+  @apply prose-h4:text-[1rem] prose-h4:leading-[1.5rem] prose-h4:tracking-[-0.004em];
   @apply prose-h4:mb-4 sm:prose-h4:mb-6;
 
   @apply prose-p:dark:text-zinc-300 prose-p:text-zinc-700 prose-p:mb-5 prose-p:mt-0;
-  @apply prose-p:text-[1rem] prose-p:leading-[1.5rem] prose-p:tracking-[-0.04em];
+  @apply prose-p:text-[1rem] prose-p:leading-[1.5rem] prose-p:tracking-[-0.004em];
 
   @apply prose-li:text-sm sm:prose-li:text-base;
   @apply prose-li:my-0 2xl:prose-li:text-base;

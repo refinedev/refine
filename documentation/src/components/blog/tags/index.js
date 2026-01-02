@@ -29,7 +29,7 @@ export const Tags = () => {
               "px-1.5",
               "text-zinc-900 dark:text-white",
               "bg-zinc-200 dark:bg-zinc-700",
-              "tracking-[-0.06em]",
+              "tracking-[-0.006em]",
               "whitespace-nowrap",
             )}
             key={tag.permalink}
