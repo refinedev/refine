@@ -33,7 +33,7 @@ const ListPage = () => {
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 

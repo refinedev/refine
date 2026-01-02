@@ -105,7 +105,7 @@ But apart from all these, there is one last item that I want to talk to you abou
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/refine.jpg" alt="refine" />
 
-If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [Refine's](https://refine.dev/docs/) powerful interface!
+If you're looking for a framework that will let your data- intensive application run at top speeds with extreme customizability, then look no further than refine. This React based headless system has been designed specifically for speed - allowing users to bring their own UI and update it via [Refine's](https://refine.dev/core/docs/) powerful interface!
 
 **Key features**
 ​

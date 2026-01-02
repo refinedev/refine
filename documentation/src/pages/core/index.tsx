@@ -3,7 +3,6 @@ import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { LandingAlreadyInvented } from "@site/src/refine-theme/landing-already-invented";
 import { LandingCommunity } from "@site/src/refine-theme/landing-community";
-import { LandingEnterpriseDevelopers } from "@site/src/refine-theme/landing-enterprise-developers";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 import { LandingHeroSection } from "@site/src/refine-theme/landing-hero-section";
 import { LandingPackages } from "@site/src/refine-theme/landing-packages";
@@ -80,7 +79,6 @@ function Home() {
                 />
               </div>
             </div>
-            <LandingEnterpriseDevelopers />
             <LandingCommunity />
             <LandingTestimonial />
             <LandingSolidFoundation />

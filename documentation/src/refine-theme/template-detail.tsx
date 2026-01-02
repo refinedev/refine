@@ -18,7 +18,6 @@ import remarkRehype from "remark-rehype";
 import { ChevronLeft } from "../components/blog/icons";
 import { TemplateEdition } from "../types/integrations";
 import { CommonRunLocalPrompt } from "./common-run-local-prompt";
-import { EnterpriseTemplateContactUsModal } from "./enterprise-template-contact-us-modal";
 import { GithubIcon } from "./icons/github";
 import { LockedIcon } from "./icons/locked";
 import { ShareIcon } from "./icons/share";
@@ -425,13 +424,6 @@ const SourceCodeLocked = (props: { data: Props["data"] }) => {
           Source code
         </span>
       </ProjectLink>
-
-      <EnterpriseTemplateContactUsModal
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title={props.data.title}
-        utmMedium={props.data.slug}
-      />
     </>
   );
 };

@@ -40,7 +40,7 @@ The command above handles the changes on your existing project and ensures that 
 
 - **Enterprise based Routing and Router independence**: In Refine version 4, the `routerProvider` acts solely a bridge between the router and Refine and doesn’t specify the manner at which routes are created as opposed to version 3. Routes are detached from Refine and are more flexible and customizable.
 
-In order to view more on the updates on Refine version 4, refer to the [comprehensive guide](https://refine.dev/docs/migration-guide/3x-to-4x/) on the documentation. Its guide is comprehensive enough to get you up to speed in using the new version.
+In order to view more on the updates on Refine version 4, refer to the [comprehensive guide](https://refine.dev/core/docs/migration-guide/3x-to-4x/) on the documentation. Its guide is comprehensive enough to get you up to speed in using the new version.
 
 ## Building A Refine Admin Dashboard – A Food delivery React Admin dashboard
 
@@ -133,7 +133,7 @@ However, in building our food delivery React admin dashboard application, we wil
 
 ## Adding the Data Provider
 
-A [`dataProvider`](https://refine.dev/docs/data/data-provider) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
+A [`dataProvider`](https://refine.dev/core/docs/data/data-provider) in Refine simply allows application to communicate with an external API or service. A `dataProvider` uses predefined methods to send HTTP requests and receive responses as below.
 
 ### The jsonServerDataProvider Provider in Refine
 
@@ -172,7 +172,7 @@ In the course of the tutorial, we will be using Refine's demo finefoodsAPI (http
 
 ## Adding the Auth provider
 
-An [Auth Provider](https://refine.dev/docs/authentication/auth-provider/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
+An [Auth Provider](https://refine.dev/core/docs/authentication/auth-provider/) in Refine contains predefined methods that handle authentication and access control on the application. the predefined methods are shown below:
 
 ```tsx
 import { AuthProvider } from "@refinedev/core";
@@ -430,7 +430,7 @@ export default App;
 </p>
 </details>
 
-In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/docs/authentication/hooks/use-is-authenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
+In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/core/docs/authentication/hooks/use-is-authenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="react crud app airtable" />
 
@@ -855,13 +855,13 @@ export const DailyRevenue: React.FC = () => {
 
 In the code above:
 
-- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/docs/api-reference/core/hooks/data/useApiUrl/).
+- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useApiUrl/).
 - We used the `useCustom()` hook to handle sending a request to the endpoint. The `useCustom` hook expects a `url`, `method` and `config` properties.
   - the `url` property accepts the endpoint url.
   - the `method` property accepts the type of method of the endpoint (a "`get`" endpoint in our case)
   - the `config` property accepts values like the `headers` for the endpoint, `query` parameters, `sorters`, `filters`, `payloads` and many more.
 
-To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useCustom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
+To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useCustom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
 
 - These parameters will be passed to the `custom` method from the `dataProvider` as a parameter. When properties are changed, the `useCustom` hook will trigger a new request.
 - On getting the data back from the endpoint using the `useCustom` hook, we add the data to the `Line` chart component from the `@ant-design charts` we installed previously.we also memoize the data represented on the chart to optimize performance.
@@ -1559,7 +1559,7 @@ In the code above:
   - The `pagination` parameter which accounts for paginating the endpoint using the `pageSize` and `pageNumber` params.
   - The `sorters` property which contains an `initial` property that sets the initial sorting method and a `permanent` property that set the sorting value as a permanent one.
 
-    To get more information about the hook, visit its documentation [here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/).
+    To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/api-reference/antd/hooks/list/useSimpleList/).
 
   - On getting the data back from the endpoint, we map the data to a `TimelineItem` component and render the orders based on their status(pending, completed, and cancelled).
 
@@ -1822,7 +1822,7 @@ export const DeliveryMap: React.FC = () => {
 In the code above:
 
 - We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in Refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
-  To get more information about the hook, visit its documentation [here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
+  To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
 
 - On getting the data back from the endpoint, we render the position of the order on the map using the marker.
 
@@ -1970,7 +1970,7 @@ export const DashboardPage: React.FC = () => {
 
 ## Add Dashboard Page and resource to the Refine component
 
-We will add the Dashboard page as a route and [resource](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
+We will add the Dashboard page as a route and [resource](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource) on the Refine component located at the `src/App.tsx` directory. We update the `src/App.tsx` file with the code below:
 
 ```tsx title="src/App.tsx"
 import {
@@ -2128,7 +2128,7 @@ Lets explain the block of code we just added:
 ```
 
 A resource object may include properties that define the resource's `name`, action routes(`list`), and additional `metadata` such as label, icon, audit log settings, sider menu nesting, and so on.
-To read more on resources, view [here](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource).
+To read more on resources, view [here](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept#what-is-resource).
 
 - After Adding a resource, we specify the route that the resource will be linked to which is shown below:
 
@@ -2217,4 +2217,4 @@ In this Article, We covered how to create a React Admin Dashboard with Refine. W
 - How to add resources and work with Refine's new routing pattern.
 - How to use utility hooks like `UseSimpleList`, `useList`, `useCustom` and many more.
 
-This article demonstrates the versatility of using Refine to create applications like a React Admin Dashboard. Refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/docs/getting-started/overview/).
+This article demonstrates the versatility of using Refine to create applications like a React Admin Dashboard. Refine is an excellent tool for accelerating development by abstracting many time-consuming tasks, allowing the developer to devote more time to the application's core business logic. To access the documentation, go to [here](https://refine.dev/core/docs/getting-started/overview/).

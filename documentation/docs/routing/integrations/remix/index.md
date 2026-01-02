@@ -392,7 +392,7 @@ This function can be used to parse the query parameters of a table page. It can 
 
 In Remix you can achieve authentication control in multiple ways;
 
-On the client-side [`Authenticated`](/docs/authentication/components/authenticated) component from `@refinedev/core` can be used to protect your pages from unauthenticated access.
+On the client-side [`Authenticated`](/core/docs/authentication/components/authenticated) component from `@refinedev/core` can be used to protect your pages from unauthenticated access.
 
 On the server-side `authProvider`'s `check` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
@@ -811,7 +811,7 @@ There are two ways to do Server Side Authentication with Remix. You can choose o
 
 On the server-side `accessControlProvider`'s `can` function inside server side functions (`loader`) to redirect unauthorized users to other pages using `redirect` from `@remix-run/node`.
 
-First, let's build our [AccessControlProvider](/docs/authorization/access-control-provider)
+First, let's build our [AccessControlProvider](/core/docs/authorization/access-control-provider)
 
 ```tsx title="app/acccessControlProvider.ts"
 export const accessControlProvider = {
@@ -891,7 +891,7 @@ Tadaa! that's all! 🎉
 
 ### Client Side
 
-For client-side, you can wrap your pages with [`CanAccess`](/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+For client-side, you can wrap your pages with [`CanAccess`](/core/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -1090,18 +1090,18 @@ Default paths are:
 
 <CodeSandboxExample path="with-remix-headless" hideSandbox />
 
-[routerprovider]: /docs/routing/router-provider
+[routerprovider]: /core/docs/routing/router-provider
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@refinedev/remix-router
-[Refine]: /docs/core/refine-component
+[Refine]: /core/docs/core/refine-component
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[usetable]: /docs/data/hooks/use-table
+[usetable]: /core/docs/data/hooks/use-table
 [reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [reactquery]: https://react-query.tanstack.com/
-[getlist]: /docs/data/data-provider#getlist-
-[dataprovider]: /docs/data/data-provider
-[usetable]: /docs/data/hooks/use-table
-[interfaces]: /docs/core/interface-references/#crudfilters
+[getlist]: /core/docs/data/data-provider#getlist-
+[dataprovider]: /core/docs/data/data-provider
+[usetable]: /core/docs/data/hooks/use-table
+[interfaces]: /core/docs/core/interface-references/#crudfilters
 [loaderfunction]: https://remix.run/docs/en/v1/api/conventions#loader
 [jokesapp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication
-[authprovider]: /docs/authentication/auth-provider
+[authprovider]: /core/docs/authentication/auth-provider

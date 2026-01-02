@@ -134,7 +134,7 @@ return (
 );
 ```
 
-The Refine notification feature is customizable. You can also pass a custom notification implementation as the value of the [`notificationProvider`](https://refine.dev/docs/api-reference/core/providers/notification-provider/) prop if the built-in notification provider of a design system or UI library doesn't meet your needs.
+The Refine notification feature is customizable. You can also pass a custom notification implementation as the value of the [`notificationProvider`](https://refine.dev/core/docs/api-reference/core/providers/notification-provider/) prop if the built-in notification provider of a design system or UI library doesn't meet your needs.
 
 In Refine, a notification provider is an object with two properties. These properties are `open` and `close`, whose values are functions with the shapes below.
 
@@ -214,7 +214,7 @@ Unlike the `open` method, Refine invokes the `close` method when closing a notif
 
 ### The `useNotification` hook
 
-The section above describes the contents of a notification provider. You need the [`useNotification`](https://refine.dev/docs/api-reference/core/hooks/useNotification/) hook to trigger a notification from within a component. The `useNotification` hook returns the `open` and `close` methods of the notification provider highlighted above.
+The section above describes the contents of a notification provider. You need the [`useNotification`](https://refine.dev/core/docs/api-reference/core/hooks/useNotification/) hook to trigger a notification from within a component. The `useNotification` hook returns the `open` and `close` methods of the notification provider highlighted above.
 
 You can then invoke the `open` method to display the notification and the `close` method to close it. The code below illustrates the `useNotification` hook at a very basic level.
 
@@ -249,7 +249,7 @@ npm install react-toastify
 
 ### Step 2 — Set up the notification provider
 
-As explained above, the [`<Refine>`](https://refine.dev/docs/api-reference/core/components/refine-config/) component is one of the main components of a Refine application. You will almost always use it to configure the settings for your application.
+As explained above, the [`<Refine>`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) component is one of the main components of a Refine application. You will almost always use it to configure the settings for your application.
 
 Let's start by creating a dedicated file for our notification provider. Inside the `src` directory, create a new directory and name it `providers`. Inside the `providers` directory, create the `notificationProvider.tsx` file. Copy and paste the code below into it.
 

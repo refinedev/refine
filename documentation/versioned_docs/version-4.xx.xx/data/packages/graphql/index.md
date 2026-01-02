@@ -13,7 +13,7 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 - GraphQL Data Provider expects [`@urql/core`](https://github.com/urql-graphql/urql) client instance.
 - You are responsible for passing `gqlQuery`, `gqlMutation`. `gql` export of `@urql/core` can be used to write GraphQL Operations.
-- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
 
 :::
 
@@ -359,10 +359,10 @@ For more advanced authentication requirements you can use the urql _authExchange
 
 You can also use `@refinedev/inferencer` package to generate sample codes for your views. Since the GraphQL data providers rely on `meta` fields, you'll need to provide some `meta` values beforehand and then Inferencer will use these values to infer the fields of the data provider's response, generate a code and a preview.
 
-[Check out Inferencer docs for more information. &#8594](/docs/packages/list-of-packages#usage-with-graphql-backends-and-meta-values)
+[Check out Inferencer docs for more information. &#8594](/core/docs/packages/list-of-packages#usage-with-graphql-backends-and-meta-values)
 
 ## Example
 
 <CodeSandboxExample path="data-provider-graphql" />
 
-[data-provider]: /docs/data/data-provider
+[data-provider]: /core/docs/data/data-provider

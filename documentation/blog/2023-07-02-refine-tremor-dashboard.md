@@ -1478,7 +1478,7 @@ The Details section of your dashboard should now look like the image below.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="react admin dashboard" />
 
-You have just built a simple dashboard using Refine and Tremor. To explore more on what you can do with Refine or Tremor, check out the [Refine](https://refine.dev/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
+You have just built a simple dashboard using Refine and Tremor. To explore more on what you can do with Refine or Tremor, check out the [Refine](https://refine.dev/core/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
 
 ## Conclusion
 

@@ -7,11 +7,11 @@ source: packages/antd/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from Refine for **Ant Design** contains authentication pages that can be used for the login, register, forgot password, and update password actions.
 
-Before using `<AuthPage>` component you need to add [authProvider](/docs/authentication/auth-provider) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/core/docs/authentication/auth-provider) that will be used to handle authentication.
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -978,7 +978,7 @@ const MyLoginPage = () => {
 formProps-type="[`FormProps`](https://ant.design/components/form/#API)"
 wrapperProps-type="[`WrapperProps`](https://ant.design/components/layout/#API)"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
-rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/ui-integrations/ant-design/components/auth-page#rememberme)"
+rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/core/docs/ui-integrations/ant-design/components/auth-page#rememberme)"
 />
 
 ### Interface
@@ -991,8 +991,8 @@ interface OAuthProvider {
 }
 ```
 
-[auth-provider]: /docs/authentication/auth-provider
-[login]: /docs/authentication/auth-provider#login-
-[register]: /docs/authentication/auth-provider#register
-[forgot-password]: /docs/authentication/auth-provider#forgotpassword
-[update-password]: /docs/authentication/auth-provider#updatepassword
+[auth-provider]: /core/docs/authentication/auth-provider
+[login]: /core/docs/authentication/auth-provider#login-
+[register]: /core/docs/authentication/auth-provider#register
+[forgot-password]: /core/docs/authentication/auth-provider#forgotpassword
+[update-password]: /core/docs/authentication/auth-provider#updatepassword

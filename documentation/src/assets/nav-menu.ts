@@ -64,7 +64,7 @@ export const POPOVERMENUS: NavMenu[] = [
       {
         label: "Contributing",
         description: "Join open-source contributors",
-        link: "/core/docs/guides-concepts/contributing/",
+        link: "guides-concepts/contributing/",
         icon: ContributeIcon,
       },
       {

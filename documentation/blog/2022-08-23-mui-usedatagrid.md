@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 ## Introduction
 
-In this article, we'll show how to use Material UI [`<DataGrid />`](https://mui.com/x/react-data-grid/) component and Refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a Refine application.
+In this article, we'll show how to use Material UI [`<DataGrid />`](https://mui.com/x/react-data-grid/) component and Refine's [`useDataGrid`](https://refine.dev/core/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a Refine application.
 
 [Refine](https://github.com/refinedev/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and with out-of-box support packages. Additionally, it provides a clean interface for integrating with popular UI frameworks such as Material UI, Ant Design, Mantine, and Chakra UI.
 
@@ -44,7 +44,7 @@ To follow along with this tutorial, we assume you have the following:
 - Node.js installed on your machine
 - A code editor of your choice (VSCode, Sublime Text, etc.)
 
-If you don't familiar with Refine, we recommend you to check out the [Refine tutorial](https://refine.dev/tutorial) to get started.
+If you don't familiar with Refine, we recommend you to check out the [Refine tutorial](https://refine.dev/core/tutorial) to get started.
 
 ## Create a new Refine app
 
@@ -107,7 +107,7 @@ The following example shows a basic usage of the `<DataGrid />` component:
 
 Although **Refine** is a headless framework that can be used with any UI framework of choice. This means that we can use the `<DataGrid />` component in our Refine application without having to worry about integrating it with the framework.
 
-We'll see how to leverage these components with Refine's [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook in our Refine app in the coming sections.
+We'll see how to leverage these components with Refine's [`useDataGrid`](https://refine.dev/core/docs/api-reference/mui/hooks/useDataGrid/) hook in our Refine app in the coming sections.
 
 <a href="https://github.com/refinedev/refine">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
@@ -154,7 +154,7 @@ In the above code, we're creating a styled div to wrap our app content through t
 
 ## Refine's `useDataGrid` hook
 
-In addition to integrating Material UI components, **Refine** provides a clean interface through the [`useDataGrid`](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/) hook for implementing some properties that can be used with MUI X `<DataGrid />` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
+In addition to integrating Material UI components, **Refine** provides a clean interface through the [`useDataGrid`](https://refine.dev/core/docs/api-reference/mui/hooks/useDataGrid/) hook for implementing some properties that can be used with MUI X `<DataGrid />` component. The hook simplifies working with features such as pagination, sorting, and filtering which come as out-of-box.
 
 For instance, if you have a page component where you want to render tabular data, you might do something like the below:
 
@@ -190,7 +190,7 @@ It's important to note that in the above example, we're not passing the `rows` p
 
 The `dataProvider` prop is used to read data from an API endpoint and then make the data available in the entire application.
 
-[Refer to Refine data provider documentation for detailed usage](https://refine.dev/docs/core/providers/data-provider/)
+[Refer to Refine data provider documentation for detailed usage](https://refine.dev/core/docs/core/providers/data-provider/)
 
 ## Rendering data with the `<DataGrid />` component
 
@@ -350,9 +350,9 @@ The `<Refine />` component accepts a `dataProvider` prop which specifies the sou
 - The `name` property is the name of the resource we are expecting from the REST API - this value must match the resource we created in the REST API. In our case, `employees`.
 - The `list` property takes a string value which is the path to render the `<EmployeeList />` component. In our case, `/employees`.
 
-You can refer to the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
+You can refer to the [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) component documentation for more information on the available props.
 
-With `<Route />` components, we defined the routes to render the `<EmployeeList />` component when the `/employees` path is visited. Additionally, we used the [`<NavigateToResource />`](https://refine.dev/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `/employees` path when the `/` path is visited.
+With `<Route />` components, we defined the routes to render the `<EmployeeList />` component when the `/employees` path is visited. Additionally, we used the [`<NavigateToResource />`](https://refine.dev/core/docs/packages/documentation/routers/react-router-v6/#navigatetoresource) component to redirect to the `/employees` path when the `/` path is visited.
 
 Finally, we used the `<Layout />` component we created in the previous section to wrap the defined routes.
 
@@ -580,7 +580,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 />;
 ```
 
-The filter feature works by searching the rows for values that match a given filter operator. The list of operators which can be used in the _sortModel_ can be found [here](https://refine.dev/docs/core/interfaceReferences/#crudfilters).
+The filter feature works by searching the rows for values that match a given filter operator. The list of operators which can be used in the _sortModel_ can be found [here](https://refine.dev/core/docs/core/interfaceReferences/#crudfilters).
 
 For instance in our employees table we can filter the _department_ column for rows that contain a `Support` value by using any of the above methods.
 
@@ -726,7 +726,7 @@ In this article we introduced you to the MUI X `<DataGrid />` component and how 
 
 We hope this article helps you in getting started with the `<DataGrid />` component in your Refine applications.
 
-Where to go next? Check the useDataGrid hook [documentation](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) and the MUI X `<DataGrid />` [documentation](https://mui.com/x/react-data-grid/) for additional usage information and reference.
+Where to go next? Check the useDataGrid hook [documentation](https://refine.dev/core/docs/ui-frameworks/mui/hooks/useDataGrid/) and the MUI X `<DataGrid />` [documentation](https://mui.com/x/react-data-grid/) for additional usage information and reference.
 
 <br/>
 <div>

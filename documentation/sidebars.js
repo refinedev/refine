@@ -975,7 +975,6 @@ module.exports = {
       label: "Enterprise Edition",
       className: "category-as-header",
       items: [
-        "enterprise-edition/index",
         "enterprise-edition/okta/index",
         "enterprise-edition/devtools/index",
         "enterprise-edition/multitenancy/index",

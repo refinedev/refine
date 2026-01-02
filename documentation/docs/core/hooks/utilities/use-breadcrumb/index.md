@@ -145,7 +145,7 @@ In earlier versions, the home icon in the `Breadcrumb` was created by the `Dashb
 
 If the `resource` definition has a `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the `resource` is used. Likewise, if the `resource` definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the `resource` is used.
 
-If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/docs/i18n/hooks/use-translate) hook to translate the names.
+If a `label` is not provided in your `posts` resource, `useBreadcrumb` uses the [`useTranslate`](/core/docs/i18n/hooks/use-translation) hook to translate the names.
 
 For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate the key `` translate(`actions.${action}`) ``.
 

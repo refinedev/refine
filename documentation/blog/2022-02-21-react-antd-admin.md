@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 :::
 
@@ -42,7 +42,7 @@ You can use it with any UI library you want without any problems. Also, [Ant Des
 
 ## Refine Advanced Tutorial
 
-This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/tutorial). That's why I suggest you read the basic tutorial of refine.
+This article will proceed through Refine's [Refine Basic Tutorial](https://refine.dev/core/tutorial). That's why I suggest you read the basic tutorial of refine.
 
 In this tutorial, we will learn how to include the features(i18n, Realtime, Access Control) provided by the Refine in our project and how we can use it.
 
@@ -423,13 +423,13 @@ export const PostList: React.FC = () => {
 
 You can add the translation you want and organize your content according to different languages ​​together with the **Refine** i18n Provider.
 
-Check out [Refine i18n Provider](https://refine.dev/docs/core/providers/i18n-provider/) for more detailed information and step-by-step guide
+Check out [Refine i18n Provider](https://refine.dev/core/docs/core/providers/i18n-provider/) for more detailed information and step-by-step guide
 
 ## Add Live Provider(Realtime) to Your Project with Refine
 
 Refine lets you add Realtime support to your app via liveProvider prop for `<Refine>`. It can be used to update and show data in Realtime throughout your app.
 
-Now let's make our application Realtime using the [Refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/)
+Now let's make our application Realtime using the [Refine Live Provider](https://refine.dev/core/docs/guides-and-concepts/real-time/)
 
 We will using [Ably](https://ably.com/) in this article to provide Realtime features.
 
@@ -506,7 +506,7 @@ export default App;
 
 You can configure `liveMode`, this example use "auto" mode.
 
-Check out [Refine Live Provider](https://refine.dev/docs/guides-and-concepts/real-time/) for more detailed information and step-by-step guide.
+Check out [Refine Live Provider](https://refine.dev/core/docs/guides-and-concepts/real-time/) for more detailed information and step-by-step guide.
 
 Our project is now Realtime! Thanks to **Refine** Live Provider, we made our project Realtime by adding only 2 lines.
 
@@ -517,11 +517,11 @@ Let's see how our RealTime Project works.
 
 ## Add Access Control to Your Project with Refine
 
-You can control your project as you wish with the **Refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/docs/core/providers/accessControl-provider/) to our Refine project.
+You can control your project as you wish with the **Refine react admin framework**. Now let's add [Access Control Provider](https://refine.dev/core/docs/core/providers/accessControl-provider/) to our Refine project.
 
 Access control is a broad topic where there are lots of advanced solutions that provide different set of features. Refine is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries (Casbin, CASL, Cerbos, AccessControl.js). can method would be the entry point for those solutions.
 
-[Refer to the Access Control Provider documentation for detailed information. →](https://refine.dev/docs/core/providers/accessControl-provider/)
+[Refer to the Access Control Provider documentation for detailed information. →](https://refine.dev/core/docs/core/providers/accessControl-provider/)
 
 Let's create two Roles, Admin and Editor. Admin have full CRUD authority on the posts. The Editor role, on the other hand, only has the authority to create and edit new posts. In other words, the person in the editor role cannot delete the posts and cannot view all the rows on the table.
 
@@ -672,7 +672,7 @@ const cerbos = new Cerbos({
 
 We will perform our actions according to the role we choose from the header. As you can see above, we set this with the `access Control Provider` `can` method.
 
-Now using the **Refine** [`useCan`](https://refine.dev/docs/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
+Now using the **Refine** [`useCan`](https://refine.dev/core/docs/core/hooks/accessControl/useCan/)hook Let's perform operations according to roles within our list.
 
 ```tsx title="src/pages/PostList.tsx"
 import {
@@ -811,7 +811,7 @@ Here, if the selected role is Admin, the 'Hit' section will appear in our Table.
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
 <br />
 
-Check out [**Refine** Access Control](https://refine.dev/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
+Check out [**Refine** Access Control](https://refine.dev/core/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide
 
 ## Conclusion
 

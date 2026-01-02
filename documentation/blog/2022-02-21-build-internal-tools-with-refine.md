@@ -68,7 +68,7 @@ const dataProvider = {
 
 Refine offers hooks to help you with data fetching and mutations using the data provider's properties. For example, when you use the `useTable` or `useList` hook, it will call the `getList` method underneath the hood.
 
-Refer to the [`useTable`](https://refine.dev/docs/ui-frameworks/antd/hooks/table/useTable/) and [data hooks](https://refine.dev/docs/core/hooks/data/useCreate/) for more information.
+Refer to the [`useTable`](https://refine.dev/core/docs/ui-frameworks/antd/hooks/table/useTable/) and [data hooks](https://refine.dev/core/docs/data/hooks/useCreate/) for more information.
 
 For example, let's look at what happens when `useTable` is called.
 
@@ -145,7 +145,7 @@ With `meta` you can pass any parameters that you need to the data provider. You 
 
 All hooks that use data provider methods such as `useTable` work with [React Query](https://react-query.tanstack.com). So you can use all the features of React Query.
 
-Refer to the [`dataProvider`](https://refine.dev/docs/core/providers/data-provider) for more information.
+Refer to the [`dataProvider`](https://refine.dev/core/docs/core/providers/data-provider) for more information.
 
 ### Out-of-the-box data providers
 
@@ -167,7 +167,7 @@ Refine needs some router functions to create resource pages, navigation, and so 
 
 If you don't need any customization in your router, we not recommend making this provider. Instead, try `nextjs-router` for your Next.js project and `react-router` or `react-location` for your React project.
 
-Refer to the [`routerProvider`](https://refine.dev/docs/core/providers/router-provider) for more information.
+Refer to the [`routerProvider`](https://refine.dev/core/docs/core/providers/router-provider) for more information.
 
 ### Out-of-the-box router providers
 
@@ -229,16 +229,16 @@ const authProvider = {
 };
 ```
 
-Refine uses these methods via [authorization hooks](https://refine.dev/docs/core/hooks/auth/useLogin/). Authentication and authorization procedures such as login, logout, checking user credentials, and catching HTTP errors are all handled using authorization hooks. For example, `checkAuth`is called when the user tries to access a page that requires authentication.
+Refine uses these methods via [authorization hooks](https://refine.dev/core/docs/core/hooks/auth/useLogin/). Authentication and authorization procedures such as login, logout, checking user credentials, and catching HTTP errors are all handled using authorization hooks. For example, `checkAuth`is called when the user tries to access a page that requires authentication.
 
-Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provider) for more information.
+Refer to the [`authProvider`](https://refine.dev/core/docs/core/providers/auth-provider) for more information.
 
 ### Out-of-the-box Auth providers
 
-- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
-- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
-- Google - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
-- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
+- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-auth0/) - [Demo](https://refine.dev/core/docs/examples/auth-provider/auth0)
+- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak/) - [Demo](https://refine.dev/core/docs/examples/auth-provider/keycloak)
+- Google - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-google-login) - [Demo](https://refine.dev/core/docs/examples/auth-provider/google-auth)
+- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-otp) - [Demo](https://refine.dev/core/docs/examples/auth-provider/otpLogin)
 
 ## Authorization
 
@@ -263,7 +263,7 @@ const accessControlProvider = {
 }
 ```
 
-[`useCan`](https://refine.dev/docs/core/hooks/accessControl/useCan) and [`<CanAccess>`](https://refine.dev/docs/core/components/accessControl/can-access/) component use this method to check if the user is allowed to access.
+[`useCan`](https://refine.dev/core/docs/core/hooks/accessControl/useCan) and [`<CanAccess>`](https://refine.dev/core/docs/core/components/accessControl/can-access/) component use this method to check if the user is allowed to access.
 
 For example, we can stop non-admin users from editing the post resource.
 
@@ -292,7 +292,7 @@ const App: React.FC = () => {
 };
 ```
 
-Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/accessControl-provider) for more information.
+Refer to the [`accessControlProvider`](https://refine.dev/core/docs/core/providers/accessControl-provider) for more information.
 
 ### Out-of-the-box access control providers
 
@@ -313,9 +313,9 @@ const i18nProvider = {
 };
 ```
 
-Refine uses these methods via [translation hooks](https://refine.dev/docs/core/hooks/translate/useTranslate/).
+Refine uses these methods via [translation hooks](https://refine.dev/core/docs/core/hooks/translate/useTranslate/).
 
-Refer to [Refine i18nProvider](https://refine.dev/docs/core/providers/i18n-provider) for more details and how to use the [react-i18next](https://react.i18next.com) package.
+Refer to [Refine i18nProvider](https://refine.dev/core/docs/core/providers/i18n-provider) for more details and how to use the [react-i18next](https://react.i18next.com) package.
 
 ## Real-time support
 
@@ -361,7 +361,7 @@ If `syncWithLocation` is turned on, the list of query parameters may be modified
 
 <br/>
 
-Check out all of Refine's [features](https://refine.dev/docs/core/components/refine-config) for more information.
+Check out all of Refine's [features](https://refine.dev/core/docs/core/components/refine-config) for more information.
 
 ## Conclusion
 

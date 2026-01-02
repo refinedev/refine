@@ -80,7 +80,7 @@ Apart from the `action` value, `formAction` can only be `create`, `edit` or `clo
 | ----------- | -------------------------------------------------------------------------- |
 | resource    | `IResourceItem` \| `undefined`                                             |
 | identifier  | `string` \| `undefined`                                                    |
-| id          | [`BaseKey` \| `undefined`](/docs/core/interface-references#basekey)        |
+| id          | [`BaseKey` \| `undefined`](/core/docs/core/interface-references#basekey)   |
 | setId       | `(id: BaseKey) => void`                                                    |
 | action      | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"` |
 | formAction  | `"create"` \| `"edit"` \| `"clone"`                                        |

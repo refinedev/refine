@@ -830,7 +830,7 @@ interface IPost {
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/hooks/use-select)
+[Refer to `useSelect` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/hooks/use-select)
 
 :::
 
@@ -979,7 +979,7 @@ interface IPost {
 
 ### refineCoreProps
 
-All [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1101,7 +1101,7 @@ useStepsForm({
 
 ## Return Values
 
-All [`useForm`](/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/docs/packages/list-of-packages#return-values) docs.
+All [`useForm`](/core/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/packages/list-of-packages#return-values) docs.
 
 ### steps
 
@@ -1142,10 +1142,10 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 ### Return values
 
-| Property                      | Description                                                     | Type                                                              |
-| ----------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
-| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/docs/data/hooks/use-form/#return-values) |
+| Property                      | Description                                                     | Type                                                                   |
+| ----------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#steps)                                          |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/core/docs/data/hooks/use-form/#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 ## Example
@@ -1153,8 +1153,8 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 <CodeSandboxExample path="form-react-hook-form-use-steps-form" />
 
 [@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/main/packages/react-hook-form
-[refine-react-hook-form-use-form]: /docs/packages/list-of-packages
+[refine-react-hook-form-use-form]: /core/docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /docs/data/hooks/use-form/
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[use-form-core]: /core/docs/data/hooks/use-form/
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

@@ -238,7 +238,7 @@
     },
     {
       "from": "/docs/guides-and-concepts/custom-pages/",
-      "to": "/core/docs/guides-concepts/routing"
+      "to": "guides-concepts/routing"
     },
     {
       "from": "/docs/guides-and-concepts/data-provider/handling-filters/",
@@ -250,15 +250,15 @@
     },
     {
       "from": "/docs/guides-and-concepts/forms/save-and-continue/",
-      "to": "/core/docs/guides-concepts/forms"
+      "to": "guides-concepts/forms"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-export/",
-      "to": "/core/docs/guides-concepts/import-export/"
+      "to": "guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/import-export/csv-import/",
-      "to": "/core/docs/guides-concepts/import-export/"
+      "to": "guides-concepts/import-export/"
     },
     {
       "from": "/docs/guides-and-concepts/multi-level-menu/",
@@ -638,7 +638,7 @@
     },
     {
       "from": "/docs/general-concepts/",
-      "to": "/core/docs/guides-concepts/general-concepts/"
+      "to": "guides-concepts/general-concepts/"
     },
     {
       "from": "/docs/getting-started/components/",
@@ -670,7 +670,7 @@
     },
     {
       "from": "/docs/advanced-tutorials/custom-pages/",
-      "to": "/core/docs/guides-concepts/routing"
+      "to": "guides-concepts/routing"
     },
     {
       "from": "/docs/api-reference/core/components/layout-wrapper",
@@ -767,7 +767,7 @@
     },
     {
       "from": "/docs/api-reference/",
-      "to": "/core/docs/guides-concepts/general-concepts/"
+      "to": "guides-concepts/general-concepts/"
     },
     {
       "from": "/become-a-refine-expert/",
@@ -787,7 +787,7 @@
     },
     {
       "from": "/docs/api-reference/general-concepts/",
-      "to": "/core/docs/guides-concepts/general-concepts"
+      "to": "guides-concepts/general-concepts"
     },
     {
       "from": "/docs/api-reference/antd",
@@ -819,15 +819,15 @@
     },
     {
       "from": "/docs/advanced-tutorials/forms/server-side-form-validation",
-      "to": "/core/docs/guides-concepts/forms"
+      "to": "guides-concepts/forms"
     },
     {
       "from": "/docs/advanced-tutorials/forms/save-and-continue",
-      "to": "/core/docs/guides-concepts/forms"
+      "to": "guides-concepts/forms"
     },
     {
       "from": "/docs/faq",
-      "to": "/core/docs/guides-concepts/faq"
+      "to": "guides-concepts/faq"
     },
     {
       "from": "/docs/comparison",
@@ -835,7 +835,7 @@
     },
     {
       "from": "/docs/contributing",
-      "to": "/core/docs/guides-concepts/contributing"
+      "to": "guides-concepts/contributing"
     },
     {
       "from": "/docs/testing",
@@ -1671,7 +1671,7 @@
     },
     {
       "from": "/docs/packages/documentation/routers",
-      "to": "/core/docs/guides-concepts/routing"
+      "to": "guides-concepts/routing"
     },
     {
       "from": "/docs/packages/documentation/data-providers/appwrite",
@@ -1739,7 +1739,7 @@
     },
     {
       "from": "/docs/further-readings/contributing",
-      "to": "/core/docs/guides-concepts/contributing"
+      "to": "guides-concepts/contributing"
     },
     {
       "from": "/docs/core/providers/auth-provider",
@@ -2011,31 +2011,31 @@
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/appwrite/",
-      "to": "/core/docs/guides-concepts/multitenancy"
+      "to": "guides-concepts/multitenancy"
     },
     {
       "from": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/",
-      "to": "/core/docs/guides-concepts/multitenancy"
+      "to": "guides-concepts/multitenancy"
     },
     {
       "from": "/docs/advanced-tutorials/multi-tenancy/appwrite",
-      "to": "/core/docs/guides-concepts/multitenancy"
+      "to": "guides-concepts/multitenancy"
     },
     {
       "from": "/docs/advanced-tutorials/multi-tenancy/strapi-v4",
-      "to": "/core/docs/guides-concepts/multitenancy"
+      "to": "guides-concepts/multitenancy"
     },
     {
       "from": "/docs/guides-concepts/multi-tenancy",
-      "to": "/core/docs/guides-concepts/multitenancy"
+      "to": "guides-concepts/multitenancy"
     },
     {
       "from": "/docs/advanced-tutorials/import-export/csv-import/",
-      "to": "/core/docs/guides-concepts/import-export"
+      "to": "guides-concepts/import-export"
     },
     {
       "from": "/docs/advanced-tutorials/import-export/csv-export/",
-      "to": "/core/docs/guides-concepts/import-export"
+      "to": "guides-concepts/import-export"
     },
     {
       "from": "/docs/further-readings/benchmarks/",
@@ -2047,19 +2047,19 @@
     },
     {
       "from": "/docs/packages/data-providers/strapi-graphql",
-      "to": "/core/docs/guides-concepts/data-fetching"
+      "to": "guides-concepts/data-fetching"
     },
     {
       "from": "/docs/data/packages/strapi-graphql",
-      "to": "/core/docs/guides-concepts/data-fetching"
+      "to": "guides-concepts/data-fetching"
     },
     {
       "from": "/docs/examples/data-provider/strapi-graphql/",
-      "to": "/core/docs/guides-concepts/data-fetching"
+      "to": "guides-concepts/data-fetching"
     },
     {
       "from": "/docs/examples/data-provider/nhost/",
-      "to": "/core/docs/guides-concepts/data-fetching"
+      "to": "guides-concepts/data-fetching"
     },
     {
       "from": "/docs/examples/next-js/nextjs-appdir/",

@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 In this post, we add pdf renderer to **PDF Invoice Generator** app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 
-This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) series and this [**#RefineWeek**](https://refine.dev/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
+This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) series and this [**#RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with [**Strapi**](https://strapi.io/) within a week.
 
 ### RefineWeek ft. Strapi series
 

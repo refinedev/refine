@@ -9,8 +9,8 @@ Refine provides an integration package for [React Hook Form][react-hook-form] li
 This package exports following hooks to manage your forms:
 
 - [`useForm`][use-form-react-hook-form]
-- [`useModalForm`](/docs/packages/list-of-packages)
-- [`useStepsForm`](/docs/packages/list-of-packages)
+- [`useModalForm`](/core/docs/packages/list-of-packages)
+- [`useStepsForm`](/core/docs/packages/list-of-packages)
 
 ## Installation
 
@@ -275,14 +275,14 @@ interface IPost {
 
 </Tabs>
 
-[use-form-react-hook-form]: /docs/packages/list-of-packages
+[use-form-react-hook-form]: /core/docs/packages/list-of-packages
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/refinedev/refine/tree/main/packages/react-hook-form
-[use-form-core]: /docs/data/hooks/use-form/
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
-[notification-provider]: /docs/notification/notification-provider
-[get-one]: /docs/data/data-provider#getone-
-[create]: /docs/data/data-provider#create-
-[update]: /docs/data/data-provider#update-
-[data-provider]: /docs/data/data-provider
+[use-form-core]: /core/docs/data/hooks/use-form/
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror
+[notification-provider]: /core/docs/notification/notification-provider
+[get-one]: /core/docs/data/data-provider#getone-
+[create]: /core/docs/data/data-provider#create-
+[update]: /core/docs/data/data-provider#update-
+[data-provider]: /core/docs/data/data-provider

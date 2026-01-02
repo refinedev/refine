@@ -113,7 +113,7 @@ render(<App />);
 
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mantine-drawer]. On larger screens, it will use fixed to open [`<Drawer>`][mantine-drawer].
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/core/docs/packages/list-of-packages). You can see these examples for other routers:
 
 - [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-mantine/src/App.tsx#L180)
 - [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
@@ -250,7 +250,7 @@ const MyLayout = () => {
 
 ### Header
 
-In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses the [`useGetIdentity`](/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses the [`useGetIdentity`](/core/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
 
 Here is an example of how to replace the default [`<ThemedHeaderV2>`][themed-header] component:
 
@@ -574,7 +574,7 @@ const App: React.FC = () => {
 
 ## Customizing with swizzle
 
-🚨 This feature is available with `@refine/cli`. Please refer to the [CLI documentation](/docs/packages/list-of-packages#swizzle) for more information.
+🚨 This feature is available with `@refine/cli`. Please refer to the [CLI documentation](/core/docs/packages/list-of-packages#swizzle) for more information.
 
 `<ThemedLayoutV2>` component source code can be ejecting using the `swizzle` command. This will create a copy of the component in your project's `src` directory, allowing you to customize as your needs.
 
@@ -978,6 +978,6 @@ export default function BaseLayout() {
 [themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/sider/index.tsx
 [themed-header]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/header/index.tsx
 [themed-title]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/title/index.tsx
-[use-menu]: /docs/core/hooks/utilities/use-menu
-[refine-component]: /docs/core/refine-component
+[use-menu]: /core/docs/core/hooks/utilities/use-menu
+[refine-component]: /core/docs/core/refine-component
 [mantine-drawer]: https://mantine.dev/core/drawer/

@@ -10,8 +10,8 @@ To check if a desired access will be granted, the `accessControlProvider` should
 
 :::simple Interface References
 
-- [`CanParams`](/docs/core/interface-references#canparams): Arguments for the `can` method.
-- [`CanResponse`](/docs/core/interface-references#canresponse): Return type of the `can` method.
+- [`CanParams`](/core/docs/core/interface-references#canparams): Arguments for the `can` method.
+- [`CanResponse`](/core/docs/core/interface-references#canresponse): Return type of the `can` method.
 
 :::
 
@@ -92,9 +92,9 @@ Providing `accessControlProvider` to the `<Refine />` component **won't enforce*
 
 Refer to one of the following documentations, based on your preferred router:
 
-- [React Router Access Control](/docs/packages/list-of-packages#usage-with-access-control-providers)
-- [NextJS Router Access Control](/docs/packages/list-of-packages#access-control)
-- [Remix Router Access Control](/docs/packages/list-of-packages#access-control)
+- [React Router Access Control](/core/docs/packages/list-of-packages#usage-with-access-control-providers)
+- [NextJS Router Access Control](/core/docs/packages/list-of-packages#access-control)
+- [Remix Router Access Control](/core/docs/packages/list-of-packages#access-control)
 
 :::
 
@@ -244,10 +244,10 @@ If you want to hide buttons instead of disabling them, you can pass `hideIfUnaut
 
 ## Examples
 
-This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/docs/examples/access-control/cerbos/) as well.
+This example is for **Casbin** access control provider. You can check our other access control provider, [**Cerbos**](/core/docs/examples/access-control/cerbos/) as well.
 <CodeSandboxExample path="access-control-casbin" />
 
-[iresourceitem]: /docs/core/interface-references#resourceprops
-[basekey]: /docs/core/interface-references#basekey
-[canparams]: /docs/core/interface-references#canparams
-[canresponse]: /docs/core/interface-references#canresponse
+[iresourceitem]: /core/docs/core/interface-references#resourceprops
+[basekey]: /core/docs/core/interface-references#basekey
+[canparams]: /core/docs/core/interface-references#canparams
+[canresponse]: /core/docs/core/interface-references#canresponse

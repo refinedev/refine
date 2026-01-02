@@ -23,11 +23,11 @@ const App = () => (
 
 ## dataProvider <PropTag asterisk />
 
-A [`dataProvider`](/docs/data/data-provider) is the place where a Refine app communicates with an API.
+A [`dataProvider`](/core/docs/data/data-provider) is the place where a Refine app communicates with an API.
 Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/docs/data/data-provider) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/core/docs/data/data-provider) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/docs/data/data-provider)
+[Refer to the Data Provider documentation for detailed information. &#8594](/core/docs/data/data-provider)
 
 Multiple data providers can be used with Refine, if you have multiple data providers, you can pass them to the `dataProvider` prop as an object.
 
@@ -96,7 +96,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResource](/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResource](/core/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
 
 :::
 
@@ -204,7 +204,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 - Additional parameters can also be used in the paths for the actions of the resources. Paths like `/:authorId/posts/:id/details` are also valid and supported. When these actions are used in the navigation helpers, the existing parameters from the URL and the `meta` property of these functions will be used to determine the additional parameters when composing the path.
 
-- Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/docs/guides-concepts/routing/#router-integrations) is used in the app to render the routes.
+- Passing a component or an object to the action will only take effect if the RefineRoutes component from one of the [Router Packages](/core/docs/guides-concepts/routing/#router-integrations) is used in the app to render the routes.
 
 - When using the legacy router provider, only the component values will be used. Custom paths are not supported.
 
@@ -212,7 +212,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/core/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 
@@ -323,31 +323,31 @@ Custom route name for the resource.
 
 `authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that Refine uses when necessary.
 
-[Refer to Auth Provider documentation for detailed information. &#8594](/docs/authentication/auth-provider)
+[Refer to Auth Provider documentation for detailed information. &#8594](/core/docs/authentication/auth-provider)
 
 ## i18nProvider
 
 The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](/docs/i18n/i18n-provider)
+[Refer to i18n documentation for detailed information. &#8594](/core/docs/i18n/i18n-provider)
 
 ## accessControlProvider
 
 `accessControlProvider` is the entry point for implementing access control for Refine apps.
 
-[Refer to access control documentation for detailed information. &#8594](/docs/authorization/access-control-provider)
+[Refer to access control documentation for detailed information. &#8594](/core/docs/authorization/access-control-provider)
 
 ## liveProvider
 
 Refine lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](/docs/realtime/live-provider)
+[Refer to live provider documentation for detailed information. &#8594](/core/docs/realtime/live-provider)
 
 ## notificationProvider
 
 `notificationProvider` handles notification logic. It is an object with methods that Refine uses when necessary.
 
-[Refer to the Notification Provider documentation for detailed information. &#8594](/docs/notification/notification-provider)
+[Refer to the Notification Provider documentation for detailed information. &#8594](/core/docs/notification/notification-provider)
 
 ## options
 
@@ -357,7 +357,7 @@ Refine lets you add Realtime support to your app via `liveProvider`. It can be u
 
 When the `dataProvider` returns rejected promise with [`errors`][http-error] field, the `useForm` hook will set the [`errors`][http-error] state with the `errors` returned from the `dataProvider`.
 
-[Refer to Server Side Validation section of the Forms guide for detailed information. &#8594](/docs/guides-concepts/forms/#server-side-validation-)
+[Refer to Server Side Validation section of the Forms guide for detailed information. &#8594](/core/docs/guides-concepts/forms/#server-side-validation-)
 
 To disable this behavior, you can set the `disableServerSideValidation` option to `true`.
 
@@ -379,7 +379,7 @@ const App = () => (
 
 Customize or disable the breadcrumb. By default it uses the Breadcrumb component from the respective package.
 
-[Refer to the Layouts and Menus section of UI Libraries guide for further information. &#8594](/docs/guides-concepts/ui-libraries/#layouts-and-menus)
+[Refer to the Layouts and Menus section of UI Libraries guide for further information. &#8594](/core/docs/guides-concepts/ui-libraries/#layouts-and-menus)
 
 ```tsx title="App.tsx"
 import { Breadcrumb } from "@refinedev/antd";
@@ -424,7 +424,7 @@ const App = () => (
 
 `undoable`: The mutation is applied locally, and redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be canceled from the notification with the ?undo? button. UI will revert accordingly.
 
-[Refer to the Mutation Mode docs for further information. &#8594](/docs/guides-concepts/forms/#mutation-modes-)
+[Refer to the Mutation Mode docs for further information. &#8594](/core/docs/guides-concepts/forms/#mutation-modes-)
 
 ### undoableTimeout
 
@@ -469,17 +469,17 @@ This feature also **requires** `UnsavedChangesNotifier` component to be mounted.
 
 `liveMode` controls whether to update data automatically or not, with `auto` and `manual` respectively if a related live event is received. The `off` value can be used to avoid creating a subscription all together.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/realtime/live-provider#livemode)
+> For more information, refer to the [live provider documentation &#8594](/core/docs/realtime/live-provider#livemode)
 
 ### disableTelemetry
 
 Refine implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the Refine experience. You can disable this by setting `disableTelemetry` to `true`.
 
-> For more information, refer to the [Refine telemetry documentation &#8594](/further-readings/telemetry.md)
+> For more information, refer to the [Refine telemetry documentation &#8594](/core/docs/further-readings/telemetry)
 
 ### redirect
 
-By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/docs/data/hooks/use-form/#actions), set `redirect` as follows:
+By default, Refine redirects to the `list` page of the resource after a successful form mutation. To change this behavior based on the form [action](/core/docs/data/hooks/use-form/#actions), set `redirect` as follows:
 
 ```tsx title="App.tsx"
 const App = () => (
@@ -557,7 +557,7 @@ const App = () => (
 
 #### ~~devtoolConfig~~ <PropTag deprecated />
 
-React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with Refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
+React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with Refine?](/core/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
 
 > For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
 
@@ -721,7 +721,7 @@ const App = () => {
 
 Callback to handle all live events.
 
-> For more information, refer to the [live provider documentation &#8594](/docs/realtime/live-provider#Refine)
+> For more information, refer to the [live provider documentation &#8594](/core/docs/realtime/live-provider#Refine)
 
 ## ~~catchAll~~ <PropTag deprecated />
 
@@ -805,7 +805,7 @@ const App = () => (
 
 The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
 
-> For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
+> For more information, refer to the [`useMenu` hook documentation &#8594](/core/docs/core/hooks/utilities/use-menu)
 
 ## ~~Footer~~ <PropTag deprecated />
 
@@ -932,5 +932,5 @@ const App = () => (
 
 <PropsTable module="@refinedev/core/Refine"/>
 
-[routerprovider]: /docs/routing/router-provider
-[http-error]: /docs/core/interface-references#httperror
+[routerprovider]: /core/docs/routing/router-provider
+[http-error]: /core/docs/core/interface-references#httperror

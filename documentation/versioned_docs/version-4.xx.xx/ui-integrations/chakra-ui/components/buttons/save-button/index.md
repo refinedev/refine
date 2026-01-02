@@ -7,13 +7,13 @@ swizzle: true
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
 ## Usage
 
-For example, lets add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/packages/list-of-packages) hook.
+For example, lets add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/core/docs/packages/list-of-packages) hook.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);

@@ -230,7 +230,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
 
 ### deleteButtonProps
 
@@ -933,7 +933,7 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/Show" />
 
-[list-button]: /docs/ui-integrations/chakra-ui/components/buttons/list-button
-[refresh-button]: /docs/ui-integrations/chakra-ui/components/buttons/refresh-button
-[edit-button]: /docs/ui-integrations/chakra-ui/components/buttons/edit-button
-[delete-button]: /docs/ui-integrations/chakra-ui/components/buttons/delete-button
+[list-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/list-button
+[refresh-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/refresh-button
+[edit-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/edit-button
+[delete-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/delete-button

@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 In this post, we build on our existing understanding of `dataProvider` and `authProvider` props of `<Refine />` to implement CRUD operations in our **Pdf Invoice Generator** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's `resources` and routing conventions as well.
 
-CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider we chose for our project and in this post we use them to build pages for **Company**, **Client** and **Contact** resources. We implement appropriate pages and partial components with `list`, `create`, `edit` and `delete` actions. We also add auth features we discussed on Day Two of the [**RefineWeek**](https://refine.dev/week-of-refine-strapi/) series.
+CRUD actions are supported by the [**Strapi**](https://strapi.io/) data provider we chose for our project and in this post we use them to build pages for **Company**, **Client** and **Contact** resources. We implement appropriate pages and partial components with `list`, `create`, `edit` and `delete` actions. We also add auth features we discussed on Day Two of the [**RefineWeek**](https://refine.dev/core/week-of-refine-strapi/) series.
 
 We're on Day Three and this **RefineWeek** is a five-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
@@ -264,7 +264,7 @@ In versions `< v4`, `resources` items used to include view definitions (for exam
 
 However, view definitions are not used in `v4` `resources` items. Instead, as we will see below, **path definitions** are specified. Version `v4` allows flexible routing with `<Route />` components, and so view definitions for each `resources` item are now configured inside `<Route />` components.
 
-In the mean time, legacy resource definitions, data and auth providers are still functional in **Refine** `v4`. If you want to use the legacy `resources` convention, you have to use the `legacyRouterProvider` prop instead of `routerProvider` and `legacyAuthProvider` prop instead of the `authProvider` prop of the `<Refine />` component. More on this [here](https://refine.dev/docs/api-reference/core/providers/router-provider/#legacy-router-provider).
+In the mean time, legacy resource definitions, data and auth providers are still functional in **Refine** `v4`. If you want to use the legacy `resources` convention, you have to use the `legacyRouterProvider` prop instead of `routerProvider` and `legacyAuthProvider` prop instead of the `authProvider` prop of the `<Refine />` component. More on this [here](https://refine.dev/core/docs/api-reference/core/providers/router-provider/#legacy-router-provider).
 
 In this app, we are using the new definitions introduced in `v4`.
 
@@ -569,7 +569,7 @@ here;
 
 We are using the `useSimpleList()` data hook in the `<CompanyList />` component. It is a higher level hook built on top of the `useList()` hook that comes with the `@refinedev/antd` package. `useList()` is a low level **Refine** core hook.
 
-`useSimpleList()` hook is being used to display our `companies` data in a list. More details about the `useSimpleList()` hook is available [here](https://refine.dev/docs/api-reference/antd/hooks/list/useSimpleList/).
+`useSimpleList()` hook is being used to display our `companies` data in a list. More details about the `useSimpleList()` hook is available [here](https://refine.dev/core/docs/api-reference/antd/hooks/list/useSimpleList/).
 
 Basically, the `useSimpleList()` hook gives us access to the `dataProvider.getList` method from inside the `<CompanyList />` component. We are grabbing the `listProps` object and passing it to the `<AntdList />`, which is an **Ant Design** component that displays the items.
 
@@ -589,7 +589,7 @@ For example, with the below object, we are setting the behavior of the button to
 }}
 ```
 
-More elaboration about it is available in the [docs section here](https://refine.dev/docs/api-reference/antd/components/basic-views/list/#cancreate-and-createbuttonprops).
+More elaboration about it is available in the [docs section here](https://refine.dev/core/docs/api-reference/antd/components/basic-views/list/#cancreate-and-createbuttonprops).
 
 In the `<CompanyList />` page above, by specifying the value of `createButtonProps` prop for `<List />`, we are activating the `<CreateButton />`. And then we are invoking the `createShow` modal function for the `onClick` event on the button.
 
@@ -610,7 +610,7 @@ const {
 });
 ```
 
-We are picking `modalProps` and `formProps` and passing them to the `<CreateCompany />` modal. To get more comprehensive understanding, please feel free to go over the [`useModalForm()` API reference here](https://refine.dev/docs/api-reference/antd/hooks/form/useModalForm/).
+We are picking `modalProps` and `formProps` and passing them to the `<CreateCompany />` modal. To get more comprehensive understanding, please feel free to go over the [`useModalForm()` API reference here](https://refine.dev/core/docs/api-reference/antd/hooks/form/useModalForm/).
 
 **refine-Ant Design `<Modal />` Component**
 
@@ -815,7 +815,7 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item, editShow }) => {
 };
 ```
 
-In the above code, the [`<EditButton />`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`<DeleteButton />`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/) components are provided by the `@refinedev/antd` package.
+In the above code, the [`<EditButton />`](https://refine.dev/core/docs/api-reference/antd/components/buttons/edit-button/) and [`<DeleteButton />`](https://refine.dev/core/docs/api-reference/antd/components/buttons/delete-button/) components are provided by the `@refinedev/antd` package.
 
 The `<EditButton />` opens up the `<EditCompany />` modal when clicked. It uses a separate instance of the `useModalForm()` hook for forwarding editable data to the `edit` action inside `<EditCompany />`:
 
@@ -884,7 +884,7 @@ The routing and components involved are the following:
 
 The component being rendered at `/login` is the **refine-Ant Design** `<AuthPage />` component which is provided by the `@refinedev/antd` package. The `<AuthPage />` component is a special component that has variants for `login`, `register`, `forgotPassword` and `updatePassword`, which are generated based on the prop passed. For example in the code snippet above, we are asking for the `login` type of the `<AuthPage />` component at the `/login` route.
 
-More on the `<AuthPage />` component is available [here](https://refine.dev/docs/api-reference/antd/components/antd-auth-page/).
+More on the `<AuthPage />` component is available [here](https://refine.dev/core/docs/api-reference/antd/components/antd-auth-page/).
 
 At this point, if we attempt to log in to our **Pdf Invoice Generator** app using the default credentials on the form, we should be redirected to the `/companies` route. And we should expect a blank page.
 
@@ -1113,7 +1113,7 @@ export const CreateClient: React.FC<CreateClientProps> = ({
 
 The `formProps` is tailored to match the props of the **Ant Design** `<Form />` component and by specifying `action: "create"`, we are sending a `POST` request to `/clients` endpoint in our **Strapi** app.
 
-Please feel free to explore the [`useDrawerForm()` documentation](https://refine.dev/docs/api-reference/antd/hooks/form/useDrawerForm/) for more details.
+Please feel free to explore the [`useDrawerForm()` documentation](https://refine.dev/core/docs/api-reference/antd/hooks/form/useDrawerForm/) for more details.
 
 Our `edit` action for `clients`, similar to the `create` action, also leverages `useDrawerForm()` hook to manage operations and fetch data for the `<EditClient />` component:
 

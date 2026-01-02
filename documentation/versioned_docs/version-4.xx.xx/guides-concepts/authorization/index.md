@@ -22,7 +22,7 @@ In order to enable these features, Refine uses the **Access Control Provider** a
 
 ## Access Control Provider
 
-The [Access Control Provider](/docs/authorization/access-control-provider) is an object that contains a `can` method. This method is called by Refine to understand if the user can see a certain resource or perform an action.
+The [Access Control Provider](/core/docs/authorization/access-control-provider) is an object that contains a `can` method. This method is called by Refine to understand if the user can see a certain resource or perform an action.
 
 A basic **Access Control Provider** looks like this:
 
@@ -66,7 +66,7 @@ export const App = () => {
 };
 ```
 
-[To learn more about the `Access Control Provider`, check out the reference page.](/docs/authorization/access-control-provider)
+[To learn more about the `Access Control Provider`, check out the reference page.](/core/docs/authorization/access-control-provider)
 
 ## CanAccess Component
 
@@ -97,7 +97,7 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `CanAccess` component, check out the reference page.](/docs/authorization/components/can-access)
+[To learn more about the `CanAccess` component, check out the reference page.](/core/docs/authorization/components/can-access)
 
 ### Router Integrations
 
@@ -105,7 +105,7 @@ Refine's router integrations can infer `resource`, `action`, and `params.id` pro
 
 This means you can wrap all of your routes with a single `<CanAccess />` component, instead of wrapping each page individually.
 
-See [React Router](/docs/packages/list-of-packages), [Next.js](/docs/packages/list-of-packages), [Remix](/docs/packages/list-of-packages) integration pages for more information.
+See [React Router](/core/docs/packages/list-of-packages), [Next.js](/core/docs/packages/list-of-packages), [Remix](/core/docs/packages/list-of-packages) integration pages for more information.
 
 ## useCan Hook
 
@@ -134,7 +134,7 @@ export const ListPage = () => {
 };
 ```
 
-[To learn more about the `useCan` hook, check out the reference page.](/docs/authorization/hooks/use-can)
+[To learn more about the `useCan` hook, check out the reference page.](/core/docs/authorization/hooks/use-can)
 
 ## Handling Authorization
 

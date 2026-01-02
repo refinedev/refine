@@ -44,13 +44,13 @@ Resource name of the `resource` object.
 
 ### ~~id~~ <PropTag deprecated />
 
-> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
+> Use [`useResourceParams`](/core/docs/routing/hooks/use-resource-params) instead.
 
 `id` parameter of the current route.
 
 ### ~~action~~ <PropTag deprecated />
 
-> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
+> Use [`useResourceParams`](/core/docs/routing/hooks/use-resource-params) instead.
 
 `action` from the current route if there is a match.
 
@@ -79,7 +79,7 @@ Identifier value for the current resource, this can either be the `identifier` p
 | resources    | [`IResourceItem[]`](#interfaces)                                                                                          |
 | resource     | [`IResourceItem` \| `undefined`](#interfaces)                                                                             |
 | resourceName | `string` \| `undefined`                                                                                                   |
-| id           | [`BaseKey`](/docs/core/interface-references#basekey)                                                                      |
+| id           | [`BaseKey`](/core/docs/core/interface-references#basekey)                                                                 |
 | action       | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"`                                                |
 | select       | `(resourceName: string, force?: boolean) => { resource: IResourceItem` \| `undefined, identifier: string` \| `undefined}` |
 | identifier   | `string` \| `undefined`                                                                                                   |

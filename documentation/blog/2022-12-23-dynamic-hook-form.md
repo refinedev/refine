@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -47,7 +47,7 @@ Here are some of the benefits of using Refine:
 - Open source: refine has a strong community of maintainers and contributors.
 - Workflow independence: refine prevents vendors lock-in, thus giving you and your team complete control over your project.
 
-Refer to the [documentation](https://refine.dev/docs/) to learn more about refine.
+Refer to the [documentation](https://refine.dev/core/docs/) to learn more about refine.
 
 ## What is React hook form
 
@@ -173,7 +173,7 @@ export default App;
 
 Notice the link being passed to the `<Refine>`'s `dataProvider` prop. This is the mock API endpoint we'll be fetching and posting data using our form.
 
-Refer to the documentation to learn more about the [`resources`](https://refine.dev/docs/api-reference/core/components/refine-config/#resources) and [`dataProvider`](https://refine.dev/docs/api-reference/core/components/refine-config/#dataprovider) properties.
+Refer to the documentation to learn more about the [`resources`](https://refine.dev/core/docs/api-reference/core/components/refine-config/#resources) and [`dataProvider`](https://refine.dev/core/docs/api-reference/core/components/refine-config/#dataprovider) properties.
 
 ## Listing Records
 
@@ -591,7 +591,7 @@ The object accepts an event listener key and a function value. It overrides the 
 
 [`handleSubmit`](https://react-hook-form.com/api/useform/handlesubmit/) is a React hook form function for managing form submission events. It receives the form's data if the form validation is successful and passes it to the `submitHandler` function.
 
-Refer to the documentation to learn more about the [`onFinish`](https://refine.dev/docs/guides-concepts/faq/#how-can-i-change-the-form-data-before-submitting-it-to-the-api) hook and the [`saveButtonProps`](https://refine.dev/docs/api-reference/mantine/hooks/form/useForm/#return-values) prop.
+Refer to the documentation to learn more about the [`onFinish`](https://refine.dev/core/docs/guides-concepts/faq/#how-can-i-change-the-form-data-before-submitting-it-to-the-api) hook and the [`saveButtonProps`](https://refine.dev/core/docs/api-reference/mantine/hooks/form/useForm/#return-values) prop.
 
 Now, if you save your progress and go back to the browser, everything should work as expected.
 
@@ -899,7 +899,7 @@ import {
 
 The `EditButton` component uses Refine’s `useNavigation` hook under the hood to redirect users to the edit page of resources.
 
-Refer to the documentation to learn more about the [`useNavigation`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) hook.
+Refer to the documentation to learn more about the [`useNavigation`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) hook.
 
 Next, add a fourth object to the `columns` array with the following properties:
 

@@ -7,7 +7,7 @@ This field is used to display files and uses [`<Typography.Link>`](https://ant.d
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 

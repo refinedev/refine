@@ -39,13 +39,13 @@ values={[
 
 <TabItem value="refine-cli">
 
-⚡️ You can easily update Refine packages with the Refine CLI [`update`](/docs/packages/cli/#update) command.
+⚡️ You can easily update Refine packages with the Refine CLI [`update`](/core/docs/packages/cli/#update) command.
 
 ```bash
 npm run refine update
 ```
 
-> [How to add Refine CLI to an existing project?](/docs/packages/cli/#how-to-add-to-an-existing-project)
+> [How to add Refine CLI to an existing project?](/core/docs/packages/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
 

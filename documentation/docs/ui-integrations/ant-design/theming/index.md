@@ -34,7 +34,7 @@ const App: React.FC = () => {
 };
 ```
 
-If you want to see how themes change the look of the application, check out this [example &#8594](/docs/examples/themes/refine-themes-antd/)
+If you want to see how themes change the look of the application, check out this [example &#8594](/core/docs/examples/themes/refine-themes-antd/)
 
 ## Theme customization
 
@@ -187,7 +187,7 @@ const App: React.FC = () => {
 };
 ```
 
-If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout) tutorial.
 
 ## Example
 

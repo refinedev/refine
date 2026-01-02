@@ -12,7 +12,7 @@ hide_table_of_contents: false
 
 This post was created using version 3.x.x of **Refine**. Although we plan to update it with the latest version of **Refine** as soon as possible, you can still benefit from the post in the meantime.
 
-You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/docs/migration-guide/).
+You should know that **Refine** version 4.x.x is backward compatible with version 3.x.x, so there is no need to worry. If you want to see the differences between the two versions, check out the [migration guide](https://refine.dev/core/docs/migration-guide/).
 
 Just be aware that the source code example in this post have been updated to version 4.x.x.
 
@@ -209,7 +209,7 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
 
 The CSV import with **Refine** is very simple and out-of-the-box feature. How to use it is explained step by step in the guide and example.
 
-[Refer to the **Refine** CSV import guide for more information. →](https://refine.dev/docs/guides-and-concepts/import-export/csv-import/)
+[Refer to the **Refine** CSV import guide for more information. →](https://refine.dev/core/docs/guides-and-concepts/import-export/csv-import/)
 
 [View Source](https://github.com/refinedev/refine/blob/main/examples/import-export-antd/src/pages/posts/list.tsx#L32)
 
@@ -218,7 +218,7 @@ The CSV import with **Refine** is very simple and out-of-the-box feature. How to
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/importing.gif" alt="importing_csv" />
 <br />
 
-Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/docs/core/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/docs/ui-frameworks/antd/components/buttons/import-button/) provided by **Refine**.
+Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/core/docs/core/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/core/docs/ui-frameworks/antd/components/buttons/import-button/) provided by **Refine**.
 
 ```tsx
 import {
@@ -268,7 +268,7 @@ interface IPost {
 
 You can also divide the data into chunk with the `batchSize` option while performing the insertion process.
 
-[Refer to the **Refine** CSV Import API References for more information. →](https://refine.dev/docs/core/hooks/import-export/useImport/#api-reference)
+[Refer to the **Refine** CSV Import API References for more information. →](https://refine.dev/core/docs/core/hooks/import-export/useImport/#api-reference)
 
 ## Example
 

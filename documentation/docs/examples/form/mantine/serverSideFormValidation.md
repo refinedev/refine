@@ -8,8 +8,8 @@ You can handle server-side form validation errors out-of-the-box with [Mantine u
 
 When `dataProvider` returns rejected promise with `errors` field, [`useForm`][react-hook-form-use-form] will automatically update the error state with the rejected `errors` field.
 
-[Refer to the server-side Form Validation documentation for more information. →](/docs/guides-concepts/forms/#server-side-validation-)
+[Refer to the server-side Form Validation documentation for more information. →](/core/docs/guides-concepts/forms/#server-side-validation-)
 
 <CodeSandboxExample path="server-side-form-validation-mantine" />
 
-[mantine-use-form]: /docs/ui-integrations/mantine/hooks/use-form
+[mantine-use-form]: /core/docs/ui-integrations/mantine/hooks/use-form

@@ -25,7 +25,7 @@ hide_table_of_contents: false
 
 This post provides an introduction to [**Refine**](https://github.com/refinedev/refine), a React framework used to rapidly build data heavy CRUD apps like dashboards, admin panels and e-commerce storefronts.
 
-It also presents the [RefineWeek](https://refine.dev/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**Refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **Refine** within a week.
+It also presents the [RefineWeek](https://refine.dev/core/week-of-refine-supabase/) series - which is a seven part quickfire guide that aims to help developers learn the ins-and-outs of [**Refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/) powerful capabilities and get going with **Refine** within a week.
 
 At the end of this series, you'll be able to build a fully functional CRUD app named "**Pixels**" with **Refine** and **Supabase**.
 
@@ -63,7 +63,7 @@ In a nutshell, you can build rock-solid CRUD apps easily using Refine✨.
 
 ## Refine Architecture
 
-Everything in **Refine** is centered around the [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
+Everything in **Refine** is centered around the [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) component, which is configured via a set of provider props that each requires a provider object to be passed in. A typical application of providers on the `<Refine />` component looks like this:
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
@@ -84,7 +84,7 @@ import authProvider from "./authProvider";
 
 The above snippet lists a few of the props and their objects.
 
-However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
+However, rather than precisely being a component, `<Refine />` is largely a monolith of provider configurations backed by a context for each. Hence, inside [`dataProvider`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/), we have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/core/docs/api-reference/core/providers/auth-provider/), we have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/core/docs/api-reference/core/providers/router-provider/), we have _exact_ definitions of routes and the components to render for that route, etc. And each provider comes with its own set of conventions and type definitions.
 
 For example, a `dataProvider` object has the following signature to which any definition of a data provider conform:
 
@@ -115,7 +115,7 @@ const dataProvider = {
 </p>
 </details>
 
-The underlying architecture involves any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has a corresponding hook via which a consumer component is able to fetch data from the backend, i.e. the [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/) hook is the corresponding function accessing the `dataProvider.getList()` provider method.
+The underlying architecture involves any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has a corresponding hook via which a consumer component is able to fetch data from the backend, i.e. the [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) hook is the corresponding function accessing the `dataProvider.getList()` provider method.
 
 An example hook usage looks like this:
 
@@ -214,28 +214,28 @@ The following diagram illustrates the interactions:
 
 Common providers include:
 
-- [`authProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
-- [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
-- [`routerProvider`](https://refine.dev/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
-- [`liveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
-- [`accessControlProvider`](https://refine.dev/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
-- [`auditLogProvider`](https://refine.dev/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
+- [`authProvider`](https://refine.dev/core/docs/api-reference/core/providers/auth-provider/) - for authentication and authorization.
+- [`dataProvider`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/) - for CRUD operations.
+- [`routerProvider`](https://refine.dev/core/docs/api-reference/core/providers/router-provider/) - for defining routes, RESTful and non-RESTful.
+- [`liveProvider`](https://refine.dev/core/docs/api-reference/core/providers/live-provider/) - for implementing real time features.
+- [`accessControlProvider`](https://refine.dev/core/docs/api-reference/core/providers/accessControl-provider/) - for access control management.
+- [`auditLogProvider`](https://refine.dev/core/docs/api-reference/core/providers/audit-log-provider/) - for logging appwide activities.
 
-For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/docs/api-reference/core/).
+For an exhaustive list of providers, please visit the **Refine** providers documentation from [here](https://refine.dev/core/docs/api-reference/core/).
 
-Each method in these providers comes with its corresponding hook to be used from inside UI components and pages. For more details, please refer to the **Refine** hooks documentation starting [here](https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan/).
+Each method in these providers comes with its corresponding hook to be used from inside UI components and pages. For more details, please refer to the **Refine** hooks documentation starting [here](https://refine.dev/core/docs/api-reference/core/hooks/accessControl/useCan/).
 
 ## Support Packages
 
-**Refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **Refine**'s UI support packages include [**Ant Design**](https://refine.dev/docs/api-reference/antd/), [**Material UI**](https://refine.dev/docs/api-reference/mui/), [**Chakra UI**](https://refine.dev/docs/api-reference/chakra-ui/) and [**Mantine**](https://refine.dev/docs/api-reference/mantine/). Backend supplementary modules include [**Supabase**](https://supabase.com/), [**GraphQL**](https://graphql.org/), and [**NestJS**](https://nestjs.com/)
+**Refine** is inherently headless in its core API and deliberately agnostic about the UI and backend layers. Being so, it is able to provide fantastic support for major UI libraries and frameworks as well as popular backend frameworks and services. To name a few, **Refine**'s UI support packages include [**Ant Design**](https://refine.dev/core/docs/api-reference/antd/), [**Material UI**](https://refine.dev/core/docs/api-reference/mui/), [**Chakra UI**](https://refine.dev/core/docs/api-reference/chakra-ui/) and [**Mantine**](https://refine.dev/core/docs/api-reference/mantine/). Backend supplementary modules include [**Supabase**](https://supabase.com/), [**GraphQL**](https://graphql.org/), and [**NestJS**](https://nestjs.com/)
 
-For a complete list of all these modules, check out [this page](https://refine.dev/docs/packages/list-of-packages/).
+For a complete list of all these modules, check out [this page](/core/docs/packages/list-of-packages/).
 
 ## What is Supabase?
 
 [**Supabase**](https://supabase.com/) is an open source alternative to Firebase. It is a hosted backend that provides a realtime database, authentication, storage, and API services.
 
-Refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/docs/packages/documentation/data-providers/supabase/).
+Refine has a built-in data provider support for Supabase. You can find the advanced tutorial [here](https://refine.dev/core/docs/packages/documentation/data-providers/supabase/).
 
 We'll be using **Supabase** to build our backend for **Pixels** app.
 
@@ -254,7 +254,7 @@ The second app, **Pixels Admin** is an admin dashboard that allows authorized us
 
 We will be building these two apps day-by-day over a period of 7 days. And while doing so, we will dive deep into the details of related providers, hooks, UI components and how **Refine** works behind the scenes.
 
-As far as our features and functionalities go, we will cover most of the providers and some of the related hooks. For the UI side, we will be using the optional [**Ant Design**](https://refine.dev/docs/api-reference/antd/) package supported by **Refine**. For the backend, we will use a PostgreSQL database hosted on the [**Supabase**](https://supabase.com/) cloud.
+As far as our features and functionalities go, we will cover most of the providers and some of the related hooks. For the UI side, we will be using the optional [**Ant Design**](https://refine.dev/core/docs/api-reference/antd/) package supported by **Refine**. For the backend, we will use a PostgreSQL database hosted on the [**Supabase**](https://supabase.com/) cloud.
 
 <br />
 
@@ -321,7 +321,7 @@ We will display these logs inside a modal for each canvas both in the client **P
 
 ## Summary
 
-In this post, we introduced the **Refine** framework and the [RefineWeek](https://refine.dev/week-of-refine/) series itself. We talked about **Refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
+In this post, we introduced the **Refine** framework and the [RefineWeek](https://refine.dev/core/week-of-refine/) series itself. We talked about **Refine**'s underlying architecture which consists of providers, hooks and components that help rapidly build internal tools.
 
 We laid out the plans for building a **Pixels** client app and an admin dashboard app in considerable depth.
 

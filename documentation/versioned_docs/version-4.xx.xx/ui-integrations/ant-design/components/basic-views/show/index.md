@@ -103,7 +103,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -232,13 +232,13 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### canDelete and canEdit
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component.
 
-When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/data/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, the delete button executes the `useDelete` method provided by the [`dataProvider`](/core/docs/data/data-provider) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
@@ -357,7 +357,7 @@ render(
 );
 ```
 
-[Refer to the `usePermissions` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/authentication/usePermissions/)
+[Refer to the `usePermissions` documentation for detailed usage. &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### deleteButtonProps
 
@@ -790,7 +790,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
 
 ### wrapperProps
 
@@ -1383,17 +1383,17 @@ render(
 <PropsTable module="@refinedev/antd/Show"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
-headerButtons-default="[`ListButton`](/docs/ui-integrations/ant-design/components/buttons/list-button/), [`RefreshButton`](/docs/ui-integrations/ant-design/components/buttons/refresh-button/), [`EditButton`](/docs/ui-integrations/ant-design/components/buttons/edit-button/) and [`DeleteButton`](/docs/ui-integrations/ant-design/components/buttons/delete-button/)"
+headerButtons-default="[`ListButton`](/core/docs/ui-integrations/ant-design/components/buttons/list-button/), [`RefreshButton`](/core/docs/ui-integrations/ant-design/components/buttons/refresh-button/), [`EditButton`](/core/docs/ui-integrations/ant-design/components/buttons/edit-button/) and [`DeleteButton`](/core/docs/ui-integrations/ant-design/components/buttons/delete-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
-deleteButtonProps-type="[`DeleteButtonProps`](/docs/ui-integrations/ant-design/components/buttons/delete-button)"
-saveButtonProps-type="[`SaveButtonProps`](/docs/ui-integrations/ant-design/components/buttons/save-button/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/core/docs/ui-integrations/ant-design/components/buttons/delete-button)"
+saveButtonProps-type="[`SaveButtonProps`](/core/docs/ui-integrations/ant-design/components/buttons/save-button/)"
 footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
 
-[list-button]: /docs/ui-integrations/ant-design/components/buttons/list-button
-[refresh-button]: /docs/ui-integrations/ant-design/components/buttons/refresh-button
-[edit-button]: /docs/ui-integrations/ant-design/components/buttons/edit-button
-[delete-button]: /docs/ui-integrations/ant-design/components/buttons/delete-button
+[list-button]: /core/docs/ui-integrations/ant-design/components/buttons/list-button
+[refresh-button]: /core/docs/ui-integrations/ant-design/components/buttons/refresh-button
+[edit-button]: /core/docs/ui-integrations/ant-design/components/buttons/edit-button
+[delete-button]: /core/docs/ui-integrations/ant-design/components/buttons/delete-button

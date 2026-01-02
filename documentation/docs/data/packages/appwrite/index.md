@@ -301,8 +301,8 @@ Refine provides a data provider for [Appwrite](https://appwrite.io/), a backend 
 :::simple Good to know
 
 - `@refinedev/appwrite` requires Appwrite version >= 1.0
-- To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
-- To learn more about realtime features of Refine, check out the [Realtime](/docs/guides-concepts/realtime) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
+- To learn more about realtime features of Refine, check out the [Realtime](/core/docs/guides-concepts/realtime) guide.
 - Example below uses `@refinedev/antd` as the UI library but Refine is UI agnostic and you can use any UI library you want.
 
 :::
@@ -378,7 +378,7 @@ We indicate that the read and write permission is open to everyone by giving the
 
 ## Login page​
 
-Before creating CRUD pages, let's create a login page. For this we use the [`AuthPage`](/docs/ui-integrations/ant-design/components/auth-page) component. This component returns ready-to-use authentication pages for `login`, `register`, `forgot password` and `update password` actions.
+Before creating CRUD pages, let's create a login page. For this we use the [`AuthPage`](/core/docs/ui-integrations/ant-design/components/auth-page) component. This component returns ready-to-use authentication pages for `login`, `register`, `forgot password` and `update password` actions.
 
 Below we see its implementation in the `App.tsx` file:
 

@@ -44,7 +44,7 @@ const siteConfig = {
   organizationName: "refinedev",
   trailingSlash: true,
   favicon: "assets/favicon.ico",
-  onBrokenLinks: "ignore",
+  onBrokenLinks: "warn",
   scripts: IS_PRODUCTION
     ? [
         "https://platform.twitter.com/widgets.js",
@@ -195,7 +195,7 @@ const siteConfig = {
       "@docusaurus/plugin-content-docs",
       {
         id: "tutorial",
-        path: "tutorial",
+        path: "./tutorial",
         routeBasePath: "/core/tutorial",
         sidebarPath: false,
         docLayoutComponent: "@theme/TutorialPage",
@@ -321,7 +321,7 @@ const siteConfig = {
           items: [
             {
               label: "Examples",
-              to: "/core/examples",
+              to: "/core/docs/examples",
             },
             {
               label: "Integrations",

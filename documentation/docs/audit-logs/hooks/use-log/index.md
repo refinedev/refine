@@ -12,7 +12,7 @@ const { log, rename } = useLog();
 
 ## log
 
-The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#create) under the hood.
+The `log` mutation is used to create an audit log event using the `create` method from [`auditLogProvider`](/core/docs/audit-logs/audit-log-provider#create) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -49,11 +49,11 @@ mutate({
 
 ### Type Parameters
 
-| Property   | Description                                                                                     | Type                                                       | Default                                                    |
-| ---------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/docs/core/interface-references#httperror)       | [`HttpError`](/docs/core/interface-references#httperror)   | [`HttpError`](/docs/core/interface-references#httperror)   |
-| TVariables | Values for mutation function                                                                    | `{}`                                                       | `{}`                                                       |
+| Property   | Description                                                                                          | Type                                                            | Default                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/core/docs/core/interface-references#httperror)       | [`HttpError`](/core/docs/core/interface-references#httperror)   | [`HttpError`](/core/docs/core/interface-references#httperror)   |
+| TVariables | Values for mutation function                                                                         | `{}`                                                            | `{}`                                                            |
 
 ### Return value
 
@@ -63,7 +63,7 @@ mutate({
 
 ## rename
 
-The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/docs/audit-logs/audit-log-provider#update) under the hood.
+The `rename` mutation is used to update an audit log event using the `update` method from [`auditLogProvider`](/core/docs/audit-logs/audit-log-provider#update) under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";
@@ -86,11 +86,11 @@ mutate({
 
 ### Type Parameters
 
-| Property   | Description                                                                                     | Type                                                       | Default                                                    |
-| ---------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) | [`BaseRecord`](/docs/core/interface-references#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/docs/core/interface-references#httperror)       | [`HttpError`](/docs/core/interface-references#httperror)   | [`HttpError`](/docs/core/interface-references#httperror)   |
-| TVariables | Values for mutation function                                                                    | `{}`                                                       | `{}`                                                       |
+| Property   | Description                                                                                          | Type                                                            | Default                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) | [`BaseRecord`](/core/docs/core/interface-references#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/core/docs/core/interface-references#httperror)       | [`HttpError`](/core/docs/core/interface-references#httperror)   | [`HttpError`](/core/docs/core/interface-references#httperror)   |
+| TVariables | Values for mutation function                                                                         | `{}`                                                            | `{}`                                                            |
 
 ### Return value
 

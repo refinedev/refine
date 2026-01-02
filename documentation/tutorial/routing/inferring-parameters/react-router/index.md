@@ -50,7 +50,7 @@ export const ListProducts = () => {
 
 Let's update our `<ShowProduct />` component and omit the `resource` and `id` parameters. Remember that previously we've hard-coded the `id` parameter. Now we'll be letting Refine to infer the `id` parameter from the route definition and dynamically fetch the product.
 
-We'll also start using [`useShow`](/docs/data/hooks/use-show) hook which is wrapper around `useOne`. Unlike the useOne hook, it offers inference capabilities, eliminating the need to explicitly pass `resource` and `id` parameters
+We'll also start using [`useShow`](/core/docs/data/hooks/use-show) hook which is wrapper around `useOne`. Unlike the useOne hook, it offers inference capabilities, eliminating the need to explicitly pass `resource` and `id` parameters
 
 Update your `src/pages/products/show.tsx` file by adding the following lines:
 

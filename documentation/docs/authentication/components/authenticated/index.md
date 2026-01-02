@@ -105,4 +105,4 @@ Additional params to be passed to Auth Provider's `check` method via `useIsAuthe
   v3LegacyAuthProviderCompatible-description="This must be set to `true` if legacy auth provider is being used."
 />
 
-[use-is-authenticated]: /docs/authentication/hooks/use-is-authenticated
+[use-is-authenticated]: /core/docs/authentication/hooks/use-is-authenticated

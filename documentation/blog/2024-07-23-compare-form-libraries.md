@@ -91,7 +91,7 @@ The example above is a basic illustration of React Hook Form. Do check out the R
 - It validates form fields out of the box.
 - It is in active maintenance.
 - It has an active community.
-- You can integrate React Hook Form with UI libraries like Material UI and [Refine](https://refine.dev/). With Refine, you can use the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) adapter. You can handle forms using [`useForm`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook in your Refine CRUD apps with React Hook Form.
+- You can integrate React Hook Form with UI libraries like Material UI and [Refine](https://refine.dev/). With Refine, you can use the [@refinedev/react-hook-form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) adapter. You can handle forms using [`useForm`](https://refine.dev/core/docs/packages/documentation/react-hook-form/useForm/) hook in your Refine CRUD apps with React Hook Form.
 - [Refer to article on using React Hook Form dynamic form fields with Refine](https://refine.dev/blog/dynamic-forms-in-react-hook-form/).
 
 #### Cons of React Hook Form library

@@ -1,14 +1,14 @@
 ---
 title: useOne
 siderbar_label: useOne
-source: packages/core/src/hooks/data/useOne.ts
+source: packages/core/src/data/hooks/useOne.ts
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 `useOne` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
-- It uses the `getOne` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
+- It uses the `getOne` method as the **query function** from the [`dataProvider`](/core/docs/data/data-provider) which is passed to `<Refine>`.
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
@@ -24,7 +24,7 @@ When these properties are changed, the `useOne` hook will trigger a new request.
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
+> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider).
 
 When the `useOne` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -40,11 +40,11 @@ useOne({
 });
 ```
 
-> For more information, refer to the [creating a data provider tutorial &#8594](/docs/data/data-provider)
+> For more information, refer to the [creating a data provider tutorial &#8594](/core/docs/data/data-provider)
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### id <PropTag required />
 
@@ -125,11 +125,11 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useOne` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -147,7 +147,7 @@ useOne({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useOne` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -165,10 +165,10 @@ useOne({
 
 ### liveMode
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check the [Live / Realtime](/docs/realtime/live-provider#livemode) page.
+For more information about live mode, please check the [Live / Realtime](/core/docs/realtime/live-provider#livemode) page.
 
 ```tsx
 useOne({
@@ -178,7 +178,7 @@ useOne({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -192,9 +192,9 @@ useOne({
 
 ### liveParams
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
 ### overtimeOptions
 
@@ -264,5 +264,5 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 | Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; error: TError; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
 | overtime                                  | `{ elapsedTime?: number }`                                                                                            |
 
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

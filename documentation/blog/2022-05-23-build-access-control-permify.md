@@ -24,7 +24,7 @@ As an overview, we will:
 
 ### Step 1: Setup the Permify in Refine application
 
-First let's create a demo react application using refine. You can follow the [tutorial to create a simple](https://refine.dev/tutorial) admin panel for a CMS-like application.
+First let's create a demo react application using refine. You can follow the [tutorial to create a simple](https://refine.dev/core/tutorial) admin panel for a CMS-like application.
 
 If you're application is ready, lets create a free instant account at Permify from [here](https://panel.permify.co/auth/registration).
 
@@ -54,7 +54,7 @@ Check out the example demo environment for the data folder and full UI layer.
 
 ### Step 2: Create a access control mechanism in Refine Access Control Provider
 
-Refine provides an agnostic API via the [accessControlProvider](https://refine.dev/docs/core/providers/accessControl-provider/) to manage access control throughout your app.
+Refine provides an agnostic API via the [accessControlProvider](https://refine.dev/core/docs/core/providers/accessControl-provider/) to manage access control throughout your app.
 
 Lets create a mechanism in our Access Control Provider using Permify client’s **isAuthorized** function.
 

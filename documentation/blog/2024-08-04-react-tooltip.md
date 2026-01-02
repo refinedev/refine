@@ -74,7 +74,7 @@ Refine was originally designed to provide a rapid way of bootstrapping enterpris
 
 <br/>
 
-The Refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your Refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/docs/packages/documentation/inferencer).
+The Refine inferencer package is a tool that automates the generation of CRUD (Create, Read, Update, Delete) pages for resources in your Refine application based on the data model. You can find more information about this package by visiting the [documentation](https://refine.dev/core/docs/packages/documentation/inferencer).
 
 Since our application's pages are being populated by the inferencer, we don't have direct access to the rendered content, so we cannot add a tooltip to a specific element like the `create` button on the table. However, we can access the sidebar navigations via the `Menu` component in the `src/component` directory.
 

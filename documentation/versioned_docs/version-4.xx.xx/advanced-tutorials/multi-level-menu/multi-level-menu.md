@@ -12,7 +12,7 @@ The multi-level menu is a great way to organize your sider menu items. You can c
 
 ## Usage
 
-To do this, it is necessary to create an object array with the following [resources properties](/docs/core/interface-references#resourceprops):
+To do this, it is necessary to create an object array with the following [resources properties](/core/docs/core/interface-references#resourceprops):
 
 ```tsx title="src/App.tsx"
         <Refine
@@ -49,7 +49,7 @@ The `meta.parent` you give in the resource objects must be strictly equal to the
 
 ### Headless
 
-If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/docs/core/hooks/utilities/use-menu) hook gives your resources.
+If you want to create your multi-level menu without any UI framework integration, [`useMenu`](/core/docs/core/hooks/utilities/use-menu) hook gives your resources.
 
 ```tsx title="src/components/layout/sider/index.tsx"
 //highlight-next-line

@@ -41,7 +41,7 @@ useExport({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### mapData
 
@@ -75,7 +75,7 @@ useExport<IPost>({
 
 If you want to sort the data before exporting it, you can use the `sorters` property. It will be passed to the `getList` method of your data provider.
 
-> For more information, refer to the [`CrudSorting` interface&#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](/core/docs/core/interface-references#crudsorting)
 
 ```ts
 useExport({
@@ -92,7 +92,7 @@ useExport({
 
 If you want to filter the data before exporting it, you can use the `filters` property. It will be passed to the `getList` method of your data provider.
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/core/docs/core/interface-references#crudfilters)
 
 ```ts
 useExport({
@@ -324,4 +324,4 @@ This will save the data as follows:
 | TVariables | Values for params                                                          | `any`                      |
 
 [papaparse]: https://www.papaparse.com/
-[baserecord]: /docs/core/interface-references#baserecord
+[baserecord]: /core/docs/core/interface-references#baserecord

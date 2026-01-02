@@ -120,7 +120,7 @@ If you're building an admin panel (or need to), try this out. Seriously. It take
 
 **Helpful links:**
 
-- [Refine Documentation](https://refine.dev/docs) – if you want to dig deeper into customization
+- [Refine Documentation](https://refine.dev/core/docs) – if you want to dig deeper into customization
 - [Supabase Docs](https://supabase.com/docs) – everything about your backend
 - [Refine Discord](https://discord.gg/refine) – join the community, ask questions, share what you build
 

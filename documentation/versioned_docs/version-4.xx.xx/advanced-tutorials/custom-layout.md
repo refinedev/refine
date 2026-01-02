@@ -84,10 +84,10 @@ const CustomSider = () => {
 
 Here's an example of a custom layout, made with help of **Refine**'s hooks and components.
 
-You can find more examples about custom layouts for different UI packages in the [examples](/docs/examples) section.
+You can find more examples about custom layouts for different UI packages in the [examples](https://s.refine.dev/examples) section.
 
 <CodeSandboxExample path="customization-top-menu-layout" />
 
-[Refine]: /docs/core/refine-component
-[cli]: /docs/packages/list-of-packages#swizzle
-[usemenu]: /docs/core/hooks/utilities/use-menu
+[Refine]: /core/docs/core/refine-component
+[cli]: /core/docs/packages/list-of-packages#swizzle
+[usemenu]: /core/docs/core/hooks/utilities/use-menu

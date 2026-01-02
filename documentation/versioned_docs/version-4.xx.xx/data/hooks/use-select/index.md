@@ -17,13 +17,13 @@ This hook uses the `useList` hook for fetching data.
 
 If you're looking for a complete select library, Refine has out-of-the-box support for the libraries below:
 
-- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-select) - [Example](https://github.com/refinedev/refine/tree/main/examples/field-antd-use-select-basic)
-- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-auto-complete)
-- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/docs/ui-integrations/mantine/hooks/use-select)
+- [Ant Design Select](https://ant.design/components/select) (for Ant Design users) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-select) - [Example](https://github.com/refinedev/refine/tree/main/examples/field-antd-use-select-basic)
+- [Material UI Autocomplete](https://mui.com/material-ui/react-autocomplete) (for Material UI users) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-auto-complete)
+- [Mantine Select](https://mantine.dev/core/select/) (for Mantine users) - [Documentation](/core/docs/ui-integrations/mantine/hooks/use-select)
 
 :::
 
-> For more information, refer to the [useList hook→](/docs/data/hooks/use-list)
+> For more information, refer to the [useList hook→](/core/docs/data/hooks/use-list)
 
 ## Usage
 
@@ -33,7 +33,7 @@ Here is a basic example of how to use `useSelect` hook.
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 When `useSelect` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to the live updates.
 
@@ -49,11 +49,11 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [creating a data provider&#8594](/docs/data/data-provider)
+> For more information, refer to the [creating a data provider&#8594](/core/docs/data/data-provider)
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### optionLabel and optionValue
 
@@ -130,7 +130,7 @@ useSelect({
 
 <SortLivePreview />
 
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/core/docs/core/interface-references#crudsorting)
 
 ### filters
 
@@ -148,7 +148,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/core/docs/core/interface-references#crudfilters)
 
 ### defaultValue
 
@@ -174,7 +174,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation&#8594](/docs/data/hooks/use-many)
+> For more information, refer to the [`useMany` documentation&#8594](/core/docs/data/hooks/use-many)
 
 ### debounce
 
@@ -266,7 +266,7 @@ It allows us to `AutoComplete` the `options`.
 
 - The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
 - If `onSearch` is used, it will override the existing `filters`.
-- For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
+- For more information, refer to the [`CrudFilters` interface &#8594](/core/docs/core/interface-references#crudfilters)
 
 :::
 
@@ -313,7 +313,7 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### dataProviderName
 
@@ -327,7 +327,7 @@ useSelect({
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -345,7 +345,7 @@ useSelect({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call `open` function from `NotificationProvider` to show a error notification. With this prop, you can customize the error notification.
 
@@ -363,10 +363,10 @@ useSelect({
 
 ### liveMode
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
-For more information about live mode, please check [Live / Realtime](/docs/realtime/live-provider#livemode) page.
+For more information about live mode, please check [Live / Realtime](/core/docs/realtime/live-provider#livemode) page.
 
 ```tsx
 useSelect({
@@ -376,7 +376,7 @@ useSelect({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -390,9 +390,9 @@ useSelect({
 
 ### liveParams
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
 ### overtimeOptions
 
@@ -432,23 +432,23 @@ Use `pagination.mode` instead.
 
 ### How to get all the data without pagination?
 
-You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/data/hooks/use-select#haspagination) prop. The data provider must have the appropriate implementation in order to use this feature.
+You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/core/docs/data/hooks/use-select#haspagination) prop. The data provider must have the appropriate implementation in order to use this feature.
 
 ### How to add search to options (Autocomplete)?
 
-[`onSearch`](/docs/data/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
+[`onSearch`](/core/docs/data/hooks/use-select#onsearch) is a function that is used to set the search value. It is useful when you want to search for a specific value. A simple example of this is shown below.
 
 <OnSearchLivePreview />
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/docs/data/hooks/use-many), gets the data and marks it as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/data/hooks/use-many), gets the data and marks it as selected.
 
 <DefaultValueLivePreview />
 
 ### How to change the `label` and `value` properties in options?
 
-[`optionLabel` and `optionValue`](/docs/data/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
+[`optionLabel` and `optionValue`](/core/docs/data/hooks/use-select#optionlabel-and-optionvalue) are used to change the value of your options.
 The default values are `optionsLabel="title"` and `optionsValue="id"`.
 
 To change to `name` and `categoryId`;
@@ -513,5 +513,5 @@ return (
 
 <CodeSandboxExample path="core-use-select" />
 
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

@@ -6,8 +6,8 @@ You can automatically generate views for your resources using `@refinedev/infere
 
 :::simple Good to know
 
-- Headless elements of `@refinedev/inferencer` uses [`@refinedev/react-hook-form`](/docs/packages/list-of-packages) and [`@refinedev/react-table`](/docs/packages/list-of-packages) to create views. These dependencies should be installed in your project in order to use inferencer components.
-- To learn more about the `@refinedev/inferencer` package, please check out [Inferencer](/docs/packages/inferencer) docs.
+- Headless elements of `@refinedev/inferencer` uses [`@refinedev/react-hook-form`](/core/docs/packages/list-of-packages) and [`@refinedev/react-table`](/core/docs/packages/list-of-packages) to create views. These dependencies should be installed in your project in order to use inferencer components.
+- To learn more about the `@refinedev/inferencer` package, please check out [Inferencer](/core/docs/packages/inferencer) docs.
 
 :::
 

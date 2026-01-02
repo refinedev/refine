@@ -618,7 +618,7 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/docs/authorization/access-control-provider)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/core/docs/authorization/access-control-provider)
 
 :::
 
@@ -1160,7 +1160,7 @@ Refine's v4 release is backward compatible and supports legacy auth provider imp
 
 If you want to use a legacy auth provider, you can pass them to the `<Refine />` component using the `legacyAuthProvider` prop.
 
-[Refer to the Migration Guide for more information. &#8594](/docs/migration-guide/auth-provider/)
+[Refer to the Migration Guide for more information. &#8594](/core/docs/migration-guide/auth-provider/)
 
 ```tsx
 import { LegacyAuthProvider, Refine } from "@refinedev/core";
@@ -1189,19 +1189,19 @@ const App = () => {
 
 ### How can I set authorization credentials?
 
-[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/docs/guides-concepts/authentication)
+[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication)
 
 ### How can I implement refresh token mechanism?
 
-[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/docs/guides-concepts/authentication)
+[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication)
 
-[use-login]: /docs/authentication/hooks/use-login
-[use-logout]: /docs/authentication/hooks/use-logout
-[use-is-authenticated]: /docs/authentication/hooks/use-is-authenticated
-[use-on-error]: /docs/authentication/hooks/use-on-error
-[use-get-identity]: /docs/authentication/hooks/use-get-identity
-[use-permissions]: /docs/authentication/hooks/use-permissions
-[use-register]: /docs/authentication/hooks/use-register
-[use-forgot-password]: /docs/authentication/hooks/use-forgot-password
-[use-update-password]: /docs/authentication/hooks/use-update-password
-[create-auth-provider-tutorial]: /docs/guides-concepts/authentication
+[use-login]: /core/docs/authentication/hooks/use-login
+[use-logout]: /core/docs/authentication/hooks/use-logout
+[use-is-authenticated]: /core/docs/authentication/hooks/use-is-authenticated
+[use-on-error]: /core/docs/authentication/hooks/use-on-error
+[use-get-identity]: /core/docs/authentication/hooks/use-get-identity
+[use-permissions]: /core/docs/authentication/hooks/use-permissions
+[use-register]: /core/docs/authentication/hooks/use-register
+[use-forgot-password]: /core/docs/authentication/hooks/use-forgot-password
+[use-update-password]: /core/docs/authentication/hooks/use-update-password
+[create-auth-provider-tutorial]: /core/docs/guides-concepts/authentication

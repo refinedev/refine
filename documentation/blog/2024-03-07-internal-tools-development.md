@@ -182,7 +182,7 @@ Internal tools development has to be fast and efficient. This is attested histor
 
 Development speed and efficiency depends on team size, sprint cycles and the frameworks and libraries selected in the stack. Choice of libraries direct the velocity of development. This happens by how well a library is documented, supported, and open to extension and adaptation in the future. Well documented, extensible and future adaptible frameworks and libraries help quickly produce stable, maintainable and scalable code.
 
-Refine facilitates faster internal tools development by leveraging under the hood state-of-the-art libraries like React Query, React Hook Form and React Table. Refine retools these libraries in its backyard by extending and enhancing them with adapter packages. For example, Refine augments the capabilities of [React Hook Form](https://www.react-hook-form.com/) in its [Refine React Hook Form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) support package. With Refine's headless architecture and two-way adapter for React Hook Form, any UI framework can be chained to provision complex form components and hooks inside pages. For instance, with the help of the [`useTable()`](https://refine.dev/docs/data/hooks/use-table/) data hook, Refine's support package for [Ant Design](https://refine.dev/docs/ui-integrations/ant-design/introduction/) enables creating complex tables in an admin panel with a few lines of code.
+Refine facilitates faster internal tools development by leveraging under the hood state-of-the-art libraries like React Query, React Hook Form and React Table. Refine retools these libraries in its backyard by extending and enhancing them with adapter packages. For example, Refine augments the capabilities of [React Hook Form](https://www.react-hook-form.com/) in its [Refine React Hook Form](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) support package. With Refine's headless architecture and two-way adapter for React Hook Form, any UI framework can be chained to provision complex form components and hooks inside pages. For instance, with the help of the [`useTable()`](https://refine.dev/core/docs/data/hooks/use-table/) data hook, Refine's support package for [Ant Design](https://refine.dev/core/docs/ui-integrations/ant-design/introduction/) enables creating complex tables in an admin panel with a few lines of code.
 
 In other words, Refine's open ecosystem of underlying and supplementary libraries helps achieve faster development velocity and efficiency while building internal tools.
 
@@ -194,13 +194,13 @@ Working with Refine and its ecosystem of libraries gives a joyful experience to 
 
 Refine is focused on helping build scalable internal tools with extensibility and adaptability to future changes in mind. Refine extends major UI systems like Ant Design and Material UI to produce interfaces / components with minimal lines of code. Thanks to its expansive support for top React based UI frameworks, it enables implementing elegant, responsive, cross browser compatible dashboards, admin panels and data visualizations using their existing components without any need to host large collections of custom components on its own.
 
-See the list of adapters for [React based UI frameworks supported in Refine](https://refine.dev/docs/ui-integrations/ant-design/introduction/).
+See the list of adapters for [React based UI frameworks supported in Refine](https://refine.dev/core/docs/ui-integrations/ant-design/introduction/).
 
 Refine provides unconstrained freedom in terms of any UI library integration.
 
 ### Backend API and Data
 
-Refine offers unmatched flexibility in backend API integration. Again, Refine's two-way adaptability ensures unconstrained integration of its core to a growing list of backend API providers. The list includes [Strapi, Supabase, Appwrite, Airtable and more](https://refine.dev/docs/packages/list-of-packages/#data-provider-packages). Besides, Refine is geared to easily accommodate custom backend APIs built with frameworks like Nest.js, Rails and Django with a declarative [`dataProvider`](https://refine.dev/docs/data/data-provider/) object.
+Refine offers unmatched flexibility in backend API integration. Again, Refine's two-way adaptability ensures unconstrained integration of its core to a growing list of backend API providers. The list includes [Strapi, Supabase, Appwrite, Airtable and more](https://refine.dev/core/docs/packages/list-of-packages/#data-provider-packages). Besides, Refine is geared to easily accommodate custom backend APIs built with frameworks like Nest.js, Rails and Django with a declarative [`dataProvider`](https://refine.dev/core/docs/data/data-provider/) object.
 
 Refine's minimal coupling ensures a greater surface for backend API integration with the help of data providers. This gives Refine an upper edge over Redwood which is coupled to a backend that offers somewhat tedious integrations to external APIs via Prisma and other middlewares.
 
@@ -222,4 +222,4 @@ Enterprise internal tools development largely depends on the complexity of the r
 
 With a rich ecosystem of future adaptive technologies, support for growing list of backend API and UI integrations, Refine is fully equipped to make internal tools development in 2024 a breeze. You can build complex systems like CRMs, admin panels, dashboards, data visualization and more.
 
-Feel free to check out Refine's [examples](https://refine.dev/docs/examples/) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.
+Feel free to check out Refine's [examples](https://refine.dev/core/docs/examples/) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.

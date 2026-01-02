@@ -79,7 +79,7 @@ render(
 ```
 
 :::simple Good to know
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 :::
 
 ## Properties
@@ -187,15 +187,15 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### canDelete and canEdit
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/docs/data/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/docs/data/data-provider) and the edit button redirects the user to the record edit page.
 
-> For more information, refer to the [`<DeleteButton>`](/docs/ui-integrations/ant-design/components/buttons/delete-button) and the [`<EditButton>`](/docs/ui-integrations/ant-design/components/buttons/edit-button) documentation.
+> For more information, refer to the [`<DeleteButton>`](/core/docs/ui-integrations/ant-design/components/buttons/delete-button) and the [`<EditButton>`](/core/docs/ui-integrations/ant-design/components/buttons/edit-button) documentation.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -263,7 +263,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
 
 ### deleteButtonProps
 
@@ -698,7 +698,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb)
 
 ### wrapperProps
 
@@ -1228,7 +1228,7 @@ render(
 
 <PropsTable module="@refinedev/mantine/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
 
-[list-button]: /docs/ui-integrations/mantine/components/buttons/list-button
-[refresh-button]: /docs/ui-integrations/mantine/components/buttons/refresh-button
-[edit-button]: /docs/ui-integrations/mantine/components/buttons/edit-button
-[delete-button]: /docs/ui-integrations/mantine/components/buttons/delete-button
+[list-button]: /core/docs/ui-integrations/mantine/components/buttons/list-button
+[refresh-button]: /core/docs/ui-integrations/mantine/components/buttons/refresh-button
+[edit-button]: /core/docs/ui-integrations/mantine/components/buttons/edit-button
+[delete-button]: /core/docs/ui-integrations/mantine/components/buttons/delete-button

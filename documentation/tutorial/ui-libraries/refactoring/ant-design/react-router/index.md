@@ -90,16 +90,16 @@ Button components provided by Refine uses the styling from Ant Design and provid
 
 List of available button components:
 
-- [`<CreateButton />`](/docs/ui-integrations/ant-design/components/buttons/create-button), renders a button to navigate to the create route.
-- [`<EditButton />`](/docs/ui-integrations/ant-design/components/buttons/edit-button), renders a button to navigate to the edit route.
-- [`<ListButton />`](/docs/ui-integrations/ant-design/components/buttons/list-button), renders a button to navigate to the list route.
-- [`<ShowButton />`](/docs/ui-integrations/ant-design/components/buttons/show-button), renders a button to navigate to the show route.
-- [`<CloneButton />`](/docs/ui-integrations/ant-design/components/buttons/clone-button), renders a button to navigate to the clone route.
-- [`<DeleteButton />`](/docs/ui-integrations/ant-design/components/buttons/delete-button), renders a button to delete a record.
-- [`<SaveButton />`](/docs/ui-integrations/ant-design/components/buttons/save-button), renders a button to trigger the form submission.
-- [`<RefreshButton />`](/docs/ui-integrations/ant-design/components/buttons/refresh-button), renders a button to refresh/refetch the data.
-- [`<ImportButton />`](/docs/ui-integrations/ant-design/components/buttons/import-button), renders a button to trigger import bulk data with CSV/Excel files.
-- [`<ExportButton />`](/docs/ui-integrations/ant-design/components/buttons/export-button), renders a button to trigger export bulk data with CSV format.
+- [`<CreateButton />`](/core/docs/ui-integrations/ant-design/components/buttons/create-button), renders a button to navigate to the create route.
+- [`<EditButton />`](/core/docs/ui-integrations/ant-design/components/buttons/edit-button), renders a button to navigate to the edit route.
+- [`<ListButton />`](/core/docs/ui-integrations/ant-design/components/buttons/list-button), renders a button to navigate to the list route.
+- [`<ShowButton />`](/core/docs/ui-integrations/ant-design/components/buttons/show-button), renders a button to navigate to the show route.
+- [`<CloneButton />`](/core/docs/ui-integrations/ant-design/components/buttons/clone-button), renders a button to navigate to the clone route.
+- [`<DeleteButton />`](/core/docs/ui-integrations/ant-design/components/buttons/delete-button), renders a button to delete a record.
+- [`<SaveButton />`](/core/docs/ui-integrations/ant-design/components/buttons/save-button), renders a button to trigger the form submission.
+- [`<RefreshButton />`](/core/docs/ui-integrations/ant-design/components/buttons/refresh-button), renders a button to refresh/refetch the data.
+- [`<ImportButton />`](/core/docs/ui-integrations/ant-design/components/buttons/import-button), renders a button to trigger import bulk data with CSV/Excel files.
+- [`<ExportButton />`](/core/docs/ui-integrations/ant-design/components/buttons/export-button), renders a button to trigger export bulk data with CSV format.
 
 ### Adding Sorters
 
@@ -191,7 +191,7 @@ Now we've enabled sorters with no additional logic. The `getDefaultSortOrder` fu
 
 ### Adding Filters
 
-Let's integrate the Refine's filters with the Ant Design's `<Table />` component. While `tableProps` will be transforming the filters to the Ant Design's format, all we need to do is to provide the elements for the filter dropdowns. We'll use the [`<FilterDropdown />`](/docs/ui-integrations/ant-design/components/filter-dropdown) to bind the inputs to the filters.
+Let's integrate the Refine's filters with the Ant Design's `<Table />` component. While `tableProps` will be transforming the filters to the Ant Design's format, all we need to do is to provide the elements for the filter dropdowns. We'll use the [`<FilterDropdown />`](/core/docs/ui-integrations/ant-design/components/filter-dropdown) to bind the inputs to the filters.
 
 We'll be using the `<Input />` component to create a text filter for the `Name` column and the `<Select />` component with `useSelect` to create a select filter for the `Category` column.
 
@@ -429,16 +429,16 @@ Now that we've refactored our list, edit and create components, let's refactor o
 
 List of available field components:
 
-- [`<BooleanField />`](/docs/ui-integrations/ant-design/components/fields/boolean-field), displays a checkbox element for boolean values.
-- [`<DateField />`](/docs/ui-integrations/ant-design/components/fields/date-field), displays a date with customizable formatting.
-- [`<EmailField />`](/docs/ui-integrations/ant-design/components/fields/email-field), displays an email with a mailto anchor.
-- [`<FileField />`](/docs/ui-integrations/ant-design/components/fields/file-field), displays a download anchor for file.
-- [`<ImageField />`](/docs/ui-integrations/ant-design/components/fields/image-field), displays an image with Ant Design's `<Image />` component.
-- [`<MarkdownField />`](/docs/ui-integrations/ant-design/components/fields/markdown-field), displays a GitHub flavored markdown with `react-makrdown` library.
-- [`<NumberField />`](/docs/ui-integrations/ant-design/components/fields/number-field), displays a number with localized and customizable formatting.
-- [`<TagField />`](/docs/ui-integrations/ant-design/components/fields/tag-field), displays the value with Ant Design's `<Tag />` component.
-- [`<TextField />`](/docs/ui-integrations/ant-design/components/fields/text-field), displays the value with Ant Design's `<Typography.Text />` component.
-- [`<UrlField />`](/docs/ui-integrations/ant-design/components/fields/url-field), displays the value with a link anchor.
+- [`<BooleanField />`](/core/docs/ui-integrations/ant-design/components/fields/boolean-field), displays a checkbox element for boolean values.
+- [`<DateField />`](/core/docs/ui-integrations/ant-design/components/fields/date-field), displays a date with customizable formatting.
+- [`<EmailField />`](/core/docs/ui-integrations/ant-design/components/fields/email-field), displays an email with a mailto anchor.
+- [`<FileField />`](/core/docs/ui-integrations/ant-design/components/fields/file-field), displays a download anchor for file.
+- [`<ImageField />`](/core/docs/ui-integrations/ant-design/components/fields/image-field), displays an image with Ant Design's `<Image />` component.
+- [`<MarkdownField />`](/core/docs/ui-integrations/ant-design/components/fields/markdown-field), displays a GitHub flavored markdown with `react-makrdown` library.
+- [`<NumberField />`](/core/docs/ui-integrations/ant-design/components/fields/number-field), displays a number with localized and customizable formatting.
+- [`<TagField />`](/core/docs/ui-integrations/ant-design/components/fields/tag-field), displays the value with Ant Design's `<Tag />` component.
+- [`<TextField />`](/core/docs/ui-integrations/ant-design/components/fields/text-field), displays the value with Ant Design's `<Typography.Text />` component.
+- [`<UrlField />`](/core/docs/ui-integrations/ant-design/components/fields/url-field), displays the value with a link anchor.
 
 We'll be using the `<TextField />`, `<NumberField />` and `<MarkdownField />` components to represent the fields of the products properly.
 

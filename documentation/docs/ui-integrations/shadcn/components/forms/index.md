@@ -3,7 +3,7 @@ title: Forms
 source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form
 ---
 
-This guide explains how to create and manage forms in your Refine applications using the [`@refinedev/react-hook-form`](/docs/packages/react-hook-form/use-form/) adapter and [`shadcn/ui`](https://ui.shadcn.com/) [form components](https://ui.shadcn.com/docs/components/form). We'll cover complete setup, validation with [Zod](https://zod.dev/), and provide examples for create and edit scenarios.
+This guide explains how to create and manage forms in your Refine applications using the [`@refinedev/react-hook-form`](/core/docs/packages/react-hook-form/use-form/) adapter and [`shadcn/ui`](https://ui.shadcn.com/) [form components](https://ui.shadcn.com/docs/components/form). We'll cover complete setup, validation with [Zod](https://zod.dev/), and provide examples for create and edit scenarios.
 
 ## Key Features
 
@@ -16,7 +16,7 @@ This guide explains how to create and manage forms in your Refine applications u
 
 ## How It Works
 
-The `useForm` hook from [`@refinedev/react-hook-form`](/docs/packages/react-hook-form/use-form/) acts as a bridge between:
+The `useForm` hook from [`@refinedev/react-hook-form`](/core/docs/packages/react-hook-form/use-form/) acts as a bridge between:
 
 - **React Hook Form**: For form state management and validation
 - **Refine Core**: For automatic data provider integration and CRUD operations
@@ -387,7 +387,7 @@ export default function EditPost() {
 
 ## Step 6: Working with Relationships
 
-When your forms need to handle relationships with other resources (like selecting a category for a post), you can use the [`useSelect`](/docs/data/hooks/use-select/) hook alongside your form. This approach works identically for both create and edit forms, but adds the ability to fetch and select related data from other resources.
+When your forms need to handle relationships with other resources (like selecting a category for a post), you can use the [`useSelect`](/core/docs/data/hooks/use-select/) hook alongside your form. This approach works identically for both create and edit forms, but adds the ability to fetch and select related data from other resources.
 
 Here's how to extend your form with relationship handling using shadcn/ui's Combobox pattern:
 

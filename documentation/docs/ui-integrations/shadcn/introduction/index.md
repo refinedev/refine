@@ -13,13 +13,13 @@ Unlike traditional package installations, shadcn/ui components are added to your
 
 - **♿ Accessibility First**: Built on [Radix UI primitives](https://www.radix-ui.com/primitives) with [WAI-ARIA](https://www.w3.org/WAI/ARIA/) standards, ensuring robust accessibility support including keyboard navigation and screen reader compatibility.
 
-- **🔧 Deep Refine Integration**: Seamlessly works with [Refine's data hooks](https://refine.dev/docs/data/hooks/use-list/), authentication, routing, and form handling - less boilerplate, more productivity.
+- **🔧 Deep Refine Integration**: Seamlessly works with [Refine's data hooks](https://refine.dev/core/docs/data/hooks/use-list/), authentication, routing, and form handling - less boilerplate, more productivity.
 
 - **📱 Responsive Design**: Built with [Tailwind CSS](https://ui.shadcn.com/docs/components) and mobile-first principles, components automatically adapt to any screen size.
 
 - **🌙 Advanced Theming**: Full light/dark theme support using [CSS custom properties](https://ui.shadcn.com/docs/theming) with flexible customization options.
 
-- **🌍 Internationalization**: Built-in support for Refine's [i18n system](https://refine.dev/docs/i18n/i18n-provider/) with RTL languages, localization, and proper formatting.
+- **🌍 Internationalization**: Built-in support for Refine's [i18n system](https://refine.dev/core/docs/i18n/i18n-provider/) with RTL languages, localization, and proper formatting.
 
 ## Installation
 
@@ -126,44 +126,44 @@ Refine provides a growing collection of components through the shadcn/ui registr
 
 ### Form Components
 
-- **[Forms](/docs/ui-integrations/shadcn/components/forms/)** - Complete form building guide with validation
-- **[Auto Save Indicator](/docs/ui-integrations/shadcn/components/auto-save-indicator/)** - Visual feedback for auto-save operations
+- **[Forms](/core/docs/ui-integrations/shadcn/components/forms/)** - Complete form building guide with validation
+- **[Auto Save Indicator](/core/docs/ui-integrations/shadcn/components/auto-save-indicator/)** - Visual feedback for auto-save operations
 
 ### Data Components
 
-- **[Data Table](/docs/ui-integrations/shadcn/components/data-table/)** - Advanced data table with sorting, filtering, and pagination
+- **[Data Table](/core/docs/ui-integrations/shadcn/components/data-table/)** - Advanced data table with sorting, filtering, and pagination
 
 ### Authentication Components
 
-- **[Sign In Form](/docs/ui-integrations/shadcn/components/sign-in-form/)** - Ready-to-use sign-in form with validation
-- **[Sign Up Form](/docs/ui-integrations/shadcn/components/sign-up-form/)** - Ready-to-use sign-up form with validation
-- **[Forgot Password](/docs/ui-integrations/shadcn/components/forgot-password/)** - Password reset form component
+- **[Sign In Form](/core/docs/ui-integrations/shadcn/components/sign-in-form/)** - Ready-to-use sign-in form with validation
+- **[Sign Up Form](/core/docs/ui-integrations/shadcn/components/sign-up-form/)** - Ready-to-use sign-up form with validation
+- **[Forgot Password](/core/docs/ui-integrations/shadcn/components/forgot-password/)** - Password reset form component
 
 ### Layout Components
 
-- **[Themed Layout](/docs/ui-integrations/shadcn/components/themed-layout/)** - Complete layout wrapper with sidebar navigation, dark/light theme and responsive design.
+- **[Themed Layout](/core/docs/ui-integrations/shadcn/components/themed-layout/)** - Complete layout wrapper with sidebar navigation, dark/light theme and responsive design.
 
 ### View Components
 
-- **[Create View](/docs/ui-integrations/shadcn/components/basic-views/create/)** - Create page layout with navigation and breadcrumb
-- **[Edit View](/docs/ui-integrations/shadcn/components/basic-views/edit/)** - Edit page layout with navigation and breadcrumb
-- **[List View](/docs/ui-integrations/shadcn/components/basic-views/list/)** - List page layout with navigation and breadcrumb
-- **[Show View](/docs/ui-integrations/shadcn/components/basic-views/show/)** - Detail page layout with navigation and breadcrumb
+- **[Create View](/core/docs/ui-integrations/shadcn/components/basic-views/create/)** - Create page layout with navigation and breadcrumb
+- **[Edit View](/core/docs/ui-integrations/shadcn/components/basic-views/edit/)** - Edit page layout with navigation and breadcrumb
+- **[List View](/core/docs/ui-integrations/shadcn/components/basic-views/list/)** - List page layout with navigation and breadcrumb
+- **[Show View](/core/docs/ui-integrations/shadcn/components/basic-views/show/)** - Detail page layout with navigation and breadcrumb
 
 ### Button Components
 
-- **[Create Button](/docs/ui-integrations/shadcn/components/buttons/create-button/)** - Navigation button to create pages
-- **[Edit Button](/docs/ui-integrations/shadcn/components/buttons/edit-button/)** - Navigation button to edit pages
-- **[Delete Button](/docs/ui-integrations/shadcn/components/buttons/delete-button/)** - Button with delete confirmation dialog
-- **[Show Button](/docs/ui-integrations/shadcn/components/buttons/show-button/)** - Navigation button to show pages
-- **[List Button](/docs/ui-integrations/shadcn/components/buttons/list-button/)** - Navigation button to list pages
-- **[Clone Button](/docs/ui-integrations/shadcn/components/buttons/clone-button/)** - Button to clone/duplicate records
-- **[Refresh Button](/docs/ui-integrations/shadcn/components/buttons/refresh-button/)** - Button to refresh data
+- **[Create Button](/core/docs/ui-integrations/shadcn/components/buttons/create-button/)** - Navigation button to create pages
+- **[Edit Button](/core/docs/ui-integrations/shadcn/components/buttons/edit-button/)** - Navigation button to edit pages
+- **[Delete Button](/core/docs/ui-integrations/shadcn/components/buttons/delete-button/)** - Button with delete confirmation dialog
+- **[Show Button](/core/docs/ui-integrations/shadcn/components/buttons/show-button/)** - Navigation button to show pages
+- **[List Button](/core/docs/ui-integrations/shadcn/components/buttons/list-button/)** - Navigation button to list pages
+- **[Clone Button](/core/docs/ui-integrations/shadcn/components/buttons/clone-button/)** - Button to clone/duplicate records
+- **[Refresh Button](/core/docs/ui-integrations/shadcn/components/buttons/refresh-button/)** - Button to refresh data
 
 ### Utility Components
 
-- **[Error Component](/docs/ui-integrations/shadcn/components/error-component/)** - Error boundary and error display component
-- **[Notification Provider](/docs/ui-integrations/shadcn/components/notification-provider/)** - Toast notification system
+- **[Error Component](/core/docs/ui-integrations/shadcn/components/error-component/)** - Error boundary and error display component
+- **[Notification Provider](/core/docs/ui-integrations/shadcn/components/notification-provider/)** - Toast notification system
 
 ## Styling and Theming
 

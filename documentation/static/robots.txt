@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://refine.dev/sitemap.xml
+Disallow: /

@@ -10,7 +10,7 @@ In this step, we'll be learning about the Refine's `useUpdate` hook to update a 
 
 ## Implementing the `update` Method
 
-To update a record using Refine's hooks, first we need to implement the [`update`](/docs/data/data-provider/#update-) method in our data provider. This method will be called when we use the [`useUpdate`](/docs/data/hooks/use-update) hook or its extensions in our components.
+To update a record using Refine's hooks, first we need to implement the [`update`](/core/docs/data/data-provider/#update-) method in our data provider. This method will be called when we use the [`useUpdate`](/core/docs/data/hooks/use-update) hook or its extensions in our components.
 
 The `update` method accepts `resource`, `id`, `variables` and `meta` properties.
 

@@ -10,7 +10,7 @@ In this step, we'll be learning about the Refine's `useTable` hook to manage tab
 
 :::simple Implementation Tips
 
-Refine's `useTable` has extended versions for UI libraries like Ant Design, Material UI and table libraries like Tanstack Table. To learn more about them, please refer to the [Tables](/docs/guides-concepts/tables) guide.
+Refine's `useTable` has extended versions for UI libraries like Ant Design, Material UI and table libraries like Tanstack Table. To learn more about them, please refer to the [Tables](/core/docs/guides-concepts/tables) guide.
 
 :::
 
@@ -549,7 +549,7 @@ It provides many utilities to manage filters, sorters, paginations and also has 
 
 Notice that the interfaces are almost identical to the `useList` hook. The only difference is that `useTable` has the implementations for wider range of use cases.
 
-To learn more about the Tables in Refine, please refer to the [Tables](/docs/guides-concepts/tables) guide.
+To learn more about the Tables in Refine, please refer to the [Tables](/core/docs/guides-concepts/tables) guide.
 
 In the next steps, we'll be learning about the Authentication and Routing in Refine.
 

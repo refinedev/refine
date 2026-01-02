@@ -112,7 +112,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -765,4 +765,4 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/Create" />
 
-[save-button]: /docs/ui-integrations/chakra-ui/components/buttons/save-button
+[save-button]: /core/docs/ui-integrations/chakra-ui/components/buttons/save-button

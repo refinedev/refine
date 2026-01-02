@@ -113,7 +113,7 @@ Additionally, Refine's loosely coupled design allows for the seamless integratio
 - Airtable
 - Hasura
 
-The [documentation](https://refine.dev/docs/) provides detailed information about Refine and its architecture. You can start there to learn more about the Refine framework. However, in the section below, we will explore how to set up a Refine application from scratch.
+The [documentation](https://refine.dev/core/docs/) provides detailed information about Refine and its architecture. You can start there to learn more about the Refine framework. However, in the section below, we will explore how to set up a Refine application from scratch.
 
 ## Set up a Refine app
 
@@ -152,7 +152,7 @@ Upon successfully starting the development server, navigate to [http://localhost
 
 ## What is Refine notification provider
 
-The [Refine notification provider](https://refine.dev/docs/api-reference/core/providers/notification-provider/) is a feature that enables the display of notifications to users within a Refine application. The primary purpose of the notification provider is to centralize the management of notifications, making it easy to display different types of notifications, such as “**success**”, “**error**”, and “**progress**”, to users from different parts of the application.
+The [Refine notification provider](https://refine.dev/core/docs/api-reference/core/providers/notification-provider/) is a feature that enables the display of notifications to users within a Refine application. The primary purpose of the notification provider is to centralize the management of notifications, making it easy to display different types of notifications, such as “**success**”, “**error**”, and “**progress**”, to users from different parts of the application.
 
 To understand how the notification provider works, we first need to comprehend how it interacts with the application. For every design system you choose to use in your Refine application, whether it's Ant Design, Material Design, Mantine, or Chakra UI, Refine provides a built-in notification provider that is passed as a prop to the Refine component.
 
@@ -222,7 +222,7 @@ export const notificationProvider = {
 The `close` method uses this unique ID to terminate or dismiss the toast notification when the set duration has elapsed.
 
 **The** `**useNotification**` **hook**
-The [`useNotification`](https://refine.dev/docs/api-reference/core/hooks/useNotification/) hook is a special function that allows you to manually invoke notifications anywhere in a Refine application. It exports the `open` and `close` methods from the notification provider, which allows you to show and hide notifications from any component.
+The [`useNotification`](https://refine.dev/core/docs/api-reference/core/hooks/useNotification/) hook is a special function that allows you to manually invoke notifications anywhere in a Refine application. It exports the `open` and `close` methods from the notification provider, which allows you to show and hide notifications from any component.
 
 ```tsx
 const { open, close } = useNotification();
@@ -238,7 +238,7 @@ open({
 close("notification-key");
 ```
 
-To learn more about the `useNottification` hook, please refer to the [documentation](https://refine.dev/docs/api-reference/core/hooks/useNotification/#basic-usage) page.
+To learn more about the `useNottification` hook, please refer to the [documentation](https://refine.dev/core/docs/api-reference/core/hooks/useNotification/#basic-usage) page.
 
 We'll see the `open` and `close` methods in action in the next section, as we explore how to create a custom notification provider Using the react-hot-toast library.
 

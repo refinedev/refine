@@ -12,7 +12,7 @@ export const weekOfRefineCards: CardProps[] = [
     logo: StrapiWithText,
     bgLinearGradient:
       "bg-week-of-refine-strapi-card-light dark:bg-week-of-refine-strapi-card",
-    link: "/week-of-refine-strapi",
+    link: "/core/week-of-refine-strapi",
   },
   {
     title: "Pixels!",
@@ -24,6 +24,6 @@ export const weekOfRefineCards: CardProps[] = [
     logo: SupabaseWithText,
     bgLinearGradient:
       "bg-week-of-refine-supabase-card-light dark:bg-week-of-refine-supabase-card",
-    link: "/week-of-refine-supabase",
+    link: "/core/week-of-refine-supabase",
   },
 ];

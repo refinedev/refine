@@ -38,11 +38,11 @@ Towards the end, we see how to customize the layout of a **Refine** app. We repl
 
 ### Architecture
 
-**Refine** separates app concerns such as data fetching, authentication, access control, etc., into layers of React contexts each backed by a provider object, a set of corresponding hooks as well as relevant components. For example, the data layer represents a context dependent on a [`dataProvider`](https://refine.dev/docs/api-reference/core/providers/data-provider/#methods) object with a set of methods for handling CRUD actions. The data layer is accessed with a set of data hooks that help invoke the CRUD methods from UI components.
+**Refine** separates app concerns such as data fetching, authentication, access control, etc., into layers of React contexts each backed by a provider object, a set of corresponding hooks as well as relevant components. For example, the data layer represents a context dependent on a [`dataProvider`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/#methods) object with a set of methods for handling CRUD actions. The data layer is accessed with a set of data hooks that help invoke the CRUD methods from UI components.
 
-This means, we would have all CRUD related methods such as `getList()`, `create()`, `show()`, `update()` and `delete()` inside a `dataProvider` object and we are able to access them from a UI component using [`useList()`](https://refine.dev/docs/api-reference/core/hooks/data/useList/), [`useCreate()`](https://refine.dev/docs/api-reference/core/hooks/data/useCreate/), etc., data hooks. The data hooks, in turn, make use of [**React Query**](https://tanstack.com/query/v3/) for data fetching, caching state management and error handling.
+This means, we would have all CRUD related methods such as `getList()`, `create()`, `show()`, `update()` and `delete()` inside a `dataProvider` object and we are able to access them from a UI component using [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/), [`useCreate()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useCreate/), etc., data hooks. The data hooks, in turn, make use of [**React Query**](https://tanstack.com/query/v3/) for data fetching, caching state management and error handling.
 
-The **Refine** data hooks mentioned above are basically core hooks. Higher level hooks which are built top of these hooks exist, such as the [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#installation) hook provided by `@refinedev/react-table` support package that integrates [**React Table**](https://tanstack.com/table/v8/docs/api/core/table) with **Refine** core. Higher level hooks adds additional features that increase development efficiency. For example, the `useList()` hook is employed by the `useTable()` hook that helps present data in a table using all the features of React Table. Similarly, the `useCreate()` core data hook is utilized inside the `useForm()` high level hook provided by the `@refinedev/react-hook-form` package which augments form related CRUD actions with [**React Hook Form**](https://react-hook-form.com/get-started).
+The **Refine** data hooks mentioned above are basically core hooks. Higher level hooks which are built top of these hooks exist, such as the [`useTable()`](https://refine.dev/core/docs/packages/documentation/react-table/#installation) hook provided by `@refinedev/react-table` support package that integrates [**React Table**](https://tanstack.com/table/v8/docs/api/core/table) with **Refine** core. Higher level hooks adds additional features that increase development efficiency. For example, the `useList()` hook is employed by the `useTable()` hook that helps present data in a table using all the features of React Table. Similarly, the `useCreate()` core data hook is utilized inside the `useForm()` high level hook provided by the `@refinedev/react-hook-form` package which augments form related CRUD actions with [**React Hook Form**](https://react-hook-form.com/get-started).
 
 ### Resource Definitions
 
@@ -54,7 +54,7 @@ Routing in **Refine** is supported by the `react-router-dom` package. **Refine**
 
 ### Inferencer
 
-**Refine**'s [**Inferencer**](https://refine.dev/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data on a page.
+**Refine**'s [**Inferencer**](https://refine.dev/core/docs/api-reference/core/components/inferencer/#usage) is a powerful tool for quickly scaffolding CRUD pages and automatically generating code for a resource page. The **Inferencer** works by first polling a particular API endpoint to get the shape of the data and then placing all the hooks and UI elements necessary to fetch and present the data on a page.
 
 ### UI Framework Integration
 
@@ -80,7 +80,7 @@ For this app, we are going to start with **Refine**'s headless core, using `crea
 
 So, let's get started with initializing the **Refine** app first.
 
-We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
+We'll create a local repository by using the [`create refine-app`](https://refine.dev/core/docs/packages/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
 
 ```bash
 npm create refine-app@latest refine-daisyui
@@ -749,7 +749,7 @@ export const Dashboard: React.FC = () => {
 
 Notice we are fetching data from three **Fine Foods** API end points: `/dailyRevenue`, `/dailyOrders` and `/newCustomers`. We are fetching them with the `useList()` **Refine** core hook. We are querying them as resources although in our **Refine** admin panel app they are not. The `filters` object is used to get the past 7 days' data.
 
-You can find more details in the [**Refine** `useList()` docs here](https://refine.dev/docs/api-reference/core/hooks/data/useList/).
+You can find more details in the [**Refine** `useList()` docs here](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
 
 With these changes, our dashboard page has three KPI cards displayed at the top:
 
@@ -1783,7 +1783,7 @@ With the above changes, we have added possible actions and their routes for the 
 
 **Refine** maps resource paths to page components via route definitions, and using the map infers the resource name of a page at the current URL of the browser. That way, hooks like `useTable()` and `useNavigation()`, and **Inferencer** components like `<HeadlessInferencer />` are always able to infer the default resource name from inside a resource page.
 
-You can find more information about [resources and routing](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) on the **Refine** documentation.
+You can find more information about [resources and routing](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) on the **Refine** documentation.
 
 Now when we navigate along the `/products` paths, we can see some clumsy looking pages in need of proper styling. So, we're interested in getting their code and modifying them according to our needs. We are going to do that one by one in the following sections.
 
@@ -2040,7 +2040,7 @@ export const ProductList = () => {
 
 The generated code implements a handful of features, including data fetching, button actions, pagination, and JSX markup with minimal styles for presenting the data in a table. This is pretty much the skeleton of what we want in a table of data that we want to improve with daisyUI.
 
-It uses the [`useTable()`](https://refine.dev/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
+It uses the [`useTable()`](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept#resources-and-routes) hook provided by `@refinedev/react-table` package, which augments **Refine**'s `useTable()` core hook with **React Table**'s `useReactTable()` hook. More on this below.
 
 We want to keep most of it and add filter functionality at the top, modify the pagination and apply daisyUI classes for tables, buttons, and groups.
 
@@ -2320,7 +2320,7 @@ It is definitely possible to refactor the components into smaller, testable ones
 
 **1. Data Fetching and Processing**
 
-The [`useTable()`](https://refine.dev/docs/packages/documentation/react-table/#basic-usage) hook from the `@refinedev/react-table` package is used to fetch data from the **Fine Foods** `/products` endpoint. The refine-React Table's `useTable()` hook is a higher level hook built on top of **Refine**'s core [`useTable()`](https://refine.dev/docs/api-reference/core/hooks/useTable/) hook provided by `@refinedev/core`. It combines the power of `useTable()` core hook with React Table's [`useReactTable()`](https://tanstack.com/table/v8/docs/api/core/table) APIs:
+The [`useTable()`](https://refine.dev/core/docs/packages/documentation/react-table/#basic-usage) hook from the `@refinedev/react-table` package is used to fetch data from the **Fine Foods** `/products` endpoint. The refine-React Table's `useTable()` hook is a higher level hook built on top of **Refine**'s core [`useTable()`](https://refine.dev/core/docs/api-reference/core/hooks/useTable/) hook provided by `@refinedev/core`. It combines the power of `useTable()` core hook with React Table's [`useReactTable()`](https://tanstack.com/table/v8/docs/api/core/table) APIs:
 
 ```tsx
 // Inside ProductList component
@@ -2398,7 +2398,7 @@ Inside the React Table `columns` definition object, using the `cell` property we
 },
 ```
 
-Notice also, we are using the [`useNavigation()`](https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation/) core hook to pick the `show()` and `edit()` methods and use them inside the buttons to navigate to their respective routes:
+Notice also, we are using the [`useNavigation()`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) core hook to pick the `show()` and `edit()` methods and use them inside the buttons to navigate to their respective routes:
 
 ```tsx
 const { edit, show, create } = useNavigation();
@@ -2549,7 +2549,7 @@ Here's the break down of the component:
 
 **1. Data Fetching and Form Management**
 
-The most significant part of the product `create` page lies in the use of the [`useForm()`](https://refine.dev/docs/packages/documentation/react-hook-form/useForm/) hook imported from `@refinedev/react-hook-form` supplementary package. The refine-React Hook Form `useForm()` hook combines the power of the `useForm()` **Refine** core hook that primarily handles form submission, data fetching, caching, state management and serverside error handling. Integrating `react-hook-form` augments form features to include better form fields state management and error handling.
+The most significant part of the product `create` page lies in the use of the [`useForm()`](https://refine.dev/core/docs/packages/documentation/react-hook-form/useForm/) hook imported from `@refinedev/react-hook-form` supplementary package. The refine-React Hook Form `useForm()` hook combines the power of the `useForm()` **Refine** core hook that primarily handles form submission, data fetching, caching, state management and serverside error handling. Integrating `react-hook-form` augments form features to include better form fields state management and error handling.
 
 ```ts
 const {
@@ -2566,7 +2566,7 @@ Notice that we are not passing any resource name to `useForm()`. Like `useTable(
 
 We are also using the `useSelect()` core hook to fetch and populate `categories` items to present inside `<select />` fields.
 
-More on the [`useSelect()` hook in the Refine docs here](https://refine.dev/docs/api-reference/core/hooks/useSelect/#defaultvalue).
+More on the [`useSelect()` hook in the Refine docs here](https://refine.dev/core/docs/api-reference/core/hooks/useSelect/#defaultvalue).
 
 **2. daisyUI Style**
 
@@ -2801,7 +2801,7 @@ export const ProductShow = () => {
 
 </details>
 
-In the code above, we are using the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `query` object to display the details in the JSX.
+In the code above, we are using the [`useShow()`](https://refine.dev/core/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `query` object to display the details in the JSX.
 
 We are also invoking the familiar `useNavigation()` hook to access the `edit()` and `list()` methods and call them from `Edit` and back buttons respectively.
 

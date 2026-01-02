@@ -317,7 +317,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 export default MyApp;
 ```
 
-[For more information on how to add SSR-Next.js to your Refine project ->](https://refine.dev/docs/guides-and-concepts/ssr/nextjs/)
+[For more information on how to add SSR-Next.js to your Refine project ->](https://refine.dev/core/docs/guides-and-concepts/ssr/nextjs/)
 
 ### Routing
 
@@ -353,7 +353,7 @@ const routerProvider = {
 
 :::
 
-[To take a look at how other router providers are defined and working](https://refine.dev/docs/api-reference/core/providers/router-provider/)
+[To take a look at how other router providers are defined and working](https://refine.dev/core/docs/api-reference/core/providers/router-provider/)
 
 To activate router provider in **Refine**, we have to pass the routerProvider to the `<Refine />` component.
 
@@ -576,7 +576,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 Here we only make requests for queries that are necessary. As you can see, all you have to do is specify the field you want to select with `meta`.
 
-[Refer to the GraphQL for detailed usage. → ](https://refine.dev/docs/packages/documentation/data-providers/graphql)
+[Refer to the GraphQL for detailed usage. → ](https://refine.dev/core/docs/packages/documentation/data-providers/graphql)
 
 ### Refine Available Providers
 
@@ -612,10 +612,7 @@ All features of **Refine** are available as **open source**.
 - Search
 - Navigation and more features are available
 
-If you want to get information about the Enterprise, Refine ready to help you for Support and Training.
-[For more info about Enterprise->](https://refine.dev/enterprise/)
-
-Refine Docs & Demo: [Documentation](https://refine.dev/docs/) - [Live Demo](https://refine.dev/demo/)
+Refine Docs & Demo: [Documentation](https://refine.dev/core/docs/) - [Live Demo](https://refine.dev/demo/)
 
 ## Conclusion
 

@@ -104,7 +104,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
 
 :::
 
@@ -209,7 +209,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### canCreate and createButtonProps
 
@@ -325,13 +325,13 @@ render(
 
 The create button redirects to the create page of the resource according to the value it reads from the URL.
 
-> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
 
 ### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/docs/ui-integrations/ant-design/components/breadcrumb)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);
@@ -746,4 +746,4 @@ breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 canCreate-default="If the resource is passed a create component, `true` else `false`"
 />
 
-[create-button]: /docs/ui-integrations/ant-design/components/buttons/create-button
+[create-button]: /core/docs/ui-integrations/ant-design/components/buttons/create-button

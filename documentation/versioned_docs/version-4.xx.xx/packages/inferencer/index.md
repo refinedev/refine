@@ -12,11 +12,11 @@ The package exports components for **List**, **Show**, **Create** and **Edit** v
 
 ## Available UI Inferencers
 
-- [Ant Design](/docs/ui-integrations/ant-design/components/inferencer)
-- [Material UI](/docs/ui-integrations/material-ui/components/inferencer)
-- [Mantine](/docs/ui-integrations/mantine/components/inferencer)
-- [Chakra UI](/docs/ui-integrations/chakra-ui/components/inferencer)
-- [Headless](/docs/core/components/inferencer)
+- [Ant Design](/core/docs/ui-integrations/ant-design/components/inferencer)
+- [Material UI](/core/docs/ui-integrations/material-ui/components/inferencer)
+- [Mantine](/core/docs/ui-integrations/mantine/components/inferencer)
+- [Chakra UI](/core/docs/ui-integrations/chakra-ui/components/inferencer)
+- [Headless](/core/docs/core/components/inferencer)
 
 :::simple Good to know
 

@@ -31,7 +31,7 @@ After running the command, you will be prompted to select the options you want t
 
 Refine offers a command-line interface to help you with your app's development. The CLI provides a set of commands to help you with running your app, creating new resources and taking care of the boilerplate code for you, creating providers with templates to get you started to implement your own providers with ease, updating your app's dependencies easily, exporting components and providers from Refine packages to your app to let you customize them just like you would do with your own components and providers, and and get you notified about the announcements from the Refine team.
 
-To learn more about the `@refinedev/cli` package, check out the [CLI documentation](/docs/packages/cli/).
+To learn more about the `@refinedev/cli` package, check out the [CLI documentation](/core/docs/packages/cli/).
 
 ### Installation
 
@@ -286,7 +286,7 @@ Devtools server will run on port `5001` by default. Devtools will serve HTTP and
 
 :::simple Enterprise Edition
 
-Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/docs/enterprise-edition/devtools) for more information.
+Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/core/docs/enterprise-edition/devtools) for more information.
 
 :::
 

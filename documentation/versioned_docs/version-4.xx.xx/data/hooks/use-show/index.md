@@ -5,7 +5,7 @@ title: useShow
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/docs/data/hooks/use-one) that supports all of its features and adds some more.
+`useShow` is an extended version of [`useOne`](/core/docs/data/hooks/use-one) that supports all of its features and adds some more.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -19,7 +19,7 @@ If you define `resource` and `id` on the hook, when these properties are changed
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -30,7 +30,7 @@ When the `useShow` hook is mounted, it will call the `subscribe` method from the
 <PropResource
 hook={{
         name:"useOne",
-        URL:"/docs/core/hooks/data/use-one/"
+        URL:"/docs/core/data/hooks/use-one/"
     }}
 method={{
         name:"getOne",
@@ -74,7 +74,7 @@ setShowId("123");
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### id
 
@@ -130,7 +130,7 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation &#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### dataProviderName
 
@@ -159,7 +159,7 @@ useShow({
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -177,7 +177,7 @@ useShow({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -195,7 +195,7 @@ useShow({
 
 ### liveMode
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -205,11 +205,11 @@ useShow({
 });
 ```
 
-> For more information, refer to the [Live / Realtime page&#8594](/docs/realtime/live-provider#livemode)
+> For more information, refer to the [Live / Realtime page&#8594](/core/docs/realtime/live-provider#livemode)
 
 ### onLiveEvent
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -223,9 +223,9 @@ useShow({
 
 ### liveParams
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
 ### overtimeOptions
 
@@ -308,5 +308,5 @@ Use [`query`](#query) instead.
 | setShowId | `showId` setter                 | `Dispatch<SetStateAction< string` \| `undefined>>`                                                           |
 | overtime  | Overtime loading props          | `{ elapsedTime?: number }`                                                                                   |
 
-[baserecord]: /docs/core/interface-references#baserecord
-[httperror]: /docs/core/interface-references#httperror
+[baserecord]: /core/docs/core/interface-references#baserecord
+[httperror]: /core/docs/core/interface-references#httperror

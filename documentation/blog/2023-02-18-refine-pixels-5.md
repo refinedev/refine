@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-18-refine-p
 hide_table_of_contents: false
 ---
 
-This post is the first part of an admin dashboard app built using [**Refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
+This post is the first part of an admin dashboard app built using [**Refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/core/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
 
 This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities within a week.
 
@@ -168,7 +168,7 @@ In order to run the app without warnings you need to follow [Casbin RBAC system 
 
 :::
 
-After creating files above you need to add some imports and [routes](/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -312,7 +312,7 @@ export default App;
 
 :::note
 
-[`<Refine />`](/docs/core/refine-component) comes with [dark mode support](/docs/ui-integrations/ant-design/theming#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
+[`<Refine />`](/core/docs/core/refine-component) comes with [dark mode support](/core/docs/ui-integrations/ant-design/theming#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
 
 Also, you can remove `src/context/color-mode` that comes with `create refine-app`.
 
@@ -438,23 +438,23 @@ The components tree looks very plain, but there is plenty going on in there. Fir
 
 ### Refine Ant Design `useTable()` Hook
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) is a **Refine** **Ant Design** hook served to us from the `@refinedev/antd` package. As we can see above, it returns us a `tableProps` object:
+[`useTable()`](https://refine.dev/core/docs/api-reference/antd/hooks/table/useTable/) is a **Refine** **Ant Design** hook served to us from the `@refinedev/antd` package. As we can see above, it returns us a `tableProps` object:
 
 ```tsx
 const { tableProps } = useTable<TUser>();
 ```
 
-`useTable()` is built on top of **Refine** core's [`useMany()`](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
+`useTable()` is built on top of **Refine** core's [`useMany()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
 
 Here, we did not need to set any configuration for our API request and the returned response. The `resource.name` was figured by `useTable` from the `resources` prop that was passed to `<Refine />`. It is possible to set options for **sorting**, **filtering**, **pagination**, etc. with an object passed to `useTable()`.
 
-For all the features that come with the `useTable()` hook, visit [the API reference here](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/).
+For all the features that come with the `useTable()` hook, visit [the API reference here](https://refine.dev/core/docs/api-reference/antd/hooks/table/useTable/).
 
 The properties of the `tableProps` object produced are intended to be passed to a `<Table />` component, which we'll consider after `<List />`.
 
 ### Refine Ant Design `<List />` Component
 
-The [`<List />`](https://refine.dev/docs/api-reference/antd/components/basic-views/list/) component represents a list view. It is a wrapper around the contents of the list. It accepts a number of relevant props and comes with their sensible defaults, such as for `resource` name and `title` of the page.
+The [`<List />`](https://refine.dev/core/docs/api-reference/antd/components/basic-views/list/) component represents a list view. It is a wrapper around the contents of the list. It accepts a number of relevant props and comes with their sensible defaults, such as for `resource` name and `title` of the page.
 
 In our case, we don't have to pass in any prop because **Refine** figures the `resource` name and `title` from the `resources` prop. In other words, the `<List />` component above is conveniently equivalent to this:
 
@@ -464,11 +464,11 @@ In our case, we don't have to pass in any prop because **Refine** figures the `r
 </List>
 ```
 
-For more on the usage of `<List />`, look into [the details here](https://refine.dev/docs/api-reference/antd/components/basic-views/list/).
+For more on the usage of `<List />`, look into [the details here](https://refine.dev/core/docs/api-reference/antd/components/basic-views/list/).
 
 ### Refine Ant Design `<Table />` Component
 
-[`useTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **Refine** makes `<Table />` available to us with the `@refinedev/antd` module.
+[`useTable()`](https://refine.dev/core/docs/api-reference/antd/hooks/table/useTable/) hook's `tableProps` is specifically configured to match the props of **Ant Design**'s native `<Table />` component. **Refine** makes `<Table />` available to us with the `@refinedev/antd` module.
 
 Besides passing in the `tableProps` object to `<Table />`, we are required to provide a unique `rowKey` prop to identify each row in the table:
 
@@ -522,7 +522,7 @@ return (
 
 After adding resources we need to create routes for them. For the routes, we'll use the `<UserList/>` and `<CanvasList/>` components we created earlier.
 
-[Refer to the CRUD Pages tutorial for more information. →](/docs/ui-integrations/ant-design/introduction)
+[Refer to the CRUD Pages tutorial for more information. →](/core/docs/ui-integrations/ant-design/introduction)
 
 ```tsx title="App.tsx"
 // ...
@@ -1014,7 +1014,7 @@ The items of `formProps` object are passed to the `<Form />` component:
 <Form {...formProps}>// React nodes here...</Form>
 ```
 
-We can do much more with the `useEditableTable()` hook, like activating editing fields when a row is clicked . Here's the elaborate [documentation for `useEditableTable()`](https://refine.dev/docs/api-reference/antd/hooks/table/useEditableTable/)
+We can do much more with the `useEditableTable()` hook, like activating editing fields when a row is clicked . Here's the elaborate [documentation for `useEditableTable()`](https://refine.dev/core/docs/api-reference/antd/hooks/table/useEditableTable/)
 
 ### Refine Ant Design `<DeleteButton />`
 
@@ -1026,7 +1026,7 @@ Thanks to the `formProps` being passed to `<Form />`, implementing `delete` acti
 
 `@refinedev/antd`'s `<DeleteButton />` leverages **Ant Design**'s `<Button />` and `<Popconfirm />` components. It invokes the `delete()` data provider method to send a `DELETE` request to the `resource` end point. The `resource.name` is inferred from the `formProps` passed to `<Form />` component.
 
-For more details, visit the [`<DeleteButton />` docs.](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)
+For more details, visit the [`<DeleteButton />` docs.](https://refine.dev/core/docs/api-reference/antd/components/buttons/delete-button/)
 
 ### `<Table.Column />`'s `render` Prop
 
@@ -1130,7 +1130,7 @@ With these additions, `/canvases` looks like this:
 
 ## Summary
 
-In this post, we initialized an admin dashboard app for our **Pixels** client app which we built in the previous episodes in the [RefineWeek](https://refine.dev/week-of-refine/) series. We implemented list views for two `resources`: `users` and `canvases`.
+In this post, we initialized an admin dashboard app for our **Pixels** client app which we built in the previous episodes in the [RefineWeek](https://refine.dev/core/week-of-refine/) series. We implemented list views for two `resources`: `users` and `canvases`.
 
 Inside the lists, we fetched data from these resources and rendered them inside tables. We implemented two types of tables using two distinct `@refinedev/antd` hooks: `useTable()` for regular tables and `useEditableTable()` that allows data in the table to be mutated.
 

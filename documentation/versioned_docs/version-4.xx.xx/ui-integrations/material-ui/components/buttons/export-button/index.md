@@ -9,7 +9,7 @@ swizzle: true
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -131,4 +131,4 @@ It also accepts all props of Material UI [Button](https://mui.com/material-ui/re
 :::
 
 [button]: https://mui.com/material-ui/react-button/#loading-2
-[useexport]: /docs/core/hooks/utilities/use-export
+[useexport]: /core/docs/core/hooks/utilities/use-export

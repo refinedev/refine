@@ -8,7 +8,7 @@ source: packages/chakra-ui/src/components/autoSaveIndicator/index.tsx
 
 :::simple Good to know
 
-This component is an extended version of the [`<AutoSaveIndicator>`](/docs/core/components/auto-save-indicator) component from Refine's core package. It provides a set of elements which align with Chakra UI's components and styling.
+This component is an extended version of the [`<AutoSaveIndicator>`](/core/docs/core/components/auto-save-indicator) component from Refine's core package. It provides a set of elements which align with Chakra UI's components and styling.
 
 :::
 

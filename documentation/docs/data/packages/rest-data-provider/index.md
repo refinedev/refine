@@ -1677,7 +1677,7 @@ KY provides several hook types for different stages of the request lifecycle:
 #### Auth Header Hook
 
 :::simple Swizzle
-You can swizzle this hook to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
+You can swizzle this hook to customize it with the [**refine CLI**](/core/docs/packages/cli)
 :::
 
 Automatically adds Bearer token authentication to all requests:
@@ -1711,7 +1711,7 @@ const { dataProvider } = createDataProvider(
 #### Refresh Token Hook
 
 :::simple Swizzle
-You can swizzle this hook to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
+You can swizzle this hook to customize it with the [**refine CLI**](/core/docs/3.xx.xx/packages/documentation/cli)
 :::
 
 Automatically handles token refresh when receiving 401 responses:

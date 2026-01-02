@@ -7,7 +7,7 @@ This field is used to display dates. It uses [`Day.js`](https://day.js.org/docs/
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 

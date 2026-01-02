@@ -64,7 +64,7 @@ These packages may include production and development dependencies such as linte
 
 After setting up a development environment for your project, it is necessary to document the setup instructions to smoothly onboard new contributors to the project.
 
-The Refine ecosystem has project templates that integrate the most popular design systems and cloud platforms. The Refine [CLI](https://refine.dev/docs/getting-started/quickstart/) and the [appscaffolder](https://refine.dev/?playground=true) can create a new project with all the necessary setup.
+The Refine ecosystem has project templates that integrate the most popular design systems and cloud platforms. The Refine [CLI](https://refine.dev/core/docs/getting-started/quickstart/) and the [appscaffolder](https://refine.dev/?playground=true) can create a new project with all the necessary setup.
 
 After creating a project, you can open the project directory in a text editor, install dependencies, and launch the development server using a script in the `package.json` file.
 

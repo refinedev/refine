@@ -138,7 +138,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
 
 :::
 
@@ -263,7 +263,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/mantine/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/mantine/components/buttons/save-button)
 
 ### resource
 
@@ -309,7 +309,7 @@ render(
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### goBack
 
@@ -973,4 +973,4 @@ render(
 
 <PropsTable module="@refinedev/mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
 
-[save-button]: /docs/ui-integrations/mantine/components/buttons/save-button
+[save-button]: /core/docs/ui-integrations/mantine/components/buttons/save-button

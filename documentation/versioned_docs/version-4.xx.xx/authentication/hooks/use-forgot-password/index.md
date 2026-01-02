@@ -4,7 +4,7 @@ description: useForgotPassword data hook from Refine is a modified version of re
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---
 
-`useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/docs/authentication/auth-provider) under the hood.
+`useForgotPassword` calls the `forgotPassword` method from [`authProvider`](/core/docs/authentication/auth-provider) under the hood.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation) which includes many properties, some of which being `isSuccess` and `isError`.
 

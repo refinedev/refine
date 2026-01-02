@@ -94,7 +94,7 @@ The function also accepts a second parameter `force` which is `true` by default.
 | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
 | resource    | `IResourceItem` \| `undefined`                                                                                            |
 | identifier  | `string` \| `undefined`                                                                                                   |
-| id          | [`BaseKey` \| `undefined`](/docs/core/interface-references#basekey)                                                       |
+| id          | [`BaseKey` \| `undefined`](/core/docs/core/interface-references#basekey)                                                  |
 | setId       | `(id: BaseKey) => void`                                                                                                   |
 | action      | `undefined` \| `"list"` \| `"create"` \| `"edit"` \| `"show"` \| `"clone"`                                                |
 | formAction  | `"create"` \| `"edit"` \| `"clone"`                                                                                       |

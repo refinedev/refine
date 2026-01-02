@@ -50,7 +50,7 @@ To follow this guide, you must install the latest Node.js version on your system
 
 ## Getting Started
 
-Start by creating the Refine app using the [create refine-app](https://refine.dev/docs/getting-started/quickstart/) CLI tool.
+Start by creating the Refine app using the [create refine-app](https://refine.dev/core/docs/getting-started/quickstart/) CLI tool.
 
 ```
 npm create refine-app@latest refine-supabase-auth
@@ -309,9 +309,9 @@ Import the `<LoginPage />` component in the `App.tsx` file and create a route fo
 To create a route, import the `<Route />` component from `react-router-dom` and pass the `<LoginPage />` component as the `children`. We also use `<Authenticated />`, `<Outlet />` and `<NavigateToResource />` components
 to redirect the user to the home page if they are already logged in.
 
-[Refer to the Auth Provider documentation to learn more about authentication. → ](/docs/authentication/auth-provider)
+[Refer to the Auth Provider documentation to learn more about authentication. → ](/core/docs/authentication/auth-provider)
 
-[Refer to the documentation to learn more routing in **Refine** → ](/docs/packages/list-of-packages)
+[Refer to the documentation to learn more routing in **Refine** → ](/core/docs/packages/list-of-packages)
 
 <details>
 <summary>Show `App.tsx` Code</summary>
@@ -407,7 +407,7 @@ For example, when you use the `useList` hook, **Refine** internally calls the `g
 
 In this case, we pass the `supabaseClient` as the data provider. Supabase is supported out-of-the-box as a data provider by **Refine**. Here, the data provider internally calls supabase-js database methods like `select()`, `insert()`, etc., to handle the data.
 
-[You can learn more about data provider in the Refine docs.](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[You can learn more about data provider in the Refine docs.](https://refine.dev/core/docs/api-reference/core/providers/data-provider/)
 
 ## Auth Provider
 
@@ -415,7 +415,7 @@ The `authProvider` is an object that Refine uses to authenticate and authorize t
 
 `create refine-app` autogenerates the auth provider from your selected preference- in this case, it is Supabase. Unlike data providers, Refine does not offer out-of-the-box support for auth providers; you must create it from scratch.
 
-[You can read more about auth provider in detail here.](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+[You can read more about auth provider in detail here.](https://refine.dev/core/docs/api-reference/core/providers/auth-provider/)
 
 Alright, now coming back to the `<LoginPage />` component. When the user requests for OTP, validate the mobile number using the regex shown in the below code. The mobile number is expected to include the country code; you can use other third-party components for mobile input with a country code dropdown and mobile validation out-of-the-box.
 

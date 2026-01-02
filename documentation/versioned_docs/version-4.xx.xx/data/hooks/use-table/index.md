@@ -10,15 +10,15 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/docs/data/hooks/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/core/docs/data/hooks/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::simple Extended Versions
 
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
-- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/docs/packages/list-of-packages) - [Example](/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/examples/table/antd/useTable.md)
-- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/examples/table/mui/useDataGrid.md)
+- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/core/docs/examples/table/antd/useTable)
+- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/core/docs/examples/table/mui/useDataGrid)
 
 :::
 
@@ -103,7 +103,7 @@ const MyComponent = () => {
 
 ## Realtime Updates
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -134,7 +134,7 @@ useTable({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/core/docs/core/refine-component#identifier)
 
 ### dataProviderName
 
@@ -224,7 +224,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface&#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface&#8594](/core/docs/core/interface-references#crudsorting)
 
 ### sorters.permanent
 
@@ -244,7 +244,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudSorting` interface &#8594](/docs/core/interface-references#crudsorting)
+> For more information, refer to the [`CrudSorting` interface &#8594](/core/docs/core/interface-references#crudsorting)
 
 ### filters.mode
 
@@ -281,7 +281,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/core/docs/core/interface-references#crudfilters)
 
 ### filters.permanent
 
@@ -302,7 +302,7 @@ useTable({
 });
 ```
 
-> For more information, refer to the [`CrudFilters` interface &#8594](/docs/core/interface-references#crudfilters)
+> For more information, refer to the [`CrudFilters` interface &#8594](/core/docs/core/interface-references#crudfilters)
 
 ### filters.defaultBehavior
 
@@ -336,7 +336,7 @@ useTable({
 
 ### queryOptions
 
-`useTable` uses [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -394,11 +394,11 @@ const myDataProvider = {
 };
 ```
 
-> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/docs/guides-concepts/general-concepts/#meta-concept)
+> For more information, refer to the [`meta` section of the General Concepts documentation&#8594](/core/docs/guides-concepts/general-concepts/#meta-concept)
 
 ### successNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -417,7 +417,7 @@ useTable({
 
 ### errorNotification
 
-> [`NotificationProvider`](/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -436,7 +436,7 @@ useTable({
 
 ### liveMode
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -449,7 +449,7 @@ useTable({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -464,9 +464,9 @@ useTable({
 
 ### liveParams
 
-> [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
 
-Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
+Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
 ### overtimeOptions
 
@@ -531,7 +531,7 @@ Use `filters.defaultBehavior` instead.
 
 ### tableQuery
 
-Returned values from [`useList`](/docs/data/hooks/use-list) hook.
+Returned values from [`useList`](/core/docs/data/hooks/use-list) hook.
 
 ### sorters
 
@@ -620,7 +620,7 @@ Use [`tableQuery`](#tablequery) instead.
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/docs/data/hooks/use-many) hook to fetch relational data.
+You can use [`useMany`](/core/docs/data/hooks/use-many) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 
@@ -773,10 +773,10 @@ errorNotification-default='"There was an error creating resource (status code: `
 | overtime                      | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /docs/core/interface-references#baserecord
-[crudsorting]: /docs/core/interface-references#crudsorting
-[crudfilters]: /docs/core/interface-references#crudfilters
-[httperror]: /docs/core/interface-references#httperror
-[Refine swl]: /docs/core/refine-component#syncwithlocation
-[syncwithlocationparams]: /docs/core/interface-references#syncwithlocationparams
-[notification-provider]: /docs/notification/notification-provider
+[baserecord]: /core/docs/core/interface-references#baserecord
+[crudsorting]: /core/docs/core/interface-references#crudsorting
+[crudfilters]: /core/docs/core/interface-references#crudfilters
+[httperror]: /core/docs/core/interface-references#httperror
+[Refine swl]: /core/docs/core/refine-component#syncwithlocation
+[syncwithlocationparams]: /core/docs/core/interface-references#syncwithlocationparams
+[notification-provider]: /core/docs/notification/notification-provider

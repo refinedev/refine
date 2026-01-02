@@ -6,7 +6,7 @@ import { Sandpack, UseAuthPageInLogin } from "./sandpack.tsx";
 
 <Sandpack>
 
-Now our application is ready to use with layouts, views and notifications. Only thing left unstyled is the `/login` page. Refine provides [`<AuthPage />`](/docs/ui-integrations/material-ui/components/auth-page) components which works with Refine's auth hooks and uses the UI elements from the Material UI.
+Now our application is ready to use with layouts, views and notifications. Only thing left unstyled is the `/login` page. Refine provides [`<AuthPage />`](/core/docs/ui-integrations/material-ui/components/auth-page) components which works with Refine's auth hooks and uses the UI elements from the Material UI.
 
 `<AuthPage />` component supports multiple views such as:
 

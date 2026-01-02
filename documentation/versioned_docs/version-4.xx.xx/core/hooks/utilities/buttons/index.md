@@ -154,7 +154,7 @@ const {
 
 ### useSaveButton
 
-`useSaveButton` provides a label for a save button that can be used in forms. Props related to submission of the form will be provided by the [`useForm`](/docs/data/hooks/use-form) hook.
+`useSaveButton` provides a label for a save button that can be used in forms. Props related to submission of the form will be provided by the [`useForm`](/core/docs/data/hooks/use-form) hook.
 
 ```ts
 const {
@@ -164,7 +164,7 @@ const {
 
 ### useExportButton
 
-`useExportButton` provides a label for an export button for a resource. Props related to exporting bulk data from the resource will be provided by the [`useExport`](/docs/core/hooks/utilities/use-export) hook.
+`useExportButton` provides a label for an export button for a resource. Props related to exporting bulk data from the resource will be provided by the [`useExport`](/core/docs/core/hooks/utilities/use-export) hook.
 
 ```ts
 const {
@@ -174,7 +174,7 @@ const {
 
 ### useImportButton
 
-`useImportButton` provides a label for an import button for a resource. Props related to importing bulk data to the resource will be provided by the [`useImport`](/docs/core/hooks/utilities/use-import) hook.
+`useImportButton` provides a label for an import button for a resource. Props related to importing bulk data to the resource will be provided by the [`useImport`](/core/docs/core/hooks/utilities/use-import) hook.
 
 ```ts
 const {

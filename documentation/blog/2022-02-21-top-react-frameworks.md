@@ -132,7 +132,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 💪 Ensure a future-proof and **robust architecture**.
 
-⌛️ Utilize the time-saving features of the built-in [CLI](https://refine.dev/docs/packages/cli/).
+⌛️ Utilize the time-saving features of the built-in [CLI](https://refine.dev/core/docs/packages/cli/).
 
 ✅ Benefit from comprehensive **test coverage** for enhanced reliability.
 
@@ -141,7 +141,7 @@ There are two ways to add UI elements to Refine;
 1. Using a UI Library such as Tailwind, Chakra UI, etc.
 2. Using a complete UI Framework such as Ant Design, Material UI, etc.
 
-The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/tutorial)
+The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. superplate's CLI wizard will let you create and customize your application in seconds. You can find tutorial from [here](https://refine.dev/core/tutorial)
 
 ```
 npm create refine-app@latest

@@ -654,7 +654,7 @@ For page level authentication, server-side approach is recommended.
 
 ### Client side
 
-On the client-side, you can wrap your pages with [`Authenticated`](/docs/authentication/components/authenticated) component from `@refinedev/core` to protect your pages from unauthenticated access.
+On the client-side, you can wrap your pages with [`Authenticated`](/core/docs/authentication/components/authenticated) component from `@refinedev/core` to protect your pages from unauthenticated access.
 
 ### Server Side
 
@@ -664,7 +664,7 @@ For page level authentication, server-side approach is recommended.
 
 :::
 
-First let's create our [AuthProvider](/docs/authentication/auth-provider)
+First let's create our [AuthProvider](/core/docs/authentication/auth-provider)
 
 let's install the `nookies` packages in our project.
 
@@ -869,7 +869,7 @@ For page level access control, server-side approach is recommended.
 
 :::
 
-First, let's build our [AccessControlProvider](/docs/authorization/access-control-provider)
+First, let's build our [AccessControlProvider](/core/docs/authorization/access-control-provider)
 
 ```tsx title="src/acccessControlProvider.ts"
 export const accessControlProvider = {
@@ -892,7 +892,7 @@ export const accessControlProvider = {
 
 ### Client Side
 
-For client-side, you can wrap your pages with [`CanAccess`](/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
+For client-side, you can wrap your pages with [`CanAccess`](/core/docs/authorization/components/can-access) component from `@refinedev/core` to protect your pages from unauthorized access.
 
 ```tsx
 import { CanAccess } from "@refinedev/core";
@@ -1606,4 +1606,4 @@ const App = () => {
 
 <CodeSandboxExample path="with-nextjs" />
 
-[routerprovider]: /docs/routing/router-provider
+[routerprovider]: /core/docs/routing/router-provider
