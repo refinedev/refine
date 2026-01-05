@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ErrorBoundary from "@docusaurus/ErrorBoundary";
-import { useLocation } from "@docusaurus/router";
 import { PageMetadata } from "@docusaurus/theme-common";
 import { useKeyboardNavigation } from "@docusaurus/theme-common/internal";
 import ErrorPageContent from "@theme/ErrorPageContent";
@@ -17,23 +16,6 @@ export const CommonLayout = (props: Props) => {
   const { children, title, description, className } = props;
 
   useKeyboardNavigation();
-
-  const location = useLocation();
-
-  // it handles kapa ai widget visibility
-  // kapa ai widget script initalized in docusaurus.config.js
-  useEffect(() => {
-    const kapaAIWidget = document.getElementById("kapa-widget-container");
-    if (!kapaAIWidget) {
-      return;
-    }
-
-    if (location.pathname.startsWith("/docs")) {
-      kapaAIWidget.style.display = "block";
-    } else {
-      kapaAIWidget.style.display = "none";
-    }
-  }, [location.pathname]);
 
   return (
     <LayoutProvider>

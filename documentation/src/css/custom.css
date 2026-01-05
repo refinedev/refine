@@ -1281,9 +1281,3 @@ form.DocSearch-Form label.DocSearch-MagnifierLabel svg.DocSearch-Search-Icon {
 html[data-theme="dark"] .sandpack-container .sp-layout .resize-handler {
   background-image: url('data:image/svg+xml,<svg width="12" height="28" viewBox="0 0 12 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="28" rx="6" fill="%23343A46"/><path d="M8 6.8c0 1-.9 2-2 2a2 2 0 0 1-2-2C4 5.8 4.9 5 6 5a2 2 0 0 1 2 2ZM8 14.5c0 1-.9 1.9-2 1.9a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 24a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8A2 2 0 0 0 4 22c0 1 .9 1.9 2 1.9Z" fill="%23000"/><path d="M8 6c0 1-.9 1.8-2 1.8A2 2 0 0 1 4 6C4 5 4.9 4 6 4a2 2 0 0 1 2 2ZM8 13.5c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1 .9-1.9 2-1.9a2 2 0 0 1 2 2ZM6 23.1a2 2 0 0 0 2-2c0-1-.9-1.8-2-1.8a2 2 0 0 0-2 1.9c0 1 .9 1.9 2 1.9Z" fill="%23667084"/></svg>');
 }
-
-/* in the initial render, kapa ai widget should be not visible to prevent flickering */
-/* in common-layout.tsx we will remove this style */
-#kapa-widget-container {
-  display: none;
-}
