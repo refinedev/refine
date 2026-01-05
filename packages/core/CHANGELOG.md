@@ -1,5 +1,27 @@
 # @refinedev/core
 
+## 5.0.8
+
+### Patch Changes
+
+- [#7143](https://github.com/refinedev/refine/pull/7143) [`72ed290dd671ce0031737b5cfe638b2998d3a048`](https://github.com/refinedev/refine/commit/72ed290dd671ce0031737b5cfe638b2998d3a048) Thanks [@arndom](https://github.com/arndom)! - - Add case sensitive `eq` and `ne` variants
+
+  [Resolves #6984](https://github.com/refinedev/refine/issues/6984)
+
+- [#7124](https://github.com/refinedev/refine/pull/7124) [`dbf5ab844bfe87c0c5b23ca080ab2ef9b64bf070`](https://github.com/refinedev/refine/commit/dbf5ab844bfe87c0c5b23ca080ab2ef9b64bf070) Thanks [@arndom](https://github.com/arndom)! - - Invalidate queries on logout.
+
+  - Resolves cached error state being there after login from forced logout.
+
+  [Resolves #6997](https://github.com/refinedev/refine/issues/6997)
+
+- [#7163](https://github.com/refinedev/refine/pull/7163) [`add2f6f3c16f808d4d13255a120f6785ad21a425`](https://github.com/refinedev/refine/commit/add2f6f3c16f808d4d13255a120f6785ad21a425) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix(core): `useGetToPath` returns `undefined` #7159
+
+  Fixed an issue where `useGetToPath` would return `undefined` when a partial resource object was passed. The hook now always looks up the full resource definition from the resources array to ensure all action routes are available.
+
+  Additionally, added a warning message when an action route cannot be found for a resource, making it easier to debug routing issues.
+
+  Resolves #7159
+
 ## 5.0.7
 
 ### Patch Changes

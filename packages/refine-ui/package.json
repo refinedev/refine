@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/refine-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "pnpm registry:build && next build",
@@ -37,7 +37,7 @@
     "@radix-ui/react-toggle": "^1.1.6",
     "@radix-ui/react-toggle-group": "^1.1.7",
     "@radix-ui/react-tooltip": "^1.2.4",
-    "@refinedev/core": "^5.0.1",
+    "@refinedev/core": "^5.0.8",
     "@refinedev/react-hook-form": "^5.0.0",
     "@refinedev/react-router": "^2.0.0",
     "@refinedev/react-table": "^6.0.0",
