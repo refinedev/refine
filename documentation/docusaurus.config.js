@@ -41,7 +41,7 @@ const siteConfig = {
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
-  favicon: "assets/favicon.ico",
+  favicon: "assets/favicon.svg",
   onBrokenLinks: "warn",
   scripts: [
     "https://platform.twitter.com/widgets.js",
