@@ -258,13 +258,13 @@ a:has(> code) {
 }
 
 a:has(> code) code {
-  @apply text-sky-700 dark:text-sky-400 !align-baseline;
-  @apply bg-sky-100 dark:bg-sky-950;
+  @apply !text-sky-700 dark:!text-sky-400 !align-baseline;
+  @apply !bg-sky-100 dark:!bg-sky-950;
 }
 
 a:has(> code):hover code {
-  @apply bg-sky-200 dark:bg-sky-400;
-  @apply dark:text-white;
+  @apply !bg-sky-200 dark:!bg-sky-400;
+  @apply dark:!text-white;
 }
 
 p:has(> code) code {
