@@ -185,7 +185,7 @@ return (
 
 ### mutation
 
-Returns the result of either the [`useCreate`](/core/docs/data/hooks/use-create) or the [`useCreateMany`](/core/docs/data/hooks/use-create) hook.
+Returns the result of either the [`useCreate`](/core/docs/data/hooks/use-create/) or the [`useCreateMany`](/core/docs/data/hooks/use-create/) hook.
 
 ## FAQ
 

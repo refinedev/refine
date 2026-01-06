@@ -137,9 +137,9 @@ The upgrade to TanStack Query v5 means your data management layer is built on th
 Ready to upgrade? Our automated migration makes it super easy:
 
 1. Run the codemod: `npx @refinedev/codemod@latest refine4-to-refine5`
-2. Check our [migration guide](/core/docs/migration-guide/4x-to-5x) for any edge cases
+2. Check our [migration guide](/core/docs/migration-guide/4x-to-5x/) for any edge cases
 
-For detailed technical information, see our [complete migration guide](/core/docs/migration-guide/4x-to-5x).
+For detailed technical information, see our [complete migration guide](/core/docs/migration-guide/4x-to-5x/).
 
 ## Conclusion
 

@@ -3,7 +3,7 @@ title: Edit
 swizzle: true
 ---
 
-`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button).
+`<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a [`<RefreshButton>`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button/).
 
 We will show what `<Edit>` does using properties with examples.
 
@@ -155,7 +155,7 @@ render(
 ```
 
 :::simple Good to know
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 :::
 
 ## Properties
@@ -342,13 +342,13 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/material-ui/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/material-ui/components/buttons/save-button/)
 
 ### canDelete and deleteButtonProps
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/core/docs/data/hooks/use-delete) method provided by the [`dataProvider`](/core/docs/data/data-provider).
+When clicked on, the delete button executes the [`useDelete`](/core/docs/data/hooks/use-delete/) method provided by the [`dataProvider`](/core/docs/data/data-provider/).
 
 ```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);
@@ -473,7 +473,7 @@ render(
 
 ### mutationMode
 
-Determines which mode mutation will have while executing [`<DeleteButton>`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button).
+Determines which mode mutation will have while executing [`<DeleteButton>`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button/).
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);
@@ -1659,11 +1659,11 @@ contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-con
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
 headerButtons-default="[`ListButton`](/core/docs/ui-integrations/material-ui/components/buttons/list-button/) and [`RefreshButton`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
-deleteButtonProps-type="[`DeleteButtonProps`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button)"
+deleteButtonProps-type="[`DeleteButtonProps`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button/)"
 saveButtonProps-type="[`SaveButtonProps`](/core/docs/ui-integrations/material-ui/components/buttons/save-button/)"
 footerButtons-default="[`SaveButton`](/core/docs/ui-integrations/material-ui/components/buttons/save-button/) and [`DeleteButton`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button/)"
 footerButtonsProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
-breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb)"
+breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />

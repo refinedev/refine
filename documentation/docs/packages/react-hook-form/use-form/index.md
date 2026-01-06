@@ -286,7 +286,7 @@ export const PostEdit: React.FC = () => {
 };
 ```
 
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/core/docs/packages/list-of-packages).
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/core/docs/packages/list-of-packages/).
 
 ## Properties
 
@@ -309,7 +309,7 @@ values={[
 
 `action: "create"` is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](/core/docs/data/hooks/use-create) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/core/docs/data/hooks/use-create/) under the hood for mutations on create mode.
 
 In the following example, we'll show how to use `useForm` with `action: "create"`.
 
@@ -394,7 +394,7 @@ render(
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/core/docs/data/hooks/use-update).
+It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one/) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/core/docs/data/hooks/use-update/).
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
@@ -480,7 +480,7 @@ render(
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/core/docs/data/hooks/use-create).
+It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one/) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/core/docs/data/hooks/use-create/).
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`.
 
@@ -653,7 +653,7 @@ It's a callback function that will be called after the mutation is successful.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create) or [`useUpdate`](/core/docs/data/hooks/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create/) or [`useUpdate`](/core/docs/data/hooks/use-update/) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -674,7 +674,7 @@ It's a callback function that will be called after the mutation is failed.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create) or [`useUpdate`](/core/docs/data/hooks/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create/) or [`useUpdate`](/core/docs/data/hooks/use-update/) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -726,7 +726,7 @@ useForm({
 Mutation mode determines which mode the mutation runs with. Mutations can run under three different modes: `pessimistic`, `optimistic` and `undoable`. Default mode is `pessimistic`.
 Each mode corresponds to a different type of user experience.
 
-> For more information about mutation modes, please check [Mutation Mode documentation](/core/docs/advanced-tutorials/mutation-mode) page.
+> For more information about mutation modes, please check [Mutation Mode documentation](/core/docs/advanced-tutorials/mutation-mode/) page.
 
 ```tsx
 useForm({
@@ -858,7 +858,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 > Works only in `action: "edit"` or `action: "clone"` mode.
 
-in `edit` or `clone` mode, Refine uses [`useOne`](/core/docs/data/hooks/use-one) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) options by passing `queryOptions` property.
+in `edit` or `clone` mode, Refine uses [`useOne`](/core/docs/data/hooks/use-one/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) options by passing `queryOptions` property.
 
 ```tsx
 useForm({
@@ -874,7 +874,7 @@ useForm({
 
 > This option is only available when `action: "create"` or `action: "clone"`.
 
-In `create` or `clone` mode, Refine uses [`useCreate`](/core/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `createMutationOptions` property.
+In `create` or `clone` mode, Refine uses [`useCreate`](/core/docs/data/hooks/use-create/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `createMutationOptions` property.
 
 ```tsx
 useForm({
@@ -890,7 +890,7 @@ useForm({
 
 > This option is only available when `action: "edit"`.
 
-In `edit` mode, Refine uses [`useUpdate`](/core/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
+In `edit` mode, Refine uses [`useUpdate`](/core/docs/data/hooks/use-update/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `updateMutationOptions` property.
 
 ```tsx
 useForm({
@@ -1033,7 +1033,7 @@ useForm({
 
 ### query
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/core/docs/data/hooks/use-one) and set the returned values as the `query` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/core/docs/data/hooks/use-one/) and set the returned values as the `query` property.
 
 ```tsx
 const {
@@ -1045,7 +1045,7 @@ const { data } = query;
 
 ### mutation
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/core/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/core/docs/data/hooks/use-update) and set the resulting values as the `mutation` property."
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/core/docs/data/hooks/use-create/). When in `"edit"` mode, it will call [`useUpdate`](/core/docs/data/hooks/use-update/) and set the resulting values as the `mutation` property."
 
 ```tsx
 const {
@@ -1120,7 +1120,7 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/core/docs/data/hooks/use-invalidate) hook.
+You can invalidate other resources with help of [`useInvalidate`](/core/docs/data/hooks/use-invalidate/) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the currentPage resource.
 
@@ -1196,7 +1196,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 
 <PropsTable module="@refinedev/react-hook-form/useForm" />
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/docs/core/refine-component)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/docs/core/refine-component/)>** component.
 
 :::simple External Props
 

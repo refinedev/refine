@@ -10,15 +10,15 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/core/docs/data/hooks/use-list) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`](/core/docs/data/hooks/use-list/) for the fetch. Since it is designed to be headless, it expects you to handle the UI.
 
 :::simple Extended Versions
 
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
 
-- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/core/docs/examples/table/antd/useTable)
-- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/core/docs/examples/table/mui/useDataGrid)
+- [React Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages/) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table/) - [Example](/core/docs/examples/table/antd/useTable/)
+- [Material UI Table](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/) - [Example](/core/docs/examples/table/mui/useDataGrid/)
 
 :::
 
@@ -103,7 +103,7 @@ const MyComponent = () => {
 
 ## Realtime Updates
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -336,7 +336,7 @@ useTable({
 
 ### queryOptions
 
-`useTable` uses [`useList`](/core/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/data/hooks/use-list/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -398,7 +398,7 @@ const myDataProvider = {
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useTable` can call `open` function from [`NotificationProvider`][notification-provider] to show a success notification. With this prop, you can customize the success notification.
 
@@ -417,7 +417,7 @@ useTable({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useTable` will call `open` function from [`NotificationProvider`][notification-provider] to show an error notification. With this prop, you can customize the error notification.
 
@@ -436,7 +436,7 @@ useTable({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -449,7 +449,7 @@ useTable({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -464,7 +464,7 @@ useTable({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
@@ -499,7 +499,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### tableQuery
 
-Returned values from [`useList`](/core/docs/data/hooks/use-list) hook.
+Returned values from [`useList`](/core/docs/data/hooks/use-list/) hook.
 
 ### sorters
 
@@ -576,7 +576,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/core/docs/data/hooks/use-many) hook to fetch relational data.
+You can use [`useMany`](/core/docs/data/hooks/use-many/) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 

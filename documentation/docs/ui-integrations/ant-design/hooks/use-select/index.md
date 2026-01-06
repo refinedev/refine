@@ -14,7 +14,7 @@ import CrudLivePreview from "./\_crud-live-preview.md";
 
 This hook uses the `useList` hook for fetching data.
 
-> For more information, refer to the [useList documentation &#8594](/core/docs/data/hooks/use-list)
+> For more information, refer to the [useList documentation &#8594](/core/docs/data/hooks/use-list/)
 
 ## Usage
 
@@ -27,7 +27,7 @@ Here is a basic example that uses the `useSelect` hook.
 
 ## Realtime Updates
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 When the `useSelect` hook is mounted, it passes some parameters (`channel`, `resource` etc.) to the `subscribe` method from the `liveProvider` that allow you to subscribe to live updates.
 
@@ -37,7 +37,7 @@ When the `useSelect` hook is mounted, it passes some parameters (`channel`, `res
 
 `resource` will be passed to the `getList` method from the `dataProvider` as parameter via the `useList` hook. The parameter is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getList` method.
 
-See the [creating a data provider documentation](/core/docs/data/data-provider) for an example of how resource are handled.
+See the [creating a data provider documentation](/core/docs/data/data-provider/) for an example of how resource are handled.
 
 ```tsx
 useSelect({
@@ -191,7 +191,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useMany` documentation &#8594](/core/docs/data/hooks/use-many)
+> For more information, refer to the [`useMany` documentation &#8594](/core/docs/data/hooks/use-many/)
 
 ### debounce
 
@@ -359,7 +359,7 @@ useSelect({
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useSelect` can call the `open` function from `NotificationProvider` to show a success notification. This prop allows you to customize the success notification message
 
@@ -377,7 +377,7 @@ useSelect({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useSelect` will call the `open` function from `NotificationProvider` to show an error notification. This prop allows you to customize the error notification message
 
@@ -395,7 +395,7 @@ useSelect({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 This property determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -409,7 +409,7 @@ useSelect({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 The callback function that is executed when new events from a subscription are arrived.
 
@@ -423,7 +423,7 @@ useSelect({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
@@ -463,7 +463,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/data/hooks/use-many), gets the data and mark as selected.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/data/hooks/use-many/), gets the data and mark as selected.
 
 <DefaultValueLivePreview />
 

@@ -72,7 +72,7 @@ We'll build a simple CRUD app with Refine and use Supabase as a data provider. W
 
 We are assuming that you have already know how Refine works. If not, please check out the [Tutorial](/core/tutorial) section first.
 
-[Refer to docs for more information about data provider &#8594](/core/docs/data/data-provider)
+[Refer to docs for more information about data provider &#8594](/core/docs/data/data-provider/)
 
 [Discover the +15 most popular backend service data providers supported out-of-the-box by Refine &#8594](/core/integrations/)
 
@@ -196,7 +196,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, Refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](/core/docs/data/hooks/use-create)
+[Refer to documentation to learn more about how to use data hooks &#8594](/core/docs/data/hooks/use-create/)
 
 ## Understanding the Auth Provider
 
@@ -208,7 +208,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a Refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/core/docs/authentication/auth-provider)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/core/docs/authentication/auth-provider/)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
@@ -465,7 +465,7 @@ export default authProvider;
 
 :::tip
 
-Auth provider functions are also consumed by [Refine authorization hooks](/core/docs/authentication/hooks/use-login). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [Refine authorization hooks](/core/docs/authentication/hooks/use-login/). Since this is out of scope of this tutorial, we'll not cover them for now
 
 :::
 
@@ -1137,7 +1137,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 We'll show how to implement third party logins in the next sections.
 
-[Refer to AuthPage docs for more information &#8594](/core/docs/ui-integrations/ant-design/components/auth-page)
+[Refer to AuthPage docs for more information &#8594](/core/docs/ui-integrations/ant-design/components/auth-page/)
 
 Sign in the app with followings credentials:
 
@@ -1520,7 +1520,7 @@ const { tableProps, sorter } = useTable<IUser>({
 
 `meta` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-Refine's [useMany](/core/docs/data/hooks/use-many) hook accepts `meta` property and uses `getMany` method of data provider.
+Refine's [useMany](/core/docs/data/hooks/use-many/) hook accepts `meta` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({

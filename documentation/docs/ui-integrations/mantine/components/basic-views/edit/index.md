@@ -114,7 +114,7 @@ render(
 ```
 
 :::simple Good to know
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 :::
 
 ## Properties
@@ -310,7 +310,7 @@ render(
 );
 ```
 
-> For more information, refer to the documentations [`<DeleteButton>` &#8594](/core/docs/ui-integrations/mantine/components/buttons/delete-button) and [`usePermission` &#8594](/core/docs/authentication/hooks/use-permissions)
+> For more information, refer to the documentations [`<DeleteButton>` &#8594](/core/docs/ui-integrations/mantine/components/buttons/delete-button/) and [`usePermission` &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### resource
 
@@ -514,7 +514,7 @@ render(
 );
 ```
 
-> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode)
+> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode/)
 
 ### dataProviderName
 
@@ -739,7 +739,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb/)
 
 ### wrapperProps
 

@@ -80,7 +80,7 @@ render(
 ```
 
 :::simple Good to know
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 :::
 
 ## Properties
@@ -194,9 +194,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/docs/data/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/docs/data/data-provider/) and the edit button redirects the user to the record edit page.
 
-> For more information, refer to the [`<DeleteButton>`](/core/docs/ui-integrations/ant-design/components/buttons/delete-button) and the [`<EditButton>`](/core/docs/ui-integrations/ant-design/components/buttons/edit-button) documentation.
+> For more information, refer to the [`<DeleteButton>`](/core/docs/ui-integrations/mantine/components/buttons/delete-button/) and the [`<EditButton>`](/core/docs/ui-integrations/mantine/components/buttons/edit-button/) documentation.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -264,7 +264,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### deleteButtonProps
 
@@ -699,7 +699,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/mantine/components/breadcrumb/)
 
 ### wrapperProps
 

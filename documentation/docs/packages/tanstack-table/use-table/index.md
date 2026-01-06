@@ -10,7 +10,7 @@ import FilteringLivePreview from "../examples/\_partial-filtering-live-preview.m
 import RelationalLivePreview from "../examples/\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with Refine. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/data/hooks/use-list) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-table][refine-react-table] that allows you to use the TanStack Table library with Refine. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/data/hooks/use-list/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -98,7 +98,7 @@ const MyComponent = () => {
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider).
+> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider/).
 
 When the `useTable` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -348,7 +348,7 @@ useTable({
 
 ### queryOptions
 
-`useTable` uses [`useList`](/core/docs/data/hooks/use-list) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/data/hooks/use-list/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -450,7 +450,7 @@ useTable({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 For more information about live mode, please check [Live / Realtime](/core/docs/realtime/live-provider#livemode) page.
@@ -465,7 +465,7 @@ useTable({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -481,7 +481,7 @@ useTable({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required.
 
 Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
@@ -493,7 +493,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 #### tableQuery
 
-Returned values from [`useList`](/core/docs/data/hooks/use-list) hook.
+Returned values from [`useList`](/core/docs/data/hooks/use-list/) hook.
 
 ### sorters
 
@@ -561,7 +561,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/core/docs/data/hooks/use-many) hook to fetch relational data.
+You can use [`useMany`](/core/docs/data/hooks/use-many/) hook to fetch relational data.
 
 <RelationalLivePreview/>
 

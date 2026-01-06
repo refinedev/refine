@@ -369,7 +369,7 @@ deleteOne: async ({ resource, id, variables, meta }) => {
 | variables | `TVariables[]`               | `{}`    |
 | meta?     | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/data/hooks/use-delete) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/data/hooks/use-delete/) to type `variables`.
 
 ### getOne <PropTag required />
 
@@ -451,7 +451,7 @@ custom: async ({
 
 ## Bulk Actions
 
-Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/core/docs/core/hooks/utilities/use-import) and [`export`](/core/docs/core/hooks/utilities/use-export), and are also atomic, meaning that they are treated as a single unit.
+Bulk actions are actions that can be performed on multiple items at once to improve speed and efficiency. They are commonly used in admin panels. They can be used for data [`import`](/core/docs/core/hooks/utilities/use-import/) and [`export`](/core/docs/core/hooks/utilities/use-export/), and are also atomic, meaning that they are treated as a single unit.
 
 If your API supports bulk actions, you can implement them in your data provider.
 

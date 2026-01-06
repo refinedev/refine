@@ -252,7 +252,7 @@ const NavLinksDesktop = ({
       />
       <Link
         key="Refine Home"
-        to="https://ai.refine.dev/"
+        to="https://refine.dev/"
         className={clsx(
           "whitespace-nowrap",
           "font-light",
@@ -386,7 +386,7 @@ const MobileMenuModal = ({ isOpen, onClose }: MobileMenuModalProps) => {
 
         {/* Refine Home Link */}
         <Link
-          to="https://ai.refine.dev/"
+          to="https://refine.dev/"
           onClick={onClose}
           className={clsx(
             "flex",

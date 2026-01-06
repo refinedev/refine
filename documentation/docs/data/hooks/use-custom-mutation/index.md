@@ -5,15 +5,15 @@ source: packages/core/src/data/hooks/useCustomMutation.ts
 
 `useCustomMutation` is used when sending custom mutation requests using the TanStack Query advantages. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `custom` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider) which is passed to `<Refine>`.
+It uses the `custom` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider/) which is passed to `<Refine>`.
 
 :::caution Use Cases
 
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/core/docs/data/hooks/use-create), [useUpdate](/core/docs/data/hooks/use-update) or [useDelete](/core/docs/data/hooks/use-delete).
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. Following hooks should be used for these instead: [useCreate](/core/docs/data/hooks/use-create/), [useUpdate](/core/docs/data/hooks/use-update/) or [useDelete](/core/docs/data/hooks/use-delete/).
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/core/docs/data/hooks/use-custom) hook.
+If you need to custom query request, use the [useCustom](/core/docs/data/hooks/use-custom/) hook.
 
 :::
 
@@ -146,7 +146,7 @@ mutate({
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustomMutation` calls the `open` function from `NotificationProvider`:
 
@@ -166,7 +166,7 @@ mutate({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 

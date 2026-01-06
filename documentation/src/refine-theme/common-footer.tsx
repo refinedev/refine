@@ -18,7 +18,7 @@ export const CommonFooter = () => {
         )}
       >
         <Link
-          to="/core"
+          to="/core/"
           className={clsx(
             "appearance-none",
             "hover:no-underline",
@@ -35,12 +35,13 @@ export const CommonFooter = () => {
           )}
         >
           <a
-            href="https://ai.refine.dev/"
+            href="https://refine.dev/"
             className={clsx("hover:no-underline", "md:mr-12")}
           >
             Refine Home
           </a>
           <Link
+            to="/core/tutorial/essentials/intro/"
             className={clsx(
               "appearance-none",
               "hover:no-underline",

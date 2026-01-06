@@ -113,7 +113,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 
 :::
 
@@ -317,7 +317,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
@@ -379,7 +379,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/material-ui/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/material-ui/components/breadcrumb/)
 
 ### wrapperProps
 
@@ -750,7 +750,7 @@ contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-con
 headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
 headerButtons-default="[`CreateButton`](/core/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
-breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb)"
+breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb/)"
 createButtonProps-type="[`CreateButtonProps`](/core/docs/ui-integrations/material-ui/components/buttons/create-button/)"
 />
 

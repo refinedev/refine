@@ -962,7 +962,7 @@ const PostCreatePage: React.FC = () => {
 
 ### refineCoreProps
 
-All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#properties) docs.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/#properties) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1087,7 +1087,7 @@ useStepsForm({
 
 ## Return Values
 
-All [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form#return-values) docs.
+All [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form/) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/mantine/hooks/use-form/#return-values) docs.
 
 ### steps
 

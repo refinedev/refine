@@ -6,7 +6,7 @@ Integrating Refine into an existing project is as simple as installing `@refined
 
 Once imported, `Refine` component provides necessary context to all children components for **Refine** hooks and components to work.
 
-Only required prop for `Refine` component is `dataProvider`. You can read more about data provider [here](/core/docs/data/data-provider).
+Only required prop for `Refine` component is `dataProvider`. You can read more about data provider [here](/core/docs/data/data-provider/).
 
 ## Quickstart
 
@@ -75,7 +75,7 @@ As you can see in the example below, wrapping `_app.tsx` file with `Refine` comp
 
 In the following examples below, we will integrate Refine into `/refine` route of an existing application.
 
-See the [Routing Guide](/core/docs/guides-concepts/routing) for more information.
+See the [Routing Guide](/core/docs/guides-concepts/routing/) for more information.
 
 <Tabs wrapContent={false} defaultValue="react-router">
 
@@ -147,7 +147,7 @@ First, we need to install necessary packages:
 
 In the following examples below, as a follow-up from the previous router examples, we will add Ant Design layout from `@refinedev/antd` package.
 
-See the [UI Libraries guide](/core/docs/guides-concepts/ui-libraries) for more information.
+See the [UI Libraries guide](/core/docs/guides-concepts/ui-libraries/) for more information.
 
 <Tabs wrapContent={false} defaultValue="vite">
 
@@ -219,13 +219,13 @@ If want to use Refine with your existing application, probably you already have 
 
 :::simple
 
-If you want to handle Authentication with Refine from scratch, check the [Authentication Guide](/core/docs/guides-concepts/authentication)
+If you want to handle Authentication with Refine from scratch, check the [Authentication Guide](/core/docs/guides-concepts/authentication/)
 
 :::
 
 ### check Method
 
-Once you provide the `check` method, you can use [Authenticated component](/core/docs/authentication/components/authenticated) and/or [useIsAuthenticated hook](/core/docs/authentication/hooks/use-is-authenticated) in your application. Refine will redirect user to given login page for unauthenticated users.
+Once you provide the `check` method, you can use [Authenticated component](/core/docs/authentication/components/authenticated/) and/or [useIsAuthenticated hook](/core/docs/authentication/hooks/use-is-authenticated/) in your application. Refine will redirect user to given login page for unauthenticated users.
 
 ```tsx
 import { AuthProvider } from "@refinedev/core";
@@ -265,7 +265,7 @@ Following methods are optional, but could be useful for various use-cases.
 
 #### getIdentity Method
 
-[getIdentity method](/core/docs/authentication/auth-provider/#getidentity) can be used to enable [useGetIdentity hook](/core/docs/authentication/hooks/use-get-identity).
+[getIdentity method](/core/docs/authentication/auth-provider/#getidentity) can be used to enable [useGetIdentity hook](/core/docs/authentication/hooks/use-get-identity/).
 
 This hook is also used to rendering current user information in the header of UI Integration layouts.
 
@@ -280,7 +280,7 @@ See [Error Handling section in Authentication Guide](/core/docs/guides-concepts/
 
 #### logout
 
-[logout method](/core/docs/authentication/auth-provider#logout) can be used to enable [useLogout hook](/core/docs/authentication/hooks/use-logout)
+[logout method](/core/docs/authentication/auth-provider#logout) can be used to enable [useLogout hook](/core/docs/authentication/hooks/use-logout/)
 
 This hook is also used to render `Logout` button in the sider of UI Integration layouts.
 

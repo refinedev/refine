@@ -16,7 +16,7 @@ Refine's **flexible architecture** allows you to easily implement various authen
 
 - [Google](https://developers.google.com/identity/protocols/oauth2)
 - [Amazon Cognito](https://aws.amazon.com/cognito/)
-- [Okta](https://www.okta.com/) (Included in [Refine's Enterprise Edition](/core/docs/enterprise-edition/okta))
+- [Okta](https://www.okta.com/) (Included in [Refine's Enterprise Edition](/core/docs/enterprise-edition/okta/))
 - [Auth0](https://auth0.com/)
 
 You can implement your own authentication system or use one of the [supported auth providers](#supported-auth-providers).
@@ -91,7 +91,7 @@ Additionally, in this example, we will implement `authProvider.logout` and `auth
 
 Refine also provides `<Authenticated />` component to easily handle authentication state. You can use this component to protect your routes and conditionally render your components.
 
-[To learn more about the `<Authenticated />` component, check out the reference page.](/core/docs/authentication/components/authenticated)
+[To learn more about the `<Authenticated />` component, check out the reference page.](/core/docs/authentication/components/authenticated/)
 
 ```tsx
 import { Authenticated } from "@refinedev/core";
@@ -132,11 +132,11 @@ Once you implement `authProvider.onError` method, you can call this method with 
 
 While Refine itself is headless, it offers `<AuthPage />` Integrations for popular UI libraries for:
 
-- [Headless](/core/docs/authentication/components/auth-page)
-- [Ant Design](/core/docs/ui-integrations/ant-design/components/auth-page)
-- [Material UI](/core/docs/ui-integrations/material-ui/components/auth-page)
-- [Chakra UI](/core/docs/ui-integrations/chakra-ui/components/auth-page)
-- [Mantine](/core/docs/ui-integrations/mantine/components/auth-page)
+- [Headless](/core/docs/authentication/components/auth-page/)
+- [Ant Design](/core/docs/ui-integrations/ant-design/components/auth-page/)
+- [Material UI](/core/docs/ui-integrations/material-ui/components/auth-page/)
+- [Chakra UI](/core/docs/ui-integrations/chakra-ui/components/auth-page/)
+- [Mantine](/core/docs/ui-integrations/mantine/components/auth-page/)
 
 With `<AuthPage />` component you can easily handle authentication pages (login, register, update password, forgot password) and speed up your development process.
 
@@ -186,7 +186,7 @@ import { MantineAuth } from './auth-pages/mantine';
 
 ### Notification <GuideBadge id="notification/notification-provider" />
 
-Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/core/docs/notification/notification-provider) to the `<Refine />` component.
+Refine provides a automatic notification system to notify users about the authentication errors. To use this feature, you need to pass [`notificationProvider`](/core/docs/notification/notification-provider/) to the `<Refine />` component.
 
 Once you provide `notificationProvider`, Refine will automatically notify users about the authentication errors on following auth provider methods:
 
@@ -218,7 +218,7 @@ export const authProvider: AuthProvider = {
 
 ## Router Integrations <GuideBadge id="guides-concepts/routing/" />
 
-Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/core/docs/routing/router-provider) to the `<Refine />` component.
+Refine provides a automatic routing system to redirect users to the desired page after the authentication process. To use this feature, you need to pass [`routerProvider`](/core/docs/routing/router-provider/) to the `<Refine />` component.
 
 Once you provide `routerProvider`, Refine will automatically redirect users to the desired page on following auth provider methods:
 
@@ -268,7 +268,7 @@ You can use the following oAuth provider implementations as a starting point for
 - [Strapi](https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi-v4)
 - [Auth.js](https://github.com/refinedev/refine/tree/main/examples/with-nextjs-next-auth)
 
-[To learn more about the `authProvider` interface, check out the reference page.](/core/docs/authentication/auth-provider)
+[To learn more about the `authProvider` interface, check out the reference page.](/core/docs/authentication/auth-provider/)
 
 ## Supported Auth Providers
 
@@ -280,7 +280,7 @@ You can use the following oAuth provider implementations as a starting point for
 
 To better understand the auth provider interface, we have created an example that demonstrates how the required methods are implemented. For more comprehensive and diverse examples, you can refer to the [supported auth providers](#supported-auth-providers) section.
 
-[To learn more about the `authProvider` interface, check out the reference page.](/core/docs/authentication/auth-provider)
+[To learn more about the `authProvider` interface, check out the reference page.](/core/docs/authentication/auth-provider/)
 
 <AuthProviderInterface />
 

@@ -6,11 +6,11 @@ import I18nHeadless from './i18n-headless.tsx';
 import TranslationFileEN from '../../partials/\_partial-translation-file-en.md';
 import TranslationFileDE from '../../partials/\_partial-translation-file-de.md';
 
-Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. Refine can work with any i18n framework, but needs an [`i18nProvider`](/core/docs/i18n/i18n-provider) to be created based on the chosen library.
+Internationalization (i18n) is a process that allows software applications to be localized for different regions and languages. Refine can work with any i18n framework, but needs an [`i18nProvider`](/core/docs/i18n/i18n-provider/) to be created based on the chosen library.
 
 ## i18n Provider
 
-[`i18nProvider`](/core/docs/i18n/i18n-provider) centralizes localization process in Refine applications. With flexible interface you can use any i18n library you want.
+[`i18nProvider`](/core/docs/i18n/i18n-provider/) centralizes localization process in Refine applications. With flexible interface you can use any i18n library you want.
 
 Here is the basic example `i18nProvider` with [react-i18next](https://react.i18next.com/). We will explain the details in the following sections.
 

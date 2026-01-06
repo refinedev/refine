@@ -894,7 +894,7 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useModalForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component/)>** component. `useModalForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends on which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). If `action` is `edit` instead, `redirect`s default value is `list`.
 

@@ -13,7 +13,7 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 - GraphQL Data Provider expects [`@urql/core`](https://github.com/urql-graphql/urql) client instance.
 - You are responsible for passing `gqlQuery`, `gqlMutation`. `gql` export of `@urql/core` can be used to write GraphQL Operations.
-- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching) guide.
+- To learn more about data fetching in Refine, check out the [Data Fetching](/core/docs/guides-concepts/data-fetching/) guide.
 
 :::
 

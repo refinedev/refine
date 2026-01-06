@@ -104,7 +104,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/cli/)
 
 :::
 
@@ -325,13 +325,13 @@ render(
 
 The create button redirects to the create page of the resource according to the value it reads from the URL.
 
-> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);

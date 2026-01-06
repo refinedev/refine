@@ -5,11 +5,11 @@ swizzle: true
 
 `<DeleteButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
 
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/core/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/core/docs/data/data-provider).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/core/docs/data/hooks/use-delete/) method provided by your [`dataProvider`](/core/docs/data/data-provider/).
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 
 :::
 
@@ -118,7 +118,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/core/docs/data/hooks/use-delete) method and then the record whose resource is `post` and whose id is `1` gets deleted.
+Clicking the button will trigger the [`useDelete`](/core/docs/data/hooks/use-delete/) method and then the record whose resource is `post` and whose id is `1` gets deleted.
 
 ### resource
 
@@ -273,7 +273,7 @@ interface IPost {
 }
 ```
 
-> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode)
+> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode/)
 
 ### hideText
 
@@ -314,7 +314,7 @@ render(
 
 ### accessControl
 
-This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/core/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/core/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/core/docs/authorization/access-control-provider/) is provided to [`<Refine/>`](/core/docs/core/refine-component/)
 
 ```tsx
 import { DeleteButton } from "@refinedev/mui";

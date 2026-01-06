@@ -200,9 +200,9 @@ We import and use Material UI components from Refine's `@refinedev/mui` to show 
 
 [`<DataGrid/>`](https://mui.com/x/react-data-grid/components/#main-content) is a native Material UI component. It renders records row by row as a table. `<DataGrid/>` expects a columns prop as a required.
 
-Refine hook [`useDataGrid`](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
+Refine hook [`useDataGrid`](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/) fetches data from API and wraps them with various helper hooks required for the `<DataGrid/>` component. Data interaction functions like sorting, filtering, and pagination will be instantly available on the `<DataGrid/>` with this single line of code.
 
-[Refer to Refine's useDataGrid hook doc to more information&#8594](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Refer to Refine's useDataGrid hook doc to more information&#8594](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/)
 
 `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>` field prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate Field component for the given data type.
 
@@ -218,7 +218,7 @@ Note you will need `src/App.tsx` file to find your pages and posts. In the `/pag
 export * from "./list";
 ```
 
-[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](/core/docs/ui-integrations/material-ui/introduction)
+[Refer to official Refine's Material UI tutorial for detailed explanations and examples &#8594](/core/docs/ui-integrations/material-ui/introduction/)
 
 <br/>
 <div>
@@ -354,7 +354,7 @@ To show category field in table, we need to add new column to the PostList compo
 
 We use benefits of Strapi V4 relational population feature by using `populate` parameter. It handles to getting relational data automatically.
 
-[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](/core/docs/guides-concepts/data-fetching)
+[If you use another REST API that relational populations need to be handled manually you can check the example at the link &#8594](/core/docs/guides-concepts/data-fetching/)
 
 :::
 

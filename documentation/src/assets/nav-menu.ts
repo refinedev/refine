@@ -26,19 +26,19 @@ export const POPOVERMENUS: NavMenu[] = [
       {
         label: "Integrations",
         description: "Discover the Refine ecosystem",
-        link: "/core/integrations",
+        link: "/core/integrations/",
         icon: IntegrationsIcon,
       },
       {
         label: "Tutorial",
         description: "Your first Refine application",
-        link: "/core/tutorial/essentials/intro",
+        link: "/core/tutorial/essentials/intro/",
         icon: TutorialIcon,
       },
       {
         label: "Templates",
         description: "Ready-made examples for your project",
-        link: "/core/templates",
+        link: "/core/templates/",
         icon: ExamplesIcon,
       },
       {
@@ -58,7 +58,7 @@ export const POPOVERMENUS: NavMenu[] = [
       {
         label: "Hire an expert",
         description: "Find a trusted partner",
-        link: "/core/become-a-refine-expert",
+        link: "/core/become-a-refine-expert/",
         icon: ExpertIcon,
       },
       {
@@ -70,23 +70,23 @@ export const POPOVERMENUS: NavMenu[] = [
       {
         label: "Use cases",
         description: "Inspiring projects built with Refine",
-        link: "/core/use-cases",
+        link: "/core/use-cases/",
         icon: UseCasesIcon,
       },
       {
         label: "refineweek ft. Supabase",
         description: "The official Refine event",
-        link: "/core/week-of-refine",
+        link: "/core/week-of-refine/",
         icon: RefineWeekIcon,
       },
       {
         label: "refineweek ft. Strapi",
         description: "The official Refine event",
-        link: "/core/week-of-refine-strapi",
+        link: "/core/week-of-refine-strapi/",
         icon: RefineWeekIcon,
       },
     ],
-    imageLink: "/examples",
+    imageLink: "/examples/",
     imageURL:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/community.png",
   },
@@ -96,7 +96,7 @@ export const POPOVERMENUS: NavMenu[] = [
       {
         label: "About Us",
         description: "Team & company information",
-        link: "/core/about",
+        link: "/core/about/",
         icon: AboutUsIcon,
       },
       {
@@ -106,7 +106,7 @@ export const POPOVERMENUS: NavMenu[] = [
         icon: RefineIcon,
       },
     ],
-    imageLink: "/about",
+    imageLink: "/about/",
     imageURL:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/landing/popovers/company.png",
   },

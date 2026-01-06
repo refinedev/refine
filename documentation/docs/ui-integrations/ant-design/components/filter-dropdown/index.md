@@ -63,7 +63,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 
 <Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/category_filter-dropdown.png" alt="Show record action" />
 
-We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/core/docs/ui-integrations/ant-design/hooks/use-select) hook can be used to populate the props of `<Select>`
+We added category options for `<Select>` manually for the sake of simplicity but the [useSelect](/core/docs/ui-integrations/ant-design/hooks/use-select/) hook can be used to populate the props of `<Select>`
 
 ```tsx
 const { selectProps: categorySelectProps } = useSelect<ICategory>({

@@ -9,8 +9,8 @@ Refine provides an integration package for [React Hook Form][react-hook-form] li
 This package exports following hooks to manage your forms:
 
 - [`useForm`][use-form-react-hook-form]
-- [`useModalForm`](/core/docs/packages/list-of-packages)
-- [`useStepsForm`](/core/docs/packages/list-of-packages)
+- [`useModalForm`](/core/docs/packages/list-of-packages/)
+- [`useStepsForm`](/core/docs/packages/list-of-packages/)
 
 ## Installation
 

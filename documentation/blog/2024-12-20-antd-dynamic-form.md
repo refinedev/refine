@@ -365,7 +365,7 @@ export default function UserList() {
 }
 ```
 
-[`useTable`](/core/docs/ui-integrations/ant-design/hooks/use-table) in the code above is a Refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
+[`useTable`](/core/docs/ui-integrations/ant-design/hooks/use-table/) in the code above is a Refine hook that fetches data from an API and wraps it with various helper hooks that make it compatible with Ant's `<Table>` component.
 
 In the code above, we're using the `useTable` hook to fetch data from our endpoint and pass its value to the Table component via the `tableProps` property. Then we set unique keys for each record from the API using the `rowkey` prop.
 
@@ -437,7 +437,7 @@ export default function UserCreate() {
 }
 ```
 
-[`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) is a Refine hook for handling form data. It offers adapters that let Refine integrate with Ant design's `<Form>` component.
+[`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) is a Refine hook for handling form data. It offers adapters that let Refine integrate with Ant design's `<Form>` component.
 
 In the code above, we destructured the **formProps** and `saveButtonProps` properties from the `useForm` hook, then we passed them to the `<Create>` and `<Form>` components, respectively.
 

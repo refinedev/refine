@@ -937,7 +937,7 @@ render(<App />);
 
 If you want to use `notistack` snackbars with the default style, simply wrap `<Refine>` in `<SnackbarProvider>`.
 
-If you want to customize the default layout elements provided with `@refinedev/mui` package, check out the [Custom ThemedLayout](/core/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/mui` package, check out the [Custom ThemedLayout](/core/docs/advanced-tutorials/custom-layout/) tutorial.
 
 [create-refine-app]: /core/docs/getting-started/quickstart
 

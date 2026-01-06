@@ -774,7 +774,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ### refineCoreProps
 
-All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties are also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) properties are also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/#properties) documentation.
 
 ```tsx
 const modalForm = useModalForm({

@@ -21,9 +21,9 @@ Tables are essential in data-intensive applications, serving as the primary way 
 
 [`useTable`][use-table-core] allows us to fetch data according to the sorter, filter, and pagination states. Under the hood, it uses [`useList`][use-list] for the fetch. Its designed to be headless, but Refine offers seamless integration with several popular UI libraries, simplifying the use of their table components.
 
-- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages)) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
-- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table) - [Example](/core/docs/examples/table/antd/useTable)
-- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid) - [Example](/core/docs/examples/table/mui/useDataGrid)
+- [TanStack Table](https://react-table.tanstack.com/) (for Headless, Chakra UI, Mantine) - [Documentation](/core/docs/packages/list-of-packages/)) - [Example](/core/docs/examples/table/tanstack-table/basic-tanstack-table/)
+- [Ant Design Table](https://ant.design/components/table/#header) - [Documentation](/core/docs/ui-integrations/ant-design/hooks/use-table/) - [Example](/core/docs/examples/table/antd/useTable/)
+- [Material UI DataGrid](https://mui.com/x/react-data-grid/) - [Documentation](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/) - [Example](/core/docs/examples/table/mui/useDataGrid/)
 
 ## Basic Usage
 
@@ -51,7 +51,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseAntdTableExample />
 
-[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table)
+[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table/)
 
 </TabItem>
 
@@ -59,7 +59,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 <BaseMaterialUITable />
 
-[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/)
 
 </TabItem>
 
@@ -143,7 +143,7 @@ For example we can fetch product with the name that contains the search value.
 
 <SearchAntdTableExample />
 
-[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table)
+[Check out Ant Design's `useTable` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-table/)
 
 </TabItem>
 
@@ -151,7 +151,7 @@ For example we can fetch product with the name that contains the search value.
 
 <SearchMaterialUI />
 
-[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid)
+[Check out Material UI's `useDataGrid` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/material-ui/hooks/use-data-grid/)
 
 </TabItem>
 

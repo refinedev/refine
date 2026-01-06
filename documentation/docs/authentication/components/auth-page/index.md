@@ -6,7 +6,7 @@ source: packages/core/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from Refine contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/core/docs/authentication/auth-provider) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/core/docs/authentication/auth-provider/) that will be used to handle authentication.
 
 ```css live shared
 body {

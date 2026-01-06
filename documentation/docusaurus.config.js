@@ -240,7 +240,7 @@ const siteConfig = {
         src: "img/refine_logo.png",
       },
       items: [
-        { to: "blog", label: "Blog", position: "left" },
+        { to: "/blog/", label: "Blog", position: "left" },
         {
           type: "docsVersionDropdown",
           position: "right",
@@ -274,15 +274,15 @@ const siteConfig = {
           items: [
             {
               label: "Getting Started",
-              to: "/core/docs",
+              to: "/core/docs/",
             },
             {
               label: "Tutorials",
-              to: "/core/tutorial",
+              to: "/core/tutorial/",
             },
             {
               label: "Blog",
-              to: "blog",
+              to: "/blog/",
             },
           ],
         },
@@ -291,11 +291,11 @@ const siteConfig = {
           items: [
             {
               label: "Examples",
-              to: "/core/docs/examples",
+              to: "/core/docs/examples/",
             },
             {
               label: "Integrations",
-              to: "/core/integrations",
+              to: "/core/integrations/",
             },
           ],
         },
@@ -304,7 +304,7 @@ const siteConfig = {
           items: [
             {
               label: "About",
-              to: "/about",
+              to: "/about/",
             },
           ],
         },

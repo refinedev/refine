@@ -187,7 +187,7 @@ const App: React.FC = () => {
 };
 ```
 
-If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/antd` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout/) tutorial.
 
 ## Example
 

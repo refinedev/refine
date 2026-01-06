@@ -479,7 +479,7 @@ If you still want to use the `useNavigation` hook and its returned functions in 
 
 ### `useRouterContext` hook
 
-This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/core/docs/routing/hooks/use-go), [`useParsed`](/core/docs/routing/hooks/use-parsed), [`useBack`](/core/docs/routing/hooks/use-back) or [`useLink`](/core/docs/routing/hooks/use-link).
+This hook is now deprecated and will only work with the legacy router provider. While it was primarily used internally, you might have used it if you had a custom `<Sider>` component in your layout. If this is the case, you should replace it with the appropriate replacement hooks based on your use case: [`useGo`](/core/docs/routing/hooks/use-go/), [`useParsed`](/core/docs/routing/hooks/use-parsed/), [`useBack`](/core/docs/routing/hooks/use-back/) or [`useLink`](/core/docs/routing/hooks/use-link/).
 
 ```diff
 + import { useRouterContext } from "@pankod/refine-core";
@@ -533,7 +533,7 @@ The `<ReadyPage>` component is deprecated and will be removed in the next major 
 
 Before upgrading your project to refine@4, please upgrade your Ant Design to version 5. Don't worry, we have codemod support for this upgrade 🎉.
 
-[To upgrade now, visit the Migration Guide document >](/core/docs/ui-integrations/ant-design/migration-guide)
+[To upgrade now, visit the Migration Guide document >](/core/docs/ui-integrations/ant-design/migration-guide/)
 
 :::
 

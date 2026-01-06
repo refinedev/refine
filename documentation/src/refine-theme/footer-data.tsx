@@ -12,15 +12,15 @@ export const menuItems = [
     items: [
       {
         label: "Documentation",
-        href: "/core/docs/getting-started/quickstart",
+        href: "/core/docs/getting-started/quickstart/",
       },
       {
         label: "Tutorials",
-        href: "/core/tutorial/essentials/intro",
+        href: "/core/tutorial/essentials/intro/",
       },
       {
         label: "Blog",
-        href: "/blog",
+        href: "/blog/",
       },
     ],
   },
@@ -29,12 +29,12 @@ export const menuItems = [
     items: [
       {
         label: "Templates",
-        href: "/core/templates",
+        href: "/core/templates/",
         icon: null,
       },
       {
         label: "Integrations",
-        href: "/core/integrations",
+        href: "/core/integrations/",
         icon: null,
       },
     ],
@@ -45,7 +45,7 @@ export const menuItems = [
     items: [
       {
         label: "About",
-        href: "/about",
+        href: "/about/",
       },
       {
         label: "Contact Us",
@@ -58,11 +58,11 @@ export const menuItems = [
 export const secondaryMenuItems = [
   {
     label: "Terms & Conditions",
-    href: "/terms-and-conditions",
+    href: "/terms-and-conditions/",
   },
   {
     label: "Privacy Policy",
-    href: "/core/privacy-policy",
+    href: "/core/privacy-policy/",
   },
   {
     label: "License",

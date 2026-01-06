@@ -67,7 +67,7 @@ npm create refine-app@latest
 
 - GitHub stars: +27K
 - License: MIT
-- Links: [Demo](https://example.crm.refine.dev/) | [Documentation](/core/tutorial) | [Template](/core/templates/crm-application/)
+- Links: [Demo](https://example.crm.refine.dev/) | [Documentation](/core/tutorial/) | [Template](/core/templates/crm-application/)
 
 ## Ant Design pro
 

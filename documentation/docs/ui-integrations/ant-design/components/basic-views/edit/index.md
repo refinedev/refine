@@ -59,7 +59,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/cli/)
 
 :::
 
@@ -183,7 +183,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/save-button/)
 
 ### canDelete and deleteButtonProps
 
@@ -266,9 +266,9 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/delete-button)
+> For more information, refer to the [`<DeleteButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/delete-button/)
 
-> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions)
+> For more information, refer to the [`usePermission` documentation &#8594](/core/docs/authentication/hooks/use-permissions/)
 
 ### resource
 
@@ -453,7 +453,7 @@ render(
 );
 ```
 
-> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode)
+> For more information, refer to the [mutation mode documentation &#8594](/core/docs/advanced-tutorials/mutation-mode/)
 
 ### dataProviderName
 
@@ -697,7 +697,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb/)
 
 ### wrapperProps
 

@@ -108,7 +108,7 @@ const TutorialModal = ({
                     )}
                   >
                     <Link
-                      to="/core"
+                      to="/core/"
                       className={clsx(
                         "text-sm",
                         "no-underline",
@@ -130,7 +130,7 @@ const TutorialModal = ({
                     )}
                   >
                     <Link
-                      to="/core/docs"
+                      to="/core/docs/"
                       className={clsx(
                         "text-sm",
                         "no-underline",

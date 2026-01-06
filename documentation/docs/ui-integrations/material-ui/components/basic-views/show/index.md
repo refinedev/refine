@@ -109,7 +109,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 
 :::
 
@@ -220,7 +220,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property Refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/core/docs/data/hooks/use-delete) method provided by the [`dataProvider`](/core/docs/data/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/core/docs/data/hooks/use-delete/) method provided by the [`dataProvider`](/core/docs/data/data-provider/) and the edit button redirects the user to the record edit page.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
@@ -328,7 +328,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<DeleteButton>` &#8594](/core/docs/ui-integrations/material-ui/components/buttons/delete-button), [`<EditButton>` &#8594](/core/docs/ui-integrations/material-ui/components/buttons/edit-button) and [`usePermission` &#8594](/core/docs/authentication/hooks/use-permissions) documentations.
+> For more information, refer to the [`<DeleteButton>` &#8594](/core/docs/ui-integrations/material-ui/components/buttons/delete-button/), [`<EditButton>` &#8594](/core/docs/ui-integrations/material-ui/components/buttons/edit-button/) and [`usePermission` &#8594](/core/docs/authentication/hooks/use-permissions/) documentations.
 
 ### deleteButtonProps
 
@@ -480,7 +480,7 @@ render(
 );
 ```
 
-`<Show>` component needs the `id` information for [`<RefreshButton>`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button) to work properly.
+`<Show>` component needs the `id` information for [`<RefreshButton>`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button/) to work properly.
 
 ### dataProviderName
 
@@ -672,7 +672,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/material-ui/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/material-ui/components/breadcrumb/)
 
 ### wrapperProps
 
@@ -1178,7 +1178,7 @@ headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-heade
 headerButtonProps-type="[`BoxProps`](https://mui.com/material-ui/api/box/#props)"
 headerButtons-default="[`ListButton`](/core/docs/ui-integrations/material-ui/components/buttons/list-button/), [`EditButton`](/core/docs/ui-integrations/material-ui/components/buttons/edit-button/), [`DeleteButton`](/core/docs/ui-integrations/material-ui/components/buttons/delete-button/), [`RefreshButton`](/core/docs/ui-integrations/material-ui/components/buttons/refresh-button/)"
 footerButtonProps-type="[`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)"
-breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb)"
+breadcrumb-default="[`<Breadcrumb/>`](/core/docs/ui-integrations/material-ui/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />

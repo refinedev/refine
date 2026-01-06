@@ -6,7 +6,7 @@ title: useNavigation
 
 This hook is a legacy hook and is not recommended, despite not being deprecated. You should use your router libraries' hooks and methods instead when dealing with the custom navigations.
 
-If you're in need of a navigation hook to use to navigate between your actions and resources, we recommend using the [`useGo`](/core/docs/routing/hooks/use-go) and [`useGetToPath`](/core/docs/routing/hooks/use-get-to-path) hooks.
+If you're in need of a navigation hook to use to navigate between your actions and resources, we recommend using the [`useGo`](/core/docs/routing/hooks/use-go/) and [`useGetToPath`](/core/docs/routing/hooks/use-get-to-path/) hooks.
 
 ```tsx
 import { useNavigation } from "@refinedev/core";

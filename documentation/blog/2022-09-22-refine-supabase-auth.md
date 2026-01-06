@@ -309,9 +309,9 @@ Import the `<LoginPage />` component in the `App.tsx` file and create a route fo
 To create a route, import the `<Route />` component from `react-router-dom` and pass the `<LoginPage />` component as the `children`. We also use `<Authenticated />`, `<Outlet />` and `<NavigateToResource />` components
 to redirect the user to the home page if they are already logged in.
 
-[Refer to the Auth Provider documentation to learn more about authentication. → ](/core/docs/authentication/auth-provider)
+[Refer to the Auth Provider documentation to learn more about authentication. → ](/core/docs/authentication/auth-provider/)
 
-[Refer to the documentation to learn more routing in **Refine** → ](/core/docs/packages/list-of-packages)
+[Refer to the documentation to learn more routing in **Refine** → ](/core/docs/packages/list-of-packages/)
 
 <details>
 <summary>Show `App.tsx` Code</summary>

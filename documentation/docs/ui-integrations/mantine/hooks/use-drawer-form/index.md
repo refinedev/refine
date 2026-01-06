@@ -529,7 +529,7 @@ Don't forget to pass the record `"id"` to `show` to fetch the record data. This 
 
 ### refineCoreProps
 
-All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#properties) documentation.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) properties are also available in `useStepsForm`. You can find descriptions on the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/#properties) documentation.
 
 ```tsx
 const drawerForm = useDrawerForm({
@@ -703,7 +703,7 @@ useDrawerForm({
 
 ## Return Values
 
-All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#return-values) documentation.
+All [`useForm`][use-form-refine-mantine] return values are also available in `useDrawerForm`. You can find descriptions on the [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/#return-values) documentation.
 
 All [`mantine useForm`](https://mantine.dev/form/use-form/) return values also available in `useDrawerForm`. You can find descriptions on [`mantine`](https://mantine.dev/form/use-form/) docs.
 

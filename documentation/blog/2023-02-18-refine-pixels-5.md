@@ -168,7 +168,7 @@ In order to run the app without warnings you need to follow [Casbin RBAC system 
 
 :::
 
-After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -312,7 +312,7 @@ export default App;
 
 :::note
 
-[`<Refine />`](/core/docs/core/refine-component) comes with [dark mode support](/core/docs/ui-integrations/ant-design/theming#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
+[`<Refine />`](/core/docs/core/refine-component/) comes with [dark mode support](/core/docs/ui-integrations/ant-design/theming/#switching-to-dark-theme) out-of-the-box. However, we will not be using it in this series. So, after copied `App.tsx` you will see that we have already replaced `ColorModeContextProvider` with the `ConfigProvider`.
 
 Also, you can remove `src/context/color-mode` that comes with `create refine-app`.
 
@@ -522,7 +522,7 @@ return (
 
 After adding resources we need to create routes for them. For the routes, we'll use the `<UserList/>` and `<CanvasList/>` components we created earlier.
 
-[Refer to the CRUD Pages tutorial for more information. →](/core/docs/ui-integrations/ant-design/introduction)
+[Refer to the CRUD Pages tutorial for more information. →](/core/docs/ui-integrations/ant-design/introduction/)
 
 ```tsx title="App.tsx"
 // ...

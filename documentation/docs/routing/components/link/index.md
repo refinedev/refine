@@ -5,7 +5,7 @@ source: packages/core/src/components/link/index.tsx
 
 `<Link />` is a component that is used to navigate to different pages in your application.
 
-It uses [`routerProvider.Link`](/core/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/core/docs/routing/router-provider) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
+It uses [`routerProvider.Link`](/core/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/core/docs/routing/router-provider/) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
 
 ## Usage
 

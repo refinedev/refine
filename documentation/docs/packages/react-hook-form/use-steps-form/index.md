@@ -831,7 +831,7 @@ interface IPost {
 
 Since `category` is a relational data, we use `useSelect` to fetch its data.
 
-[Refer to `useSelect` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/hooks/use-select)
+[Refer to `useSelect` documentation for detailed usage. &#8594](/core/docs/ui-integrations/ant-design/hooks/use-select/)
 
 :::
 
@@ -980,7 +980,7 @@ interface IPost {
 
 ### refineCoreProps
 
-All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form#return-values) docs.
+All [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) properties also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/#return-values) docs.
 
 ```tsx
 const stepsForm = useStepsForm({
@@ -1102,7 +1102,7 @@ useStepsForm({
 
 ## Return Values
 
-All [`useForm`](/core/docs/packages/list-of-packages) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/packages/list-of-packages#return-values) docs.
+All [`useForm`](/core/docs/packages/list-of-packages/) return values also available in `useStepsForm`. You can find descriptions on [`useForm`](/core/docs/packages/list-of-packages/#return-values) docs.
 
 ### steps
 

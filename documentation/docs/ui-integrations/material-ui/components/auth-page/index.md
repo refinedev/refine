@@ -7,11 +7,11 @@ source: packages/mui/src/components/pages/auth/index.tsx
 
 `<AuthPage>` component from Refine for **Material UI** contains authentication pages that can be used to login, register, forgot password, and update password.
 
-Before using the `<AuthPage>` component you need to add [authProvider](/core/docs/authentication/auth-provider) that will be used to handle authentication.
+Before using the `<AuthPage>` component you need to add [authProvider](/core/docs/authentication/auth-provider/) that will be used to handle authentication.
 
 :::simple Good to know
 
-You can swizzle this component with the [**Refine CLI**](/core/docs/packages/list-of-packages) to customize it.
+You can swizzle this component with the [**Refine CLI**](/core/docs/packages/cli/) to customize it.
 
 :::
 

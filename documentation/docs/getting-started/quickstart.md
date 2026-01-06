@@ -36,4 +36,4 @@ Refine's browser-based scaffolder has the same set of options as the CLI-based s
 
 👉 See [real-life examples](/core/templates) built using **Refine**
 
-👉 Check out the [General Concepts](/core/docs/guides-concepts/general-concepts) and [Data Fetching](/core/docs/guides-concepts/data-fetching) guides to start learning Refine.
+👉 Check out the [General Concepts](/core/docs/guides-concepts/general-concepts/) and [Data Fetching](/core/docs/guides-concepts/data-fetching/) guides to start learning Refine.

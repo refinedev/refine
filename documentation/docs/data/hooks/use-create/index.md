@@ -5,7 +5,7 @@ source: packages/core/src/data/hooks/useCreate.ts
 
 `useCreate` is used when creating new records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v5/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `create` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider) which is passed to `<Refine />`.
+It uses the `create` method as the **mutation function** from the [`dataProvider`](/core/docs/data/data-provider/) which is passed to `<Refine />`.
 
 ## Usage
 
@@ -33,7 +33,7 @@ console.log(mutation.error); // mutation error
 
 ## Realtime Updates
 
-> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider).
+> This feature is only available if you use a [Live Provider](/core/docs/realtime/live-provider/).
 
 When the `useCreate` mutation runs successfully, it will call the `publish` method from `liveProvider` with some parameters such as `channel`, `type` etc. This is useful when you want to publish the changes to the subscribers on the client side.
 
@@ -45,7 +45,7 @@ When the `useCreate` mutation runs successfully, it will invalidate the followin
 
 ## Audit Logs
 
-> This feature is only available if you use a [Audit Log Provider](/core/docs/audit-logs/audit-log-provider).
+> This feature is only available if you use a [Audit Log Provider](/core/docs/audit-logs/audit-log-provider/).
 
 When the `useCreate` mutation runs successfully, it will call the `log` method from `auditLogProvider` with some parameters such as `resource`, `action`, `data` etc. This is useful when you want to log the changes to the database.
 
@@ -156,7 +156,7 @@ mutate({
 });
 ```
 
-> For more information, refer to the [creating a data provider tutorial &#8594](/core/docs/data/data-provider)
+> For more information, refer to the [creating a data provider tutorial &#8594](/core/docs/data/data-provider/)
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -179,7 +179,7 @@ mutate({
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreate` calls the `open` function from `NotificationProvider`:
 
@@ -199,7 +199,7 @@ mutate({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreate` calls the `open` function from `NotificationProvider`
 

@@ -43,7 +43,7 @@ The code it generates isn't throw-away prototype code either—it's production-r
 
 ### Step 1: Create the project
 
-Here's where it gets fun. Head over to [ai.refine.dev/v2](https://ai.refine.dev/v2) and click "Start building with Refine AI."
+Here's where it gets fun. Head over to [refine.dev/v2](https://refine.dev/v2) and click "Start building with Refine AI."
 
 First, pick your UI framework. For this project, we'll use shadcn/ui, but you can choose whichever you prefer.
 

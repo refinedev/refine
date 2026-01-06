@@ -5,7 +5,7 @@ title: useShow
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/core/docs/data/hooks/use-one) that supports all of its features and adds some more.
+`useShow` is an extended version of [`useOne`](/core/docs/data/hooks/use-one/) that supports all of its features and adds some more.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
@@ -19,7 +19,7 @@ If you define `resource` and `id` on the hook, when these properties are changed
 
 ## Realtime Updates
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 When the `useShow` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -159,7 +159,7 @@ useShow({
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useShow` can call `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -177,7 +177,7 @@ useShow({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useShow` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -195,7 +195,7 @@ useShow({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -209,7 +209,7 @@ useShow({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -223,7 +223,7 @@ useShow({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 

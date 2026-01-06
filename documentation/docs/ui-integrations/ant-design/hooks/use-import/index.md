@@ -24,7 +24,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> For more information, refer to the [`<ImportButton>` interface &#8594](/core/docs/ui-integrations/ant-design/components/buttons/import-button)
+> For more information, refer to the [`<ImportButton>` interface &#8594](/core/docs/ui-integrations/ant-design/components/buttons/import-button/)
 
 Also, you can use the `inputProps` and `uploadProps` properties without the `<ImportButton>` component for more customization:
 
@@ -57,7 +57,7 @@ useImport({
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/core/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation #8594](/core/docs/core/refine-component/#identifier)
 
 ### mapData
 
@@ -215,7 +215,7 @@ It is a boolean value that indicates whether the import is in progress.
 
 ### mutation
 
-Result of the [`useCreate`](/core/docs/data/hooks/use-create) or [`useCreateMany`](/core/docs/data/hooks/use-create) method of your data provider.
+Result of the [`useCreate`](/core/docs/data/hooks/use-create/) or [`useCreateMany`](/core/docs/data/hooks/use-create-many/) method of your data provider.
 
 ## FAQ
 

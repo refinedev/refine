@@ -89,4 +89,4 @@ Not everything needs to be a playground. Sometimes, you need a partner that unde
 
 [Refine AI](https://s.refine.dev/purpose) gets that.
 
-Make sure to sign up at [ai.refine.dev](https://ai.refine.dev) to get notified of coming features and sneakpeeks early via our new newsletter!
+Make sure to sign up at [refine.dev](https://refine.dev) to get notified of coming features and sneakpeeks early via our new newsletter!

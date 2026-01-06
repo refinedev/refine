@@ -188,7 +188,7 @@ These small features lead to a huge difference in the development experience, yo
 
 Check out the following example of multitenant app built with Refine:
 
-- [Multitenancy with Refine + Strapi](/core/docs/guides-concepts/multitenancy)
+- [Multitenancy with Refine + Strapi](/core/docs/guides-concepts/multitenancy/)
 
 ## Differences in supported UI frameworks between Refine and react-admin,
 
@@ -246,7 +246,7 @@ While both react-admin and Refine offer access control features, Refine takes it
 
 6. **Multitenancy Support:**
 
-Refine provides built-in support for [multitenancy](/core/docs/guides-concepts/multitenancy), allowing developers to create applications that serve multiple tenants with separate data and settings.
+Refine provides built-in support for [multitenancy](/core/docs/guides-concepts/multitenancy/), allowing developers to create applications that serve multiple tenants with separate data and settings.
 
 Refer to [this](#multitenancy) section for details.
 
@@ -712,7 +712,7 @@ export const MyComponent = () => {
 
 In React-admin, you'll be able to export the data to a CSV file but there's no built-in way to import CSV files.
 
-Check out the [CSV Import & Export](/core/docs/guides-concepts/import-export) documentation for more information about Refine's import/export features.
+Check out the [CSV Import & Export](/core/docs/guides-concepts/import-export/) documentation for more information about Refine's import/export features.
 
 ### Access Control
 

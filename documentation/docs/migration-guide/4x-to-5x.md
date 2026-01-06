@@ -14,7 +14,7 @@ import CodeBlock from '@theme/CodeBlock';
 :::caution
 Before upgrading to Refine 5, make sure that you are using Refine 4.x.x.
 
-If you are using Refine 3.x.x, [refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/core/docs/migration-guide/3x-to-4x)
+If you are using Refine 3.x.x, [refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/core/docs/migration-guide/3x-to-4x/)
 :::
 
 <h2>Migration Steps </h2>
@@ -253,7 +253,7 @@ If your project is still using the `legacyRouterProvider` provider, you'll need 
 Please refer these guides to refactor your project:
 
 - [Migrating Router Provider from 3.x.x to 4.x.x][router-provider-migration]
-- [React Router v6 to v7](/core/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
+- [React Router v6 to v7](/core/docs/routing/integrations/react-router/migration-guide-v6-to-v7/)
 
 ## 4. Refactor Legacy Auth Provider to use new Auth Provider
 

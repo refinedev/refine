@@ -11,7 +11,7 @@ module.exports = {
         "getting-started/quickstart",
         {
           type: "link",
-          href: "/core/tutorial/essentials/intro",
+          href: "/core/tutorial/essentials/intro/",
           label: "Tutorial",
         },
         {
@@ -24,7 +24,7 @@ module.exports = {
         },
         {
           type: "link",
-          href: "/core/templates",
+          href: "/core/templates/",
           label: "Templates",
         },
       ],

@@ -10,9 +10,9 @@ The `<AutoSaveIndicator />` component is a utility component that can be used to
 
 :::simple Good to know
 
-- Refine's core [`useForm`](/core/docs/data/hooks/use-form) hook does not automatically trigger the auto-save feature. You need to manually trigger the `onFinishAutoSave` function returned from the `useForm` hook to trigger the auto-save feature.
+- Refine's core [`useForm`](/core/docs/data/hooks/use-form/) hook does not automatically trigger the auto-save feature. You need to manually trigger the `onFinishAutoSave` function returned from the `useForm` hook to trigger the auto-save feature.
 
-- Extended implementations of Refine's `useForm` such as; [`@refinedev/antd`'s `useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form), [`@refinedev/react-hook-form`'s `useForm`](/core/docs/packages/react-hook-form/use-form) and [`@refinedev/mantine`'s `useForm`](/core/docs/ui-integrations/mantine/hooks/use-form) automatically trigger the auto-save feature when a form value changes.
+- Extended implementations of Refine's `useForm` such as; [`@refinedev/antd`'s `useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/), [`@refinedev/react-hook-form`'s `useForm`](/core/docs/packages/react-hook-form/use-form/) and [`@refinedev/mantine`'s `useForm`](/core/docs/ui-integrations/mantine/hooks/use-form/) automatically trigger the auto-save feature when a form value changes.
 
 - The `<AutoSaveIndicator />` component is only designed to display a visual feedback to the user about the auto-save status of the form. It does not contain any logic to trigger the auto-save feature.
 
@@ -22,7 +22,7 @@ The `<AutoSaveIndicator />` component is a utility component that can be used to
 
 ## Usage
 
-Usage is as simple as spreading the `autoSaveProps` object returned from the [`useForm`](/core/docs/data/hooks/use-form) hook into the `<AutoSaveIndicator />` component. It will automatically determine the auto-save status and display the appropriate indicator.
+Usage is as simple as spreading the `autoSaveProps` object returned from the [`useForm`](/core/docs/data/hooks/use-form/) hook into the `<AutoSaveIndicator />` component. It will automatically determine the auto-save status and display the appropriate indicator.
 
 ```tsx
 import { AutoSaveIndicator, useForm } from "@refinedev/core";

@@ -286,7 +286,7 @@ Devtools server will run on port `5001` by default. Devtools will serve HTTP and
 
 :::simple Enterprise Edition
 
-Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/core/docs/enterprise-edition/devtools) for more information.
+Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/core/docs/enterprise-edition/devtools/) for more information.
 
 :::
 

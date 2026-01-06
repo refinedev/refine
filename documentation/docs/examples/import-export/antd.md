@@ -8,6 +8,6 @@ example-tags: [csv]
 
 Refine allows you to export and import your data as CSV files. You can quickly do CSV import and export operation with Refine by creating model operations on the CSV data.
 
-[Refer to the Refine CSV Import & Export guide for more information. →](/core/docs/guides-concepts/import-export)
+[Refer to the Refine CSV Import & Export guide for more information. →](/core/docs/guides-concepts/import-export/)
 
 <CodeSandboxExample path="import-export-antd" />

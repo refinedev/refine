@@ -486,4 +486,4 @@ render(<App />);
 
 > For more information, refer to the [Mantine dark theme documentation &#8594](https://mantine.dev/guides/dark-theme)
 
-If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom ThemedLayout](/core/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/mantine` package, check out the [Custom ThemedLayout](/core/docs/advanced-tutorials/custom-layout/) tutorial.

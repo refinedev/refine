@@ -197,7 +197,7 @@ export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
 </p>
 </details>
 
-Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/core/docs/data/hooks/use-create) hook we invoke to create a pixel.
+Both methods are concerned with subscription to the changes. That's because the publishing the event is done by mutation methods. In our case, it is done from the [`useCreate()`](/core/docs/data/hooks/use-create/) hook we invoke to create a pixel.
 
 ## Broadcasting
 

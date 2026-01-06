@@ -23,11 +23,11 @@ const App = () => (
 
 ## dataProvider <PropTag asterisk />
 
-A [`dataProvider`](/core/docs/data/data-provider) is the place where a Refine app communicates with an API.
+A [`dataProvider`](/core/docs/data/data-provider/) is the place where a Refine app communicates with an API.
 Data providers also act as adapters for Refine, making it possible for it to consume different API's and data services.
-A [`dataProvider`](/core/docs/data/data-provider) makes HTTP requests and returns response data back using predefined methods.
+A [`dataProvider`](/core/docs/data/data-provider/) makes HTTP requests and returns response data back using predefined methods.
 
-[Refer to the Data Provider documentation for detailed information. &#8594](/core/docs/data/data-provider)
+[Refer to the Data Provider documentation for detailed information. &#8594](/core/docs/data/data-provider/)
 
 Multiple data providers can be used with Refine, if you have multiple data providers, you can pass them to the `dataProvider` prop as an object.
 
@@ -96,7 +96,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResourceParams](/core/docs/routing/hooks/use-resource-params) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResourceParams` hook to get the resource object.
+You can use [useResourceParams](/core/docs/routing/hooks/use-resource-params/) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResourceParams` hook to get the resource object.
 
 :::
 
@@ -212,7 +212,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResourceParams](/core/docs/routing/hooks/use-resource-params). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResourceParams](/core/docs/routing/hooks/use-resource-params/). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 
@@ -319,31 +319,31 @@ Can be used to hide a `resource` in `Sider`. This resource is also filtered in t
 
 `authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that Refine uses when necessary.
 
-[Refer to Auth Provider documentation for detailed information. &#8594](/core/docs/authentication/auth-provider)
+[Refer to Auth Provider documentation for detailed information. &#8594](/core/docs/authentication/auth-provider/)
 
 ## i18nProvider
 
 The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
-[Refer to i18n documentation for detailed information. &#8594](/core/docs/i18n/i18n-provider)
+[Refer to i18n documentation for detailed information. &#8594](/core/docs/i18n/i18n-provider/)
 
 ## accessControlProvider
 
 `accessControlProvider` is the entry point for implementing access control for Refine apps.
 
-[Refer to access control documentation for detailed information. &#8594](/core/docs/authorization/access-control-provider)
+[Refer to access control documentation for detailed information. &#8594](/core/docs/authorization/access-control-provider/)
 
 ## liveProvider
 
 Refine lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
 
-[Refer to live provider documentation for detailed information. &#8594](/core/docs/realtime/live-provider)
+[Refer to live provider documentation for detailed information. &#8594](/core/docs/realtime/live-provider/)
 
 ## notificationProvider
 
 `notificationProvider` handles notification logic. It is an object with methods that Refine uses when necessary.
 
-[Refer to the Notification Provider documentation for detailed information. &#8594](/core/docs/notification/notification-provider)
+[Refer to the Notification Provider documentation for detailed information. &#8594](/core/docs/notification/notification-provider/)
 
 ## options
 
@@ -471,7 +471,7 @@ This feature also **requires** `UnsavedChangesNotifier` component to be mounted.
 
 Refine implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the Refine experience. You can disable this by setting `disableTelemetry` to `true`.
 
-> For more information, refer to the [Refine telemetry documentation &#8594](/core/docs/further-readings/telemetry)
+> For more information, refer to the [Refine telemetry documentation &#8594](/core/docs/further-readings/telemetry/)
 
 ### disableRouteChangeHandler
 

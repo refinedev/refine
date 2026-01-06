@@ -6,7 +6,7 @@ In almost every user facing application, forms are a necessity. They are the pri
 
 ## Handling Data
 
-`useForm` hook orchestrates Refine's [`useOne`](/core/docs/data/hooks/use-one), [`useUpdate`](/core/docs/data/hooks/use-update) and [`useCreate`](/core/docs/data/hooks/use-create) hooks internally to provide a single interface for form handling.
+`useForm` hook orchestrates Refine's [`useOne`](/core/docs/data/hooks/use-one/), [`useUpdate`](/core/docs/data/hooks/use-update/) and [`useCreate`](/core/docs/data/hooks/use-create/) hooks internally to provide a single interface for form handling.
 
 While editing or cloning a record, `useOne` will be used to fetch the record to provide values for the form. When creating a new record, `useCreate` will be used for the mutation. When updating a record, `useUpdate` will be used for the mutation.
 
@@ -98,7 +98,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages/)
 
 </TabItem>
 <TabItem value="antd" label="Ant Design">
@@ -135,7 +135,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-form)
+[Check out Ant Design Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/ant-design/hooks/use-form/)
 
 </TabItem>
 <TabItem value="mantine" label="Mantine">
@@ -184,7 +184,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/mantine/hooks/use-form)
+[Check out Mantine Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/ui-integrations/mantine/hooks/use-form/)
 
 </TabItem>
 <TabItem value="material-ui" label={(<span><span className="block">Material UI</span><small className="block">React Hook Form</small></span>)}>
@@ -232,7 +232,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages/)
 
 </TabItem>
 <TabItem value="chakra-ui" label={(<span><span className="block">Chakra UI</span><small className="block">React Hook Form</small></span>)}>
@@ -284,7 +284,7 @@ const EditPage = () => {
 };
 ```
 
-[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages)
+[Check out React Hook Form's `useForm` reference page to learn more about the usage and see it in action.](/core/docs/packages/list-of-packages/)
 
 </TabItem>
 </Tabs>
@@ -310,7 +310,7 @@ To learn more about the routing, check out the [Routing](/guides-concepts/routin
 
 ### Redirection
 
-`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/core/docs/core/refine-component).
+`useForm` also uses the router integration to redirect the user to the desired page after a successful mutation. By default, it's the list page of the resource but this can be customized by passing a `redirect` prop to the `useForm` hook. If you want to change the redirection behavior for all forms, you can use the `options.redirect` prop of the [`<Refine>` component](/core/docs/core/refine-component/).
 
 ```tsx
 import { useForm } from "@refinedev/core";
@@ -476,11 +476,11 @@ Used for cloning an existing record. This action mode requires an `id` prop to b
 
 Refine handles [data relations](/core/docs/guides-concepts/data-fetching/#relationships) with data hooks(eg: `useOne`, `useMany`, etc.). This compositional design allows you to easily display other resources' data in your components.
 
-However, when it comes to forms, we may want to add fields that are related to other resources. For instance, you may want to add a `category` field to the `products` resource. This field will be a select input that will display the categories fetched from the `categories` resource. Refine offers [`useSelect`](/core/docs/data/hooks/use-select) hook to easily manage select (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc.) components.
+However, when it comes to forms, we may want to add fields that are related to other resources. For instance, you may want to add a `category` field to the `products` resource. This field will be a select input that will display the categories fetched from the `categories` resource. Refine offers [`useSelect`](/core/docs/data/hooks/use-select/) hook to easily manage select (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc.) components.
 
 You can find more information and usage examples on following `useSelect` documentation pages:
 
-- [Headless](/core/docs/data/hooks/use-select)
+- [Headless](/core/docs/data/hooks/use-select/)
 - [Ant Design Select](/core/docs/ui-integrations/ant-design/hooks/use-select/)
 - [Material UI Autocomplete](/core/docs/ui-integrations/material-ui/hooks/use-auto-complete/)
 - [Mantine Select](/core/docs/ui-integrations/mantine/hooks/use-select/)
@@ -582,7 +582,7 @@ const { formProps } = useForm({
 });
 ```
 
-If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/core/docs/data/hooks/use-invalidate) hook to invalidate the queries manually based on your conditions.
+If you want to disable the invalidation completely and handle it manually, you can pass `false` to the `invalidates` prop. Then, you can use the [`useInvalidate`](/core/docs/data/hooks/use-invalidate/) hook to invalidate the queries manually based on your conditions.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";
@@ -782,7 +782,7 @@ const { autoSaveProps } = useForm({
 
 ### `<AutoSaveIndicator />`
 
-Refine's core and ui integrations are shipped with an [`<AutoSaveIndicator />`](/core/docs/core/components/auto-save-indicator) component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
+Refine's core and ui integrations are shipped with an [`<AutoSaveIndicator />`](/core/docs/core/components/auto-save-indicator/) component that can be used to show a visual indicator to the user when the auto save is triggered. The `autoSaveProps` value from the `useForm`'s return value can be passed to the `<AutoSaveIndicator />` to show the auto save status to the user. It will automatically show the loading, success and error states to the user.
 
 ```tsx title="edit.tsx"
 import { AutoSaveIndicator } from "@refinedev/core";

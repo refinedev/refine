@@ -130,7 +130,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/cli/)
 
 :::
 
@@ -250,7 +250,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/save-button)
+> For more information, refer to the [`<SaveButton>` documentation &#8594](/core/docs/ui-integrations/ant-design/components/buttons/save-button/)
 
 ### resource
 
@@ -523,7 +523,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/ant-design/components/breadcrumb/)
 
 ### wrapperProps
 

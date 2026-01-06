@@ -107,7 +107,7 @@ const App = () => {
 render(<App />);
 ```
 
-Example above shows how to use `<ThemedLayout>` with [`React Router`](/core/docs/packages/list-of-packages). You can see these examples for other routers:
+Example above shows how to use `<ThemedLayout>` with [`React Router`](/core/docs/packages/list-of-packages/). You can see these examples for other routers:
 
 - [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-chakra-ui/src/App.tsx#L171)
 - [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
@@ -249,7 +249,7 @@ const MyLayout = () => {
 
 ### Header
 
-In `<ThemedLayout>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses the [`useGetIdentity`](/core/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
+In `<ThemedLayout>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses the [`useGetIdentity`](/core/docs/authentication/hooks/use-get-identity/) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.
 
 Here is an example of how to replace the default [`<ThemedHeader>`][themed-header] component:
 

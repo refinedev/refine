@@ -48,9 +48,9 @@ const secondDataProvider = dataProvider("second"); // return second data provide
 
 ### Return value
 
-| Description   | Type                                             |
-| ------------- | ------------------------------------------------ |
-| Data Provider | [`Data Provider`](/core/docs/data/data-provider) |
+| Description   | Type                                              |
+| ------------- | ------------------------------------------------- |
+| Data Provider | [`Data Provider`](/core/docs/data/data-provider/) |
 
 [Refine]: /core/docs/core/refine-component
 [data provider]: /core/docs/data/data-provider

@@ -383,4 +383,4 @@ const App = () => {
 render(<App />);
 ```
 
-If you want to customize the default layout elements provided with `@refinedev/chakra-ui` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout) tutorial.
+If you want to customize the default layout elements provided with `@refinedev/chakra-ui` package, check out the [Custom Layout](/core/docs/advanced-tutorials/custom-layout/) tutorial.

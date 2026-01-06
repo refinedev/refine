@@ -181,7 +181,7 @@ Submit functionality is provided by `saveButtonProps` which includes all of the 
 
 `useForm` accepts type parameters for the record in use and for the response type of the mutation. `IPost` in the example represents the record to edit. It is also used as the default type for mutation response.
 
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/core/docs/ui-integrations/ant-design/hooks/use-modal-form) or the [useDrawerForm](/core/docs/ui-integrations/ant-design/hooks/use-drawer-form) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/core/docs/ui-integrations/ant-design/hooks/use-modal-form/) or the [useDrawerForm](/core/docs/ui-integrations/ant-design/hooks/use-drawer-form/) hook.
 
 > For more detailed usage examples, refer to the [Ant Design Form](https://ant.design/components/form/) documentation.
 
@@ -204,7 +204,7 @@ values={[
 ]}>
 <TabItem value="create">
 
-`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/core/docs/data/hooks/use-create) under the hood for mutations on create mode.
+`action: "create"` is used for creating new records. `useForm` uses [`useCreate`](/core/docs/data/hooks/use-create/) under the hood for mutations on create mode.
 
 In the following example, we will show how to use `useForm` with `action: "create"`:
 
@@ -293,7 +293,7 @@ render(
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/core/docs/data/hooks/use-update).
+It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one/) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/core/docs/data/hooks/use-update/).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -385,7 +385,7 @@ render(
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/core/docs/data/hooks/use-create).
+It fetches the record data according to the `id` with [`useOne`](/core/docs/data/hooks/use-one/) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/core/docs/data/hooks/use-create/).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -548,7 +548,7 @@ useForm({
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create) or [`useUpdate`](/core/docs/data/hooks/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create/) or [`useUpdate`](/core/docs/data/hooks/use-update/) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -567,7 +567,7 @@ It's a callback function that will be called after a mutation fails.
 
 It receives the following parameters:
 
-- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create) or [`useUpdate`](/core/docs/data/hooks/use-update) depending on the `action`.
+- `data`: Returned value from [`useCreate`](/core/docs/data/hooks/use-create/) or [`useUpdate`](/core/docs/data/hooks/use-update/) depending on the `action`.
 - `variables`: The variables passed to the mutation.
 - `context`: react-query context.
 - `isAutoSave`: It's a boolean value that indicates whether the mutation is triggered by the [`autoSave`](#autoSave) feature or not.
@@ -618,11 +618,11 @@ useForm({
 });
 ```
 
-> For more information about mutation modes, refer to the [Mutation Mode documentation](/core/docs/advanced-tutorials/mutation-mode)
+> For more information about mutation modes, refer to the [Mutation Mode documentation](/core/docs/advanced-tutorials/mutation-mode/)
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 `successNotification` allows you to customize the success notification that pops up after the form is submitted, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
@@ -640,7 +640,7 @@ useForm({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 `errorNotification` allows you to customize the error notification that pops up after the form submission fails, and `useForm` calls the `open` function from [`NotificationProvider`][notification-provider]:
 
@@ -734,7 +734,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 ### queryOptions
 
-In the `edit` and `clone` modes, Refine uses [`useOne`](/core/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
+In the `edit` and `clone` modes, Refine uses [`useOne`](/core/docs/data/hooks/use-one/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) options by passing the `queryOptions` property. This property will only work in the `edit` and `clone` actions.
 
 ```tsx
 useForm({
@@ -746,7 +746,7 @@ useForm({
 
 ### createMutationOptions
 
-In the `create` and `clone` modes, Refine uses the [`useCreate`](/core/docs/data/hooks/use-create) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
+In the `create` and `clone` modes, Refine uses the [`useCreate`](/core/docs/data/hooks/use-create/) hook to create data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing the `createMutationOptions` property. This property will only work in the `create` and `clone` actions.
 
 ```tsx
 useForm({
@@ -758,7 +758,7 @@ useForm({
 
 ### updateMutationOptions
 
-In the `edit` mode, Refine uses [`useUpdate`](/core/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
+In the `edit` mode, Refine uses [`useUpdate`](/core/docs/data/hooks/use-update/) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v5/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This property will only work in the `edit` action.
 
 ```tsx
 useForm({
@@ -792,7 +792,7 @@ useForm({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 `liveMode` is where you can choose whether to update data automatically ("auto") or not ("manual") if a related live event is received. It can be used to update and show data in real time throughout your app.
 
@@ -804,7 +804,7 @@ useForm({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 `onLiveEvent` is the callback function that is executed when new events from a subscription are arrived.
 
@@ -818,7 +818,7 @@ useForm({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Params to pass to [liveProvider](/core/docs/realtime/live-provider#subscribe)'s subscribe method.
 
@@ -974,7 +974,7 @@ The `warnWhenUnsavedChanges` feature requires this function to work. If you want
 
 #### initialValues
 
-When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/core/docs/data/hooks/use-one) hook.
+When `action` is set to `"edit"` or `"clone"`, `initialValues` will be set to the `data` returned from [`useOne`](/core/docs/data/hooks/use-one/) hook.
 
 ### saveButtonProps
 
@@ -986,7 +986,7 @@ It contains all the props needed by the `"submit"` button within the form (disab
 
 ### query
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/core/docs/data/hooks/use-one) and set the returned values as the `query` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/core/docs/data/hooks/use-one/) and set the returned values as the `query` property.
 
 ```tsx
 const { query } = useForm();
@@ -996,7 +996,7 @@ const { data } = query;
 
 ### mutation
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/core/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/core/docs/data/hooks/use-update) and set the resulting values as the `mutation` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/core/docs/data/hooks/use-create/). When in `"edit"` mode, it will call [`useUpdate`](/core/docs/data/hooks/use-update/) and set the resulting values as the `mutation` property.
 
 ```tsx
 const { mutation } = useForm();
@@ -1071,7 +1071,7 @@ If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormV
 
 ### How can Invalidate other resources?
 
-You can invalidate other resources with help of [`useInvalidate`](/core/docs/data/hooks/use-invalidate) hook.
+You can invalidate other resources with help of [`useInvalidate`](/core/docs/data/hooks/use-invalidate/) hook.
 
 It is useful when you want to `invalidate` other resources don't have relation with the current resource.
 
@@ -1145,7 +1145,7 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 <PropsTable module="@refinedev/antd/useForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component/)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 

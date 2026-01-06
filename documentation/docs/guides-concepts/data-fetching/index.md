@@ -170,7 +170,7 @@ mutate({
 
 **Nest.js Query** data provider implements full support for `gqlQuery` and `gqlMutation` fields.
 
-See [Nest.js Query Docs](/core/docs/data/packages/nestjs-query) for more information.
+See [Nest.js Query Docs](/core/docs/data/packages/nestjs-query/) for more information.
 
 :::
 
@@ -201,7 +201,7 @@ Refine expects errors to be extended from [HttpError](/core/docs/core/interface-
 
 When implemented correctly, Refine offers several advantages in error handling:
 
-- **Notification**: If you have [`notificationProvider` ](/core/docs/notification/notification-provider), Refine will automatically show a notification when an error occurs.
+- **Notification**: If you have [`notificationProvider` ](/core/docs/notification/notification-provider/), Refine will automatically show a notification when an error occurs.
 - **Server-Side Validation**: Shows [errors coming from the API](/core/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
 - **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
@@ -382,7 +382,7 @@ const {
 
 Imagine you want to fetch a data from a protected API. To do this, you will first need to obtain your authentication token and you will need to send this token with every request.
 
-In Refine we handle [authentication](/core/docs/guides-concepts/authentication/) with [Auth Provider](/core/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/core/docs/authentication/components/authenticated) component to to render the appropriate components.
+In Refine we handle [authentication](/core/docs/guides-concepts/authentication/) with [Auth Provider](/core/docs/authentication/auth-provider/). To get token from the API, we will use the `authProvider.login` method. Then, we will use [`<Authenticated />`](/core/docs/authentication/components/authenticated/) component to to render the appropriate components.
 
 After obtaining the token, we'll use Axios interceptors to include the token in the headers of all requests.
 
@@ -390,7 +390,7 @@ After obtaining the token, we'll use Axios interceptors to include the token in 
 
 ## TanStack Query `QueryClient`
 
-To modify the [`QueryClient`](https://tanstack.com/query/v5/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/core/docs/core/refine-component) component.
+To modify the [`QueryClient`](https://tanstack.com/query/v5/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/core/docs/core/refine-component/) component.
 
 ## `dataProvider` interface
 
@@ -400,7 +400,7 @@ To better understand the data provider interface, we have created an example tha
 
 <DataProviderInterface />
 
-[To learn more about the `dataProvider` interface, check out the reference page.](/core/docs/data/data-provider)
+[To learn more about the `dataProvider` interface, check out the reference page.](/core/docs/data/data-provider/)
 
 ## Supported data providers
 

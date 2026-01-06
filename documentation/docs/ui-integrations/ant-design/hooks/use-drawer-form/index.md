@@ -4,7 +4,7 @@ title: useDrawerForm
 
 The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns the Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
-The`useDrawerForm` hook is extended from [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/main/packages/antd) package. This means that you can use all the features of [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form) hook with it.
+The`useDrawerForm` hook is extended from [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/main/packages/antd) package. This means that you can use all the features of [`useForm`](/core/docs/ui-integrations/ant-design/hooks/use-form/) hook with it.
 
 ## Usage
 
@@ -595,7 +595,7 @@ export const UserCreate: React.FC = () => {
 
 <PropsTable module="@refinedev/antd/useDrawerForm"/>
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/docs/core/refine-component/)>** component. `useDrawerForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 > `**`: If not explicitly configured, default value of `redirect` depends which `action` used. If `action` is `create`, `redirect`s default value is `edit` (created resources edit page). Otherwise if `action` is `edit`, `redirect`s default value is `list`.
 

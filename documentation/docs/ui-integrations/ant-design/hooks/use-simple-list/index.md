@@ -8,7 +8,7 @@ import SortingLivePreview from "./\_sorting-live-preview.md";
 import FilteringLivePreview from "./\_filtering-live-preview.md";
 import SearchLivePreview from "./\_search-live-preview.md";
 
-By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/core/docs/data/hooks/use-table) under the hood for the fetch.
+By using `useSimpleList`, you can get properties that are compatible with the Ant Design's [`<List>`](https://ant.design/components/list/) component. All features such as sorting, filtering, and pagination come out of the box. `useSimpleList` uses [`useTable`](/core/docs/data/hooks/use-table/) under the hood for the fetch.
 
 For all the other features, you can refer to the Ant Design's [`<List>`](https://ant.design/components/list/) documentation.
 
@@ -79,7 +79,7 @@ We can use the [`onSearch`](#onsearch) property and the [`searchFormProps`](#sea
 
 ## Realtime Updates
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 When the `useSimpleList` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
@@ -285,7 +285,7 @@ useSimpleList({
 
 ### queryOptions
 
-`useSimpleList` uses the [`useTable`](/core/docs/data/hooks/use-table) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) to it like this:
+`useSimpleList` uses the [`useTable`](/core/docs/data/hooks/use-table/) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useSimpleList({
@@ -355,7 +355,7 @@ useSimpleList({
 
 ### successNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data is fetched successfully, `useSimpleList` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
@@ -373,7 +373,7 @@ useSimpleList({
 
 ### errorNotification
 
-> [`NotificationProvider`](/core/docs/notification/notification-provider) is required for this prop to work.
+> [`NotificationProvider`](/core/docs/notification/notification-provider/) is required for this prop to work.
 
 After data fetching is failed, `useSimpleList` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
@@ -391,7 +391,7 @@ useSimpleList({
 
 ### liveMode
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Determines whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. It can be used to update and show data in Realtime throughout your app.
 
@@ -405,7 +405,7 @@ useSimpleList({
 
 ### onLiveEvent
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 The callback function is executed when new events from a subscription have arrived.
 
@@ -419,7 +419,7 @@ useSimpleList({
 
 ### liveParams
 
-> [`LiveProvider`](/core/docs/realtime/live-provider) is required for this prop to work.
+> [`LiveProvider`](/core/docs/realtime/live-provider/) is required for this prop to work.
 
 Params to pass to liveProvider's [subscribe](/core/docs/realtime/live-provider#subscribe) method.
 
@@ -499,7 +499,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### query
 
-`query` is the returned values from [`useList`](/core/docs/data/hooks/use-list) hook.
+`query` is the returned values from [`useList`](/core/docs/data/hooks/use-list/) hook.
 
 ### searchFormProps
 
@@ -554,7 +554,7 @@ return (
 
 #### dataSource
 
-`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/core/docs/data/hooks/use-list) hook.
+`dataSource` contains the data to be displayed in the list. Values are fetched with the [`useList`](/core/docs/data/hooks/use-list/) hook.
 
 #### loading
 

@@ -618,7 +618,7 @@ if (data?.includes("admin")) {
 
 Though `usePermissions` hook can be used for simple authorization purposes, if you need more complex authorization logic, we recommend using the access control provider.
 
-For more information, refer to the [`accessControlProvider` documentation&#8594](/core/docs/authorization/access-control-provider)
+For more information, refer to the [`accessControlProvider` documentation&#8594](/core/docs/authorization/access-control-provider/)
 
 :::
 
@@ -1189,11 +1189,11 @@ const App = () => {
 
 ### How can I set authorization credentials?
 
-[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication)
+[Refer to the "Setting Authorization Credentials" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication/)
 
 ### How can I implement refresh token mechanism?
 
-[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication)
+[Refer to the "Implementing Refresh Token Mechanism" section in the tutorial for more information &#8594](/core/docs/guides-concepts/authentication/)
 
 [use-login]: /core/docs/authentication/hooks/use-login
 [use-logout]: /core/docs/authentication/hooks/use-logout

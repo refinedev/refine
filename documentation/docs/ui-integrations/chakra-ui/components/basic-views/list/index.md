@@ -127,7 +127,7 @@ render(
 
 :::simple Good to know
 
-You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/list-of-packages)
+You can swizzle this component to customize it with the [**Refine CLI**](/core/docs/packages/cli/)
 
 :::
 
@@ -378,7 +378,7 @@ const App = () => {
 render(<App />);
 ```
 
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/chakra-ui/components/breadcrumb)
+> For more information, refer to the [`Breadcrumb` documentation &#8594](/core/docs/ui-integrations/chakra-ui/components/breadcrumb/)
 
 ### wrapperProps
 

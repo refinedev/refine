@@ -70,7 +70,7 @@ fetch("http://example.com/payment")
   .catch((error) => onError(error));
 ```
 
-We have a logic in [`authProvider`](/core/docs/authentication/auth-provider)'s `onError` method like below.
+We have a logic in [`authProvider`](/core/docs/authentication/auth-provider/) 's `onError` method like below.
 
 ```tsx
 import type { AuthProvider } from "@refinedev/core";

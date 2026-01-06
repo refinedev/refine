@@ -6,9 +6,9 @@ Audit logs are useful tool for web applications, providing a reliable record of 
 
 ## Audit Log Provider
 
-Refine offers [Audit Log Provider](/core/docs/audit-logs/audit-log-provider) to centralize retrieving audit logs easily across your application.
+Refine offers [Audit Log Provider](/core/docs/audit-logs/audit-log-provider/) to centralize retrieving audit logs easily across your application.
 
-CRUD operations are automatically logged when **Audit Log Provider** is provided, along with the current user information coming from [useGetIdentity](/core/docs/authentication/hooks/use-get-identity) hook.
+CRUD operations are automatically logged when **Audit Log Provider** is provided, along with the current user information coming from [useGetIdentity](/core/docs/authentication/hooks/use-get-identity/) hook.
 
 **Audit Log Provider** is an object that contains `get`, `create` and `update` methods.
 
@@ -88,7 +88,7 @@ See the [Supported Hooks](/core/docs/audit-logs/audit-log-provider#supported-hoo
 
 #### useLogList
 
-You can use [useLogList](/core/docs/audit-logs/hooks/use-log) hook to retrieve audit logs. It uses **Audit Log Provider**'s `get` method under the hood.
+You can use [useLogList](/core/docs/audit-logs/hooks/use-log/) hook to retrieve audit logs. It uses **Audit Log Provider**'s `get` method under the hood.
 
 ```tsx
 import { useLogList } from "@refinedev/core";
@@ -100,7 +100,7 @@ const productsAuditLogResults = useLogList({
 
 #### useLog
 
-You can use [useLog](/core/docs/audit-logs/hooks/use-log) hook for your custom logging needs. It uses **Audit Log Provider**'s `create` method under the hood.
+You can use [useLog](/core/docs/audit-logs/hooks/use-log/) hook for your custom logging needs. It uses **Audit Log Provider**'s `create` method under the hood.
 
 ```tsx
 import { useLog } from "@refinedev/core";

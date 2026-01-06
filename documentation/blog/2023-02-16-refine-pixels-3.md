@@ -328,7 +328,7 @@ Before we move on, you need to add required page and components to the project i
 - styles: https://github.com/refinedev/refine/tree/main/examples/pixels/src/styles
 - assets: https://github.com/refinedev/refine/tree/main/examples/pixels/public
 
-After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
+After creating files above you need to add some imports and [routes](/core/docs/packages/list-of-packages/) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
 <details>
 <summary>Show App.tsx code</summary>
@@ -634,7 +634,7 @@ check: async () => {
 </p>
 </details>
 
-**Refine** provides [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component.
+**Refine** provides [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component.
 
 Let's look at the routes implementation:
 
@@ -719,11 +719,11 @@ const App = () => {
 </p>
 </details>
 
-In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component. This means that we can access the `canvases` resource routes without being authenticated.
+In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component. This means that we can access the `canvases` resource routes without being authenticated.
 
-However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/core/docs/authentication/components/authenticated) component. This means that we can not access these routes if we are authenticated.
+However, we use `login`, `register`, `forgot-password` and `update-password` routes as a `fallback` of [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component. This means that we can not access these routes if we are authenticated.
 
-[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider)
+[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider/)
 
 ### `<Refine />` `create` Action
 
@@ -1185,7 +1185,7 @@ Now that we have our `<CanvasShow />` component ready, let's start implementing 
 
 ## Supabase Authentication with Refine
 
-[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider)
+[Refer to the Auth Provider tutorial for more information. →](/core/docs/authentication/auth-provider/)
 
 ```tsx title="src/App.tsx"
 <Refine

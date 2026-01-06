@@ -42,7 +42,7 @@ export const TutorialFooter = () => {
           )}
         >
           <Link
-            to="/core"
+            to="/core/"
             className={clsx(
               "hover:no-underline",
               "hover:text-refine-link-light",
@@ -52,7 +52,7 @@ export const TutorialFooter = () => {
             Refine Home
           </Link>
           <Link
-            to="/core/docs"
+            to="/core/docs/"
             className={clsx(
               "hover:no-underline",
               "hover:text-refine-link-light",

@@ -69,7 +69,7 @@ invalidate({
 });
 ```
 
-[Refer to the Refine useInvalidate hook documentation for more information. →](/core/docs/data/hooks/use-invalidate)
+[Refer to the Refine useInvalidate hook documentation for more information. →](/core/docs/data/hooks/use-invalidate/)
 
 </TabItem>
 </Tabs>
