@@ -101,7 +101,7 @@ const Templates: React.FC = () => {
       </Head>
       <CommonLayout
         className="!bg-zinc-900"
-        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+        description="Open-source React framework for building enterprise-grade admin panels, internal tools, and B2B apps. Headless, flexible, and production-ready."
       >
         <div>
           <CommonHeader showThemeToggle={false} className="dark" />
