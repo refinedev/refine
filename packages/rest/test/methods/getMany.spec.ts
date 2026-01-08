@@ -12,15 +12,15 @@ nock(API_URL)
   .reply(200, response);
 
 describe("getMany", () => {
-  const { dataProvider } = createDataProvider(
-    API_URL,
-    {},
-    {
-      headers: { "x-default-header": "getMany" },
-    },
-  );
-
   it("should return the data", async () => {
+    const { dataProvider } = createDataProvider(
+      API_URL,
+      {},
+      {
+        headers: { "x-default-header": "getMany" },
+      },
+    );
+
     const result = await dataProvider.getMany!({
       ids: [1, 2],
       resource: "getMany",
@@ -30,5 +30,13 @@ describe("getMany", () => {
     });
 
     expect(result).toEqual({ data: response });
+  });
+
+  it("should getMany undefined", async () => {
+    const { dataProvider } = createDataProvider(API_URL, {
+      getMany: undefined,
+    });
+
+    expect(dataProvider.getMany).toBeUndefined();
   });
 });

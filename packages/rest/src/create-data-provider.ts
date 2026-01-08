@@ -82,22 +82,24 @@ export const createDataProvider = (
 
         return { data };
       },
-      async getMany(params): Promise<GetManyResponse<any>> {
-        const endpoint = options.getMany.getEndpoint(params);
+      getMany: options.getMany
+        ? async (params): Promise<GetManyResponse<any>> => {
+            const endpoint = options.getMany.getEndpoint(params);
 
-        const headers = await options.getMany.buildHeaders(params);
+            const headers = await options.getMany.buildHeaders(params);
 
-        const query = await options.getMany.buildQueryParams(params);
+            const query = await options.getMany.buildQueryParams(params);
 
-        const response = await ky(endpoint, {
-          headers,
-          searchParams: qs.stringify(query, { encodeValuesOnly: true }),
-        });
+            const response = await ky(endpoint, {
+              headers,
+              searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+            });
 
-        const data = await options.getMany.mapResponse(response, params);
+            const data = await options.getMany.mapResponse(response, params);
 
-        return { data };
-      },
+            return { data };
+          }
+        : undefined,
       create: async (params): Promise<CreateResponse<any>> => {
         const endpoint = options.create.getEndpoint(params);
 
