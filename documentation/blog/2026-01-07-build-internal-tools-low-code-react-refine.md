@@ -2,7 +2,7 @@
 title: How to Build Internal Tools with Low-Code in React Using Refine CORE
 description: A step-by-step guide to building low-code internal tools and admin apps using the React-based Refine CORE framework and its core features.
 slug: low-code-internal-tools-react
-authors: ozgurakca
+authors: ozgur
 tags: [refine, react, tutorial, low-code, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/internal-tools-blog-banner.png
 hide_table_of_contents: false
