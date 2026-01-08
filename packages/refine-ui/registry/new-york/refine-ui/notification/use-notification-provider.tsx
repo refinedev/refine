@@ -30,7 +30,7 @@ export function useNotificationProvider(): NotificationProvider {
           return;
 
         case "progress": {
-          const toastId = key || Date.now();
+          const toastId = key ? `${key}-progress` : Date.now();
 
           toast(
             () => (
