@@ -1,7 +1,7 @@
 ---
 title: How to Build Internal Tools with Low-Code in React Using Refine CORE
 description: A step-by-step guide to building low-code internal tools and admin apps using the React-based Refine CORE framework and its core features.
-slug: how-to-build-internal-tools-low-code-react-refine
+slug: low-code-internal-tools-react
 authors: ozgurakca
 tags: [refine, react, tutorial, low-code, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/internal-tools-blog-banner.png
@@ -15,6 +15,22 @@ Low-code promises to fix this. And for internal tools? It actually makes sense. 
 That's why Refine CORE hits different. It's open-source React that gives you the speed of low-code platforms but keeps you in control. You're still writing React and TypeScript. You can use whatever UI library you want. Any backend API works. And when you need custom logic? You just write React, no fighting the framework or finding workarounds.
 
 <!--truncate-->
+
+## Table of Contents
+
+- [What You'll Build](#what-youll-build)
+- [Getting Started: Initialize Your Project](#getting-started-initialize-your-project)
+- [Understanding Your Project Structure](#understanding-your-project-structure)
+- [Exploring the Core Configuration](#exploring-the-core-configuration)
+- [Working with the Data Provider](#working-with-the-data-provider)
+- [Building Your First CRUD Pages](#building-your-first-crud-pages)
+- [Running Your Admin Panel](#running-your-admin-panel)
+- [Understanding the Power of Refine CORE Hooks](#understanding-the-power-of-refine-core-hooks)
+- [Key Features You Get Out of the Box](#key-features-you-get-out-of-the-box)
+- [Customization and Flexibility](#customization-and-flexibility)
+- [Connecting to Your Real Backend](#connecting-to-your-real-backend)
+- [FAQ](#faq)
+- [Conclusion](#conclusion)
 
 ## What You'll Build
 
@@ -200,6 +216,29 @@ The shadcn/ui components are just React components you can modify directly. They
 When you're ready to connect to your actual backend API, simply update the `API_URL` constant in `src/providers/constants.ts`. If your API follows REST conventions, it should work immediately. If your API has a different structure, you can customize the data provider methods in `src/providers/data.ts`.
 
 For GraphQL backends, install Refine CORE's GraphQL data provider. For Strapi, Supabase, or other specific backends, Refine CORE provides dedicated data providers that handle their unique requirements. The framework supports REST, GraphQL, tRPC, and any custom protocol you need.
+
+## FAQ
+
+**What is low-code development?**
+Low-code development uses frameworks and tools that automate repetitive tasks like CRUD operations, forms, and authentication. Instead of writing everything from scratch, you configure pre-built components and focus on business logic. Refine CORE brings this approach to React development.
+
+**Is Refine CORE actually free?**
+Yes, Refine CORE is completely open-source under the MIT license. You can use it for commercial projects, modify it, and there are no hidden fees or premium tiers for core functionality.
+
+**Can I use Refine CORE with my existing backend?**
+Absolutely. Refine CORE works with any REST API, GraphQL endpoint, or custom backend. Just configure the data provider to match your API structure, and you're good to go.
+
+**What UI libraries work with Refine CORE?**
+Refine CORE supports Ant Design, Material UI, Mantine, Chakra UI, and shadcn/ui out of the box. You can also use it headless with any React component library or build your own UI from scratch.
+
+**How long does it take to build an admin panel with Refine CORE?**
+A basic admin panel with CRUD operations can be up and running in under an hour. More complex applications with custom workflows might take a few days, but you're still saving weeks compared to building from scratch.
+
+**Do I need to know React to use Refine CORE?**
+Yes, Refine CORE is a React framework, so you need React knowledge. But if you know React, you already know how to customize Refine CORE—there's no proprietary syntax or special concepts to learn.
+
+**Can I customize the generated pages?**
+Everything is customizable. The generated pages are just React components in your codebase. You can modify them, replace them entirely, or build custom pages that don't follow any pattern.
 
 ## Conclusion
 
