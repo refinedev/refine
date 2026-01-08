@@ -10,7 +10,7 @@ pre-built components and hooks with minimal configuration.
 
 ## Installation
 
-This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
+This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://refine.dev/).
 
 <InstallPackagesCommand args="@refinedev/enterprise @refinedev/multitenancy">
 

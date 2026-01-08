@@ -16,7 +16,7 @@ import clsx from "clsx";
 import React from "react";
 
 function Home() {
-  const title = "Refine | Open-source Retool for Enterprise";
+  const title = "Refine Core: Open-Source Retool For Enterprise";
   return (
     <>
       <Head>
@@ -30,7 +30,7 @@ function Home() {
         />
       </Head>
       <CommonLayout
-        description="Build React-based internal tools, admin panels, dashboards & B2B apps with unmatched flexibility."
+        description="Open-source React framework for building enterprise-grade admin panels, internal tools, and B2B apps. Headless, flexible, and production-ready."
         className={clsx("bg-zinc-900")}
       >
         <div className={clsx()}>
