@@ -1,5 +1,13 @@
 # @refinedev/rest
 
+## 2.1.0
+
+### Minor Changes
+
+- [#7196](https://github.com/refinedev/refine/pull/7196) [`9217c8596b368bca668dbea9493c0076c57f1d31`](https://github.com/refinedev/refine/commit/9217c8596b368bca668dbea9493c0076c57f1d31) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix(rest): make `getMany` method optional in data provider
+
+  The `getMany` method is no longer provided by default. Previously, a default implementation was included, but it has been removed to make the method truly optional. Users who need the `getMany` functionality must now explicitly define it in their data provider configuration.
+
 ## 2.0.3
 
 ### Patch Changes
