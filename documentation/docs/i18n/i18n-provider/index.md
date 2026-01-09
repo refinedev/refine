@@ -159,6 +159,89 @@ Here is the list of all translation keys that you can override:
 
 </details>
 
+### DataTable Filter (ShadCN UI)
+
+Refine UI’s DataTable filter components use the `useTranslate` hook to localize
+labels, placeholders, and operator names. These keys are defined in the UI layer
+and can be overridden via your `i18nProvider`.
+
+If a key is not provided, the component will fall back to its default English
+label.
+
+#### Action Buttons
+
+```json
+{
+  "buttons": {
+    "clear": "Clear",
+    "apply": "Apply"
+  }
+}
+```
+
+#### Filter Inputs
+
+```json
+{
+  "table": {
+    "filter": {
+      "text": {
+        "placeholder": "Filter by..."
+      },
+      "numeric": {
+        "placeholder": "Filter by..."
+      },
+      "combobox": {
+        "placeholder": "Select...",
+        "search": "Search...",
+        "noResults": "Results not found."
+      }
+    }
+  }
+}
+```
+
+#### Filter Operators
+
+```json
+{
+  "table": {
+    "filter": {
+      "operator": {
+        "eq": "Equals",
+        "ne": "Not equals",
+        "eqs": "Equals (case sensitive)",
+        "nes": "Not equals (case sensitive)",
+        "lt": "Less than",
+        "gt": "Greater than",
+        "lte": "Less than or equal",
+        "gte": "Greater than or equal",
+        "in": "Includes in an array",
+        "nin": "Not includes in an array",
+        "ina": "Includes in an array (case sensitive)",
+        "nina": "Not includes in an array (case sensitive)",
+        "contains": "Contains",
+        "ncontains": "Not contains",
+        "containss": "Contains (case sensitive)",
+        "ncontainss": "Not contains (case sensitive)",
+        "between": "Between",
+        "nbetween": "Not between",
+        "null": "Is null",
+        "nnull": "Is not null",
+        "startswith": "Starts with",
+        "nstartswith": "Not starts with",
+        "startswiths": "Starts with (case sensitive)",
+        "nstartswiths": "Not starts with (case sensitive)",
+        "endswith": "Ends with",
+        "nendswith": "Not ends with",
+        "endswiths": "Ends with (case sensitive)",
+        "nendswiths": "Not ends with (case sensitive)"
+      }
+    }
+  }
+}
+```
+
 ## FAQ
 
 ### How can I create translation files for other languages in an automated way?
