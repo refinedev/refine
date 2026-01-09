@@ -61,9 +61,6 @@ export type CreateDataProviderOptions = {
   getOne?: {
     /* get record by id */
   };
-  getMany?: {
-    /* get many by ids */
-  };
   create?: {
     /* create record */
   };
