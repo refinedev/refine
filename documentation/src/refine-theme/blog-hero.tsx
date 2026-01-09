@@ -64,15 +64,6 @@ export const BlogHero: FC<Props> = ({ className }) => {
           )}
         >
           <div className={clsx()}>Refine </div>
-          <div
-            className={clsx(
-              "font-bold",
-              "font-jetBrains-mono",
-              "text-orange-500 dark:text-orange-400",
-            )}
-          >
-            CORE
-          </div>
           <div className={clsx()}>Blog</div>
         </h2>
         <p
