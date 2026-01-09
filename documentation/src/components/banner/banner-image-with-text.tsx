@@ -29,7 +29,7 @@ export const BannerImageWithText: FC<Props> = ({
   variant = "purple",
   button = {
     text: "Learn more",
-    href: "https://s.refine.dev/banner-with-image?ref=banner-image-with-text",
+    href: "https://refine.dev/?ref=banner-image-with-text",
     onClick: undefined,
   },
   bannerName,

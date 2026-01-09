@@ -65,7 +65,7 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
           )}
         >
           <a
-            href="https://s.refine.dev/ai-banner"
+            href="https://refine.dev/"
             target="_blank"
             rel="noopener"
             className={clsx(

@@ -18,7 +18,7 @@ export const BannerExamples: FC<Props> = ({
   description = "The next-gen approach to build enterprise-ready React-based internal tools apps with the power of GenAI.",
   button = {
     text: "Explore Refine AI",
-    href: "https://s.refine.dev/blog-banner-no-image?ref=banner-examples",
+    href: "https://refine.dev/?ref=banner-examples",
     onClick: undefined,
   },
 }) => {
