@@ -77,7 +77,8 @@ export type CreateDataProviderOptions = {
 
     buildQueryParams?: BuildQueryParams<GetManyParams>;
 
-    mapResponse?: MapResponse<GetManyParams, AnyObject[]>;
+    mapResponse: MapResponse<GetManyParams, AnyObject[]>;
+    transformError?: TransformError<GetManyParams>;
   };
   update?: {
     getEndpoint?: GetEndpoint<UpdateParams<any>>;
