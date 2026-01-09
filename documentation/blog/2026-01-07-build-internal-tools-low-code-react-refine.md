@@ -137,13 +137,17 @@ The data provider handles pagination, sorting, filtering, and relationships auto
 
 Let's examine how Refine CORE generates fully functional CRUD pages with minimal code. Navigate to `src/pages/blog-posts/list.tsx` to see the list page implementation.
 
-The list page uses the `useDataGrid` hook, which handles data fetching, pagination, sorting, and filtering automatically. It returns `dataGridProps` that you can spread directly onto your table component. The table displays your data with built-in action buttons for editing, viewing, and deleting records.
+The list page uses the `useTable` hook from `@refinedev/react-table`, which handles data fetching, pagination, sorting, and filtering automatically. It integrates with TanStack Table (formerly React Table) to provide a powerful, headless table solution. The hook returns everything you need to build a fully functional data table.
 
 ```typescript
-const { dataGridProps, search, filters } = useDataGrid();
+import { useTable } from "@refinedev/react-table";
+
+const { getHeaderGroups, getRowModel } = useTable({
+  columns,
+});
 ```
 
-This single line replaces dozens of lines you'd typically write for state management, API calls, loading states, and error handling. The table automatically updates when you interact with it—sorting columns, navigating pages, or applying filters all work without additional code.
+This replaces dozens of lines you'd typically write for state management, API calls, loading states, and error handling. The table automatically updates when you interact with it—sorting columns, navigating pages, or applying filters all work without additional code.
 
 ![Blog posts list page with data table](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-list.png)
 
@@ -201,7 +205,7 @@ Form handling includes validation with helpful error messages, support for diffe
 
 Dark mode support comes built-in with shadcn/ui, allowing users to toggle between light and dark themes. The interface persists their preference across sessions. Routing synchronizes with the URL, making the application bookmarkable and shareable. The breadcrumb navigation shows the current location and provides quick navigation to parent pages.
 
-Perhaps most impressively, Refine CORE includes developer tools for debugging. Press `Ctrl+Shift+D` (or `Cmd+Shift+D` on Mac) to open the Refine Devtools panel, which displays your resources, providers, and active queries. This transparency makes it easy to understand what's happening in your application and debug issues quickly.
+Perhaps most impressively, Refine CORE includes developer tools for debugging. Press the icon at the bottom to open the Refine Devtools panel, which displays your resources, providers, and active queries. This transparency makes it easy to understand what's happening in your application and debug issues quickly.
 
 ## Customization and Flexibility
 
