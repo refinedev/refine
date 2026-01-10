@@ -49,31 +49,38 @@ export const liveProvider = (
         }
       };
 
+      // ✅ FIXED: Supabase Realtime supports only ONE filter
       const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
+        if (!filters || filters.length === 0) {
           return;
         }
 
-        return filters
-          .map((filter: CrudFilter): string | undefined => {
-            if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
-            }
-            return;
-          })
-          .filter(Boolean)
-          .join(",");
+        if (filters.length > 1) {
+          console.warn(
+            "[refine][supabase] Supabase Realtime does not support multiple filters. Using only the first filter.",
+          );
+        }
+
+        const filter = filters[0];
+
+        if ("field" in filter) {
+          return `${filter.field}=${mapOperator(filter.operator)}.${
+            filter.value
+          }`;
+        }
+
+        return;
       };
 
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
+
       const filter = mapFilter(params?.filters);
       const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
       let client = supabaseClient.channel(ch);
+
       for (let i = 0; i < events.length; i++) {
         client = client.on(
           "postgres_changes",
