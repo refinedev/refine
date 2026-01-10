@@ -301,7 +301,7 @@ const App: React.FC = () => {
            * Please set `liveMode: "auto"` or `liveMode: "manual"` manually while using real-time features of refine.
            */
           options={{
-            liveMode: "off",
+            liveMode: "auto",
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
           }}
