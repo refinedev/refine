@@ -43,7 +43,7 @@ If you need to translate the texts in your own components, you can use `translat
 import { useTranslate } from "@refinedev/core";
 
 export const MyComponent = () => {
-  const { translate } = useTranslate();
+  const translate = useTranslate();
 
   return <button>{translate("my.translate.text")}</button>;
 };
