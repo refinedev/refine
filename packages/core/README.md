@@ -1,5 +1,5 @@
 <div align="center">
-<a href="https://refine.dev/">
+<a href="https://refine.dev/core">
     <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
 </a>
 
@@ -7,12 +7,12 @@
 <br/>
 
 <div align="center">
-    <a href="https://refine.dev">Home Page</a> |
-    <a href="https://refine.dev/docs/">Documentation</a> |
-    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/core/">Home Page</a> |
+    <a href="https://refine.dev/core/docs/">Documentation</a> |
+    <a href="https://refine.dev/core/templates/">Examples</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/blog/">Blog</a> |
-    <a href="https://s.refine.dev/tJw4XFo">Refine AI</a>
+    <a href="https://refine.dev/core/blog/">Blog</a> |
+    <a href="https://s.refine.dev/tJw4XFo">Refine</a>
 </div>
 </div>
 
@@ -21,11 +21,11 @@
 
 <div align="center"><strong>The sweet spot between the low/no code and “starting from scratch” for CRUD-heavy applications.</strong><br>
 
-Refine is an open source, React meta-framework for enterprise. It provides a headless solution for everything from admin panels to
+Refine Core is an open source, React meta-framework for enterprise. It provides a headless solution for everything from admin panels to
 dashboards and internal tools.
 <br />
 
-<strong>Refine also now powers <a href="https://s.refine.dev/tJw4XFo">Refine AI</a>, our purpose built AI Agent.</strong>
+<strong>Refine CORE also powers <a href="https://s.refine.dev/tJw4XFo">Refine's purpose built AI agent.</a></strong>
 <br />
 
 </div>
@@ -44,23 +44,23 @@ dashboards and internal tools.
 
 <br/>
 
-[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram-3.png)](https://refine.dev)
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram-3.png)](https://refine.dev/core)
 
-## What is Refine?
+## What is Refine CORE?
 
-**Refine** is a React meta-framework for CRUD-heavy web applications. It addresses a wide range of enterprise use cases including internal tools, admin panels, dashboards and B2B apps.
+**Refine CORE** is a React meta-framework for CRUD-heavy web applications. It addresses a wide range of enterprise use cases including internal tools, admin panels, dashboards and B2B apps.
 
-Refine's core hooks and components streamline the development process by offering industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+Refine CORE's hooks and components streamline the development process by offering industry-standard solutions for crucial aspects of a project, including **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-Refine's headless architecture enables the building of highly customizable applications by decoupling business logic from UI and routing. This allows integration with:
+Refine CORE's headless architecture enables the building of highly customizable applications by decoupling business logic from UI and routing. This allows integration with:
 
 - Any custom designs or UI frameworks like [TailwindCSS](https://tailwindcss.com/), along with built-in support for [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 - Various platforms, including Next.js, Remix, React Native, Electron, etc., by a simple routing interface without the need for additional setup steps.
 
-## ⚡ Try Refine
+## ⚡ Try Refine CORE
 
-Start a new project with Refine in seconds using the following command:
+Start a new project with Refine CORE in seconds using the following command:
 
 ```sh
 npm create refine-app@latest my-refine-app
@@ -68,13 +68,13 @@ npm create refine-app@latest my-refine-app
 
 Or you can create a new project on your browser:
 
-<a href="https://refine.dev/?playground=true" target="_blank">
+<a href="https://refine.dev/core/?playground=true" target="_blank">
   <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-it-in-your-browser.png" />
 </a>
 
 <br>
 
-You can also try Refine AI for free to create projects:
+You can also try Refine's AI agent for free to create projects:
 
 <a href="https://s.refine.dev/tJw4XFo" target="_blank">
   <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-out-refine-ai-2.png" />
@@ -82,7 +82,7 @@ You can also try Refine AI for free to create projects:
 
 ## Quick Start
 
-Here's Refine in action, the below code is an example of a simple CRUD application using Refine + React Router + Material UI:
+Here's Refine CORE in action, the below code is an example of a simple CRUD application using Refine CORE + React Router + Material UI:
 
 ```tsx
 import React from "react";
@@ -179,13 +179,13 @@ export const ProductList = () => {
 
 The result will look like this:
 
-[![Refine + Material UI Example](https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-mui-simple-example-screenshot-rounded.webp)](https://refine.new/preview/c85442a8-8df1-4101-a09a-47d3ca641798)
+[![Refine CORE + Material UI Example](https://refine.ams3.cdn.digitaloceanspaces.com/assets/refine-mui-simple-example-screenshot-rounded.webp)](https://refine.new/preview/c85442a8-8df1-4101-a09a-47d3ca641798)
 
 ## Use cases
 
-**Refine** shines on _data-intensive⚡_ enterprise B2B applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, it can also power _customer-facing_ applications like **storefronts**.
+**Refine CORE** shines on _data-intensive⚡_ enterprise B2B applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, it can also power _customer-facing_ applications like **storefronts**.
 
-You can take a look at some live examples that can be built using **Refine** from scratch:
+You can take a look at some live examples that can be built using **Refine CORE** from scratch:
 
 - [Fully-functional CRM Application](https://refine.dev/templates/crm-application/)
 - [Fully-functional Admin Panel](https://refine.dev/templates/react-admin-panel/)
@@ -195,11 +195,11 @@ You can take a look at some live examples that can be built using **Refine** fro
 - [Multitenancy Example](https://refine.dev/templates/multitenancy-strapi/)
 - [Storefront](https://refine.dev/templates/next-js-ecommerce-store/)
 - [Refer to templates page for more examples](https://refine.dev/templates/)
-- [More **Refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples#other-examples)
+- [More **Refine CORE** powered different usage scenarios can be found here](https://refine.dev/core/templates)
 
 ## Key Features
 
-- Refine Devtools - dive deeper into your app and provide useful insights
+- Refine CORE Devtools - dive deeper into your app and provide useful insights
 - Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/main/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/main/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/main/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/main/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/main/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/main/packages/appwrite), [Nestjs-Query](https://github.com/refinedev/refine/tree/main/packages/nestjs-query), [Firebase](https://firebase.google.com/), [Sanity](https://www.sanity.io/), and [Directus](https://directus.io/).
 - SSR support with Next.js & Remix and Advanced routing with any router library of your choice
 - Auto-generation of CRUD UIs based on your API data structure
@@ -208,15 +208,15 @@ You can take a look at some live examples that can be built using **Refine** fro
 - Out-of-the-box support for live / real-time applications
 - Easy audit logs & document versioning
 
-## Learning Refine
+## Learning Refine CORE
 
-- Navigate to the [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) on building comprehensive CRUD application guides you through each step of the process.
-- Visit the [Guides & Concepts](https://refine.dev/docs/guides-concepts/general-concepts/) to get informed about the fundamental concepts.
-- Read more on [Advanced Tutorials](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
+- Navigate to the [Tutorial](https://refine.dev/core/tutorial/essentials/intro/) on building comprehensive CRUD application guides you through each step of the process.
+- Visit the [Guides & Concepts](https://refine.dev/core/docs/guides-concepts/general-concepts/) to get informed about the fundamental concepts.
+- Read more on [Advanced Tutorials](https://refine.dev/core/docs/advanced-tutorials/) for different usage scenarios.
 
 ## Contribution
 
-[Refer to the contribution docs for more information.](https://refine.dev/docs/contributing/#ways-to-contribute)
+[Refer to the contribution docs for more information.](https://refine.dev/core/docs/guides-concepts/contributing/#ways-to-contribute)
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord server](https://discord.gg/refine).
 
@@ -224,7 +224,7 @@ If you have any doubts related to the project or want to discuss something, then
 
 We extend our gratitude to all our numerous contributors who create plugins, assist with issues and pull requests, and respond to questions on Discord and GitHub Discussions.
 
-Refine is a community-driven project, and your contributions continually improve it.
+Refine CORE is a community-driven project, and your contributions continually improve it.
 
 <br/>
 

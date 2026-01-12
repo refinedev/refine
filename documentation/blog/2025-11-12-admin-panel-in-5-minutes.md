@@ -1,6 +1,6 @@
 ---
 title: Create an admin panel with Supabase in 5 minutes
-description: Learn how Refine AI can help you create an admin panel with supabase in 5 minutes
+description: Learn how Refine can help you create an admin panel with supabase in 5 minutes
 slug: supabase-refine-ai
 authors: ozgur
 tags: [supabase, admin panel, AI, fast]
@@ -43,7 +43,7 @@ The code it generates isn't throw-away prototype code either—it's production-r
 
 ### Step 1: Create the project
 
-Here's where it gets fun. Head over to [refine.dev/v2](https://refine.dev/v2) and click "Start building with Refine AI."
+Here's where it gets fun. Head over to [refine.dev](https://refine.dev) and click "Connect to Supabase"
 
 First, pick your UI framework. For this project, we'll use shadcn/ui, but you can choose whichever you prefer.
 
@@ -116,7 +116,7 @@ I've been using this workflow for my projects, and honestly, I don't think I'll 
 
 If you're building an admin panel (or need to), try this out. Seriously. It takes 15 minutes to see what it can do, and Supabase's free tier is more than enough to experiment.
 
-👉 **[Start building with Refine AI V2](https://refine.dev/ai)**
+👉 **[Start building with Refine](https://refine.dev)**
 
 **Helpful links:**
 
