@@ -64,11 +64,7 @@ export const BasicDataGrid: React.FC = () => {
         type: "actions",
         headerName: "Actions",
         getActions: () => [
-          // eslint-disable-next-line
-          // @ts-ignore `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
           <GridActionsCellItem key={1} label="Delete" showInMenu />,
-          // eslint-disable-next-line
-          // @ts-ignore `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
           <GridActionsCellItem key={2} label="Print" showInMenu />,
         ],
       },

@@ -150,10 +150,10 @@ export const RecentOrders: React.FC = () => {
         type: "actions",
         width: 80,
         getActions: ({ id }) => [
+          // @ts-expect-error MUI X v8 types don't allow icon with showInMenu, but it works at runtime
           <GridActionsCellItem
             key={1}
             icon={<CheckOutlined color="success" />}
-            sx={{ padding: "2px 6px" }}
             label={t("buttons.accept")}
             showInMenu
             onClick={() => {
@@ -168,10 +168,10 @@ export const RecentOrders: React.FC = () => {
               });
             }}
           />,
+          // @ts-expect-error MUI X v8 types don't allow icon with showInMenu, but it works at runtime
           <GridActionsCellItem
             key={2}
             icon={<CloseOutlined color="error" />}
-            sx={{ padding: "2px 6px" }}
             label={t("buttons.reject")}
             showInMenu
             onClick={() =>

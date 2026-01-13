@@ -119,10 +119,10 @@ export const OrderList = () => {
         headerAlign: "right",
         align: "right",
         getActions: ({ id }) => [
+          // @ts-expect-error MUI X v8 types don't allow icon with showInMenu, but it works at runtime
           <GridActionsCellItem
             key={1}
             icon={<CheckOutlinedIcon color="success" />}
-            sx={{ padding: "2px 6px" }}
             label={t("buttons.accept")}
             showInMenu
             onClick={() => {
@@ -137,10 +137,10 @@ export const OrderList = () => {
               });
             }}
           />,
+          // @ts-expect-error MUI X v8 types don't allow icon with showInMenu, but it works at runtime
           <GridActionsCellItem
             key={2}
             icon={<CloseOutlinedIcon color="error" />}
-            sx={{ padding: "2px 6px" }}
             label={t("buttons.reject")}
             showInMenu
             onClick={() =>
