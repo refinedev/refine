@@ -13,15 +13,16 @@ import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] =
-    React.useState<GridRowSelectionModel>([]);
-  const hasSelected = selectedRowKeys.length > 0;
+    React.useState<GridRowSelectionModel>({ type: "include", ids: new Set() });
+  const selectedIds = Array.from(selectedRowKeys.ids);
+  const hasSelected = selectedIds.length > 0;
 
   const { mutate } = useUpdateMany<IPost>({
     resource: "posts",
-    ids: selectedRowKeys.map(String),
+    ids: selectedIds.map(String),
     mutationOptions: {
       onSuccess: () => {
-        setSelectedRowKeys([]);
+        setSelectedRowKeys({ type: "include", ids: new Set() });
       },
     },
   });
