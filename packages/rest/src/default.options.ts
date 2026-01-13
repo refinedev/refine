@@ -149,6 +149,20 @@ export const defaultCreateDataProviderOptions = {
     ) {
       return undefined;
     },
+    async transformError(
+      response: KyResponse<AnyObject>,
+      params: DeleteOneParams<any>,
+    ) {
+      const body = await response.json();
+
+      return {
+        message: JSON.stringify({
+          ...body,
+          id: params.id,
+        }),
+        statusCode: response.status,
+      };
+    },
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {
@@ -165,6 +179,20 @@ export const defaultCreateDataProviderOptions = {
       _params: CustomParams<any>,
     ) {
       return await response.json();
+    },
+    async transformError(
+      response: KyResponse<AnyObject>,
+      params: CustomParams<any>,
+    ) {
+      const body = await response.json();
+
+      return {
+        message: JSON.stringify({
+          ...body,
+          params,
+        }),
+        statusCode: response.status,
+      };
     },
   },
 };
