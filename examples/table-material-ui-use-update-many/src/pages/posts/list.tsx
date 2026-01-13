@@ -3,26 +3,20 @@ import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import Button from "@mui/material/Button";
-import {
-  DataGrid,
-  type GridColDef,
-  type GridRowSelectionModel,
-} from "@mui/x-data-grid";
+import { DataGrid, type GridColDef, type GridRowId } from "@mui/x-data-grid";
 
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const [selectedRowKeys, setSelectedRowKeys] =
-    React.useState<GridRowSelectionModel>({ type: "include", ids: new Set() });
-  const selectedIds = Array.from(selectedRowKeys.ids);
-  const hasSelected = selectedIds.length > 0;
+  const [selectedRowKeys, setSelectedRowKeys] = React.useState<GridRowId[]>([]);
+  const hasSelected = selectedRowKeys.length > 0;
 
   const { mutate } = useUpdateMany<IPost>({
     resource: "posts",
-    ids: selectedIds.map(String),
+    ids: selectedRowKeys.map(String),
     mutationOptions: {
       onSuccess: () => {
-        setSelectedRowKeys({ type: "include", ids: new Set() });
+        setSelectedRowKeys([]);
       },
     },
   });
@@ -113,11 +107,13 @@ export const PostList: React.FC = () => {
         {...dataGridProps}
         columns={columns}
         checkboxSelection
+        disableRowSelectionExcludeModel
         onRowSelectionModelChange={(newSelectionModel) => {
-          setSelectedRowKeys(newSelectionModel);
+          // With disableRowSelectionExcludeModel, the model is an array at runtime
+          setSelectedRowKeys(newSelectionModel as unknown as GridRowId[]);
         }}
         pageSizeOptions={[10, 20, 50, 100]}
-        rowSelectionModel={selectedRowKeys}
+        rowSelectionModel={selectedRowKeys as any}
       />
     </List>
   );
