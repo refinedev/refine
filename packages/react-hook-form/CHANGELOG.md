@@ -1,5 +1,12 @@
 # @refinedev/react-hook-form
 
+## 5.0.4
+
+### Patch Changes
+
+- [#7205](https://github.com/refinedev/refine/pull/7205) [`20af33db209246156b81bd80e025ef3bf482c7a9`](https://github.com/refinedev/refine/commit/20af33db209246156b81bd80e025ef3bf482c7a9) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: sync query values to fields that register after data loads (e.g. Controller),
+  without overwriting dirty inputs.
+
 ## 5.0.3
 
 ### Patch Changes

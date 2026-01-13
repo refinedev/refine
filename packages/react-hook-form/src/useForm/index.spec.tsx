@@ -2,8 +2,10 @@ import React from "react";
 
 import { useForm } from ".";
 import type { IRefineOptions, HttpError } from "@refinedev/core";
+import * as Core from "@refinedev/core";
 import { MockJSONServer, TestWrapper, act, render, waitFor } from "../../test";
 import { Route, Routes } from "react-router";
+import { Controller } from "react-hook-form";
 
 interface IPost {
   title: string;
@@ -11,6 +13,7 @@ interface IPost {
   slug: string;
   category: { id: number };
   tags: string[];
+  userId?: number;
 }
 
 const renderForm = ({
@@ -231,5 +234,99 @@ describe("useForm hook", () => {
       expect(queryByText("Translated content error")).not.toBeInTheDocument();
       expect(queryByText("Field is not valid.")).not.toBeInTheDocument();
     });
+  });
+
+  it("should sync values for fields registered after query resolves", async () => {
+    const useFormCoreSpy = vi.spyOn(Core, "useForm").mockReturnValue({
+      query: {
+        data: {
+          data: {
+            id: "1",
+            title: "Post 1",
+            content: "",
+            slug: "",
+            category: { id: 1 },
+            tags: [],
+            userId: 5,
+          },
+        },
+      },
+      onFinish: vi.fn().mockResolvedValue({}),
+      onFinishAutoSave: vi.fn().mockResolvedValue({}),
+      formLoading: false,
+    } as any);
+
+    try {
+      const EditPage = () => {
+        const {
+          control,
+          register,
+          refineCore: { query },
+        } = useForm<IPost, HttpError, IPost>({
+          refineCoreProps: {
+            resource: "posts",
+            action: "edit",
+            id: "1",
+          },
+        });
+
+        const [showLateField, setShowLateField] = React.useState(false);
+
+        return (
+          <div>
+            <input data-testid="title-field" {...register("title")} />
+            <span data-testid="query-user-id">
+              {query?.data?.data?.userId ?? ""}
+            </span>
+            <button
+              type="button"
+              data-testid="show-late-field"
+              onClick={() => setShowLateField(true)}
+            >
+              show
+            </button>
+            {showLateField && (
+              <Controller
+                control={control}
+                name="userId"
+                render={({ field }) => (
+                  <input
+                    data-testid="late-field"
+                    value={field.value ?? ""}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+            )}
+          </div>
+        );
+      };
+
+      const { findByTestId } = render(
+        <Routes>
+          <Route path="/" element={<EditPage />} />
+        </Routes>,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      const queryUserId = await findByTestId("query-user-id");
+
+      await waitFor(() => {
+        expect(queryUserId).toHaveTextContent("5");
+      });
+
+      await act(async () => {
+        (await findByTestId("show-late-field")).click();
+      });
+
+      const lateField = await findByTestId("late-field");
+      await waitFor(() => {
+        expect(lateField).toHaveValue("5");
+      });
+    } finally {
+      useFormCoreSpy.mockRestore();
+    }
   });
 });

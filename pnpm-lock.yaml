@@ -432,8 +432,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -606,8 +606,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -719,8 +719,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -984,8 +984,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -1152,8 +1152,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -1207,8 +1207,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -1353,8 +1353,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -2023,8 +2023,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -2169,8 +2169,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -3273,8 +3273,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -3540,8 +3540,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -3970,8 +3970,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4031,8 +4031,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4092,8 +4092,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4153,8 +4153,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4208,8 +4208,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4655,8 +4655,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4725,8 +4725,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4792,8 +4792,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4859,8 +4859,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4926,8 +4926,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -4975,8 +4975,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5024,8 +5024,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5073,8 +5073,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5469,8 +5469,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5615,8 +5615,8 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5785,8 +5785,8 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -5988,8 +5988,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -6604,8 +6604,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/nestjsx-crud
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -6863,8 +6863,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7009,8 +7009,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7446,8 +7446,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7507,8 +7507,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7778,8 +7778,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7918,8 +7918,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -7985,8 +7985,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8052,8 +8052,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8116,8 +8116,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8180,8 +8180,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8229,8 +8229,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8406,8 +8406,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8476,8 +8476,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8649,8 +8649,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8771,8 +8771,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -8917,8 +8917,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9048,8 +9048,8 @@ importers:
         specifier: ^6.0.2
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9121,8 +9121,8 @@ importers:
         specifier: ^6.0.2
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9300,8 +9300,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9477,8 +9477,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9541,8 +9541,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9769,8 +9769,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9836,8 +9836,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -9885,8 +9885,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -10047,8 +10047,8 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -10260,8 +10260,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -10534,8 +10534,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -10595,8 +10595,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.3
         version: link:../../packages/react-router
@@ -10796,8 +10796,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-table':
         specifier: ^6.0.1
         version: link:../../packages/react-table
@@ -10948,8 +10948,8 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.4
+        version: link:../../packages/react-hook-form
       '@refinedev/react-table':
         specifier: ^6.0.1
         version: link:../../packages/react-table
@@ -11321,7 +11321,7 @@ importers:
         version: 11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0)
       '@refinedev/react-hook-form':
         specifier: ^5.0.2
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        version: link:../react-hook-form
       '@refinedev/ui-types':
         specifier: ^2.0.1
         version: link:../ui-types
@@ -12492,7 +12492,7 @@ importers:
         version: link:../mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.2
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        version: link:../react-hook-form
       '@refinedev/react-table':
         specifier: ^6.0.1
         version: link:../react-table
@@ -12697,7 +12697,7 @@ importers:
         version: link:../nestjsx-crud
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        version: link:../react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.0
         version: link:../react-router
@@ -13009,7 +13009,7 @@ importers:
         version: 8.24.0(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.6(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/react-hook-form':
         specifier: ^5.0.3
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        version: link:../react-hook-form
       '@refinedev/ui-types':
         specifier: ^2.0.0
         version: link:../ui-types
@@ -13547,7 +13547,7 @@ importers:
         version: link:../core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
-        version: 5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        version: link:../react-hook-form
       '@refinedev/react-router':
         specifier: ^2.0.0
         version: link:../react-router
@@ -19488,17 +19488,6 @@ packages:
     resolution: {integrity: sha512-0Ar/QluaAzKXr+iX/LkJRAq9dhwIxlY2JidmkVzW0Tc3Fp2elOvORmy0Yko0VQm1q+3brvLQp/OzLyKmikyVDQ==}
     peerDependencies:
       '@refinedev/core': ^4.28.2
-
-  '@refinedev/react-hook-form@5.0.4':
-    resolution: {integrity: sha512-JT4Wsr9ovVt0t06TYqUT/VeevfRRTLv6cr3zAsDE2e4IoDnZfG+Rz4YGzSIbn/WxBpveY6oSPd9UfXaOfffvXg==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@refinedev/core': ^5.0.0
-      '@types/react': ^18.0.0 || ^19.0.0
-      '@types/react-dom': ^18.0.0 || ^19.0.0
-      react: ^18.0.0 || ^19.0.0
-      react-dom: ^18.0.0 || ^19.0.0
-      react-hook-form: ^7.57.0
 
   '@refinedev/strapi-graphql@6.0.5':
     resolution: {integrity: sha512-ugNv7xbTKxmw59yC6phRH3qGPJGRIPwfeqXLPREtjUb9/tjBfJt0Qs/301fjnX28ghiJScMF9twjQHAekFGa/Q==}
@@ -32363,6 +32352,11 @@ packages:
       '@types/react':
         optional: true
 
+  use-sync-external-store@1.5.0:
+    resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   use-sync-external-store@1.6.0:
     resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
     peerDependencies:
@@ -33259,7 +33253,7 @@ snapshots:
 
   '@ant-design/cssinjs@1.21.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       classnames: 2.5.1
@@ -33359,7 +33353,7 @@ snapshots:
   '@ant-design/pro-provider@2.15.1(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@ctrl/tinycolor': 3.6.1
       antd: 5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs: 1.11.13
@@ -33372,7 +33366,7 @@ snapshots:
     dependencies:
       '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/pro-provider': 2.15.1(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       antd: 5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       dayjs: 1.11.13
@@ -33730,7 +33724,7 @@ snapshots:
       '@babel/core': 7.28.0
       '@babel/generator': 7.28.0
       '@babel/parser': 7.28.0
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@babel/traverse': 7.28.0
       '@babel/types': 7.28.2
       babel-preset-fbjs: 3.4.0(@babel/core@7.28.0)
@@ -33754,7 +33748,7 @@ snapshots:
       '@babel/core': 7.28.0
       '@babel/generator': 7.28.0
       '@babel/parser': 7.28.0
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@babel/traverse': 7.28.0
       '@babel/types': 7.28.2
       babel-preset-fbjs: 3.4.0(@babel/core@7.28.0)
@@ -36999,7 +36993,7 @@ snapshots:
 
   '@changesets/apply-release-plan@7.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/config': 3.0.0
       '@changesets/get-version-range-type': 0.4.0
       '@changesets/git': 3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)
@@ -37015,7 +37009,7 @@ snapshots:
 
   '@changesets/assemble-release-plan@6.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/errors': 0.2.0
       '@changesets/get-dependents-graph': 2.0.0
       '@changesets/types': 6.0.0
@@ -37100,7 +37094,7 @@ snapshots:
 
   '@changesets/get-release-plan@4.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/assemble-release-plan': 6.0.0
       '@changesets/config': 3.0.0
       '@changesets/pre': 2.0.0
@@ -37112,7 +37106,7 @@ snapshots:
 
   '@changesets/git@3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/errors': 0.2.0
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
@@ -37131,7 +37125,7 @@ snapshots:
 
   '@changesets/pre@2.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/errors': 0.2.0
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
@@ -37139,7 +37133,7 @@ snapshots:
 
   '@changesets/read@0.6.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/git': 3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)
       '@changesets/logger': 0.1.0
       '@changesets/parse': 0.4.0
@@ -37156,7 +37150,7 @@ snapshots:
 
   '@changesets/write@0.3.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/types': 6.0.0
       fs-extra: 7.0.1
       human-id: 1.0.2
@@ -39821,14 +39815,14 @@ snapshots:
 
   '@manypkg/find-root@1.1.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
 
   '@manypkg/get-packages@1.1.3':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@changesets/types': 4.1.0
       '@manypkg/find-root': 1.1.0
       fs-extra: 8.1.0
@@ -39998,7 +39992,7 @@ snapshots:
 
   '@mui/private-theming@6.1.6(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       prop-types: 15.8.1
       react: 19.1.0
@@ -40007,7 +40001,7 @@ snapshots:
 
   '@mui/private-theming@6.1.7(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       prop-types: 15.8.1
       react: 19.1.0
@@ -40016,7 +40010,7 @@ snapshots:
 
   '@mui/styled-engine@6.1.6(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@emotion/cache': 11.13.1
       '@emotion/serialize': 1.3.2
       '@emotion/sheet': 1.4.0
@@ -40029,7 +40023,7 @@ snapshots:
 
   '@mui/styled-engine@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@emotion/cache': 11.13.1
       '@emotion/serialize': 1.3.2
       '@emotion/sheet': 1.4.0
@@ -40250,7 +40244,7 @@ snapshots:
 
   '@mui/x-internals@7.23.5(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       react: 19.1.0
     transitivePeerDependencies:
@@ -40757,16 +40751,16 @@ snapshots:
 
   '@probe.gl/env@3.6.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@probe.gl/log@3.6.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@probe.gl/env': 3.6.0
 
   '@probe.gl/stats@3.6.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@qualifyze/airtable-formulator@1.3.1':
     dependencies:
@@ -40774,13 +40768,13 @@ snapshots:
 
   '@radix-ui/number@1.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@radix-ui/number@1.1.1': {}
 
   '@radix-ui/primitive@1.0.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@radix-ui/primitive@1.1.3': {}
 
@@ -40892,12 +40886,12 @@ snapshots:
 
   '@radix-ui/react-compose-refs@1.0.0(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   '@radix-ui/react-compose-refs@1.0.1(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
     optionalDependencies:
       '@types/react': 19.1.8
@@ -40924,7 +40918,7 @@ snapshots:
 
   '@radix-ui/react-context@1.0.0(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   '@radix-ui/react-context@1.1.2(@types/react@19.1.8)(react@19.1.0)':
@@ -40957,7 +40951,7 @@ snapshots:
 
   '@radix-ui/react-direction@1.0.0(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   '@radix-ui/react-direction@1.1.1(@types/react@19.1.8)(react@19.1.0)':
@@ -41153,7 +41147,7 @@ snapshots:
 
   '@radix-ui/react-portal@1.0.4(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41173,7 +41167,7 @@ snapshots:
 
   '@radix-ui/react-presence@1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-compose-refs': 1.0.0(react@19.1.0)
       '@radix-ui/react-use-layout-effect': 1.0.0(react@19.1.0)
       react: 19.1.0
@@ -41191,14 +41185,14 @@ snapshots:
 
   '@radix-ui/react-primitive@1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-slot': 1.0.1(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@radix-ui/react-primitive@1.0.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-slot': 1.0.2(@types/react@19.1.8)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41351,13 +41345,13 @@ snapshots:
 
   '@radix-ui/react-slot@1.0.1(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-compose-refs': 1.0.0(react@19.1.0)
       react: 19.1.0
 
   '@radix-ui/react-slot@1.0.2(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@19.1.8)(react@19.1.0)
       react: 19.1.0
     optionalDependencies:
@@ -41449,7 +41443,7 @@ snapshots:
 
   '@radix-ui/react-use-callback-ref@1.0.0(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   '@radix-ui/react-use-callback-ref@1.1.1(@types/react@19.1.8)(react@19.1.0)':
@@ -41483,13 +41477,13 @@ snapshots:
   '@radix-ui/react-use-is-hydrated@0.1.0(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
       react: 19.1.0
-      use-sync-external-store: 1.6.0(react@19.1.0)
+      use-sync-external-store: 1.5.0(react@19.1.0)
     optionalDependencies:
       '@types/react': 19.1.8
 
   '@radix-ui/react-use-layout-effect@1.0.0(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   '@radix-ui/react-use-layout-effect@1.1.1(@types/react@19.1.8)(react@19.1.0)':
@@ -41531,11 +41525,11 @@ snapshots:
 
   '@rc-component/async-validator@5.0.4':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@rc-component/color-picker@1.5.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@ctrl/tinycolor': 3.6.1
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -41553,14 +41547,14 @@ snapshots:
 
   '@rc-component/context@1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/mini-decimal@1.1.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@rc-component/mutate-observer@1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -41572,7 +41566,7 @@ snapshots:
 
   '@rc-component/portal@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -41588,7 +41582,7 @@ snapshots:
 
   '@rc-component/tour@1.14.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/portal': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
@@ -41608,7 +41602,7 @@ snapshots:
 
   '@rc-component/trigger@2.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/portal': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -41648,11 +41642,11 @@ snapshots:
 
   '@react-pdf/fns@2.2.1':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   '@react-pdf/font@2.5.1(encoding@0.1.13)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/types': 2.5.0
       cross-fetch: 3.1.8(encoding@0.1.13)
       fontkit: 2.0.2
@@ -41662,7 +41656,7 @@ snapshots:
 
   '@react-pdf/image@2.3.6(encoding@0.1.13)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/png-js': 2.3.1
       cross-fetch: 3.1.8(encoding@0.1.13)
       jay-peg: 1.0.2
@@ -41671,7 +41665,7 @@ snapshots:
 
   '@react-pdf/layout@3.12.1(encoding@0.1.13)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/fns': 2.2.1
       '@react-pdf/image': 2.3.6(encoding@0.1.13)
       '@react-pdf/pdfkit': 3.1.10
@@ -41688,7 +41682,7 @@ snapshots:
 
   '@react-pdf/pdfkit@3.1.10':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/png-js': 2.3.1
       browserify-zlib: 0.2.0
       crypto-js: 4.2.0
@@ -41704,7 +41698,7 @@ snapshots:
 
   '@react-pdf/render@3.4.4':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/fns': 2.2.1
       '@react-pdf/primitives': 3.1.1
       '@react-pdf/textkit': 4.4.1
@@ -41735,7 +41729,7 @@ snapshots:
 
   '@react-pdf/stylesheet@4.2.5':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/fns': 2.2.1
       '@react-pdf/types': 2.5.0
       color-string: 1.9.1
@@ -41745,7 +41739,7 @@ snapshots:
 
   '@react-pdf/textkit@4.4.1':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@react-pdf/fns': 2.2.1
       bidi-js: 1.0.3
       hyphen: 1.10.4
@@ -41760,17 +41754,6 @@ snapshots:
     transitivePeerDependencies:
       - react
       - react-dom
-
-  '@refinedev/react-hook-form@5.0.4(@refinedev/core@packages+core)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/core': link:packages/core
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      react-hook-form: 7.57.0(react@19.1.0)
 
   '@refinedev/strapi-graphql@6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.9.0))':
     dependencies:
@@ -42340,7 +42323,7 @@ snapshots:
       '@smithy/util-middleware': 2.2.0
       '@smithy/util-uri-escape': 2.2.0
       '@smithy/util-utf8': 2.3.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/smithy-client@2.5.1':
@@ -42390,7 +42373,7 @@ snapshots:
 
   '@smithy/util-config-provider@2.3.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/util-defaults-mode-browser@2.2.1':
@@ -44542,7 +44525,7 @@ snapshots:
 
   babel-plugin-macros@3.1.0:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       cosmiconfig: 7.1.0
       resolve: 1.22.8
 
@@ -46246,7 +46229,7 @@ snapshots:
 
   date-fns@2.30.0:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   date-fns@4.1.0: {}
 
@@ -46472,7 +46455,7 @@ snapshots:
 
   dom-helpers@5.2.1:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       csstype: 3.1.3
 
   dom-serializer@0.2.2:
@@ -47273,7 +47256,7 @@ snapshots:
 
   eslint-plugin-jsx-a11y@6.8.0(eslint@9.35.0(jiti@2.5.1)):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       aria-query: 5.3.0
       array-includes: 3.1.8
       array.prototype.flatmap: 1.3.2
@@ -51590,7 +51573,7 @@ snapshots:
 
   media-query-parser@2.0.2:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   media-typer@0.3.0: {}
 
@@ -54096,7 +54079,7 @@ snapshots:
 
   probe.gl@3.6.0:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@probe.gl/env': 3.6.0
       '@probe.gl/log': 3.6.0
       '@probe.gl/stats': 3.6.0
@@ -54321,7 +54304,7 @@ snapshots:
 
   rc-cascader@3.24.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       array-tree-filter: 2.1.0
       classnames: 2.5.1
       rc-select: 14.13.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54342,7 +54325,7 @@ snapshots:
 
   rc-checkbox@3.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54358,7 +54341,7 @@ snapshots:
 
   rc-collapse@3.7.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54376,7 +54359,7 @@ snapshots:
 
   rc-dialog@9.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/portal': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54396,7 +54379,7 @@ snapshots:
 
   rc-drawer@7.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/portal': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54416,7 +54399,7 @@ snapshots:
 
   rc-dropdown@4.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54434,7 +54417,7 @@ snapshots:
 
   rc-field-form@1.44.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       async-validator: 4.2.5
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54461,7 +54444,7 @@ snapshots:
 
   rc-image@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/portal': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-dialog: 9.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54472,7 +54455,7 @@ snapshots:
 
   rc-input-number@9.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/mini-decimal': 1.1.0
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54492,7 +54475,7 @@ snapshots:
 
   rc-input@1.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54508,7 +54491,7 @@ snapshots:
 
   rc-mentions@2.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54532,7 +54515,7 @@ snapshots:
 
   rc-menu@9.13.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54554,7 +54537,7 @@ snapshots:
 
   rc-motion@2.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54570,7 +54553,7 @@ snapshots:
 
   rc-notification@5.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54588,7 +54571,7 @@ snapshots:
 
   rc-overflow@1.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-resize-observer: 1.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54597,7 +54580,7 @@ snapshots:
 
   rc-pagination@4.0.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54629,7 +54612,7 @@ snapshots:
 
   rc-picker@4.4.2(date-fns@4.1.0)(dayjs@1.11.13)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-overflow: 1.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54653,7 +54636,7 @@ snapshots:
 
   rc-rate@2.12.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54669,7 +54652,7 @@ snapshots:
 
   rc-resize-observer@1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54687,7 +54670,7 @@ snapshots:
 
   rc-segmented@2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54705,7 +54688,7 @@ snapshots:
 
   rc-select@14.13.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54729,7 +54712,7 @@ snapshots:
 
   rc-slider@10.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -54761,7 +54744,7 @@ snapshots:
 
   rc-table@7.45.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/context': 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       rc-resize-observer: 1.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54783,7 +54766,7 @@ snapshots:
 
   rc-tabs@14.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-dropdown: 4.2.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-menu: 9.13.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54817,7 +54800,7 @@ snapshots:
 
   rc-textarea@1.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-resize-observer: 1.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54827,7 +54810,7 @@ snapshots:
 
   rc-tooltip@6.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       react: 19.1.0
@@ -54844,7 +54827,7 @@ snapshots:
 
   rc-tree-select@5.19.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-select: 14.13.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-tree: 5.8.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54874,7 +54857,7 @@ snapshots:
 
   rc-tree@5.8.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54884,7 +54867,7 @@ snapshots:
 
   rc-tree@5.8.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-motion: 2.9.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54931,7 +54914,7 @@ snapshots:
 
   rc-virtual-list@3.11.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-resize-observer: 1.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54940,7 +54923,7 @@ snapshots:
 
   rc-virtual-list@3.14.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       classnames: 2.5.1
       rc-resize-observer: 1.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -54965,7 +54948,7 @@ snapshots:
 
   react-clientside-effect@1.2.6(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   react-content-loader@5.1.4(react@19.1.0):
@@ -55046,7 +55029,7 @@ snapshots:
 
   react-error-boundary@3.1.4(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       react: 19.1.0
 
   react-error-overlay@6.0.11: {}
@@ -55055,7 +55038,7 @@ snapshots:
 
   react-focus-lock@2.12.1(@types/react@19.1.8)(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       focus-lock: 1.3.5
       prop-types: 15.8.1
       react: 19.1.0
@@ -55666,7 +55649,7 @@ snapshots:
 
   regenerator-transform@0.15.2:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
 
   regex-parser@2.3.0: {}
 
@@ -55795,7 +55778,7 @@ snapshots:
 
   relay-runtime@12.0.0(encoding@0.1.13):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       fbjs: 3.0.5(encoding@0.1.13)
       invariant: 2.2.4
     transitivePeerDependencies:
@@ -57357,7 +57340,7 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
-      use-sync-external-store: 1.6.0(react@19.1.0)
+      use-sync-external-store: 1.5.0(react@19.1.0)
 
   symbol-tree@3.2.4: {}
 
@@ -58327,6 +58310,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.8
 
+  use-sync-external-store@1.5.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
   use-sync-external-store@1.6.0(react@19.1.0):
     dependencies:
       react: 19.1.0
@@ -59234,7 +59221,7 @@ snapshots:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.12.0)
       '@babel/core': 7.28.0
       '@babel/preset-env': 7.24.4(@babel/core@7.28.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.26.0
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.28.0)(@types/babel__core@7.20.5)(rollup@2.79.1)
       '@rollup/plugin-node-resolve': 11.2.1(rollup@2.79.1)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.1)
