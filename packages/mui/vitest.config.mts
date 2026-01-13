@@ -30,6 +30,10 @@ export default defineConfig({
       "^(..?/.+)\\.js?$": "$1",
     },
   },
+  // Fix for MUI X v8 ESM imports
+  ssr: {
+    noExternal: ["@mui/x-data-grid"],
+  },
   assetsInclude: ["**/*.svg"],
   esbuild: {
     target: "node22",
