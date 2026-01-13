@@ -1,5 +1,11 @@
 # @refinedev/rest
 
+## 2.1.1
+
+### Patch Changes
+
+- [#7204](https://github.com/refinedev/refine/pull/7204) [`794ea5c815738f9b701e668538a07224f3263cd0`](https://github.com/refinedev/refine/commit/794ea5c815738f9b701e668538a07224f3263cd0) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(rest): add missing transformError to deleteOne and custom methods.
+
 ## 2.1.0
 
 ### Minor Changes
