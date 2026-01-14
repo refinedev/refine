@@ -74,7 +74,7 @@ export const RefineBlogLayout = (props: Props) => {
                 "ml-auto",
               )}
             >
-              <BannerSidebar shouldShowBanner={shouldShowBanner} />
+              <BannerSidebar />
             </div>
           </div>
         )}

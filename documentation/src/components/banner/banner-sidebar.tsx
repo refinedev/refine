@@ -8,30 +8,17 @@ const description =
 const image =
   "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/blog-side-banner.webp";
 
-export const BannerSidebar = ({ shouldShowBanner }) => {
-  React.useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      typeof window.gtag !== "undefined" &&
-      shouldShowBanner
-    ) {
-      window.gtag("event", "view_banner", {
-        banner_name: "banner-sidebar",
-        banner_text: text,
-        banner_description: description,
-        banner_image: image,
-      });
-    }
-  }, [shouldShowBanner]);
-
+export const BannerSidebar = () => {
   return (
     <Link
-      to={"https://s.refine.dev/blog-sidebar-ai?ref=banner-sidebar"}
+      to={"https://refine.dev/?ref=banner-sidebar"}
       target="_blank"
       rel="noopener"
       className={clsx("flex", "w-full", "rounded-md", "overflow-hidden")}
+      title={text}
+      aria-label={description}
     >
-      <img src={image} alt={"refine App screenshot"} loading="lazy" />
+      <img src={image} alt={text} title={description} loading="lazy" />
     </Link>
   );
 };
