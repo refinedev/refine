@@ -30,4 +30,6 @@
 
 ### This example has been moved to [here.](https://github.com/refinedev/refine/tree/main/examples/with-remix-material-ui)
 
+> ⚠️ **Known Incompatibility:** Remix + MUI examples are currently incompatible with MUI X v8. Remix without Vite runs on Node.js, which cannot parse CSS imports from npm packages. Consider migrating to [Remix + Vite](https://remix.run/docs/en/main/guides/vite) for full MUI X v8 support.
+
 </div>

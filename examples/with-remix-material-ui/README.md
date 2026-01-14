@@ -30,6 +30,8 @@
 
 </div>
 
+> ⚠️ **Known Incompatibility:** This example is currently incompatible with MUI X v8. Remix without Vite runs on Node.js, which cannot parse CSS imports from npm packages. MUI X v8 exports CSS files that cause `SyntaxError: Unexpected token '.'` errors at runtime. Consider migrating to [Remix + Vite](https://remix.run/docs/en/main/guides/vite) for full MUI X v8 support.
+
 ## Try this example on your local
 
 ```bash

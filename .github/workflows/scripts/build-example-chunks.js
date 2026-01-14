@@ -11,6 +11,10 @@ const ignoredRegexes = [
   /with-nextjs-headless/,
   /^blog-/,
   /store/,
+  // Skip MUI + Remix (non-Vite) examples - MUI X v8 exports CSS files that Node.js can't handle.
+  // Non-Vite Remix runs on Node.js which throws "SyntaxError: Unexpected token '.'" on CSS imports.
+  // TODO: Re-enable once these examples migrate to Remix + Vite.
+  /^with-remix-m/, // matches with-remix-material-ui and with-remix-mui
 ];
 const CHUNK_COUNT = Number(process.env.CHUNKS ? process.env.CHUNKS : 1);
 const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "main";
