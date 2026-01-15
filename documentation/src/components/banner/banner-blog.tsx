@@ -7,7 +7,7 @@ const desktopImage =
 const mobileImage =
   "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/blog-wide-banner-mobile.webp";
 
-const text = "Refine AI";
+const text = "Refine";
 const description =
   "The next-gen approach to build enterprise-ready React-based internal tools, admin panels, dashboards & B2B apps with the power of GenAI.";
 

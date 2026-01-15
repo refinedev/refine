@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 
-const text = "Explore Refine AI";
+const text = "Explore Refine";
 const description =
   "The next-gen approach to build enterprise-ready React-based internal tools with the power of GenAI.";
 const image =
