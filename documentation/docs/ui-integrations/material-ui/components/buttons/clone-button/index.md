@@ -211,7 +211,7 @@ setInitialRoutes(["/posts"]);
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-  return <CloneButton resourceNameOrRouteName="posts" hideText={true} />;
+  return <CloneButton resource="posts" hideText={true} />;
 };
 
 // visible-block-end

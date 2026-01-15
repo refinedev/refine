@@ -334,8 +334,8 @@ const PostList: React.FC = () => {
 
   const {
     reactTable: { getHeaderGroups, getRowModel },
-    setOptions,
     refineCore: {
+      setOptions,
       setCurrentPage,
       pageCount,
       currentPage,
@@ -604,8 +604,7 @@ const PostList: React.FC = () => {
   );
 
   const {
-    reactTable: { getHeaderGroups, getRowModel },
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
     refineCore: {
       setCurrentPage,
       pageCount,

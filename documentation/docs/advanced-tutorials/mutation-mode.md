@@ -46,7 +46,7 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-  const { tableProps, sorter } = RefineAntdUseTable<IPost>({
+  const { tableProps } = RefineAntdUseTable<IPost>({
     sorters: {
       initial: [
         {

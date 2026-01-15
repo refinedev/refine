@@ -408,13 +408,13 @@ const { formLoading } = useForm({ ... });
 
 ### mutation
 
-Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks. The mutation state can be accessed through `mutation.isLoading`, `mutation.data`, `mutation.error`, etc.
+Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks. The mutation state can be accessed through `mutation.isPending`, `mutation.data`, `mutation.error`, etc.
 
 ```tsx
 const { mutation } = useForm({ ... });
 
 // Access mutation state
-if (mutation.isLoading) {
+if (mutation.isPending) {
   // Handle loading state
 }
 

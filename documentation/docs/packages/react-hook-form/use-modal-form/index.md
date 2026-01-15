@@ -382,12 +382,14 @@ import { Modal } from "@components";
 
 const PostList = () => {
   const { result, tableQuery } = useTable<IPost>({
-    initialSorter: [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ],
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
   });
 
   // highlight-start

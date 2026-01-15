@@ -560,7 +560,7 @@ import { Table, Space, Select } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableProps, sorter } = useTable<IPost>({
+  const { tableProps, sorters } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -586,14 +586,14 @@ export const PostList: React.FC = () => {
           dataIndex="id"
           title="ID"
           sorter
-          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
         />
         <Table.Column key="title" dataIndex="title" title="Title" sorter />
         <Table.Column
           key="categoryId"
           dataIndex={["categories", "title"]}
           title="Category"
-          defaultSortOrder={getDefaultSortOrder("categories.title", sorter)}
+          defaultSortOrder={getDefaultSortOrder("categories.title", sorters)}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
               <Select
@@ -1489,7 +1489,7 @@ In this way, we can get the `title` data from the `categories` table and display
 For example, for `posts -> categories` relationship, we can get the `title` data from the `categories` table and display it on the List page.
 
 ```tsx title="src/pages/posts/list.tsx"
-const { tableProps, sorter } = useTable<IPost>({
+const { tableProps } = useTable<IPost>({
   //highlight-start
   resource: "posts",
   meta: {
@@ -1506,7 +1506,7 @@ const { tableProps, sorter } = useTable<IPost>({
 For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `meta` property.
 
 ```tsx title="src/pages/users/list.tsx"
-const { tableProps, sorter } = useTable<IUser>({
+const { tableProps } = useTable<IUser>({
   //highlight-start
   resource: "movies",
   meta: {
@@ -1571,7 +1571,7 @@ Deep filtering is filtering on a relation's fields.
 It gets the posts where the `title` of the `categories` is "Beginning". Also the inner fields of the categories can be reached with dot notation.
 
 ```tsx
-const { tableProps, sorter } = useTable({
+const { tableProps } = useTable({
   resource: "posts",
   //highlight-start
   filters: {

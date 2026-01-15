@@ -219,7 +219,7 @@ Firstly, let's implement a custom sider like in [this example](https://github.co
 ```tsx title="src/components/sider.tsx"
 import React, { useState } from "react";
 import {
-  ITreeMenu,
+  TreeMenuItem,
   CanAccess,
   useIsExistAuthentication,
   useTranslate,
@@ -255,24 +255,19 @@ export const CustomSider: typeof Sider = ({ render }) => {
   const isMobile =
     typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-  const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-    return tree.map((item: ITreeMenu) => {
-      const { name, children, meta, key, list } = item;
+  const renderTreeView = (tree: TreeMenuItem[], selectedKey: string) => {
+    return tree.map((item: TreeMenuItem) => {
+      const { name, children, meta, key, route } = item;
 
       const icon = meta?.icon;
       const label = meta?.label ?? name;
       const parent = meta?.parent;
-      const route =
-        typeof list === "string"
-          ? list
-          : typeof list !== "function"
-          ? list?.path
-          : key;
+      const resolvedRoute = route ?? key;
 
       if (children.length > 0) {
         return (
           <SubMenu
-            key={route}
+            key={resolvedRoute}
             icon={icon ?? <UnorderedListOutlined />}
             title={label}
           >
@@ -280,23 +275,27 @@ export const CustomSider: typeof Sider = ({ render }) => {
           </SubMenu>
         );
       }
-      const isSelected = route === selectedKey;
+      const isSelected = resolvedRoute === selectedKey;
       const isRoute = !(parent !== undefined && children.length === 0);
       return (
         <CanAccess
-          key={route}
+          key={resolvedRoute}
           resource={name}
           action="list"
           params={{ resource: item }}
         >
           <Menu.Item
-            key={route}
+            key={resolvedRoute}
             style={{
               textTransform: "capitalize",
             }}
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
-            {route ? <Link to={route || "/"}>{label}</Link> : label}
+            {resolvedRoute ? (
+              <Link to={resolvedRoute || "/"}>{label}</Link>
+            ) : (
+              label
+            )}
             {!collapsed && isSelected && (
               <div className="ant-menu-tree-arrow" />
             )}
@@ -439,7 +438,7 @@ Now, let's add a badge for the number of create and update events for **_posts_*
 ```tsx
 import React, { useState } from "react";
 import {
-  ITreeMenu,
+  TreeMenuItem,
   CanAccess,
   useIsExistAuthentication,
   useTranslate,
@@ -484,24 +483,19 @@ export const CustomSider: typeof Sider = ({ render }) => {
     onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
   });
 
-  const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
-    return tree.map((item: ITreeMenu) => {
-      const { name, children, meta, key, list } = item;
+  const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+    return tree.map((item: TreeMenuItem) => {
+      const { name, children, meta, key, route } = item;
 
       const icon = meta?.icon;
       const label = meta?.label ?? name;
       const parent = meta?.parent;
-      const route =
-        typeof list === "string"
-          ? list
-          : typeof list !== "function"
-          ? list?.path
-          : key;
+      const resolvedRoute = route ?? key;
 
       if (children.length > 0) {
         return (
           <SubMenu
-            key={key}
+            key={resolvedRoute}
             icon={icon ?? <UnorderedListOutlined />}
             title={label}
           >
@@ -509,24 +503,28 @@ export const CustomSider: typeof Sider = ({ render }) => {
           </SubMenu>
         );
       }
-      const isSelected = route === selectedKey;
+      const isSelected = resolvedRoute === selectedKey;
       const isRoute = !(parent !== undefined && children.length === 0);
       return (
         <CanAccess
-          key={key}
+          key={resolvedRoute}
           resource={name}
           action="list"
           params={{ resource: item }}
         >
           <Menu.Item
-            key={route}
+            key={resolvedRoute}
             style={{
               textTransform: "capitalize",
             }}
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
-            {route ? <Link to={route || "/"}>{label}</Link> : label}
-            {route && (
+            {resolvedRoute ? (
+              <Link to={resolvedRoute || "/"}>{label}</Link>
+            ) : (
+              label
+            )}
+            {resolvedRoute && (
               <>
                 {label.toLowerCase() === "posts" && (
                   <Badge

@@ -52,7 +52,7 @@ const PostList: React.FC = () => {
   } = useTable({
     columns,
     refineCoreProps: {
-      initialPageSize: 5,
+      pagination: { pageSize: 5 },
     },
   });
 

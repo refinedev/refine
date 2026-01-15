@@ -49,12 +49,12 @@ const PostList: React.FC = () => {
       id: sorters.find((item) => item.field === "id")?.order || "desc",
       title: sorters.find((item) => item.field === "title")?.order || "asc",
     };
-  }, [sorter]);
+  }, [sorters]);
   // highlight-end
 
   // highlight-start
   const toggleSort = (field: string) => {
-    setSorter([
+    setSorters([
       {
         field,
         order: currentSorterOrders[field] === "asc" ? "desc" : "asc",

@@ -29,7 +29,7 @@ interface IPost {
 
 const PostList: React.FC = () => {
   // highlight-start
-  const { tableProps, sorter } = useTable<IPost>({
+  const { tableProps, sorters } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -49,7 +49,7 @@ const PostList: React.FC = () => {
           title="ID"
           // highlight-start
           sorter={{ multiple: 2 }}
-          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
           // highlight-end
         />
         <Table.Column
@@ -57,7 +57,7 @@ const PostList: React.FC = () => {
           title="Title"
           // highlight-start
           sorter={{ multiple: 1 }}
-          defaultSortOrder={getDefaultSortOrder("title", sorter)}
+          defaultSortOrder={getDefaultSortOrder("title", sorters)}
           // highlight-end
         />
         <Table.Column dataIndex="content" title="Content" />

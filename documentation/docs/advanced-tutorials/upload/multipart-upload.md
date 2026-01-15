@@ -43,7 +43,7 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-    const { result, tableProps, sorter } = RefineAntdUseTable<IPost>();
+    const { result, tableProps } = RefineAntdUseTable<IPost>();
 
     const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
 

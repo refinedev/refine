@@ -159,7 +159,7 @@ import { useLogin } from "@refinedev/core";
 
 export const Login: React.FC = () => {
   // highlight-next-line
-  const { mutate: login, isLoading } = useLogin();
+  const { mutate: login, isPending } = useLogin();
 
   return (
     <Layout
@@ -179,7 +179,7 @@ export const Login: React.FC = () => {
         <Button
           type="primary"
           size="middle"
-          loading={isLoading}
+          loading={isPending}
           onClick={() => login({})}
         >
           Sign in with Ethereum

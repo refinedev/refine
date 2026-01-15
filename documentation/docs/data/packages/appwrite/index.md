@@ -84,7 +84,7 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-  const { result, tableProps, sorter } = RefineAntdUseTable<IPost>({
+  const { result, tableProps, sorters } = RefineAntdUseTable<IPost>({
     sorters: {
       initial: [
         {
@@ -114,7 +114,7 @@ const PostList: React.FC = () => {
           dataIndex="id"
           title="ID"
           sorter
-          defaultSortOrder={RefineAntdGetDefaultSortOrder("id", sorter)}
+          defaultSortOrder={RefineAntdGetDefaultSortOrder("id", sorters)}
         />
         <AntdTable.Column dataIndex="title" title="Title" sorter />
         <AntdTable.Column
@@ -589,7 +589,7 @@ export const PostsList: React.FC = () => {
           dataIndex="id"
           title="ID"
           sorter
-          defaultSortOrder={getDefaultSortOrder("id", sorter)}
+          defaultSortOrder={getDefaultSortOrder("id", sorters)}
         />
         <Table.Column dataIndex="title" title="Title" sorter />
         <Table.Column

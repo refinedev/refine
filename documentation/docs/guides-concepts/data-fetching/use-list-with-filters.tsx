@@ -116,7 +116,7 @@ import { useList } from "@refinedev/core";
 export const HomePage = () => {
     const { result } = useList({
         resource: "products",
-        pagination: { current: 1, pageSize: 5 },
+        pagination: { currentPage: 1, pageSize: 5 },
         sorters: [{ field: "id", order: "DESC" }],
         filters: [{ field: "material", operator: "eq", value: "Wooden" }],
     });

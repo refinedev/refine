@@ -741,7 +741,7 @@ render(
 <PropsTable module="@refinedev/antd/List"
 headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
-createButtonProps-type="[`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName: string }`"
+createButtonProps-type="[`ButtonProps`](https://ant.design/components/button/#API) & `{ resource: string }`"
 breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 canCreate-default="If the resource is passed a create component, `true` else `false`"
 />
