@@ -138,7 +138,7 @@ export const Product: React.FC = () => {
 
             <h5>Reviews</h5>
             <ul>
-                {rewiews?.map((review) => (
+                {reviews?.map((review) => (
                     <li key={review.id}>
                         <p>Rating: {review.rating}</p>
                         <p>{review.comment}</p>
