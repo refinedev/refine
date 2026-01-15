@@ -14,7 +14,7 @@ const description =
 export const BannerBlog = () => {
   return (
     <Link
-      to={"https://refine.dev/?ref=refine-ai-banner"}
+      to={"https://refine.dev/?ref=refine-banner"}
       target="_blank"
       rel="noopener"
       className={clsx("flex", "w-full", "rounded-md", "overflow-hidden")}

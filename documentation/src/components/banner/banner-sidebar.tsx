@@ -11,7 +11,7 @@ const image =
 export const BannerSidebar = () => {
   return (
     <Link
-      to={"https://refine.dev/?ref=banner-sidebar"}
+      to={"https://refine.dev/?ref=refine-banner-sidebar"}
       target="_blank"
       rel="noopener"
       className={clsx("flex", "w-full", "rounded-md", "overflow-hidden")}
