@@ -1,26 +1,36 @@
+import { useCallback, useEffect } from "react";
+
 import { useTranslate } from "@refinedev/core";
-import { useEffect } from "react";
 
 type Title = string | { i18nKey: string };
 
-export const useDocumentTitle = (title?: Title) => {
-  const translate = useTranslate();
+type UseDocumentTitleOptions = {
+  ns?: string;
+  defaultTitle?: string;
+};
+
+export const useDocumentTitle = (
+  title?: Title,
+  options?: UseDocumentTitleOptions,
+) => {
+  const translate = useTranslate({ ns: options?.ns });
+
+  const getTitle = useCallback(
+    (title: Title) => {
+      const key = typeof title === "string" ? title : title.i18nKey;
+
+      return translate(key, options?.defaultTitle);
+    },
+    [translate, options?.defaultTitle],
+  );
 
   useEffect(() => {
     if (!title) return;
 
-    if (typeof title === "string") {
-      document.title = translate(title);
-    } else {
-      document.title = translate(title.i18nKey);
-    }
-  }, [title]);
+    document.title = getTitle(title);
+  }, [title, getTitle]);
 
   return (title: Title) => {
-    if (typeof title === "string") {
-      document.title = translate(title);
-    } else {
-      document.title = translate(title.i18nKey);
-    }
+    document.title = getTitle(title);
   };
 };

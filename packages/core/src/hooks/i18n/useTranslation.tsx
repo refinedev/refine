@@ -11,8 +11,8 @@ import { useTranslate } from "./useTranslate";
  *
  * @see {@link https://refine.dev/docs/i18n/i18n-provider/} for more details.
  */
-export const useTranslation = () => {
-  const translate = useTranslate();
+export const useTranslation = (ns?: string) => {
+  const translate = useTranslate({ ns });
   const changeLocale = useSetLocale();
   const getLocale = useGetLocale();
 
