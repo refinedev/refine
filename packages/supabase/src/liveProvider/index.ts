@@ -50,16 +50,25 @@ export const liveProvider = (
       };
 
       const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
+        if (!filters || filters.length === 0) {
           return;
         }
 
-        return filters
+        // Supabase Realtime supports only ONE filter.
+        // If multiple filters are provided, use only the first one and warn.
+        let appliedFilters = filters;
+
+        if (filters.length > 1) {
+          console.warn(
+            "[refine][supabase] Supabase Realtime supports only one filter. Using the first filter only.",
+          );
+          appliedFilters = [filters[0]];
+        }
+
+        return appliedFilters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
+              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
             }
             return;
           })
