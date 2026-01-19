@@ -14,7 +14,7 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type {
   DataGridProps,
@@ -57,6 +57,7 @@ type DataGridPropsType = Required<
     | "paginationModel"
     | "onPaginationModelChange"
     | "filterModel"
+    | "filterDebounceMs"
     | "processRowUpdate"
   >;
 
@@ -124,6 +125,7 @@ export type UseDataGridReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSort: CrudSort[] = [];
+const DEFAULT_FILTER_DEBOUNCE_MS = 300;
 
 export function useDataGrid<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -157,6 +159,8 @@ export function useDataGrid<
   const liveMode = useLiveMode(liveModeFromProp);
 
   const columnsTypes = useRef<Record<string, string>>({});
+  // Debounce server-side filter fetches so UI input stays responsive.
+  const filterDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
@@ -228,6 +232,28 @@ export function useDataGrid<
     }
   };
 
+  const clearFilterDebounce = () => {
+    if (filterDebounceRef.current) {
+      clearTimeout(filterDebounceRef.current);
+      filterDebounceRef.current = null;
+    }
+  };
+
+  // Ensure no pending filter update fires after unmount.
+  useEffect(() => {
+    return () => {
+      clearFilterDebounce();
+    };
+  }, []);
+
+  // Apply filters immediately to local state (and reset page if needed).
+  const applyFilters = (crudFilters: CrudFilters) => {
+    setFilters(crudFilters.filter((f) => f.value !== ""));
+    if (isPaginationEnabled) {
+      setCurrentPage(1);
+    }
+  };
+
   const handleSortModelChange = (sortModel: GridSortModel) => {
     const crudSorting = transformSortModelToCrudSorting(sortModel);
     setSorters(crudSorting);
@@ -236,20 +262,23 @@ export function useDataGrid<
   const handleFilterModelChange = (filterModel: GridFilterModel) => {
     const crudFilters = transformFilterModelToCrudFilters(filterModel);
     setMuiCrudFilters(crudFilters);
-    setFilters(crudFilters.filter((f) => f.value !== ""));
-    if (isPaginationEnabled) {
-      setCurrentPage(1);
+    if (isServerSideFilteringEnabled) {
+      // Let the input update immediately; debounce only the server query.
+      clearFilterDebounce();
+      filterDebounceRef.current = setTimeout(() => {
+        applyFilters(crudFilters);
+      }, DEFAULT_FILTER_DEBOUNCE_MS);
+      return;
     }
+    applyFilters(crudFilters);
   };
 
   const search = async (value: TSearchVariables) => {
     if (onSearchProp) {
       const searchFilters = await onSearchProp(value);
+      clearFilterDebounce();
       setMuiCrudFilters(searchFilters);
-      setFilters(searchFilters.filter((f) => f.value !== ""));
-      if (isPaginationEnabled) {
-        setCurrentPage(1);
-      }
+      applyFilters(searchFilters);
     }
   };
 
@@ -330,6 +359,8 @@ export function useDataGrid<
       sortModel: transformedSortModel,
       onSortModelChange: handleSortModelChange,
       filterMode: isServerSideFilteringEnabled ? "server" : "client",
+      // Disable DataGrid's debounce for server filtering to prevent input resets.
+      filterDebounceMs: isServerSideFilteringEnabled ? 0 : undefined,
       filterModel: transformCrudFiltersToFilterModel(
         differenceWith(muiCrudFilters, preferredPermanentFilters, isEqual),
         columnsTypes.current,
