@@ -68,7 +68,9 @@ export const liveProvider = (
         return appliedFilters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
+              return `${filter.field}=${mapOperator(filter.operator)}.${
+                filter.value
+              }`;
             }
             return;
           })
