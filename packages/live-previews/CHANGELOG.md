@@ -1,5 +1,13 @@
 # @refinedev/live-previews
 
+## 0.3.13
+
+### Patch Changes
+
+- Updated dependencies [[`adc4c6431252c035caa62acbaf42f79854535548`](https://github.com/refinedev/refine/commit/adc4c6431252c035caa62acbaf42f79854535548), [`367b4681ae7e336d9cc0397e95c9b9d36186a656`](https://github.com/refinedev/refine/commit/367b4681ae7e336d9cc0397e95c9b9d36186a656)]:
+  - @refinedev/mui@8.0.0
+  - @refinedev/inferencer@7.0.0
+
 ## 0.3.12
 
 ### Patch Changes

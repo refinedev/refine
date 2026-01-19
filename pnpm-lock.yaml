@@ -981,7 +981,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -1350,7 +1350,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -2166,7 +2166,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -3270,7 +3270,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -3537,7 +3537,7 @@ importers:
         specifier: 2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4652,7 +4652,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4722,7 +4722,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4789,7 +4789,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4856,7 +4856,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4923,7 +4923,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -5466,7 +5466,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -5524,7 +5524,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -5609,7 +5609,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -5709,7 +5709,7 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/hasura
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -5779,7 +5779,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -5876,7 +5876,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -5979,13 +5979,13 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -6598,7 +6598,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/nestjsx-crud':
         specifier: ^6.0.1
@@ -6683,7 +6683,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -7006,7 +7006,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7775,7 +7775,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7851,7 +7851,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-router':
         specifier: ^2.0.3
@@ -7915,7 +7915,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7982,7 +7982,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8049,7 +8049,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8113,7 +8113,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8177,7 +8177,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8646,7 +8646,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8914,7 +8914,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8975,7 +8975,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/react-router':
         specifier: ^2.0.3
@@ -9045,7 +9045,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9118,7 +9118,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9203,7 +9203,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/mantine':
         specifier: ^3.0.2
@@ -9294,10 +9294,10 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9766,7 +9766,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9833,7 +9833,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -10257,7 +10257,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -10467,7 +10467,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
@@ -10720,7 +10720,7 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/remix-router':
         specifier: ^4.0.3
@@ -10878,13 +10878,13 @@ importers:
         specifier: ^5.0.8
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.2
+        specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^7.0.1
+        specifier: ^8.0.0
         version: link:../../packages/mui
       '@refinedev/remix-router':
         specifier: ^4.0.3
@@ -11087,7 +11087,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^5.0.5
         version: link:../core
@@ -11130,7 +11130,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: 5.0.8
         version: link:../core
@@ -12488,7 +12488,7 @@ importers:
         specifier: ^3.0.2
         version: link:../mantine
       '@refinedev/mui':
-        specifier: ^7.0.0
+        specifier: ^8.0.0
         version: link:../mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.2
@@ -12678,7 +12678,7 @@ importers:
         specifier: ^7.0.0
         version: link:../hasura
       '@refinedev/inferencer':
-        specifier: ^6.0.1
+        specifier: ^7.0.0
         version: link:../inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -12687,7 +12687,7 @@ importers:
         specifier: ^3.0.0
         version: link:../mantine
       '@refinedev/mui':
-        specifier: ^7.0.0
+        specifier: ^8.0.0
         version: link:../mui
       '@refinedev/nestjs-query':
         specifier: ^2.0.0
@@ -17802,7 +17802,7 @@ packages:
   '@mui/base@5.0.0-beta.61':
     resolution: {integrity: sha512-YaMOTXS3ecDNGsPKa6UdlJ8loFLvcL9+VbpCK3hfk71OaNauZRp4Yf7KeXDYr7Ms3M/XBD3SaiR6JMr6vYtfDg==}
     engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui-components/react
+    deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -31525,18 +31525,22 @@ packages:
   tar@4.4.19:
     resolution: {integrity: sha512-a20gEsvHnWe0ygBY8JbxoM4w3SJdhc7ZAuxkLqh+nvNQN2IOt0B5lLgM490X5Hl8FF0dl0tOf2ewFYAlIFgzVA==}
     engines: {node: '>=4.5'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tar@6.1.11:
     resolution: {integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==}
     engines: {node: '>= 10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   tar@7.4.3:
     resolution: {integrity: sha512-5S7Va8hKfV7W5U6g3aYxXmlPoZVAwUMy9AOKyF2fVuZa2UD3qZjg578OrLRt8PcNN1PleVaL/5/yYATNL0ICUw==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   temp-dir@1.0.0:
     resolution: {integrity: sha512-xZFXEGbG7SNC3itwBzI3RYjq/cEhBkx2hJuKGIUOcEULmkQExXiHat2z/qkISYsuR+IKumhEfKKbV5qXmhICFQ==}
@@ -47023,7 +47027,7 @@ snapshots:
       '@typescript-eslint/parser': 5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3)
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-react: 7.37.5(eslint@9.35.0(jiti@2.5.1))
@@ -47074,7 +47078,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3(supports-color@8.1.1)
@@ -47089,14 +47093,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
     dependencies:
       debug: 3.2.7(supports-color@8.1.1)
     optionalDependencies:
       '@typescript-eslint/parser': 5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3)
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -47193,7 +47197,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
