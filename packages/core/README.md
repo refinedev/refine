@@ -11,7 +11,7 @@
     <a href="https://refine.dev/core/docs/">Documentation</a> |
     <a href="https://refine.dev/core/templates/">Examples</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/core/blog/">Blog</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://s.refine.dev/tJw4XFo">Refine</a>
 </div>
 </div>
