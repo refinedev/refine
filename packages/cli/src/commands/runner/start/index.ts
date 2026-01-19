@@ -11,6 +11,7 @@ const start = (program: Command) => {
     .command("start")
     .description(getRunnerDescription("start"))
     .allowUnknownOption(true)
+    .passThroughOptions()
     .addOption(
       new Option(
         "-p, --platform <platform>",

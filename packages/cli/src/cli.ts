@@ -22,6 +22,7 @@ const bootstrap = () => {
   const program = new Command();
 
   program
+    .enablePositionalOptions()
     .version(
       `@refinedev/cli@${REFINE_CLI_VERSION}`,
       "-v, --version",
