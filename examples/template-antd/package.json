@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc && refine build",
-    "dev": "refine dev",
+    "dev": "refine dev --",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",

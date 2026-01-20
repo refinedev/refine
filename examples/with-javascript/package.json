@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "refine build",
-    "dev": "refine dev",
+    "build": "refine build --",
+    "dev": "refine dev --",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "browserslist": {
     "production": [

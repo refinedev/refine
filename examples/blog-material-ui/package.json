@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "refine build",
-    "dev": "refine dev",
+    "build": "refine build --",
+    "dev": "refine dev --",
     "eject": "react-scripts eject",
     "refine": "refine",
-    "start": "refine start",
+    "start": "refine start --",
     "test": "craco test"
   },
   "browserslist": {

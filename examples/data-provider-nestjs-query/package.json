@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc && refine build",
     "codegen": "graphql-codegen",
-    "dev": "refine dev",
+    "dev": "refine dev --",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "browserslist": {
     "production": [

@@ -4,10 +4,10 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "refine build",
-    "dev": "refine dev",
+    "build": "refine build --",
+    "dev": "refine dev --",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.50",

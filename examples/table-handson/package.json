@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc && refine build",
-    "dev": "refine dev",
+    "dev": "refine dev --",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "dependencies": {
     "@handsontable/react": "^12.1.2",

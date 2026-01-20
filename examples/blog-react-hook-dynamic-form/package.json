@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "cross-env DISABLE_ESLINT_PLUGIN=true refine build",
-    "dev": "refine dev",
+    "dev": "refine dev --",
     "eject": "react-scripts eject",
-    "start": "refine start",
+    "start": "refine start --",
     "test": "craco test"
   },
   "browserslist": {

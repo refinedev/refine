@@ -6,11 +6,11 @@
   "scripts": {
     "build": "tsc && cross-env NODE_OPTIONS=--max_old_space_size=4096 refine build",
     "codegen": "graphql-codegen",
-    "dev": "refine dev",
+    "dev": "refine dev --",
     "format": "prettier --write src",
     "lint": "eslint src --fix",
     "refine": "refine",
-    "start": "refine start"
+    "start": "refine start --"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",

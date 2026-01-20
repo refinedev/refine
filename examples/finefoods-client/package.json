@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "refine build && rimraf .next/cache",
-    "dev": "refine dev",
-    "start": "refine start"
+    "dev": "refine dev --",
+    "start": "refine start --"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.50",
