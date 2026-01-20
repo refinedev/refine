@@ -8,10 +8,7 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
       "w-full h-auto",
       "object-contain",
       "object-center",
-      "bg-gray-100 dark:bg-gray-800",
       "rounded-md",
-      "border",
-      "border-gray-200 dark:border-gray-700",
       props.className,
     )}
     loading="lazy"

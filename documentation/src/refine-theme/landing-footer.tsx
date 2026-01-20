@@ -155,7 +155,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                 !isLanding && "text-zinc-900 dark:text-white",
               )}
             >
-              <RefineLogoSingleIcon />
+              <RefineLogoSingleIcon className="w-6 h-6" />
             </Link>
             <a
               href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"

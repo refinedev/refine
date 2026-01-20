@@ -163,7 +163,7 @@ We'll be visiting code like this on Day 4, but if we examine the snippet above c
 
 The following diagram illustrates the interactions:
 
-![1-refine-week](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png)
+![1-refine-week](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.webp)
 
 ## Providers and Hooks
 

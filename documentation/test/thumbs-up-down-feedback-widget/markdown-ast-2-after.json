@@ -664,7 +664,7 @@
     },
     {
       "type": "jsx",
-      "value": "<Image src=\"https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.png\" />",
+      "value": "<Image src=\"https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/providers/data-provider/api-consuming-flow.webp\" />",
       "position": {
         "start": {
           "line": 24,

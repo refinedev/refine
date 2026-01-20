@@ -13,7 +13,6 @@ import SearchBar from "../theme/SearchBar";
 import { CommonGithubStarButton } from "./common-github-star-button";
 import { CommonThemeToggle } from "./common-theme-toggle";
 import { RefineCoreLogoIcon } from "./icons/refine-logo";
-import { RefineLogoXmas } from "./icons/refine-logo-xmas";
 import { LandingGithubStarButton } from "./landing-github-star-button";
 
 type Props = {
@@ -89,12 +88,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[152px]", "landing-lg:w-[204px]")}>
               <Link to="/core" onContextMenu={openFigma}>
-                <RefineLogoXmas
-                  className={clsx(
-                    !showThemeToggle && "!text-white",
-                    showThemeToggle && "text-gray-900 dark:text-white",
-                  )}
-                />
+                <RefineCoreLogoIcon />
               </Link>
             </div>
             <button

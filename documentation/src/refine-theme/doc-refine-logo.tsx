@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import { openFigma } from "../utils/open-figma";
-import { RefineLogoXmas } from "./icons/refine-logo-xmas";
+import { RefineCoreLogoIcon } from "./icons/refine-logo";
 
 interface Props {
   className?: string;
@@ -28,7 +28,7 @@ export const DocRefineLogo = ({ className }: Props) => {
         )}
         onContextMenu={openFigma}
       >
-        <RefineLogoXmas className="text-zinc-900 dark:text-zinc-0" />
+        <RefineCoreLogoIcon />
       </Link>
       <span
         className={clsx(
