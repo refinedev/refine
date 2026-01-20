@@ -1,5 +1,6 @@
 ---
-title: useResource
+title: "useResource Hook | Managing Refine v4 Resources"
+description: "Retrieve metadata and configuration for your resources. Learn how to use the useResource hook to build dynamic, data-driven UIs."
 ---
 
 `useResource` is used to get the resources array that you defined in `<Refine>`. It also returns the `resource` object. You can pass a resource name or identifier to match a resource or it will return the resource object that matches the current route.

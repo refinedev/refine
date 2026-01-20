@@ -1,5 +1,6 @@
 ---
-title: Development
+title: "Development Workflow | Mastering Refine v4"
+description: "Optimize your development process with Refine v4. Learn about the tools, CLI, and workflows that speed up React CRUD building."
 ---
 
 Refine offers improved developer experience by providing a set of tools to help you develop your application. These tools will help you from creating a new project to developing, customizing and debugging your application. This guide will introduce you to these tools and how to use them.

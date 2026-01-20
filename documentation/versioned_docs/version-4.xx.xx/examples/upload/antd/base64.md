@@ -1,6 +1,7 @@
 ---
 id: base64
-title: Base64 Upload
+title: "Base64 Upload with Ant Design | Refine v4 Guide"
+description: "Implement Base64 file uploads in Refine v4 using Ant Design. Learn how to process and send image data directly to your backend."
 example-tags: [antd, upload]
 ---
 

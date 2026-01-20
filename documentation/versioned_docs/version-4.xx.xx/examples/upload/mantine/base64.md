@@ -1,6 +1,7 @@
 ---
 id: base64
-title: Base64 Upload
+title: "Mantine Base64 Upload | Refine v4 Image Handling"
+description: "Learn to process Base64 file uploads using Mantine and Refine v4. A practical guide for handling image data directly within your React forms."
 example-tags: [mantine, upload]
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: useEditableTable
-title: useEditableTable
+title: "Editable Ant Design Table | Refine v4 useEditableTable"
+description: "Build inline editable tables with Ant Design and Refine v4. A practical guide to using the useEditableTable hook for rapid data updates."
 example-title: Ant Design useEditableTable Hook
 example-tags: [table, antd]
 ---

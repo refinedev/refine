@@ -1,5 +1,6 @@
 ---
-title: Url
+title: "MUI UrlField | Refine v4 Link Components"
+description: "Display external links professionally with Material UI. Documentation on implementing the UrlField component for resource URLs in Refine v4."
 swizzle: true
 ---
 

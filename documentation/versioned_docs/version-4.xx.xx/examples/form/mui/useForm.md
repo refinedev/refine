@@ -1,6 +1,7 @@
 ---
 id: useForm
-title: useForm
+title: "Material UI Form Example | Refine v4 CRUD Guide"
+description: "Master Material UI forms in Refine v4. Use the useForm hook to build professional create and edit interfaces for your admin dashboard."
 example-tags: [form, mui, react-hook-form]
 ---
 

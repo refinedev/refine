@@ -1,5 +1,6 @@
 ---
-title: Import
+title: "MUI Import Button | Refine v4 Bulk Data Tools"
+description: "Learn how to add CSV import capabilities to your MUI admin panel. Official documentation for the Import Button within the Refine v4 ecosystem."
 swizzle: true
 ---
 

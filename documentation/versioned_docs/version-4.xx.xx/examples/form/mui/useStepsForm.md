@@ -1,6 +1,7 @@
 ---
 id: useStepsForm
-title: useStepsForm
+title: "Material UI Multi-Step Form | Refine v4 Example"
+description: "Create stepped form workflows with Material UI and Refine v4. Guide users through complex data inputs with a clear, linear MUI wizard."
 example-tags: [form, mui, react-hook-form]
 ---
 

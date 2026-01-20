@@ -1,5 +1,6 @@
 ---
-title: Nest.js Query
+title: "Nestjs-query Provider | Refine v4 Backend Sync"
+description: "Integrate NestJS with Refine v4 using Nestjs-query. Streamline your full-stack React development with automated data provider configurations."
 source: https://github.com/refinedev/refine/tree/main/packages/nestjs-query
 ---
 

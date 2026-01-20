@@ -1,6 +1,6 @@
 ---
-title: useIsAuthenticated
-description: useIsAuthenticated data hook from Refine is a modified version of react-query's useMutation for create mutations
+title: "useIsAuthenticated Hook | Auth State Checks in Refine v4"
+description: "Check user authentication status programmatically. A deep dive into using useIsAuthenticated for conditional logic in your React frontend."
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: General Concepts
+title: "General Concepts | Understanding Refine v4 Core"
+description: "A high-level overview of Refine v4's philosophy and architecture. Learn why Refine is the top choice for internal tool development."
 ---
 
 Refine is an extensible framework designed for rapidly building web applications. It offers a modern, **hook-based architecture**, a **pluggable system of providers**, and a robust **state management** solution. This section provides an overview of the key concepts in Refine.

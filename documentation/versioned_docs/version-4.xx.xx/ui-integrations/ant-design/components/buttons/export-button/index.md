@@ -1,5 +1,6 @@
 ---
-title: Export
+title: "Ant Design Export Button | Refine v4 Data Tools"
+description: "Add CSV export functionality to your tables. Documentation on implementing the Ant Design Export Button for efficient data management in Refine v4."
 swizzle: true
 ---
 

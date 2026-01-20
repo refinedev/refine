@@ -1,6 +1,7 @@
 ---
 id: advancedTable
-title: Advanced Tables with Ant Design
+title: "Advanced Ant Design Table | Refine v4 Data Grids"
+description: "Master complex data tables with Ant Design and Refine v4. Learn how to implement advanced sorting, filtering, and custom cell rendering."
 sidebar_label: Advanced Table
 example-title: Advanced Ant Design Table
 example-tags: [table, antd]

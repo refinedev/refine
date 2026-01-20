@@ -1,5 +1,6 @@
 ---
-title: Deployment
+title: "Deployment Guide | Hosting Your Refine v4 App"
+description: "Learn how to deploy Refine v4 applications to various platforms. Best practices for production builds, CI/CD, and hosting environments."
 ---
 
 Refine being a meta-framework, it does not have a specific deployment configuration on its own.

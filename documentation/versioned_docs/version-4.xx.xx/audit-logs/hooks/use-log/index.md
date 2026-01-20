@@ -1,5 +1,6 @@
 ---
-title: useLog
+title: "useLog Hook | Custom Audit Logging in Refine v4"
+description: "Master the useLog hook to create manual log entries. Track custom events and business logic changes beyond standard CRUD operations in Refine v4."
 ---
 
 If you need to create or update an audit log, you can use Refine's `useLog` hook. This hook will return two mutations called `log` and `rename`

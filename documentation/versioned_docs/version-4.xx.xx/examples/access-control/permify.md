@@ -1,6 +1,7 @@
 ---
 id: permify
-title: Permify
+title: "Permify RBAC Example | Refine v4 Permissions"
+description: "See how to use Permify for fine-grained authorization in Refine v4. A practical example of scalable permission logic in React."
 example-tags: [access-control]
 ---
 

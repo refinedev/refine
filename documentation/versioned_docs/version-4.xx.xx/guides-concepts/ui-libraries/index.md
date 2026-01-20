@@ -1,5 +1,6 @@
 ---
-title: UI Libraries
+title: "UI Library Integration | Refine v4 Compatibility"
+description: "Understand how Refine v4 integrates with Ant Design, MUI, Mantine, and more. Learn the logic behind headless vs. UI-bound development."
 ---
 
 Refine's UI library integrations enhance the core functionality by exposing hooks and components, offering prebuilt UI elements with minimal additional, library-specific logic. Refine offers seamless integration with popular UI libraries, allowing you to choose the one that suits your needs. These integrations don't constrain your application's logic. While they provide advantages, you can still create, extend, or mix components independently.

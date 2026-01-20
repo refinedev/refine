@@ -1,5 +1,6 @@
 ---
-title: useTable
+title: "useTable Hook Guide | Ant Design & Refine v4 Tables"
+description: "The definitive guide to Ant Design tables. Master pagination, sorting, and filtering using the specialized useTable hook in Refine v4."
 source: packages/antd/src/hooks/table/useTable
 ---
 

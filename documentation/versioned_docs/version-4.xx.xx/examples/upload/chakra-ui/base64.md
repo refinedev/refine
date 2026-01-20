@@ -1,6 +1,7 @@
 ---
 id: base64
-title: Base64 Upload
+title: "Chakra UI Base64 Upload | Refine v4 File Handling"
+description: "Learn to handle Base64 file uploads in Chakra UI with Refine v4. A practical example for managing media inputs in React forms."
 example-tags: [chakra-ui, upload]
 ---
 

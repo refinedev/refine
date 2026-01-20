@@ -1,6 +1,7 @@
 ---
 id: auth
-title: Authentication
+title: "Next.js Authentication Example | Refine v4 Auth"
+description: "Secure your Next.js applications with Refine v4. Explore our comprehensive example of implementing authentication in a Next.js environment."
 example-tags: [next.js, auth-provider]
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: custom-form-validation
-title: Custom Form Validation
+title: "Ant Design Custom Validation | Refine v4 Form Guide"
+description: "Implement custom validation logic in Ant Design forms with Refine v4. Learn how to handle complex validation scenarios in your React admin apps."
 example-tags: [form, antd]
 ---
 

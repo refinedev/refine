@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Ant Design Show View | Refine v4 Detail Pages"
+description: "Display record details efficiently using Ant Design. Learn how to build professional 'Show' pages with Refine v4's layout components and fields."
 swizzle: true
 ---
 

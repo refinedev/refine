@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Mantine Show View | Refine v4 Detail Pages"
+description: "Display record details using Mantine UI. Learn how to build professional 'Show' pages with Refine v4's layout components and typography."
 swizzle: true
 ---
 

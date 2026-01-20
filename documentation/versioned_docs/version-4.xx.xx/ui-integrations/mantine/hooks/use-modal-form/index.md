@@ -1,5 +1,6 @@
 ---
-title: useModalForm
+title: "useModalForm Hook | Mantine & Refine v4 Guide"
+description: "Official documentation for Mantine modal forms. Learn how to handle CRUD operations inside modals using Refine v4's powerful form logic."
 ---
 
 `useModalForm` hook also allows you to manage a form inside a modal component. It provides some useful methods to handle the form modal.

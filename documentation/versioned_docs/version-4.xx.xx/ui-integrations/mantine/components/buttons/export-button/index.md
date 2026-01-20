@@ -1,5 +1,6 @@
 ---
-title: Export
+title: "Mantine Export Button | Refine v4 Data Tools"
+description: "Add CSV export functionality to your Mantine tables. Documentation on implementing the Export Button for efficient data management."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Router Provider
+title: "Router Provider Guide | Custom Routing in Refine v4"
+description: "Master the Refine v4 Router Provider. Learn how to connect your preferred routing library and manage resource-based paths in your React admin panel."
 ---
 
 import Tabs from '@theme/Tabs';

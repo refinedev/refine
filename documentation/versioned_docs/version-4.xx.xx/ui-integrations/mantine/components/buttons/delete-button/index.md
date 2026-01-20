@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "Mantine Delete Button | Refine v4 Security"
+description: "Implement safe record deletion with Mantine Modal confirmations. Guide to using the Delete Button in your Refine v4 CRUD applications."
 swizzle: true
 ---
 

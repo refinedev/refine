@@ -1,8 +1,8 @@
 ---
-title: useInfiniteList
+title: "useInfiniteList Hook | Refine v4"
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/data/hooks/useInfiniteList.ts
-description: useInfiniteList data hook from Refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
+description: "Learn how infinite scrolling and pagination are handled in Refine v4 using useInfiniteList for large and dynamic datasets."
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

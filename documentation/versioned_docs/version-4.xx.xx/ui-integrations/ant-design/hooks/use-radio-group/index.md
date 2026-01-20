@@ -1,5 +1,6 @@
 ---
-title: useRadioGroup
+title: "useRadioGroup Hook | Ant Design & Refine v4 Forms"
+description: "Manage radio button groups effortlessly. Documentation on connecting Ant Design Radio components to Refine v4 data sources with useRadioGroup."
 ---
 
 `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.

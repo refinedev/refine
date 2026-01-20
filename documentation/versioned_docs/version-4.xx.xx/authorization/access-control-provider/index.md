@@ -1,5 +1,6 @@
 ---
-title: Access Control Provider
+title: "Access Control Provider | RBAC & Security in Refine v4"
+description: "Set up robust Access Control in Refine v4. Manage user roles (RBAC) and permissions across your entire React application from one central provider."
 ---
 
 Access control is a broad topic with lots of advanced solutions that provide different sets of features.

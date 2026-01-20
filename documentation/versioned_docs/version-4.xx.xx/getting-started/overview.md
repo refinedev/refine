@@ -1,5 +1,6 @@
 ---
-title: Overview
+title: "Refine v4 Documentation | The React Framework for CRUD"
+description: "Explore official Refine v4 docs. Build enterprise-grade admin panels, dashboards, and internal tools with React faster than ever."
 slug: /
 displayed_sidebar: mainSidebar
 ---

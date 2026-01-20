@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "Ant Design TagField | Refine v4 Status Labels"
+description: "Learn how to display tags and category labels using Ant Design. Official documentation for the TagField component in Refine v4 data tables."
 swizzle: true
 ---
 

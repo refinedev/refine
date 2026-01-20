@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "Ant Design Edit View | Refine v4 CRUD Management"
+description: "Learn how to create 'Edit' pages using Ant Design in Refine v4. Master data fetching, form pre-filling, and update logic with official UI components."
 swizzle: true
 ---
 

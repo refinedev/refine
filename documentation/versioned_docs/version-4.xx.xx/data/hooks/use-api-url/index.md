@@ -1,5 +1,6 @@
 ---
-title: useApiUrl
+title: "useApiUrl Hook | Refine v4"
+description: "Learn how to access and manage the active API base URL dynamically in Refine v4 using the useApiUrl data hook."
 source: packages/core/src/data/hooks/useApiUrl.ts
 ---
 

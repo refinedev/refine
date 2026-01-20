@@ -1,6 +1,7 @@
 ---
 id: useForm
-title: useForm
+title: "Chakra UI useForm Example | Refine v4 Integration"
+description: "Build beautiful forms with Chakra UI and Refine v4. Explore the useForm hook for seamless data management in React."
 example-tags: [form, chakra-ui, react-hook-form]
 ---
 

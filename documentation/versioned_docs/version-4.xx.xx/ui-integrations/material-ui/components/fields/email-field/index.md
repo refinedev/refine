@@ -1,5 +1,6 @@
 ---
-title: Email
+title: "MUI EmailField | Refine v4 UI Components"
+description: "Documentation for the MUI EmailField. Learn how to display clickable email links in your Refine v4 based Material UI admin panels."
 swizzle: true
 ---
 

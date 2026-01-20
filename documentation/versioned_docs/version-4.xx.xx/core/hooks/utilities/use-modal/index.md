@@ -1,5 +1,6 @@
 ---
-title: useModal
+title: "useModal Hook | Managing Dialog States in Refine v4"
+description: "Simplify modal management. Use the useModal hook to handle show/hide states and data fetching for popups in your Refine v4 project."
 source: packages/core/src/hooks/modal/useModal/index.tsx
 ---
 

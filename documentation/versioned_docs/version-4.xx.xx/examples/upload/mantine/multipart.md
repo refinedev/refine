@@ -1,6 +1,7 @@
 ---
 id: multipart
-title: Multipart Upload
+title: "Mantine Multipart Upload | Refine v4 File Guide"
+description: "Implement multipart file uploads in Mantine-based Refine v4 apps. Master server-side media processing and large file transfers effortlessly."
 example-tags: [mantine, upload]
 ---
 

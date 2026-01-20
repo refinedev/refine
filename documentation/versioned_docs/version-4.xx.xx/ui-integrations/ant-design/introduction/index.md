@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Ant Design Integration | Getting Started with Refine v4"
+description: "Learn how to set up and use Ant Design in your Refine v4 project. Introduction to official UI components, layouts, and pre-built CRUD views."
 ---
 
 Refine provides an integration package for [Ant Design](https://ant.design/) framework. This package provides a set of ready to use components and hooks that connects Refine with Ant Design components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Ant Design package, you will be able to use all the features of Ant Design in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Ant Design components in combination with Refine's features and functionalities.

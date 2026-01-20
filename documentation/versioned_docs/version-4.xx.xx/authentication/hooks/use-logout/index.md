@@ -1,6 +1,6 @@
 ---
-title: useLogout
-description: useLogout data hook from Refine is a modified version of react-query's useMutation for unauthentication.
+title: "useLogout Hook | Secure Session Termination in Refine v4"
+description: "Implement safe logout procedures. Learn how to clear auth states and redirect users using the Refine v4 useLogout hook."
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: real-time
-title: Live / Realtime
+title: "Real-Time Data Tutorial | Live Updates in Refine v4"
+description: "Power your dashboard with live data. Learn how to implement real-time subscriptions and instant UI syncing using Refine v4."
 sidebar_label: Live / Realtime
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Save
+title: "Mantine Save Button | Refine v4 Form Actions"
+description: "Master form submissions with the Mantine Save Button. Documentation on handling loading states and save logic in Refine v4."
 swizzle: true
 ---
 

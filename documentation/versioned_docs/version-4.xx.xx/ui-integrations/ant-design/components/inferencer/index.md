@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Ant Design Inferencer | Refine v4 Auto-Code Generation"
+description: "Speed up your Ant Design project with the Inferencer. Documentation on auto-generating CRUD pages, forms, and tables directly from your API schema."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` components and finally the `AntdInferencer` component, which combines all in one place.

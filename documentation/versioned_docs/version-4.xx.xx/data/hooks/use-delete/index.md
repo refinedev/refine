@@ -1,5 +1,6 @@
 ---
-title: useDelete
+title: "useDelete Hook | Refine v4"
+description: "Learn how single record deletion works in Refine v4 using useDelete, including mutation lifecycle, callbacks, and cache updates."
 siderbar_label: useDelete
 source: packages/core/src/data/hooks/useDelete.ts
 ---

@@ -1,5 +1,6 @@
 ---
-title: Command Palette
+title: "Refine Command Palette | Global Search & Navigation"
+description: "Enhance your admin panel with a command palette. Provide users with a quick search and navigation interface using the Refine v4 package."
 ---
 
 ```tsx live shared

@@ -1,5 +1,6 @@
 ---
-title: Multitenancy
+title: "Multi-tenancy Architecture | Refine v4 SaaS Guide"
+description: "Learn the concepts of building multi-tenant SaaS applications. Understand data isolation and organization management in Refine v4."
 ---
 
 Refine's architecture allows you to customize your app's data providers, access control and routing to support multi tenant features easily. This guide will provide you with a high level overview of the concepts and how to implement them. To see multi tenant app examples, check out the [Examples](#examples) section.

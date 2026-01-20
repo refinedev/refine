@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
-title: useDrawerForm
+title: "Chakra UI useDrawerForm Example | Refine v4 Hooks"
+description: "Build side-drawer forms using Chakra UI and Refine v4. Efficiently manage create and edit operations within a drawer component in React."
 example-tags: [form, chakra-ui, react-hook-form]
 ---
 

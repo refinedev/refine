@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "Mantine TagField | Refine v4 Status Badges"
+description: "Learn how to display tags and categories with Mantine. Documentation on the TagField component for status and label visualization in v4."
 swizzle: true
 ---
 

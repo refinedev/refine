@@ -1,6 +1,7 @@
 ---
 id: basic
-title: Tables with Mantine
+title: "Basic Mantine Table Example | Refine v4 CRUD Guide"
+description: "Implement basic CRUD tables using Mantine and Refine v4. A straightforward guide to displaying and managing data collections."
 sidebar_label: Basic Table
 example-title: Basic React Table with Mantine
 example-tags: [table, mantine, react-table]

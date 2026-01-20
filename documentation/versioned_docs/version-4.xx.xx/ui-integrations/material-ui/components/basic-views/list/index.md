@@ -1,5 +1,6 @@
 ---
-title: List
+title: "MUI List View | Refine v4 Data Grids"
+description: "Build professional 'List' pages with Material UI. Documentation on implementing tables, pagination, and data filters for your Refine v4 resources."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: useModalForm
+title: "useModalForm Guide | Refine v4 & React Hook Form"
+description: "Build modal-based forms efficiently. Learn to manage state and validation for pop-up forms using Refine's React Hook Form integration."
 ---
 
 ```tsx live shared

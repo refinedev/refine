@@ -1,5 +1,6 @@
 ---
-title: Text
+title: "MUI TextField | Refine v4 Core Display"
+description: "Official guide to basic data display with Material UI. Learn how to use the TextField component for string values in Refine v4 views."
 swizzle: true
 ---
 

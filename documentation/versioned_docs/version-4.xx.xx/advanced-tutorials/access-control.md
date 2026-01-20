@@ -1,6 +1,7 @@
 ---
 id: access-control
-title: Access Control
+title: "Access Control Tutorial | RBAC & Security in Refine v4"
+description: "Learn how to implement fine-grained Access Control (RBAC/ABAC) in Refine v4. Secure your React resources and UI components effectively."
 sidebar_label: Access Control
 ---
 

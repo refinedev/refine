@@ -1,5 +1,6 @@
 ---
-title: Data Fetching
+title: "Data Fetching Guide | Refine v4 Architecture"
+description: "Understand how Refine v4 handles data. Learn about data providers, hooks, and the underlying architecture for efficient API communication."
 ---
 
 import UseOne from "./use-one";

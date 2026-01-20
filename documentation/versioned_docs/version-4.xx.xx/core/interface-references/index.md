@@ -1,5 +1,6 @@
 ---
-title: Interface References
+title: "Core Interfaces Reference | Refine v4"
+description: "Explore all core TypeScript interfaces in Refine v4. Learn how interfaces define data flow, auth logic, resources, and provider integrations."
 ---
 
 ### CrudFilters

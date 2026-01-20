@@ -1,5 +1,6 @@
 ---
-title: Theming
+title: "Ant Design Theming Guide | Customizing Refine v4"
+description: "Personalize your admin panel. Documentation on customizing the Ant Design theme, colors, and global styles within your Refine v4 application."
 ---
 
 Ant Design allows you to customize design tokens to satisfy UI diversity from business or brand requirements, including primary color, border radius, border color, etc.

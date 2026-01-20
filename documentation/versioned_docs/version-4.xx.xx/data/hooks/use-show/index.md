@@ -1,5 +1,6 @@
 ---
-title: useShow
+title: "useShow Hook | Refine v4"
+description: "Learn how to fetch and manage data for detail (show) views in Refine v4 using useShow and resource-based queries."
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

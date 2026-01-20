@@ -1,5 +1,6 @@
 ---
-title: Authentication
+title: "Authentication Concepts | Refine v4 Security Guide"
+description: "Master the fundamentals of identity management in Refine v4. Learn how auth providers, hooks, and pages work together for secure apps."
 ---
 
 import Register from "./register";

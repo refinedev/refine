@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "MUI Edit View | Refine v4 CRUD Pages"
+description: "Learn how to build 'Edit' pages using Material UI in Refine v4. Master data fetching and update logic with official MUI components."
 swizzle: true
 ---
 

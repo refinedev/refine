@@ -1,5 +1,6 @@
 ---
-title: Date
+title: "Ant Design DateField | Refine v4 Format Guide"
+description: "Learn how to format and display date values using Ant Design. Official documentation for the DateField component in Refine v4 React apps."
 swizzle: true
 ---
 

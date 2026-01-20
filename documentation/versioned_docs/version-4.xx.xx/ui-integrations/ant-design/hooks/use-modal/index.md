@@ -1,5 +1,6 @@
 ---
-title: useModal
+title: "useModal Hook | Ant Design Modal Management"
+description: "Simplify modal states in your admin panel. Guide to controlling Ant Design Modal visibility and data fetching with the Refine v4 useModal hook."
 ---
 
 The `useModal` hook helps you manage the [Ant Design Modal](https://ant.design/components/modal) component.

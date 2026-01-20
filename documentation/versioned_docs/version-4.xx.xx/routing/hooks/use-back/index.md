@@ -1,5 +1,6 @@
 ---
-title: useBack
+title: "useBack Hook | Navigate Backwards in Refine v4"
+description: 'Implement "Go Back" functionality easily. Learn how to use the useBack hook for intuitive navigation history management in React.'
 ---
 
 `useBack` is a hook that leverages the `back` method of the [`routerProvider`][routerprovider] to perform the "go back" operation in the history stack.

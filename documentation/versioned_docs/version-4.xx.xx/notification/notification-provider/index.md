@@ -1,5 +1,6 @@
 ---
-title: Notification Provider
+title: "Notification Provider | Refine v4 Feedback System"
+description: "Set up custom notification providers in Refine v4. Integrate libraries like React Toastify or Ant Design Notifications for user feedback."
 ---
 
 Refine let's you set a notification API by providing the `notificationProvider` property to the `<Refine>` component.

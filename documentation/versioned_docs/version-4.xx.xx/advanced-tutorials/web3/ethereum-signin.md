@@ -1,6 +1,7 @@
 ---
 id: ethereum-signin
-title: Sign in with Ethereum Web3 Wallet
+title: "Web3 & Ethereum Sign-In | Blockchain Auth in Refine v4"
+description: "Integrate Web3 capabilities into your React admin panel. Learn how to use Ethereum wallets for secure authentication in Refine v4."
 ---
 
 ## Introduction

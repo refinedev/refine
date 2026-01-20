@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "Chakra UI Create Button | Refine v4 UI Components"
+description: "Documentation for the Chakra UI Create Button. Learn how to trigger navigation to create pages with pre-styled accessible buttons."
 swizzle: true
 ---
 

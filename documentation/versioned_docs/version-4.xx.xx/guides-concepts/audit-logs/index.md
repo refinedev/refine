@@ -1,5 +1,6 @@
 ---
-title: Audit Logs
+title: "Audit Logs Concept Guide | Tracking in Refine v4"
+description: "Understand the core concepts of activity tracking. Learn how Refine v4 manages audit logs to provide transparency in enterprise applications."
 ---
 
 Audit logs are useful tool for web applications, providing a reliable record of user actions and system changes. Capturing and storing these logs ensures transparency and accountability which can be crucial for **security**, **compliance**, and debugging purposes.

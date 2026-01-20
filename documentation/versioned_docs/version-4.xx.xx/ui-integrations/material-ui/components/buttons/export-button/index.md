@@ -1,5 +1,6 @@
 ---
-title: Export
+title: "MUI Export Button | Refine v4 Data Management"
+description: "Add CSV export functionality to your MUI tables. Documentation on implementing the Export Button for efficient data handling in Refine v4."
 swizzle: true
 ---
 

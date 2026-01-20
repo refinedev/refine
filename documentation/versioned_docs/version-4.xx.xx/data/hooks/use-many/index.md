@@ -1,5 +1,6 @@
 ---
-title: useMany
+title: "useMany Hook | Refine v4"
+description: "Learn how to fetch multiple records by their IDs in Refine v4 and handle relational data efficiently using useMany."
 siderbar_label: useMany
 source: packages/core/src/data/hooks/useMany.ts
 ---

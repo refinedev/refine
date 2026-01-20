@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Chakra UI Inferencer | Refine v4 Auto-Code Generation"
+description: "Speed up development with Chakra UI Inferencer. Documentation on auto-generating accessible CRUD pages and forms from your API schema."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` components and finally the `ChakraUIInferencer` component, which combines all in one place.

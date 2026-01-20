@@ -1,5 +1,6 @@
 ---
-title: useMenu
+title: "useMenu Hook | Customizing Sidebar Navigation in Refine v4"
+description: "Take full control of your application's menu. Learn how to use the useMenu hook to build dynamic, permission-aware navigation in Refine v4."
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---
 

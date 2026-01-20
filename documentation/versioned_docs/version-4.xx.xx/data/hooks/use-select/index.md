@@ -1,5 +1,6 @@
 ---
-title: useSelect
+title: "useSelect Hook | Refine v4"
+description: "Learn how to prepare resource data for select and dropdown inputs in Refine v4 using useSelect with pagination and filtering."
 siderbar_label: useSelect
 source: packages/core/src/hooks/useSelect/index.ts
 ---

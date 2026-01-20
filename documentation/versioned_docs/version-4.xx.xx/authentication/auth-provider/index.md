@@ -1,5 +1,6 @@
 ---
-title: Auth Provider
+title: "Auth Provider Guide | Refine v4 Authentication Logic"
+description: "The ultimate guide to Refine v4 Auth Provider. Learn to integrate custom login, logout, and identity check logic for secure React apps."
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";

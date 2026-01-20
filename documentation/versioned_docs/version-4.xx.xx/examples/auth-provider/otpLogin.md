@@ -1,6 +1,7 @@
 ---
 id: otpLogin
-title: OTP Login
+title: "OTP Login Example | Passwordless Auth in Refine v4"
+description: "Implement passwordless authentication with OTP. Check out the Refine v4 example for One-Time Password login flows in React applications."
 example-tags: [auth-provider]
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: basic
-title: Tables with Chakra UI
+title: "Basic Chakra UI Table | Refine v4 Starter Example"
+description: "Get started with simple data tables in Chakra UI and Refine v4. Learn the basics of data fetching and display in a clean React UI."
 sidebar_label: Basic Table
 example-title: Basic React Table with Chakra UI
 example-tags: [table, chakra-ui, react-table]

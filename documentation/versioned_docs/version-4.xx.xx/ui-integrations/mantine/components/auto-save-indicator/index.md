@@ -1,6 +1,6 @@
 ---
-title: <AutoSaveIndicator />
-description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+title: "Mantine AutoSaveIndicator | Refine v4 UX Guide"
+description: "Enhance user experience with the Mantine AutoSaveIndicator. Learn to show real-time feedback for background data saving in Refine v4."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 

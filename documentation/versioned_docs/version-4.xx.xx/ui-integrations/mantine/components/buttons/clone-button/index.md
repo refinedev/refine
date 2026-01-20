@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "Mantine Clone Button | Refine v4 CRUD Actions"
+description: "Official guide to the Mantine Clone Button. Learn how to implement record duplication logic in your Refine v4 admin panel."
 swizzle: true
 ---
 

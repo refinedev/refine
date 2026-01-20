@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "MUI Create View | Refine v4 CRUD Management"
+description: "Official guide to building 'Create' pages with Material UI. Documentation on integrating MUI forms and layouts in your Refine v4 application."
 swizzle: true
 ---
 

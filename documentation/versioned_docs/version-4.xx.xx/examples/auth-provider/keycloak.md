@@ -1,6 +1,7 @@
 ---
 id: keycloak
-title: Keycloak
+title: "Keycloak Auth Example | Refine v4 OpenID Connect"
+description: "Learn how to integrate Keycloak with Refine v4. A complete example of implementing OpenID Connect (OIDC) authentication in your React apps."
 example-tags: [auth-provider]
 ---
 

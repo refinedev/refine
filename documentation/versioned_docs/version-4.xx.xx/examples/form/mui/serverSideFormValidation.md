@@ -1,6 +1,7 @@
 ---
 id: serverSideFormValidation
-title: Server-Side Form Validation
+title: "Material UI Server-Side Validation | Refine v4"
+description: "Master server-side validation with Material UI and Refine v4. Display backend response errors clearly in your MUI-based React forms."
 example-tags: [form, material-ui]
 ---
 

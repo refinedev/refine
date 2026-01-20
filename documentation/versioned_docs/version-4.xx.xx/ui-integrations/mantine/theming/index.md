@@ -1,5 +1,6 @@
 ---
-title: Theme
+title: "Mantine Theming Guide | Customizing Refine v4 Style"
+description: "Personalize your Mantine-based admin dashboard. Documentation on customizing themes, colors, and global styles for your Refine v4 project."
 ---
 
 ```tsx live shared

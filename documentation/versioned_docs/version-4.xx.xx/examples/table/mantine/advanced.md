@@ -1,6 +1,7 @@
 ---
 id: advanced-react-table
-title: Advanced Tables with Mantine
+title: "Advanced Mantine Table Guide | Refine v4 TanStack"
+description: "Master advanced table patterns using Mantine and TanStack Table in Refine v4. High-performance data grids with a modern Mantine look."
 sidebar_label: Advanced Table
 example-title: Advanced React Table with Mantine
 example-tags: [table, mantine, react-table]

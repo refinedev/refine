@@ -1,5 +1,6 @@
 ---
-title: useLink
+title: "useLink Hook | Custom Link Logic in Refine v4"
+description: "Create custom navigation components. Learn how to use the useLink hook to build branded or specialized links within your Refine project."
 ---
 
 `useLink` is a hook that returns [`<Link />`](/core/docs/routing/components/link/) component. It is used to navigate to different pages in your application.

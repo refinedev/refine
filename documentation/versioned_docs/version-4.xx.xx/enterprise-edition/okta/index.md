@@ -1,5 +1,6 @@
 ---
-title: Okta Auth Provider
+title: "Okta SSO Integration | Refine v4 Enterprise Auth"
+description: "Secure your enterprise apps with Okta and Refine v4. Step-by-step guide to setting up Single Sign-On (SSO) and identity management."
 ---
 
 # Okta Auth Provider

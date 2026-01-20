@@ -1,5 +1,6 @@
 ---
-title: useUpdateMany
+title: "useUpdateMany Hook | Refine v4"
+description: "Learn how to update multiple records in a single mutation request in Refine v4 using useUpdateMany efficiently."
 siderbar_label: useUpdateMany
 source: packages/core/src/data/hooks/useUpdateMany.ts
 ---

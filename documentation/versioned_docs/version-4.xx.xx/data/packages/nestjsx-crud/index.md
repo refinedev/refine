@@ -1,5 +1,6 @@
 ---
-title: NestJS CRUD
+title: "Nestjsx CRUD Provider | Refine v4 & NestJS Guide"
+description: "Use Nestjsx CRUD with Refine v4 for rapid prototyping. Build powerful admin panels by connecting your NestJS backend to your React frontend."
 source: https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud
 swizzle: true
 ---

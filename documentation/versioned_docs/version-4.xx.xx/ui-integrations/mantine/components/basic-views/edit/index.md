@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "Mantine Edit View | Refine v4 CRUD Management"
+description: "Learn how to build 'Edit' pages using Mantine in Refine v4. Master data fetching and update logic with official Mantine components."
 swizzle: true
 ---
 

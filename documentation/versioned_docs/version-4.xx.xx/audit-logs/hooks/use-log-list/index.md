@@ -1,5 +1,6 @@
 ---
-title: useLogList
+title: "useLogList Hook | Fetching Activity Logs in Refine v4"
+description: "Learn how to list and filter activity logs efficiently. Use the useLogList hook to build transparent audit trails for your enterprise applications."
 ---
 
 If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/core/docs/audit-logs/audit-log-provider#get) under the hood.

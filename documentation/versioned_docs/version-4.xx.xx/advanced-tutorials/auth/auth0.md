@@ -1,6 +1,7 @@
 ---
 id: auth0
-title: Auth0 Login
+title: "Auth0 Integration Guide | Secure Refine v4 Authentication"
+description: "Connect Auth0 with your Refine v4 project. Step-by-step guide to setting up secure social login and enterprise identity management."
 sidebar_label: Auth0 Login
 ---
 

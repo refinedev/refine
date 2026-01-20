@@ -1,5 +1,6 @@
 ---
-title: useEditableTable
+title: "useEditableTable Hook | Ant Design & Refine v4"
+description: "Build inline editable tables with ease. Official guide to managing row-based editing and data updates in Ant Design tables using Refine v4."
 source: packages/antd/src/hooks/table/useTable
 ---
 

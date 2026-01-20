@@ -1,5 +1,6 @@
 ---
-title: React Router
+title: "React Router Integration | Refine v4 Navigation"
+description: "Use Refine v4 with the industry-standard React Router. Guide to setting up browser-based routing for your admin panel and dashboards."
 ---
 
 Refine provides router bindings and utilities for [React Router](https://reactrouter.com/). It is built on top of the `react-router` package. This package will provide easy integration between Refine and **react-router** for both existing projects and new projects.

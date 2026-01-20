@@ -1,6 +1,6 @@
 ---
-title: <AutoSaveIndicator />
-description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+title: "Ant Design AutoSaveIndicator | Refine v4 Components"
+description: "Enhance user UX with the AutoSaveIndicator. Learn how to show real-time feedback for background form submissions using Ant Design and Refine v4."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 

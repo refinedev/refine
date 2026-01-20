@@ -1,5 +1,6 @@
 ---
-title: <Authenticated />
+title: "Authenticated Component | Protecting Routes in Refine v4"
+description: "Secure your UI and routes with the Authenticated component. Learn how to handle redirection and unauthorized access in Refine v4 applications."
 ---
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].

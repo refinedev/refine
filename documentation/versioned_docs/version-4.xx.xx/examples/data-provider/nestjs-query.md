@@ -1,6 +1,7 @@
 ---
 id: nestjs-query
-title: Nestjs-Query
+title: "NestJS Query Example | Refine v4 Data Integration"
+description: "Build powerful admin panels with NestJS Query and Refine v4. Explore our practical example for efficient GraphQL-based data management."
 example-tags: [data-provider]
 ---
 

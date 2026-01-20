@@ -1,6 +1,7 @@
 ---
 id: customThemeAntd
-title: Custom Theme in Ant Design
+title: "Custom Ant Design Theme | Styling Refine v4 Apps"
+description: "Personalize your admin panel. Learn how to customize the Ant Design theme and global styles in your Refine v4 React project."
 sidebar_label: Custom Theme
 example-title: Custom Theme Ant Design
 example-tags: [antd, customization]

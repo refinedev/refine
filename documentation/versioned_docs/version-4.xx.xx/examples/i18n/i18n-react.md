@@ -1,6 +1,7 @@
 ---
 id: i18n-react
-title: React
+title: "React Internationalization | Refine v4 i18n Example"
+description: "Step-by-step guide to adding multi-language support to your Refine v4 React application using the i18n framework."
 example-tags: [i18n]
 ---
 

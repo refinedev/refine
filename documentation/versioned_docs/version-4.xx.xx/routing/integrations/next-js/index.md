@@ -1,5 +1,6 @@
 ---
-title: Next.js
+title: "Next.js Routing Integration | Refine v4 Guide"
+description: "Master Refine v4 with Next.js. Learn how to set up server-side routing, App Router support, and SSR-friendly navigation in React."
 ---
 
 import { NextJSAppProviderServerClient } from "./provider-client-server";

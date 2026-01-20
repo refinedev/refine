@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Chakra UI Integration | Getting Started with Refine v4"
+description: "Learn how to use Chakra UI in your Refine v4 project. Introduction to official accessible UI components, layouts, and CRUD views."
 ---
 
 Refine provides an integration package for [Chakra UI](https://chakra-ui.com/) framework. This package provides a set of ready to use components and hooks that connects Refine with Chakra UI components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Chakra UI package, you will be able to use all the features of Chakra UI in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Chakra UI components in combination with Refine's features and functionalities.

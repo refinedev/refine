@@ -1,6 +1,6 @@
 ---
-title: <AuthPage />
-description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: "MUI AuthPage Component | Refine v4 Security Views"
+description: "Ready-to-use Material UI login and registration pages. Documentation on implementing and customizing authentication views in Refine v4 with MUI."
 swizzle: true
 source: packages/mui/src/components/pages/auth/index.tsx
 ---

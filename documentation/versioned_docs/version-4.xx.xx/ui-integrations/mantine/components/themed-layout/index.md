@@ -1,6 +1,6 @@
 ---
-title: <ThemedLayout />
-description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
+title: "Mantine Themed Layout | Refine v4 UI Design"
+description: "Master the official Mantine Themed Layout in Refine v4. Learn how to customize Sider, Header, and Footer for your React admin dashboard."
 swizzle: true
 source: packages/mantine/src/components/themedLayoutV2/index.tsx
 ---

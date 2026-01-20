@@ -1,5 +1,6 @@
 ---
-title: Tables
+title: "Table Management Concepts | Refine v4 Data Grids"
+description: "Learn the core principles of high-performance data tables. Concepts behind sorting, filtering, and pagination in Refine v4."
 ---
 
 import BaseAntdTableExample from "./example/antd.tsx";

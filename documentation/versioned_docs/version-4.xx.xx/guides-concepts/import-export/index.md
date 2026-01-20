@@ -1,5 +1,6 @@
 ---
-title: Import - Export
+title: "Import & Export Concepts | Refine v4 Data Tools"
+description: "Understand how Refine v4 handles bulk data operations. Concepts behind CSV importing and exporting for professional admin panels."
 ---
 
 # CSV Import - Export

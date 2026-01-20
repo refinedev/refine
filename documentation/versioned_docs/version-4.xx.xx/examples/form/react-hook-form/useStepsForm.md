@@ -1,6 +1,7 @@
 ---
 id: useStepsForm
-title: useStepsForm
+title: "React Hook Form useStepsForm | Refine v4 Wizard"
+description: "Master multi-step forms using React Hook Form and Refine v4. Learn how to handle complex validation across different form steps."
 example-tags: [form, headless, react-hook-form]
 ---
 

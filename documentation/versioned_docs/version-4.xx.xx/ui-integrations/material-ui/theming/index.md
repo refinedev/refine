@@ -1,5 +1,6 @@
 ---
-title: Theming
+title: "MUI Theming Guide | Customizing Refine v4 Style"
+description: "Personalize your MUI-based admin dashboard. Documentation on customizing themes, palettes, and global styles for your Refine v4 project."
 ---
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. Theme provides a way to your app's design to meet them.

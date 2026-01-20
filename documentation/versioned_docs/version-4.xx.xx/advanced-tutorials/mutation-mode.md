@@ -1,6 +1,7 @@
 ---
 id: mutation-mode
-title: Mutation Mode
+title: "Mutation Modes Explained | Optimistic UI in Refine v4"
+description: "Understand Pessimistic, Optimistic, and Undoable mutations in Refine v4. Optimize user experience with instant UI updates."
 ---
 
 ```tsx live shared

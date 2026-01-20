@@ -1,6 +1,6 @@
 ---
-title: useImport
-description: useImport hook API references of @refinedev/core
+title: "useImport Hook | CSV Data Import in Refine v4"
+description: "Streamline data entry with the useImport hook. Learn how to parse CSV files and bulk-insert records into your Refine v4 application."
 ---
 
 `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.

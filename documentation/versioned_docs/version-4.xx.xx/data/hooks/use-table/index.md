@@ -1,5 +1,6 @@
 ---
-title: useTable
+title: "useTable Hook | Refine v4"
+description: "Learn how to build powerful data tables in Refine v4 with sorting, filtering, and pagination using the useTable hook."
 source: packages/core/src/hooks/useTable
 ---
 

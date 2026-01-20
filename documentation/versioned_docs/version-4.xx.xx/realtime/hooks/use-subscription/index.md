@@ -1,5 +1,6 @@
 ---
-title: useSubscription
+title: "useSubscription Hook | Live Data Updates in Refine"
+description: "Subscribe to real-time data changes. Master the useSubscription hook to keep your Refine v4 UI perfectly synced with your backend."
 source: packages/core/src/hooks/live/useSubscription/index.ts
 ---
 

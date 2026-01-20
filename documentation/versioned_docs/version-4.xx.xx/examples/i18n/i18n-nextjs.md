@@ -1,6 +1,7 @@
 ---
 id: i18n-nextjs
-title: Next.js
+title: "Next.js i18n Integration | Refine v4 Multi-language"
+description: "Learn how to implement internationalization (i18n) in Refine v4 with Next.js. Build multi-language React admin panels efficiently."
 example-tags: [i18n]
 ---
 

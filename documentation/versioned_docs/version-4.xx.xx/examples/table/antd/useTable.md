@@ -1,6 +1,7 @@
 ---
 id: useTable
-title: useTable
+title: "Ant Design useTable Guide | Refine v4 CRUD Tables"
+description: "The ultimate guide to Ant Design tables in Refine v4. Master pagination, sorting, and state management using the core useTable hook."
 example-title: Ant Design useTable Hook
 example-tags: [table, antd]
 ---

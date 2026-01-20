@@ -1,6 +1,6 @@
 ---
-title: <AuthPage />
-description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: "Ant Design AuthPage Component | Refine v4 UI"
+description: "Ready-to-use Ant Design login, register, and password reset pages. Documentation on customizing and implementing auth views in Refine v4 with ease."
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx
 ---

@@ -1,7 +1,8 @@
 ---
 slug: ant-design-calendar-example
 id: antd-calendar-example
-title: Calendar
+title: "Ant Design Calendar Example | Refine v4 UI"
+description: "Learn how to integrate the Ant Design Calendar component with Refine v4. Perfect for scheduling and event management dashboards."
 example-tags: [antd]
 ---
 

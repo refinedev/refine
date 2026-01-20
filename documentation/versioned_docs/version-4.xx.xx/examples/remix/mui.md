@@ -1,6 +1,7 @@
 ---
 id: remix-material-ui
-title: Remix with Material UI
+title: "Remix & Material UI Example | Refine v4 React Apps"
+description: "Discover how to use Material UI with Remix and Refine v4. A complete example of a high-performance React admin panel with MUI components."
 sidebar_label: Remix
 example-tags: [remix, mui]
 ---

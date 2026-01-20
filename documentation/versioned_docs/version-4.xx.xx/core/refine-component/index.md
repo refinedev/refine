@@ -1,5 +1,6 @@
 ---
-title: <Refine>
+title: "Refine Component Overview | Refine v4 Core"
+description: "Learn how the Refine component works in v4 and how it connects routing, auth, data providers, and UI layers in one core setup."
 ---
 
 `<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.

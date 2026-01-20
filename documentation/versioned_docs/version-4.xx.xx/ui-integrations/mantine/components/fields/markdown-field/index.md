@@ -1,5 +1,6 @@
 ---
-title: Markdown
+title: "Mantine MarkdownField | Refine v4 Content"
+description: "Render markdown content safely with Mantine. Documentation on implementing the MarkdownField component in your Refine v4 application."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Mantine List Button | Refine v4 UI Components"
+description: "Official guide for the Mantine List Button. Learn how to navigate back to resource lists using pre-styled Mantine components in Refine v4."
 swizzle: true
 ---
 

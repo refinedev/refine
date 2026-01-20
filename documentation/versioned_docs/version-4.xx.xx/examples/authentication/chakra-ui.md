@@ -1,6 +1,7 @@
 ---
 id: chakra-ui
-title: Authentication in Chakra UI
+title: "Chakra UI Auth Example | Refine v4 Layouts"
+description: "Build accessible auth flows with Chakra UI and Refine v4. Explore our pre-built login and sign-up page examples for React."
 sidebar_label: Authentication
 example-title: Authentication with Chakra UI
 example-tags: [chakra-ui, auth-provider]

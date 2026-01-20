@@ -1,5 +1,6 @@
 ---
-title: Internationalization (i18n)
+title: "i18n Concepts | Internationalization in Refine"
+description: "Master multi-language support. Learn the core concepts of implementing i18n in Refine v4 for global React applications."
 ---
 
 import I18nHeadless from './i18n-headless.tsx';

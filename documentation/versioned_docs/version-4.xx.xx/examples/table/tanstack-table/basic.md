@@ -1,6 +1,7 @@
 ---
 id: basic-tanstack-table
-title: Tables with Tanstack Table
+title: "Basic TanStack Table | Refine v4 Headless Example"
+description: "Learn the fundamentals of TanStack Table in Refine v4. Build powerful, logic-driven tables with any UI framework or custom CSS."
 sidebar_label: Basic Table
 example-title: Basic TanStack Table
 example-tags: [table, react-table, tanstack-table]

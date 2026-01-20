@@ -1,5 +1,6 @@
 ---
-title: Migration Guide from v6 to v7
+title: "React Router v6 to v7 Migration | Refine v4 Guide"
+description: "Step-by-step guide to upgrading React Router in your Refine v4 project. Learn how to handle breaking changes and ensure seamless navigation during the v7 transition."
 sidebar_label: v6 to v7
 ---
 

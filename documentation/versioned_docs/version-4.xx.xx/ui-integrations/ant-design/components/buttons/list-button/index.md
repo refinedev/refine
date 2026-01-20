@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Ant Design List Button | Refine v4 Navigation"
+description: "Documentation for the List Button. Learn how to easily navigate back to resource collections from Create, Edit, or Show views in Refine v4."
 swizzle: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: NextAuth-js
-title: Authentication with NextAuth.js
+title: "NextAuth.js & Refine v4 | Secure Authentication"
+description: "Implement secure authentication in Next.js using NextAuth.js and Refine v4. Check out the example for social and credential login."
 example-tags: [next.js, auth-provider]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: useDataGrid
+title: "useDataGrid Hook | MUI Data Grid & Refine v4"
+description: "Master Material UI Data Grid with Refine v4. Learn how to handle server-side pagination, sorting, and filtering using the useDataGrid hook."
 source: /packages/mui/src/hooks/useDataGrid
 ---
 

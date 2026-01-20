@@ -1,5 +1,6 @@
 ---
-title: Strapi v4
+title: "Strapi v4 Data Provider | Refine v4 Headless CMS"
+description: "Manage Strapi v4 content through Refine. Complete guide to setting up the data provider for modern headless CMS-driven admin panels."
 source: https://github.com/refinedev/refine/tree/main/packages/strapi-v4
 swizzle: true
 ---

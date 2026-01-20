@@ -56,8 +56,9 @@
           "label": "Advanced Tutorials",
           "link": {
             "type": "generated-index",
-            "title": "Advanced Tutorials",
-            "slug": "/advanced-tutorials"
+            "title": "Advanced Refine v4 Tutorials | Mastering React CRUD Development",
+            "slug": "/advanced-tutorials",
+            "description": "Step-by-step advanced guides for Refine v4. Learn complex workflows, custom integrations, and professional patterns for modern React admin panels."
           },
           "items": [
             "advanced-tutorials/access-control",
@@ -888,6 +889,12 @@
       "type": "category",
       "label": "Enterprise Edition",
       "className": "category-as-header",
+      "link": {
+        "type": "generated-index",
+        "title": "Refine v4 Enterprise Edition | Scalable Admin Tools",
+        "description": "Unlock professional features with Refine Enterprise. Get priority support, advanced security, and tools designed for corporate projects.",
+        "slug": "/enterprise-edition"
+      },
       "items": [
         "enterprise-edition/okta/index",
         "enterprise-edition/devtools/index",
@@ -896,7 +903,7 @@
     },
     {
       "type": "category",
-      "label": "Migration Guide 🚀",
+      "label": "Migration Guide \ud83d\ude80",
       "className": "category-as-header",
       "items": [
         "migration-guide/3x-to-4x",

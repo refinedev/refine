@@ -1,6 +1,7 @@
 ---
 id: refine-themes-chakra-ui
-title: Refine Themes in Chakra UI
+title: "Chakra UI Custom Themes | Refine v4 Styling Guide"
+description: "Tailor your Chakra UI application's look and feel. Learn how to implement and switch custom themes in your Refine v4 React project."
 sidebar_label: Refine Themes
 example-title: Chakra UI
 example-tags: [chakra-ui, customization]

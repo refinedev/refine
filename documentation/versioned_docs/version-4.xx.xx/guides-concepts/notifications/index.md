@@ -1,5 +1,6 @@
 ---
-title: Notifications
+title: "Notification Concepts | Refine v4 Feedback Guide"
+description: "Master user feedback systems. Learn how Refine v4's notification providers manage alerts, toasts, and status updates."
 ---
 
 One of the most important parts of an application is the notifications and the visual feedbacks. Refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.

@@ -1,5 +1,6 @@
 ---
-title: useSimpleList
+title: "useSimpleList Hook | Ant Design & Refine v4 Guide"
+description: "Master Ant Design List components. Documentation on managing pagination and data fetching for simple list views in your Refine v4 application."
 source: https://github.com/refinedev/refine/blob/main/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 

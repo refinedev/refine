@@ -1,5 +1,6 @@
 ---
-title: Refresh
+title: "Mantine Refresh Button | Refine v4 Data Sync"
+description: "Documentation for the Mantine Refresh Button. Learn how to manually trigger data invalidation and sync your UI in Refine v4 apps."
 swizzle: true
 ---
 

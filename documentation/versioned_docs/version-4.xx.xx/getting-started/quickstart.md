@@ -1,5 +1,6 @@
 ---
-title: Quick Start Guide
+title: "Refine v4 Quickstart | Build a React App in 5 Minutes"
+description: "Start your journey with Refine v4. A lightning-fast guide to setting up your first React CRUD application with minimal configuration."
 displayed_sidebar: mainSidebar
 ---
 

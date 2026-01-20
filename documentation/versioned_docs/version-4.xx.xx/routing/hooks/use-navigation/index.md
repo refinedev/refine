@@ -1,5 +1,6 @@
 ---
-title: useNavigation
+title: "useNavigation Hook | Unified Routing in Refine v4"
+description: "The complete guide to navigation hooks. Learn to navigate to list, edit, create, and show pages efficiently in your Refine v4 app."
 ---
 
 `useNavigation` is a hook that provides methods to navigate the app. Internally, it uses the `go` method of the [`routerProvider`][routerprovider].

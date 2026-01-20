@@ -1,5 +1,6 @@
 ---
-title: Breadcrumb
+title: "Mantine Breadcrumb | Refine v4 Navigation"
+description: "Documentation on dynamic breadcrumbs with Mantine. Learn how to enhance your app's navigation using Refine v4's internal routing logic."
 swizzle: true
 ---
 

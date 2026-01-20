@@ -1,5 +1,6 @@
 ---
-title: useUpdate
+title: "useUpdate Hook | Refine v4"
+description: "Learn how to update single records in Refine v4 using useUpdate, including mutation control, callbacks, and cache sync."
 siderbar_label: useUpdate
 source: packages/core/src/data/hooks/useUpdate.ts
 ---

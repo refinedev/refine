@@ -1,5 +1,6 @@
 ---
-title: i18n Provider
+title: "i18n Provider Guide | Multi-language Refine v4 Apps"
+description: "Configure the i18n provider in Refine v4. Learn how to translate your React admin panel into multiple languages using popular i18n libraries."
 ---
 
 import Tabs from '@theme/Tabs';

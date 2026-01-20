@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "MUI Create Button | Refine v4 Navigation UI"
+description: "Documentation for the MUI Create Button. Learn how to trigger navigation to resource creation pages using pre-styled Material UI components."
 swizzle: true
 ---
 

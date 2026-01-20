@@ -1,5 +1,6 @@
 ---
-title: Data Provider
+title: "Data Provider Concept | Refine v4 Data"
+description: "Understand how data providers work in Refine v4. Learn how to connect REST, GraphQL, or custom APIs to your application."
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";

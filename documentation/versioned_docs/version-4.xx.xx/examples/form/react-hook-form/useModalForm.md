@@ -1,6 +1,7 @@
 ---
 id: useModalForm
-title: useModalForm
+title: "React Hook Form useModalForm | Refine v4 Headless"
+description: "Integrate React Hook Form with Refine v4's modal logic. A headless example of managing modal states and form validation in React."
 example-tags: [form, headless, react-hook-form]
 ---
 

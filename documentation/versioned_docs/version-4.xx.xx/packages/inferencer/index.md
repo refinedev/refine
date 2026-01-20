@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Refine Inferencer | Auto-generate CRUD Components"
+description: "Speed up prototyping with the Refine Inferencer. Automatically generate React views, forms, and tables directly from your API response."
 ---
 
 `@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily.

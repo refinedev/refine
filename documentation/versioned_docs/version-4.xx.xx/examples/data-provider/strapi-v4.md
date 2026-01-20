@@ -1,6 +1,7 @@
 ---
 id: strapi-v4
-title: Strapi v4
+title: "Strapi v4 Integration | Refine v4 CRUD Example"
+description: "Master Strapi v4 with Refine. Check out this example to build a modern admin interface for your Strapi backend using Refine v4 hooks."
 example-tags: [data-provider, auth-provider]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "MUI Clone Button | Refine v4 CRUD Actions"
+description: "Official documentation for the Material UI Clone Button. Learn how to implement record duplication with pre-styled MUI components in Refine v4."
 swizzle: true
 ---
 

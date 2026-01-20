@@ -1,6 +1,7 @@
 ---
 id: advanced-react-table
-title: Advanced Tables with Chakra UI
+title: "Advanced Chakra UI Table | Refine v4 & React Table"
+description: "Combine Chakra UI with TanStack Table in Refine v4. Build feature-rich, accessible, and high-performance data grids for your admin panel."
 sidebar_label: Advanced Table
 example-title: Advanced React Table with Chakra UI
 example-tags: [table, chakra-ui, react-table]

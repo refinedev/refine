@@ -1,5 +1,6 @@
 ---
-title: Email
+title: "Ant Design EmailField | Refine v4 UI Components"
+description: "Display clickable email links in your admin panel. Documentation on using the Ant Design EmailField for resource views in Refine v4."
 swizzle: true
 ---
 

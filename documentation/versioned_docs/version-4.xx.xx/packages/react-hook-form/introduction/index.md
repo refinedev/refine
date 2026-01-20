@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Refine & React Hook Form | Efficient Form Logic"
+description: "Introduction to using React Hook Form with Refine v4. Learn why this integration is the standard for high-performance React forms."
 ---
 
 # React Hook Form <GuideBadge id="guides-concepts/forms" /> <RouterBadge id="guides-concepts/routing/#useform" />

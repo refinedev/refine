@@ -1,5 +1,6 @@
 ---
-title: Community Data Providers
+title: "Community Data Providers | Refine v4 Ecosystem"
+description: "Explore Refine v4 data providers created by the community. Find integrations for various backends, APIs, and specialized database services."
 ---
 
 Refine's open source community has created data providers for various platforms. You can find the list of these data providers below.

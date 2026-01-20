@@ -1,5 +1,6 @@
 ---
-title: Import
+title: "Mantine Import Button | Refine v4 CSV Import Guide"
+description: "Documentation for the Mantine Import Button. Learn how to add CSV import functionality to your Refine v4 admin panel with ease."
 swizzle: true
 ---
 

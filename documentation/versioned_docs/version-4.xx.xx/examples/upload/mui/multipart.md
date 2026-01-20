@@ -1,6 +1,7 @@
 ---
 id: multipart
-title: Multipart Upload
+title: "MUI Multipart Upload | Refine v4 File Handling"
+description: "Manage large file uploads in Material UI using Refine v4. Implement multipart/form-data for robust server-side media storage and management."
 example-tags: [mui, upload]
 ---
 

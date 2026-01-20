@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Ant Design Show Button | Refine v4 UI Guide"
+description: "Implement detail view navigation with the Show Button. Pre-styled Ant Design button documentation for managing record views in Refine v4."
 swizzle: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: customThemeMantine
-title: Custom Theme in Mantine
+title: "Mantine Theme Customization | Refine v4 UI Guide"
+description: "Define your brand's style. Explore how to create and apply custom Mantine themes for your Refine v4-based admin dashboards."
 sidebar_label: Custom Theme
 example-title: Custom Theme Mantine
 example-tags: [mantine, customization]

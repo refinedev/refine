@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "Chakra UI TagField | Refine v4 Badge Labels"
+description: "Learn how to display status labels and categories using Chakra UI Tags. Official guide for the TagField component in Refine v4."
 swizzle: true
 ---
 

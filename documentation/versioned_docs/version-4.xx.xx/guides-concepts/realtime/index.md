@@ -1,5 +1,6 @@
 ---
-title: Realtime
+title: "Real-time Data Concepts | Live Updates in Refine"
+description: "Understand the architecture of live data. Learn how Refine v4 manages subscriptions and real-time syncing for React apps."
 ---
 
 Realtime data is an important part of modern applications. Seeing the changes in the details page, without refreshing the page not only improves the user experience but also increases the productivity of the users by preventing accidental updates.

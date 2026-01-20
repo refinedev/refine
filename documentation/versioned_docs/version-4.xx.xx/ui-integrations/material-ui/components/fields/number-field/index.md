@@ -1,5 +1,6 @@
 ---
-title: Number
+title: "MUI NumberField | Refine v4 Formatting"
+description: "Display localized and formatted numbers using Material UI. Official documentation for the NumberField component in Refine v4 applications."
 swizzle: true
 ---
 

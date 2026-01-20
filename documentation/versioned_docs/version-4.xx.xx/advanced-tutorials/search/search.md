@@ -1,6 +1,7 @@
 ---
 id: search
-title: Search
+title: "Implementing Search Guide | Refine v4 Search Functionality"
+description: "Learn the best practices for implementing global and resource-specific search features in your Refine v4 React applications."
 ---
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.

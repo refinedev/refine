@@ -1,6 +1,7 @@
 ---
 id: useModalForm
-title: useModalForm
+title: "Material UI useModalForm Example | Refine v4 Guide"
+description: "Build professional modal forms using Material UI and Refine v4. Manage data fetching and submission inside MUI dialogs effortlessly."
 example-tags: [form, mui, react-hook-form]
 ---
 

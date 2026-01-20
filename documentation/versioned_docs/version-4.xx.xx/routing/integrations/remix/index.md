@@ -1,5 +1,6 @@
 ---
-title: Remix
+title: "Remix Integration Guide | Refine v4 Routing"
+description: "Discover how to use Refine v4 with Remix. Official documentation on setting up SSR-friendly routing, data fetching, and navigation for modern React applications."
 ---
 
 Refine provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between Refine and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.

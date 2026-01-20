@@ -1,5 +1,6 @@
 ---
-title: Breadcrumb
+title: "MUI Breadcrumb Component | Refine v4 Navigation"
+description: "Documentation on dynamic breadcrumbs with Material UI. Learn how to enhance your app's navigation using Refine v4's internal routing system."
 swizzle: true
 ---
 

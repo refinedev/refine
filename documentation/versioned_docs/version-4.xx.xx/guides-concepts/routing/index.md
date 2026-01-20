@@ -1,5 +1,6 @@
 ---
-title: Routing
+title: "Routing Concepts | Navigation in Refine v4"
+description: "Deep dive into Refine v4's routing logic. Learn how resources, pages, and menus are automatically mapped to your URL structure."
 ---
 
 Routing is essential for any CRUD application. Refine's headless architecture allows you to use any router solution, without being locked into a specific router/framework.

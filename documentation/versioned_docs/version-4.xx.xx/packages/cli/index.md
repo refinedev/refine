@@ -1,5 +1,6 @@
 ---
-title: CLI
+title: "Refine CLI Guide | Dev Tools & Code Generation"
+description: "Master the Refine CLI. Learn how to create projects, generate resources, and use powerful development tools to speed up your React workflow."
 ---
 
 import Tabs from '@theme/Tabs';

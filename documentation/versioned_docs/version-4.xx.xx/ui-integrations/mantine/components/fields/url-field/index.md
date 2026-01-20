@@ -1,5 +1,6 @@
 ---
-title: Url
+title: "Mantine UrlField | Refine v4 Link Components"
+description: "Display external links professionally with Mantine. Documentation on implementing the UrlField component for resource URLs in Refine v4."
 swizzle: true
 ---
 

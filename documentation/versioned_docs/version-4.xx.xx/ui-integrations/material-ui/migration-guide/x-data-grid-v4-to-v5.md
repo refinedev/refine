@@ -1,5 +1,6 @@
 ---
-title: Migration Guide for MUI X Data Grid from v4 to v5
+title: "MUI X Data Grid v4 to v5 Migration | Refine v4"
+description: "Documentation on migrating MUI X Data Grid in your Refine v4 app. Learn how to handle breaking changes in table management and data display."
 sidebar_label: X Data Grid v4 to v5
 ---
 

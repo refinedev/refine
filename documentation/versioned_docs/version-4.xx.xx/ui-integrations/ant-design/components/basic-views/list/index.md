@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Ant Design List View | Refine v4 Data Grids"
+description: "Build powerful 'List' pages with Ant Design. Documentation on implementing tables, pagination, and filtering for your Refine v4 resources."
 swizzle: true
 ---
 

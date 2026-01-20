@@ -1,5 +1,6 @@
 ---
-title: useDataProvider
+title: "useDataProvider Hook | Refine v4"
+description: "Learn how to directly access and use the active data provider instance in Refine v4 for advanced data operations and custom logic."
 source: packages/core/src/data/hooks/useDataProvider.tsx
 ---
 

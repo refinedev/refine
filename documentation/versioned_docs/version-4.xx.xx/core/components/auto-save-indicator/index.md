@@ -1,6 +1,6 @@
 ---
-title: <AutoSaveIndicator />
-description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+title: "AutoSaveIndicator | Enhancing Form UX in Refine v4"
+description: "Keep users informed with the AutoSaveIndicator. Learn how to show real-time feedback for background form submissions in Refine v4."
 source: packages/core/src/components/autoSaveIndicator/index.tsx
 ---
 

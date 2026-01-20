@@ -1,6 +1,7 @@
 ---
 id: refine-themes-mantine
-title: Refine Themes in Mantine
+title: "Mantine Theme Gallery | Refine v4 Custom Styles"
+description: "Browse and implement professional Mantine themes for Refine v4. Enhance your dashboard's aesthetics with pre-built style collections."
 sidebar_label: Refine Themes
 example-title: Mantine
 example-tags: [mantine, customization]

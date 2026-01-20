@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Chakra UI Show View | Refine v4 Detail Pages"
+description: "Display resource details using Chakra UI. Learn how to build professional 'Show' pages with Refine v4's layout components and typography."
 swizzle: true
 ---
 

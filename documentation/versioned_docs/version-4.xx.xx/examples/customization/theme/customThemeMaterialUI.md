@@ -1,6 +1,7 @@
 ---
 id: customThemeMaterialUI
-title: Custom Theme in Material UI
+title: "Custom Material UI Theme | Refine v4 Styling"
+description: "Go beyond defaults. A step-by-step guide to customizing the Material UI theme and components within your Refine v4 application."
 sidebar_label: Custom Theme
 example-title: Custom Theme Material UI
 example-tags: [mui, customization]

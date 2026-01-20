@@ -1,6 +1,7 @@
 ---
 id: useStepsForm
-title: useStepsForm
+title: "Mantine Multi-Step Form Example | Refine v4 Guide"
+description: "Build complex wizard-like forms with Mantine and Refine v4. A guide to implementing multi-step form logic using the useStepsForm hook."
 example-tags: [form, mantine]
 ---
 

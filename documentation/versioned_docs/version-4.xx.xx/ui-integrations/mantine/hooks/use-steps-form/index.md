@@ -1,5 +1,6 @@
 ---
-title: useStepsForm
+title: "useStepsForm Hook | Mantine Multi-Step Forms"
+description: "Build wizard-like forms with Mantine. Official guide to managing multi-step form logic and validation with the Refine v4 useStepsForm hook."
 ---
 
 ```tsx live shared

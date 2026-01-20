@@ -1,5 +1,6 @@
 ---
-title: useImport
+title: "useImport Hook | Ant Design & Refine v4 Data Import"
+description: "Master CSV data imports. Documentation on integrating Ant Design's upload components with Refine v4's useImport hook for bulk data entry."
 ---
 
 The `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.

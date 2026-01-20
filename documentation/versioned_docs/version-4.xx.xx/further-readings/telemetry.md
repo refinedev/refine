@@ -1,5 +1,6 @@
 ---
-title: Telemetry
+title: "Refine v4 Telemetry | Data Collection & Privacy"
+description: "Learn about telemetry in Refine v4. Understand what data is collected, how it helps improve the framework, and how to opt-out if needed."
 sidebar_label: Telemetry
 ---
 

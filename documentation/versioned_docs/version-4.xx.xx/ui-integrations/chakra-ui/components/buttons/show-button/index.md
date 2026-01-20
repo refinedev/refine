@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Chakra UI Show Button | Refine v4 Detail Views"
+description: "Implement navigation to detail pages with the Chakra UI Show Button. Official documentation for record view actions in Refine v4."
 swizzle: true
 ---
 

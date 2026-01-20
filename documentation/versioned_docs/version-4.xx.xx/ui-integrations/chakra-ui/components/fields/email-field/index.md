@@ -1,5 +1,6 @@
 ---
-title: Email
+title: "Chakra UI EmailField | Refine v4 UI Components"
+description: "Display clickable email links in Chakra UI. Documentation on using the EmailField component for resource views in Refine v4 project."
 swizzle: true
 ---
 

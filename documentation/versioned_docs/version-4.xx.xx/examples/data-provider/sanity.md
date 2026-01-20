@@ -1,6 +1,7 @@
 ---
 id: sanity
-title: Sanity
+title: "Sanity.io Data Provider | Refine v4 CMS Example"
+description: "Connect Sanity CMS to Refine v4. Learn how to manage your headless CMS content using Refine's powerful hooks and components in React."
 example-tags: [data-provider, community]
 ---
 

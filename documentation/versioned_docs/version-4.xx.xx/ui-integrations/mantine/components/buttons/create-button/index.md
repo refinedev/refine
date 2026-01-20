@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "Mantine Create Button | Refine v4 UI Components"
+description: "Documentation for the Mantine Create Button. Learn how to trigger navigation to create pages with pre-styled modern buttons."
 swizzle: true
 ---
 

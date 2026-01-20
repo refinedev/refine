@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "TanStack Table & Refine v4 | Headless Data Grids"
+description: "Introduction to TanStack Table (React Table) in Refine v4. Build powerful, logic-driven tables with total UI and styling flexibility."
 source: /packages/react-table/src/useTable
 ---
 

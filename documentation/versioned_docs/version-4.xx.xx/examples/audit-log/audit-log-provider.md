@@ -1,6 +1,7 @@
 ---
 id: audit-log-provider
-title: Audit Log Provider
+title: "Auth0 Login Example | Refine v4 Authentication"
+description: "Working example of Auth0 integration in Refine v4. See how to implement secure social login and JWT management in React."
 example-tags: [audit-log-provider]
 example-title: Audit Log with Headless
 ---

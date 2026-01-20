@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "Ant Design Delete Button | Refine v4 Security"
+description: "Implement safe record deletion with confirmation dialogs. Guide to using the Ant Design Delete Button in your Refine v4 CRUD applications."
 swizzle: true
 ---
 

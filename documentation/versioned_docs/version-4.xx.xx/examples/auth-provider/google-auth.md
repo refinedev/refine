@@ -1,6 +1,7 @@
 ---
 id: google-auth
-title: Google Auth
+title: "Google Auth Integration Example | Refine v4 Documentation"
+description: "Official documentation on integrating Google Authentication with Refine v4. Follow this step-by-step example to implement Google OAuth in your admin panel."
 example-tags: [auth-provider]
 ---
 

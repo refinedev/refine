@@ -1,6 +1,7 @@
 ---
 id: list-search
-title: List Search
+title: "List Page Search Tutorial | Efficient Data Discovery"
+description: "Add powerful search capabilities to your Refine v4 list views. Help users find specific records quickly with optimized search hooks."
 ---
 
 We will examine how to make an extensive search and filtering with the [`useSimpleList`](/core/docs/ui-integrations/ant-design/hooks/use-simple-list) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.

@@ -1,6 +1,7 @@
 ---
 id: cursor-pagination
-title: Cursor Pagination
+title: "MUI Cursor Pagination | Refine v4 Performance Guide"
+description: "Implement cursor-based pagination with Material UI and Refine v4. Optimize performance for large datasets in your React application."
 example-title: Cursor Pagination
 example-tags: [table, mui]
 ---

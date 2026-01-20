@@ -1,5 +1,6 @@
 ---
-title: Migration Guide
+title: "Ant Design Migration Guide | Upgrading to Refine v4"
+description: "Official guide for upgrading your Ant Design integration from Refine v3 to v4. Documentation on breaking changes and new UI features."
 ---
 
 Ant Design released a new major version, v5. This document will help you upgrade from antd 4.x version to antd 5.x version.

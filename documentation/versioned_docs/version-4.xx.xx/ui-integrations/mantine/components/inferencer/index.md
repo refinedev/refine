@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Mantine Inferencer | Refine v4 Auto-Code Generation"
+description: "Speed up your Mantine project with the Inferencer. Documentation on auto-generating CRUD pages and forms from your API schema."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.

@@ -1,5 +1,6 @@
 ---
-title: useNotification
+title: "useNotification Hook | Custom Alerts in Refine v4"
+description: "Trigger manual notifications in your React app. Master the useNotification hook to show success, error, or info messages in Refine v4."
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/hooks/notification/useNotification/index.ts
 ---
 

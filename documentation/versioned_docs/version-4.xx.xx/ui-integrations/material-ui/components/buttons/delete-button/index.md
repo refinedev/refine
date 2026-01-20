@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "MUI Delete Button | Refine v4 Security & Actions"
+description: "Implement record deletion with Material UI Dialog confirmations. Official guide to using the Delete Button safely in your Refine v4 CRUD app."
 swizzle: true
 ---
 

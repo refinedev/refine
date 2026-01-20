@@ -1,6 +1,7 @@
 ---
 id: multiple
-title: Multiple Providers
+title: "Multiple Data Providers Example | Refine v4 Guide"
+description: "Learn how to use multiple data providers in a single Refine v4 app. Manage data from different APIs and backends seamlessly in your React project."
 example-tags: [data-provider]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Airtable
+title: "Airtable Data Provider Guide | Refine v4 React CRUD"
+description: "Connect Refine v4 to Airtable effortlessly. Learn to configure the Airtable data provider for seamless React-based admin panel development."
 source: https://github.com/refinedev/refine/tree/main/packages/airtable
 swizzle: true
 ---

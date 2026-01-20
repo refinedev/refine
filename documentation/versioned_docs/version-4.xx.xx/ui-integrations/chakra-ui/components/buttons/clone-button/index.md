@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "Chakra UI Clone Button | Refine v4 CRUD Actions"
+description: "Official guide to the Clone Button. Learn how to implement record duplication using Chakra UI components in your Refine v4 project."
 swizzle: true
 ---
 

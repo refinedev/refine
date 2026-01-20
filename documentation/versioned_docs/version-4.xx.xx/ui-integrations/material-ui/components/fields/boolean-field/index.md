@@ -1,5 +1,6 @@
 ---
-title: Boolean
+title: "MUI BooleanField | Refine v4 Data Display"
+description: "Display boolean values using Material UI icons and badges. Documentation on implementing the BooleanField for clear data representation in Refine v4."
 swizzle: true
 ---
 

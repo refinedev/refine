@@ -1,6 +1,7 @@
 ---
 id: useDeleteMany
-title: useDeleteMany
+title: "useDeleteMany Hook Example | Refine v4 Ant Design"
+description: "Enable bulk deletion in Ant Design tables. Learn how to use the useDeleteMany hook for efficient batch data management in Refine v4."
 example-title: Ant Design useDeleteMany Hook
 example-tags: [table, antd]
 ---

@@ -1,6 +1,7 @@
 ---
 id: hasura
-title: Hasura
+title: "Hasura GraphQL Example | Refine v4 & PostgreSQL"
+description: "Master GraphQL with Hasura and Refine v4. A hands-on example of building a data-driven admin panel with PostgreSQL."
 example-tags: [data-provider, live-provider]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Refresh
+title: "Ant Design Refresh Button | Refine v4 Data Sync"
+description: "Trigger manual data invalidation with the Refresh Button. Documentation on keeping your Ant Design views up-to-date in Refine v4 applications."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "MUI Edit Button | Refine v4 Action Components"
+description: "Official guide to the Material UI Edit Button. Learn how to navigate to resource update pages with optimized MUI button components."
 swizzle: true
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: <ThemedLayout />
-description: <ThemedLayoutV2> component from Refine, defines the overall structure and layout of a web page.
+title: "Themed Layout Guide | Chakra UI & Refine v4"
+description: "Master the official Chakra UI Themed Layout in Refine v4. Documentation on customizing Sider, Header, and Footer for modern admin panels."
 swizzle: true
 source: packages/chakra-ui/src/components/themedLayoutV2/index.tsx
 ---
