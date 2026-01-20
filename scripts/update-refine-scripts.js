@@ -48,7 +48,7 @@ async function updatePackageJsonScripts() {
     }
 
     if (hasChanges) {
-      fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");
+      fs.writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`);
       updatedCount++;
       console.log(
         `✓ Updated: ${path.relative(path.join(__dirname, ".."), file)}`,
