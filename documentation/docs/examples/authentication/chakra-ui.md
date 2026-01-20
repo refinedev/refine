@@ -1,6 +1,7 @@
 ---
 id: chakra-ui
-title: Authentication in Chakra UI
+title: "Chakra UI Example | Best Practices in Refine v5"
+description: "Explore how to implement Chakra UI in Refine v5. Explore secure patterns for OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 sidebar_label: Authentication
 example-title: Authentication with Chakra UI
 example-tags: [chakra-ui, auth-provider]

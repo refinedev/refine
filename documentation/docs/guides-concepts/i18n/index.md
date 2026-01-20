@@ -1,5 +1,6 @@
 ---
-title: Internationalization (i18n)
+title: "I18n Guide | Localization in Refine v5"
+description: "Build i18n in Refine v5. Learn the key steps. Explore translation and common.json for real-world React admin panels. See practical code samples."
 ---
 
 import I18nHeadless from './i18n-headless.tsx';

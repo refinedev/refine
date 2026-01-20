@@ -1,5 +1,6 @@
 ---
-title: <SignInForm />
+title: "shadcn/ui Sign In Form Component | UI Component in Refine v5"
+description: "Implement Sign In Form in Refine v5. Learn the key steps. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/sign-in-form.tsx
 ---
 

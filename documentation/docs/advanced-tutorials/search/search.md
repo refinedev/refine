@@ -1,6 +1,7 @@
 ---
 id: search
-title: Search
+title: "Search Tutorial | Filtering in Refine v5"
+description: "Explore how to implement Search in Refine v5. Learn advanced patterns for filtering, query for production-ready workflows. See practical code samples."
 ---
 
 We will create a `<Header>` component for your application with Ant Design's [`<AutoComplete>`](https://ant.design/components/auto-complete) component.

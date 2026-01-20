@@ -1,6 +1,7 @@
 ---
 id: react-toastify
-title: React Toastify
+title: "React Toastify Example | Best Practices in Refine v5"
+description: "Build React Toastify in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. Real-world snippets included."
 example-tags: [headless, notification-provider]
 ---
 

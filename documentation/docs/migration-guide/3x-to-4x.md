@@ -1,5 +1,6 @@
 ---
-title: Migrating from 3.x.x to 4.x.x
+title: "3x to 4x Migration Guide | Best Practices in Refine v5"
+description: "Integrate 3x To 4x in Refine v5. Learn best practices. Learn instead and prop for real-world React admin panels. Explore with code snippets."
 sidebar_label: 3.x.x to 4.x.x
 ---
 

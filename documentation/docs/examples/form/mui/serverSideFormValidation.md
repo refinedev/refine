@@ -1,6 +1,7 @@
 ---
 id: serverSideFormValidation
-title: Server-Side Form Validation
+title: "ServerSideFormValidation Example | Best Practices in Refine v5: MUI"
+description: "Set up ServerSideFormValidation in Refine v5. Learn best practices. Explore Material Design, components for real-world React admin panels."
 example-tags: [form, material-ui]
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: audit-log-antd
-title: Audit Log with Antd
+title: "Audit Log Ant Design Example | Activity Logs in Refine v5"
+description: "Secure Audit Log Ant Design in Refine v5. Learn best practices. Learn provider for real-world React admin panels. Hands-on examples included."
 example-tags: [audit-log-provider, antd]
 example-title: Audit Log with Antd
 ---

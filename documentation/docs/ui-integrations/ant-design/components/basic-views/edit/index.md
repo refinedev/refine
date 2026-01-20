@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "Ant Design Edit Component | UI Component in Refine v5"
+description: "Integrate Edit in Refine v5. Learn best practices. Explore customization options for enterprise UI, components for polished admin UIs."
 swizzle: true
 ---
 

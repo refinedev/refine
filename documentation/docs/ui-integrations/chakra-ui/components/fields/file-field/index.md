@@ -1,5 +1,6 @@
 ---
-title: File
+title: "Chakra UI File Field Component | UI Component in Refine v5"
+description: "Explore how to integrate File Field in Refine v5. Explore customization options for accessibility, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: File
+title: "Ant Design File Field Component | UI Component in Refine v5"
+description: "Integrate File Field in Refine v5. Learn best practices. Learn integration patterns for Ant Design for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

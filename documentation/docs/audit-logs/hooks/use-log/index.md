@@ -1,5 +1,6 @@
 ---
-title: useLog
+title: "useLog Hook | Best Practices for Audit Logs in Refine v5"
+description: "Set up Use Log in Refine v5. Learn best practices. Learn best practices for activity logs, compliance for compliance and traceability."
 ---
 
 If you need to create or update an audit log, you can use Refine's `useLog` hook. This hook will return two mutations called `log` and `rename`

@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "Mantine Delete Button Component | Security & Actions in Refine v5"
+description: "Build Delete Button in Refine v5. Learn the key steps. Learn integration patterns for React UI library, components for polished admin UIs."
 swizzle: true
 ---
 

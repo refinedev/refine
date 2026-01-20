@@ -1,6 +1,7 @@
 ---
 id: useModalForm
-title: useModalForm
+title: "UseModalForm Example | Best Practices in Refine v5: React Hook Form"
+description: "Build UseModalForm in Refine v5. Learn the key steps. Explore best practices for validation, schemas for real-world React admin panels."
 example-tags: [form, headless, react-hook-form]
 ---
 

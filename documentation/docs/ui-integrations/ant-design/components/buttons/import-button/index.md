@@ -1,5 +1,6 @@
 ---
-title: Import
+title: "Ant Design Import Button Component | Data Tools in Refine v5"
+description: "Learn to integrate Import Button in Refine v5. Learn integrate properties and hide for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Community Data Providers
+title: "Community Data Providers Integration Guide | REST API Integration in Refine v5"
+description: "Learn to implement Community Data Providers in Refine v5. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows."
 ---
 
 Refine's open source community has created data providers for various platforms. You can find the list of these data providers below.

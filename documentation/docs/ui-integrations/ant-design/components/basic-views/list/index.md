@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Ant Design List Component | UI Component in Refine v5"
+description: "Implement List in Refine v5. Learn the key steps. Learn integrate hide for polished admin UIs. See practical code samples. Fast to follow."
 swizzle: true
 ---
 

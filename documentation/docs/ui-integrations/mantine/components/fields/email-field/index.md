@@ -1,5 +1,6 @@
 ---
-title: Email
+title: "Mantine Email Field Component | UI Component in Refine v5"
+description: "Set up Email Field in Refine v5. Learn best practices. Learn integrate React UI library, components for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

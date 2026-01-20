@@ -1,5 +1,6 @@
 ---
-title: Overview
+title: "Refine Documentation | Guides, Tutorials & API Reference in Refine v5"
+description: "Implement Refine documentation in Refine v5. Learn the key steps. Explore guides, tutorials, and API reference for real-world React admin panels."
 slug: /
 displayed_sidebar: mainSidebar
 ---

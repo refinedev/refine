@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Mantine Inferencer Component | UI Component in Refine v5"
+description: "Learn to integrate Inferencer in Refine v5. Learn integration patterns for React UI library, components for polished admin UIs. Hands-on examples included."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineEditInferencer`, `MantineCreateInferencer` components and finally the `MantineInferencer` component, which combines all in one place.

@@ -1,6 +1,7 @@
 ---
 id: list-search
-title: List Search
+title: "List Search Tutorial | Best Practices in Refine v5"
+description: "Set up List Search in Refine v5. Learn best practices. Learn advanced patterns for form and posts for production-ready workflows. Learn with code examples."
 ---
 
 We will examine how to make an extensive search and filtering with the [`useSimpleList`](/core/docs/ui-integrations/ant-design/hooks/use-simple-list/) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.

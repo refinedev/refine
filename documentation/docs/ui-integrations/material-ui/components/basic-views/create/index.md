@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "MUI Create Component | UI Component in Refine v5"
+description: "Learn to integrate Create in Refine v5. Learn integrate hide for polished admin UIs. See practical code samples. Fast to follow."
 swizzle: true
 ---
 

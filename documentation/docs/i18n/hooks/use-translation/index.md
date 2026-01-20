@@ -1,5 +1,6 @@
 ---
-title: useTranslation
+title: "useTranslation Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Explore how to use the useTranslation hook in Refine v5. Learn best practices for localization, translations for real-world React admin panels."
 ---
 
 The `useTranslation` hook, allows you to use call `translate`, `changeLocale`, and `getLocale` methods from the [`i18nProvider`](/core/docs/i18n/i18n-provider/) that you provided. It can be used to translate texts, change the locale, and get the current locale in your own components.

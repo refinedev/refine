@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "MUI Edit Button Component | Navigation UI in Refine v5"
+description: "Build Edit Button in Refine v5. Learn the key steps. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 ---
 

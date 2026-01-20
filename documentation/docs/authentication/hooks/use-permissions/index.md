@@ -1,6 +1,6 @@
 ---
-title: usePermissions
-description: usePermissions data hook from Refine is a modified version of react-query's useQuery for retrieving user data
+title: "usePermissions Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Secure Use Permissions in Refine v5. Learn best practices. Explore secure patterns for OAuth, JWT for secure enterprise React apps."
 source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---
 

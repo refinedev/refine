@@ -1,5 +1,6 @@
 ---
-title: Text
+title: "Chakra UI Text Field Component | UI Component in Refine v5"
+description: "Learn to integrate Text Field in Refine v5. Learn integration patterns for accessibility, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---
 

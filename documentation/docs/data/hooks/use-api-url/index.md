@@ -1,5 +1,6 @@
 ---
-title: useApiUrl
+title: "useAPIUrl Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Learn to use the useAPIUrl hook in Refine v5. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows."
 source: packages/core/src/data/hooks/useApiUrl.ts
 ---
 

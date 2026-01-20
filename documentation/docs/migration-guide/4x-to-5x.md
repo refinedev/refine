@@ -1,5 +1,6 @@
 ---
-title: Migrating from 4.x.x to 5.x.x
+title: "4x to 5x Migration Guide | Migration Guide in Refine v5"
+description: "Explore how to migrate 4x To 5x in Refine v5. Explore best practices for affects and changes for real-world React admin panels. See practical code samples."
 sidebar_label: 4.x.x to 5.x.x
 ---
 

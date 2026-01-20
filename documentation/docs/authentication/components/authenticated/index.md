@@ -1,5 +1,6 @@
 ---
-title: <Authenticated />
+title: "Authenticated Component | Best Practices in Refine v5"
+description: "Set up Authenticated in Refine v5. Learn best practices. Learn how to secure OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 ---
 
 `<Authenticated>` is the component form of [`useIsAuthenticated`][use-is-authenticated].

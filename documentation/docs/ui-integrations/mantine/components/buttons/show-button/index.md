@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Mantine Show Button Component | Navigation UI in Refine v5"
+description: "Secure Show Button in Refine v5. Learn best practices. Learn integration patterns for hide for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

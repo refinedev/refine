@@ -1,5 +1,6 @@
 ---
-title: Buttons
+title: "buttons Hook | Best Practices for Usage & Patterns | Refine v5"
+description: "Explore how to use the buttons hook in Refine v5. Explore best practices for provides and values for real-world React admin panels. See practical code samples."
 source: packages/core/src/hooks/button
 ---
 

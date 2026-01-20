@@ -1,5 +1,6 @@
 ---
-title: <SignUpForm />
+title: "SignUpForm Component | Authentication UI Patterns in Refine v5"
+description: "Secure Sign Up Form in Refine v5. Learn best practices. Learn integration patterns for registration and password for polished admin UIs."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/sign-up-form.tsx
 ---
 

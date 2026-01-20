@@ -1,5 +1,6 @@
 ---
-title: useDataProvider
+title: "useDataProvider Hook | Usage & Patterns | Refine v5"
+description: "Build Use Data Provider in Refine v5. Learn the key steps. Learn scale REST, GraphQL for custom APIs and scalable data flows. Hands-on examples included."
 source: packages/core/src/data/hooks/useDataProvider.tsx
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: useDataGrid
-title: useDataGrid
+title: "UseDataGrid Example | Pagination in Refine v5"
+description: "Integrate UseDataGrid in Refine v5. Learn best practices. Explore best practices for pagination, sorting for real-world React admin panels."
 example-title: Material UI's useDataGrid Hook
 example-tags: [table, mui]
 ---

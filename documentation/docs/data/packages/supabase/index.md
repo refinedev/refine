@@ -1,5 +1,6 @@
 ---
-title: Supabase
+title: "Supabase Integration Guide | REST API Integration in Refine v5"
+description: "Secure Supabase in Refine v5. Learn best practices. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows. Real-world snippets included."
 source: https://github.com/refinedev/refine/tree/main/packages/supabase
 swizzle: true
 ---

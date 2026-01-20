@@ -1,6 +1,7 @@
 ---
 id: nestjs-query
-title: Nestjs-Query
+title: "Nestjs Query Example | REST API Integration in Refine v5"
+description: "Explore how to build with the Nestjs Query example in Refine v5. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows."
 example-tags: [data-provider]
 ---
 

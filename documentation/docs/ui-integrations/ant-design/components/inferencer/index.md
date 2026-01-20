@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Ant Design Inferencer Component | UI Component in Refine v5"
+description: "Secure Inferencer in Refine v5. Learn best practices. Learn integration patterns for enterprise UI, components for polished admin UIs. Learn with code examples."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports the `AntdListInferencer`, `AntdShowInferencer`, `AntdEditInferencer`, `AntdCreateInferencer` components and finally the `AntdInferencer` component, which combines all in one place.

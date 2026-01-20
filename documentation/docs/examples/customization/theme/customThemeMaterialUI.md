@@ -1,6 +1,7 @@
 ---
 id: customThemeMaterialUI
-title: Custom Theme in Material UI
+title: "CustomThemeMaterialUI Example | Best Practices in Refine v5"
+description: "Implement CustomThemeMaterialUI in Refine v5. Learn the key steps. Learn best practices for provider for real-world React admin panels."
 sidebar_label: Custom Theme
 example-title: Custom Theme Material UI
 example-tags: [mui, customization]

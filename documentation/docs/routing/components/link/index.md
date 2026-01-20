@@ -1,5 +1,6 @@
 ---
-title: <Link />
+title: "Link Component | SSR in Refine v5"
+description: "Build Link in Refine v5. Learn the key steps. Learn SSR, navigation for real-world React admin panels. See practical code samples."
 source: packages/core/src/components/link/index.tsx
 ---
 

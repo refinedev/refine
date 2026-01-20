@@ -1,5 +1,6 @@
 ---
-title: Import
+title: "Chakra UI Import Button Component | Data Tools in Refine v5"
+description: "Secure Import Button in Refine v5. Learn best practices. Explore customization options for properties for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---
 

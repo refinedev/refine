@@ -1,6 +1,7 @@
 ---
 id: airtable
-title: Airtable
+title: "Airtable Example | REST API Integration in Refine v5"
+description: "Set up Airtable in Refine v5. Learn best practices. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows. Real-world snippets included."
 example-tags: [data-provider]
 ---
 

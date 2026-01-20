@@ -1,5 +1,6 @@
 ---
-title: Multitenancy
+title: "Multitenancy Guide | Guides Concepts in Refine v5"
+description: "Learn to implement Multitenancy in Refine v5. Learn best practices for tenant and data for real-world React admin panels. Hands-on examples included."
 ---
 
 Refine's architecture allows you to customize your app's data providers, access control and routing to support multi tenant features easily. This guide will provide you with a high level overview of the concepts and how to implement them. To see multi tenant app examples, check out the [Examples](#examples) section.

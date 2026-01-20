@@ -1,5 +1,6 @@
 ---
-title: Notifications
+title: "Notifications Guide | Guides Concepts in Refine v5"
+description: "Build Notifications in Refine v5. Learn the key steps. Learn best practices for data for real-world React admin panels. Learn with code examples."
 ---
 
 One of the most important parts of an application is the notifications and the visual feedbacks. Refine has this built-in notification integration that works automatically when it's needed in cases such as when a request fails or when a form is submitted.

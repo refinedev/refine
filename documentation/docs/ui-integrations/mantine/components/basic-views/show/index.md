@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Mantine Show Component | UI Component in Refine v5"
+description: "Integrate Show in Refine v5. Learn best practices. Learn integration patterns for React UI library, components for polished admin UIs."
 swizzle: true
 ---
 

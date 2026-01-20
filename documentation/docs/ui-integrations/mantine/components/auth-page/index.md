@@ -1,6 +1,6 @@
 ---
-title: <AuthPage />
-description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: "Mantine Auth Page Component | UI Component in Refine v5"
+description: "Explore how to integrate Auth Page in Refine v5. Explore customization options for property and form for polished admin UIs. Learn with code examples."
 swizzle: true
 source: packages/mantine/src/components/pages/auth/index.tsx
 ---

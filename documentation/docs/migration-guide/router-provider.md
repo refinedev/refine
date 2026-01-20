@@ -1,5 +1,6 @@
 ---
-title: Migrating Router Provider from 3.x.x to 4.x.x
+title: "Router Provider Migration Guide | SSR in Refine v5"
+description: "Learn to migrate Router Provider in Refine v5. Learn routes for real-world React admin panels. Real-world snippets included. Built for production use."
 sidebar_label: Migrating Router Provider
 ---
 

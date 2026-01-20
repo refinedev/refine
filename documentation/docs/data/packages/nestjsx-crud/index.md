@@ -1,5 +1,6 @@
 ---
-title: NestJS CRUD
+title: "Nestjsx Crud Integration Guide | Best Practices in Refine v5"
+description: "Implement Nestjsx Crud in Refine v5. Learn the key steps. Learn patterns to scale authentication and data for custom APIs and scalable data flows."
 source: https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud
 swizzle: true
 ---

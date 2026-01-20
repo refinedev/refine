@@ -1,5 +1,6 @@
 ---
-title: Date
+title: "Ant Design Date Field Component | UI Component in Refine v5"
+description: "Learn to integrate Date Field in Refine v5. Learn integrate locales for polished admin UIs. Hands-on examples included. Fast to follow."
 swizzle: true
 ---
 

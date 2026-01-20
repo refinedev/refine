@@ -1,6 +1,7 @@
 ---
 id: nestjsxCrud
-title: Nestjsx CRUD
+title: "NestjsxCrud Example | Best Practices in Refine v5"
+description: "Implement NestjsxCrud in Refine v5. Learn the key steps. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows."
 example-tags: [data-provider]
 ---
 

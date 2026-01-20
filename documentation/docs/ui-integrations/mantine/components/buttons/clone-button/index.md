@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "Mantine Clone Button Component | CRUD Actions in Refine v5"
+description: "Secure Clone Button in Refine v5. Learn best practices. Learn integration patterns for React UI library, components for polished admin UIs."
 swizzle: true
 ---
 

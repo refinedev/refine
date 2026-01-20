@@ -1,5 +1,6 @@
 ---
-title: Auth Provider
+title: "Auth Provider Guide | Best Practices in Refine v5"
+description: "Secure Auth Provider in Refine v5. Learn best practices. Learn how to secure OAuth, JWT for secure enterprise React apps. See practical code samples."
 ---
 
 import AuthProviderExamplesLinks from "@site/src/partials/auth-provider/auth-provider-examples-links.md";

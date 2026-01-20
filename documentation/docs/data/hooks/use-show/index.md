@@ -1,5 +1,6 @@
 ---
-title: useShow
+title: "useShow Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Secure Use Show in Refine v5. Learn best practices. Learn scale REST, GraphQL for custom APIs and scalable data flows. Hands-on examples included."
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

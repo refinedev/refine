@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Introduction Integration Guide | Pagination in Refine v5"
+description: "Learn to implement Introduction in Refine v5. Learn best practices for tanstack and open for real-world React admin panels. Learn with code examples."
 source: /packages/react-table/src/useTable
 ---
 

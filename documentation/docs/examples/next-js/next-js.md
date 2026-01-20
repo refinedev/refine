@@ -1,6 +1,7 @@
 ---
 id: nextjs
-title: With Next.js
+title: "Next.js Example | Best Practices in Refine v5"
+description: "Build Next.js in Refine v5. Learn the key steps. Explore best practices for provider for real-world React admin panels. Explore with code snippets."
 example-tags: [next.js]
 ---
 

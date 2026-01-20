@@ -1,6 +1,7 @@
 ---
 id: refine-themes-chakra-ui
-title: Refine Themes in Chakra UI
+title: "Refine Themes Chakra UI Example | Accessibility in Refine v5"
+description: "Set up Refine Themes Chakra UI in Refine v5. Learn best practices. Explore best practices for provider for real-world React admin panels."
 sidebar_label: Refine Themes
 example-title: Chakra UI
 example-tags: [chakra-ui, customization]

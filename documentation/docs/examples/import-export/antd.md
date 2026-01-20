@@ -1,6 +1,7 @@
 ---
 id: antd
-title: Import and Export in Ant Design
+title: "Ant Design Example | Best Practices in Refine v5: Import Export"
+description: "Implement Ant Design in Refine v5. Learn the key steps. Explore best practices for enterprise UI, components for real-world React admin panels."
 sidebar_label: Import / Export
 example-title: Import / Export CSV with Ant Design
 example-tags: [csv]

@@ -1,6 +1,6 @@
 ---
-title: <ThemedLayout />
-description: <ThemedLayout> component from Refine, defines the overall structure and layout of a web page.
+title: "Mantine ThemedLayout Component | Layout in Refine v5"
+description: "Learn to integrate ThemedLayout in Refine v5. Explore customization options for React UI library, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 source: packages/mantine/src/components/themedLayout/index.tsx
 ---

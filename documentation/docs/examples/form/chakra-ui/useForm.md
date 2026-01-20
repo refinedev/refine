@@ -1,6 +1,7 @@
 ---
 id: useForm
-title: useForm
+title: "UseForm Example | Accessibility in Refine v5"
+description: "Explore how to build with the UseForm example in Refine v5. Explore accessibility, components for real-world React admin panels. Explore with code snippets."
 example-tags: [form, chakra-ui, react-hook-form]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Ant Design List Button Component | Navigation UI in Refine v5"
+description: "Build List Button in Refine v5. Learn the key steps. Learn integrate enterprise UI, components for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

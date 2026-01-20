@@ -1,5 +1,6 @@
 ---
-title: Export
+title: "Chakra UI Export Button Component | Data Tools in Refine v5"
+description: "Explore how to integrate Export Button in Refine v5. Learn integrate hide for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

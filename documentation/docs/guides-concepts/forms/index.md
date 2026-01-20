@@ -1,5 +1,6 @@
 ---
-title: Forms
+title: "Forms Guide | Validation in Refine v5"
+description: "Learn to implement Forms in Refine v5. Explore data and more for real-world React admin panels. Learn with code examples. Fast to follow."
 ---
 
 In almost every user facing application, forms are a necessity. They are the primary way for users to interact with your application and provide data to your backend. They are also one of the most complex parts of an application to build and maintain with many cases and features to consider. Refine's form integration aims to make this process as simple as possible while providing as many real world features as possible out of the box. This guide will cover the basics of forms in Refine and how to use them.

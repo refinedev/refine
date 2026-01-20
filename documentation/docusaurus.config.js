@@ -143,9 +143,9 @@ const siteConfig = {
           [
             "./plugins/blog-plugin.js",
             {
-              blogTitle: "Blog",
+              blogTitle: "Refine Blog: Tutorials, News, and Best Practices",
               blogDescription:
-                "A resource for Refine, front-end ecosystem, and web development",
+                "In-depth posts on React, admin panels, access control, and modern web development. Examples, trade-offs, and implementation patterns.",
               routeBasePath: "/blog",
               postsPerPage: 12,
               blogSidebarTitle: "All posts",

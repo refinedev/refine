@@ -1,6 +1,7 @@
 ---
 id: base64
-title: Base64 Upload
+title: "Base64 Example | Multipart/form-data in Refine v5: MUI"
+description: "Learn to build with the Base64 example in Refine v5. Learn provider and upload for real-world React admin panels. See practical code samples."
 example-tags: [mui, upload]
 ---
 

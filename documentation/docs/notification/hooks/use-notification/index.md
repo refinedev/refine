@@ -1,5 +1,6 @@
 ---
-title: useNotification
+title: "useNotification Hook | Best Practices for Notifications in Refine v5"
+description: "Explore how to use the useNotification hook in Refine v5. Explore best practices for open and undoable for real-world React admin panels."
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/hooks/notification/useNotification/index.ts
 ---
 

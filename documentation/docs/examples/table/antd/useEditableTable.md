@@ -1,6 +1,7 @@
 ---
 id: useEditableTable
-title: useEditableTable
+title: "UseEditableTable Example | Pagination in Refine v5"
+description: "Build UseEditableTable in Refine v5. Learn the key steps. Explore provider for real-world React admin panels. Learn with code examples."
 example-title: Ant Design useEditableTable Hook
 example-tags: [table, antd]
 ---

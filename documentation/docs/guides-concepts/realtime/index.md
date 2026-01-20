@@ -1,5 +1,6 @@
 ---
-title: Realtime
+title: "Realtime Guide | Subscriptions in Refine v5"
+description: "Learn to implement Realtime in Refine v5. Learn subscriptions, webhooks for real-world React admin panels. See practical code samples."
 ---
 
 Realtime data is an important part of modern applications. Seeing the changes in the details page, without refreshing the page not only improves the user experience but also increases the productivity of the users by preventing accidental updates.

@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Introduction Integration Guide | React Hook Form in Refine v5"
+description: "Integrate Introduction in Refine v5. Learn best practices. Explore best practices for form and react for real-world React admin panels."
 ---
 
 # React Hook Form <GuideBadge id="guides-concepts/forms" /> <RouterBadge id="guides-concepts/routing/#useform" />

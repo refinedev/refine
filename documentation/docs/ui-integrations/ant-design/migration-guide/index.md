@@ -1,5 +1,6 @@
 ---
-title: Migration Guide
+title: "Ant Design Migration Guide Migration Guide | Upgrade Checklist & Fixes in Refine v5"
+description: "Integrate Migration Guide in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. See practical code samples."
 ---
 
 Ant Design released a new major version, v5. This document will help you upgrade from antd 4.x version to antd 5.x version.

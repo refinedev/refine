@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Inferencer Integration Guide | Packages in Refine v5"
+description: "Build Inferencer in Refine v5. Learn the key steps. Learn property and field for real-world React admin panels. Learn with code examples."
 ---
 
 `@refinedev/inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily.

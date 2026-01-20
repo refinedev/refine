@@ -1,5 +1,6 @@
 ---
-title: UI Libraries
+title: "UI Libraries Guide | Best Practices in Refine v5"
+description: "Build UI Libraries in Refine v5. Learn the key steps. Explore integrations and these for real-world React admin panels. Real-world snippets included."
 ---
 
 Refine's UI library integrations enhance the core functionality by exposing hooks and components, offering prebuilt UI elements with minimal additional, library-specific logic. Refine offers seamless integration with popular UI libraries, allowing you to choose the one that suits your needs. These integrations don't constrain your application's logic. While they provide advantages, you can still create, extend, or mix components independently.

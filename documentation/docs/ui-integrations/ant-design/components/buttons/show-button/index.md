@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Ant Design Show Button Component | Navigation UI in Refine v5"
+description: "Integrate Show Button in Refine v5. Learn best practices. Learn integration patterns for enterprise UI, components for polished admin UIs."
 swizzle: true
 ---
 

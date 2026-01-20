@@ -1,5 +1,6 @@
 ---
-title: useCustom
+title: "useCustom Hook | Options, Patterns & Edge Cases | Refine v5"
+description: "Explore how to use the useCustom hook in Refine v5. Learn patterns to scale query and passed for custom APIs and scalable data flows."
 source: packages/core/src/data/hooks/useCustom.ts
 ---
 

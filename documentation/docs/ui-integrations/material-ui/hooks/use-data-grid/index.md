@@ -1,5 +1,6 @@
 ---
-title: useDataGrid
+title: "useDataGrid Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Learn to use the useDataGrid hook in Refine v5. Learn integrate pagination and function for polished admin UIs. Real-world snippets included."
 source: /packages/mui/src/hooks/useDataGrid
 ---
 

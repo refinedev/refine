@@ -1,6 +1,7 @@
 ---
 id: useStepsForm
-title: useStepsForm
+title: "UseStepsForm Example | Best Practices in Refine v5"
+description: "Implement UseStepsForm in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. Learn with code examples."
 example-tags: [form, antd]
 ---
 

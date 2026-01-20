@@ -1,5 +1,6 @@
 ---
-title: Audit Logs
+title: "Audit Logs Guide | Best Practices in Refine v5"
+description: "Build Audit Logs in Refine v5. Learn the key steps. Learn provider for compliance and traceability. Hands-on examples included."
 ---
 
 Audit logs are useful tool for web applications, providing a reliable record of user actions and system changes. Capturing and storing these logs ensures transparency and accountability which can be crucial for **security**, **compliance**, and debugging purposes.

@@ -1,5 +1,6 @@
 ---
-title: Next.js
+title: "Next.js Guide | Best Practices in Refine v5"
+description: "Learn to implement Next.js in Refine v5. Explore server and route for real-world React admin panels. Hands-on examples included."
 ---
 
 import { NextJSAppProviderServerClient } from "./provider-client-server";

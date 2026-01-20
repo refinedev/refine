@@ -1,5 +1,6 @@
 ---
-title: useCreateMany
+title: "useCreateMany Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Explore how to use the useCreateMany hook in Refine v5. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows."
 source: packages/core/src/data/hooks/useCreateMany.ts
 ---
 

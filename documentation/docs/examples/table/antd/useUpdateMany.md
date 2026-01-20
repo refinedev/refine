@@ -1,6 +1,7 @@
 ---
 id: useUpdateMany
-title: useUpdateMany
+title: "UseUpdateMany Example | Best Practices in Refine v5"
+description: "Implement UseUpdateMany in Refine v5. Learn the key steps. Explore best practices for pagination, sorting for real-world React admin panels."
 example-title: Ant Design useUpdateMany Hook
 example-tags: [table, antd]
 ---

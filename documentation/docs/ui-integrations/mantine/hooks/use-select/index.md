@@ -1,5 +1,6 @@
 ---
-title: useSelect
+title: "useSelect Hook | Options, Patterns & Edge Cases | Refine v5: Hooks"
+description: "Secure Use Select in Refine v5. Learn best practices. Explore customization options for data and options for polished admin UIs. See practical code samples."
 source: https://github.com/refinedev/refine/blob/main/packages/mantine/src/hooks/useSelect/index.ts
 ---
 

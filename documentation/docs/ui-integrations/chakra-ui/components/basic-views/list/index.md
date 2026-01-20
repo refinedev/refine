@@ -1,5 +1,6 @@
 ---
-title: List
+title: "Chakra UI List Component | UI Component in Refine v5"
+description: "Implement List in Refine v5. Learn the key steps. Explore customization options for accessibility, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

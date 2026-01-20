@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "shadcn/ui Delete Button Component | Security & Actions in Refine v5"
+description: "Set up Delete Button in Refine v5. Learn best practices. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/delete.tsx
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: multi-level-menu
-title: Multi Level Menu
+title: "Multi Level Menu Tutorial | Navigation in Refine v5"
+description: "Integrate Multi Level Menu in Refine v5. Learn best practices. Explore production tips for navigation, sidebar for production-ready workflows."
 sidebar_label: Multi Level Menu
 ---
 

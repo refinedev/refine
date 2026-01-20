@@ -1,5 +1,6 @@
 ---
-title: Delete
+title: "Ant Design Delete Button Component | Security & Actions in Refine v5"
+description: "Secure Delete Button in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

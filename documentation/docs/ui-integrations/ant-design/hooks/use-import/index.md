@@ -1,5 +1,6 @@
 ---
-title: useImport
+title: "useImport Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Integrate Use Import in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. Explore with code snippets."
 ---
 
 The `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.

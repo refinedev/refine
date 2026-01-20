@@ -1,5 +1,6 @@
 ---
-title: Migration Guide from v6 to v7
+title: "Migration Guide V6 to V7 Migration Guide | Best Practices in Refine v5"
+description: "Implement Migration Guide V6 To V7 in Refine v5. Learn the key steps. Explore best practices for SSR, navigation for real-world React admin panels."
 sidebar_label: v6 to v7
 ---
 

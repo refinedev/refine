@@ -1,6 +1,7 @@
 ---
 id: useDeleteMany
-title: useDeleteMany
+title: "UseDeleteMany Example | Pagination in Refine v5"
+description: "Secure UseDeleteMany in Refine v5. Learn best practices. Explore best practices for provider for real-world React admin panels. Explore with code snippets."
 example-title: Material UI useDeleteMany Hook
 example-tags: [table, mui]
 ---

@@ -1,5 +1,6 @@
 ---
-title: <CanAccess />
+title: "Can Access Component | RBAC & Security in Refine v5"
+description: "Learn to implement Can Access in Refine v5. Explore secure patterns for RBAC, ABAC for secure enterprise React apps. Hands-on examples included."
 siderbar_label: <CanAccess />
 source: packages/core/src/components/canAccess/index.tsx
 ---

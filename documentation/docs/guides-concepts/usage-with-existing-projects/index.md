@@ -1,5 +1,6 @@
 ---
-title: Usage with Existing Projects
+title: "Usage with Existing Projects Guide | Guides Concepts in Refine v5"
+description: "Integrate Usage With Existing Projects in Refine v5. Learn best practices. Explore directory and page.tsx for real-world React admin panels."
 ---
 
 Integrating Refine into an existing project is as simple as installing `@refinedev/core` package and importing `Refine` component into your application.

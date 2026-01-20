@@ -1,5 +1,6 @@
 ---
-title: <Refine>
+title: "Refine Component Guide | Best Practices in Refine v5"
+description: "Set up Refine Component in Refine v5. Learn best practices. Learn value and data for real-world React admin panels. Explore with code snippets."
 ---
 
 `<Refine>` component is the entry point of a Refine app. It is where the highest level of configuration of the app occurs.

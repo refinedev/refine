@@ -1,6 +1,7 @@
 ---
 id: tableFilter
-title: Table Filters in Ant Design
+title: "TableFilter Example | Pagination in Refine v5"
+description: "Secure TableFilter in Refine v5. Learn best practices. Explore pagination, sorting for real-world React admin panels. See practical code samples."
 sidebar_label: Table Filters
 example-title: Filtering on Ant Design Table
 example-tags: [table, antd]

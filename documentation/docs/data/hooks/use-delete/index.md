@@ -1,5 +1,6 @@
 ---
-title: useDelete
+title: "useDelete Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Build Use Delete in Refine v5. Learn the key steps. Learn scale REST, GraphQL for custom APIs and scalable data flows. Explore with code snippets."
 siderbar_label: useDelete
 source: packages/core/src/data/hooks/useDelete.ts
 ---

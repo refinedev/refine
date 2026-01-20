@@ -1,6 +1,7 @@
 ---
 id: ably
-title: Ably
+title: "Ably Example | Best Practices in Refine v5"
+description: "Implement Ably in Refine v5. Learn the key steps. Learn subscriptions, webhooks for real-world React admin panels. See practical code samples."
 example-tags: [live-provider]
 ---
 

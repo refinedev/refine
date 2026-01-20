@@ -1,5 +1,6 @@
 ---
-title: useCheckboxGroup
+title: "useCheckboxGroup Hook | Best Practices for Usage & Patterns | Refine v5"
+description: "Set up Use Checkbox Group in Refine v5. Learn best practices. Explore customization options for data and allows for polished admin UIs."
 ---
 
 `useCheckboxGroup` hook allows you to manage an Ant Design [Checkbox.Group](https://ant.design/components/checkbox/#components-checkbox-demo-group) component when records in a resource needs to be used as checkbox options.

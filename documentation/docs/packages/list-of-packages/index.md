@@ -1,5 +1,6 @@
 ---
-title: List of Packages
+title: "List of Packages Integration Guide | Packages in Refine v5"
+description: "Build List Of Packages in Refine v5. Learn the key steps. Explore connector and provider for real-world React admin panels. Built for production use."
 ---
 
 - `@refinedev/core` - Collection of `hooks`, `components` and `providers` for **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**. Your starting point for headless projects.

@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Introduction Guide | Material Design UI in Refine v5"
+description: "Set up Introduction in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 ---
 
 Refine provides an integration package for [Material UI](https://mui.com/material-ui/getting-started/) framework. This package provides a set of ready to use components and hooks that connects Refine with Material UI components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Material UI packages, you will be able to use all the features of Material UI in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Material UI components in combination with Refine's features and functionalities.

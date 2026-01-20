@@ -1,5 +1,6 @@
 ---
-title: useNavigation
+title: "useNavigation Hook | Options, Patterns & Edge Cases | Refine v5"
+description: "Explore how to use the useNavigation hook in Refine v5. Explore SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 
 `useNavigation` is a hook that provides methods to navigate the app. Internally, it uses the `go` method of the [`routerProvider`][routerprovider].

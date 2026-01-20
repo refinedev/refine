@@ -1,5 +1,6 @@
 ---
-title: i18n Provider
+title: "I18n Provider Guide | Best Practices in Refine v5"
+description: "Explore how to implement i18n Provider in Refine v5. Learn best practices for translation and expects for real-world React admin panels."
 ---
 
 import Tabs from '@theme/Tabs';

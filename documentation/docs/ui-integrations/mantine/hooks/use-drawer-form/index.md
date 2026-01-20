@@ -1,5 +1,6 @@
 ---
-title: useDrawerForm
+title: "useDrawerForm Hook | Usage & Patterns in Refine v5"
+description: "Integrate Use Drawer Form in Refine v5. Learn best practices. Learn integration patterns for React UI library, components for polished admin UIs."
 ---
 
 The [`useModalForm`][use-modal-form-refine-mantine] hook allows you to manage a form within a `<Modal>` as well as a `<Drawer>`. It provides some useful methods to handle the form `<Modal>` or form `<Drawer>`.

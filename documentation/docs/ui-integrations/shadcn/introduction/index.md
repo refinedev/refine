@@ -1,5 +1,6 @@
 ---
-title: Refine + shadcn/ui
+title: "Introduction Guide | Radix UI in Refine v5"
+description: "Build Introduction in Refine v5. Learn the key steps. Learn integration patterns for Radix UI, Tailwind CSS for polished admin UIs."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui
 ---
 

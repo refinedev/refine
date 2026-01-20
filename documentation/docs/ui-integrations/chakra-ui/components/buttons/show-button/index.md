@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "Chakra UI Show Button Component | Navigation UI in Refine v5"
+description: "Set up Show Button in Refine v5. Learn best practices. Learn integrate accessibility, components for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

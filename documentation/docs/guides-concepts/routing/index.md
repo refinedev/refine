@@ -1,5 +1,6 @@
 ---
-title: Routing
+title: "Routing Guide | SSR in Refine v5"
+description: "Implement Routing in Refine v5. Learn the key steps. Learn best practices for router and directory for real-world React admin panels. Learn with code examples."
 ---
 
 Routing is essential for any CRUD application. Refine's headless architecture allows you to use any router solution, without being locked into a specific router/framework.

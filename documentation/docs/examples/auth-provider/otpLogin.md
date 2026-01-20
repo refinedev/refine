@@ -1,6 +1,7 @@
 ---
 id: otpLogin
-title: OTP Login
+title: "OtpLogin Example | Best Practices in Refine v5"
+description: "Secure OtpLogin in Refine v5. Learn best practices. Learn best practices for OAuth, JWT for real-world React admin panels. See practical code samples."
 example-tags: [auth-provider]
 ---
 

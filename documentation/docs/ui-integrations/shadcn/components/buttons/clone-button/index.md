@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "shadcn/ui Clone Button Component | CRUD Actions in Refine v5"
+description: "Build Clone Button in Refine v5. Learn the key steps. Explore customization options for route for polished admin UIs. Learn with code examples."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/clone.tsx
 ---
 

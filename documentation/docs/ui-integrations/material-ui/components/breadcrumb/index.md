@@ -1,5 +1,6 @@
 ---
-title: Breadcrumb
+title: "MUI Breadcrumb Component | UI Component in Refine v5"
+description: "Integrate Breadcrumb in Refine v5. Learn best practices. Learn integrate home for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

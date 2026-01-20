@@ -1,5 +1,6 @@
 ---
-title: Contributing
+title: "Contributing Guide | Guides Concepts in Refine v5"
+description: "Integrate Contributing in Refine v5. Learn best practices. Learn best practices for changes and changeset for real-world React admin panels."
 ---
 
 We follow a [code of conduct](https://github.com/refinedev/refine/blob/main/CODE_OF_CONDUCT) when participating in the community. Please read it before you make any contributions.

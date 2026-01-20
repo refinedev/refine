@@ -1,5 +1,6 @@
 ---
-title: Image
+title: "Ant Design Image Field Component | UI Component in Refine v5"
+description: "Build Image Field in Refine v5. Learn the key steps. Explore customization options for Ant Design for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

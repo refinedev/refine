@@ -1,5 +1,6 @@
 ---
-title: Interface References
+title: "Interface References Guide | Best Practices in Refine v5"
+description: "Learn to implement Interface References in Refine v5. Learn best practices for basekey and baserecord for real-world React admin panels."
 ---
 
 ### CrudFilters

@@ -1,6 +1,7 @@
 ---
 id: auth0
-title: Auth0
+title: "Auth0 Example | Best Practices in Refine v5"
+description: "Secure Auth0 in Refine v5. Learn best practices. Explore provider for real-world React admin panels. Explore with code snippets."
 example-tags: [auth-provider]
 ---
 

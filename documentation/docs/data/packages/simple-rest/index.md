@@ -1,5 +1,6 @@
 ---
-title: Simple REST
+title: "Simple Rest Integration Guide | REST API Integration in Refine v5"
+description: "Implement Simple Rest in Refine v5. Learn the key steps. Learn scale REST, GraphQL for custom APIs and scalable data flows. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/simple-rest
 swizzle: true
 ---

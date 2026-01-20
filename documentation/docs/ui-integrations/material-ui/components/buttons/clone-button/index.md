@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "MUI Clone Button Component | CRUD Actions in Refine v5"
+description: "Learn to integrate Clone Button in Refine v5. Learn integrate Material Design, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

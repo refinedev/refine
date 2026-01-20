@@ -1,5 +1,6 @@
 ---
-title: useBreadcrumb
+title: "useBreadcrumb Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Integrate Use Breadcrumb in Refine v5. Learn best practices. Explore best practices for breadcrumbs and property for real-world React admin panels."
 source: packages/core/src/hooks/breadcrumb
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: useRadioGroup
+title: "useRadioGroup Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Implement Use Radio Group in Refine v5. Learn the key steps. Learn integration patterns for data and allows for polished admin UIs. Hands-on examples included."
 ---
 
 `useRadioGroup` hook allows you to manage an Ant Design [Radio.Group](https://ant.design/components/radio/#components-radio-demo-radiogroup-with-name) component when records in a resource needs to be used as radio options.

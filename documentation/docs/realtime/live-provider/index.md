@@ -1,5 +1,6 @@
 ---
-title: Live Provider
+title: "Live Provider Guide | Best Practices in Refine v5"
+description: "Implement Live Provider in Refine v5. Learn the key steps. Explore best practices for events for real-world React admin panels. Learn with code examples."
 ---
 
 **Live Provider** is Refine's built-in provider that enables real-time updates and interactions between the server and the client. Refine being agnostic as always allows you to integrate any solution of your choice

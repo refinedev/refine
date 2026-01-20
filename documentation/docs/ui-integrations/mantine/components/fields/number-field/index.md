@@ -1,5 +1,6 @@
 ---
-title: Number
+title: "Mantine Number Field Component | UI Component in Refine v5"
+description: "Explore how to integrate Number Field in Refine v5. Explore customization options for options and display for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: mantine
-title: Import and Export in Mantine
+title: "Mantine Example | Best Practices in Refine v5"
+description: "Build Mantine in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. See practical code samples."
 sidebar_label: Import / Export
 example-title: Import / Export CSV with Mantine
 example-tags: [csv]

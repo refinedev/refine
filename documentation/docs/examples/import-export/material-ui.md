@@ -1,6 +1,7 @@
 ---
 id: material-ui
-title: Import and Export in Material UI
+title: "Material UI Example | Material Design in Refine v5"
+description: "Implement Material UI in Refine v5. Learn the key steps. Learn Material Design, components for real-world React admin panels. Explore with code snippets."
 sidebar_label: Import / Export
 example-title: Import / Export CSV with Material UI
 example-tags: [csv]

@@ -1,5 +1,6 @@
 ---
-title: useGetToPath
+title: "useGetToPath Hook | Usage & Patterns in Refine v5"
+description: "Implement Use Get To Path in Refine v5. Learn the key steps. Explore best practices for want for real-world React admin panels. Learn with code examples."
 ---
 
 `useGetToPath` is a hook that returns a function that composes the URL for the given `resource` and the `action` by using the URL parameters and the `meta` property if provided.

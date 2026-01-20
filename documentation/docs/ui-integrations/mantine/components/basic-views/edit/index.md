@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "Mantine Edit Component | UI Component in Refine v5"
+description: "Set up Edit in Refine v5. Learn best practices. Learn integration patterns for React UI library, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

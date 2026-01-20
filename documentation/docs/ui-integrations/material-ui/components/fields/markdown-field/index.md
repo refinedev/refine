@@ -1,5 +1,6 @@
 ---
-title: Markdown
+title: "MUI Markdown Field Component | UI Component in Refine v5"
+description: "Build Markdown Field in Refine v5. Learn the key steps. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 ---
 

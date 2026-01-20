@@ -1,5 +1,6 @@
 ---
-title: Remix
+title: "Remix Guide | Best Practices in Refine v5"
+description: "Integrate Remix in Refine v5. Learn best practices. Learn SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 
 Refine provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between Refine and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.

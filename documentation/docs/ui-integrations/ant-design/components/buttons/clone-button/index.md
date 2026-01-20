@@ -1,5 +1,6 @@
 ---
-title: Clone
+title: "Ant Design Clone Button Component | CRUD Actions in Refine v5"
+description: "Learn to integrate Clone Button in Refine v5. Learn integration patterns for enterprise UI, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: useImport
-description: useImport hook API references of @refinedev/core
+title: "useImport Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Secure Use Import in Refine v5. Learn best practices. Learn data for real-world React admin panels. See practical code samples."
 ---
 
 `useImport` hook allows you to import data from a `CSV` file. For each row in the file, it calls the `create` or `createMany` method of your data provider according to your configuration.

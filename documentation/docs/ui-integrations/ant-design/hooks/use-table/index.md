@@ -1,5 +1,6 @@
 ---
-title: useTable
+title: "useTable Hook | Best Practices for Usage & Patterns | Refine v5"
+description: "Secure Use Table in Refine v5. Learn best practices. Learn integration patterns for pagination, sorting for polished admin UIs. See practical code samples."
 source: packages/antd/src/hooks/table/useTable
 ---
 

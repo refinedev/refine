@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "Ant Design Tag Field Component | UI Component in Refine v5"
+description: "Integrate Tag Field in Refine v5. Learn best practices. Explore customization options for Ant Design for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Data Provider
+title: "Data Provider Guide | Best Practices in Refine v5"
+description: "Learn to implement Data Provider in Refine v5. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows."
 ---
 
 import SupportedDataProviders from "@site/src/partials/data-provider/supported-data-providers.md";

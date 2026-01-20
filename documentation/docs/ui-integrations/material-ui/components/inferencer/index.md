@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "MUI Inferencer Component | UI Component in Refine v5"
+description: "Set up Inferencer in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiEditInferencer`, `MuiCreateInferencer` components and finally the `MuiInferencer` component, which combines all in one place.

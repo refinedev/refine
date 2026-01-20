@@ -1,6 +1,7 @@
 ---
 id: handling-filters
-title: Handling Filters
+title: "Handling Filters Tutorial | REST API Integration in Refine v5"
+description: "Implement Handling Filters in Refine v5. Learn the key steps. Explore production tips for GraphQL for custom APIs and scalable data flows."
 ---
 
 **Refine** expects an array of type `CrudFilters` to filter results based on some field’s values. So you can use more than one filter. Even the `or` operator can be used to combine multiple filters.

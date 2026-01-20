@@ -1,5 +1,6 @@
 ---
-title: General Concepts
+title: "General Concepts Guide | Guides Concepts in Refine v5"
+description: "Set up General Concepts in Refine v5. Learn best practices. Learn provider and data for real-world React admin panels. Real-world snippets included."
 ---
 
 Refine is an extensible framework designed for rapidly building web applications. It offers a modern, **hook-based architecture**, a **pluggable system of providers**, and a robust **state management** solution. This section provides an overview of the key concepts in Refine.

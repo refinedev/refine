@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "Ant Design Create Button Component | Navigation UI in Refine v5"
+description: "Learn to integrate Create Button in Refine v5. Learn integration patterns for enterprise UI, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: useDeleteMany
-title: useDeleteMany
+title: "UseDeleteMany Example | Best Practices in Refine v5"
+description: "Set up UseDeleteMany in Refine v5. Learn best practices. Explore best practices for provider for real-world React admin panels. Hands-on examples included."
 example-title: Ant Design useDeleteMany Hook
 example-tags: [table, antd]
 ---

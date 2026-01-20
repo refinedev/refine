@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "shadcn/ui Edit Button Component | Navigation UI in Refine v5"
+description: "Explore how to integrate Edit Button in Refine v5. Learn integration patterns for route for polished admin UIs. Explore with code snippets."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/edit.tsx
 ---
 

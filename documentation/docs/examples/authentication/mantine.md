@@ -1,6 +1,7 @@
 ---
 id: mantine
-title: Authentication in Mantine
+title: "Mantine Example | OAuth & Security in Refine v5"
+description: "Learn to implement Mantine in Refine v5. Learn secure OAuth, JWT for secure enterprise React apps. Learn with code examples. Includes common pitfalls."
 sidebar_label: Authentication
 example-title: Authentication with Mantine
 example-tags: [mantine, auth-provider]

@@ -1,5 +1,6 @@
 ---
-title: Url
+title: "MUI Url Field Component | UI Component in Refine v5"
+description: "Explore how to integrate Url Field in Refine v5. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 ---
 

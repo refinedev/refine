@@ -1,5 +1,6 @@
 ---
-title: Theme
+title: "Theming Guide | React UI Library in Refine v5"
+description: "Build Theming in Refine v5. Learn the key steps. Learn integration patterns for React UI library, components for polished admin UIs. See practical code samples."
 ---
 
 ```tsx live shared

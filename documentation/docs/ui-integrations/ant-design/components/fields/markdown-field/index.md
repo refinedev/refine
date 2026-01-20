@@ -1,5 +1,6 @@
 ---
-title: Markdown
+title: "Ant Design Markdown Field Component | UI Component in Refine v5"
+description: "Set up Markdown Field in Refine v5. Learn best practices. Learn integration patterns for enterprise UI, components for polished admin UIs."
 swizzle: true
 ---
 

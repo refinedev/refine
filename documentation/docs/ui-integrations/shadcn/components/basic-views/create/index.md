@@ -1,5 +1,6 @@
 ---
-title: Create
+title: "shadcn/ui Create Component | UI Component in Refine v5"
+description: "Secure Create in Refine v5. Learn best practices. Learn integrate breadcrumb and title for polished admin UIs. Learn with code examples."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/views/create-view.tsx
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: useForm
-title: useForm
+title: "UseForm Example | React UI Library in Refine v5"
+description: "Build UseForm in Refine v5. Learn the key steps. Explore provider for real-world React admin panels. Hands-on examples included."
 example-tags: [form, mantine]
 ---
 

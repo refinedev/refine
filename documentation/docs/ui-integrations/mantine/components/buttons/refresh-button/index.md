@@ -1,5 +1,6 @@
 ---
-title: Refresh
+title: "Mantine Refresh Button Component | UI Button in Refine v5"
+description: "Build Refresh Button in Refine v5. Learn the key steps. Explore customization options for data for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

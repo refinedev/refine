@@ -1,6 +1,7 @@
 ---
 id: mui
-title: Authentication in Material UI
+title: "MUI Example | OAuth & Security in Refine v5"
+description: "Build MUI in Refine v5. Learn the key steps. Learn how to secure OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 sidebar_label: Authentication
 example-title: Authentication with Material UI
 example-tags: [mui, auth-provider]

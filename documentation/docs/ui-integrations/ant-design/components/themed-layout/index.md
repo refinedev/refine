@@ -1,6 +1,6 @@
 ---
-title: <ThemedLayout />
-description: <ThemedLayout> component from Refine, defines the overall structure and layout of a web page.
+title: "Ant Design ThemedLayout Component | Layout in Refine v5"
+description: "Implement ThemedLayout in Refine v5. Learn the key steps. Learn integration patterns for enterprise UI, components for polished admin UIs."
 swizzle: true
 source: packages/antd/src/components/themedLayout/index.tsx
 ---

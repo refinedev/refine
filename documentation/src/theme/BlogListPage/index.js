@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Head from "@docusaurus/Head";
 
 import {
   PageMetadata,
@@ -19,12 +20,21 @@ function BlogListPageMetadata(props) {
   const {
     siteConfig: { title: siteTitle },
   } = useDocusaurusContext();
-  const { blogDescription, blogTitle, permalink } = metadata;
+  const { blogDescription, blogTitle, page, permalink } = metadata;
   const isBlogOnlyMode = permalink === "/";
-  const title = isBlogOnlyMode ? siteTitle : blogTitle;
+  const baseTitle = isBlogOnlyMode ? siteTitle : blogTitle;
+  const isPaginated = typeof page === "number" && page > 1;
+  const title = isPaginated ? `${baseTitle} - Page ${page}` : baseTitle;
+  const description = isPaginated
+    ? `${blogDescription} - Page ${page}`
+    : blogDescription;
   return (
     <>
-      <PageMetadata title={title} description={blogDescription} />
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+      </Head>
+      <PageMetadata description={description} />
       <SearchMetadata tag="blog_posts_list" />
     </>
   );

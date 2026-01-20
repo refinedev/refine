@@ -1,6 +1,7 @@
 ---
 id: custom-form-validation
-title: Custom Form Validation
+title: "Custom Form Validation Tutorial | Best Practices in Refine v5"
+description: "Secure Custom Form Validation in Refine v5. Learn best practices. Explore production tips for validation, schemas for production-ready workflows."
 ---
 
 In **Refine**, we can use the form validation that comes with `Ant Design` with the [rules](https://ant.design/components/form/#Rule) property of the [Form.Item](https://ant.design/components/form/#Form.Item) component.

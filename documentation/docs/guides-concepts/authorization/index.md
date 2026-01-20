@@ -1,5 +1,6 @@
 ---
-title: Authorization
+title: "Authorization Guide | RBAC & Security in Refine v5"
+description: "Explore how to implement Authorization in Refine v5. Explore secure patterns for RBAC, ABAC for secure enterprise React apps. Explore with code snippets."
 ---
 
 Authorization is a key aspect of security and user experience in web applications. Whether you are building a complex **enterprise-level** application or a simple CRUD interface, Refine's authorization system provides the necessary infrastructure to protect your resources and ensure that users interact with your application in a secure and controlled manner.

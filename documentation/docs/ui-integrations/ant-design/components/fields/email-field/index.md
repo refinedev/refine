@@ -1,5 +1,6 @@
 ---
-title: Email
+title: "Ant Design Email Field Component | UI Component in Refine v5"
+description: "Build Email Field in Refine v5. Learn the key steps. Explore customization options for enterprise UI, components for polished admin UIs."
 swizzle: true
 ---
 

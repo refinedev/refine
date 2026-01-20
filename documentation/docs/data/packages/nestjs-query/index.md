@@ -1,5 +1,6 @@
 ---
-title: Nest.js Query
+title: "Nestjs Query Integration Guide | REST API Integration in Refine v5"
+description: "Secure Nestjs Query in Refine v5. Learn best practices. Learn patterns to scale queries and types for custom APIs and scalable data flows."
 source: https://github.com/refinedev/refine/tree/main/packages/nestjs-query
 ---
 

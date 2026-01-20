@@ -1,5 +1,6 @@
 ---
-title: Refresh
+title: "Chakra UI Refresh Button Component | UI Button in Refine v5"
+description: "Explore how to integrate Refresh Button in Refine v5. Learn integrate accessibility, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: supabase
-title: Supabase
+title: "Supabase Example | Best Practices in Refine v5"
+description: "Set up Supabase in Refine v5. Learn best practices. Learn scale REST, GraphQL for custom APIs and scalable data flows. Learn with code examples."
 example-tags: [data-provider, live-provider, auth-provider]
 ---
 

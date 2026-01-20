@@ -1,6 +1,7 @@
 ---
 id: auth0
-title: Auth0 Login
+title: "Auth0 Integration Guide | Secure Enterprise Authentication in Refine v5"
+description: "Implement Auth0 in Refine v5. Learn the key steps. Explore secure patterns for OIDC, SSO for secure enterprise React apps. Learn with code examples."
 sidebar_label: Auth0 Login
 ---
 

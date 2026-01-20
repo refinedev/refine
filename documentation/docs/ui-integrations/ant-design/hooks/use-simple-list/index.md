@@ -1,5 +1,6 @@
 ---
-title: useSimpleList
+title: "useSimpleList Hook | Usage & Patterns | Refine v5"
+description: "Set up Use Simple List in Refine v5. Learn best practices. Explore customization options for pagination and function for polished admin UIs."
 source: https://github.com/refinedev/refine/blob/main/packages/antd/src/hooks/list/useSimpleList/useSimpleList.ts
 ---
 

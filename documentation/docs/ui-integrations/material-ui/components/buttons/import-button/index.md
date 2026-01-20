@@ -1,5 +1,6 @@
 ---
-title: Import
+title: "MUI Import Button Component | Data Tools in Refine v5"
+description: "Learn to integrate Import Button in Refine v5. Learn integration patterns for properties and hide for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---
 

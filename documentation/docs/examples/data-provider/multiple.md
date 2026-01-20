@@ -1,6 +1,7 @@
 ---
 id: multiple
-title: Multiple Providers
+title: "Multiple Example | REST API Integration in Refine v5"
+description: "Implement Multiple in Refine v5. Learn the key steps. Learn patterns to scale provider for custom APIs and scalable data flows. Explore with code snippets."
 example-tags: [data-provider]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Router Provider
+title: "Router Provider Guide | Best Practices in Refine v5"
+description: "Set up Router Provider in Refine v5. Learn best practices. Explore legacy for real-world React admin panels. Explore with code snippets."
 ---
 
 import Tabs from '@theme/Tabs';

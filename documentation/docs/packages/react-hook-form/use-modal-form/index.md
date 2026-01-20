@@ -1,5 +1,6 @@
 ---
-title: useModalForm
+title: "useModalForm Hook | Options, Patterns & Edge Cases | Refine v5"
+description: "Build Use Modal Form in Refine v5. Learn the key steps. Learn best practices for values for real-world React admin panels. See practical code samples."
 ---
 
 ```tsx live shared

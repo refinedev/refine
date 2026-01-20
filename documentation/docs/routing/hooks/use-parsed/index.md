@@ -1,5 +1,6 @@
 ---
-title: useParsed
+title: "useParsed Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Set up Use Parsed in Refine v5. Learn best practices. Learn SSR, navigation for real-world React admin panels. Learn with code examples."
 ---
 
 `useParsed` is a hook that leverages the `parse` method of the [`routerProvider`][routerprovider] to access the URL and query parameters along with the inferred `resource`, `action` and `id` from the URL.

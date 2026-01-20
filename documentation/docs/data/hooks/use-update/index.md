@@ -1,5 +1,6 @@
 ---
-title: useUpdate
+title: "useUpdate Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Build Use Update in Refine v5. Learn the key steps. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows."
 siderbar_label: useUpdate
 source: packages/core/src/data/hooks/useUpdate.ts
 ---

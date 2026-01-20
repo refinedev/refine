@@ -1,6 +1,7 @@
 ---
 id: ethereum-signin
-title: Sign in with Ethereum Web3 Wallet
+title: "Ethereum Signin Tutorial | Workflows in Refine v5"
+description: "Secure Ethereum Signin in Refine v5. Learn best practices. Explore production tips for wallet and dashboard for production-ready workflows."
 ---
 
 ## Introduction

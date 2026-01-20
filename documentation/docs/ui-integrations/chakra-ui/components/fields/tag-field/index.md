@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "Chakra UI Tag Field Component | UI Component in Refine v5"
+description: "Implement Tag Field in Refine v5. Learn the key steps. Learn integrate chakra for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---
 

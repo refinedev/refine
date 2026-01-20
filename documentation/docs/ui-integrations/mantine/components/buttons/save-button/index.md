@@ -1,5 +1,6 @@
 ---
-title: Save
+title: "Mantine Save Button Component | Form Actions in Refine v5"
+description: "Integrate Save Button in Refine v5. Learn best practices. Explore customization options for properties and hide for polished admin UIs."
 swizzle: true
 ---
 

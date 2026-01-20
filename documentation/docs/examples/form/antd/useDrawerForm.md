@@ -1,6 +1,7 @@
 ---
 id: useDrawerForm
-title: useDrawerForm
+title: "UseDrawerForm Example | Enterprise UI in Refine v5"
+description: "Build UseDrawerForm in Refine v5. Learn the key steps. Explore best practices for enterprise UI, components for real-world React admin panels."
 example-tags: [form, antd]
 ---
 

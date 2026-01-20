@@ -1,6 +1,6 @@
 ---
-title: useGetIdentity
-description: useGetIdentity data hook from Refine is a modified version of react-query's useQuery for retrieving user data
+title: "useGetIdentity Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Build Use Get Identity in Refine v5. Learn the key steps. Learn how to secure OAuth, JWT for secure enterprise React apps. Learn with code examples."
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---
 

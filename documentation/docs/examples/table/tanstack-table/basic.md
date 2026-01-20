@@ -1,6 +1,7 @@
 ---
 id: basic-tanstack-table
-title: Tables with Tanstack Table
+title: "Basic Tanstack Table Example | Pagination in Refine v5"
+description: "Implement Basic Tanstack Table in Refine v5. Learn the key steps. Explore provider for real-world React admin panels. Real-world snippets included."
 sidebar_label: Basic Table
 example-title: Basic TanStack Table
 example-tags: [table, react-table, tanstack-table]

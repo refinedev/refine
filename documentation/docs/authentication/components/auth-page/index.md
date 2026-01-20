@@ -1,6 +1,6 @@
 ---
-title: <AuthPage />
-description: <AuthPage> component from Refine is an authentication page that can be used to login, register, forgot password, and update password.
+title: "Auth Page Component | Best Practices in Refine v5"
+description: "Integrate Auth Page in Refine v5. Learn best practices. Explore secure patterns for OAuth, JWT for secure enterprise React apps. Hands-on examples included."
 source: packages/core/src/components/pages/auth/index.tsx
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Url
+title: "Chakra UI Url Field Component | UI Component in Refine v5"
+description: "Set up Url Field in Refine v5. Learn best practices. Explore customization options for reference and chakra for polished admin UIs."
 swizzle: true
 ---
 

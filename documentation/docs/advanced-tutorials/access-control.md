@@ -1,6 +1,7 @@
 ---
 id: access-control
-title: Access Control
+title: "Access Control Tutorial | Best Practices in Refine v5"
+description: "Secure Access Control in Refine v5. Learn best practices. Learn advanced patterns for RBAC, ABAC for production-ready workflows. Explore with code snippets."
 sidebar_label: Access Control
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: Inferencer
+title: "Chakra UI Inferencer Component | UI Component in Refine v5"
+description: "Integrate Inferencer in Refine v5. Learn best practices. Learn integrate accessibility, components for polished admin UIs. Hands-on examples included."
 ---
 
 You can automatically generate views for your resources using `@refinedev/inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUIEditInferencer`, `ChakraUICreateInferencer` components and finally the `ChakraUIInferencer` component, which combines all in one place.

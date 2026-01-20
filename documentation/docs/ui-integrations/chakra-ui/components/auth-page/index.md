@@ -1,6 +1,6 @@
 ---
-title: <AuthPage />
-description: <AuthPage> component from Refine is a authentication page that can be used to login, register, forgot password and update password.
+title: "Chakra UI Auth Page Component | UI Component in Refine v5"
+description: "Explore how to integrate Auth Page in Refine v5. Learn integrate accessibility, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 source: packages/chakra-ui/src/components/pages/auth/index.tsx
 ---

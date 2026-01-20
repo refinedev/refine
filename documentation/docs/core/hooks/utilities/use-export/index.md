@@ -1,5 +1,6 @@
 ---
-title: useExport
+title: "useExport Hook | Options, Patterns & Edge Cases | Refine v5"
+description: "Secure Use Export in Refine v5. Learn best practices. Learn data for real-world React admin panels. See practical code samples."
 ---
 
 `useExport` hook allows you to export data as a `CSV` file. It calls the `getList` method of your data provider and downloads the data as a `CSV` file.

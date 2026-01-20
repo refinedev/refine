@@ -1,5 +1,6 @@
 ---
-title: useMany
+title: "useMany Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Explore how to use the useMany hook in Refine v5. Explore best practices to scale data and pass for custom APIs and scalable data flows."
 siderbar_label: useMany
 source: packages/core/src/data/hooks/useMany.ts
 ---

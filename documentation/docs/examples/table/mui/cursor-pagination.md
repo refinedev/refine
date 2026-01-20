@@ -1,6 +1,7 @@
 ---
 id: cursor-pagination
-title: Cursor Pagination
+title: "Cursor Pagination Example | Best Practices in Refine v5"
+description: "Secure Cursor Pagination in Refine v5. Learn best practices. Learn best practices for provider for real-world React admin panels. See practical code samples."
 example-title: Cursor Pagination
 example-tags: [table, mui]
 ---

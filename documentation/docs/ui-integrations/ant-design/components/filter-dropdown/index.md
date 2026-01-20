@@ -1,5 +1,6 @@
 ---
-title: <FilterDropdown />
+title: "Ant Design Filter Dropdown Component | UI Component in Refine v5"
+description: "Set up Filter Dropdown in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. Real-world snippets included."
 ---
 
 ## Usage

@@ -1,5 +1,6 @@
 ---
-title: useList
+title: "useList Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Set up Use List in Refine v5. Learn best practices. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows."
 siderbar_label: useList
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/data/hooks/useList.ts
 ---

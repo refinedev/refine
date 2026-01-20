@@ -1,5 +1,6 @@
 ---
-title: Strapi v4
+title: "Strapi V4 Integration Guide | REST API Integration in Refine v5"
+description: "Secure Strapi V4 in Refine v5. Learn best practices. Learn scale fields and posts for custom APIs and scalable data flows. Real-world snippets included."
 source: https://github.com/refinedev/refine/tree/main/packages/strapi-v4
 swizzle: true
 ---

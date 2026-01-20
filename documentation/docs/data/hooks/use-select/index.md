@@ -1,5 +1,6 @@
 ---
-title: useSelect
+title: "useSelect Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Build Use Select in Refine v5. Learn the key steps. Learn patterns to scale data and options for custom APIs and scalable data flows."
 siderbar_label: useSelect
 source: packages/core/src/hooks/useSelect/index.ts
 ---

@@ -1,6 +1,6 @@
 ---
-title: useRegister
-description: useRegister data hook from Refine is a modified version of react-query's useMutation for registration.
+title: "useRegister Hook | Best Practices for Authentication | Refine v5"
+description: "Set up Use Register in Refine v5. Learn best practices. Learn how to secure OAuth, JWT for secure enterprise React apps. See practical code samples."
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---
 

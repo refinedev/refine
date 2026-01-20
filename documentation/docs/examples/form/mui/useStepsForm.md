@@ -1,6 +1,7 @@
 ---
 id: useStepsForm
-title: useStepsForm
+title: "UseStepsForm Example | Material Design in Refine v5"
+description: "Set up UseStepsForm in Refine v5. Learn best practices. Explore best practices for provider for real-world React admin panels. Real-world snippets included."
 example-tags: [form, mui, react-hook-form]
 ---
 

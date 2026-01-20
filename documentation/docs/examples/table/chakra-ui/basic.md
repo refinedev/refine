@@ -1,6 +1,7 @@
 ---
 id: basic
-title: Tables with Chakra UI
+title: "Basic Example | Pagination in Refine v5"
+description: "Build Basic in Refine v5. Learn the key steps. Explore pagination, sorting for real-world React admin panels. Learn with code examples."
 sidebar_label: Basic Table
 example-title: Basic React Table with Chakra UI
 example-tags: [table, chakra-ui, react-table]

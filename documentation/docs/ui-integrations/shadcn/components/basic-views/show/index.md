@@ -1,5 +1,6 @@
 ---
-title: Show
+title: "shadcn/ui Show Component | UI Component in Refine v5"
+description: "Set up Show in Refine v5. Learn best practices. Learn integration patterns for Radix UI, Tailwind CSS for polished admin UIs. Explore with code snippets."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/views/show-view.tsx
 ---
 

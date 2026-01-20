@@ -1,5 +1,6 @@
 ---
-title: React Router
+title: "React Router Guide | SSR in Refine v5"
+description: "Implement React Router in Refine v5. Learn the key steps. Learn SSR, navigation for real-world React admin panels. Explore with code snippets."
 ---
 
 Refine provides router bindings and utilities for [React Router](https://reactrouter.com/). It is built on top of the `react-router` package. This package will provide easy integration between Refine and **react-router** for both existing projects and new projects.

@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: "Introduction Guide | React UI Library in Refine v5"
+description: "Secure Introduction in Refine v5. Learn best practices. Learn integrate React UI library, components for polished admin UIs. Hands-on examples included."
 ---
 
 Refine provides an integration package for [Mantine](https://mantine.dev) library. This package provides a set of ready to use components and hooks that connects Refine with Mantine components. While Refine's integration offers a set of components and hooks, it is not a replacement for the Mantine UI packages, you will be able to use all the features of Mantine in the same way you would use it in a regular React application. Refine's integration only provides components and hooks for an easier usage of Mantine components in combination with Refine's features and functionalities.

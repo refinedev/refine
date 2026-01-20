@@ -1,5 +1,6 @@
 ---
-title: Tag
+title: "MUI Tag Field Component | UI Component in Refine v5"
+description: "Set up Tag Field in Refine v5. Learn best practices. Learn integrate material and properties for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

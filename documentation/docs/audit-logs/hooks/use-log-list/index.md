@@ -1,5 +1,6 @@
 ---
-title: useLogList
+title: "useLogList Hook | Options, Patterns & Edge Cases | Refine v5"
+description: "Integrate Use Log List in Refine v5. Learn best practices. Explore best practices for result for compliance and traceability. Hands-on examples included."
 ---
 
 If you need to list audit log events, you can use the `useLogList` hook of Refine, which uses the `get` method from [`auditLogProvider`](/core/docs/audit-logs/audit-log-provider#get) under the hood.

@@ -1,6 +1,7 @@
 ---
 id: headless
-title: Headless
+title: "Headless Example | OAuth & Security in Refine v5"
+description: "Set up Headless in Refine v5. Learn best practices. Explore secure patterns for OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 example-title: Authentication Example
 example-tags: [headless, auth-provider]
 ---

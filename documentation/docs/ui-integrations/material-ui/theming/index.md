@@ -1,5 +1,6 @@
 ---
-title: Theming
+title: "Theming Guide | Material Design UI in Refine v5"
+description: "Integrate Theming in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 ---
 
 Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. Theme provides a way to your app's design to meet them.

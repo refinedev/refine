@@ -1,6 +1,7 @@
 ---
 id: NextAuth-js
-title: Authentication with NextAuth.js
+title: "NextAuth.js Example | SSR in Refine v5"
+description: "Explore how to build with the NextAuth.js example in Refine v5. Learn provider for real-world React admin panels. See practical code samples."
 example-tags: [next.js, auth-provider]
 ---
 

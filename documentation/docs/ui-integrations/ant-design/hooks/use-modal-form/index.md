@@ -1,5 +1,6 @@
 ---
-title: useModalForm
+title: "useModalForm Hook | Options, Patterns & Edge Cases in Refine v5"
+description: "Explore how to use the useModalForm hook in Refine v5. Learn integrate data for polished admin UIs. Hands-on examples included."
 ---
 
 The `useModalForm` hook allows you to manage a form within a [`<Modal>`][antd-modal]. It returns Ant Design [`<Form>`][antd-form] and [Modal][antd-modal] components props.

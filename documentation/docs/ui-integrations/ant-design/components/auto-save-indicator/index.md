@@ -1,6 +1,6 @@
 ---
-title: <AutoSaveIndicator />
-description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+title: "Ant Design Auto Save Indicator Component | UI Component in Refine v5"
+description: "Explore how to integrate Auto Save Indicator in Refine v5. Learn integration patterns for elements and request for polished admin UIs. Learn with code examples."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---
 

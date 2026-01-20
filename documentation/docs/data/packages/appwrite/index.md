@@ -1,5 +1,6 @@
 ---
-title: Appwrite
+title: "Appwrite Integration Guide | Best Practices in Refine v5"
+description: "Set up Appwrite in Refine v5. Learn best practices. Learn scale REST, GraphQL for custom APIs and scalable data flows. Explore with code snippets."
 source: https://github.com/refinedev/refine/tree/main/packages/appwrite
 swizzle: true
 ---

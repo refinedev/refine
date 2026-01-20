@@ -1,6 +1,7 @@
 ---
 id: refine-themes-mantine
-title: Refine Themes in Mantine
+title: "Refine Themes Mantine Example | Best Practices in Refine v5"
+description: "Implement Refine Themes Mantine in Refine v5. Learn the key steps. Learn best practices for provider for real-world React admin panels."
 sidebar_label: Refine Themes
 example-title: Mantine
 example-tags: [mantine, customization]

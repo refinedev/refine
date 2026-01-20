@@ -1,6 +1,7 @@
 ---
 id: table-search
-title: Table Search
+title: "Table Search Tutorial | Pagination in Refine v5"
+description: "Learn to implement Table Search in Refine v5. Learn advanced patterns for pagination, sorting for production-ready workflows. Hands-on examples included."
 ---
 
 We can make extensive search / filter operations using the `useTable` hook on the listing pages.

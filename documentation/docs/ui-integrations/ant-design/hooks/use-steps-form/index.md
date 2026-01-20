@@ -1,5 +1,6 @@
 ---
-title: useStepsForm
+title: "useStepsForm Hook | Usage & Patterns | Refine v5"
+description: "Secure Use Steps Form in Refine v5. Learn best practices. Learn integrate data and current for polished admin UIs. See practical code samples."
 ---
 
 ```tsx live shared

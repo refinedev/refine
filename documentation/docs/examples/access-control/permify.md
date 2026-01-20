@@ -1,6 +1,7 @@
 ---
 id: permify
-title: Permify
+title: "Permify Example | RBAC in Refine v5"
+description: "Implement Permify in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. Real-world snippets included."
 example-tags: [access-control]
 ---
 

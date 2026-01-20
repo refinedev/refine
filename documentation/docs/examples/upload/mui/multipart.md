@@ -1,6 +1,7 @@
 ---
 id: multipart
-title: Multipart Upload
+title: "Multipart Example | Multipart/form-data in Refine v5: MUI"
+description: "Secure Multipart in Refine v5. Learn best practices. Learn provider and upload for real-world React admin panels. Explore with code snippets."
 example-tags: [mui, upload]
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: useOne
+title: "useOne Hook | Usage & Patterns in Refine v5"
+description: "Build Use One in Refine v5. Learn the key steps. Learn scale data and pass for custom APIs and scalable data flows. Explore with code snippets."
 siderbar_label: useOne
 source: packages/core/src/data/hooks/useOne.ts
 ---

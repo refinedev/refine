@@ -1,5 +1,6 @@
 ---
-title: Theming
+title: "Theming Guide | Accessibility UI in Refine v5"
+description: "Integrate Theming in Refine v5. Learn best practices. Learn integration patterns for accessibility, components for polished admin UIs. Learn with code examples."
 ---
 
 ```tsx live shared

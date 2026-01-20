@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "MUI Edit Component | UI Component in Refine v5"
+description: "Learn to integrate Edit in Refine v5. Explore customization options for hide for polished admin UIs. See practical code samples."
 swizzle: true
 ---
 

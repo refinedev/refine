@@ -1,5 +1,6 @@
 ---
-title: Boolean
+title: "Mantine Boolean Field Component | UI Component in Refine v5"
+description: "Learn to integrate Boolean Field in Refine v5. Learn integrate React UI library, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---
 

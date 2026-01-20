@@ -1,5 +1,6 @@
 ---
-title: Command Palette
+title: "Command Palette Integration Guide | Packages in Refine v5"
+description: "Explore how to implement Command Palette in Refine v5. Learn access and control for real-world React admin panels. Explore with code snippets."
 ---
 
 ```tsx live shared

@@ -1,5 +1,6 @@
 ---
-title: useDeleteMany
+title: "useDeleteMany Hook | Usage & Patterns in Refine v5"
+description: "Integrate Use Delete Many in Refine v5. Learn best practices. Learn scale mutation and data for custom APIs and scalable data flows."
 siderbar_label: useDeleteMany
 source: packages/core/src/data/hooks/useDeleteMany.ts
 ---

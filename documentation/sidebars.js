@@ -69,7 +69,10 @@ module.exports = {
           label: "Advanced Tutorials",
           link: {
             type: "generated-index",
-            title: "Advanced Tutorials",
+            title:
+              "Advanced Refine Tutorials | Workflows & Integrations in Refine v5",
+            description:
+              "Secure advanced tutorials in Refine v5. Learn best practices. Learn optimize workflows, integrations, and best practices for production-ready workflows.",
             slug: "/advanced-tutorials",
           },
           items: [

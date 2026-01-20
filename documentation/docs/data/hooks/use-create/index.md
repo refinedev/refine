@@ -1,5 +1,6 @@
 ---
-title: useCreate
+title: "useCreate Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Learn to use the useCreate hook in Refine v5. Learn scale mutation and parameters for custom APIs and scalable data flows. Learn with code examples."
 source: packages/core/src/data/hooks/useCreate.ts
 ---
 

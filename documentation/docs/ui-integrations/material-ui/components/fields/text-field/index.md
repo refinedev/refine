@@ -1,5 +1,6 @@
 ---
-title: Text
+title: "MUI Text Field Component | UI Component in Refine v5"
+description: "Integrate Text Field in Refine v5. Learn best practices. Learn integration patterns for Material Design, components for polished admin UIs."
 swizzle: true
 ---
 

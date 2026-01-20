@@ -1,6 +1,6 @@
 ---
-title: <ThemedLayout />
-description: <ThemedLayout> component from Refine, defines the overall structure and layout of a web page.
+title: "MUI ThemedLayout Component | Layout in Refine v5"
+description: "Explore how to integrate ThemedLayout in Refine v5. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 source: packages/mui/src/components/themedLayout/index.tsx
 ---

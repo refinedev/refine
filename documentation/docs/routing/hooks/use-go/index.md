@@ -1,5 +1,6 @@
 ---
-title: useGo
+title: "useGo Hook | Best Practices for Usage & Patterns in Refine v5"
+description: "Build Use Go in Refine v5. Learn the key steps. Learn best practices for SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 
 `useGo` is a hook that leverages the `go` method of the [`routerProvider`][routerprovider] to perform navigation operations.

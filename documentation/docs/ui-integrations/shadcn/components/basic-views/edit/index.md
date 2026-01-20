@@ -1,5 +1,6 @@
 ---
-title: Edit
+title: "shadcn/ui Edit Component | UI Component in Refine v5"
+description: "Explore how to integrate Edit in Refine v5. Learn integrate breadcrumb and custom for polished admin UIs. Real-world snippets included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/views/edit-view.tsx
 ---
 

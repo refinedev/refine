@@ -1,6 +1,7 @@
 ---
 id: casbin
-title: Casbin
+title: "Casbin Example | Best Practices in Refine v5"
+description: "Set up Casbin in Refine v5. Learn best practices. Learn RBAC, ABAC for real-world React admin panels. Learn with code examples."
 example-tags: [access-control]
 ---
 
