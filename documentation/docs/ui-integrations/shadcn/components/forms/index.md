@@ -114,6 +114,7 @@ import {
   CreateView,
   CreateViewHeader,
 } from "@/components/refine-ui/views/create-view";
+import { BaseRecord, HttpError } from "@refinedev/core";
 
 const postSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
@@ -127,7 +128,7 @@ export default function CreatePost() {
   const {
     refineCore: { onFinish, formLoading },
     ...form
-  } = useForm<PostFormData>({
+  } = useForm<BaseRecord, HttpError, PostFormData>({
     resolver: zodResolver(postSchema),
     defaultValues: {
       title: "",
