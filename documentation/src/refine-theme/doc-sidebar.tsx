@@ -118,7 +118,7 @@ const SidebarCategory = ({
     });
   }, []);
 
-  const Comp = !isHeader && item.href && !isSame ? Link : "button";
+  const Comp = "button";
 
   return (
     <div
@@ -131,13 +131,8 @@ const SidebarCategory = ({
     >
       <Comp
         type="button"
-        onClick={isHeader ? () => 0 : toggle}
-        {...(Comp === "button"
-          ? {}
-          : {
-              isNavLink: true,
-            })}
-        href={item.href}
+        onClick={isHeader ? undefined : toggle}
+        aria-expanded={collapsible ? !collapsed : undefined}
         className={clsx(
           isHeader && "cursor-default",
           "w-full",

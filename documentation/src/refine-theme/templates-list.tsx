@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, { type FC, type SVGProps } from "react";
 import type { TemplateEdition } from "../types/integrations";
 import { Image } from "../components/image";
+import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
 
 type Props = {
   className?: string;
@@ -22,6 +23,12 @@ type Props = {
 export const TemplatesList: FC<Props> = ({ className, data }) => {
   return (
     <div className={clsx("not-prose", className)}>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/core/" },
+          { label: "Templates", href: "/core/templates/" },
+        ]}
+      />
       <div
         className={clsx(
           "grid",

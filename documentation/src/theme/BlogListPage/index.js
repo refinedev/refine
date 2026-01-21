@@ -12,6 +12,7 @@ import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import BlogListPaginator from "@theme/BlogListPaginator";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -44,6 +45,10 @@ function BlogListPageContent(props) {
   const { metadata, tags, items } = props;
 
   const isFirstPage = metadata.page === 1;
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+  ];
 
   const featuredPosts = items.filter(
     (post) => post.content.metadata.frontMatter.is_featured === true,
@@ -55,6 +60,19 @@ function BlogListPageContent(props) {
 
   return (
     <BlogLayout showSidebarBanner={false} showHero>
+      <Breadcrumbs
+        items={breadcrumbItems}
+        className={clsx(
+          "w-full",
+          "mx-auto",
+          "blog-sm:max-w-[592px]",
+          "blog-md:max-w-[656px]",
+          "blog-lg:max-w-[896px]",
+          "blog-max:max-w-[1200px]",
+          "px-6 blog-sm:px-0",
+          "pt-6",
+        )}
+      />
       {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
       <BlogPostItems items={paginatedPosts} tags={tags} metadata={metadata} />
       <div

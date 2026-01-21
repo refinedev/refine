@@ -21,6 +21,7 @@ import { LockedIcon } from "./icons/locked";
 import { ShareIcon } from "./icons/share";
 import { TutorialIcon } from "./icons/tutorial";
 import { Image } from "../components/image";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 type Props = {
   data: {
@@ -41,6 +42,17 @@ type Props = {
 };
 
 export const TemplatesDetail: FC<Props> = ({ data }) => {
+  const categoryLabel = data.uiFramework;
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/core/" },
+    { label: "Templates", href: "/core/templates/" },
+    ...(categoryLabel
+      ? [{ label: categoryLabel, href: "/core/templates/" }]
+      : []),
+    { label: data.title, href: `/core/templates/${data.slug}` },
+  ];
+
   return (
     <CommonLayout
       className="!bg-zinc-900"
@@ -62,6 +74,10 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
           )}
         >
           <div>
+            <Breadcrumbs
+              items={breadcrumbItems}
+              className={clsx("px-0 landing-md:px-2", "mb-4")}
+            />
             <Link
               to="/core/templates"
               className={clsx(

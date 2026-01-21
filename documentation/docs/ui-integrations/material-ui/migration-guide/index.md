@@ -1,5 +1,6 @@
 ---
 title: Migration Guides for Material UI
+description: "Migration guides for Material UI and X Data Grid versions."
 ---
 
 # Migration Guides for Material UI

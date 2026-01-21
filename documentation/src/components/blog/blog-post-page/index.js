@@ -11,6 +11,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 import clsx from "clsx";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 import { Date, ReadingTime } from "@site/src/components/blog/common";
 import { BannerBlog } from "@site/src/components/banner/banner-blog";
@@ -36,6 +37,15 @@ export const BlogPostPageView = ({ children }) => {
     authors,
   } = metadata;
   const author = authors[0];
+  const primaryTag = tags?.[0];
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+    ...(primaryTag
+      ? [{ label: primaryTag.label, href: primaryTag.permalink }]
+      : []),
+    { label: title, href: permalink },
+  ];
 
   const {
     siteConfig: { url },
@@ -52,6 +62,7 @@ export const BlogPostPageView = ({ children }) => {
         "px-2 blog-md:px-8 blog-lg:px-0",
       )}
     >
+      <Breadcrumbs items={breadcrumbItems} className="mb-6" />
       <div
         className={clsx(
           "hidden blog-md:flex",

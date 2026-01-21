@@ -14,6 +14,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import TagsList from "@theme/TagsList";
 import { ChevronLeft } from "../../components/blog/icons";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
@@ -56,9 +57,28 @@ function BlogTagsPostsPageMetadata({ tag }) {
 }
 
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: "Tags", href: "/blog/tags" },
+    { label: tag.label, href: tag.permalink },
+  ];
+
   return (
     <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
       <div className={clsx("py-8", "blog-md:py-16", "w-full", "mx-auto")}>
+        <Breadcrumbs
+          items={breadcrumbItems}
+          className={clsx(
+            "px-4",
+            "blog-sm:max-w-[592px]",
+            "blog-md:max-w-[656px]",
+            "blog-lg:max-w-[896px]",
+            "blog-max:max-w-[1200px]",
+            "w-full",
+            "mx-auto",
+          )}
+        />
         <div
           className={clsx(
             "flex",
