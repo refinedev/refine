@@ -1,6 +1,8 @@
 ---
 id: useModalForm
 title: "Mantine useModalForm Guide | Refine v4 Integration"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Create sleek modal forms with Mantine and Refine v4. Learn how to manage form state and validation inside Mantine modals for React apps."
 example-tags: [form, mantine]
 ---

@@ -1,6 +1,8 @@
 ---
 id: auth
 title: "Auth Example | Best Practices in Refine v5"
+display_title: "Authentication"
+sidebar_label: "Authentication"
 description: "Build Auth in Refine v5. Learn the key steps. Learn how to secure OAuth, JWT for secure enterprise React apps. Learn with code examples."
 example-tags: [next.js, auth-provider]
 ---

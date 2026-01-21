@@ -1,5 +1,7 @@
 ---
 title: "useModalForm Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Explore how to use the useModalForm hook in Refine v5. Learn integrate data for polished admin UIs. Hands-on examples included."
 ---
 

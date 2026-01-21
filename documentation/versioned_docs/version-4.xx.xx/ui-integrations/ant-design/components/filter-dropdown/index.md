@@ -1,5 +1,7 @@
 ---
 title: "Ant Design FilterDropdown | Refine v4 Table Filters"
+display_title: "<FilterDropdown />"
+sidebar_label: "<FilterDropdown />"
 description: "Learn how to implement custom table filters using the FilterDropdown component. Official guide to advanced data filtering in Refine v4 with Ant Design."
 ---
 

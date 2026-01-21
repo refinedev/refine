@@ -1,5 +1,7 @@
 ---
 title: "Mantine Breadcrumb Component | UI Component in Refine v5"
+display_title: "Breadcrumb"
+sidebar_label: "Breadcrumb"
 description: "Explore how to integrate Breadcrumb in Refine v5. Learn integrate React UI library, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---

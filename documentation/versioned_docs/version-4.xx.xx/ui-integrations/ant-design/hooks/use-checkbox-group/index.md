@@ -1,5 +1,7 @@
 ---
 title: "useCheckboxGroup Hook | Ant Design & Refine v4 Guide"
+display_title: "useCheckboxGroup"
+sidebar_label: "useCheckboxGroup"
 description: "Efficiently manage checkbox groups in your forms. Learn how the useCheckboxGroup hook syncs Ant Design components with Refine v4 data providers."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "useTable Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useTable"
+sidebar_label: "useTable"
 description: "Secure Use Table in Refine v5. Learn best practices. Explore best practices to scale pagination and value for custom APIs and scalable data flows."
 source: packages/core/src/hooks/useTable
 ---

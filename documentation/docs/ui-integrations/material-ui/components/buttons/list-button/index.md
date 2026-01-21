@@ -1,5 +1,7 @@
 ---
 title: "MUI List Button Component | Navigation UI in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Secure List Button in Refine v5. Learn best practices. Learn integration patterns for Material Design, components for polished admin UIs."
 swizzle: true
 ---

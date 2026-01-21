@@ -1,5 +1,7 @@
 ---
 title: "Audit Logs Concept Guide | Tracking in Refine v4"
+display_title: "Audit Logs"
+sidebar_label: "Audit Logs"
 description: "Understand the core concepts of activity tracking. Learn how Refine v4 manages audit logs to provide transparency in enterprise applications."
 ---
 

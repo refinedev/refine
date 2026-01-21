@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Markdown Field Component | UI Component in Refine v5"
+display_title: "Markdown"
+sidebar_label: "Markdown"
 description: "Set up Markdown Field in Refine v5. Learn best practices. Explore customization options for accessibility, components for polished admin UIs."
 swizzle: true
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Refine v3 to v4 Migration Guide | Upgrade Your App"
+display_title: "Migrating from 3.x.x to 4.x.x"
 description: "Official guide to migrating your Refine project from v3 to v4. Learn about breaking changes, new features, and the seamless upgrade path."
 sidebar_label: 3.x.x to 4.x.x
 ---

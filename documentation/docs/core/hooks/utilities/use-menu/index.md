@@ -1,5 +1,7 @@
 ---
 title: "useMenu Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useMenu"
+sidebar_label: "useMenu"
 description: "Implement Use Menu in Refine v5. Learn the key steps. Learn navigation, sidebar for real-world React admin panels. See practical code samples."
 source: packages/core/src/hooks/menu/useMenu.tsx
 ---

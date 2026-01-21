@@ -1,5 +1,7 @@
 ---
 title: "MUI Show Button Component | Navigation UI in Refine v5"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Explore how to integrate Show Button in Refine v5. Learn integration patterns for Material Design, components for polished admin UIs."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useShow Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useShow"
+sidebar_label: "useShow"
 description: "Secure Use Show in Refine v5. Learn best practices. Learn scale REST, GraphQL for custom APIs and scalable data flows. Hands-on examples included."
 ---
 

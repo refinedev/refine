@@ -1,5 +1,7 @@
 ---
 title: "Mantine NumberField | Refine v4 Formatting"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Display localized and formatted numbers using Mantine. Official documentation for the NumberField component in Refine v4 apps."
 swizzle: true
 ---

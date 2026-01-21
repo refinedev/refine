@@ -1,5 +1,7 @@
 ---
 title: "Hasura Data Provider Guide | Refine v4 & GraphQL"
+display_title: "Hasura"
+sidebar_label: "Hasura"
 description: "Connect Hasura to your Refine v4 project. Efficiently manage your PostgreSQL database via Hasura's GraphQL engine with this integration guide."
 source: https://github.com/refinedev/refine/tree/main/packages/hasura
 swizzle: true

@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Breadcrumb | Refine v4 Navigation"
+display_title: "Breadcrumb"
+sidebar_label: "Breadcrumb"
 description: "Automatically generate dynamic breadcrumbs for your admin panel. Guide to using the Ant Design Breadcrumb component with Refine v4's routing logic."
 swizzle: true
 ---

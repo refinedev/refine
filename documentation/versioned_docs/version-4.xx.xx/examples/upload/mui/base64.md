@@ -1,6 +1,8 @@
 ---
 id: base64
 title: "Material UI Base64 Upload | Refine v4 Media Tutorial"
+display_title: "Base64 Upload"
+sidebar_label: "Base64 Upload"
 description: "Step-by-step guide to Base64 file uploads with MUI and Refine v4. Learn how to convert, preview, and upload media files in your React app."
 example-tags: [mui, upload]
 ---

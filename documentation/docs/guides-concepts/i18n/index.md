@@ -1,5 +1,7 @@
 ---
 title: "I18n Guide | Localization in Refine v5"
+display_title: "Internationalization (i18n)"
+sidebar_label: "Internationalization (i18n)"
 description: "Build i18n in Refine v5. Learn the key steps. Explore translation and common.json for real-world React admin panels. See practical code samples."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI TextField | Refine v4 Core Display"
+display_title: "Text"
+sidebar_label: "Text"
 description: "Documentation on basic data display with the Chakra UI TextField. Learn to show string values in your Refine v4 CRUD views."
 swizzle: true
 ---

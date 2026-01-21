@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Create View | Refine v4 CRUD Pages"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Official guide to building 'Create' pages with Chakra UI. Documentation on integrating forms and layouts in your Refine v4 application."
 swizzle: true
 ---

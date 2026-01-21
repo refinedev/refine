@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Delete Button | Refine v4 Security"
+display_title: "Delete"
+sidebar_label: "Delete"
 description: "Implement record deletion with confirmation alerts. Guide to using the Chakra UI Delete Button in your Refine v4 CRUD applications."
 swizzle: true
 ---

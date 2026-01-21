@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Save Button | Refine v4 Form Actions"
+display_title: "Save"
+sidebar_label: "Save"
 description: "Master form submissions with the Save Button. Learn about loading states and success/error handling in Refine v4 with Ant Design components."
 swizzle: true
 ---

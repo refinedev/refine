@@ -1,6 +1,7 @@
 ---
 id: advanced-tanstack-table
 title: "Advanced TanStack Table | Refine v4 Headless Guide"
+display_title: "Advanced Tables with Tanstack Table"
 description: "Go beyond basics with TanStack Table (React Table) in Refine v4. Master complex headless table logic for ultimate UI flexibility."
 sidebar_label: Advanced Table
 example-title: Advanced TanStack Table

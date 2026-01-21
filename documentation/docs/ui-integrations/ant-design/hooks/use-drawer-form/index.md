@@ -1,5 +1,7 @@
 ---
 title: "useDrawerForm Hook | Best Practices for Usage & Patterns | Refine v5"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Integrate Use Drawer Form in Refine v5. Learn best practices. Learn integration patterns for value and data for polished admin UIs."
 ---
 

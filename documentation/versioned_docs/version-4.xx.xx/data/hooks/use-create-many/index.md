@@ -1,5 +1,7 @@
 ---
 title: "useCreateMany Hook | Refine v4"
+display_title: "useCreateMany"
+sidebar_label: "useCreateMany"
 description: "Learn how to create multiple records in a single request with Refine v4. Explore useCreateMany options, parameters, and bulk mutation patterns."
 source: packages/core/src/data/hooks/useCreateMany.ts
 ---

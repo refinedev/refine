@@ -1,6 +1,8 @@
 ---
 id: i18n-nextjs
 title: "I18n Nextjs Example | Best Practices in Refine v5"
+display_title: "Next.js"
+sidebar_label: "Next.js"
 description: "Integrate i18n Nextjs in Refine v5. Learn best practices. Explore best practices for localization, translations for real-world React admin panels."
 example-tags: [i18n]
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Save Button Component | Form Actions in Refine v5"
+display_title: "Save"
+sidebar_label: "Save"
 description: "Set up Save Button in Refine v5. Learn best practices. Explore customization options for enterprise UI, components for polished admin UIs."
 swizzle: true
 ---

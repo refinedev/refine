@@ -1,5 +1,6 @@
 ---
 title: "Refine v4 Comparison | Refine vs. Other Frameworks"
+display_title: "Comparison | Refine vs React-Admin vs AdminBro vs Retool vs Redwood"
 description: "How does Refine compare to other React frameworks? Explore a detailed comparison of features, performance, and developer experience."
 sidebar_label: Comparison
 ---

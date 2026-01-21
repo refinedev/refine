@@ -1,5 +1,7 @@
 ---
 title: "Hasura Integration Guide | REST API Integration in Refine v5"
+display_title: "Hasura"
+sidebar_label: "Hasura"
 description: "Explore how to implement Hasura in Refine v5. Explore best practices to scale REST, GraphQL for custom APIs and scalable data flows. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/hasura
 swizzle: true

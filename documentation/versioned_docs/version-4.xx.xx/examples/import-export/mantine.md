@@ -1,6 +1,7 @@
 ---
 id: mantine
 title: "Mantine Import & Export Guide | Refine v4 Example"
+display_title: "Import and Export in Mantine"
 description: "Implement data import and export features in your Mantine-based Refine v4 project. Efficient CSV handling for React apps."
 sidebar_label: Import / Export
 example-title: Import / Export CSV with Mantine

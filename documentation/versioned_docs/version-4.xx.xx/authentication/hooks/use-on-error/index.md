@@ -1,5 +1,7 @@
 ---
 title: "useOnError Hook | Refine v4"
+display_title: "useOnError"
+sidebar_label: "useOnError"
 description: "Learn how global authentication errors are handled in Refine v4 using the useOnError hook."
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---

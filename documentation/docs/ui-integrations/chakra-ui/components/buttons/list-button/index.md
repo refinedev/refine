@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI List Button Component | Navigation UI in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Integrate List Button in Refine v5. Learn best practices. Learn integrate accessibility, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---

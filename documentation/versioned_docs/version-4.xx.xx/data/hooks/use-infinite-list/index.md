@@ -1,5 +1,7 @@
 ---
 title: "useInfiniteList Hook | Refine v4"
+display_title: "useInfiniteList"
+sidebar_label: "useInfiniteList"
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/data/hooks/useInfiniteList.ts
 description: "Learn how infinite scrolling and pagination are handled in Refine v4 using useInfiniteList for large and dynamic datasets."

@@ -1,5 +1,7 @@
 ---
 title: "General Concepts | Understanding Refine v4 Core"
+display_title: "General Concepts"
+sidebar_label: "General Concepts"
 description: "A high-level overview of Refine v4's philosophy and architecture. Learn why Refine is the top choice for internal tool development."
 ---
 

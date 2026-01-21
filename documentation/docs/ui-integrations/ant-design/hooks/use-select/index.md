@@ -1,5 +1,7 @@
 ---
 title: "useSelect Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useSelect"
+sidebar_label: "useSelect"
 description: "Secure Use Select in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. See practical code samples."
 siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/main/packages/antd/src/hooks/fields/useSelect/index.ts

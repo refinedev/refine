@@ -1,5 +1,7 @@
 ---
 title: "React Router Guide | SSR in Refine v5"
+display_title: "React Router"
+sidebar_label: "React Router"
 description: "Implement React Router in Refine v5. Learn the key steps. Learn SSR, navigation for real-world React admin panels. Explore with code snippets."
 ---
 

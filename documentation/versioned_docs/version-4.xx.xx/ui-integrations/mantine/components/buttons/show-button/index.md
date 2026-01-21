@@ -1,5 +1,7 @@
 ---
 title: "Mantine Show Button | Refine v4 Detail Views"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Learn how to use the Mantine Show Button to navigate to record detail pages. Official UI component documentation for Refine v4."
 swizzle: true
 ---

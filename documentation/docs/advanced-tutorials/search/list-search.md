@@ -1,6 +1,8 @@
 ---
 id: list-search
 title: "List Search Tutorial | Best Practices in Refine v5"
+display_title: "List Search"
+sidebar_label: "List Search"
 description: "Set up List Search in Refine v5. Learn best practices. Learn advanced patterns for form and posts for production-ready workflows. Learn with code examples."
 ---
 

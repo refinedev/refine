@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Date Field Component | UI Component in Refine v5"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Implement Date Field in Refine v5. Learn the key steps. Explore customization options for locales for polished admin UIs. Learn with code examples."
 swizzle: true
 ---

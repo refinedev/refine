@@ -1,5 +1,7 @@
 ---
 title: "useForgotPassword Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useForgotPassword"
+sidebar_label: "useForgotPassword"
 description: "Explore how to use the useForgotPassword hook in Refine v5. Learn how to secure OAuth, JWT for secure enterprise React apps. See practical code samples."
 source: /packages/core/src/hooks/auth/useForgotPassword/index.ts
 ---

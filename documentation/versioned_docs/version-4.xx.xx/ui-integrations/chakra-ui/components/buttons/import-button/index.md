@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Import Button | Refine v4 Bulk Data Import"
+display_title: "Import"
+sidebar_label: "Import"
 description: "Learn how to add CSV import functionality to your Chakra UI admin panel. Official documentation for the Import Button in Refine v4."
 swizzle: true
 ---

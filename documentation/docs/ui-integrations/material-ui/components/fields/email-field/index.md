@@ -1,5 +1,7 @@
 ---
 title: "MUI Email Field Component | UI Component in Refine v5"
+display_title: "Email"
+sidebar_label: "Email"
 description: "Implement Email Field in Refine v5. Learn the key steps. Explore customization options for material for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Create View | Refine v4 CRUD Pages"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Official guide to building 'Create' pages with Ant Design. Documentation on integrating forms, layout, and save logic in your Refine v4 application."
 swizzle: true
 ---

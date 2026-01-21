@@ -1,5 +1,7 @@
 ---
 title: "Mantine List Component | UI Component in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Learn to integrate List in Refine v5. Learn integrate React UI library, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

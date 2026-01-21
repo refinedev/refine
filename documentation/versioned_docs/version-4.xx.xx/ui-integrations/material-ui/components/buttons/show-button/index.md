@@ -1,5 +1,7 @@
 ---
 title: "MUI Show Button | Refine v4 Detail Views"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Implement record detail navigation using the MUI Show Button. Official UI component documentation for managing views in Refine v4."
 swizzle: true
 ---

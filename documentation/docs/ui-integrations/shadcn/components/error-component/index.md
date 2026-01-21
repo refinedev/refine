@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui ErrorComponent Component | Error UI in Refine v5"
+display_title: "<ErrorComponent />"
+sidebar_label: "<ErrorComponent />"
 description: "Set up ErrorComponent in Refine v5. Learn best practices. Learn integrate back for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/layout/error-component.tsx
 ---

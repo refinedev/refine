@@ -1,5 +1,7 @@
 ---
 title: "useSelect Hook | Mantine & Refine v4 Relational Data"
+display_title: "useSelect"
+sidebar_label: "useSelect"
 description: "Effortlessly populate Mantine Select components. Learn how to fetch and filter relational data with Refine v4's useSelect hook."
 source: https://github.com/refinedev/refine/blob/main/packages/mantine/src/hooks/useSelect/index.ts
 ---

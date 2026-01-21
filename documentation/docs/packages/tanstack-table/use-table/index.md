@@ -1,5 +1,7 @@
 ---
 title: "useTable Hook | Options, Patterns & Edge Cases in Refine v5: TanStack Table"
+display_title: "useTable"
+sidebar_label: "useTable"
 description: "Explore how to use the useTable hook in Refine v5. Explore best practices for pagination, sorting for real-world React admin panels. Hands-on examples included."
 source: /packages/react-table/src/useTable
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Delete Button Component | Security & Actions in Refine v5"
+display_title: "Delete"
+sidebar_label: "Delete"
 description: "Implement Delete Button in Refine v5. Learn the key steps. Learn integration patterns for accessibility, components for polished admin UIs."
 swizzle: true
 ---

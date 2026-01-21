@@ -1,6 +1,8 @@
 ---
 id: multipart
 title: "Chakra UI Multipart Upload | Refine v4 Media Guide"
+display_title: "Multipart Upload"
+sidebar_label: "Multipart Upload"
 description: "Handle large file uploads in Chakra UI using Refine v4. Learn how to implement multipart/form-data for efficient media management in React."
 example-tags: [chakra-ui, upload]
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Mantine Auto Save Indicator Component | UI Component in Refine v5"
+display_title: "<AutoSaveIndicator />"
+sidebar_label: "<AutoSaveIndicator />"
 description: "Explore how to integrate Auto Save Indicator in Refine v5. Learn integration patterns for elements and request for polished admin UIs."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---

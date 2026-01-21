@@ -1,5 +1,7 @@
 ---
 title: "MUI Auto Save Indicator Component | UI Component in Refine v5"
+display_title: "<AutoSaveIndicator />"
+sidebar_label: "<AutoSaveIndicator />"
 description: "Learn to integrate Auto Save Indicator in Refine v5. Learn integration patterns for elements and request for polished admin UIs. See practical code samples."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---

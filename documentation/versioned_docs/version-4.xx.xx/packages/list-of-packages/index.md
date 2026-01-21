@@ -1,5 +1,7 @@
 ---
 title: "Refine v4 Ecosystem | Official Packages List"
+display_title: "List of Packages"
+sidebar_label: "List of Packages"
 description: "Explore the full list of official Refine v4 packages. Find data providers, UI integrations, and utility tools for your React applications."
 ---
 

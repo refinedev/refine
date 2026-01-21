@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui ThemedLayout Component | Layout in Refine v5"
+display_title: "<ThemeProvider />"
+sidebar_label: "<ThemeProvider />"
 description: "Build ThemedLayout in Refine v5. Learn the key steps. Learn integrate system and controls for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/theme
 ---

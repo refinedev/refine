@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Create Component | UI Component in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Implement Create in Refine v5. Learn the key steps. Explore customization options for accessibility, components for polished admin UIs."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Mantine Export Button Component | Data Tools in Refine v5"
+display_title: "Export"
+sidebar_label: "Export"
 description: "Set up Export Button in Refine v5. Learn best practices. Explore customization options for React UI library, components for polished admin UIs."
 swizzle: true
 ---

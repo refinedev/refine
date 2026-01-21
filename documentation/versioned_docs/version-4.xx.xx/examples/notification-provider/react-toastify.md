@@ -1,6 +1,8 @@
 ---
 id: react-toastify
 title: "React Toastify Integration | Refine v4 Notifications"
+display_title: "React Toastify"
+sidebar_label: "React Toastify"
 description: "Enhance user feedback with React Toastify and Refine v4. Learn how to set up a custom notification provider for your React admin panel."
 example-tags: [headless, notification-provider]
 ---

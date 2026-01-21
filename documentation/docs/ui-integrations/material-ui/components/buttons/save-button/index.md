@@ -1,5 +1,7 @@
 ---
 title: "MUI Save Button Component | Form Actions in Refine v5"
+display_title: "Save"
+sidebar_label: "Save"
 description: "Build Save Button in Refine v5. Learn the key steps. Explore customization options for hide and properties for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

@@ -1,6 +1,8 @@
 ---
 id: base64-upload
 title: "Base64 Upload Guide | Ant Design File Handling in Refine v5"
+display_title: "Base64 Upload"
+sidebar_label: "Base64 Upload"
 description: "Secure Base64 Upload in Refine v5. Learn best practices. Learn optimize files and change for production-ready workflows. Explore with code snippets."
 ---
 

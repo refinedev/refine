@@ -1,5 +1,7 @@
 ---
 title: "useIsAuthenticated Hook | Authentication | Refine v5"
+display_title: "useIsAuthenticated"
+sidebar_label: "useIsAuthenticated"
 description: "Explore how to use the useIsAuthenticated hook in Refine v5. Learn how to secure OAuth, JWT for secure enterprise React apps. Learn with code examples."
 source: /packages/core/src/hooks/auth/useIsAuthenticated/index.ts
 ---

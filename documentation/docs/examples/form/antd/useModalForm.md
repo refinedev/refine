@@ -1,6 +1,8 @@
 ---
 id: useModalForm
 title: "UseModalForm Example | Enterprise UI in Refine v5"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Build UseModalForm in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. See practical code samples."
 example-tags: [form, antd]
 ---

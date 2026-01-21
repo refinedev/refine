@@ -1,6 +1,8 @@
 ---
 id: auth0
 title: "Google Login Example | Refine v4 Auth Integration"
+display_title: "Auth0"
+sidebar_label: "Auth0"
 description: "Implement Google Authentication in Refine v4. A step-by-step example of setting up OAuth2 for your React admin dashboards."
 example-tags: [auth-provider]
 ---

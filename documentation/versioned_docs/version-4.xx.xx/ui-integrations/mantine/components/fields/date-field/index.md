@@ -1,5 +1,7 @@
 ---
 title: "Mantine DateField | Refine v4 Format Guide"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Master date formatting and display in Mantine. Learn how to use the DateField component for localized dates in your Refine v4 project."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useCustomMutation Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useCustomMutation"
+sidebar_label: "useCustomMutation"
 description: "Learn to use the useCustomMutation hook in Refine v5. Explore best practices to scale values for custom APIs and scalable data flows."
 source: packages/core/src/data/hooks/useCustomMutation.ts
 ---

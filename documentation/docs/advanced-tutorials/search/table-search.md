@@ -1,6 +1,8 @@
 ---
 id: table-search
 title: "Table Search Tutorial | Pagination in Refine v5"
+display_title: "Table Search"
+sidebar_label: "Table Search"
 description: "Learn to implement Table Search in Refine v5. Learn advanced patterns for pagination, sorting for production-ready workflows. Hands-on examples included."
 ---
 

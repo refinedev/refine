@@ -1,5 +1,7 @@
 ---
 title: "useLogList Hook | Fetching Activity Logs in Refine v4"
+display_title: "useLogList"
+sidebar_label: "useLogList"
 description: "Learn how to list and filter activity logs efficiently. Use the useLogList hook to build transparent audit trails for your enterprise applications."
 ---
 

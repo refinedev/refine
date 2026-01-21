@@ -1,5 +1,7 @@
 ---
 title: "Core Interfaces Reference | Refine v4"
+display_title: "Interface References"
+sidebar_label: "Interface References"
 description: "Explore all core TypeScript interfaces in Refine v4. Learn how interfaces define data flow, auth logic, resources, and provider integrations."
 ---
 

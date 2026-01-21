@@ -1,5 +1,7 @@
 ---
 title: "useDrawer Hook | Usage & Patterns in Refine v5"
+display_title: "useDrawer"
+sidebar_label: "useDrawer"
 description: "Explore how to use the useDrawer hook in Refine v5. Learn integrate Ant Design for polished admin UIs. Explore with code snippets."
 ---
 

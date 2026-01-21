@@ -1,6 +1,7 @@
 ---
 id: antd
 title: "Ant Design Example | Best Practices in Refine v5"
+display_title: "Authentication in Ant Design"
 description: "Learn to implement Ant Design in Refine v5. Learn how to secure OAuth, JWT for secure enterprise React apps. Learn with code examples."
 sidebar_label: Authentication
 example-title: Authentication with Ant Design

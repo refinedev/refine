@@ -1,5 +1,7 @@
 ---
 title: "Remix Guide | Best Practices in Refine v5"
+display_title: "Remix"
+sidebar_label: "Remix"
 description: "Integrate Remix in Refine v5. Learn best practices. Learn SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Enterprise Edition Guide | Docs in Refine v5"
+display_title: "Getting Started"
+sidebar_label: "Getting Started"
 description: "Build Enterprise Edition in Refine v5. Learn the key steps. Learn best practices for release for real-world React admin panels. See practical code samples."
 ---
 

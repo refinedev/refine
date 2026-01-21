@@ -1,6 +1,8 @@
 ---
 id: serverSideFormValidation
 title: "Server-Side Form Validation | Refine v4 & Ant Design"
+display_title: "Server-Side Form Validation"
+sidebar_label: "Server-Side Form Validation"
 description: "Master server-side validation with Ant Design and Refine v4. Display backend errors seamlessly on your React frontend forms."
 example-tags: [form, antd]
 ---

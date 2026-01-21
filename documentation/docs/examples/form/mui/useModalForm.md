@@ -1,6 +1,8 @@
 ---
 id: useModalForm
 title: "UseModalForm Example | Best Practices in Refine v5: MUI"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Explore how to build with the UseModalForm example in Refine v5. Explore best practices for provider for real-world React admin panels."
 example-tags: [form, mui, react-hook-form]
 ---

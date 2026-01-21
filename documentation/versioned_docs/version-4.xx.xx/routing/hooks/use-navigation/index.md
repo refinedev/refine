@@ -1,5 +1,7 @@
 ---
 title: "useNavigation Hook | Unified Routing in Refine v4"
+display_title: "useNavigation"
+sidebar_label: "useNavigation"
 description: "The complete guide to navigation hooks. Learn to navigate to list, edit, create, and show pages efficiently in your Refine v4 app."
 ---
 

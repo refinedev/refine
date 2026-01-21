@@ -1,5 +1,7 @@
 ---
 title: "MUI Themed Layout | Refine v4 UI Design"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Master the official Material UI Themed Layout in Refine v4. Learn how to customize Sider, Header, and Footer for your React dashboard."
 swizzle: true
 source: packages/mui/src/components/themedLayoutV2/index.tsx

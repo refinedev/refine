@@ -1,5 +1,7 @@
 ---
 title: "useLink Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useLink"
+sidebar_label: "useLink"
 description: "Build Use Link in Refine v5. Learn the key steps. Explore best practices for SSR, navigation for real-world React admin panels. Learn with code examples."
 ---
 

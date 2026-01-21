@@ -1,6 +1,8 @@
 ---
 id: useForm
 title: "Ant Design useForm Guide | Refine v4 CRUD Forms"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Simplify form management with Ant Design and Refine v4. Learn to build create and edit forms using the powerful useForm hook."
 example-tags: [form, antd]
 ---

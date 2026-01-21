@@ -1,5 +1,7 @@
 ---
 title: "useParsed Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useParsed"
+sidebar_label: "useParsed"
 description: "Set up Use Parsed in Refine v5. Learn best practices. Learn SSR, navigation for real-world React admin panels. Learn with code examples."
 ---
 

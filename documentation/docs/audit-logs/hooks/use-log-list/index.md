@@ -1,5 +1,7 @@
 ---
 title: "useLogList Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useLogList"
+sidebar_label: "useLogList"
 description: "Integrate Use Log List in Refine v5. Learn best practices. Explore best practices for result for compliance and traceability. Hands-on examples included."
 ---
 

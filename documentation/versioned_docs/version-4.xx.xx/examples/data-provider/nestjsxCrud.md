@@ -1,6 +1,8 @@
 ---
 id: nestjsxCrud
 title: "Nestjsx CRUD Example | Refine v4 Backend Sync"
+display_title: "Nestjsx CRUD"
+sidebar_label: "Nestjsx CRUD"
 description: "Integrate Nestjsx CRUD with Refine v4 easily. A complete example showing how to connect your NestJS REST API to a React admin dashboard."
 example-tags: [data-provider]
 ---

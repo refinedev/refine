@@ -1,5 +1,7 @@
 ---
 title: "Ant Design AuthPage Component | Refine v4 UI"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Ready-to-use Ant Design login, register, and password reset pages. Documentation on customizing and implementing auth views in Refine v4 with ease."
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx

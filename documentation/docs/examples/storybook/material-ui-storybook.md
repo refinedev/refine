@@ -2,6 +2,7 @@
 slug: material-ui-storybook
 id: material-ui-storybook
 title: "Material UI Storybook Example | Best Practices in Refine v5"
+display_title: "Storybook with Material UI"
 description: "Set up Material UI Storybook in Refine v5. Learn best practices. Learn provider for real-world React admin panels. See practical code samples."
 sidebar_label: Storybook
 example-title: Storybook with Material UI

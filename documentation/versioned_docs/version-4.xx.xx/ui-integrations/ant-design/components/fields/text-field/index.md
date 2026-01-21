@@ -1,5 +1,7 @@
 ---
 title: "Ant Design TextField | Refine v4 Core Display"
+display_title: "Text"
+sidebar_label: "Text"
 description: "Master basic data display with the TextField component. Documentation on showing string values in Ant Design and Refine v4 CRUD views."
 swizzle: true
 ---

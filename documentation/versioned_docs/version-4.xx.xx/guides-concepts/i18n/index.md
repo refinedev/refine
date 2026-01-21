@@ -1,5 +1,7 @@
 ---
 title: "i18n Concepts | Internationalization in Refine"
+display_title: "Internationalization (i18n)"
+sidebar_label: "Internationalization (i18n)"
 description: "Master multi-language support. Learn the core concepts of implementing i18n in Refine v4 for global React applications."
 ---
 

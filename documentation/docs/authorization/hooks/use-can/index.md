@@ -1,5 +1,7 @@
 ---
 title: "useCan Hook | Authorization in Refine v5"
+display_title: "useCan"
+sidebar_label: "useCan"
 description: "Learn to use the useCan hook in Refine v5. Learn how to secure RBAC, ABAC for secure enterprise React apps. Learn with code examples."
 siderbar_label: useCan
 ---

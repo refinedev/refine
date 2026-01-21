@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Refresh Button | Refine v4 Data Sync"
+display_title: "Refresh"
+sidebar_label: "Refresh"
 description: "Trigger manual data updates in Chakra UI views. Official guide to using the Refresh Button for instant data invalidation in Refine v4."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Introduction Guide | Material Design UI in Refine v5"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Set up Introduction in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 ---
 

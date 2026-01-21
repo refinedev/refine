@@ -1,5 +1,7 @@
 ---
 title: "MUI List Component | UI Component in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Implement List in Refine v5. Learn the key steps. Learn integrate Material Design, components for polished admin UIs. See practical code samples."
 swizzle: true
 ---

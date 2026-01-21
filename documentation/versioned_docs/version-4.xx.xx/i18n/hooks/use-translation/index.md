@@ -1,5 +1,7 @@
 ---
 title: "useTranslation Hook | Refine v4 i18n Guide"
+display_title: "useTranslation"
+sidebar_label: "useTranslation"
 description: "Master the useTranslation hook for multi-language support. Learn how to translate labels, buttons, and menus dynamically in Refine v4."
 ---
 

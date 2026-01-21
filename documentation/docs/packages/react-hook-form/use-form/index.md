@@ -1,5 +1,7 @@
 ---
 title: "useForm Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Secure Use Form in Refine v5. Learn best practices. Explore best practices for data and mutation for real-world React admin panels."
 source: packages/react-hook-form/src/useForm/index.ts
 ---

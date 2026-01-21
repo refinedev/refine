@@ -1,5 +1,7 @@
 ---
 title: "List of Packages Integration Guide | Packages in Refine v5"
+display_title: "List of Packages"
+sidebar_label: "List of Packages"
 description: "Build List Of Packages in Refine v5. Learn the key steps. Explore connector and provider for real-world React admin panels. Built for production use."
 ---
 

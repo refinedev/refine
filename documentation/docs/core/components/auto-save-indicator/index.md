@@ -1,5 +1,7 @@
 ---
 title: "Auto Save Indicator Component | Components in Refine v5"
+display_title: "<AutoSaveIndicator />"
+sidebar_label: "<AutoSaveIndicator />"
 description: "Implement Auto Save Indicator in Refine v5. Learn the key steps. Learn best practices for auto-save and status for real-world React admin panels."
 source: packages/core/src/components/autoSaveIndicator/index.tsx
 ---

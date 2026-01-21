@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Create Button Component | Navigation UI in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Secure Create Button in Refine v5. Learn best practices. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. Real-world snippets included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/create.tsx
 ---

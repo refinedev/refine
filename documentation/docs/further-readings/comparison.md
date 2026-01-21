@@ -1,5 +1,6 @@
 ---
 title: "Comparison Guide | Best Practices in Refine v5"
+display_title: "Comparison | Refine vs React-Admin vs AdminBro vs Retool vs Redwood"
 description: "Build Comparison in Refine v5. Learn the key steps. Explore provider and react for real-world React admin panels. Learn with code examples."
 sidebar_label: Comparison
 ---

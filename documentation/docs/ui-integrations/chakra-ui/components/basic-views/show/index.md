@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Show Component | UI Component in Refine v5"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Learn to integrate Show in Refine v5. Learn integration patterns for hide and localhost for polished admin UIs. See practical code samples."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useModalForm Hook | Ant Design & Refine v4 Guide"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Official documentation for modal forms. Learn how to handle CRUD operations inside Ant Design Modals using Refine v4's powerful form logic."
 ---
 

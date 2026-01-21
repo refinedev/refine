@@ -1,6 +1,7 @@
 ---
 id: material-ui
 title: "MUI Import/Export Example | Refine v4 Data Tools"
+display_title: "Import and Export in Material UI"
 description: "Add CSV import and export capabilities to your Material UI admin panel in Refine v4. Manage bulk data with ease."
 sidebar_label: Import / Export
 example-title: Import / Export CSV with Material UI

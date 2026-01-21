@@ -1,6 +1,7 @@
 ---
 id: multi-level-menu
 title: "Multi-Level Sidebar Menu | Hierarchical Navigation in Refine"
+display_title: "Multi Level Menu"
 description: "Organize large-scale apps with multi-level menus in Refine v4. Create nested navigation structures for complex resource management."
 sidebar_label: Multi Level Menu
 ---

@@ -1,6 +1,8 @@
 ---
 id: remix-headless
 title: "Remix Headless Example | Refine v4 Framework Integration"
+display_title: "Headless"
+sidebar_label: "Headless"
 description: "Build headless admin panels with Remix and Refine v4. Learn how to combine Remix's full-stack capabilities with Refine's logic-only hooks."
 example-tags: [remix, headless]
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI MarkdownField | Refine v4 Content UI"
+display_title: "Markdown"
+sidebar_label: "Markdown"
 description: "Render markdown content safely with Chakra UI. Documentation on implementing the MarkdownField component in your Refine v4 application."
 swizzle: true
 ---

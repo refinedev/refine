@@ -1,5 +1,7 @@
 ---
 title: "useGetToPath Hook | Usage & Patterns in Refine v5"
+display_title: "useGetToPath"
+sidebar_label: "useGetToPath"
 description: "Implement Use Get To Path in Refine v5. Learn the key steps. Explore best practices for want for real-world React admin panels. Learn with code examples."
 ---
 

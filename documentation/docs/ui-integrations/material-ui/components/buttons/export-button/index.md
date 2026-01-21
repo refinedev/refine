@@ -1,5 +1,7 @@
 ---
 title: "MUI Export Button Component | Data Tools in Refine v5"
+display_title: "Export"
+sidebar_label: "Export"
 description: "Set up Export Button in Refine v5. Learn best practices. Learn integrate hide and properties for polished admin UIs. See practical code samples."
 swizzle: true
 ---

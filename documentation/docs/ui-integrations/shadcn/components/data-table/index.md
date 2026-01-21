@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui DataTable Component | Data Table in Refine v5"
+display_title: "<DataTable />"
+sidebar_label: "<DataTable />"
 description: "Learn to integrate DataTable in Refine v5. Learn integrate filter and column for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/data-table/data-table.tsx
 ---

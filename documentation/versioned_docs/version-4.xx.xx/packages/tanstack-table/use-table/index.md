@@ -1,5 +1,7 @@
 ---
 title: "useTable Hook Guide | Refine v4 TanStack Table"
+display_title: "useTable"
+sidebar_label: "useTable"
 description: "Master data grid management with TanStack Table and Refine v4. Handle pagination, sorting, and filtering in a headless React environment."
 source: /packages/react-table/src/useTable
 ---

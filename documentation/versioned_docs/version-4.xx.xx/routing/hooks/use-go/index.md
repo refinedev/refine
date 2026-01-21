@@ -1,5 +1,7 @@
 ---
 title: "useGo Hook | Programmatic Navigation in Refine v4"
+display_title: "useGo"
+sidebar_label: "useGo"
 description: "Navigate between pages with ease. Master the useGo hook to trigger route changes for resources and custom actions in your app."
 ---
 

@@ -1,6 +1,8 @@
 ---
 id: useModalForm
 title: "Ant Design Modal Forms | Refine v4 useModalForm"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Build responsive modal forms in Refine v4 using Ant Design. Check out the example for quick data entry and editing in React."
 example-tags: [form, antd]
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Import Button | Refine v4 Bulk Upload"
+display_title: "Import"
+sidebar_label: "Import"
 description: "Guide to adding CSV import capabilities to your admin panel. Learn how to use the Ant Design Import Button in Refine v4 for batch data entry."
 swizzle: true
 ---

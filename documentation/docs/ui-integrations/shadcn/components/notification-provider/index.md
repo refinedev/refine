@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Notification Provider Component | Notifications in Refine v5"
+display_title: "Notification Provider"
+sidebar_label: "Notification Provider"
 description: "Integrate Notification Provider in Refine v5. Learn best practices. Explore customization options for notifications for polished admin UIs."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/notification/use-notification-provider.tsx
 ---

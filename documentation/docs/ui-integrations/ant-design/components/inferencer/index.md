@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Inferencer Component | UI Component in Refine v5"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Secure Inferencer in Refine v5. Learn best practices. Learn integration patterns for enterprise UI, components for polished admin UIs. Learn with code examples."
 ---
 

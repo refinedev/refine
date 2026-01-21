@@ -1,5 +1,7 @@
 ---
 title: "MUI Save Button | Refine v4 Form Actions"
+display_title: "Save"
+sidebar_label: "Save"
 description: "Master form submissions with the MUI Save Button. Documentation on handling loading states and form logic in Refine v4 with Material UI."
 swizzle: true
 ---

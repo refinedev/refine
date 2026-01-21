@@ -1,5 +1,7 @@
 ---
 title: "Refine Component Guide | Best Practices in Refine v5"
+display_title: "<Refine>"
+sidebar_label: "<Refine>"
 description: "Set up Refine Component in Refine v5. Learn best practices. Learn value and data for real-world React admin panels. Explore with code snippets."
 ---
 

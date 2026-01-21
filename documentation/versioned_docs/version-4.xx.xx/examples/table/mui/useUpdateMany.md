@@ -1,6 +1,8 @@
 ---
 id: useUpdateMany
 title: "Bulk Update with MUI | Refine v4 useUpdateMany"
+display_title: "useUpdateMany"
+sidebar_label: "useUpdateMany"
 description: "Update multiple records at once using Material UI and Refine v4. Master the useUpdateMany hook for high-velocity data management."
 example-title: Material UI useUpdateMany Hook
 example-tags: [table, mui]

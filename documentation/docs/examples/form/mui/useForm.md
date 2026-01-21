@@ -1,6 +1,8 @@
 ---
 id: useForm
 title: "UseForm Example | Best Practices in Refine v5"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Secure UseForm in Refine v5. Learn best practices. Learn best practices for Material Design, components for real-world React admin panels."
 example-tags: [form, mui, react-hook-form]
 ---

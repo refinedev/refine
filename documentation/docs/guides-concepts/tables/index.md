@@ -1,5 +1,7 @@
 ---
 title: "Tables Guide | Best Practices in Refine v5"
+display_title: "Tables"
+sidebar_label: "Tables"
 description: "Explore how to implement Tables in Refine v5. Explore best practices for open and check for real-world React admin panels. Hands-on examples included."
 ---
 

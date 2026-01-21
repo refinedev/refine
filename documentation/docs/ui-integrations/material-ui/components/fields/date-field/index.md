@@ -1,5 +1,7 @@
 ---
 title: "MUI Date Field Component | UI Component in Refine v5"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Integrate Date Field in Refine v5. Learn best practices. Learn integration patterns for locales for polished admin UIs. See practical code samples."
 swizzle: true
 ---

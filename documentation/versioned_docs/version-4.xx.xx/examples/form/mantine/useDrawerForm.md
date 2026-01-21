@@ -1,6 +1,8 @@
 ---
 id: useDrawerForm
 title: "React Hook Form & Refine v4 | useForm Integration"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "The ultimate guide to using React Hook Form with Refine v4. Manage your form logic with high performance and flexibility."
 example-tags: [form, mantine]
 ---

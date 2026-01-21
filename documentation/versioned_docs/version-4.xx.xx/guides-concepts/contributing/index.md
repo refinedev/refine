@@ -1,5 +1,7 @@
 ---
 title: "Contributing to Refine | Open Source Guide"
+display_title: "Contributing"
+sidebar_label: "Contributing"
 description: "Join the Refine community. Learn how to contribute to the core framework, documentations, and ecosystem to help grow the project."
 ---
 

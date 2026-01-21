@@ -1,5 +1,6 @@
 ---
 title: "Router Provider Migration | Refine v4 Routing Update"
+display_title: "Migrating Router Provider from 3.x.x to 4.x.x"
 description: "Guide to upgrading your routing logic for Refine v4. Transition to the new router provider system with Next.js, Remix, or React Router."
 sidebar_label: Migrating Router Provider
 ---

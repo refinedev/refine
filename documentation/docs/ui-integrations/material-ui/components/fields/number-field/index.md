@@ -1,5 +1,7 @@
 ---
 title: "MUI Number Field Component | UI Component in Refine v5"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Learn to integrate Number Field in Refine v5. Learn integrate options and display for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

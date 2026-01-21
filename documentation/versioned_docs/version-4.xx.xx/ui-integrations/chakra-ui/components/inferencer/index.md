@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Inferencer | Refine v4 Auto-Code Generation"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Speed up development with Chakra UI Inferencer. Documentation on auto-generating accessible CRUD pages and forms from your API schema."
 ---
 

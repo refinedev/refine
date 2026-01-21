@@ -1,5 +1,7 @@
 ---
 title: "React Router Integration | Refine v4 Navigation"
+display_title: "React Router"
+sidebar_label: "React Router"
 description: "Use Refine v4 with the industry-standard React Router. Guide to setting up browser-based routing for your admin panel and dashboards."
 ---
 

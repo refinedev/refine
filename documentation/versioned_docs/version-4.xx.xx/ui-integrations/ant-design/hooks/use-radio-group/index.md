@@ -1,5 +1,7 @@
 ---
 title: "useRadioGroup Hook | Ant Design & Refine v4 Forms"
+display_title: "useRadioGroup"
+sidebar_label: "useRadioGroup"
 description: "Manage radio button groups effortlessly. Documentation on connecting Ant Design Radio components to Refine v4 data sources with useRadioGroup."
 ---
 

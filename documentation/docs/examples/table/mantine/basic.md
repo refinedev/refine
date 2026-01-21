@@ -1,6 +1,7 @@
 ---
 id: basic
 title: "Basic Example | Pagination in Refine v5: Mantine"
+display_title: "Tables with Mantine"
 description: "Build Basic in Refine v5. Learn the key steps. Learn best practices for provider for real-world React admin panels. Learn with code examples."
 sidebar_label: Basic Table
 example-title: Basic React Table with Mantine

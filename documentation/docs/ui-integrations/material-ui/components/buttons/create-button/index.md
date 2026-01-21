@@ -1,5 +1,7 @@
 ---
 title: "MUI Create Button Component | Navigation UI in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Learn to integrate Create Button in Refine v5. Learn integrate Material Design, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

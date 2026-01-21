@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Show Button Component | Navigation UI in Refine v5"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Explore how to integrate Show Button in Refine v5. Learn integration patterns for route for polished admin UIs. Hands-on examples included."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/show.tsx
 ---

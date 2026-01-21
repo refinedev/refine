@@ -1,5 +1,7 @@
 ---
 title: "Mantine AuthPage Component | Refine v4 UI"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Ready-to-use Mantine login and registration pages. Documentation on implementing and styling authentication views in Refine v4 with Mantine."
 swizzle: true
 source: packages/mantine/src/components/pages/auth/index.tsx

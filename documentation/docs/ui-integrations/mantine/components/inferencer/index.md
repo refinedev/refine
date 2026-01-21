@@ -1,5 +1,7 @@
 ---
 title: "Mantine Inferencer Component | UI Component in Refine v5"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Learn to integrate Inferencer in Refine v5. Learn integration patterns for React UI library, components for polished admin UIs. Hands-on examples included."
 ---
 

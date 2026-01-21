@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Clone Button Component | CRUD Actions in Refine v5"
+display_title: "Clone"
+sidebar_label: "Clone"
 description: "Learn to integrate Clone Button in Refine v5. Learn integrate hide for polished admin UIs. Explore with code snippets. Built for production use."
 swizzle: true
 ---

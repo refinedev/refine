@@ -1,5 +1,7 @@
 ---
 title: "useResource Hook | Managing Refine v4 Resources"
+display_title: "useResource"
+sidebar_label: "useResource"
 description: "Retrieve metadata and configuration for your resources. Learn how to use the useResource hook to build dynamic, data-driven UIs."
 ---
 

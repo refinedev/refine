@@ -1,6 +1,7 @@
 ---
 id: custom-layout
 title: "Custom Layout Tutorial | Sidebar in Refine v5"
+display_title: "Custom Layout"
 description: "Set up Custom Layout in Refine v5. Learn best practices. Explore production tips for sidebar, header for production-ready workflows. Explore with code snippets."
 sidebar_label: Custom Layout
 ---

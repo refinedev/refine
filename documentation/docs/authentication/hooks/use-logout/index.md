@@ -1,5 +1,7 @@
 ---
 title: "useLogout Hook | Best Practices for Authentication in Refine v5"
+display_title: "useLogout"
+sidebar_label: "useLogout"
 description: "Build Use Logout in Refine v5. Learn the key steps. Learn secure OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 source: /packages/core/src/hooks/auth/useLogout/index.ts
 ---

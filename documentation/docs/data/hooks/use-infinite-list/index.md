@@ -1,5 +1,7 @@
 ---
 title: "useInfiniteList Hook | Usage & Patterns in Refine v5"
+display_title: "useInfiniteList"
+sidebar_label: "useInfiniteList"
 siderbar_label: useInfiniteList
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/data/hooks/useInfiniteList.ts
 description: "Learn to use the useInfiniteList hook in Refine v5. Learn patterns to scale data and query for custom APIs and scalable data flows."

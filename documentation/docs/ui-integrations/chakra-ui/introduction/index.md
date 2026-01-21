@@ -1,5 +1,7 @@
 ---
 title: "Introduction Guide | Best Practices in Refine v5: Chakra UI"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Learn to integrate Introduction in Refine v5. Explore customization options for accessibility, components for polished admin UIs. Hands-on examples included."
 ---
 

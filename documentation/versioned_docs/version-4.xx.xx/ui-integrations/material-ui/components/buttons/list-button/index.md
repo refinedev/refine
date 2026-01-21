@@ -1,5 +1,7 @@
 ---
 title: "MUI List Button | Refine v4 UI Components"
+display_title: "List"
+sidebar_label: "List"
 description: "Documentation for the Material UI List Button. Learn how to navigate back to resource collections from any view in your Refine v4 app."
 swizzle: true
 ---

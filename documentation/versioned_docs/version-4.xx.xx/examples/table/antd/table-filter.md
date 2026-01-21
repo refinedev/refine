@@ -1,6 +1,7 @@
 ---
 id: tableFilter
 title: "Ant Design Table Filtering | Refine v4 Search Guide"
+display_title: "Table Filters in Ant Design"
 description: "Implement powerful table filters in Refine v4 using Ant Design. Help users find data faster with custom filtering logic and UI components."
 sidebar_label: Table Filters
 example-title: Filtering on Ant Design Table

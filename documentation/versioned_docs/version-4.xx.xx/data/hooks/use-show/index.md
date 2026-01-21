@@ -1,5 +1,7 @@
 ---
 title: "useShow Hook | Refine v4"
+display_title: "useShow"
+sidebar_label: "useShow"
 description: "Learn how to fetch and manage data for detail (show) views in Refine v4 using useShow and resource-based queries."
 ---
 

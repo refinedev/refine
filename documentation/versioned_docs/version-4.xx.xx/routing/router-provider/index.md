@@ -1,5 +1,7 @@
 ---
 title: "Router Provider Guide | Custom Routing in Refine v4"
+display_title: "Router Provider"
+sidebar_label: "Router Provider"
 description: "Master the Refine v4 Router Provider. Learn how to connect your preferred routing library and manage resource-based paths in your React admin panel."
 ---
 

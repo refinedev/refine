@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Forms Component | UI Component in Refine v5"
+display_title: "Forms"
+sidebar_label: "Forms"
 description: "Learn to integrate Forms in Refine v5. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. Real-world snippets included."
 source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form
 ---

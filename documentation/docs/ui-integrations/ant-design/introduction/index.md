@@ -1,5 +1,7 @@
 ---
 title: "Introduction Guide | Best Practices in Refine v5"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Explore how to integrate Introduction in Refine v5. Learn integration patterns for enterprise UI, components for polished admin UIs. See practical code samples."
 ---
 

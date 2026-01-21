@@ -1,5 +1,7 @@
 ---
 title: "Mantine Create Button Component | Navigation UI in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Learn to integrate Create Button in Refine v5. Learn integrate React UI library, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---

@@ -1,6 +1,8 @@
 ---
 id: useForm
 title: "UseForm Example | Enterprise UI in Refine v5"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Integrate UseForm in Refine v5. Learn best practices. Learn best practices for provider for real-world React admin panels. Learn with code examples."
 example-tags: [form, antd]
 ---

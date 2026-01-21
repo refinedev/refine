@@ -1,5 +1,7 @@
 ---
 title: "usePublish Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "usePublish"
+sidebar_label: "usePublish"
 description: "Implement Use Publish in Refine v5. Learn the key steps. Explore best practices for events and event for real-world React admin panels."
 source: packages/core/src/hooks/live/usePublish/index.ts
 ---

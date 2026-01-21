@@ -1,5 +1,7 @@
 ---
 title: "CanAccess Component | Conditional UI Security in Refine v4"
+display_title: "<CanAccess />"
+sidebar_label: "<CanAccess />"
 description: "Hide or disable UI elements based on permissions. Secure your buttons, menus, and pages with the Refine v4 CanAccess component."
 siderbar_label: <CanAccess />
 source: packages/core/src/components/canAccess/index.tsx

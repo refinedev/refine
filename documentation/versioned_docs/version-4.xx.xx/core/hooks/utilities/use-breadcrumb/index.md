@@ -1,5 +1,7 @@
 ---
 title: "useBreadcrumb Hook | Dynamic Navigation in Refine v4"
+display_title: "useBreadcrumb"
+sidebar_label: "useBreadcrumb"
 description: "Add data export features to your tables. Use the useExport hook to download resource collections as CSV files directly from Refine v4."
 source: packages/core/src/hooks/breadcrumb
 ---

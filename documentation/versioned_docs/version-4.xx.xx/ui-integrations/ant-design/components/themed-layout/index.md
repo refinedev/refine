@@ -1,5 +1,7 @@
 ---
 title: "Themed Layout Guide | Ant Design & Refine v4"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Master the official Ant Design Themed Layout in Refine v4. Documentation on customizing Sider, Header, and Footer for a professional admin dashboard."
 swizzle: true
 source: packages/antd/src/components/themedLayoutV2/index.tsx

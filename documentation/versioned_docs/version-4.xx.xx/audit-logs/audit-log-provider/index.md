@@ -1,5 +1,7 @@
 ---
 title: "Audit Log Provider in Refine v4 | Tracking Activity"
+display_title: "Audit Log Provider"
+sidebar_label: "Audit Log Provider"
 description: "Implement comprehensive activity tracking with Refine v4 Audit Log Provider. Monitor every data change and user action in your React admin panel."
 ---
 

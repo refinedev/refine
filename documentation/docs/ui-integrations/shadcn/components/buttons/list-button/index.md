@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui List Button Component | Navigation UI in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Integrate List Button in Refine v5. Learn best practices. Learn integration patterns for Radix UI, Tailwind CSS for polished admin UIs."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/list.tsx
 ---

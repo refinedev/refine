@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Migration Guide | Upgrading to Refine v4"
+display_title: "Migration Guide"
+sidebar_label: "Migration Guide"
 description: "Official guide for upgrading your Ant Design integration from Refine v3 to v4. Documentation on breaking changes and new UI features."
 ---
 

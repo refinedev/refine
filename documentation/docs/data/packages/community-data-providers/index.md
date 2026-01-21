@@ -1,5 +1,7 @@
 ---
 title: "Community Data Providers Integration Guide | REST API Integration in Refine v5"
+display_title: "Community Data Providers"
+sidebar_label: "Community Data Providers"
 description: "Learn to implement Community Data Providers in Refine v5. Learn patterns to scale REST, GraphQL for custom APIs and scalable data flows."
 ---
 

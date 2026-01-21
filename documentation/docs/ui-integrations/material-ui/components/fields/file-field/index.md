@@ -1,5 +1,7 @@
 ---
 title: "MUI File Field Component | UI Component in Refine v5"
+display_title: "File"
+sidebar_label: "File"
 description: "Explore how to integrate File Field in Refine v5. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 ---

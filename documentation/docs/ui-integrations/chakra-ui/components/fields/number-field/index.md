@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Number Field Component | UI Component in Refine v5"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Implement Number Field in Refine v5. Learn the key steps. Learn integration patterns for options and display for polished admin UIs."
 swizzle: true
 ---

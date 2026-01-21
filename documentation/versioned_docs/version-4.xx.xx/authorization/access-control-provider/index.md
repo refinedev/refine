@@ -1,5 +1,7 @@
 ---
 title: "Access Control Provider | RBAC & Security in Refine v4"
+display_title: "Access Control Provider"
+sidebar_label: "Access Control Provider"
 description: "Set up robust Access Control in Refine v4. Manage user roles (RBAC) and permissions across your entire React application from one central provider."
 ---
 

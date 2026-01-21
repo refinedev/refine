@@ -1,5 +1,7 @@
 ---
 title: "useModal Hook | Ant Design Modal Management"
+display_title: "useModal"
+sidebar_label: "useModal"
 description: "Simplify modal states in your admin panel. Guide to controlling Ant Design Modal visibility and data fetching with the Refine v4 useModal hook."
 ---
 

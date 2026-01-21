@@ -1,5 +1,7 @@
 ---
 title: "useGetToPath Hook | Dynamic URL Generation"
+display_title: "useGetToPath"
+sidebar_label: "useGetToPath"
 description: "Resolve resource paths programmatically. Use the useGetToPath hook to generate accurate URLs for CRUD actions in Refine v4."
 ---
 

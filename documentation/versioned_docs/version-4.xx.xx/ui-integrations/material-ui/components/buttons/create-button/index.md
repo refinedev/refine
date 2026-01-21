@@ -1,5 +1,7 @@
 ---
 title: "MUI Create Button | Refine v4 Navigation UI"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Documentation for the MUI Create Button. Learn how to trigger navigation to resource creation pages using pre-styled Material UI components."
 swizzle: true
 ---

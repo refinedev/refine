@@ -1,6 +1,8 @@
 ---
 id: serverSideFormValidation
 title: "ServerSideFormValidation Example | Best Practices in Refine v5: Mantine"
+display_title: "Server-Side Form Validation"
+sidebar_label: "Server-Side Form Validation"
 description: "Build ServerSideFormValidation in Refine v5. Learn the key steps. Explore best practices for provider for real-world React admin panels."
 example-tags: [form, mantine]
 ---

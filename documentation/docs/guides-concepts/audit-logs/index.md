@@ -1,5 +1,7 @@
 ---
 title: "Audit Logs Guide | Best Practices in Refine v5"
+display_title: "Audit Logs"
+sidebar_label: "Audit Logs"
 description: "Build Audit Logs in Refine v5. Learn the key steps. Learn provider for compliance and traceability. Hands-on examples included."
 ---
 

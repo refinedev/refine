@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Text Field Component | UI Component in Refine v5"
+display_title: "Text"
+sidebar_label: "Text"
 description: "Build Text Field in Refine v5. Learn the key steps. Explore customization options for Ant Design for polished admin UIs. See practical code samples."
 swizzle: true
 ---

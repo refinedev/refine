@@ -1,6 +1,8 @@
 ---
 id: cerbos
 title: "Cerbos Integration Example | Refine v4 AuthZ"
+display_title: "Cerbos"
+sidebar_label: "Cerbos"
 description: "Explore the Cerbos access control example in Refine v4. Learn how to manage stateless policies for your React applications."
 example-tags: [access-control]
 ---

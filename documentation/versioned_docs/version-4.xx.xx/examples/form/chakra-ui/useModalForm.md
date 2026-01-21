@@ -1,6 +1,8 @@
 ---
 id: useModalForm
 title: "Chakra UI useModalForm Example | Refine v4 UI Guide"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Implement modal-based forms with Chakra UI in Refine v4. Streamline your user experience with responsive pop-up forms for CRUD actions."
 example-tags: [form, chakra-ui, react-hook-form]
 ---

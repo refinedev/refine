@@ -1,5 +1,7 @@
 ---
 title: "useResourceParams Hook | Route State Management"
+display_title: "useResourceParams"
+sidebar_label: "useResourceParams"
 description: "Fetch current resource parameters from the URL. Optimize your components by accessing route-bound data with Refine v4's utility hook."
 source: packages/core/src/hooks/use-resource-params
 ---

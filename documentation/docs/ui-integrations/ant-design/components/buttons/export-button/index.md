@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Export Button Component | Data Tools in Refine v5"
+display_title: "Export"
+sidebar_label: "Export"
 description: "Secure Export Button in Refine v5. Learn best practices. Explore customization options for hide and properties for polished admin UIs."
 swizzle: true
 ---

@@ -1,5 +1,6 @@
 ---
 title: "MUI v5 to v6 Migration | Refine v4 Upgrade Guide"
+display_title: "Migration Guide for Material UI from v5 to v6"
 description: "Official guide to upgrading Material UI from v5 to v6 in Refine v4. Learn about breaking changes, theme updates, and component fixes."
 sidebar_label: Material UI v5 to v6
 ---

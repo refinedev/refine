@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Number Field Component | UI Component in Refine v5"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Learn to integrate Number Field in Refine v5. Learn integrate enterprise UI, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useCheckboxGroup Hook | Best Practices for Usage & Patterns | Refine v5"
+display_title: "useCheckboxGroup"
+sidebar_label: "useCheckboxGroup"
 description: "Set up Use Checkbox Group in Refine v5. Learn best practices. Explore customization options for data and allows for polished admin UIs."
 ---
 

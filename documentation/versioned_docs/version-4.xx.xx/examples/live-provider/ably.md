@@ -1,6 +1,8 @@
 ---
 id: ably
 title: "Live Provider with Ably | Refine v4"
+display_title: "Ably"
+sidebar_label: "Ably"
 description: "Enable real-time updates in Refine v4 using Ably Live Provider and build reactive admin experiences."
 example-tags: [live-provider]
 ---

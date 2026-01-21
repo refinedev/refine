@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI BooleanField | Refine v4 Data Display"
+display_title: "Boolean"
+sidebar_label: "Boolean"
 description: "Display boolean values using Chakra UI icons and switches. Documentation on implementing BooleanField for clear data representation in Refine v4."
 swizzle: true
 ---

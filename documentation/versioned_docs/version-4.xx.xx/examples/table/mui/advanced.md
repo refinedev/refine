@@ -1,6 +1,7 @@
 ---
 id: advanced
 title: "Advanced Material UI Table | Refine v4 Data Grid"
+display_title: "Advanced Tables with Material UI"
 description: "Build enterprise-level tables with Material UI and Refine v4. Implement complex features like nesting, grouping, and custom actions."
 sidebar_label: Advanced Table
 example-title: Advanced Material UI Table

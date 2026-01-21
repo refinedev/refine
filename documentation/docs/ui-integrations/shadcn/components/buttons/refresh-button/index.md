@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Refresh Button Component | UI Button in Refine v5"
+display_title: "Refresh"
+sidebar_label: "Refresh"
 description: "Explore how to integrate Refresh Button in Refine v5. Explore customization options for Radix UI, Tailwind CSS for polished admin UIs."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/refresh.tsx
 ---

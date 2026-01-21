@@ -1,6 +1,7 @@
 ---
 id: real-time
 title: "Real Time Tutorial | Best Practices in Refine v5"
+display_title: "Live / Realtime"
 description: "Integrate Real Time in Refine v5. Learn best practices. Learn advanced patterns for subscriptions, live updates for production-ready workflows."
 sidebar_label: Live / Realtime
 ---

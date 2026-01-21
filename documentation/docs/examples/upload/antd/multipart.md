@@ -1,6 +1,8 @@
 ---
 id: multipart
 title: "Multipart Example | Best Practices in Refine v5"
+display_title: "Multipart Upload"
+sidebar_label: "Multipart Upload"
 description: "Build Multipart in Refine v5. Learn the key steps. Explore best practices for upload and provider for real-world React admin panels."
 example-tags: [antd, upload]
 ---

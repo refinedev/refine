@@ -1,5 +1,7 @@
 ---
 title: "Mantine List View | Refine v4 Data Grids"
+display_title: "List"
+sidebar_label: "List"
 description: "Build modern 'List' pages with Mantine. Documentation on implementing tables, pagination, and data filters for your Refine v4 resources."
 swizzle: true
 ---

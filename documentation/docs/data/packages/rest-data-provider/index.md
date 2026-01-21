@@ -1,5 +1,7 @@
 ---
 title: "Rest Data Provider Integration Guide | Best Practices in Refine v5"
+display_title: "Rest Data Provider"
+sidebar_label: "Rest Data Provider"
 description: "Build Rest Data Provider in Refine v5. Learn the key steps. Learn scale REST, GraphQL for custom APIs and scalable data flows. Explore with code snippets."
 source: https://github.com/refinedev/refine/tree/main/packages/rest
 swizzle: true

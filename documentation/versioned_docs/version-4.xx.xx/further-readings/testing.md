@@ -1,5 +1,7 @@
 ---
 title: "Testing in Refine v4 | Unit & E2E Testing Guide"
+display_title: "Testing"
+sidebar_label: "Testing"
 description: "Master testing patterns for Refine v4 applications. Learn how to write unit tests and E2E tests for your React CRUD components and logic."
 ---
 

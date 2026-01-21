@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Email Field Component | UI Component in Refine v5"
+display_title: "Email"
+sidebar_label: "Email"
 description: "Implement Email Field in Refine v5. Learn the key steps. Explore customization options for properties and chakra for polished admin UIs."
 swizzle: true
 ---

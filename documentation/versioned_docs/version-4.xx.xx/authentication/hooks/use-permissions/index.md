@@ -1,5 +1,7 @@
 ---
 title: "usePermissions Hook | Refine v4"
+display_title: "usePermissions"
+sidebar_label: "usePermissions"
 description: "Learn how Refine v4 manages user permissions and role-based access using the usePermissions hook."
 source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---

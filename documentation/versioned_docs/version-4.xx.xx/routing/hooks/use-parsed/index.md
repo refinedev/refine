@@ -1,5 +1,7 @@
 ---
 title: "useParsed Hook | URL Parameter Parsing in Refine"
+display_title: "useParsed"
+sidebar_label: "useParsed"
 description: "Access route parameters and resource data easily. Learn how to use the useParsed hook to extract data from the current URL in v4."
 ---
 

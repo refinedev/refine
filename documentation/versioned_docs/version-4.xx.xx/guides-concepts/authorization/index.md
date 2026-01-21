@@ -1,5 +1,7 @@
 ---
 title: "Authorization Concepts | RBAC & Security in Refine"
+display_title: "Authorization"
+sidebar_label: "Authorization"
 description: "Deep dive into access control patterns. Understand how Refine v4 handles roles, permissions, and conditional UI rendering effectively."
 ---
 

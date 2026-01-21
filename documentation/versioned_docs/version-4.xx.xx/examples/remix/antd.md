@@ -1,6 +1,7 @@
 ---
 id: remix-antd
 title: "Remix & Ant Design Example | Refine v4 Framework"
+display_title: "Remix with Ant Design"
 description: "Discover how to use Refine v4 with Remix and Ant Design. Build high-performance, SEO-friendly admin panels with modern tooling."
 sidebar_label: Remix
 example-tags: [remix, antd]

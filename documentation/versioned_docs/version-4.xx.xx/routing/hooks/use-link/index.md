@@ -1,5 +1,7 @@
 ---
 title: "useLink Hook | Custom Link Logic in Refine v4"
+display_title: "useLink"
+sidebar_label: "useLink"
 description: "Create custom navigation components. Learn how to use the useLink hook to build branded or specialized links within your Refine project."
 ---
 

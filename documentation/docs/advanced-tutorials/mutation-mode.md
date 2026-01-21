@@ -1,6 +1,8 @@
 ---
 id: mutation-mode
 title: "Mutation Mode Tutorial | Best Practices in Refine v5"
+display_title: "Mutation Mode"
+sidebar_label: "Mutation Mode"
 description: "Set up Mutation Mode in Refine v5. Learn best practices. Explore production tips for optimistic updates, cache for production-ready workflows."
 ---
 

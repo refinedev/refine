@@ -1,5 +1,7 @@
 ---
 title: "Mantine Inferencer | Refine v4 Auto-Code Generation"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Speed up your Mantine project with the Inferencer. Documentation on auto-generating CRUD pages and forms from your API schema."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Okta Guide | SSO in Refine v5"
+display_title: "Okta Auth Provider"
+sidebar_label: "Okta Auth Provider"
 description: "Integrate Okta in Refine v5. Learn best practices. Explore best practices for auth and npmrc for real-world React admin panels. Real-world snippets included."
 ---
 

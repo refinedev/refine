@@ -1,5 +1,7 @@
 ---
 title: "useModalForm Hook | Mantine & Refine v4 Guide"
+display_title: "useModalForm"
+sidebar_label: "useModalForm"
 description: "Official documentation for Mantine modal forms. Learn how to handle CRUD operations inside modals using Refine v4's powerful form logic."
 ---
 

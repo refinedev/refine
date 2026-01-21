@@ -1,5 +1,7 @@
 ---
 title: "useStepsForm Hook | Usage & Patterns | Refine v5"
+display_title: "useStepsForm"
+sidebar_label: "useStepsForm"
 description: "Secure Use Steps Form in Refine v5. Learn best practices. Learn integrate data and current for polished admin UIs. See practical code samples."
 ---
 

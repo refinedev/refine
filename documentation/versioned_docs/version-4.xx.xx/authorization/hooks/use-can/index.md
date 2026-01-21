@@ -1,5 +1,7 @@
 ---
 title: "useCan Hook | Manual Permission Checks in Refine v4"
+display_title: "useCan"
+sidebar_label: "useCan"
 description: "Perform fine-grained access checks in your code. Use the useCan hook to determine user permissions for specific resources and actions in Refine v4."
 siderbar_label: useCan
 ---

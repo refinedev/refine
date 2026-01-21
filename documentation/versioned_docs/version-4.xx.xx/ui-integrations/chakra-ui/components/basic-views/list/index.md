@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI List View | Refine v4 Data Grids"
+display_title: "List"
+sidebar_label: "List"
 description: "Build accessible 'List' pages with Chakra UI. Documentation on implementing tables, pagination, and filters for your Refine v4 resources."
 swizzle: true
 ---

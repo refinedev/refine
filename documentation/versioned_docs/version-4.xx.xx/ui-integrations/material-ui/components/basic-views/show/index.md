@@ -1,5 +1,7 @@
 ---
 title: "MUI Show View | Refine v4 Detail Pages"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Display record details using Material UI. Learn how to build professional 'Show' pages with Refine v4's layout components and typography."
 swizzle: true
 ---

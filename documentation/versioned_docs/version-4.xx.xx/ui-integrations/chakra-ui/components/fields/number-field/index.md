@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI NumberField | Refine v4 Formatting"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Display formatted numeric values and currencies. Guide to using the Chakra UI NumberField for professional data views in Refine v4."
 swizzle: true
 ---

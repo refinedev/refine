@@ -1,5 +1,7 @@
 ---
 title: "useExport Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useExport"
+sidebar_label: "useExport"
 description: "Secure Use Export in Refine v5. Learn best practices. Learn data for real-world React admin panels. See practical code samples."
 ---
 

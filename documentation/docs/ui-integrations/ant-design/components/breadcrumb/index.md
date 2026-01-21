@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Breadcrumb Component | UI Component in Refine v5"
+display_title: "Breadcrumb"
+sidebar_label: "Breadcrumb"
 description: "Integrate Breadcrumb in Refine v5. Learn best practices. Explore customization options for home for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

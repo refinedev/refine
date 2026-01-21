@@ -1,5 +1,7 @@
 ---
 title: "useSubscription Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useSubscription"
+sidebar_label: "useSubscription"
 description: "Integrate Use Subscription in Refine v5. Learn best practices. Learn best practices for channel and properties for real-world React admin panels."
 source: packages/core/src/hooks/live/useSubscription/index.ts
 ---

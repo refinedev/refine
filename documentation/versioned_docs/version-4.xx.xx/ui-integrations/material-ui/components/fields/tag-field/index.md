@@ -1,5 +1,7 @@
 ---
 title: "MUI TagField | Refine v4 Chip Labels"
+display_title: "Tag"
+sidebar_label: "Tag"
 description: "Learn how to display tags and categories using MUI Chips. Documentation on the TagField component for status visualization in Refine v4."
 swizzle: true
 ---

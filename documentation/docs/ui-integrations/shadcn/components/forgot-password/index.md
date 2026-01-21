@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui Forgot Password Component | UI Component in Refine v5"
+display_title: "<ForgotPasswordForm />"
+sidebar_label: "<ForgotPasswordForm />"
 description: "Implement Forgot Password in Refine v5. Learn the key steps. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. Explore with code snippets."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/forgot-password-form.tsx
 ---

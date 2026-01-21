@@ -1,5 +1,7 @@
 ---
 title: "Theming Guide | Material Design UI in Refine v5"
+display_title: "Theming"
+sidebar_label: "Theming"
 description: "Integrate Theming in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 ---
 

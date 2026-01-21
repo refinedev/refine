@@ -1,6 +1,8 @@
 ---
 id: useForm
 title: "React Hook Form & Refine v4 | useForm Integration"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "The ultimate guide to using React Hook Form with Refine v4. Manage your form logic with high performance and flexibility."
 example-tags: [form, headless, react-hook-form]
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useSelect Hook | Ant Design & Refine v4 Relational Data"
+display_title: "useSelect"
+sidebar_label: "useSelect"
 description: "Effortlessly populate Ant Design Select components. Learn how to fetch and filter relational data for your forms with the useSelect hook."
 siderbar_label: useSelect
 source: https://github.com/refinedev/refine/blob/main/packages/antd/src/hooks/fields/useSelect/index.ts

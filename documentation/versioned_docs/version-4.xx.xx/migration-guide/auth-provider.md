@@ -1,5 +1,6 @@
 ---
 title: "Auth Provider Migration | Upgrading to Refine v4"
+display_title: "Migrating Auth Provider from 3.x.x to 4.x.x"
 description: "Learn how to migrate your authentication logic to the new Refine v4 Auth Provider API. Ensure secure and updated identity management."
 sidebar_label: Migrating Auth Provider
 ---

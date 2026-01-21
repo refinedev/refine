@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Auth Page Component | UI Component in Refine v5"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Explore how to integrate Auth Page in Refine v5. Learn integrate accessibility, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 source: packages/chakra-ui/src/components/pages/auth/index.tsx

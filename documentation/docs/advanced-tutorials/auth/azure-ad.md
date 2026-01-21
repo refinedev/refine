@@ -1,6 +1,7 @@
 ---
 id: azure-ad
 title: "Azure AD SSO Guide | Enterprise Authentication & SSO in Refine v5"
+display_title: "Azure AD Login"
 description: "Build Azure AD in Refine v5. Learn the key steps. Learn secure Microsoft Entra ID, SSO for secure enterprise React apps. See practical code samples."
 sidebar_label: Azure AD Login
 ---

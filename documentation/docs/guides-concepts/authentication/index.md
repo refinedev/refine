@@ -1,5 +1,7 @@
 ---
 title: "Authentication Guide | OAuth & Security in Refine v5"
+display_title: "Authentication"
+sidebar_label: "Authentication"
 description: "Set up Authentication in Refine v5. Learn best practices. Learn secure OAuth, JWT for secure enterprise React apps. Real-world snippets included."
 ---
 

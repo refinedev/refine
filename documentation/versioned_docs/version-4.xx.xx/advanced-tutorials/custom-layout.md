@@ -1,6 +1,7 @@
 ---
 id: custom-layout
 title: "Custom Layout Tutorial | Brand Your Refine v4 Dashboard"
+display_title: "Custom Layout"
 description: "Learn to build bespoke layouts in Refine v4. Customize sidebars, headers, and footers to create a unique user experience for your admin panel."
 sidebar_label: Custom Layout
 ---

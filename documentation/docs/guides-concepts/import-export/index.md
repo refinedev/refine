@@ -1,5 +1,7 @@
 ---
 title: "Import Export Guide | Guides Concepts in Refine v5"
+display_title: "Import - Export"
+sidebar_label: "Import - Export"
 description: "Set up Import Export in Refine v5. Learn best practices. Learn data for real-world React admin panels. Learn with code examples."
 ---
 

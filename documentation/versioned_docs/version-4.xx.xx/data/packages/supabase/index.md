@@ -1,5 +1,7 @@
 ---
 title: "Supabase Data Provider | Refine v4 & Postgres"
+display_title: "Supabase"
+sidebar_label: "Supabase"
 description: "Build fast apps with Supabase and Refine v4. Implement authentication and database management using the official Supabase data provider."
 source: https://github.com/refinedev/refine/tree/main/packages/supabase
 swizzle: true

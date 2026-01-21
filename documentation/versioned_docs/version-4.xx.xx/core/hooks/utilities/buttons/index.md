@@ -1,5 +1,7 @@
 ---
 title: "Buttons Utility Hooks | Refine v4 Core"
+display_title: "Buttons"
+sidebar_label: "Buttons"
 description: "Discover Refine v4’s built-in button hooks for navigation, actions, and record operations. Learn how to use and customize buttons with core utilities."
 source: packages/core/src/hooks/button
 ---

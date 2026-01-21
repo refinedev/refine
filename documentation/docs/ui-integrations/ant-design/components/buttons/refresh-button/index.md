@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Refresh Button Component | UI Button in Refine v5"
+display_title: "Refresh"
+sidebar_label: "Refresh"
 description: "Learn to integrate Refresh Button in Refine v5. Learn integrate enterprise UI, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---

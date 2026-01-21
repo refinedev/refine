@@ -1,5 +1,7 @@
 ---
 title: "Appwrite Integration for Refine v4 | Backend Guide"
+display_title: "Appwrite"
+sidebar_label: "Appwrite"
 description: "Integrate Appwrite with Refine v4. Set up the data provider for authentication, database management, and file storage in your React apps."
 source: https://github.com/refinedev/refine/tree/main/packages/appwrite
 swizzle: true

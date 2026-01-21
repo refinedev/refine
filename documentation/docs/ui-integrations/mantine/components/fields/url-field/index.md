@@ -1,5 +1,7 @@
 ---
 title: "Mantine Url Field Component | UI Component in Refine v5"
+display_title: "Url"
+sidebar_label: "Url"
 description: "Integrate Url Field in Refine v5. Learn best practices. Learn integrate React UI library, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

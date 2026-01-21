@@ -1,5 +1,7 @@
 ---
 title: "Mantine Import Button Component | Data Tools in Refine v5"
+display_title: "Import"
+sidebar_label: "Import"
 description: "Explore how to integrate Import Button in Refine v5. Explore customization options for properties for polished admin UIs. Learn with code examples."
 swizzle: true
 ---

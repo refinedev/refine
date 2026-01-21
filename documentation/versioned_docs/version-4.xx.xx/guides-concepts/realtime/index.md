@@ -1,5 +1,7 @@
 ---
 title: "Real-time Data Concepts | Live Updates in Refine"
+display_title: "Realtime"
+sidebar_label: "Realtime"
 description: "Understand the architecture of live data. Learn how Refine v4 manages subscriptions and real-time syncing for React apps."
 ---
 

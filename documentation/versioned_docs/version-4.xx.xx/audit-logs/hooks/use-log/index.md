@@ -1,5 +1,7 @@
 ---
 title: "useLog Hook | Custom Audit Logging in Refine v4"
+display_title: "useLog"
+sidebar_label: "useLog"
 description: "Master the useLog hook to create manual log entries. Track custom events and business logic changes beyond standard CRUD operations in Refine v4."
 ---
 

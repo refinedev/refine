@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Save Button | Refine v4 Form Actions"
+display_title: "Save"
+sidebar_label: "Save"
 description: "Master form submissions with the Chakra UI Save Button. Learn about loading states and accessibility features in Refine v4 applications."
 swizzle: true
 ---

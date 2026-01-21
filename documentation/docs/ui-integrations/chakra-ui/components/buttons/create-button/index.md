@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Create Button Component | Navigation UI in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Explore how to integrate Create Button in Refine v5. Learn integration patterns for accessibility, components for polished admin UIs."
 swizzle: true
 ---

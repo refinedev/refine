@@ -1,5 +1,7 @@
 ---
 title: "useInvalidate Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useInvalidate"
+sidebar_label: "useInvalidate"
 description: "Secure Use Invalidate in Refine v5. Learn best practices. Learn scale invalidation and state for custom APIs and scalable data flows."
 source: /packages/core/src/hooks/invalidate
 ---

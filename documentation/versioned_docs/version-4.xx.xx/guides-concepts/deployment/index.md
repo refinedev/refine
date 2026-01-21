@@ -1,5 +1,7 @@
 ---
 title: "Deployment Guide | Hosting Your Refine v4 App"
+display_title: "Deployment"
+sidebar_label: "Deployment"
 description: "Learn how to deploy Refine v4 applications to various platforms. Best practices for production builds, CI/CD, and hosting environments."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Themed Layout Guide | Chakra UI & Refine v4"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Master the official Chakra UI Themed Layout in Refine v4. Documentation on customizing Sider, Header, and Footer for modern admin panels."
 swizzle: true
 source: packages/chakra-ui/src/components/themedLayoutV2/index.tsx

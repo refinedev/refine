@@ -1,5 +1,7 @@
 ---
 title: "Ant Design BooleanField | Refine v4 Data Display"
+display_title: "Boolean"
+sidebar_label: "Boolean"
 description: "Display boolean values professionally with checkmarks and icons. Documentation on using Ant Design BooleanField in Refine v4 data grids."
 swizzle: true
 ---

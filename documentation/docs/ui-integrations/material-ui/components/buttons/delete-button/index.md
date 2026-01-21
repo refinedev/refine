@@ -1,5 +1,7 @@
 ---
 title: "MUI Delete Button Component | Security & Actions in Refine v5"
+display_title: "Delete"
+sidebar_label: "Delete"
 description: "Build Delete Button in Refine v5. Learn the key steps. Explore customization options for hide for polished admin UIs. Learn with code examples."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useDrawerForm Hook | Mantine & Refine v4 Forms"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Documentation for building side-drawer forms in Mantine. Learn how to manage create and edit states using the useDrawerForm hook."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "i18n Provider Guide | Multi-language Refine v4 Apps"
+display_title: "i18n Provider"
+sidebar_label: "i18n Provider"
 description: "Configure the i18n provider in Refine v4. Learn how to translate your React admin panel into multiple languages using popular i18n libraries."
 ---
 

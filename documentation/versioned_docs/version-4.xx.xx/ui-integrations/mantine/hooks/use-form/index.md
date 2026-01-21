@@ -1,5 +1,7 @@
 ---
 title: "useForm Hook Guide | Mantine & Refine v4 Integration"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "The ultimate guide to Mantine forms in Refine v4. Learn to manage form states, validation, and submission with the specialized useForm hook."
 source: packages/mantine/src/hooks/form/useForm/index.ts
 ---

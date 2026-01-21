@@ -1,5 +1,7 @@
 ---
 title: "Next.js Guide | Best Practices in Refine v5"
+display_title: "Next.js"
+sidebar_label: "Next.js"
 description: "Learn to implement Next.js in Refine v5. Explore server and route for real-world React admin panels. Hands-on examples included."
 ---
 

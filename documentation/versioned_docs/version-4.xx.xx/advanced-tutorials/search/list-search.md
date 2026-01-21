@@ -1,6 +1,8 @@
 ---
 id: list-search
 title: "List Page Search Tutorial | Efficient Data Discovery"
+display_title: "List Search"
+sidebar_label: "List Search"
 description: "Add powerful search capabilities to your Refine v4 list views. Help users find specific records quickly with optimized search hooks."
 ---
 

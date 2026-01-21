@@ -1,6 +1,8 @@
 ---
 id: useStepsForm
 title: "Ant Design Multi-Step Forms | Refine v4 Guide"
+display_title: "useStepsForm"
+sidebar_label: "useStepsForm"
 description: "Implement wizard-like multi-step forms with Ant Design and Refine v4. Guide your users through complex data entry processes."
 example-tags: [form, antd]
 ---

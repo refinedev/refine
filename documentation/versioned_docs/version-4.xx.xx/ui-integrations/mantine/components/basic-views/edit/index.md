@@ -1,5 +1,7 @@
 ---
 title: "Mantine Edit View | Refine v4 CRUD Management"
+display_title: "Edit"
+sidebar_label: "Edit"
 description: "Learn how to build 'Edit' pages using Mantine in Refine v4. Master data fetching and update logic with official Mantine components."
 swizzle: true
 ---

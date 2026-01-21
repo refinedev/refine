@@ -1,5 +1,7 @@
 ---
 title: "Simple REST Data Provider | Refine v4 Integration"
+display_title: "Simple REST"
+sidebar_label: "Simple REST"
 description: "Connect any RESTful API to Refine v4. The easiest way to get started with data fetching for your React CRUD application."
 source: https://github.com/refinedev/refine/tree/main/packages/simple-rest
 swizzle: true

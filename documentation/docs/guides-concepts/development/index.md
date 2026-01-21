@@ -1,5 +1,7 @@
 ---
 title: "Development Guide | Guides Concepts in Refine v5"
+display_title: "Development"
+sidebar_label: "Development"
 description: "Set up Development in Refine v5. Learn best practices. Learn devtools and command for real-world React admin panels. Hands-on examples included."
 ---
 

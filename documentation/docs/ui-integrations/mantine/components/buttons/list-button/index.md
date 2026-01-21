@@ -1,5 +1,7 @@
 ---
 title: "Mantine List Button Component | Navigation UI in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Implement List Button in Refine v5. Learn the key steps. Explore customization options for hide for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

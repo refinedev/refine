@@ -1,5 +1,7 @@
 ---
 title: "GraphQL Data Provider | Refine v4 API Integration"
+display_title: "GraphQL"
+sidebar_label: "GraphQL"
 description: "Master GraphQL with Refine v4. Learn how to connect any GraphQL endpoint to your React CRUD application using the official data provider."
 source: https://github.com/refinedev/refine/tree/main/packages/graphql
 swizzle: true

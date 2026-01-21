@@ -1,5 +1,7 @@
 ---
 title: "UI Library Integration | Refine v4 Compatibility"
+display_title: "UI Libraries"
+sidebar_label: "UI Libraries"
 description: "Understand how Refine v4 integrates with Ant Design, MUI, Mantine, and more. Learn the logic behind headless vs. UI-bound development."
 ---
 

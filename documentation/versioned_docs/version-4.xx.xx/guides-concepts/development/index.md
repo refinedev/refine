@@ -1,5 +1,7 @@
 ---
 title: "Development Workflow | Mastering Refine v4"
+display_title: "Development"
+sidebar_label: "Development"
 description: "Optimize your development process with Refine v4. Learn about the tools, CLI, and workflows that speed up React CRUD building."
 ---
 

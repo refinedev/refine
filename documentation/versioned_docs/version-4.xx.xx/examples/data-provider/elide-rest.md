@@ -1,6 +1,8 @@
 ---
 id: elide
 title: "Elide Data Provider Example | Refine v4 Integration"
+display_title: "Elide"
+sidebar_label: "Elide"
 description: "Integrate Elide with Refine v4. Learn how to manage your Elide-based APIs using Refine's powerful data management hooks."
 example-tags: [community, data-provider]
 ---

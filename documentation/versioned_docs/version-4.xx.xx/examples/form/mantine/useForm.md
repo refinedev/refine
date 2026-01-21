@@ -1,6 +1,8 @@
 ---
 id: useForm
 title: "Mantine useForm Guide | Refine v4 Form Hooks"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Create modern forms using Mantine and Refine v4. Learn how to manage form state and validation with the official useForm integration."
 example-tags: [form, mantine]
 ---

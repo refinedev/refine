@@ -1,5 +1,7 @@
 ---
 title: "useGetIdentity Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useGetIdentity"
+sidebar_label: "useGetIdentity"
 description: "Build Use Get Identity in Refine v5. Learn the key steps. Learn how to secure OAuth, JWT for secure enterprise React apps. Learn with code examples."
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---

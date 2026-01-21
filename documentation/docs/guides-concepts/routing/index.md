@@ -1,5 +1,7 @@
 ---
 title: "Routing Guide | SSR in Refine v5"
+display_title: "Routing"
+sidebar_label: "Routing"
 description: "Implement Routing in Refine v5. Learn the key steps. Learn best practices for router and directory for real-world React admin panels. Learn with code examples."
 ---
 

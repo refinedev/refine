@@ -1,5 +1,7 @@
 ---
 title: "useLogin Hook | Handling User Sign-In in Refine v4"
+display_title: "useLogin"
+sidebar_label: "useLogin"
 description: "Master the useLogin hook for authentication. Learn how to manage credentials and handle successful login redirections in Refine v4 apps."
 source: /packages/core/src/hooks/auth/useLogin/index.ts
 ---

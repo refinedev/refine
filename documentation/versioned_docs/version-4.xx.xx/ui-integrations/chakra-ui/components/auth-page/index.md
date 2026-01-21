@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI AuthPage Component | Refine v4 Guide"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Ready-to-use Chakra UI login and register pages. Documentation on implementing and styling authentication views in Refine v4 with Chakra UI."
 swizzle: true
 source: packages/chakra-ui/src/components/pages/auth/index.tsx

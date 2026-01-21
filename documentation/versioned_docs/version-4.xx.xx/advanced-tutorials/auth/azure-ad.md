@@ -1,6 +1,7 @@
 ---
 id: azure-ad
 title: "Azure AD & Refine v4 | Enterprise SSO Integration Guide"
+display_title: "Azure AD Login"
 description: "Integrate Azure Active Directory (Microsoft Entra ID) with Refine v4. Set up Single Sign-On (SSO) for enterprise React applications."
 sidebar_label: Azure AD Login
 ---

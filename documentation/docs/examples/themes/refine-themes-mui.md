@@ -1,6 +1,7 @@
 ---
 id: refine-themes-mui
 title: "Refine Themes MUI Example | Themes in Refine v5"
+display_title: "Refine Themes in Material UI"
 description: "Implement Refine Themes MUI in Refine v5. Learn the key steps. Explore best practices for provider for real-world React admin panels."
 sidebar_label: Refine Themes
 example-title: Material UI

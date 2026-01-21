@@ -1,6 +1,8 @@
 ---
 id: headless
 title: "Headless Auth Example | Custom UI in Refine v4"
+display_title: "Headless"
+sidebar_label: "Headless"
 description: "Total control over your UI. Learn how to implement authentication in Refine v4 using a headless approach with custom React components."
 example-title: Authentication Example
 example-tags: [headless, auth-provider]

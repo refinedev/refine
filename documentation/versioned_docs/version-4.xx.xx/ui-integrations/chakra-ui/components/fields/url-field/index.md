@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI UrlField | Refine v4 Link Components"
+display_title: "Url"
+sidebar_label: "Url"
 description: "Display external URLs professionally with Chakra UI. Official documentation for the UrlField component in Refine v4 applications."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useRegister Hook | Refine v4"
+display_title: "useRegister"
+sidebar_label: "useRegister"
 description: "Learn how user registration flows are implemented in Refine v4 with the useRegister authentication hook."
 source: /packages/core/src/hooks/auth/useRegister/index.ts
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Notifications Guide | Guides Concepts in Refine v5"
+display_title: "Notifications"
+sidebar_label: "Notifications"
 description: "Build Notifications in Refine v5. Learn the key steps. Learn best practices for data for real-world React admin panels. Learn with code examples."
 ---
 

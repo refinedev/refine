@@ -1,5 +1,7 @@
 ---
 title: "useImport Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useImport"
+sidebar_label: "useImport"
 description: "Secure Use Import in Refine v5. Learn best practices. Learn data for real-world React admin panels. See practical code samples."
 ---
 

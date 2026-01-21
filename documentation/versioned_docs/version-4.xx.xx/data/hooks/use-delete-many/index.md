@@ -1,5 +1,7 @@
 ---
 title: "useDeleteMany Hook | Refine v4"
+display_title: "useDeleteMany"
+sidebar_label: "useDeleteMany"
 description: "Learn how to delete multiple records efficiently in Refine v4. Explore bulk delete patterns and mutation handling with useDeleteMany."
 siderbar_label: useDeleteMany
 source: packages/core/src/data/hooks/useDeleteMany.ts

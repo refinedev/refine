@@ -1,6 +1,8 @@
 ---
 id: kinde
 title: "Kinde Authentication Example | Refine v4 Auth Guide"
+display_title: "Kinde"
+sidebar_label: "Kinde"
 description: "Integrate Kinde with Refine v4 easily. See the working example of secure user management and authentication for modern React admin panels."
 example-tags: [auth-provider, community]
 ---

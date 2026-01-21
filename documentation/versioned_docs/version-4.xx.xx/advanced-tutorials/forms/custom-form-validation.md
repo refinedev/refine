@@ -1,6 +1,8 @@
 ---
 id: custom-form-validation
 title: "Custom Form Validation Guide | Refine v4 & React Hook Form"
+display_title: "Custom Form Validation"
+sidebar_label: "Custom Form Validation"
 description: "Implement advanced validation rules in Refine v4 forms. Learn how to handle complex schemas and async validation for better data integrity."
 ---
 

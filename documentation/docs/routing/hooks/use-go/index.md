@@ -1,5 +1,7 @@
 ---
 title: "useGo Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useGo"
+sidebar_label: "useGo"
 description: "Build Use Go in Refine v5. Learn the key steps. Learn best practices for SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 

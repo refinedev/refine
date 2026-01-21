@@ -1,5 +1,7 @@
 ---
 title: "MUI Show Component | UI Component in Refine v5"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Secure Show in Refine v5. Learn best practices. Explore customization options for hide for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

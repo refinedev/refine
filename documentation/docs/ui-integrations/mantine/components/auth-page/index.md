@@ -1,5 +1,7 @@
 ---
 title: "Mantine Auth Page Component | UI Component in Refine v5"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Explore how to integrate Auth Page in Refine v5. Explore customization options for property and form for polished admin UIs. Learn with code examples."
 swizzle: true
 source: packages/mantine/src/components/pages/auth/index.tsx

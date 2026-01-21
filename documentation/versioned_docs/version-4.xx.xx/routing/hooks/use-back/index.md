@@ -1,5 +1,7 @@
 ---
 title: "useBack Hook | Navigate Backwards in Refine v4"
+display_title: "useBack"
+sidebar_label: "useBack"
 description: 'Implement "Go Back" functionality easily. Learn how to use the useBack hook for intuitive navigation history management in React.'
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Next.js Routing Integration | Refine v4 Guide"
+display_title: "Next.js"
+sidebar_label: "Next.js"
 description: "Master Refine v4 with Next.js. Learn how to set up server-side routing, App Router support, and SSR-friendly navigation in React."
 ---
 

@@ -1,6 +1,7 @@
 ---
 id: refine-themes-antd
 title: "Refine Themes Ant Design Example | Best Practices in Refine v5"
+display_title: "Refine Themes in Ant Design"
 description: "Learn to build with the Refine Themes Ant Design example in Refine v5. Learn best practices for provider for real-world React admin panels."
 sidebar_label: Refine Themes
 example-title: Ant Design

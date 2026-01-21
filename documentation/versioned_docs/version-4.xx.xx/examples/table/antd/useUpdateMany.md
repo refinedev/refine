@@ -1,6 +1,8 @@
 ---
 id: useUpdateMany
 title: "useUpdateMany Hook Example | Refine v4 Ant Design"
+display_title: "useUpdateMany"
+sidebar_label: "useUpdateMany"
 description: "Implement bulk updates in your data grids. Learn how to update multiple records simultaneously with Ant Design and Refine v4."
 example-title: Ant Design useUpdateMany Hook
 example-tags: [table, antd]

@@ -1,5 +1,7 @@
 ---
 title: "useOnError Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useOnError"
+sidebar_label: "useOnError"
 description: "Secure Use On Error in Refine v5. Learn best practices. Learn secure OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 source: /packages/core/src/hooks/auth/useOnError/index.ts
 ---

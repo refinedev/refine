@@ -1,5 +1,7 @@
 ---
 title: "Realtime Guide | Subscriptions in Refine v5"
+display_title: "Realtime"
+sidebar_label: "Realtime"
 description: "Learn to implement Realtime in Refine v5. Learn subscriptions, webhooks for real-world React admin panels. See practical code samples."
 ---
 

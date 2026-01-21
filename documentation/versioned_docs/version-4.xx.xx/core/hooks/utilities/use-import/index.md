@@ -1,5 +1,7 @@
 ---
 title: "useImport Hook | CSV Data Import in Refine v4"
+display_title: "useImport"
+sidebar_label: "useImport"
 description: "Streamline data entry with the useImport hook. Learn how to parse CSV files and bulk-insert records into your Refine v4 application."
 ---
 

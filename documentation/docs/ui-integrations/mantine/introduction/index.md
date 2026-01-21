@@ -1,5 +1,7 @@
 ---
 title: "Introduction Guide | React UI Library in Refine v5"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Secure Introduction in Refine v5. Learn best practices. Learn integrate React UI library, components for polished admin UIs. Hands-on examples included."
 ---
 

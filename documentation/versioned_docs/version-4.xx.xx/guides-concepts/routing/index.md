@@ -1,5 +1,7 @@
 ---
 title: "Routing Concepts | Navigation in Refine v4"
+display_title: "Routing"
+sidebar_label: "Routing"
 description: "Deep dive into Refine v4's routing logic. Learn how resources, pages, and menus are automatically mapped to your URL structure."
 ---
 

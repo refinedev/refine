@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Clone Button | Refine v4 CRUD Actions"
+display_title: "Clone"
+sidebar_label: "Clone"
 description: "Official documentation for the Clone Button. Learn how to implement record duplication logic with Ant Design UI components in Refine v4."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Integration | Getting Started with Refine v4"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Learn how to use Chakra UI in your Refine v4 project. Introduction to official accessible UI components, layouts, and CRUD views."
 ---
 

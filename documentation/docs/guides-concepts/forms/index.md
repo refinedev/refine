@@ -1,5 +1,7 @@
 ---
 title: "Forms Guide | Validation in Refine v5"
+display_title: "Forms"
+sidebar_label: "Forms"
 description: "Learn to implement Forms in Refine v5. Explore data and more for real-world React admin panels. Learn with code examples. Fast to follow."
 ---
 

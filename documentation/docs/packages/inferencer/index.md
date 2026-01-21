@@ -1,5 +1,7 @@
 ---
 title: "Inferencer Integration Guide | Packages in Refine v5"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Build Inferencer in Refine v5. Learn the key steps. Learn property and field for real-world React admin panels. Learn with code examples."
 ---
 

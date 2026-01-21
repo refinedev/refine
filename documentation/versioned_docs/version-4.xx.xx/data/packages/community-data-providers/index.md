@@ -1,5 +1,7 @@
 ---
 title: "Community Data Providers | Refine v4 Ecosystem"
+display_title: "Community Data Providers"
+sidebar_label: "Community Data Providers"
 description: "Explore Refine v4 data providers created by the community. Find integrations for various backends, APIs, and specialized database services."
 ---
 

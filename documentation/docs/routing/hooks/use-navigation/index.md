@@ -1,5 +1,7 @@
 ---
 title: "useNavigation Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useNavigation"
+sidebar_label: "useNavigation"
 description: "Explore how to use the useNavigation hook in Refine v5. Explore SSR, navigation for real-world React admin panels. Hands-on examples included."
 ---
 

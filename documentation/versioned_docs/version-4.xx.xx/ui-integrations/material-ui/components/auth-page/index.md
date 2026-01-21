@@ -1,5 +1,7 @@
 ---
 title: "MUI AuthPage Component | Refine v4 Security Views"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Ready-to-use Material UI login and registration pages. Documentation on implementing and customizing authentication views in Refine v4 with MUI."
 swizzle: true
 source: packages/mui/src/components/pages/auth/index.tsx

@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Edit Component | UI Component in Refine v5"
+display_title: "Edit"
+sidebar_label: "Edit"
 description: "Secure Edit in Refine v5. Learn best practices. Explore customization options for hide for polished admin UIs. Explore with code snippets."
 swizzle: true
 ---

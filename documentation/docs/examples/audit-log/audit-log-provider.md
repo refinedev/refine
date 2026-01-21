@@ -1,6 +1,8 @@
 ---
 id: audit-log-provider
 title: "Audit Log Provider Example | Best Practices in Refine v5"
+display_title: "Audit Log Provider"
+sidebar_label: "Audit Log Provider"
 description: "Integrate Audit Log Provider in Refine v5. Learn best practices. Learn best practices for activity logs, compliance for real-world React admin panels."
 example-tags: [audit-log-provider]
 example-title: Audit Log with Headless

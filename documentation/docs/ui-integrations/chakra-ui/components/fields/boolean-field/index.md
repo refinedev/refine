@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Boolean Field Component | UI Component in Refine v5"
+display_title: "Boolean"
+sidebar_label: "Boolean"
 description: "Learn to integrate Boolean Field in Refine v5. Learn integration patterns for accessibility, components for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

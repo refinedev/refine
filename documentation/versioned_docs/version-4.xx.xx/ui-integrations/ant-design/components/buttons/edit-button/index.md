@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Edit Button | Refine v4 Action Buttons"
+display_title: "Edit"
+sidebar_label: "Edit"
 description: "Learn how to use the Edit Button component to navigate to resource update pages. Pre-styled Ant Design button documentation for Refine v4."
 swizzle: true
 ---

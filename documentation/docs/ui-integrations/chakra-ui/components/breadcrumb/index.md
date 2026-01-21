@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Breadcrumb Component | UI Component in Refine v5"
+display_title: "Breadcrumb"
+sidebar_label: "Breadcrumb"
 description: "Explore how to integrate Breadcrumb in Refine v5. Learn integrate accessibility, components for polished admin UIs. Real-world snippets included."
 swizzle: true
 ---

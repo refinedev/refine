@@ -1,5 +1,7 @@
 ---
 title: "General Concepts Guide | Guides Concepts in Refine v5"
+display_title: "General Concepts"
+sidebar_label: "General Concepts"
 description: "Set up General Concepts in Refine v5. Learn best practices. Learn provider and data for real-world React admin panels. Real-world snippets included."
 ---
 

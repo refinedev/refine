@@ -1,5 +1,7 @@
 ---
 title: "useAutoComplete Hook | Options, Patterns & Edge Cases | Refine v5"
+display_title: "useAutocomplete"
+sidebar_label: "useAutocomplete"
 description: "Build Use Auto Complete in Refine v5. Learn the key steps. Explore customization options for data and options for polished admin UIs."
 siderbar_label: useAutocomplete
 source: https://github.com/refinedev/refine/blob/main/packages/mui/src/hooks/useAutocomplete/index.ts

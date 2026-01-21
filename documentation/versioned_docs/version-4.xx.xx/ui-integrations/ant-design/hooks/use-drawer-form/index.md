@@ -1,5 +1,7 @@
 ---
 title: "useDrawerForm Hook | Ant Design & Refine v4 Forms"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Documentation on building drawer-based forms. Learn to manage create and edit operations within an Ant Design Drawer using Refine v4 hooks."
 ---
 

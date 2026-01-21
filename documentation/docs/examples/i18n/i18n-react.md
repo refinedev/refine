@@ -1,6 +1,8 @@
 ---
 id: i18n-react
 title: "I18n React Example | Best Practices in Refine v5"
+display_title: "React"
+sidebar_label: "React"
 description: "Learn to build with the i18n React example in Refine v5. Explore provider for real-world React admin panels. Explore with code snippets."
 example-tags: [i18n]
 ---

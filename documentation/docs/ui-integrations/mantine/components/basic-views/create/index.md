@@ -1,5 +1,7 @@
 ---
 title: "Mantine Create Component | UI Component in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Set up Create in Refine v5. Learn best practices. Explore customization options for React UI library, components for polished admin UIs."
 swizzle: true
 ---

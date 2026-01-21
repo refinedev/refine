@@ -1,6 +1,8 @@
 ---
 id: appwrite
 title: "Appwrite Backend Example | Refine v4 CRUD"
+display_title: "Appwrite"
+sidebar_label: "Appwrite"
 description: "Full-stack React development made easy. Explore the Refine v4 and Appwrite integration example for data management and auth."
 example-tags: [data-provider]
 ---

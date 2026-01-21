@@ -1,6 +1,8 @@
 ---
 id: custom-form-validation
 title: "Custom Form Validation Tutorial | Best Practices in Refine v5"
+display_title: "Custom Form Validation"
+sidebar_label: "Custom Form Validation"
 description: "Secure Custom Form Validation in Refine v5. Learn best practices. Explore production tips for validation, schemas for production-ready workflows."
 ---
 

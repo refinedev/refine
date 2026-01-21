@@ -1,5 +1,7 @@
 ---
 title: "shadcn/ui List Component | UI Component in Refine v5"
+display_title: "List"
+sidebar_label: "List"
 description: "Implement List in Refine v5. Learn the key steps. Learn integrate Radix UI, Tailwind CSS for polished admin UIs. See practical code samples."
 source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/views/list-view.tsx
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Refine v4 FAQ | Frequently Asked Questions"
+display_title: "Frequently Asked Questions"
 description: "Get answers to common questions about Refine v4. Find solutions for typical challenges in React development and framework usage."
 sidebar_label: FAQ
 ---

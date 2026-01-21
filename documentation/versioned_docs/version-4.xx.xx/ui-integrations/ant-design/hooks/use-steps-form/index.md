@@ -1,5 +1,7 @@
 ---
 title: "useStepsForm Hook | Ant Design Multi-Step Forms"
+display_title: "useStepsForm"
+sidebar_label: "useStepsForm"
 description: "Build wizard-like forms with Ant Design Steps. Official guide to managing multi-step form logic and validation with the Refine v4 useStepsForm hook."
 ---
 

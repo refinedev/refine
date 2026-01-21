@@ -1,5 +1,7 @@
 ---
 title: "MUI DateField | Refine v4 Format Guide"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Master date formatting and display in Material UI. Learn how to use the DateField component for localized dates in Refine v4 React apps."
 swizzle: true
 ---

@@ -1,6 +1,8 @@
 ---
 id: handling-filters
 title: "Advanced Filtering Logic | Refine v4 Data Providers"
+display_title: "Handling Filters"
+sidebar_label: "Handling Filters"
 description: "Master complex server-side filtering in Refine v4. Learn how to handle nested filters and custom operators within your data provider."
 ---
 

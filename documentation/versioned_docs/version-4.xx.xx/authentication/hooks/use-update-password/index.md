@@ -1,5 +1,7 @@
 ---
 title: "useUpdatePassword Hook | Refine v4"
+display_title: "useUpdatePassword"
+sidebar_label: "useUpdatePassword"
 description: "Learn how password update workflows are handled securely in Refine v4 using useUpdatePassword."
 source: /packages/core/src/hooks/auth/useUpdatePassword/index.ts
 ---

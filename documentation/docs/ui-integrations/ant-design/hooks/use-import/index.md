@@ -1,5 +1,7 @@
 ---
 title: "useImport Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useImport"
+sidebar_label: "useImport"
 description: "Integrate Use Import in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. Explore with code snippets."
 ---
 

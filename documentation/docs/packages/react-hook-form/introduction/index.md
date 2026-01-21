@@ -1,5 +1,7 @@
 ---
 title: "Introduction Integration Guide | React Hook Form in Refine v5"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Integrate Introduction in Refine v5. Learn best practices. Explore best practices for form and react for real-world React admin panels."
 ---
 

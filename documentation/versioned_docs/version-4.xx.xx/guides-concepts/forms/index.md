@@ -1,5 +1,7 @@
 ---
 title: "Form Management Concepts | Refine v4 Guide"
+display_title: "Forms"
+sidebar_label: "Forms"
 description: "Learn the core principles of headless form management in Refine v4. Understand how logic-first forms improve React development."
 ---
 

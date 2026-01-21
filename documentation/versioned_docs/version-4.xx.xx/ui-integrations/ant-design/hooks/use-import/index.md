@@ -1,5 +1,7 @@
 ---
 title: "useImport Hook | Ant Design & Refine v4 Data Import"
+display_title: "useImport"
+sidebar_label: "useImport"
 description: "Master CSV data imports. Documentation on integrating Ant Design's upload components with Refine v4's useImport hook for bulk data entry."
 ---
 

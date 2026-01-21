@@ -1,6 +1,8 @@
 ---
 id: useStepsForm
 title: "UseStepsForm Example | Best Practices in Refine v5: React Hook Form"
+display_title: "useStepsForm"
+sidebar_label: "useStepsForm"
 description: "Learn to build with the UseStepsForm example in Refine v5. Learn validation, schemas for real-world React admin panels. Real-world snippets included."
 example-tags: [form, headless, react-hook-form]
 ---

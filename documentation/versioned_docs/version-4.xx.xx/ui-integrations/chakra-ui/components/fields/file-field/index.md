@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI FileField | Refine v4 Media Display"
+display_title: "File"
+sidebar_label: "File"
 description: "Manage file links and downloads in Chakra UI. Official documentation for the FileField component in Refine v4 CRUD applications."
 swizzle: true
 ---

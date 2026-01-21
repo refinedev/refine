@@ -1,5 +1,7 @@
 ---
 title: "useForm Hook Guide | Refine v4 & React Hook Form"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Master form management in Refine v4. Learn how the React Hook Form integration simplifies data fetching, validation, and submission."
 source: packages/react-hook-form/src/useForm/index.ts
 ---

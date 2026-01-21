@@ -1,5 +1,7 @@
 ---
 title: "Notification Provider | Refine v4 Feedback System"
+display_title: "Notification Provider"
+sidebar_label: "Notification Provider"
 description: "Set up custom notification providers in Refine v4. Integrate libraries like React Toastify or Ant Design Notifications for user feedback."
 ---
 

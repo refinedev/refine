@@ -1,5 +1,7 @@
 ---
 title: "useCustomMutation Hook | Refine v4"
+display_title: "useCustomMutation"
+sidebar_label: "useCustomMutation"
 description: "Learn how to execute fully custom mutation requests in Refine v4. Use useCustomMutation for non-standard endpoints and advanced APIs."
 source: packages/core/src/data/hooks/useCustomMutation.ts
 ---

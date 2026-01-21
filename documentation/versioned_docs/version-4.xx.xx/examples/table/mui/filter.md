@@ -1,6 +1,7 @@
 ---
 id: filter
 title: "Material UI Table Filtering | Refine v4 Search Guide"
+display_title: "Table Filters in Material UI"
 description: "Learn how to add robust filtering to MUI data grids in Refine v4. Improve data discoverability with custom filter components."
 sidebar_label: Table Filters
 example-title: Filtering on Material UI Table

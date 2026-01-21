@@ -1,5 +1,7 @@
 ---
 title: "Authenticated Component | Best Practices in Refine v5"
+display_title: "<Authenticated />"
+sidebar_label: "<Authenticated />"
 description: "Set up Authenticated in Refine v5. Learn best practices. Learn how to secure OAuth, JWT for secure enterprise React apps. Explore with code snippets."
 ---
 

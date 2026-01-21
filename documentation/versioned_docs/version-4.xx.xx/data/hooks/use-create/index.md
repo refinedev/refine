@@ -1,5 +1,7 @@
 ---
 title: "useCreate Hook | Refine v4"
+display_title: "useCreate"
+sidebar_label: "useCreate"
 description: "Discover how to create new resources in Refine v4 using useCreate. Learn mutation flow, success handling, and integration with data providers."
 source: packages/core/src/data/hooks/useCreate.ts
 ---

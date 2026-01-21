@@ -1,5 +1,7 @@
 ---
 title: "Notification Concepts | Refine v4 Feedback Guide"
+display_title: "Notifications"
+sidebar_label: "Notifications"
 description: "Master user feedback systems. Learn how Refine v4's notification providers manage alerts, toasts, and status updates."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Auth Provider Guide | Refine v4 Authentication Logic"
+display_title: "Auth Provider"
+sidebar_label: "Auth Provider"
 description: "The ultimate guide to Refine v4 Auth Provider. Learn to integrate custom login, logout, and identity check logic for secure React apps."
 ---
 

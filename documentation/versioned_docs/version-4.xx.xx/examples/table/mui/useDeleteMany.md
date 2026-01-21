@@ -1,6 +1,8 @@
 ---
 id: useDeleteMany
 title: "Bulk Delete with MUI | Refine v4 useDeleteMany"
+display_title: "useDeleteMany"
+sidebar_label: "useDeleteMany"
 description: "Implement batch record deletion in Material UI tables. A practical guide to handling multiple deletions efficiently in Refine v4."
 example-title: Material UI useDeleteMany Hook
 example-tags: [table, mui]

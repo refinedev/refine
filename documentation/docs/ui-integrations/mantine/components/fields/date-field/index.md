@@ -1,5 +1,7 @@
 ---
 title: "Mantine Date Field Component | UI Component in Refine v5"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Secure Date Field in Refine v5. Learn best practices. Explore customization options for React UI library, components for polished admin UIs."
 swizzle: true
 ---

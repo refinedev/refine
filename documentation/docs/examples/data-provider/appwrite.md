@@ -1,6 +1,8 @@
 ---
 id: appwrite
 title: "Appwrite Example | REST API Integration in Refine v5"
+display_title: "Appwrite"
+sidebar_label: "Appwrite"
 description: "Implement Appwrite in Refine v5. Learn the key steps. Learn scale provider for custom APIs and scalable data flows. Hands-on examples included."
 example-tags: [data-provider]
 ---

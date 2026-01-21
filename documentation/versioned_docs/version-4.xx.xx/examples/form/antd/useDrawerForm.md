@@ -1,6 +1,8 @@
 ---
 id: useDrawerForm
 title: "useDrawerForm Hook Example | Refine v4 Ant Design"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Create efficient drawer-based forms using Ant Design in Refine v4. A practical guide to implementing the useDrawerForm hook."
 example-tags: [form, antd]
 ---

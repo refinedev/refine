@@ -1,5 +1,7 @@
 ---
 title: "useAutoComplete Hook | MUI & Refine v4 Relational"
+display_title: "useAutocomplete"
+sidebar_label: "useAutocomplete"
 description: "Simplify relational data selection with MUI AutoComplete. Official guide to fetching and filtering data for your forms in Refine v4."
 siderbar_label: useAutocomplete
 source: https://github.com/refinedev/refine/blob/main/packages/mui/src/hooks/useAutocomplete/index.ts

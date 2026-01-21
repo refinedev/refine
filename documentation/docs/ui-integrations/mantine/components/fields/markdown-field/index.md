@@ -1,5 +1,7 @@
 ---
 title: "Mantine Markdown Field Component | UI Component in Refine v5"
+display_title: "Markdown"
+sidebar_label: "Markdown"
 description: "Build Markdown Field in Refine v5. Learn the key steps. Explore customization options for React UI library, components for polished admin UIs."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Refine CLI Guide | Dev Tools & Code Generation"
+display_title: "CLI"
+sidebar_label: "CLI"
 description: "Master the Refine CLI. Learn how to create projects, generate resources, and use powerful development tools to speed up your React workflow."
 ---
 

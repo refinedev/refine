@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Auth Page Component | UI Component in Refine v5"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Integrate Auth Page in Refine v5. Learn best practices. Explore customization options for login and property for polished admin UIs."
 swizzle: true
 source: packages/antd/src/components/pages/auth/index.tsx

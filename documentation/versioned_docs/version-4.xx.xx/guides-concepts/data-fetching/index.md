@@ -1,5 +1,7 @@
 ---
 title: "Data Fetching Guide | Refine v4 Architecture"
+display_title: "Data Fetching"
+sidebar_label: "Data Fetching"
 description: "Understand how Refine v4 handles data. Learn about data providers, hooks, and the underlying architecture for efficient API communication."
 ---
 

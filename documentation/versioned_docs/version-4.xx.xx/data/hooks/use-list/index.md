@@ -1,5 +1,7 @@
 ---
 title: "useList Hook | Refine v4"
+display_title: "useList"
+sidebar_label: "useList"
 description: "Learn how to fetch, filter, sort, and paginate resource lists in Refine v4 using useList with full data provider support."
 siderbar_label: useList
 source: https://github.com/refinedev/refine/blob/main/packages/core/src/data/hooks/useList.ts

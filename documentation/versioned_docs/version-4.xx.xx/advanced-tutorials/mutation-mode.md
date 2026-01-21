@@ -1,6 +1,8 @@
 ---
 id: mutation-mode
 title: "Mutation Modes Explained | Optimistic UI in Refine v4"
+display_title: "Mutation Mode"
+sidebar_label: "Mutation Mode"
 description: "Understand Pessimistic, Optimistic, and Undoable mutations in Refine v4. Optimize user experience with instant UI updates."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Data Provider Concept | Refine v4 Data"
+display_title: "Data Provider"
+sidebar_label: "Data Provider"
 description: "Understand how data providers work in Refine v4. Learn how to connect REST, GraphQL, or custom APIs to your application."
 ---
 

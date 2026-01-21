@@ -1,5 +1,7 @@
 ---
 title: "Ant Design ImageField | Refine v4 Gallery View"
+display_title: "Image"
+sidebar_label: "Image"
 description: "Documentation for displaying images and avatars in your data grids. Learn how to use the Ant Design ImageField with built-in preview support."
 swizzle: true
 ---

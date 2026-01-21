@@ -1,6 +1,8 @@
 ---
 id: useTable
 title: "UseTable Example | Best Practices in Refine v5"
+display_title: "useTable"
+sidebar_label: "useTable"
 description: "Implement UseTable in Refine v5. Learn the key steps. Explore pagination, sorting for real-world React admin panels. Explore with code snippets."
 example-title: Ant Design useTable Hook
 example-tags: [table, antd]

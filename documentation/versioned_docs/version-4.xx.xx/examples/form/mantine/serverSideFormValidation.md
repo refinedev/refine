@@ -1,6 +1,8 @@
 ---
 id: serverSideFormValidation
 title: "Mantine Server-Side Validation | Refine v4 Example"
+display_title: "Server-Side Form Validation"
+sidebar_label: "Server-Side Form Validation"
 description: "Handle API validation errors in Mantine forms using Refine v4. Step-by-step guide to showing backend error messages in your Mantine UI."
 example-tags: [form, mantine]
 ---

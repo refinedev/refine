@@ -1,5 +1,7 @@
 ---
 title: "Remix Integration Guide | Refine v4 Routing"
+display_title: "Remix"
+sidebar_label: "Remix"
 description: "Discover how to use Refine v4 with Remix. Official documentation on setting up SSR-friendly routing, data fetching, and navigation for modern React applications."
 ---
 

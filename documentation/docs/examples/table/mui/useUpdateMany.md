@@ -1,6 +1,8 @@
 ---
 id: useUpdateMany
 title: "UseUpdateMany Example | Pagination in Refine v5"
+display_title: "useUpdateMany"
+sidebar_label: "useUpdateMany"
 description: "Build UseUpdateMany in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. Real-world snippets included."
 example-title: Material UI useUpdateMany Hook
 example-tags: [table, mui]

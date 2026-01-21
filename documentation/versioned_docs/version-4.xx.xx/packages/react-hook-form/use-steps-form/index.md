@@ -1,5 +1,7 @@
 ---
 title: "useStepsForm Guide | Multi-step Forms in Refine v4"
+display_title: "useStepsForm"
+sidebar_label: "useStepsForm"
 description: "Create complex wizard forms with React Hook Form. Master multi-step logic and cross-step validation in your Refine v4 applications."
 ---
 

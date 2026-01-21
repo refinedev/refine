@@ -1,5 +1,7 @@
 ---
 title: "useOne Hook | Refine v4"
+display_title: "useOne"
+sidebar_label: "useOne"
 description: "Learn how to fetch a single record for detail and edit views in Refine v4 using useOne with automatic data handling."
 siderbar_label: useOne
 source: packages/core/src/data/hooks/useOne.ts

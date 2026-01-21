@@ -1,5 +1,7 @@
 ---
 title: "useUpdateMany Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useUpdateMany"
+sidebar_label: "useUpdateMany"
 description: "Explore how to use the useUpdateMany hook in Refine v5. Explore best practices to scale mutation and data for custom APIs and scalable data flows."
 siderbar_label: useUpdateMany
 source: packages/core/src/data/hooks/useUpdateMany.ts

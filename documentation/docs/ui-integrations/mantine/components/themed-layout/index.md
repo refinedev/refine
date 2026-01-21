@@ -1,5 +1,7 @@
 ---
 title: "Mantine ThemedLayout Component | Layout in Refine v5"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Learn to integrate ThemedLayout in Refine v5. Explore customization options for React UI library, components for polished admin UIs. Explore with code snippets."
 swizzle: true
 source: packages/mantine/src/components/themedLayout/index.tsx

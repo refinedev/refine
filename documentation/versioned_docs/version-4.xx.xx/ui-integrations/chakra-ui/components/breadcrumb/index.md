@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Breadcrumb | Refine v4 Navigation"
+display_title: "Breadcrumb"
+sidebar_label: "Breadcrumb"
 description: "Documentation on implementing dynamic breadcrumbs with Chakra UI. Learn how to enhance your app's navigation using Refine v4's routing logic."
 swizzle: true
 ---

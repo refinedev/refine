@@ -1,6 +1,8 @@
 ---
 id: custom-form-validation
 title: "Custom Form Validation Example | Enterprise UI in Refine v5"
+display_title: "Custom Form Validation"
+sidebar_label: "Custom Form Validation"
 description: "Set up Custom Form Validation in Refine v5. Learn best practices. Explore provider for real-world React admin panels. Hands-on examples included."
 example-tags: [form, antd]
 ---

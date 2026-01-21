@@ -1,5 +1,7 @@
 ---
 title: "Usage with Existing Projects Guide | Guides Concepts in Refine v5"
+display_title: "Usage with Existing Projects"
+sidebar_label: "Usage with Existing Projects"
 description: "Integrate Usage With Existing Projects in Refine v5. Learn best practices. Explore directory and page.tsx for real-world React admin panels."
 ---
 

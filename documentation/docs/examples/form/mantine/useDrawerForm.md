@@ -1,6 +1,8 @@
 ---
 id: useDrawerForm
 title: "UseDrawerForm Example | React UI Library in Refine v5"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Explore how to build with the UseDrawerForm example in Refine v5. Explore best practices for provider for real-world React admin panels."
 example-tags: [form, mantine]
 ---

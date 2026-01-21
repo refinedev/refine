@@ -1,6 +1,8 @@
 ---
 id: useDrawerForm
 title: "UseDrawerForm Example | Material Design in Refine v5"
+display_title: "useDrawerForm"
+sidebar_label: "useDrawerForm"
 description: "Implement UseDrawerForm in Refine v5. Learn the key steps. Learn provider for real-world React admin panels. Explore with code snippets."
 example-tags: [form, mui, react-hook-form]
 ---

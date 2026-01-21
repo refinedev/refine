@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI Edit Button Component | Navigation UI in Refine v5"
+display_title: "Edit"
+sidebar_label: "Edit"
 description: "Explore how to integrate Edit Button in Refine v5. Explore customization options for hide for polished admin UIs. Hands-on examples included."
 swizzle: true
 ---

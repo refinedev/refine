@@ -1,5 +1,7 @@
 ---
 title: "MUI Refresh Button | Refine v4 Data Sync"
+display_title: "Refresh"
+sidebar_label: "Refresh"
 description: "Trigger manual data invalidation in Material UI views. Official documentation for using the Refresh Button to keep your UI updated in Refine v4."
 swizzle: true
 ---

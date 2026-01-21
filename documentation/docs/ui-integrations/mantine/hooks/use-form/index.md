@@ -1,5 +1,7 @@
 ---
 title: "useForm Hook | Usage & Patterns in Refine v5: Hooks"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Learn to use the useForm hook in Refine v5. Learn integration patterns for mutation and data for polished admin UIs. Explore with code snippets."
 source: packages/mantine/src/hooks/form/useForm/index.ts
 ---

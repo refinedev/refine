@@ -1,6 +1,8 @@
 ---
 id: handling-filters
 title: "Handling Filters Tutorial | REST API Integration in Refine v5"
+display_title: "Handling Filters"
+sidebar_label: "Handling Filters"
 description: "Implement Handling Filters in Refine v5. Learn the key steps. Explore production tips for GraphQL for custom APIs and scalable data flows."
 ---
 

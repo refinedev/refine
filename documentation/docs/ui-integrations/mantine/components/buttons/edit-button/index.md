@@ -1,5 +1,7 @@
 ---
 title: "Mantine Edit Button Component | Navigation UI in Refine v5"
+display_title: "Edit"
+sidebar_label: "Edit"
 description: "Integrate Edit Button in Refine v5. Learn best practices. Explore customization options for React UI library, components for polished admin UIs."
 swizzle: true
 ---

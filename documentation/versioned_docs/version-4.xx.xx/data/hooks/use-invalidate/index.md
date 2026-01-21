@@ -1,5 +1,7 @@
 ---
 title: "useInvalidate Hook | Refine v4"
+display_title: "useInvalidate"
+sidebar_label: "useInvalidate"
 description: "Learn how cache invalidation works in Refine v4 and how to refresh queries and data after mutations using useInvalidate."
 source: /packages/core/src/hooks/invalidate
 ---

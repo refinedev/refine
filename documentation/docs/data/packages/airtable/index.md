@@ -1,5 +1,7 @@
 ---
 title: "Airtable Integration Guide | Best Practices in Refine v5"
+display_title: "Airtable"
+sidebar_label: "Airtable"
 description: "Learn to implement Airtable in Refine v5. Explore best practices to scale data and fetching for custom APIs and scalable data flows."
 source: https://github.com/refinedev/refine/tree/main/packages/airtable
 swizzle: true

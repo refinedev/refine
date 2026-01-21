@@ -1,5 +1,7 @@
 ---
 title: "useTranslation Hook | Best Practices for Usage & Patterns in Refine v5"
+display_title: "useTranslation"
+sidebar_label: "useTranslation"
 description: "Explore how to use the useTranslation hook in Refine v5. Learn best practices for localization, translations for real-world React admin panels."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "Multitenancy Guide | Guides Concepts in Refine v5"
+display_title: "Multitenancy"
+sidebar_label: "Multitenancy"
 description: "Learn to implement Multitenancy in Refine v5. Learn best practices for tenant and data for real-world React admin panels. Hands-on examples included."
 ---
 

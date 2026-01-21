@@ -1,5 +1,7 @@
 ---
 title: "MUI Refresh Button Component | UI Button in Refine v5"
+display_title: "Refresh"
+sidebar_label: "Refresh"
 description: "Secure Refresh Button in Refine v5. Learn best practices. Explore customization options for Material Design, components for polished admin UIs."
 swizzle: true
 ---

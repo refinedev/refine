@@ -1,5 +1,7 @@
 ---
 title: "Ant Design NumberField | Refine v4 Formatting"
+display_title: "Number"
+sidebar_label: "Number"
 description: "Display localized and formatted numeric values. Documentation on using the Ant Design NumberField for professional data views in Refine v4."
 swizzle: true
 ---

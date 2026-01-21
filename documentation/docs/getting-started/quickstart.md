@@ -1,5 +1,7 @@
 ---
 title: "Quickstart | Getting Started in Refine v5"
+display_title: "Quick Start Guide"
+sidebar_label: "Quick Start Guide"
 description: "Implement Quickstart in Refine v5. Learn the key steps. Explore best practices for project and scaffolder for real-world React admin panels."
 displayed_sidebar: mainSidebar
 ---

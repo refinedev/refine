@@ -1,5 +1,7 @@
 ---
 title: "CLI Integration Guide | Best Practices in Refine v5"
+display_title: "CLI"
+sidebar_label: "CLI"
 description: "Learn to implement CLI in Refine v5. Learn swizzle and command for real-world React admin panels. Hands-on examples included."
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: "usePublish Hook | Real-time Events in Refine v4"
+display_title: "usePublish"
+sidebar_label: "usePublish"
 description: "Learn how to manually publish real-time events. Use the usePublish hook to trigger instant updates across your Refine v4 application."
 source: packages/core/src/hooks/live/usePublish/index.ts
 ---

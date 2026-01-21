@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI List Button | Refine v4 Navigation UI"
+display_title: "List"
+sidebar_label: "List"
 description: "Documentation for the Chakra UI List Button. Learn how to easily navigate back to resource collections within your Refine v4 application."
 swizzle: true
 ---

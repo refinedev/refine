@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Show Component | UI Component in Refine v5"
+display_title: "Show"
+sidebar_label: "Show"
 description: "Learn to integrate Show in Refine v5. Learn integrate posts and hide for polished admin UIs. See practical code samples. Built for production use."
 swizzle: true
 ---

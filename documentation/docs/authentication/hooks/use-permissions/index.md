@@ -1,5 +1,7 @@
 ---
 title: "usePermissions Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "usePermissions"
+sidebar_label: "usePermissions"
 description: "Secure Use Permissions in Refine v5. Learn best practices. Explore secure patterns for OAuth, JWT for secure enterprise React apps."
 source: /packages/core/src/hooks/auth/usePermissions/index.ts
 ---

@@ -1,6 +1,8 @@
 ---
 id: directus
 title: "Directus CMS Example | Refine v4 API Guide"
+display_title: "Directus"
+sidebar_label: "Directus"
 description: "Connect Directus to Refine v4. Check out this example of managing content and data from a Directus backend in your React app."
 example-tags: [community, data-provider]
 ---

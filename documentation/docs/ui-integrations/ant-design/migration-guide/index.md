@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Migration Guide Migration Guide | Upgrade Checklist & Fixes in Refine v5"
+display_title: "Migration Guide"
+sidebar_label: "Migration Guide"
 description: "Integrate Migration Guide in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. See practical code samples."
 ---
 

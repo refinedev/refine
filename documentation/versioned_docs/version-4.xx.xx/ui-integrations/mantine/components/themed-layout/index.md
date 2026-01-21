@@ -1,5 +1,7 @@
 ---
 title: "Mantine Themed Layout | Refine v4 UI Design"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Master the official Mantine Themed Layout in Refine v4. Learn how to customize Sider, Header, and Footer for your React admin dashboard."
 swizzle: true
 source: packages/mantine/src/components/themedLayoutV2/index.tsx

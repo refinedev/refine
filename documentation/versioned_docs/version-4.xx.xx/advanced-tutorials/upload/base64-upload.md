@@ -1,6 +1,8 @@
 ---
 id: base64-upload
 title: "Base64 File Upload Guide | Handling Media in Refine v4"
+display_title: "Base64 Upload"
+sidebar_label: "Base64 Upload"
 description: "Step-by-step tutorial on implementing Base64 file uploads in Refine v4. Learn to process and store images directly from forms."
 ---
 

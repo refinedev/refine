@@ -1,5 +1,7 @@
 ---
 title: "useLog Hook | Best Practices for Audit Logs in Refine v5"
+display_title: "useLog"
+sidebar_label: "useLog"
 description: "Set up Use Log in Refine v5. Learn best practices. Learn best practices for activity logs, compliance for compliance and traceability."
 ---
 

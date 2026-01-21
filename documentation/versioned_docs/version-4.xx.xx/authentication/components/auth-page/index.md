@@ -1,5 +1,7 @@
 ---
 title: "AuthPage Component | Ready-to-use Login UI in Refine v4"
+display_title: "<AuthPage />"
+sidebar_label: "<AuthPage />"
 description: "Speed up your development with the Refine v4 AuthPage. Highly customizable login, register, and forgot password pages for React dashboards."
 source: packages/core/src/components/pages/auth/index.tsx
 ---

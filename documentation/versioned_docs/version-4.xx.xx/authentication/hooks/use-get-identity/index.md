@@ -1,5 +1,7 @@
 ---
 title: "useGetIdentity Hook | Managing User Profiles in Refine v4"
+display_title: "useGetIdentity"
+sidebar_label: "useGetIdentity"
 description: "Fetch current user details effortlessly. Use useGetIdentity to display user names, avatars, and profiles across your Refine v4 project."
 source: /packages/core/src/hooks/auth/useGetIdentity/index.ts
 ---

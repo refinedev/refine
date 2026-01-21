@@ -1,5 +1,7 @@
 ---
 title: "Authorization Guide | RBAC & Security in Refine v5"
+display_title: "Authorization"
+sidebar_label: "Authorization"
 description: "Explore how to implement Authorization in Refine v5. Explore secure patterns for RBAC, ABAC for secure enterprise React apps. Explore with code snippets."
 ---
 

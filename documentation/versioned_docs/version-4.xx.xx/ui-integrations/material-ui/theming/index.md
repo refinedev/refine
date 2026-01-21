@@ -1,5 +1,7 @@
 ---
 title: "MUI Theming Guide | Customizing Refine v4 Style"
+display_title: "Theming"
+sidebar_label: "Theming"
 description: "Personalize your MUI-based admin dashboard. Documentation on customizing themes, palettes, and global styles for your Refine v4 project."
 ---
 

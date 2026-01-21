@@ -1,5 +1,7 @@
 ---
 title: "Ant Design Create Component | UI Component in Refine v5"
+display_title: "Create"
+sidebar_label: "Create"
 description: "Secure Create in Refine v5. Learn best practices. Explore customization options for enterprise UI, components for polished admin UIs. Learn with code examples."
 swizzle: true
 ---

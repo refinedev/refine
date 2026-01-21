@@ -1,5 +1,7 @@
 ---
 title: "MUI AutoSaveIndicator | Refine v4 UX Feedback"
+display_title: "<AutoSaveIndicator />"
+sidebar_label: "<AutoSaveIndicator />"
 description: "Show real-time feedback for background saves in MUI. Learn how to use the AutoSaveIndicator for a better form experience in Refine v4."
 source: packages/antd/src/components/autoSaveIndicator/index.tsx
 ---

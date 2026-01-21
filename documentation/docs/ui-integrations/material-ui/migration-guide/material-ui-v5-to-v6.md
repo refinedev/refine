@@ -1,5 +1,6 @@
 ---
 title: "MUI v5-v6 Migration Guide | Breaking Changes & Fixes in Refine v5"
+display_title: "Migration Guide for Material UI from v5 to v6"
 description: "Secure Material UI V5 To V6 in Refine v5. Learn best practices. Learn integrate Material Design, components for polished admin UIs."
 sidebar_label: Material UI v5 to v6
 ---

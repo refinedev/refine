@@ -1,5 +1,7 @@
 ---
 title: "Refine & React Hook Form | Efficient Form Logic"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Introduction to using React Hook Form with Refine v4. Learn why this integration is the standard for high-performance React forms."
 ---
 

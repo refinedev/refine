@@ -1,5 +1,7 @@
 ---
 title: "useRadioGroup Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useRadioGroup"
+sidebar_label: "useRadioGroup"
 description: "Implement Use Radio Group in Refine v5. Learn the key steps. Learn integration patterns for data and allows for polished admin UIs. Hands-on examples included."
 ---
 

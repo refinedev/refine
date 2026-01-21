@@ -1,5 +1,7 @@
 ---
 title: "Ant Design ThemedLayout Component | Layout in Refine v5"
+display_title: "<ThemedLayout />"
+sidebar_label: "<ThemedLayout />"
 description: "Implement ThemedLayout in Refine v5. Learn the key steps. Learn integration patterns for enterprise UI, components for polished admin UIs."
 swizzle: true
 source: packages/antd/src/components/themedLayout/index.tsx

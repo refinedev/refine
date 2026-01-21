@@ -1,6 +1,8 @@
 ---
 id: serverSideFormValidation
 title: "Chakra UI Server-Side Validation | Refine v4 Guide"
+display_title: "Server-Side Form Validation"
+sidebar_label: "Server-Side Form Validation"
 description: "Learn to display backend validation errors in Chakra UI forms with Refine v4. A practical example for mapping server errors to React UI."
 example-tags: [form, chakra-ui, react-hook-form]
 ---

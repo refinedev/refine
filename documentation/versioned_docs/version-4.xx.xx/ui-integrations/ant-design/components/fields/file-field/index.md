@@ -1,5 +1,7 @@
 ---
 title: "Ant Design FileField | Refine v4 Media Display"
+display_title: "File"
+sidebar_label: "File"
 description: "Manage and display file links and downloads. Guide to using the Ant Design FileField component for media resources in Refine v4 project."
 swizzle: true
 ---

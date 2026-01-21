@@ -1,5 +1,7 @@
 ---
 title: "useEditableTable Hook | Options, Patterns & Edge Cases in Refine v5"
+display_title: "useEditableTable"
+sidebar_label: "useEditableTable"
 description: "Set up Use Editable Table in Refine v5. Learn best practices. Learn integration patterns for function for polished admin UIs. Real-world snippets included."
 source: packages/antd/src/hooks/table/useTable
 ---

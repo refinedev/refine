@@ -1,5 +1,7 @@
 ---
 title: "MUI Integration | Getting Started with Refine v4"
+display_title: "Introduction"
+sidebar_label: "Introduction"
 description: "Learn how to use Material UI in your Refine v4 project. Introduction to official UI components, layouts, and pre-built CRUD views."
 ---
 

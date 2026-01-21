@@ -1,5 +1,7 @@
 ---
 title: "Refine Inferencer | Auto-generate CRUD Components"
+display_title: "Inferencer"
+sidebar_label: "Inferencer"
 description: "Speed up prototyping with the Refine Inferencer. Automatically generate React views, forms, and tables directly from your API response."
 ---
 

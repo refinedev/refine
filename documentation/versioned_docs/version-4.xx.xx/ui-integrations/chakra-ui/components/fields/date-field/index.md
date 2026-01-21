@@ -1,5 +1,7 @@
 ---
 title: "Chakra UI DateField | Refine v4 Format Guide"
+display_title: "Date"
+sidebar_label: "Date"
 description: "Official guide to formatting and displaying dates with Chakra UI. Learn how to use DateField in your Refine v4 React admin panel."
 swizzle: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "Refine Command Palette | Global Search & Navigation"
+display_title: "Command Palette"
+sidebar_label: "Command Palette"
 description: "Enhance your admin panel with a command palette. Provide users with a quick search and navigation interface using the Refine v4 package."
 ---
 

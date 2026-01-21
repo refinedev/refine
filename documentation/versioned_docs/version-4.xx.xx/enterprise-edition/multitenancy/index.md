@@ -1,5 +1,7 @@
 ---
 title: "Multi-tenancy Guide | Refine v4 SaaS Architecture"
+display_title: "Multitenancy"
+sidebar_label: "Multitenancy"
 description: "Learn how to build multi-tenant applications with Refine v4. Isolate data and manage complex user organizations securely."
 guide: true
 ---

@@ -1,5 +1,7 @@
 ---
 title: "useForm Hook | Usage & Patterns in Refine v5"
+display_title: "useForm"
+sidebar_label: "useForm"
 description: "Build Use Form in Refine v5. Learn the key steps. Learn integration patterns for enterprise UI, components for polished admin UIs. Learn with code examples."
 source: packages/antd/src/hooks/form/useForm.ts
 ---

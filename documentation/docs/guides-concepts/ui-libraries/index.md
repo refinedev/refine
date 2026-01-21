@@ -1,5 +1,7 @@
 ---
 title: "UI Libraries Guide | Best Practices in Refine v5"
+display_title: "UI Libraries"
+sidebar_label: "UI Libraries"
 description: "Build UI Libraries in Refine v5. Learn the key steps. Explore integrations and these for real-world React admin panels. Real-world snippets included."
 ---
 

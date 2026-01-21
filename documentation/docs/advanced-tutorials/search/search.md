@@ -1,6 +1,8 @@
 ---
 id: search
 title: "Search Tutorial | Filtering in Refine v5"
+display_title: "Search"
+sidebar_label: "Search"
 description: "Explore how to implement Search in Refine v5. Learn advanced patterns for filtering, query for production-ready workflows. See practical code samples."
 ---
 

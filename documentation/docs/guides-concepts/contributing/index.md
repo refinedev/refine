@@ -1,5 +1,7 @@
 ---
 title: "Contributing Guide | Guides Concepts in Refine v5"
+display_title: "Contributing"
+sidebar_label: "Contributing"
 description: "Integrate Contributing in Refine v5. Learn best practices. Learn best practices for changes and changeset for real-world React admin panels."
 ---
 

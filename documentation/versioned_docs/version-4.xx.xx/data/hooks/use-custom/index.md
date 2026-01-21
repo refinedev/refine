@@ -1,5 +1,7 @@
 ---
 title: "useCustom Hook | Refine v4"
+display_title: "useCustom"
+sidebar_label: "useCustom"
 description: "Learn how to fetch data from custom endpoints in Refine v4 using useCustom. Ideal for external APIs and flexible query scenarios."
 source: packages/core/src/data/hooks/useCustom.ts
 ---
