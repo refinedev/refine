@@ -28,8 +28,7 @@ export default function BlogTagsListPage({ tags, sidebar }) {
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_list" />
       <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
-        <Breadcrumbs
-          items={breadcrumbItems}
+        <div
           className={clsx(
             "w-full",
             "mx-auto",
@@ -38,11 +37,25 @@ export default function BlogTagsListPage({ tags, sidebar }) {
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
             "px-6 blog-sm:px-0",
-            "pt-6",
+            "pt-6 pb-12",
+            "not-prose",
           )}
-        />
-        <h1 className="">{title}</h1>
-        <TagsList tags={tags} />
+        >
+          <Breadcrumbs items={breadcrumbItems} />
+          <div className={clsx("mt-6", "flex", "flex-col", "gap-3")}>
+            <span className="text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+              Blog Tags
+            </span>
+            <h1 className="text-3xl blog-sm:text-4xl font-semibold text-zinc-900 dark:text-white">
+              {title}
+            </h1>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-[640px]">
+              Browse posts by topic and jump straight into the areas that matter
+              most.
+            </p>
+          </div>
+          <TagsList tags={tags} variant="page" className="mt-8" />
+        </div>
       </BlogLayout>
     </HtmlClassNameProvider>
   );
