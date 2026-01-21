@@ -37,7 +37,7 @@ export const FeaturedBlogPostItem = () => {
             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
               "https://refine.ams3.cdn.digitaloceanspaces.com",
               "",
-            )}?h=668`}
+            )}?fm=webp&auto=format&h=668`}
             alt={title}
             className={clsx(
               "absolute inset-0 mt-0 h-full w-full rounded-[0.25rem] object-cover",

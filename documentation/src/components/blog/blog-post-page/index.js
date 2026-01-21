@@ -155,7 +155,7 @@ export const BlogPostPageView = ({ children }) => {
           src={`https://refine-web.imgix.net${frontMatter.image?.replace(
             "https://refine.ams3.cdn.digitaloceanspaces.com",
             "",
-          )}?w=1788`}
+          )}?fm=webp&auto=format&w=1788`}
           alt={title}
         />
       </div>
