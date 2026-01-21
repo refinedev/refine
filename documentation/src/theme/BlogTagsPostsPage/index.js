@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
-import Link from "@docusaurus/Link";
 import {
   PageMetadata,
   HtmlClassNameProvider,
@@ -13,7 +12,6 @@ import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import TagsList from "@theme/TagsList";
-import { ChevronLeft } from "../../components/blog/icons";
 import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 // Very simple pluralization: probably good enough for now
@@ -93,18 +91,6 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
             "w-full",
           )}
         >
-          <Link
-            to="/blog"
-            className={clsx(
-              "text-zinc-600 dark:text-zinc-400",
-              "text-sm no-underline",
-              "flex",
-              "items-center",
-              "gap-2",
-            )}
-          >
-            <ChevronLeft /> Back to blog
-          </Link>
           <TagsList tags={tags} />
         </div>
         <div className={clsx("pt-8 blog-md:pt-16", "px-4")}>
