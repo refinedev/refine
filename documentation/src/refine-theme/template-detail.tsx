@@ -6,7 +6,6 @@ import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
 import clsx from "clsx";
 import React, {
-  Fragment,
   useState,
   type FC,
   type PropsWithChildren,
@@ -15,13 +14,13 @@ import React, {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
-import { ChevronLeft } from "../components/blog/icons";
 import { TemplateEdition } from "../types/integrations";
 import { CommonRunLocalPrompt } from "./common-run-local-prompt";
 import { GithubIcon } from "./icons/github";
 import { LockedIcon } from "./icons/locked";
 import { ShareIcon } from "./icons/share";
 import { TutorialIcon } from "./icons/tutorial";
+import { Image } from "../components/image";
 
 type Props = {
   data: {
@@ -102,7 +101,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               "aspect-[1168/736]",
             )}
           >
-            <img
+            <Image
               className={clsx("block", "aspect-[1168/736]")}
               src={data.images[0]}
               alt={data.title}

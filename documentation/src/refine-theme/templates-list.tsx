@@ -2,6 +2,7 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React, { type FC, type SVGProps } from "react";
 import type { TemplateEdition } from "../types/integrations";
+import { Image } from "../components/image";
 
 type Props = {
   className?: string;
@@ -47,7 +48,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                 "not-prose",
               )}
             >
-              <img
+              <Image
                 className={clsx("aspect-[590/405]", "rounded-t-md")}
                 src={item.image}
               />

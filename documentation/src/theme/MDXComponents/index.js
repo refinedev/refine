@@ -47,6 +47,7 @@ export default {
   RouterBadge,
   GlobalConfigBadge,
   Image,
+  img: Image,
   table: Table,
   CreateRefineAppCommand: CreateRefineAppCommand,
   InstallPackagesCommand: InstallPackagesCommand,
