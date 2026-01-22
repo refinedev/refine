@@ -153,7 +153,7 @@ export default function PositionedTooltips() {
 </details>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.gif"  alt="Material UI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.avif"  alt="Material UI tooltip " />
 </div>
 
 **Note**: Tooltip positioning is critical when using them in a web application. A poorly placed Tooltip may detract from the overall UX of the app.
@@ -243,7 +243,7 @@ export default function VariableWidth() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.gif"  alt="Material UI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.avif"  alt="Material UI tooltip " />
 </div>
 
 ### Material UI Tooltip Transitions
@@ -287,7 +287,7 @@ In the code above, three tooltips have been set to display with varying transiti
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.gif"  alt="Material UI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.avif"  alt="Material UI tooltip " />
 </div>
 
 ### Virtual element placement
@@ -496,7 +496,7 @@ The code above illustrates a simple login form UI with instructions provided to 
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="Material UI tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.avif"  alt="Material UI tooltip" />
 </div>
 
 ## Conclusion

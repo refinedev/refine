@@ -54,7 +54,7 @@ For this tutorial, we'll be select the following options:
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" className="border border-gray-200 rounded" />
+    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
 </div>
 
 Once you've completed the steps, you'll have the ability to download your project. From there, proceed to the project directory and run your app with:
@@ -769,7 +769,7 @@ export const Dashboard: React.FC = () => {
 After these changes, our dashboard looks like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/charts.gif" className="border border-gray-200 rounded" />
+    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/charts.avif" className="border border-gray-200 rounded" />
 </div>
 
 ### Create `RecentSales` component
@@ -2678,7 +2678,7 @@ export default App;
 After these changes, you should be able to navigate to the category CRUD pages as the below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/category-pages.gif" className="border border-gray-200 rounded" />
+    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/category-pages.avif" className="border border-gray-200 rounded" />
 </div>
 
 ## Update the Layout

@@ -501,7 +501,7 @@ Let's look at an example of how we can use motion values to construct the classi
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-scroll-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-scroll-min.avif" alt="typescript zod" />
 </div>
 
 The `useScroll` motion values can be combined with other motion value hooks, such as `useTransform` and `useSpring`, to create sophisticated animations like the one shown below.
@@ -568,7 +568,7 @@ function App() {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usescroll-img-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usescroll-img-min.avif" alt="typescript zod" />
 </div>
 
 ### useTransform

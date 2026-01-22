@@ -545,7 +545,7 @@ export default EmployeeList;
 Here's a GIF showing the result of the above example.
 
 <div className="flex justify-center">
-    <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-sort.gif" alt="employees Gif" />
+    <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-sort.avif" alt="employees Gif" />
 </div>
 
 You can refer to MU X DataGrid [documentation](https://mui.com/x/react-data-grid/sorting/) for more information on the sorting feature.

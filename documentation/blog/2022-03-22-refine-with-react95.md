@@ -909,7 +909,7 @@ export default App;
 
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/layout-with-dummy-pages.gif" alt="Refine95 Menu" className="border border-gray-200 rounded"/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/layout-with-dummy-pages.avif" alt="Refine95 Menu" className="border border-gray-200 rounded"/>
 
 ## Create Post CRUD Pages
 
@@ -1178,7 +1178,7 @@ We used the `useTable` hook to fetch the data for the table. It makes a request 
 
 After fetching the data, we used the React95 table components to render the data. We also added delete button and edit button to each row. When the user clicks the delete button, we call the `deletePost` function with the `resource` and `id` parameters. The `deletePost` function is provided by the [`useDelete`](/core/docs/data/hooks/use-delete/) hook. When the user clicks the edit button, we call the `edit` function with the "posts" resource and the post id to navigate to the edit page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.gif" alt="Refine List Page" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/list-page.avif" alt="Refine List Page" className="border border-gray-200 rounded" />
 
 ### Create Page and Edit Page
 
@@ -1282,7 +1282,7 @@ export const PostCreate: React.FC = () => {
 
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create-page.gif" alt="Refine Create Page" className="border border-gray-200 rounded"/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create-page.avif" alt="Refine Create Page" className="border border-gray-200 rounded"/>
 
 Now, let's update a `<PostEdit />` component in `src/pages/posts/edit.tsx` directory with the following code:
 
@@ -1377,11 +1377,11 @@ export const PostEdit: React.FC = () => {
 
 Edit and create pages almost look the same. We can use the same form for both pages. [`useForm`](/core/docs/packages/list-of-packages/) hook knows which action we are performing. For example, if we are on the edit page, it will automatically fetch the post data and fill the form with it.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/edit-page.gif" alt="Refine Edit Page" className="border border-gray-200 rounded"/>
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/edit-page.avif" alt="Refine Edit Page" className="border border-gray-200 rounded"/>
 
 ## Project Overview
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Project Overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.avif" alt="Refine Project Overview" />
 
 ## Live CodeSandbox Example
 

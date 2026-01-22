@@ -3428,7 +3428,7 @@ export const CategoryShow = () => {
 After all these changes for the `category` resource, we should be able to navigate across the category pages as below:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/layout-gif.gif"  alt="react admin panel daisy ui" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/layout-gif.avif"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>
@@ -3698,7 +3698,7 @@ With these changes, we should now see a sticky top navbar with items that give a
 Here's the walkthrough of all the resource list pages:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/ezgif.com-optimize-min.gif"  alt="react admin panel daisy ui" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/ezgif.com-optimize-min.avif"  alt="react admin panel daisy ui" />
 </div>
 
 <br/>

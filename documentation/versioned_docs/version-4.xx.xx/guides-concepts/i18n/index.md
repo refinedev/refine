@@ -404,7 +404,7 @@ export interface IPost {
 }
 ```
 
-<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.gif" alt="Language change action" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/i18n/changing-language.avif" alt="Language change action" />
 
 ## Translation file
 

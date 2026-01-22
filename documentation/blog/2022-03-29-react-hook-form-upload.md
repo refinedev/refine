@@ -202,7 +202,7 @@ export default App;
 
 Our project is ready! With React Hook Form, we can now send the selected file to our server in `multipart/form-data` type. Let's test it!
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/image_upload.gif" alt="multipart/form-data file upload" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/image_upload.avif" alt="multipart/form-data file upload" />
 <br />
 
 <br/>

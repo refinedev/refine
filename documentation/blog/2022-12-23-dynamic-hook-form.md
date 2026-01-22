@@ -501,7 +501,7 @@ Next, declare the button component with an event handler below the dynamic field
 
 That's all it takes to use `useFieldArray` actions in a form. If you save your progress and return to the browser, you should be able to perform the actions shown in the gif below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-4-min.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-4-min.avif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -595,7 +595,7 @@ Refer to the documentation to learn more about the [`onFinish`](https://refine.d
 
 Now, if you save your progress and go back to the browser, everything should work as expected.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-6-min.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-6-min.avif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -623,7 +623,7 @@ To use this method, we'll add a button inside the callback function, below the `
 
 That's it. Now we can remove appended fields by clicking the delete button rendered alongside them.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-7-min.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-7-min.avif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -707,7 +707,7 @@ Then remove the `delete` button and add the icon in its place:
 </Box>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-9-min.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-9-min.avif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -736,7 +736,7 @@ Now, if you try to submit the form without appending at least one field, you'll 
 
 The form composition is complete. Next, we'll look at how to set up the Edit page for updating records.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-validation.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-validation.avif"  alt="react hook form dynamic forms" />
 
 <br />
 
@@ -928,7 +928,7 @@ Here, we added a `renderCell` property to the fourth object and passed it a func
 
 This way, when the edit icon is clicked, Refine will know to redirect users to the Edit page of the corresponding record on the same row as the icon.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.gif"  alt="react hook form dynamic forms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-23-dynamic-hook-form/gif-10-min.avif"  alt="react hook form dynamic forms" />
 
 <br />
 

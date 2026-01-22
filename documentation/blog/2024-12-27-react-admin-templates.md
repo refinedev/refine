@@ -24,7 +24,7 @@ As React continues to gain popularity in web development, it is becoming increas
 
 <div className="centered-image"  >
 <a href="https://github.com/refinedev/refine" >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.gif"  alt="react admin template 1" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.avif"  alt="react admin template 1" />
    </a>
 </div>
 

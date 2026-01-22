@@ -95,7 +95,7 @@ npm create refine-app@latest
 <br/>
 
  <div className="centered-image"  >
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/cli.gif" alt="refine new" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/cli.avif" alt="refine new" />
 </div>
 
 <br/>

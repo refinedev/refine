@@ -203,7 +203,7 @@ We can also implement a similar thing on the show page.
 :::
 
 <br/>
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/manual-mode.gif" alt="Manual Mode Demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/real-time/manual-mode.avif" alt="Manual Mode Demo" />
 
 ## Custom Subscriptions
 

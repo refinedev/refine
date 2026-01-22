@@ -914,7 +914,7 @@ const styles = StyleSheet.create({
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.gif" alt="Refine Invoice PDF Export" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.avif" alt="Refine Invoice PDF Export" />
 <br />
 
 ## Example

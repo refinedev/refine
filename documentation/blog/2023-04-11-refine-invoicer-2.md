@@ -48,7 +48,7 @@ For this tutorial, we'll be select the following options:
 **Backend**: Strapi
 **Authentication Provider**: Strapi
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.gif" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.avif" alt="react invoice generator" />
 
 <br />
 
