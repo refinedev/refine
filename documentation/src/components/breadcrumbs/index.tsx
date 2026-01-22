@@ -20,9 +20,13 @@ type BreadcrumbListItem = {
 
 const toAbsoluteUrl = (siteUrl: string, href: string) => {
   try {
-    return new URL(href, siteUrl).toString();
+    const url = new URL(href, siteUrl);
+    if (!url.pathname.endsWith("/")) {
+      url.pathname = `${url.pathname}/`;
+    }
+    return url.toString();
   } catch {
-    return href;
+    return href.endsWith("/") ? href : `${href}/`;
   }
 };
 
