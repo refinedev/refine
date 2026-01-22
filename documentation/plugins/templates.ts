@@ -17,6 +17,7 @@ export const TEMPLATE_BACKENDS = [
   "Medusa",
 ];
 
+// Convert filter labels to URL slugs. Example: "Ant Design" -> "ant-design" "Strapi V4 " -> "strapi-v4".
 const toSlug = (value: string) => {
   return value
     .toLowerCase()
@@ -27,17 +28,19 @@ const toSlug = (value: string) => {
 export default async function RefineTemplates(): Promise<Plugin> {
   return {
     name: "docusaurus-plugin-refine-templates",
-    contentLoaded: async (args:any) => {
+    contentLoaded: async (args: any) => {
       const { content, actions } = args;
       const { addRoute, createData } = actions;
 
       await Promise.all(
         (content as typeof templates).map(async (data) => {
+          // Persist per-template data so the detail page can read it at build time.
           const json = await createData(
             `templates-${data.slug}.json`,
             JSON.stringify(data, null, 2),
           );
 
+          // Detail pages live at /core/templates/<slug>.
           addRoute({
             path: `/core/templates/${data.slug}`,
             component: "@site/src/components/templates-detail-page/index",
@@ -49,6 +52,7 @@ export default async function RefineTemplates(): Promise<Plugin> {
         }),
       );
 
+      // Filtered list routes for UI framework and UI+backend combos.
       for (const uiFramework of TEMPLATE_UI_FRAMEWORKS) {
         const uiSlug = toSlug(uiFramework);
         const uiJson = await createData(
@@ -56,6 +60,7 @@ export default async function RefineTemplates(): Promise<Plugin> {
           JSON.stringify({ uiFramework }, null, 2),
         );
 
+        // UI-only filter page at /core/templates/<ui>.
         addRoute({
           path: `/core/templates/${uiSlug}`,
           component: "@site/src/components/templates-filtered-page/index",
@@ -72,6 +77,7 @@ export default async function RefineTemplates(): Promise<Plugin> {
             JSON.stringify({ uiFramework, backend }, null, 2),
           );
 
+          // UI + backend filter page at /core/templates/<ui>/<backend>.
           addRoute({
             path: `/core/templates/${uiSlug}/${backendSlug}`,
             component: "@site/src/components/templates-filtered-page/index",

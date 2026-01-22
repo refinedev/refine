@@ -21,6 +21,7 @@ type BreadcrumbListItem = {
 const toAbsoluteUrl = (siteUrl: string, href: string) => {
   try {
     const url = new URL(href, siteUrl);
+    // Ensure trailing slash so breadcrumb items align with canonical URLs.
     if (!url.pathname.endsWith("/")) {
       url.pathname = `${url.pathname}/`;
     }
