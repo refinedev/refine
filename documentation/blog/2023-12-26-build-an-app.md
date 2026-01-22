@@ -4,7 +4,7 @@ description: In this article, we will explore some steps you can follow when bui
 slug: how-to-build-a-web-app
 authors: joseph_mawa
 tags: [comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.webp
 hide_table_of_contents: false
 ---
 

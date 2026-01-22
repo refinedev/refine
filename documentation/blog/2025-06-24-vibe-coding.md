@@ -4,7 +4,7 @@ description: Ever had a half-formed idea that you just wanted to see in motion, 
 slug: vibe-coding
 authors: ozgur
 tags: [ai]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-24-vibe-coding/vibe-coding-image.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-24-vibe-coding/vibe-coding-image.webp
 hide_table_of_contents: false
 ---
 

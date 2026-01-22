@@ -117,7 +117,7 @@ Try [Refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 <div>
 <a href="https://github.com/pankod/refine">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" alt="refine blog logo" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.webp" alt="refine blog logo" />
 </a>
 </div>
 

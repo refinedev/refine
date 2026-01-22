@@ -421,7 +421,7 @@ Check out [Refine](https://github.com/refinedev/refine), if you are interested i
 
 <div>
 <a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.png" alt="refine blog logo" />
+    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.webp" alt="refine blog logo" />
 </a>
 </div>
 

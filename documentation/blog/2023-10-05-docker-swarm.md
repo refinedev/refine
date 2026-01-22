@@ -203,7 +203,7 @@ Sometimes, while troubleshooting an issue, you might need to view detailed logs 
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.webp"  alt="docker swarm" />
 </div>
 
 <br/>

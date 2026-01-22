@@ -393,7 +393,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
     slug: "multitenancy-strapi",
     title: "Multitenancy App with Strapi",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.png",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.webp",
     ],
     runOnYourLocalPath: null,
     edition: "Enterprise",
