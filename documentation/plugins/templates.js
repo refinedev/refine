@@ -1,6 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
+const TEMPLATE_UI_FRAMEWORKS = [
+  "Ant Design",
+  "Material UI",
+  "Headless",
+  "Chakra UI",
+  "Mantine",
+];
+exports.TEMPLATE_UI_FRAMEWORKS = TEMPLATE_UI_FRAMEWORKS;
+
+const TEMPLATE_BACKENDS = [
+  "Supabase",
+  "Rest API",
+  "GraphQL",
+  "Strapi",
+  "Appwrite",
+  "Medusa",
+];
+exports.TEMPLATE_BACKENDS = TEMPLATE_BACKENDS;
+
+const toSlug = (value) => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+
 async function RefineTemplates() {
   return {
     name: "docusaurus-plugin-refine-templates",
@@ -25,6 +51,40 @@ async function RefineTemplates() {
           });
         }),
       );
+
+      for (const uiFramework of exports.TEMPLATE_UI_FRAMEWORKS) {
+        const uiSlug = toSlug(uiFramework);
+        const uiJson = await createData(
+          `templates-filter-${uiSlug}.json`,
+          JSON.stringify({ uiFramework }, null, 2),
+        );
+
+        addRoute({
+          path: `/core/templates/${uiSlug}`,
+          component: "@site/src/components/templates-filtered-page/index",
+          exact: true,
+          modules: {
+            filters: uiJson,
+          },
+        });
+
+        for (const backend of exports.TEMPLATE_BACKENDS) {
+          const backendSlug = toSlug(backend);
+          const comboJson = await createData(
+            `templates-filter-${uiSlug}-${backendSlug}.json`,
+            JSON.stringify({ uiFramework, backend }, null, 2),
+          );
+
+          addRoute({
+            path: `/core/templates/${uiSlug}/${backendSlug}`,
+            component: "@site/src/components/templates-filtered-page/index",
+            exact: true,
+            modules: {
+              filters: comboJson,
+            },
+          });
+        }
+      }
     },
     loadContent: async () => {
       return templates;

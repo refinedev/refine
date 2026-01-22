@@ -1,9 +1,33 @@
 import type { Plugin } from "@docusaurus/types";
 
+export const TEMPLATE_UI_FRAMEWORKS = [
+  "Ant Design",
+  "Material UI",
+  "Headless",
+  "Chakra UI",
+  "Mantine",
+];
+
+export const TEMPLATE_BACKENDS = [
+  "Supabase",
+  "Rest API",
+  "GraphQL",
+  "Strapi",
+  "Appwrite",
+  "Medusa",
+];
+
+const toSlug = (value: string) => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+
 export default async function RefineTemplates(): Promise<Plugin> {
   return {
     name: "docusaurus-plugin-refine-templates",
-    contentLoaded: async (args) => {
+    contentLoaded: async (args:any) => {
       const { content, actions } = args;
       const { addRoute, createData } = actions;
 
@@ -24,6 +48,40 @@ export default async function RefineTemplates(): Promise<Plugin> {
           });
         }),
       );
+
+      for (const uiFramework of TEMPLATE_UI_FRAMEWORKS) {
+        const uiSlug = toSlug(uiFramework);
+        const uiJson = await createData(
+          `templates-filter-${uiSlug}.json`,
+          JSON.stringify({ uiFramework }, null, 2),
+        );
+
+        addRoute({
+          path: `/core/templates/${uiSlug}`,
+          component: "@site/src/components/templates-filtered-page/index",
+          exact: true,
+          modules: {
+            filters: uiJson,
+          },
+        });
+
+        for (const backend of TEMPLATE_BACKENDS) {
+          const backendSlug = toSlug(backend);
+          const comboJson = await createData(
+            `templates-filter-${uiSlug}-${backendSlug}.json`,
+            JSON.stringify({ uiFramework, backend }, null, 2),
+          );
+
+          addRoute({
+            path: `/core/templates/${uiSlug}/${backendSlug}`,
+            component: "@site/src/components/templates-filtered-page/index",
+            exact: true,
+            modules: {
+              filters: comboJson,
+            },
+          });
+        }
+      }
     },
     loadContent: async () => {
       return templates;

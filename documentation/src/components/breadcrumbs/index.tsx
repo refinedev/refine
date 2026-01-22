@@ -77,12 +77,14 @@ type BreadcrumbsProps = {
   items: BreadcrumbItem[];
   className?: string;
   listClassName?: string;
+  showJsonLd?: boolean;
 };
 
 export const Breadcrumbs = ({
   items,
   className,
   listClassName,
+  showJsonLd = true,
 }: BreadcrumbsProps) => {
   if (!items.length) {
     return null;
@@ -98,10 +100,16 @@ export const Breadcrumbs = ({
 
   return (
     <nav
-      className={clsx("refine-breadcrumbs", "not-prose", "pb-4", className)}
+      className={clsx(
+        "refine-breadcrumbs",
+        "not-prose",
+        "pb-4",
+        "z-10",
+        className,
+      )}
       aria-label="Breadcrumbs"
     >
-      <BreadcrumbJsonLd items={normalizedItems} />
+      {showJsonLd && <BreadcrumbJsonLd items={normalizedItems} />}
       <ul
         className={clsx(
           "breadcrumbs",
@@ -116,7 +124,7 @@ export const Breadcrumbs = ({
           return (
             <li
               key={`${item.label}-${index}`}
-              className="flex flex-row flex-nowrap items-center"
+              className="flex flex-row flex-nowrap items-center z-10"
             >
               {index > 0 && (
                 <ChevronRightIcon className="text-zinc-300 dark:text-zinc-400" />
@@ -127,6 +135,7 @@ export const Breadcrumbs = ({
                   className={clsx(
                     "text-zinc-500 dark:text-zinc-400",
                     "text-base",
+                    "z-10",
                   )}
                 >
                   {isHome ? (

@@ -22,6 +22,22 @@ import { ShareIcon } from "./icons/share";
 import { TutorialIcon } from "./icons/tutorial";
 import { Image } from "../components/image";
 import { Breadcrumbs } from "@site/src/components/breadcrumbs";
+import {
+  TEMPLATE_BACKENDS,
+  TEMPLATE_UI_FRAMEWORKS,
+} from "../../plugins/templates";
+
+const toSlug = (value: string) => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+
+const backendLabelMap: Record<string, string> = {
+  "Nestjs-query": "GraphQL",
+  "Nestjsx-CRUD": "Rest API",
+};
 
 type Props = {
   data: {
@@ -43,12 +59,30 @@ type Props = {
 
 export const TemplatesDetail: FC<Props> = ({ data }) => {
   const categoryLabel = data.uiFramework;
+  const categorySlug = categoryLabel ? toSlug(categoryLabel) : null;
+  const backendLabel =
+    backendLabelMap[data.dataProvider] ||
+    (TEMPLATE_BACKENDS.includes(data.dataProvider) ? data.dataProvider : null);
+  const backendSlug = backendLabel ? toSlug(backendLabel) : null;
 
   const breadcrumbItems = [
     { label: "Home", href: "/core/" },
     { label: "Templates", href: "/core/templates/" },
     ...(categoryLabel
-      ? [{ label: categoryLabel, href: "/core/templates/" }]
+      ? [
+          {
+            label: categoryLabel,
+            href: categorySlug ? `/core/templates/${categorySlug}/` : undefined,
+          },
+        ]
+      : []),
+    ...(backendLabel && backendSlug && categorySlug
+      ? [
+          {
+            label: backendLabel,
+            href: `/core/templates/${categorySlug}/${backendSlug}/`,
+          },
+        ]
       : []),
     { label: data.title, href: `/core/templates/${data.slug}` },
   ];
@@ -67,7 +101,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
             "mx-auto",
             "flex flex-col",
             "not-prose",
-            "mt-8 landing-lg:mt-20",
+            "mt-8 landing-lg:mt-10",
             "px-6 landing-sm:px-0",
             "pb-8 landing-sm:pb-12 landing-md:pb-16 landing-lg:pb-40",
             "dark",
@@ -78,24 +112,6 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               items={breadcrumbItems}
               className={clsx("px-0 landing-md:px-2", "mb-4")}
             />
-            <Link
-              to="/core/templates"
-              className={clsx(
-                "text-sm",
-                "font-medium",
-                "text-zinc-400",
-                "hover:text-zinc-300",
-                "hover:no-underline",
-                "flex",
-                "items-center",
-                "gap-2",
-                "px-0 py-0",
-                "landing-md:px-2 landing-md:py-3",
-              )}
-            >
-              <ChevronLeftIcon height={20} width={20} />
-              Back to templates
-            </Link>
             <h1
               className={clsx(
                 "text-gray-0",
