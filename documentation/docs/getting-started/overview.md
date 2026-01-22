@@ -58,7 +58,7 @@ import { MUISandpack } from './example/sandpack';
 **Refine** shines when it comes to _data-intensive_ applications like _admin panels_, _dashboards_ and _internal tools_.
 
 <a href="https://refine.dev/templates/">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram-3.png" alt="Refine diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram-3.webp" alt="Refine diagram" />
 </a>
 
 ## Key Features

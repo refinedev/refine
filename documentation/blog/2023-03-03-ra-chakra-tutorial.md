@@ -956,7 +956,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Modifying/Editing records
 
@@ -1176,7 +1176,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Deleting post record
 
@@ -1246,7 +1246,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implement sorting of listed records
 
@@ -1360,7 +1360,7 @@ You can set the `enableSorting` property of the column to false in the column de
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implement filters on listed records
 
@@ -1569,7 +1569,7 @@ We can also disable filtering for the `actions` column by setting the column's e
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.gif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
 
 ### Implementing mutation mode.
 
@@ -1603,7 +1603,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.gif" className="border border-gray-100 rounded"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.avif" className="border border-gray-100 rounded"  alt="react admin tutorial" />
 
 ## Conclusion
 

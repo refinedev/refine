@@ -75,7 +75,7 @@ export default function BasicModal() {
 
 The code above illustrates how to use a simple Material UI Modal with the provided utilities to convey a message or display an alert like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/first-min.gif" alt="MUI Modal" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/first-min.avif" alt="MUI Modal" />
 
 <br/>
 
@@ -261,7 +261,7 @@ The code above showcases Material UI Modal components nested as two clickable mo
 
 Here’s the result:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/nested-min.gif" alt="MUI Modal" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/nested-min.avif" alt="MUI Modal" />
 
 <br/>
 
@@ -389,7 +389,7 @@ The code above represents a simple contact management page UI where users can ea
 
 Here’s the result:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/edit-form-min.gif" alt="MUI Modal" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/edit-form-min.avif" alt="MUI Modal" />
 
 ## Common Mistakes and How to Avoid Them
 

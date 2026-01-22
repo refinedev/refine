@@ -97,7 +97,7 @@ The demonstrations show how the carousels automatically become responsive when s
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/4-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/4-min.avif" alt="react slick" />
 </div>
 
 ## About React Slick APIs
@@ -536,7 +536,7 @@ Run your application and see your custom arrows displayed on both sides:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/77-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/77-min.avif" alt="react slick" />
 </div>
 
 ### Adding Thumbnails
@@ -658,7 +658,7 @@ Run your application to see how thumbnails look:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/88-min.gif" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/88-min.avif" alt="react slick" /> 
 </div>
 
 ### Adding Responsiveness
@@ -692,7 +692,7 @@ Run your application and see how the carousel shrinks from 2 to 1 when it reache
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/99-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/99-min.avif" alt="react slick" />
 </div>
 
 ## Common Mistakes When Using React Slick (and How to Avoid Them)

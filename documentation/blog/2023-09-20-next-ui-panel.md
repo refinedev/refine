@@ -58,7 +58,7 @@ For this tutorial, we'll be select the following options:
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">
-    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" className="border border-gray-200 rounded" />
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
 </div>
 
 Once you've completed the steps, you'll have the ability to download your project
@@ -80,7 +80,7 @@ npm run dev
 Once your project is successfully run, you will see the following page:
 
 <div className="flex justify-center">
-    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.jpg" className="border border-gray-200 rounded" />
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.webp" className="border border-gray-200 rounded" />
 </div>
 
 ### Tidy things up

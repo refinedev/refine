@@ -197,7 +197,7 @@ export const Login: React.FC = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login-min.gif" alt="ethereum-login" className="border border-zinc-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/login-min.avif" alt="ethereum-login" className="border border-zinc-200 rounded" />
 
 ## Create Dashboard
 
@@ -418,7 +418,7 @@ export const DashboardPage: React.FC = () => {
 
 We can now request to send ethereum through our **Refine** dashboard and also view your account details on [Etherscan Ropsten Test Network](https://ropsten.etherscan.io/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.gif" alt="refine-overview" className="border border-zinc-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/guides-and-concepts/web3/overview-min.avif" alt="refine-overview" className="border border-zinc-200 rounded" />
 
 ## Example
 

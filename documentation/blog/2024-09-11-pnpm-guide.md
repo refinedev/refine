@@ -4,7 +4,7 @@ description: We'll explore pnpm, an efficient alternative to npm.
 slug: how-to-use-pnpm
 authors: joseph_mawa
 tags: [javascript, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-27-pnpm-guide/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-27-pnpm-guide/social.webp
 hide_table_of_contents: false
 ---
 

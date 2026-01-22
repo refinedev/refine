@@ -4,7 +4,7 @@ description: We'll dive into the concept of a virtual DOM in the React as well a
 slug: react-virtual-dom
 authors: peter_osah
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/social.webp
 hide_table_of_contents: false
 ---
 

@@ -4,7 +4,7 @@ description: This post depicts a general picture of where web development is hea
 slug: web-development
 authors: abdullah_numan
 tags: [react, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/social.webp
 hide_table_of_contents: false
 ---
 

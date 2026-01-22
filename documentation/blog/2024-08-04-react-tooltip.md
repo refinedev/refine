@@ -18,7 +18,7 @@ Typically, a tooltip is displayed as a small box or pop-up and is commonly used 
 
 You can see a tooltip in action through the following GIF example:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/first.gif" alt="react tooltip" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/first.avif" alt="react tooltip" />
 
 <br/>
 
@@ -497,7 +497,7 @@ react-tooltip also provides a feature that allows you to create clickable toolti
 ```
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/clickable.gif"  alt="react tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/clickable.avif"  alt="react tooltip" />
 </div>
 
 <br/>

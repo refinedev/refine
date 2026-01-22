@@ -127,7 +127,7 @@ Now let's go to the Supabase Table editor and create our constant values.
 
 Let's create a test task to better understand key relation.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.avif" alt="overview" />
 <br />
 
 As you can see, since we have defined the ids of our label, status, priority and users tables as references to our tasks table, we can now use their values.
@@ -490,7 +490,7 @@ export default App;
 
 Here we define our login and signup pages. We then use the Refine's [router-provider](https://refine.dev/core/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/core/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.avif" alt="overview" />
 <br />
 
 We can now create supabase users and log in from our Refine interface.
@@ -992,7 +992,7 @@ export const TaskCreate = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.avif" alt="overview" />
 <br />
 
 ## Edit Task
@@ -1333,17 +1333,17 @@ Our project is done. Lets see how its look like.
 
 `Overview`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.avif" alt="overview" />
 <br />
 
 `Task Filter`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.avif" alt="overview" />
 <br />
 
 `Dashboard Page`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.avif" alt="overview" />
 <br />
 
 As you can see, we made a simple and short task manager application using Refine on our front end and using its data-provider.

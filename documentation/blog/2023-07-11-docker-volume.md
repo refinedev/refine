@@ -4,7 +4,7 @@ description: We'll go over the fundamentals of Docker volumes, including what th
 slug: docker-volumes
 authors: muhammad_khabbab
 tags: [docker, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/social.webp
 hide_table_of_contents: false
 ---
 

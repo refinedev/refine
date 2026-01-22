@@ -114,7 +114,7 @@ As you can see, we have created our multer structure and a simple server to run 
 
 The requests we created to send files by JavaScript will now be sent to our local server.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.gif" alt="upload overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.avif" alt="upload overview" />
 <br />
 
 ## How to Multipart Upload with Refine?

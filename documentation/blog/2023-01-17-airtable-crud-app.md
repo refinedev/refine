@@ -68,7 +68,7 @@ To create a base, click **Add a base**. On creating a base, we will create a tab
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.jpeg"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.webp"  alt="react crud app airtable" />
 
 <br />
 <br />
@@ -1409,7 +1409,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.gif"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.avif"  alt="react crud app airtable" />
 
 <br />
 

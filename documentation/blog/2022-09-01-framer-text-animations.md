@@ -99,7 +99,7 @@ Finally, we use the Framer Motion `transition` prop because every effective anim
 
 The easing shows the scale at which the text animation enters before going to its original scale.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.gif" alt="Scale for text" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.avif" alt="Scale for text" />
 
 <br/>
 
@@ -234,7 +234,7 @@ The inner carousel will perform the spinning and sliding effects. The framer mot
 
 This will give it a unique spinning effect, as you can see below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.gif" alt="Scale for photo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.avif" alt="Scale for photo" />
 
 <br/>
 
@@ -269,7 +269,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.gif" alt="Scale for photo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.avif" alt="Scale for photo" />
 
 <br/>
 
@@ -305,7 +305,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.gif" alt="Scale for photo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.avif" alt="Scale for photo" />
 
 <br/>
 

@@ -106,7 +106,7 @@ import MDEditor from "@uiw/react-md-editor";
 This will render a native `Textarea` element with support for markdown editing and a preview pane on the form.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/using-md-editor-min.gif"  alt="docker exec" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/using-md-editor-min.avif"  alt="docker exec" />
 </div>
 
 <br/>
@@ -240,7 +240,7 @@ Then, we pass it to the `commands` array on the `MDEditor` component:
 ```
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/common-prop2.gif"  alt="docker exec" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/common-prop2.avif"  alt="docker exec" />
 </div>
 
 <br/>
@@ -401,7 +401,7 @@ The code above is specifying how the `code` component should behave when it enco
 Now, if we input KaTeX expressions into the editor, they will be previewed as mathematical expressions.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/katex-preview.gif"  alt="docker exec" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/katex-preview.avif"  alt="docker exec" />
 </div>
 
 <br/>
@@ -540,7 +540,7 @@ Now, if you try to parse malicious codes into the editor, the rehype-sanitize pl
 Before integrating rehype-sanitize:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/rehype-sanitize.gif"  alt="docker exec" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/rehype-sanitize.avif"  alt="docker exec" />
 </div>
 
 <br/>
@@ -548,7 +548,7 @@ Before integrating rehype-sanitize:
 After integrating rehype-sanitize:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/rehype-sanitze-2.gif"  alt="docker exec" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/rehype-sanitze-2.avif"  alt="docker exec" />
 </div>
 
 <br/>

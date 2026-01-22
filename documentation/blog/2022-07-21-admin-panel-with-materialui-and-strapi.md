@@ -832,7 +832,7 @@ export const PostList: React.FC = () => {
 
 Now we are able to delete record by clicking delete button and confirmation.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif" alt="Create record action" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.avif" alt="Create record action" />
 
 <br/>
 <br/>

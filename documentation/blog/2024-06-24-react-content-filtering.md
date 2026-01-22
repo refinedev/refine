@@ -561,13 +561,13 @@ Check if your development server is still running in the terminal. If it is not 
 
 First, we will test the functionality of the filter buttons.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.avif" alt="filters" className="border border-gray-200 rounded" />
 
 If the filter button is pressed, only the corresponding cards of that category is filtered. If the filter is already active and is pressed again, the filter is disabled and all the records are shown.
 
 Now type in some search queries in the search bar.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.avif" alt="search" className="border border-gray-200 rounded" />
 
 Search results are fully dynamic, meaning the filtering is updated each time you add a new character to the query.
 

@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm
 hide_table_of_contents: false
 ---
 
-![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.gif)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.avif)
 
 I want to introduce our newest example app – a full-fledged React CRM (Customer Relationship Management) application built using Refine, Ant Design, and GraphQL.
 
@@ -138,7 +138,7 @@ We used [GraphQL](https://graphql.org/) for effective data retrieval and updatin
 
 For instance, on the Project Kanban page, tasks get updated automatically when cards are dragged and dropped between sections.
 
-![Image](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/real-time.gif)
+![Image](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/real-time.avif)
 
 GraphQL's efficient data-fetching capabilities made working with large datasets a breeze. It's flexibility allowed us to tailor our queries to our exact requirements.
 

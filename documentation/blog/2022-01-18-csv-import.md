@@ -94,7 +94,7 @@ function App() {
 
 Here, once the user-selected file has been successfully uploaded, we can process and display the file. Now let's load a sample CSV file and see it output on our console.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/console.gif" alt="console_csv_output" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/console.avif" alt="console_csv_output" />
 <br />
 
 As you can see, we can now read a selected CSV file. We can convert this file, which we read as a plain text type, into an Array of Object with JavaScript and place it inside a Table element.
@@ -191,7 +191,7 @@ function App() {
 ....
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/overview.gif" alt="overview_csv" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/overview.avif" alt="overview_csv" />
 <br />
 
 We formatted the CSV file that came in plain text format, using Javascript [slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) and [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) methods, and created two separate array. Then we converted Header and Rows arrays to Array of Object format as Key, Value.
@@ -215,7 +215,7 @@ The CSV import with **Refine** is very simple and out-of-the-box feature. How to
 
 ## Refine CSV Import Usage
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/importing.gif" alt="importing_csv" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/importing.avif" alt="importing_csv" />
 <br />
 
 Importing CSV files is simple and fast using the [`useImport`](https://refine.dev/core/docs/core/hooks/import-export/useImport/) hook and [`ImportButton`](https://refine.dev/core/docs/ui-frameworks/antd/components/buttons/import-button/) provided by **Refine**.

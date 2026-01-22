@@ -395,7 +395,7 @@ npm run start
 You can see a vertical menu and a toggle button at a screen size less than `md`. And the toggle button is functioning properly:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/icons-min.gif"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/icons-min.avif"  alt="tailwind flex" />
 </div>
 
 <br/>
@@ -526,7 +526,7 @@ Notice we are applying flex order again with Tailwind Flex `order` classes. With
 So, with these changes, we have been able to achieve a good shape for the vertical navbar. The navbar looks almost complete, and it can now strongly flex its muscles back and forth in the horizontal position:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/vertical-menu-min.gif"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/vertical-menu-min.avif"  alt="tailwind flex" />
 </div>
 
 <br/>
@@ -627,7 +627,7 @@ With `flex flex-col justify-start md:flex-row md:justify-between md:items-start`
 So, with this Tailwind Flex power, we have a pretty neat React responsive navbar we can use on any webpage:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/ezgif.com-optimize-min.gif"  alt="tailwind flex" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/ezgif.com-optimize-min.avif"  alt="tailwind flex" />
 </div>
 
 <br/>

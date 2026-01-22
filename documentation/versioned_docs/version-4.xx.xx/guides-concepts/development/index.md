@@ -28,7 +28,7 @@ To use the command-line interface, you can simply run the following command in y
 
 After running the command, you will be prompted to select the options you want to use for your project. After you are done with the options, the CLI will create your project in the `my-refine-app` directory.
 
-<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.gif" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" />
 
 ## Using CLI
 
@@ -267,7 +267,7 @@ const App = () => {
 };
 ```
 
-<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/devtools-demo.gif" />
+<Image src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/devtools-demo.avif" />
 
 **Running Devtools Server**
 
