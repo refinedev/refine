@@ -25,14 +25,8 @@ import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 import {
   TEMPLATE_BACKENDS,
   TEMPLATE_UI_FRAMEWORKS,
+  toSlug,
 } from "../../plugins/templates";
-
-const toSlug = (value: string) => {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-};
 
 const backendLabelMap: Record<string, string> = {
   "Nestjs-query": "GraphQL",

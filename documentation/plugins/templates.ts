@@ -18,7 +18,7 @@ export const TEMPLATE_BACKENDS = [
 ];
 
 // Convert filter labels to URL slugs. Example: "Ant Design" -> "ant-design" "Strapi V4 " -> "strapi-v4".
-const toSlug = (value: string) => {
+export const toSlug = (value: string) => {
   return value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
