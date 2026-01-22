@@ -47,7 +47,6 @@ export default function TagsList({
         className={className}
         collapsed={collapsed}
         onShowMoreClick={(nextCollapsed) => setCollapsed(nextCollapsed)}
-        priorityTags={PRIORITY_TAGS}
       />
     );
   }
@@ -75,18 +74,12 @@ const PageTags = ({
   className,
   collapsed,
   onShowMoreClick,
-  priorityTags,
 }: {
   tags: any[];
   className?: string;
   collapsed: boolean;
   onShowMoreClick: (collapsed: boolean) => void;
-  priorityTags: string[];
 }) => {
-  const prioritySet = React.useMemo(
-    () => new Set(priorityTags),
-    [priorityTags],
-  );
   const totalPosts = React.useMemo(() => {
     return tags.reduce(
       (total, tag) => total + (typeof tag.count === "number" ? tag.count : 0),
@@ -126,11 +119,7 @@ const PageTags = ({
         </div>
         <div className="mt-6 grid gap-3 blog-sm:grid-cols-2 blog-lg:grid-cols-3 blog-max:grid-cols-4">
           {visibleTags.map((tag) => (
-            <TagCard
-              key={tag.permalink}
-              tag={tag}
-              isFeatured={prioritySet.has(`${tag.label}`.toLowerCase())}
-            />
+            <TagCard key={tag.permalink} tag={tag} />
           ))}
         </div>
         {hasOverflow && (
@@ -170,7 +159,7 @@ const PageTags = ({
   );
 };
 
-const TagCard = ({ tag, isFeatured }: { tag: any; isFeatured: boolean }) => {
+const TagCard = ({ tag }: { tag: any }) => {
   const count = typeof tag.count === "number" ? tag.count : null;
 
   return (
@@ -178,7 +167,6 @@ const TagCard = ({ tag, isFeatured }: { tag: any; isFeatured: boolean }) => {
       href={tag.permalink}
       label={mapLabel(tag.label)}
       count={count}
-      isFeatured={isFeatured}
     />
   );
 };
@@ -187,12 +175,10 @@ const TagCardLink = ({
   href,
   label,
   count,
-  isFeatured,
 }: {
   href: string;
   label: string;
   count: number | null;
-  isFeatured: boolean;
 }) => {
   return (
     <Link
@@ -208,9 +194,8 @@ const TagCardLink = ({
         "px-4 py-3",
         "transition-all duration-200 ease-in-out",
         "hover:-translate-y-0.5",
-        isFeatured
-          ? "border-sky-400/50 bg-sky-500/5 dark:bg-sky-500/10"
-          : "border-zinc-200/70 dark:border-zinc-700/70 bg-white/70 dark:bg-zinc-900/40",
+        "border-zinc-200/70 dark:border-zinc-700/70",
+        "bg-white/70 dark:bg-zinc-900/40",
         "hover:border-zinc-300 dark:hover:border-zinc-600",
         "no-underline hover:no-underline",
       )}
@@ -225,9 +210,7 @@ const TagCardLink = ({
               "rounded-full",
               "px-2 py-0.5",
               "text-[11px] font-medium",
-              isFeatured
-                ? "bg-sky-500/15 text-sky-700 dark:text-sky-300"
-                : "bg-zinc-100/80 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300",
+              "bg-zinc-100/80 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300",
             )}
           >
             {count} {count === 1 ? "post" : "posts"}
