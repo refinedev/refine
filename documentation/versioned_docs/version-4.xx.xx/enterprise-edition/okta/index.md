@@ -11,7 +11,7 @@ Okta is an enterprise-grade identity management service. Refine's integration of
 
 ## Installation
 
-This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
+This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://form.typeform.com/to/IzorqxeI).
 
 <InstallPackagesCommand args="@refinedev/okta @okta/okta-auth-js">
 
