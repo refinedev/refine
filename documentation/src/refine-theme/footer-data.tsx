@@ -62,7 +62,7 @@ export const secondaryMenuItems = [
   },
   {
     label: "Privacy Policy",
-    href: "/core/privacy-policy/",
+    href: "/privacy-policy/",
   },
   {
     label: "License",
