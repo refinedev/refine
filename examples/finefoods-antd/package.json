@@ -7,7 +7,7 @@
     "build": "tsc && refine build",
     "dev": "refine dev",
     "refine": "refine",
-    "start": "refine start"
+    "start": "cross-env DISABLE_ESLINT_PLUGIN=true refine start"
   },
   "browserslist": [
     ">0.2%",
@@ -32,6 +32,7 @@
     "@uiw/react-md-editor": "^4.0.8",
     "antd": "^5.23.0",
     "antd-style": "^3.6.1",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
     "google-map-react": "^2.1.10",
     "i18next": "^20.1.0",
