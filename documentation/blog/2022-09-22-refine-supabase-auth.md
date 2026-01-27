@@ -200,7 +200,7 @@ The backend setup is now complete. In the next section, you will start building 
 
 <br/>
 <div>
-<a href="https://s.refine.dev/hackathon2">
+<a href="https://github.com/refinedev/refine/blob/main/hackathon/refine-hackathon.md">
   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" alt="React Supabase OTP authentication" />
 </a>
 </div>
