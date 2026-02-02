@@ -17,7 +17,6 @@ export const TemplatesHero: FC<Props> = ({ className }) => {
         "landing-md:mx-auto",
         "w-full",
         "landing-md:h-[328px]",
-        "landing-md:overflow-hidden",
         "bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
         "before:absolute before:inset-0 before:bg-[url('/assets/hero-cubics.svg')] before:bg-cover before:bg-center  before:mix-blend-overlay before:pointer-events-none",
         className,
@@ -74,6 +73,7 @@ const GlowRight = () => (
     height={475}
     viewBox="0 0 724 475"
     fill="none"
+    className="pointer-events-none select-none"
   >
     <title>Glow Right</title>
     <g filter="url(#glow-right-a)" opacity={0.25}>
@@ -110,6 +110,7 @@ const GlowLeft = () => (
     height={475}
     viewBox="0 0 724 475"
     fill="none"
+    className="pointer-events-none select-none"
   >
     <title>Glow Left</title>
     <g filter="url(#glow-left-a)" opacity={0.25}>

@@ -36,7 +36,7 @@ Steps we follow in this post are as follows:
 
 ### React Reducers with useReducer
 
-Reducers get their name because they accummulate data into one piece in a way similar to how the JavaScript `Array.prototype.reduce()` method does. Reducers make the heart of dedicated global state management solutions like [Redux](https://redux.js.org/introduction/getting-started) and [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query) (Redux Toolkit Query).
+Reducers get their name because they accumulate data into one piece in a way similar to how the JavaScript `Array.prototype.reduce()` method does. Reducers make the heart of dedicated global state management solutions like [Redux](https://redux.js.org/introduction/getting-started) and [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query) (Redux Toolkit Query).
 
 Reducers in plain React, though, are used for smaller scale local state management in components, as opposed to managing global state involving multiple entities and features of the app.
 

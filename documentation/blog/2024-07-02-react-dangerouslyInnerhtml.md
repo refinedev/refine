@@ -72,7 +72,7 @@ const App = () => {
 A piece of JavaScript code was embedded in the above code. This will trigger an alert each time a user tries to access the application. This is because the data was not sanitized before being rendered in the application. The above code will return the below result.
 
 ```tsx
-lorem ipsum <img src="" onerror="alert('mailicious message');" />
+lorem ipsum <img src="" onerror="alert('malicious message');" />
 ```
 
 As shown below, you can sanitize the data to remove all malicious code and scripts embedded in it.

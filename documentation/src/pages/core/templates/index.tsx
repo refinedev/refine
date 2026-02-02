@@ -26,17 +26,59 @@ import { TemplatesList } from "@site/src/refine-theme/templates-list";
 import { TemplateEdition } from "@site/src/types/integrations";
 import clsx from "clsx";
 import React, { type SVGProps } from "react";
+import {
+  Breadcrumbs,
+  type BreadcrumbItem,
+} from "@site/src/components/breadcrumbs";
+import {
+  TEMPLATE_BACKENDS,
+  TEMPLATE_UI_FRAMEWORKS,
+} from "../../../../plugins/templates";
 
-const Templates: React.FC = () => {
+type TemplatesPageFilters = {
+  edition?: Filters["edition"];
+  uiFramework?: Filters["uiFramework"][number];
+  backend?: Filters["backend"][number];
+};
+
+type TemplatesPageProps = {
+  initialFilters?: TemplatesPageFilters;
+  breadcrumbItems?: BreadcrumbItem[];
+  hideEditions?: boolean;
+  showFilters?: boolean;
+  showBreadcrumbs?: boolean;
+};
+
+export const TemplatesPage: React.FC<TemplatesPageProps> = ({
+  initialFilters,
+  breadcrumbItems,
+  hideEditions = false,
+  showFilters = true,
+  showBreadcrumbs = false,
+}) => {
   const title = "Refine | Open-source Retool for Enterprise";
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = React.useState(false);
 
-  const [filters, setFilters] = React.useState<Filters>({
-    edition: TemplateEdition.All,
-    uiFramework: [],
-    backend: [],
-  });
+  const resolvedInitialFilters = React.useMemo<Filters>(() => {
+    return {
+      edition: initialFilters?.edition ?? TemplateEdition.All,
+      uiFramework: initialFilters?.uiFramework
+        ? [initialFilters.uiFramework]
+        : [],
+      backend: initialFilters?.backend ? [initialFilters.backend] : [],
+    };
+  }, [
+    initialFilters?.backend,
+    initialFilters?.edition,
+    initialFilters?.uiFramework,
+  ]);
+
+  const [filters, setFilters] = React.useState<Filters>(resolvedInitialFilters);
+
+  React.useEffect(() => {
+    setFilters(resolvedInitialFilters);
+  }, [resolvedInitialFilters]);
 
   const dataFiltered = React.useMemo(() => {
     const byEdition =
@@ -44,20 +86,25 @@ const Templates: React.FC = () => {
         ? dataTemplates
         : dataTemplates.filter((item) => item.edition === filters.edition);
 
-    if (!filters.uiFramework.length && !filters.backend.length) {
-      return byEdition;
-    }
+    const matchesUI = (item: (typeof dataTemplates)[number]) => {
+      if (!filters.uiFramework.length) {
+        return true;
+      }
+      return item.integrations.some((integration) =>
+        filters.uiFramework.includes(integration.label),
+      );
+    };
 
-    const byTechStack = byEdition.filter((item) => {
-      return item.integrations.some((integration) => {
-        return (
-          filters.uiFramework.includes(integration.label) ||
-          filters.backend.includes(integration.label)
-        );
-      });
-    });
+    const matchesBackend = (item: (typeof dataTemplates)[number]) => {
+      if (!filters.backend.length) {
+        return true;
+      }
+      return item.integrations.some((integration) =>
+        filters.backend.includes(integration.label),
+      );
+    };
 
-    return byTechStack;
+    return byEdition.filter((item) => matchesUI(item) && matchesBackend(item));
   }, [filters]);
 
   const handleFilterChange = (
@@ -86,6 +133,15 @@ const Templates: React.FC = () => {
       };
     });
   };
+
+  const fallbackBreadcrumbItems = React.useMemo<BreadcrumbItem[]>(
+    () => [
+      { label: "Home", href: "/core/" },
+      { label: "Templates", href: "/core/templates/" },
+    ],
+    [],
+  );
+  const resolvedBreadcrumbItems = breadcrumbItems ?? fallbackBreadcrumbItems;
 
   return (
     <>
@@ -123,87 +179,113 @@ const Templates: React.FC = () => {
               )}
             >
               <TemplatesHero />
-              <TemplatesFilterButton
-                className={clsx("flex landing-md:hidden", "my-4 mb-2")}
-                onClick={() => {
-                  setIsFilterDrawerOpen(true);
-                }}
-              />
+              {showFilters && (
+                <TemplatesFilterButton
+                  className={clsx("flex landing-md:hidden", "my-4 mb-2")}
+                  onClick={() => {
+                    setIsFilterDrawerOpen(true);
+                  }}
+                />
+              )}
             </div>
+            {showBreadcrumbs && (
+              <div
+                className={clsx(
+                  "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
+                  "items-start",
+                  "mx-auto",
+                )}
+              >
+                <Breadcrumbs
+                  items={resolvedBreadcrumbItems}
+                  showJsonLd={false}
+                  className={clsx("mb-4", "px-0 landing-md:px-2")}
+                />
+              </div>
+            )}
             <div
               className={clsx(
                 "w-full max-w-[592px] landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
                 "flex",
                 "items-start",
-                "gap-8",
+                showFilters ? "gap-8" : "gap-0",
                 "mx-auto",
                 "relative",
                 "not-prose",
               )}
             >
-              <div
-                className={clsx(
-                  "hidden landing-md:flex",
-                  "flex-col",
-                  "not-prose",
-                  "sticky top-24 left-0",
-                )}
-              >
-                <h3
+              {showFilters && (
+                <div
                   className={clsx(
-                    "text-base",
-                    "font-semibold",
-                    "text-zinc-900",
-                    "pl-3",
+                    "hidden landing-md:flex",
+                    "flex-col",
+                    "not-prose",
+                    "sticky top-24 left-0",
                   )}
                 >
-                  Filter templates
-                </h3>
-                <TemplatesFilters
-                  svgId={"sider"}
-                  onEditionChange={(edition) => {
-                    handleFilterChange(edition, "edition");
-                  }}
-                  onBackendChange={(backend) => {
-                    handleFilterChange(backend, "backend");
-                  }}
-                  onUIFrameworkChange={(uiFramework) => {
-                    handleFilterChange(uiFramework, "uiFramework");
-                  }}
-                  className={clsx("min-w-[164px]", "mt-5")}
-                  selected={filters}
-                  data={dataFilters}
-                />
-              </div>
-              <TemplatesList data={dataFiltered} />
+                  <h3
+                    className={clsx(
+                      "text-base",
+                      "font-semibold",
+                      "text-zinc-900",
+                      "pl-3",
+                    )}
+                  >
+                    Filter templates
+                  </h3>
+                  <TemplatesFilters
+                    svgId={"sider"}
+                    showEdition={!hideEditions}
+                    onEditionChange={(edition) => {
+                      handleFilterChange(edition, "edition");
+                    }}
+                    onBackendChange={(backend) => {
+                      handleFilterChange(backend, "backend");
+                    }}
+                    onUIFrameworkChange={(uiFramework) => {
+                      handleFilterChange(uiFramework, "uiFramework");
+                    }}
+                    className={clsx("min-w-[164px]", "mt-5")}
+                    selected={filters}
+                    data={dataFilters}
+                  />
+                </div>
+              )}
+              <TemplatesList
+                data={dataFiltered}
+                breadcrumbItems={breadcrumbItems}
+              />
             </div>
           </div>
           <LandingFooter />
         </div>
-        <CommonDrawer
-          onClose={() => setIsFilterDrawerOpen(false)}
-          open={isFilterDrawerOpen}
-          title="Filter Templates"
-          variant="templates"
-        >
-          <div className={clsx("flex", "flex-col", "not-prose")}>
-            <TemplatesFilters
-              svgId={"drawer"}
-              onEditionChange={(edition) => {
-                handleFilterChange(edition, "edition");
-              }}
-              onBackendChange={(backend) => {
-                handleFilterChange(backend, "backend");
-              }}
-              onUIFrameworkChange={(uiFramework) => {
-                handleFilterChange(uiFramework, "uiFramework");
-              }}
-              className={clsx("min-w-[180px]")}
-              selected={filters}
-              data={dataFilters}
-            />
-          </div>
-        </CommonDrawer>
+        {showFilters && (
+          <CommonDrawer
+            onClose={() => setIsFilterDrawerOpen(false)}
+            open={isFilterDrawerOpen}
+            title="Filter Templates"
+            variant="templates"
+          >
+            <div className={clsx("flex", "flex-col", "not-prose")}>
+              <TemplatesFilters
+                svgId={"drawer"}
+                showEdition={!hideEditions}
+                onEditionChange={(edition) => {
+                  handleFilterChange(edition, "edition");
+                }}
+                onBackendChange={(backend) => {
+                  handleFilterChange(backend, "backend");
+                }}
+                onUIFrameworkChange={(uiFramework) => {
+                  handleFilterChange(uiFramework, "uiFramework");
+                }}
+                className={clsx("min-w-[180px]")}
+                selected={filters}
+                data={dataFilters}
+              />
+            </div>
+          </CommonDrawer>
+        )}
       </CommonLayout>
     </>
   );
@@ -226,6 +308,29 @@ type Integration = {
   };
 };
 
+const uiFrameworkIcons: Record<
+  string,
+  (props: SVGProps<SVGSVGElement>) => JSX.Element
+> = {
+  "Ant Design": Antd,
+  "Material UI": Mui,
+  Headless,
+  "Chakra UI": Chakra,
+  Mantine,
+};
+
+const backendIcons: Record<
+  string,
+  (props: SVGProps<SVGSVGElement>) => JSX.Element
+> = {
+  Supabase,
+  "Rest API": RestWithoutText,
+  GraphQL: Graphql,
+  Strapi,
+  Appwrite,
+  Medusa,
+};
+
 const dataFilters = {
   editions: [
     {
@@ -241,76 +346,20 @@ const dataFilters = {
       icon: null,
     },
   ],
-  uiFrameworks: [
-    {
-      label: "Ant Design",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Antd width={16} height={16} {...props} />
-      ),
+  uiFrameworks: TEMPLATE_UI_FRAMEWORKS.map((label) => ({
+    label,
+    icon: (props: SVGProps<SVGSVGElement>) => {
+      const Icon = uiFrameworkIcons[label];
+      return Icon ? <Icon width={16} height={16} {...props} /> : null;
     },
-    {
-      label: "Material UI",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Mui width={16} height={16} {...props} />
-      ),
+  })),
+  backends: TEMPLATE_BACKENDS.map((label) => ({
+    label,
+    icon: (props: SVGProps<SVGSVGElement>) => {
+      const Icon = backendIcons[label];
+      return Icon ? <Icon width={16} height={16} {...props} /> : null;
     },
-    {
-      label: "Headless",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Headless width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Chakra UI",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Chakra width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Mantine",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Mantine width={16} height={16} {...props} />
-      ),
-    },
-  ],
-  backends: [
-    {
-      label: "Supabase",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Supabase width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Rest API",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <RestWithoutText width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "GraphQL",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Graphql width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Strapi",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Strapi width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Appwrite",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Appwrite width={16} height={16} {...props} />
-      ),
-    },
-    {
-      label: "Medusa",
-      icon: (props: SVGProps<SVGSVGElement>) => (
-        <Medusa width={16} height={16} {...props} />
-      ),
-    },
-  ],
+  })),
 };
 
 const dataTemplates: {
@@ -643,5 +692,7 @@ const dataTemplates: {
     ],
   },
 ];
+
+const Templates: React.FC = () => <TemplatesPage />;
 
 export default Templates;

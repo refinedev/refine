@@ -11,16 +11,12 @@ import {
   TwitterShareButton,
 } from "react-share";
 import clsx from "clsx";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 
 import { Date, ReadingTime } from "@site/src/components/blog/common";
 import { BannerBlog } from "@site/src/components/banner/banner-blog";
 
-import {
-  ChevronLeftCircle,
-  RedditIcon,
-  TwitterIcon,
-  LinkedinIcon,
-} from "../icons";
+import { RedditIcon, TwitterIcon, LinkedinIcon } from "../icons";
 
 export const BlogPostPageView = ({ children }) => {
   const { metadata, isBlogPostPage } = useBlogPost();
@@ -36,6 +32,15 @@ export const BlogPostPageView = ({ children }) => {
     authors,
   } = metadata;
   const author = authors[0];
+  const primaryTag = tags?.[0];
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+    ...(primaryTag
+      ? [{ label: primaryTag.label, href: primaryTag.permalink }]
+      : []),
+    { label: title, href: permalink },
+  ];
 
   const {
     siteConfig: { url },
@@ -52,30 +57,18 @@ export const BlogPostPageView = ({ children }) => {
         "px-2 blog-md:px-8 blog-lg:px-0",
       )}
     >
+      <Breadcrumbs items={breadcrumbItems} className="mb-6" />
       <div
         className={clsx(
           "hidden blog-md:flex",
-          "justify-between",
+          "w-full",
+          "justify-end",
           "items-center",
           "blog-sm:px-6",
           "pb-6 blog-lg:pb-10",
           "not-prose",
         )}
       >
-        <Link
-          to="/blog"
-          className={clsx(
-            "text-zinc-600 dark:text-zinc-400",
-            "hover:text-zinc-900 dark:hover:text-white",
-            "no-underline",
-            "flex",
-            "items-center",
-            "gap-2",
-          )}
-        >
-          <ChevronLeftCircle />
-          <span className={clsx("text-xs", "font-medium")}>Back to blog</span>
-        </Link>
         <div className="flex items-center gap-2 px-2 py-1 not-prose">
           <span className="text-zinc-600 dark:text-zinc-400 text-xs tracking-[-0.006em] font-medium mr-2">
             Share on:

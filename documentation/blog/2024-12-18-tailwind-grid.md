@@ -156,7 +156,7 @@ We can add columns at larger breakpoints:
 
 Here, we're using Tailwind's default breakpoints at `md:	768px` and `lg:	1024px`. We can see the number of columns increasing at `768px` and `1024px`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.gif"  alt="tailwind grid 4" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.avif"  alt="tailwind grid 4" />
 
 <br />
 
@@ -176,7 +176,7 @@ Below, we place the first `div` as a navbar. We are doing this with `col-span-{n
 </div>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.gif"  alt="tailwind grid 5" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.avif"  alt="tailwind grid 5" />
 
 <br />
 
@@ -263,7 +263,7 @@ Now, we can go ahead and set the last `div` to become a footer. This footer will
 
 Here, `row-start-5` tells the footer to be placed to the bottom row. It looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.gif"  alt="tailwind grid 7" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.avif"  alt="tailwind grid 7" />
 
 <br />
 
@@ -281,7 +281,7 @@ We can go further and make it more structured. Let's make the second `div` span 
 
 We have it shaping into a better website layout:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.gif"  alt="tailwind grid 8" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.avif"  alt="tailwind grid 8" />
 
 <br />
 
@@ -299,7 +299,7 @@ We can change the order of a region by altering the value of `n` in `row-start-{
 
 We have something looking like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.gif"  alt="tailwind grid 4" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.avif"  alt="tailwind grid 4" />
 
 <br />
 

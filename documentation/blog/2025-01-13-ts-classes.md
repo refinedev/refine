@@ -251,7 +251,7 @@ class User {
 const dona = new User("trump");
 
 // Error while being assigned from instance property, but gets assigned at compilation
-console.log((dona._username = "trump_trippin")); // Cannot assign to '_username' because it is a read-only property.(2540)
+console.log((dona._username = "trump_tripping")); // Cannot assign to '_username' because it is a read-only property.(2540)
 ```
 
 ### TypeScript Classes - Constructor Functions

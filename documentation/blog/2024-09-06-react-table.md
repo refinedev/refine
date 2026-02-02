@@ -718,7 +718,7 @@ You will now see a search field that you can use to search for an entry in the t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.avif" alt="react slick" />
 </div>
 
 There are several features of React Table that we haven't explored in this section. Check out the documentation.

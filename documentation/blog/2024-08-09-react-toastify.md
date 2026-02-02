@@ -20,7 +20,7 @@ Any Refine project that uses a supported design system or component libraries, s
 
 In the react ecosystem, there are several notification packages to choose from. React-toastify is one of the popular toast packages you can use to integrate a custom notification system in a React or Refine project. In this article, you will create a custom notification provider in a Refine application using react-toastify.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/react-toastify-min.gif" alt="react toastify" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/react-toastify-min.avif" alt="react toastify" />
 
 <br/>
 

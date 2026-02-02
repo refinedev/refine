@@ -16,6 +16,7 @@ export type Filters = {
 type Props = {
   svgId?: string;
   className?: string;
+  showEdition?: boolean;
   selected: Filters;
   data: {
     editions: {
@@ -39,6 +40,7 @@ type Props = {
 export const TemplatesFilters: FC<Props> = ({
   svgId,
   className,
+  showEdition = true,
   data,
   selected,
   onEditionChange,
@@ -47,20 +49,22 @@ export const TemplatesFilters: FC<Props> = ({
 }) => {
   return (
     <div className={clsx("flex", "flex-col", "not-prose", className)}>
-      <List label="Edition">
-        {data.editions.map((item) => {
-          const isSelected = selected.edition === item.label;
+      {showEdition && (
+        <List label="Edition">
+          {data.editions.map((item) => {
+            const isSelected = selected.edition === item.label;
 
-          return (
-            <ListItem
-              key={item.label}
-              label={item.label}
-              isSelected={isSelected}
-              onClick={() => onEditionChange(item.label)}
-            />
-          );
-        })}
-      </List>
+            return (
+              <ListItem
+                key={item.label}
+                label={item.label}
+                isSelected={isSelected}
+                onClick={() => onEditionChange(item.label)}
+              />
+            );
+          })}
+        </List>
+      )}
       <List label="UI Frameworks" className={clsx("mt-5")}>
         {data.uiFrameworks.map((item) => {
           const isSelected = selected.uiFramework.includes(item.label);

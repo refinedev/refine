@@ -83,7 +83,7 @@ The [`@refinedev/mui@6`](https://www.npmjs.com/package/@refinedev/mui) package h
 
 For detailed information about Data Grid changes, please refer to the [official MUI X Migration Guide for Data Grid](https://mui.com/x/migration/migration-data-grid-v6/).
 
-### Stying
+### Styling
 
 In `@refinedev/mui@6`, the `useDataGrid` hook was returning the following `sx` object for styling the Data Grid but in `@mui/x-data-grid@7`, the `sx` object has been removed to use default styles from `@mui/x-data-grid@7`.
 

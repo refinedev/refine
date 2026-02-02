@@ -250,7 +250,7 @@ In the code above, we we invoked the `useClickAway` custom hook in the `Storefro
 
 Now let’s see the output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/useref.gif"  alt="useRef" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/useref.avif"  alt="useRef" />
 
 <br />
 

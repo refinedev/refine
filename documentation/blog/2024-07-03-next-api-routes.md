@@ -198,7 +198,7 @@ Now if you navigate to `http://localhost:3000/api/trivia/34` or any other random
 Here's a GIF showing an example:
 
 <div class="img-container" align-items="center" >
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/dynamic-routes.gif"  alt="dynamic API routes" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/dynamic-routes.avif"  alt="dynamic API routes" />
 </div>
 
 <br/>

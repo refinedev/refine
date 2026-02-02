@@ -589,7 +589,7 @@ The styling above will create a box shadow which looks like the image below.
 
 **Example 24**
 
-The example below is similar to one of the box shadows we created above. All the length values are zero except the spread radius. It will create a shdow effect which looks like an element border.
+The example below is similar to one of the box shadows we created above. All the length values are zero except the spread radius. It will create a shadow effect which looks like an element border.
 
 ```css
 .box {

@@ -12,7 +12,7 @@
     <a href="https://refine.dev/core/templates/">Examples</a> |
     <a href="https://discord.gg/refine">Discord</a> |
     <a href="https://refine.dev/blog/">Blog</a> |
-    <a href="https://s.refine.dev/tJw4XFo">Refine</a>
+    <a href="https://refine.dev/">Refine</a>
 </div>
 </div>
 
@@ -25,7 +25,7 @@ Refine Core is an open source, React meta-framework for enterprise. It provides 
 dashboards and internal tools.
 <br />
 
-<strong>Refine CORE also powers <a href="https://s.refine.dev/tJw4XFo">Refine's purpose built AI agent.</a></strong>
+<strong>Refine CORE also powers <a href="https://refine.dev/">Refine's purpose built AI agent.</a></strong>
 <br />
 
 </div>
@@ -76,7 +76,7 @@ Or you can create a new project on your browser:
 
 You can also try Refine's AI agent for free to create projects:
 
-<a href="https://s.refine.dev/tJw4XFo" target="_blank">
+<a href="https://refine.dev/" target="_blank">
   <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-out-refine-ai-2.png" />
 </a>
 

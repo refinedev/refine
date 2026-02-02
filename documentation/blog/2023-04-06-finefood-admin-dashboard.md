@@ -1829,7 +1829,7 @@ In the code above:
 **Output:**
 
 <div className="centered-image"  >
-   <img  style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fmap.png"  alt="react admin dashboard" />
+   <img  style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fmap.webp"  alt="react admin dashboard" />
 </div>
 
 <br/>

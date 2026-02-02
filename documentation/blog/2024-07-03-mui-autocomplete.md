@@ -266,7 +266,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.gif"  alt="Material UI useAutoComplete groupby" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.avif"  alt="Material UI useAutoComplete groupby" />
 </div>
 
 ## Material UI Autocomplete features
@@ -322,7 +322,7 @@ export default function ManageableStates() {
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.gif"  alt="Material UI useAutoComplete statemanagement" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.avif"  alt="Material UI useAutoComplete statemanagement" />
 </div>
 
 ### The useAutocomplete Hook
@@ -423,7 +423,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.gif"  alt="Material UI useAutoComplete" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.avif"  alt="Material UI useAutoComplete" />
 </div>
 
 ### Asynchronous Requests
@@ -644,7 +644,7 @@ The code above illustrates how you can set a fixed default value on the `<AutoCo
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.gif"  alt="Material UI useAutoComplete fixedoptions" />
+   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.avif"  alt="Material UI useAutoComplete fixedoptions" />
 </div>
 
 ### Checkboxes
@@ -697,7 +697,7 @@ export default function CheckboxesTags() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.gif"  alt="Material UI useAutoComplete checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.avif"  alt="Material UI useAutoComplete checkbox" />
 </div>
 
 ## Accessibility Features
@@ -940,7 +940,7 @@ export default Home;
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.gif"  alt="Material UI useAutoComplete google" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.avif"  alt="Material UI useAutoComplete google" />
 </div>
 
 <br/>

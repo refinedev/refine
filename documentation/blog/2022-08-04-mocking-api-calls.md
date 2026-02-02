@@ -4,7 +4,7 @@ description: How to test API calls in React?
 slug: mocking-api-calls-in-react
 authors: necati
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/social.webp
 hide_table_of_contents: false
 ---
 

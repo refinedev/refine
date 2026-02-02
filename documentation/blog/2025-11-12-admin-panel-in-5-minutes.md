@@ -15,7 +15,7 @@ That changed when I started using Refine with Supabase.
 
 With Refine, your days- or weeks-long admin panel project might be done in minutes.
 
-![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.gif)
+![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.avif)
 
 _Demo: A finished Refine admin panel with resources like employees, expenses, and assets._
 
@@ -88,7 +88,7 @@ In less than a minute, the AI generates the list resource page, and it's fully e
 
 If you simply go with the suggestions, you'll end up with a project like the one below in under an hour.
 
-![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.gif)
+![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.avif)
 
 _Demo: A working admin panel created with Refine in minutes._
 

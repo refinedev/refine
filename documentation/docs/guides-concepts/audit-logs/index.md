@@ -38,7 +38,7 @@ export const auditLogProvider: AuditLogProvider = {
   create: async (params) => {
     const { resource, meta, action, author, data, previousData } = params;
 
-    console.log(resource); // "produts", "posts", etc.
+    console.log(resource); // "products", "posts", etc.
     console.log(meta); // { id: "1" }, { id: "2" }, etc.
     console.log(action); // "create", "update", "delete"
     // author object is `useGetIdentity` hook's return value.

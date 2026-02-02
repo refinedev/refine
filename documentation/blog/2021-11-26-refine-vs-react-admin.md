@@ -264,7 +264,7 @@ Although **Refine** is a newer framework, it is successful in identifying defici
 npm create refine-app@latest demo-refine-project -- -b v3
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/project_setup.gif" alt="setup" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/project_setup.avif" alt="setup" />
 
 ### Features
 

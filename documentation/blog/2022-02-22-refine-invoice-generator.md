@@ -856,7 +856,7 @@ export const ClientList = () => {
 
 We created our `Client` and `Contact` pages. Now, let's create a Client with **Refine** and define contacts for our clients.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif" alt="Refine Clients Overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.avif" alt="Refine Clients Overview" />
 <br />
 
 ## Example

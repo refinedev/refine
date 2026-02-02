@@ -6,6 +6,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
 import { AuthorCardWithProps } from "@site/src/components/blog";
+import { Breadcrumbs } from "@site/src/components/breadcrumbs";
 import clsx from "clsx";
 
 const BlogListPageMetadata = () => {
@@ -24,12 +25,31 @@ const AuthorPage = (props) => {
   const { items } = props;
 
   const author = items[0].content.metadata.authors[0];
+  const authorHref = author?.key ? `/blog/author/${author.key}` : undefined;
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: author?.name ?? "Author", href: authorHref },
+  ];
 
   return (
     <>
       <BlogListPageMetadata />
       <BlogLayout showSidebarBanner={false}>
-        <div className="h-12" />
+        <Breadcrumbs
+          items={breadcrumbItems}
+          className={clsx(
+            "w-full",
+            "mx-auto",
+            "blog-sm:max-w-[592px]",
+            "blog-md:max-w-[656px]",
+            "blog-lg:max-w-[896px]",
+            "blog-max:max-w-[1200px]",
+            "px-6 blog-sm:px-0",
+            "pt-6",
+          )}
+        />
+        <div className="h-8" />
         <AuthorCardWithProps author={author} />
         <div
           className={clsx(

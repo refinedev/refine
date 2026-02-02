@@ -3365,7 +3365,10 @@ importers:
         version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@19.1.8)(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 3.6.2(@types/react@19.1.8)(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -17823,7 +17826,7 @@ packages:
   '@mui/base@5.0.0-beta.61':
     resolution: {integrity: sha512-YaMOTXS3ecDNGsPKa6UdlJ8loFLvcL9+VbpCK3hfk71OaNauZRp4Yf7KeXDYr7Ms3M/XBD3SaiR6JMr6vYtfDg==}
     engines: {node: '>=14.0.0'}
-    deprecated: This package has been replaced by @base-ui/react
+    deprecated: This package has been replaced by @base-ui-components/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       react: ^17.0.0 || ^18.0.0

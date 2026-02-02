@@ -3,9 +3,14 @@ import clsx from "clsx";
 import React, { type FC, type SVGProps } from "react";
 import type { TemplateEdition } from "../types/integrations";
 import { Image } from "../components/image";
+import {
+  BreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from "@site/src/components/breadcrumbs";
 
 type Props = {
   className?: string;
+  breadcrumbItems?: BreadcrumbItem[];
   data: {
     title: string;
     description: string;
@@ -19,9 +24,19 @@ type Props = {
   }[];
 };
 
-export const TemplatesList: FC<Props> = ({ className, data }) => {
+export const TemplatesList: FC<Props> = ({
+  className,
+  data,
+  breadcrumbItems,
+}) => {
+  const defaultBreadcrumbItems: BreadcrumbItem[] = [
+    { label: "Home", href: "/core/" },
+    { label: "Templates", href: "/core/templates/" },
+  ];
+
   return (
     <div className={clsx("not-prose", className)}>
+      <BreadcrumbJsonLd items={breadcrumbItems ?? defaultBreadcrumbItems} />
       <div
         className={clsx(
           "grid",

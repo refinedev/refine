@@ -4,7 +4,7 @@ description: In this article, we will explore some steps you can follow when bui
 slug: how-to-build-a-web-app
 authors: joseph_mawa
 tags: [comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.webp
 hide_table_of_contents: false
 ---
 
@@ -129,7 +129,7 @@ Either way, you need to have some tools for deploying your project. With version
 
 Therefore, automating the application deployment process to testing, staging, and production environments.
 
-Any [Refine.js](https://refine.dev/) project you bootstraped has a complete setup of development and build tools that simplify development, building, and deployment.
+Any [Refine.js](https://refine.dev/) project you bootstrapped has a complete setup of development and build tools that simplify development, building, and deployment.
 
 ## 10. Marketing and User Feedback
 

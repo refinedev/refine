@@ -1,35 +1,55 @@
 import React from "react";
+import Link from "@docusaurus/Link";
 import Tag from "@theme/Tag";
 import { titleCase } from "title-case";
 import clsx from "clsx";
-import { Disclosure, Transition } from "@headlessui/react";
-import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 import { FilterIcon } from "@site/src/refine-theme/icons/filter";
 import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
 
-export default function TagsList({ tags, className }) {
+const PRIORITY_TAGS = [
+  "refine",
+  "react",
+  "nextjs",
+  "typescript",
+  "tutorial",
+  "material-ui",
+  "ant-design",
+  "docker",
+  "comparison",
+];
+
+export default function TagsList({
+  tags,
+  className,
+  variant = "compact",
+}: {
+  tags?: any[];
+  className?: string;
+  variant?: "compact" | "page";
+}) {
   const [collapsed, setCollapsed] = React.useState(true);
-  const priorityTags = [
-    "refine",
-    "react",
-    "nextjs",
-    "typescript",
-    "tutorial",
-    "material-ui",
-    "ant-design",
-    "docker",
-    "comparison",
-  ];
+  const sortedTags = React.useMemo(() => {
+    return [...(tags ?? [])].sort((a, b) => {
+      const aIndex = PRIORITY_TAGS.indexOf(`${a.label}`.toLowerCase());
+      const bIndex = PRIORITY_TAGS.indexOf(`${b.label}`.toLowerCase());
 
-  const sortedTags = (tags ?? []).sort((a, b) => {
-    const aIndex = priorityTags.indexOf(a.label);
-    const bIndex = priorityTags.indexOf(b.label);
+      if (aIndex === -1) {
+        return bIndex === -1 ? 0 : 1;
+      }
+      return bIndex === -1 ? -1 : aIndex - bIndex;
+    });
+  }, [tags]);
 
-    if (aIndex === -1) {
-      return bIndex === -1 ? 0 : 1;
-    }
-    return bIndex === -1 ? -1 : aIndex - bIndex;
-  });
+  if (variant === "page") {
+    return (
+      <PageTags
+        tags={sortedTags}
+        className={className}
+        collapsed={collapsed}
+        onShowMoreClick={(nextCollapsed) => setCollapsed(nextCollapsed)}
+      />
+    );
+  }
 
   return (
     <>
@@ -37,7 +57,7 @@ export default function TagsList({ tags, className }) {
         collapsed={collapsed}
         tags={sortedTags}
         className={clsx("hidden blog-lg:flex", className)}
-        onShowMoreClick={(collapsed) => setCollapsed(collapsed)}
+        onShowMoreClick={(nextCollapsed) => setCollapsed(nextCollapsed)}
       />
       <Mobile
         tags={sortedTags}
@@ -46,6 +66,169 @@ export default function TagsList({ tags, className }) {
     </>
   );
 }
+
+const PAGE_VISIBLE_LIMIT = 24;
+
+const PageTags = ({
+  tags,
+  className,
+  collapsed,
+  onShowMoreClick,
+}: {
+  tags: any[];
+  className?: string;
+  collapsed: boolean;
+  onShowMoreClick: (collapsed: boolean) => void;
+}) => {
+  const totalPosts = React.useMemo(() => {
+    return tags.reduce(
+      (total, tag) => total + (typeof tag.count === "number" ? tag.count : 0),
+      0,
+    );
+  }, [tags]);
+
+  const hasOverflow = tags.length > PAGE_VISIBLE_LIMIT;
+  const visibleTags =
+    hasOverflow && collapsed ? tags.slice(0, PAGE_VISIBLE_LIMIT) : tags;
+
+  return (
+    <div
+      className={clsx(
+        "relative",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border border-zinc-200/70 dark:border-zinc-700/70",
+        "bg-gradient-to-b from-white/80 via-white to-white dark:from-zinc-900/80 dark:via-zinc-900 dark:to-zinc-900",
+        "p-6 blog-sm:p-8",
+        "not-prose",
+        className,
+      )}
+    >
+      <div className="absolute -top-20 -right-24 h-56 w-56 rounded-full bg-sky-500/10 blur-3xl" />
+      <div className="absolute -bottom-24 -left-20 h-56 w-56 rounded-full bg-amber-500/10 blur-3xl" />
+      <div className="relative">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+            <span className="rounded-full border border-zinc-200/80 dark:border-zinc-700/80 px-3 py-1">
+              {tags.length} tags
+            </span>
+            <span className="rounded-full border border-zinc-200/80 dark:border-zinc-700/80 px-3 py-1">
+              {totalPosts} posts
+            </span>
+          </div>
+        </div>
+        <div className="mt-6 grid gap-3 blog-sm:grid-cols-2 blog-lg:grid-cols-3 blog-max:grid-cols-4">
+          {visibleTags.map((tag) => (
+            <TagCard key={tag.permalink} tag={tag} />
+          ))}
+        </div>
+        {hasOverflow && (
+          <div className="mt-6 flex justify-end">
+            <button
+              type="button"
+              onClick={() => onShowMoreClick(!collapsed)}
+              className={clsx(
+                "appearance-none",
+                "flex",
+                "items-center",
+                "gap-2",
+                "rounded-full",
+                "border border-zinc-200/80 dark:border-zinc-700/80",
+                "px-4 py-2",
+                "text-xs font-medium",
+                "text-zinc-600 dark:text-zinc-300",
+                "hover:text-zinc-900 dark:hover:text-white",
+                "hover:border-zinc-300 dark:hover:border-zinc-600",
+                "transition-colors duration-200 ease-in-out",
+              )}
+            >
+              {collapsed ? "Show all tags" : "Show fewer"}
+              <ChevronDownIcon
+                className={clsx(
+                  "transition-transform duration-200 ease-in-out text-zinc-500 dark:text-zinc-400",
+                  {
+                    "rotate-180 transform": !collapsed,
+                  },
+                )}
+              />
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const TagCard = ({ tag }: { tag: any }) => {
+  const count = typeof tag.count === "number" ? tag.count : null;
+
+  return (
+    <TagCardLink
+      href={tag.permalink}
+      label={mapLabel(tag.label)}
+      count={count}
+    />
+  );
+};
+
+const TagCardLink = ({
+  href,
+  label,
+  count,
+}: {
+  href: string;
+  label: string;
+  count: number | null;
+}) => {
+  return (
+    <Link
+      href={href}
+      className={clsx(
+        "group",
+        "relative",
+        "flex",
+        "flex-col",
+        "gap-2",
+        "rounded-2xl",
+        "border",
+        "px-4 py-3",
+        "transition-all duration-200 ease-in-out",
+        "hover:-translate-y-0.5",
+        "border-zinc-200/70 dark:border-zinc-700/70",
+        "bg-white/70 dark:bg-zinc-900/40",
+        "hover:border-zinc-300 dark:hover:border-zinc-600",
+        "no-underline hover:no-underline",
+      )}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+          {label}
+        </span>
+        {count !== null && (
+          <span
+            className={clsx(
+              "rounded-full",
+              "px-2 py-0.5",
+              "text-[11px] font-medium",
+              "bg-zinc-100/80 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300",
+            )}
+          >
+            {count} {count === 1 ? "post" : "posts"}
+          </span>
+        )}
+      </div>
+      <div
+        className={clsx(
+          "h-px w-full",
+          "bg-gradient-to-r",
+          "from-zinc-200/80 via-zinc-200/30 to-transparent",
+          "dark:from-zinc-700/80 dark:via-zinc-700/30",
+        )}
+      />
+      <div className="text-xs text-zinc-500 dark:text-zinc-400">View posts</div>
+    </Link>
+  );
+};
 
 const Desktop = ({
   tags,
@@ -206,12 +389,7 @@ const ChevronDownIcon = (props: { className?: string }) => (
 );
 
 const mapLabel = (label) => {
-  let newLabel = `${label}`;
-
-  // remove `-`
-  newLabel = label.replace(/-/g, " ");
-
-  // replace
+  let newLabel = titleCase(`${label}`.replace(/-/g, " "));
   const replace = [
     ["typescript", "TypeScript"],
     ["javascript", "JavaScript"],
@@ -222,10 +400,9 @@ const mapLabel = (label) => {
     ["css", "CSS"],
   ];
 
-  replace.forEach((element) => {
-    newLabel = label.replace(element[0], element[1]);
+  replace.forEach(([from, to]) => {
+    newLabel = newLabel.replace(new RegExp(from, "i"), to);
   });
 
-  // title case
-  return titleCase(label);
+  return newLabel;
 };

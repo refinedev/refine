@@ -242,7 +242,7 @@ export default function FormControlLabelPosition() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.gif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -403,7 +403,7 @@ The code above displays a list of subjects for students ti choose from. The Mate
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.gif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -465,7 +465,7 @@ export default function IndeterminateCheckbox() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.gif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -641,7 +641,7 @@ export default function TransitionsTooltips() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.gif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>

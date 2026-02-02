@@ -206,7 +206,7 @@ Here is a list of components and pages Refine checks for access control:
 
 ### Sider
 
-Sider is integrated, which means that unaccessible resources won't appear in the sider menu.
+Sider is integrated, which means that inaccessible resources won't appear in the sider menu.
 
 Menu items will check access control with `{ resource, action: "list" }`. For example, if your app has a resource called `posts`, it will be checked with `{ resource: "posts", action: "list" }`.
 

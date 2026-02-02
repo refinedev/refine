@@ -67,15 +67,15 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
-<a href="https://s.refine.dev/readme-admin-panel" target="_blank">
+<a href="https://example.admin.refine.dev/" target="_blank">
  <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
 </a>
 
- <a href="https://s.refine.dev/readme-medium-clone" target="_blank">
+ <a href="https://refine-real-world.netlify.app/" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
 </a>
 
- <a href="https://s.refine.dev/readme-ssr-storefront" target="_blank">
+ <a href="https://refine.dev/" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
 </a>
 

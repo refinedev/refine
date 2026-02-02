@@ -109,7 +109,7 @@ For Windows, the binary is not supported, you will need to use `WSL` on Windows.
 See the below screenshot of all these steps that I performed on my Ubuntu:
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/image2.png" alt="installing operator sdk" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/image2.webp" alt="installing operator sdk" />
 </div>
 
 ### **Creating a New Operator:**

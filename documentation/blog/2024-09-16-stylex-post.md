@@ -296,7 +296,7 @@ const style = stylex.create({
 
 </details>
 
-It takes a styles object with property indentifiers that represent a CSS class and values that compose the actual CSS rules. Under the hood, Stylex creates a CSS class with an identifier starting with `x` for each of the Stylex style object property. When the style is applied to a JSX element with `stylex.props`, this generated CSS class is added to the element's `className` property.
+It takes a styles object with property identifiers that represent a CSS class and values that compose the actual CSS rules. Under the hood, Stylex creates a CSS class with an identifier starting with `x` for each of the Stylex style object property. When the style is applied to a JSX element with `stylex.props`, this generated CSS class is added to the element's `className` property.
 
 <br />
 
@@ -690,4 +690,4 @@ Now, you can toggle the `themeVars` to apply dark mode by editing the value of t
 
 In this post, we quickly covered the basics of Stylex by applying styling in a Next.js app. We focused particularly on the core `stylex.create` and `stylex.props` APIs for defining CSS-in-JS styles to our page and component. We also covered how Stylex variables are defined and used with the `stylex.defineVars` method. In the end, we saw an example of how style props are statically typed with Stylex in a component.
 
-These APIs make Stylex a powerful toolbox of inline and static CSS styling that helps produce reusable, extendable and performant stying as sought out by scalable large applications. Stylex is a newborn library passing through infancy and thanks to its capabilities of globally available variables, clean and lean API surface, we should be seeing much more robust and tiny UI frameworks built on top it very soon.
+These APIs make Stylex a powerful toolbox of inline and static CSS styling that helps produce reusable, extendable and performant styling as sought out by scalable large applications. Stylex is a newborn library passing through infancy and thanks to its capabilities of globally available variables, clean and lean API surface, we should be seeing much more robust and tiny UI frameworks built on top it very soon.

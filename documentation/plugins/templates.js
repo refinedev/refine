@@ -1,6 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
+const TEMPLATE_UI_FRAMEWORKS = [
+  "Ant Design",
+  "Material UI",
+  "Headless",
+  "Chakra UI",
+  "Mantine",
+];
+exports.TEMPLATE_UI_FRAMEWORKS = TEMPLATE_UI_FRAMEWORKS;
+
+const TEMPLATE_BACKENDS = [
+  "Supabase",
+  "Rest API",
+  "GraphQL",
+  "Strapi",
+  "Appwrite",
+  "Medusa",
+];
+exports.TEMPLATE_BACKENDS = TEMPLATE_BACKENDS;
+
+// Convert filter labels to URL slugs. Example: "Ant Design" -> "ant-design" "Strapi V4 " -> "strapi-v4".
+const toSlug = (value) => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+};
+exports.toSlug = toSlug;
+
 async function RefineTemplates() {
   return {
     name: "docusaurus-plugin-refine-templates",
@@ -10,11 +38,13 @@ async function RefineTemplates() {
 
       await Promise.all(
         content.map(async (data) => {
+          // Persist per-template data so the detail page can read it at build time.
           const json = await createData(
             `templates-${data.slug}.json`,
             JSON.stringify(data, null, 2),
           );
 
+          // Detail pages live at /core/templates/<slug>.
           addRoute({
             path: `/core/templates/${data.slug}`,
             component: "@site/src/components/templates-detail-page/index",
@@ -25,6 +55,43 @@ async function RefineTemplates() {
           });
         }),
       );
+
+      // Filtered list routes for UI framework and UI+backend combos.
+      for (const uiFramework of exports.TEMPLATE_UI_FRAMEWORKS) {
+        const uiSlug = exports.toSlug.call(void 0, uiFramework);
+        const uiJson = await createData(
+          `templates-filter-${uiSlug}.json`,
+          JSON.stringify({ uiFramework }, null, 2),
+        );
+
+        // UI-only filter page at /core/templates/<ui>.
+        addRoute({
+          path: `/core/templates/${uiSlug}`,
+          component: "@site/src/components/templates-filtered-page/index",
+          exact: true,
+          modules: {
+            filters: uiJson,
+          },
+        });
+
+        for (const backend of exports.TEMPLATE_BACKENDS) {
+          const backendSlug = exports.toSlug.call(void 0, backend);
+          const comboJson = await createData(
+            `templates-filter-${uiSlug}-${backendSlug}.json`,
+            JSON.stringify({ uiFramework, backend }, null, 2),
+          );
+
+          // UI + backend filter page at /core/templates/<ui>/<backend>.
+          addRoute({
+            path: `/core/templates/${uiSlug}/${backendSlug}`,
+            component: "@site/src/components/templates-filtered-page/index",
+            exact: true,
+            modules: {
+              filters: comboJson,
+            },
+          });
+        }
+      }
     },
     loadContent: async () => {
       return templates;
@@ -395,7 +462,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
     slug: "multitenancy-strapi",
     title: "Multitenancy App with Strapi",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.png",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.webp",
     ],
     runOnYourLocalPath: null,
     edition: "Enterprise",

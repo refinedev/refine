@@ -406,7 +406,7 @@ Congratulations! You have successfully created a custom notification provider fo
 **Success notification**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/success-min.gif"  alt="react-hot-toast" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/success-min.avif"  alt="react-hot-toast" />
 </div>
 
 <br/>
@@ -466,7 +466,7 @@ toast.success("Successfully logged in", {
 ```
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/location-min.gif"  alt="react-hot-toast" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/location-min.avif"  alt="react-hot-toast" />
 </div>
 
 <br/>

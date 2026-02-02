@@ -609,7 +609,7 @@ What we can do first is destructure the `add()` and `remove()` functions from th
 
 Now, the `Add a skill` button is functional. If you save your progress and test it out, you should be able to add dynamic fields to the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions.avif"  alt="dynamic form antd" />
 
 <br />
 
@@ -705,7 +705,7 @@ export default function UserCreate() {
 
 Unlike the former, we're passing the field name as an argument to the `remove()` function. Since each name is unique to its respective component, the function will only delete the field whose button is clicked.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-actions-2.avif"  alt="dynamic form antd" />
 
 <br />
 
@@ -958,7 +958,7 @@ All we need to do is add a `hasFeedback` prop to each `<Form.Item>` like so:
 </Form.Item>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation.avif"  alt="dynamic form antd" />
 
 <br />
 
@@ -966,7 +966,7 @@ There you have it, an adequately validated **dynamic form** without the help of 
 
 Now, our form is ready to validate input values and perform `POST` requests to our fake API endpoint.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-validation-2.avif"  alt="dynamic form antd" />
 
 <br />
 
@@ -1030,7 +1030,7 @@ Refer to the `<EditButton>` [documentation](https://refine.dev/core/docs/api-ref
 
 In the example above, we're using the `render` prop to choose the appropriate record on the table, and passing its `id` to the `recordItemId` prop on the `<EditButton>` component. This way, the button will only redirect us to the edit page of the record being clicked on.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.gif"  alt="dynamic form antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/dynamic-form-edit-page.avif"  alt="dynamic form antd" />
 
 <br />
 

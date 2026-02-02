@@ -19,7 +19,6 @@ We have an important update to share with our community.
 
 **Refine Core** will be our open source framework, available at refine.dev/core
 
-
 ## Why We're Making This Change
 
 When we first started Refine, we built it to solve a problem we encountered repeatedly: doing the same things over and over while building web applications. The framework grew into a powerful tool that thousands of developers rely on.
@@ -31,12 +30,14 @@ Our current website structure wasn't clearly communicating the distinct value of
 ## What This Means for You
 
 ### If you're using our open source framework:
+
 - All existing functionality remains unchanged
 - Your projects will continue to work exactly as they do today
 - Documentation, support, and community resources will be maintained at refine.dev/core
 - We remain committed to supporting and maintaining Refine Core
 
 ### If you're interested in our AI tool:
+
 - Visit refine.dev to explore the newly branded Refine
 - Experience AI-powered application generation built on proven architecture
 - Get started faster with intelligent code generation and assistance
@@ -49,13 +50,10 @@ Both products will thrive in their own right, and this separation allows us to g
 
 ## What's Next
 
-* **Existing users:** No action is required. Your current setup will continue working seamlessly.
+- **Existing users:** No action is required. Your current setup will continue working seamlessly.
 
-* **Documentation:** We're updating all documentation to reflect the new structure. Bookmark refine.dev/core for framework resources.
+- **Documentation:** We're updating all documentation to reflect the new structure. Bookmark refine.dev/core for framework resources.
 
-* **Questions?** We're here to help. Reach out through info@refine.dev, and we'll be happy to answer any questions about this transition.
+- **Questions?** We're here to help. Reach out through info@refine.dev, and we'll be happy to answer any questions about this transition.
 
 Thank you for being part of our journey. We're excited about what's ahead for both Refine Core and Refine, and we're grateful for your continued support.
-
-
-

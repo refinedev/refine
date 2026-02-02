@@ -229,7 +229,7 @@ The asynchronous method starts numerous processes at the same time. This ensures
 console.log("Start"); // First task (synchronous) - goes to call stack
 
 setTimeout(() => {
-  console.log("Timeout callback"); // This task(aysnchronous) is put into the event loop
+  console.log("Timeout callback"); // This task(asynchronous) is put into the event loop
 }, 1000);
 
 console.log("End"); // Second task (synchronous) - in call stack

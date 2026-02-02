@@ -167,7 +167,7 @@ The code above showcases a list of car brands as `<Option />` values. The `ListI
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.gif"  alt="Material UI select option" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.avif"  alt="Material UI select option" />
 </div>
 
 ## Other Material UI Select features
@@ -359,7 +359,7 @@ export default function Demo() {
 The preceding code shows a `Select` field with organized input values. As shown below, these values are represented by three modes of transportation (land, air, and water), each with its own set of values. These values are placed in an array that is mapped through to generate the output on the DOM.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.gif"  alt="Material UI select grouped" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.avif"  alt="Material UI select grouped" />
 </div>
 
 **Note**: If you wish to specify the maximum height for a list of accessible `Select` options, simply do so in the `listbox` component to ensure proper keyboard navigation.
@@ -541,7 +541,7 @@ export default function SelectBasic() {
 And the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.gif"  alt="Material UI select option" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.avif"  alt="Material UI select option" />
 </div>
 
 ## Advanced Styling with Material UI Select

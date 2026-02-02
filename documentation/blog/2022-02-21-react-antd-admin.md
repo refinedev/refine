@@ -84,7 +84,7 @@ cd refine-advanced-tutorial
 npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.gif" alt="Refine Tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.avif" alt="Refine Tutorial" />
 <br />
 
 As you have seen, our example project is ready. Now let's examine how the features offered by **Refine** are included in a project and how they are used.
@@ -337,7 +337,7 @@ return (
 
 Now our i18n Provider is ready to use, let's test it together.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.gif" alt="Refine i18n Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.avif" alt="Refine i18n Provider" />
 <br />
 
 ### Use the translation with Table Content
@@ -418,7 +418,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.gif" alt="Refine i18n Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.avif" alt="Refine i18n Provider" />
 <br />
 
 You can add the translation you want and organize your content according to different languages ​​together with the **Refine** i18n Provider.
@@ -808,7 +808,7 @@ export const PostList = () => {
 
 Here, if the selected role is Admin, the 'Hit' section will appear in our Table. We have stated that the Editor role cannot display this section.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.avif" alt="Refine Access Control Provider" />
 <br />
 
 Check out [**Refine** Access Control](https://refine.dev/core/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide

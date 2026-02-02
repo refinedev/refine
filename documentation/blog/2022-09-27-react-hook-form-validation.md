@@ -1068,7 +1068,7 @@ export default Create;
 
 Now, if you save your progress and go to the browser, the company and role fields should only display when the Employed option is selected.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.gif"  alt="react Hook Form error handling" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.avif"  alt="react Hook Form error handling" />
 
 <br />
 
@@ -1109,7 +1109,7 @@ Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` 
 
 Now, if you save your progress and head over to the browser, you should get a logged object of the form’s data in your console when you fill in the fields and submit the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif"  alt="React Hook Form error handling" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.avif"  alt="React Hook Form error handling" />
 
 <br />
 

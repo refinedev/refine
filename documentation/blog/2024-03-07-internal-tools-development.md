@@ -16,7 +16,7 @@ Internal tools are specialized software applications used by a company's back-of
 
 In this post, we briefly review the current state of the enterprise tools landscape to understand how internal tools development looks like entering 2024. We first get a brief historical account of how off-the-shelf desktop based internal tools solutions made their way to the web via cloud hosted applications. We evaluate the pros and cons of internal tool builder platforms and differentiate them from more custom development using cutting edge open source technologies in the React/Node.js ecosystem.
 
-We emphasize on the importance of developing interoperable, extensible and future-adaptive bespoke enterprise tools with greater velocity and eficiency. To that end, we assess leading frameworks and tools in the React/Node.js ecosystem that are used for building internal tools from scratch. We then present a detailed guide on what to consider while building future proof internal tools and how Refine's architecture, core features and support packages are geared to build highly efficient, future-adaptive internal tools in 2024.
+We emphasize on the importance of developing interoperable, extensible and future-adaptive bespoke enterprise tools with greater velocity and efficiency. To that end, we assess leading frameworks and tools in the React/Node.js ecosystem that are used for building internal tools from scratch. We then present a detailed guide on what to consider while building future proof internal tools and how Refine's architecture, core features and support packages are geared to build highly efficient, future-adaptive internal tools in 2024.
 
 Steps we'll cover:
 
@@ -38,7 +38,7 @@ Historically, internal tools such as Finance, Accounting and HR software were ru
 
 A wide variety of internal tools that empower different aspects of a business exist today. They range from domain specific solutions such as Customer Relations Management (CRM) tools or customer support ticketing systems to comprehensive toolsets such as Enterprise Resource Planning (ERP) suites. Typically, an ERP software sets up the backbone of an enterprise tooling system and embodies, integrates and coordinates smaller interoperable business solutions such as CRM systems, CMSs, team collaboration tools, etc.
 
-Below is a quick rundown of common enterprise internal tools used by stable busnesses.
+Below is a quick rundown of common enterprise internal tools used by stable businesses.
 
 - **Enterprise Resource Planning (ERP) Suite**
   An ERP tool provides comprehensive set of solutions for different business operations. It provides a single source of truth with a central database and a backbone that integrates applications specific to separate business units such as finance, HR, accounting, sales, logistics and supply chain manamgent, etc. Most ERP software divide unit-specific applications into modules that are plugged in to the central system according to business needs.
@@ -131,7 +131,7 @@ However, as in no-code platforms, low-code apps are subject to vendor lock-in, l
 
 Typically, after they attain a certain business maturity level, enterprises seek much greater customizability, extensibility and future adaptability of app features. At such landmarks, rebuilding the same internal tool ground up with a dedicated team of developers and open source technologies is an appropriate strategy. It is common to follow an iterative approach to continuously integrate enhancements to a core set of functionalities.
 
-Bespoke development of web based internal tools with open source technolgies like React/Node.js has gained traction in recent years. This is mostly due to how JavaScript based frontend frameworks such as Next.js, Remix, Gatsby, Angular.js, Svelte, etc., have flourished over a decade and created space for whole lots of wildly offshooting UI frameworks and libraries.
+Bespoke development of web based internal tools with open source technologies like React/Node.js has gained traction in recent years. This is mostly due to how JavaScript based frontend frameworks such as Next.js, Remix, Gatsby, Angular.js, Svelte, etc., have flourished over a decade and created space for whole lots of wildly offshooting UI frameworks and libraries.
 
 Implementing elegantly designed complex UI components that are typical of internal tools that perform consistently across platforms and browsers are now made easy by React based UI design systems and frameworks like Ant Design, Material UI, Mantine and TailwindCSS.
 

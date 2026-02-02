@@ -256,7 +256,7 @@ So, let's look how to get the roles from our **Supabase** database next.
 
 In **Refine**, user roles are fetched by `authProvider`'s `getPermissions()` method. It is already defined for us by `@refinedev/supabase`.
 
-When you bootstraped **Refine** app with CLI, the default `getPermissions` method in `authProvider` looks like below:
+When you bootstrapped **Refine** app with CLI, the default `getPermissions` method in `authProvider` looks like below:
 
 ```tsx title="src/providers/authProvider.ts"
 getPermissions: async () => {

@@ -280,7 +280,7 @@ const { options } = useSelect({
 
 ### onSearch
 
-`onSearch` allows the addittion of `AutoComplete` to the `options`.
+`onSearch` allows the addition of `AutoComplete` to the `options`.
 
 <OnSearchLivePreview />
 
