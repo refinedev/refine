@@ -106,9 +106,6 @@ const siteConfig = {
             require.resolve("./src/css/demo-page.css"),
           ],
         },
-        gtag: {
-          trackingID: ["G-27Z1WY952H", "G-PSTZ6M7LTY"],
-        },
         googleTagManager: {
           containerId: "GTM-TPCTPDFK",
         },
@@ -161,7 +158,6 @@ const siteConfig = {
           ],
         ]),
     "./plugins/clarity.js",
-    "./plugins/ahref.js",
     "./plugins/templates.js",
     "./plugins/tutorial-navigation.js",
     [
