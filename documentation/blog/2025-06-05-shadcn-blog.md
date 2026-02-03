@@ -81,12 +81,10 @@ This 'AI-Ready' architecture, as termed by shadcn/ui's creators, where AI can in
 This profound potential for AI synergy is not just theoretical; it's actively being harnessed. For example, Refine, is in advanced stages of integrating shadcn/ui. Here is a sneak peek.
 
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn-table.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn-table.png" alt="refineai shadcn example" />
 </div>
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn-detail.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn-detail.png" alt="refineai shadcn example" />
 </div>
 
 ### Conclusion: A Shift Towards Developer Empowerment and AI Synergy
