@@ -1,6 +1,6 @@
 ---
-title: Create your own Supabase Database in 5 minutes
-description: Learn how to create and structure your Supabase database in minutes
+title: Create Your Own Supabase Database In 5 Minutes
+description: Learn how to create and configure a scalable Supabase database. A step-by-step guide to getting your backend ready for your next web project.
 slug: supabase-database-setup
 authors: ozgur
 tags: [supabase, database, backend, tutorial]
@@ -59,7 +59,7 @@ For now, we’ll stay inside the **Table Editor**.
 
 ## Step 2: Understanding the Table Editor
 
-The [Table Editor](https://supabase.com/docs/guides/database/tables) is where you design your data model. You don’t have to write SQL — though you can, if you want to — Supabase gives you a clean UI for defining everything visually.
+The Table Editor is where you design your data model. You don’t have to write SQL — though you can, if you want to — Supabase gives you a clean UI for defining everything visually.
 
 Each table is like a spreadsheet, but with types, constraints, and relationships.
 
@@ -70,7 +70,7 @@ When you create a new table, you’ll define:
 - **Data types** (text, integer, timestamp, etc.)
 - **Default values** and **constraints**
 - **Relationships** (foreign keys)
-  Supabase automatically handles the SQL under the hood, and everything you build here instantly becomes accessible through a [REST API](https://supabase.com/docs/guides/api) and [GraphQL](https://supabase.com/docs/guides/api/graphql).
+  Supabase automatically handles the SQL under the hood, and everything you build here instantly becomes accessible through a REST API and GraphQL
 
 ### Row Level Security (RLS) & Policies (Quick Primer)
 
@@ -81,7 +81,7 @@ Role mapping:
 - `anon`: requests without a user JWT (public key only)
 - `authenticated`: requests with a valid user JWT (including “anonymous sessions” created via Supabase Auth; those still assume the `authenticated` role)
 
-You can always inspect or change RLS via the table’s Policies tab (see the [RLS guide](https://supabase.com/docs/guides/database/postgres/row-level-security) for details). We’ll keep schema focus first, then add policies once structure exists.
+You can always inspect or change RLS via the table’s Policies tab. We’ll keep schema focus first, then add policies once structure exists.
 
 ---
 
@@ -163,7 +163,7 @@ You can view, edit, and filter it right in the dashboard — or query it using S
 
 ## Step 6: Explore the SQL Editor
 
-Even though the Table Editor is visual, Supabase lets you use full PostgreSQL SQL if you prefer. Click the **[SQL Editor](https://supabase.com/docs/guides/database/overview#the-sql-editor)** tab in the sidebar.
+Even though the Table Editor is visual, Supabase lets you use full PostgreSQL SQL if you prefer. Click the SQL Editor tab in the sidebar.
 
 Here you can:
 
@@ -293,11 +293,7 @@ The quickest win now is to connect your Supabase database to Refine and generate
 ## Helpful Links
 
 - [Supabase Docs](https://supabase.com/docs) – explore all features
-- [Supabase SQL Editor](https://supabase.com/docs/guides/database/overview#the-sql-editor) – learn to write queries
-- [Supabase Auth](https://supabase.com/docs/guides/auth) – configure access and security policies
-- [Local Development & CLI](https://supabase.com/docs/guides/local-development/overview) – run Supabase locally with migrations
-- [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) – how to enable and write policies
-- [Refine + Supabase Guide](https://refine.dev/core/docs/guides/supabase) – connect your schema to Refine
-- [Supabase Discord](https://discord.supabase.com) – join the community
+- [Refine + Supabase Guide](https://refine.dev/core/docs/data/packages/supabase/) – connect your schema to Refine
+- [Make an admin panel in 5 minutes with your Supabase database](https://refine.dev/blog/admin-panel-with-supabase/)
 
 ---

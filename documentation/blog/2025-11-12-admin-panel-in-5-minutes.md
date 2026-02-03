@@ -1,7 +1,7 @@
 ---
-title: Create an admin panel with Supabase in 5 minutes
-description: Learn how Refine can help you create an admin panel with supabase in 5 minutes
-slug: supabase-refine-ai
+title: Create An Admin Panel With Supabase In 5 Minutes
+description: Build a powerful React-based admin panel with Supabase. Use Refine to automate your CRUD operations and connect your database effortlessly.
+slug: admin-panel-with-supabase
 authors: ozgur
 tags: [supabase, admin panel, AI, fast]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-ai-big.png
@@ -11,9 +11,9 @@ is_featured: true
 
 Admin panels are a must for a lot of businesses and teams. From small groups to larger organizations, being able to see all the information at a glance is incredibly helpful. The issue is how long it takes. You might have a lot of resources to wire up, dozens of pages to create and stitch together, and even if you’re using Refine, it can still take a while.
 
-That changed when I started using Refine with Supabase.
+This can, however, change if you start to use Refine with Supabase.
 
-With Refine, your days- or weeks-long admin panel project might be done in minutes.
+With Refine, your days, or weeks, long admin panel project might be done in minutes.
 
 ![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.avif)
 
@@ -43,25 +43,17 @@ The code it generates isn't throw-away prototype code either—it's production-r
 
 ### Step 1: Create the project
 
-Here's where it gets fun. Head over to [refine.dev](https://refine.dev) and click "Connect to Supabase"
+Here's where it gets fun. Head over to [refine.dev](https://refine.dev/start) and click "Connect to Supabase"
 
-First, pick your UI framework. For this project, we'll use shadcn/ui, but you can choose whichever you prefer.
+Afterward, it's as simple as connecting your Supabase project. Afterwards, you just need to pick the project you want to use as your backend database.
 
-![AI Refine DevTools Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/choose-framework)
-
-Afterward, it's as simple as connecting your Supabase project to Refine—just choose the project you want to use as your backend.
-
-![develop.ai.refine.dev_v2_wizard_dy1oU4xf_backend](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/wizard-backend.png)
-
-If you don't have one, you can also use the sample HR API, which is an almost exact copy of what you'll see here.
-
-![DevTools Backend Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/backend-wizard-2.png)
+![develop.ai.refine.dev_v2_wizard_dy1oU4xf_backend](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-window-connect.webp)
 
 ### Step 2: Let the AI Analyze Your Database
 
-![DevTools Refine Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/wizard-3.png)
+![DevTools Refine Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-database.webp)
 
-After you connect to your Supabase database, click Continue and let AI analyze your schema. You can ask it questions or have it make changes, but for this walkthrough, we won't make any edits.
+After you connect to your Supabase database, click Continue and let AI analyze your schema.
 
 Give your tables a final look before pressing Continue again.
 
