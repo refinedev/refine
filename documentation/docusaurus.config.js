@@ -109,6 +109,9 @@ const siteConfig = {
         gtag: {
           trackingID: ["G-27Z1WY952H", "G-PSTZ6M7LTY"],
         },
+        googleTagManager: {
+          containerId: "GTM-TPCTPDFK",
+        },
         sitemap: {
           ignorePatterns: ["**/_*.md"],
         },
