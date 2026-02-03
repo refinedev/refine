@@ -13,6 +13,7 @@ import type {
 export const parseTableParams = (url: string) => {
   const { currentPage, pageSize, sorters, sorter, filters } = qs.parse(
     url.substring(1), // remove first ? character
+    { depth: 10 },
   );
 
   return {

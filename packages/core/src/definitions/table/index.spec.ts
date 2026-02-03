@@ -636,4 +636,59 @@ describe("definitions/table", () => {
       }),
     ).toEqual("");
   });
+
+  it("parseTableParams should handle deeply nested conditional filters", () => {
+    const filters: CrudFilter[] = [
+      {
+        operator: "or",
+        value: [
+          {
+            operator: "and",
+            value: [
+              { field: "isDismissed", operator: "eq", value: true },
+              { field: "participation.id", operator: "nnull", value: "" },
+            ],
+          },
+          {
+            operator: "and",
+            value: [{ field: "isDismissed", operator: "eq", value: false }],
+          },
+        ],
+      },
+    ];
+
+    const url = stringifyTableParams({
+      pagination: { currentPage: 1, pageSize: 10 },
+      sorters: [],
+      filters,
+    });
+
+    const { parsedFilters } = parseTableParams(`?${url}`);
+
+    expect(parsedFilters).toHaveLength(1);
+    expect(parsedFilters[0]).toHaveProperty("operator", "or");
+    expect(parsedFilters[0]).toHaveProperty("value");
+
+    const orValue = (parsedFilters[0] as any).value;
+    expect(orValue).toHaveLength(2);
+
+    expect(orValue[0]).toHaveProperty("operator", "and");
+    expect(orValue[0].value).toHaveLength(2);
+    expect(orValue[0].value[0]).toHaveProperty("field", "isDismissed");
+    expect(orValue[0].value[0]).toHaveProperty("operator", "eq");
+    expect(orValue[0].value[0]).toHaveProperty("value", "true");
+    expect(orValue[0].value[1]).toHaveProperty("field", "participation.id");
+    expect(orValue[0].value[1]).toHaveProperty("operator", "nnull");
+
+    expect(orValue[1]).toHaveProperty("operator", "and");
+    expect(orValue[1].value).toHaveLength(1);
+    expect(orValue[1].value[0]).toHaveProperty("field", "isDismissed");
+    expect(orValue[1].value[0]).toHaveProperty("operator", "eq");
+    expect(orValue[1].value[0]).toHaveProperty("value", "false");
+
+    const stringified = JSON.stringify(parsedFilters);
+    expect(stringified).not.toContain("[field]");
+    expect(stringified).not.toContain("[operator]");
+    expect(stringified).not.toContain("[value]");
+  });
 });

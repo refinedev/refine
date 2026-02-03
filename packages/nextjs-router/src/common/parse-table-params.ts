@@ -2,7 +2,10 @@ import qs from "qs";
 import type { ParsedParams } from "@refinedev/core";
 
 const parseTableParams = (search: string) => {
-  const parsed: ParsedParams = qs.parse(search, { ignoreQueryPrefix: true });
+  const parsed: ParsedParams = qs.parse(search, {
+    ignoreQueryPrefix: true,
+    depth: 10,
+  });
 
   const tableReady = {
     ...parsed,
