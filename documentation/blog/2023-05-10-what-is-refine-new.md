@@ -19,8 +19,7 @@ It is specifically tailored for data-intensive applications like admin panels, d
 
  <div className="centered-image"  >
   <a href="https://github.com/refinedev/refine">
-  <img style={{alignSelf:"center", width:"600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png
-" alt="refine banner" />
+  <img style={{alignSelf:"center", width:"600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram.png" alt="refine banner" />
 </a>
 </div>
 

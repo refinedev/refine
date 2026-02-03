@@ -17,8 +17,7 @@ Any Refine project has built-in features for state management, routing, networki
 [NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like Refine and Next.js. In this article, you will learn to build a React admin panel using Refine and NextUI components library.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif
-"  alt="react admin panel next ui" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif"  alt="react admin panel next ui" />
 </div>
 
 <br/>
@@ -185,8 +184,7 @@ export default App;
 ## What is NextUI
 
 <div className="flex justify-center">
-    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/nextui%20(1).jpeg
-" className="border border-gray-200 rounded" />
+    <img alt="React admin panel next ui" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/nextui%20(1).jpeg" className="border border-gray-200 rounded" />
 </div>
 
 [NextUI](https://nextui.org/) is a fully-featured React UI library for building accessible UI in React. It is built on top of React Aria and Tailwind CSS. It uses Framer motion internally for animating some of the built-in components.

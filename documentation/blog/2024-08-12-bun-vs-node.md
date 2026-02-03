@@ -194,8 +194,7 @@ Here is the result for our Node server:
 Here is the result for our Bun server:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/bun.png
-"  alt="bun vs node js" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/bun.png"  alt="bun vs node js" />
 </div>
 
 <br/>
