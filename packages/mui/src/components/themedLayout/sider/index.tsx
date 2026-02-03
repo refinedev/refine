@@ -95,7 +95,22 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     });
   }, [defaultOpenKeys]);
 
-  const RenderToTitle = TitleFromProps ?? DefaultTitle;
+  const renderTitle = (collapsed: boolean) => {
+    if (typeof TitleFromProps === "undefined") {
+      return <DefaultTitle collapsed={collapsed} />;
+    }
+
+    if (React.isValidElement(TitleFromProps)) {
+      return TitleFromProps;
+    }
+
+    if (typeof TitleFromProps === "function") {
+      const TitleComponent = TitleFromProps;
+      return <TitleComponent collapsed={collapsed} />;
+    }
+
+    return TitleFromProps as React.ReactNode;
+  };
 
   const handleClick = (key: string) => {
     setOpen({ ...open, [key]: !open[key] });
@@ -431,7 +446,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 fontSize: "14px",
               }}
             >
-              <RenderToTitle collapsed={false} />
+              {renderTitle(false)}
             </Box>
             {drawer}
           </Box>
@@ -466,7 +481,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 `1px solid ${theme.palette.action.focus}`,
             }}
           >
-            <RenderToTitle collapsed={siderCollapsed} />
+            {renderTitle(siderCollapsed)}
             {!siderCollapsed && (
               <IconButton size="small" onClick={() => setSiderCollapsed(true)}>
                 {<ChevronLeft />}
