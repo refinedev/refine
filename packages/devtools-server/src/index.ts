@@ -8,7 +8,6 @@ import { reloadOnChange } from "./reload-on-change";
 import { setupServer } from "./setup-server";
 import { type Activity, createDb } from "./create-db";
 import { serveApi } from "./serve-api";
-import { serveProxy } from "./serve-proxy";
 import { serveOpenInEditor } from "./serve-open-in-editor";
 
 type Options = {
@@ -136,7 +135,6 @@ export const server = async ({
     reloadOnChange(ws);
     serveClient(app);
     serveApi(app, db);
-    serveProxy(app);
     serveOpenInEditor(app, projectPath);
 
     process.on("SIGTERM", () => {
