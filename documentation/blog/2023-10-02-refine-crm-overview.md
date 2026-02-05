@@ -41,7 +41,7 @@ Our CRM application is feature-rich and comes with everything you need to manage
 
 The Dashboard provides an at-a-glance overview of your CRM activities. It displays key metrics, recent customer interactions, and upcoming events, offering valuable insights to help you make informed decisions.
 
-![Image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/halx7sfl9ctke1fu3w35.png)
+![Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/halx7sfl9ctke1fu3w35.png)
 
 <br/>
 <br/>
@@ -50,7 +50,7 @@ The Dashboard provides an at-a-glance overview of your CRM activities. It displa
 
 Effortlessly manage appointments, meetings, and important events with the integrated Calendar feature. Stay organized and ensure you never miss a crucial interaction with your customers.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m2v8ghazuheiznefwat9.png)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m2v8ghazuheiznefwat9.png)
 
 <br/>
 <br/>
@@ -59,7 +59,7 @@ Effortlessly manage appointments, meetings, and important events with the integr
 
 Our Scrumboard or Project Kanban page streamlines project management. Visualize project progress, manage tasks, and facilitate team collaboration with ease. Move tasks through customizable boards to keep your projects on track.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0hcll7tbqx3t71i6v7a9.png)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/0hcll7tbqx3t71i6v7a9.png)
 
 <br/>
 <br/>
@@ -68,7 +68,7 @@ Our Scrumboard or Project Kanban page streamlines project management. Visualize 
 
 Effectively manage your sales process from lead generation to deal closure. The Sales Pipeline provides a visual representation of your sales stages, helping your team prioritize leads and track conversions.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q5uoj722wasvw2fx8z49.png)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/q5uoj722wasvw2fx8z49.png)
 
 <br/>
 <br/>
@@ -77,7 +77,7 @@ Effectively manage your sales process from lead generation to deal closure. The 
 
 The Companies page allows you to organize and categorize your business contacts. Maintain detailed profiles for each company, including contact information, communication history, and associated contacts.
 
-![Imag](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gjlahcc1icfthu2n31ar.png)
+![Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/gjlahcc1icfthu2n31ar.png)
 
 <br/>
 <br/>
@@ -86,7 +86,7 @@ The Companies page allows you to organize and categorize your business contacts.
 
 Manage individual contacts efficiently using the Contacts page. Keep track of customer interactions, schedule follow-ups, and access critical contact information quickly.
 
-![Imag](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4c0ef7tv7nktax4gt3oz.png)
+![Imag](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/4c0ef7tv7nktax4gt3oz.png)
 
 <br/>
 <br/>
@@ -95,7 +95,7 @@ Manage individual contacts efficiently using the Contacts page. Keep track of cu
 
 Create, send, and manage quotes seamlessly with the Quotes feature. Generate professional quotes for your customers, track their status, and convert them into sales.
 
-![Image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9rqj0pzgkrure7ov5mr9.png)
+![Image](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/9rqj0pzgkrure7ov5mr9.png)
 
 <br/>
 <br/>
@@ -104,13 +104,13 @@ Create, send, and manage quotes seamlessly with the Quotes feature. Generate pro
 
 The Administration section empowers you to configure and customize your CRM application to suit your specific business needs. Manage user roles, access permissions, and system settings effortlessly.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m5deq6ceue79kloeuryz.png)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m5deq6ceue79kloeuryz.png)
 
 <br/>
 
 ### Authentication & Authorization
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/m1r04i2h0cf1jegasbte.png)
+![Image description](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m1r04i2h0cf1jegasbte.png)
 
 This example app is a comprehensive set of features that ensures you can streamline your customer interactions, project management, and sales processes, all within a single, user-friendly platform. Whether you're managing contacts, tracking sales, or overseeing projects, our CRM app provides the tools you need for success.
 
