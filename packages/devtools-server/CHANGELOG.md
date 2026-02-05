@@ -1,5 +1,18 @@
 # @refinedev/devtools-server
 
+## 2.0.2
+
+### Patch Changes
+
+- [#7248](https://github.com/refinedev/refine/pull/7248) [`a851672404703243df7ea150d0f918f002d1571d`](https://github.com/refinedev/refine/commit/a851672404703243df7ea150d0f918f002d1571d) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - feat: make devtools publicly accessible without authentication
+
+  DevTools no longer requires authentication to use. Removed Ory client integration,
+  login/logout/onboarding flows, project ID management, and related API endpoints.
+  Users can now access DevTools directly without signing in.
+
+- Updated dependencies [[`a851672404703243df7ea150d0f918f002d1571d`](https://github.com/refinedev/refine/commit/a851672404703243df7ea150d0f918f002d1571d)]:
+  - @refinedev/devtools-shared@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
