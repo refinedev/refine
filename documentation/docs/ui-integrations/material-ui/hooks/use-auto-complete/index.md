@@ -167,7 +167,7 @@ You can pass the `current` page number to the `pagination` property.
 ```tsx
 useAutocomplete({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```

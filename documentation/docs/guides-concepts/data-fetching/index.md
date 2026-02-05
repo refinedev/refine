@@ -250,7 +250,7 @@ import { DataProvider, useList } from "@refinedev/core";
 useList({
   resource: "products",
   pagination: {
-    current: 1,
+    currentPage: 1,
     pageSize: 10,
   },
   filters: [

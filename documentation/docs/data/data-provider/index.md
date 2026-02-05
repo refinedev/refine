@@ -261,7 +261,7 @@ The method signature remains the same, and Refine expects a consistent format:
 
 ```ts
 getList: async ({ resource, pagination, sorters, filters, meta }) => {
-  const { current, pageSize } = pagination ?? {};
+  const { currentPage, pageSize } = pagination ?? {};
 
   // Adjust request parameters to meet the requirements of your API
   const response = await apiClient.get(`/${resource}`, {

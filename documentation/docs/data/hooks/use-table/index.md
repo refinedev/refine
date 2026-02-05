@@ -158,7 +158,7 @@ Sets the initial value of the page index. Defaults to `1`.
 import { useTable } from "@refinedev/core";
 useTable({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```

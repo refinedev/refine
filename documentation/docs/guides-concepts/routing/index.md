@@ -365,7 +365,7 @@ We can pass these parameters to `useTable` hook as follows:
 ```ts
 const { ... } = useTable(
     {
-        current: 1,
+        currentPage: 1,
         pageSize: 2,
         filters: { initial: [{ field: "category.id", operator: "eq", value: 1 }]},
         sorters: { initial: [{ field: "id", direction: "asc" }] }
