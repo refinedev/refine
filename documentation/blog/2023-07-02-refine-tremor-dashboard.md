@@ -1,6 +1,6 @@
 ---
-title: Building a React Admin Dashboard with Tremor Library
-description: We'll build a simple React admin dashboard using Refine and Tremor.
+title: "Tremor Guide: Step-by-Step React Dashboard Setup & Implementation"
+description: Understand building react admin dashboard with tremor with real use cases and common mistakes to avoid. Trade-offs summarized.
 slug: building-react-admin-dashboard-with-tremor
 authors: joseph_mawa
 tags: [refine, tutorial, react]
