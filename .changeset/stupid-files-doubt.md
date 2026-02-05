@@ -1,7 +1,7 @@
 ---
-"@refinedev/devtools-server": minor
-"@refinedev/devtools-shared": minor
-"@refinedev/devtools-ui": minor
+"@refinedev/devtools-server": patch
+"@refinedev/devtools-shared": patch
+"@refinedev/devtools-ui": patch
 ---
 
 feat: make devtools publicly accessible without authentication
