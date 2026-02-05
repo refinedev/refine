@@ -162,9 +162,9 @@ export const myDataProvider: CreateDataProviderOptions = {
       const query: Record<string, any> = {};
 
       // Handle pagination
-      // Refine provides: { current: 1, pageSize: 10 }
+      // Refine provides: { currentPage: 1, pageSize: 10 }
       // API expects: ?page=1&size=10
-      query.page = pagination?.current ?? 1;
+      query.page = pagination?.currentPage ?? 1;
       query.size = pagination?.pageSize ?? 10;
 
       // Handle sorting
@@ -212,7 +212,7 @@ export const myDataProvider: CreateDataProviderOptions = {
 With this implementation, you've created a complete bridge between Refine and your API. Here's what happens when a user interacts with your list component:
 
 1. **User action**: User clicks "next page", sorts a column, or applies a filter (like searching for "Published" posts)
-2. **Refine processes**: Refine calculates new parameters (`current: 2`, `pageSize: 10`, `filters: [{ field: "status", operator: "eq", value: "PUBLISHED" }]`)
+2. **Refine processes**: Refine calculates new parameters (`currentPage: 2`, `pageSize: 10`, `filters: [{ field: "status", operator: "eq", value: "PUBLISHED" }]`)
 3. **Your transformation**: `buildQueryParams` converts these to `?page=2&size=10&status=PUBLISHED`
 4. **API call**: Request goes to `https://example.com/posts?page=2&size=10&status=PUBLISHED`
 5. **Response processing**: `mapResponse` extracts the data array, `getTotalCount` extracts the total

@@ -142,7 +142,7 @@ You can pass the `current` page number to the `pagination` property.
 ```tsx
 useList({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```

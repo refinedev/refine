@@ -232,7 +232,7 @@ You can pass the `current` page number to the `pagination` property.
 ```tsx
 useSelect({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```

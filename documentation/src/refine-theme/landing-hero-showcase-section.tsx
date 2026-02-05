@@ -324,7 +324,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
                     const { data } = useTable({
                         resource: "activities",
                         pagination: {
-                            current: 1,
+                            currentPage: 1,
                             pageSize: 5,
                         },
                     });
@@ -475,7 +475,7 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
 
                     const { result: { data } } = useList({
                       resource: "time-offs",
-                      pagination: { current: 1, pageSize: 1 },
+                      pagination: { currentPage: 1, pageSize: 1 },
                       filters: [
                         {
                           field: "employeeId",

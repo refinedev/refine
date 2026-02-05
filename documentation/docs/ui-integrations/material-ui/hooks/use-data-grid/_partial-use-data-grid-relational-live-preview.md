@@ -13,7 +13,7 @@ import { ICategory, IPost } from "interfaces";
 const PostsList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({
     pagination: {
-      current: 2,
+      currentPage: 2,
       pageSize: 10,
     },
     sorters: {
