@@ -44,7 +44,7 @@ const routerProvider: {
         params?: {
             filters?: CrudFilters;
             sorters?: CrudSorting;
-            current?: number;
+            currentPage?: number;
             pageSize?: number;
             [key: string]: any;
         }

@@ -380,7 +380,7 @@ const { ... } = useTable(
 /my-products
 
 // added-line
-/my-products?current=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
+/my-products?currentPage=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
 And you will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
@@ -390,7 +390,7 @@ const { result, currentPage, pageSize, filters, sorters } = useTable();
 
 console.log(result.data); // [{...}, {...}]
 console.log(result.total); // 32 - total number of unpaginated records
-console.log(current); // 1 - current page
+console.log(currentPage); // 1 - current page
 console.log(pageSize); // 2 - page size
 console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]
 console.log(sorters); // [{ field: "id", order: "asc" }]

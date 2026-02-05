@@ -100,7 +100,7 @@ type CrudSort = {
 
 ```tsx
 type Pagination = {
-  current?: number; // Initial page index
+  currentPage?: number; // Initial page index
   pageSize?: number; // Initial number of items per page
   mode?: "client" | "server" | "off"; // Whether to use server side pagination or not.
 };

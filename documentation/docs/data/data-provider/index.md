@@ -265,7 +265,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
   // Adjust request parameters to meet the requirements of your API
   const response = await apiClient.get(`/${resource}`, {
-    params: { _page: current, _limit: pageSize },
+    params: { _page: currentPage, _limit: pageSize },
   });
 
   // The total row count could be sourced differently based on the provider
