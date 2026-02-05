@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/devtools-ui",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "repository": {
@@ -46,7 +46,7 @@
   "dependencies": {
     "@fireworks-js/react": "^2.10.7",
     "@headlessui/react": "^1.7.17",
-    "@refinedev/devtools-shared": "2.0.1",
+    "@refinedev/devtools-shared": "2.0.2",
     "@tanstack/react-table": "^8.2.6",
     "clsx": "^1.1.1",
     "dayjs": "^1.10.7",
