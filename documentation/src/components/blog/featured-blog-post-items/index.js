@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 export const FeaturedBlogPostItems = ({ items }) => {
   return (
-    <div className={clsx("w-screen")}>
+    <div className={clsx("w-full")}>
       <div
         className={clsx(
           "blog-sm:max-w-[592px]",

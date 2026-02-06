@@ -9,6 +9,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
       className={clsx(
         "relative",
         "w-full",
+        "overflow-hidden",
         "bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
         "dark:bg-[radial-gradient(50%_100%_at_50%_0%,#431407_0%,rgba(67,20,7,0)_100%)]",
         "bg-[radial-gradient(50%_100%_at_50%_0%,#FED7AA_0%,rgba(254,215,170,0)_100%)]",
