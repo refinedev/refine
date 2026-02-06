@@ -2230,6 +2230,10 @@
     {
       "from": "/core/tutorial",
       "to": "/core/tutorial/essentials/intro/"
+    },
+    {
+      "from": "/blog/react-admin-template/",
+      "to": "/blog/react-admin-dashboard/"
     }
   ]
 }
