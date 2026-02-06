@@ -25,7 +25,7 @@ const MyComponent = () => {
     params: {
       filters,
       sorters,
-      current,
+      currentPage,
       pageSize,
       ...restParams // TParams - Any other parameters are also parsed and available in `params`
     },
@@ -61,9 +61,9 @@ This is the filters that are parsed from the URL. It will be `undefined` if ther
 
 This is the sorters that are parsed from the URL. It will be `undefined` if there is no `sorters` parameter in the URL. This property is used in the `syncWithLocation` feature of the `useTable`.
 
-### params.current
+### params.currentPage
 
-This is the current page that is parsed from the URL. It will be `undefined` if there is no `current` parameter in the URL. This property is used in the `syncWithLocation` feature of the `useTable`.
+This is the current page that is parsed from the URL. It will be `undefined` if there is no `currentPage` parameter in the URL. This property is used in the `syncWithLocation` feature of the `useTable`.
 
 ### params.pageSize
 

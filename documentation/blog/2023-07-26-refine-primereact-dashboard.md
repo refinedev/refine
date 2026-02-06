@@ -1,6 +1,6 @@
 ---
-title: Building a React Admin Panel with PrimeReact and Refine
-description: We'll build a simple React admin Panel using Refine and PrimeReact.
+title: How to build a React Admin Panel with PrimeReact and Refine
+description: Discover how to combine PrimeReact's rich UI components with Refine to create enterprise-grade React admin panels quickly.
 slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
 tags: [refine, tutorial, react]

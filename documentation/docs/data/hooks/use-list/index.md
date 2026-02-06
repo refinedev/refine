@@ -135,14 +135,14 @@ useList({
 
 `pagination` will be passed to the `getList` method from the `dataProvider` as a parameter. It is used to send pagination query parameters to the API.
 
-#### current
+#### currentPage
 
-You can pass the `current` page number to the `pagination` property.
+You can pass the `currentPage` page number to the `pagination` property.
 
 ```tsx
 useList({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```

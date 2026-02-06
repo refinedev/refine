@@ -254,7 +254,8 @@ CMD cron && tail -f /var/log/cron.log
 
 - Can I schedule overlapping jobs?
   Avoid overlapping jobs by using lockfiles or careful scheduling.
-  :::
+
+:::
 
 ## Conclusion
 

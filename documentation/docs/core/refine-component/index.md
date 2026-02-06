@@ -450,7 +450,7 @@ Form hooks like `useDrawerForm` and `useModalForm` also have a `syncWithLocation
 When `syncWithLocation` is active, the URL on the listing page shows query parameters like those shown below:
 
 ```
-/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+/posts?currentPage=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
 Users can change the current page, items count per page, and sort and filter parameters.
