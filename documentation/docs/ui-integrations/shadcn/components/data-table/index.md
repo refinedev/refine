@@ -480,3 +480,118 @@ header: ({ column }) => (
 | column          | `Column<TData>`                                    | TanStack Table column instance       |
 | defaultOperator | `CrudOperators`                                    | Default filter operator              |
 | formatDate      | `(date: Date \| undefined) => string \| undefined` | Function to format the selected date |
+## useEditableTable hook
+
+The `useEditableTable` hook allows you to implement inline edit feature on the table with ease. It combines `useTable` and `useForm` hooks.
+
+### Installation
+
+The `useEditableTable` hook is included with the `DataTable` component:
+
+```bash
+npx shadcn@latest add https://ui.refine.dev/r/data-table.json
+```
+
+### Basic Usage
+
+```tsx
+import { useMemo } from "react";
+import type { ColumnDef } from "@tanstack/react-table";
+import { useEditableTable } from "@/components/refine-ui/data-table/use-editable-table";
+import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+type Post = {
+  id: number;
+  title: string;
+};
+
+export default function PostList() {
+  const { 
+    table, 
+    form: { register }, 
+    isEditing, 
+    edit, 
+    save, 
+    cancel 
+  } = useEditableTable<Post>({
+    tableProps: {
+      columns: useMemo<ColumnDef<Post>[]>(
+        () => [
+          {
+            id: "id",
+            accessorKey: "id",
+            header: "ID",
+          },
+          {
+            id: "title",
+            accessorKey: "title",
+            header: "Title",
+            cell: ({ getValue, row: { original }, column: { id } }) => {
+              if (isEditing(original.id)) {
+                return (
+                  <Input 
+                    {...register("title", { required: true })} 
+                  />
+                );
+              }
+              return getValue();
+            },
+          },
+          {
+            id: "actions",
+            header: "Actions",
+            cell: ({ row: { original } }) => {
+              if (isEditing(original.id)) {
+                return (
+                  <div className="flex gap-2">
+                    <Button onClick={() => save()}>Save</Button>
+                    <Button variant="outline" onClick={() => cancel()}>Cancel</Button>
+                  </div>
+                );
+              }
+              return (
+                <Button onClick={() => edit(original.id, original)}>Edit</Button>
+              );
+            },
+          },
+        ],
+        [isEditing],
+      ),
+    },
+    formProps: {
+      refineCoreProps: {
+        resource: "posts",
+      },
+    },
+  });
+
+  return (
+    <DataTable table={table} />
+  );
+}
+```
+
+### Props
+
+`useEditableTable` accepts an object with the following properties:
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| tableProps | `UseTableProps` | Props for the `useTable` hook |
+| formProps | `UseFormProps` | Props for the `useForm` hook |
+| autoSubmitClose | `boolean` | When true, row will be closed after successful submit. Default: `true` |
+
+### Return Values
+
+`useEditableTable` returns an object with the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| table | `UseTableReturnType` | Return values of the `useTable` hook |
+| form | `UseFormReturnType` | Return values of the `useForm` hook |
+| isEditing | `(id: BaseKey) => boolean` | A function to check if a row is currently being edited |
+| edit | `(id: BaseKey, record?: TData) => void` | A function to start editing a row |
+| save | `() => Promise<void>` | A function to save the changes |
+| cancel | `() => void` | A function to cancel the editing |
