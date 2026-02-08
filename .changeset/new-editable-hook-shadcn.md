@@ -1,5 +1,5 @@
 ---
-"@refinedev/refine-ui": patch
+"@refinedev/refine-ui": minor
 ---
 
 feat: added useEditableTable hook for ShadCN #7172
