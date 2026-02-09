@@ -1,6 +1,6 @@
 ---
-title: Building React admin panel with NextUI and Refine
-description: We will see how  to build a React admin panel using Refine and NextUI components library
+title: How to Build a Modern React Admin with NextUI & Refine
+description: A complete tutorial on building sleek, modern React admin interfaces using NextUI's design system and Refine’s powerful hooks.
 slug: next-ui-react-admin-panel
 authors: joseph_mawa
 tags: [refine, tutorial, react, tailwind]

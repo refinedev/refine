@@ -35,7 +35,8 @@ hide_table_of_contents: false
 5. How do enums behave at runtime?
 
 - Enums create the JavaScript object versions at runtime; this therefore includes the ability for bi-directional mapping when these are numeric enums but still only unidirectional mapping exists for string enums
-  :::
+
+:::
 
 **Enum**s are constants based data structures that store a set of named constants grouped around a central theme or intent. In TypeScript, Enums are a feature that injects runtime JavaScript objects to an application in addition to providing usual type-level extensions.
 

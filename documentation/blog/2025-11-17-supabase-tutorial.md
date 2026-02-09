@@ -187,7 +187,8 @@ If you see `ERROR: 42P01: relation "public.employees" does not exist`:
 - Confirm the schema is `public` (default) and the table name is lowercase `employees`.
 - Refresh the browser tab—occasionally the SQL Editor metadata lags.
 - Verify you’re in the same project where the table was created.
-  :::
+
+:::
 
 :::tip No results or NULL department values?
 
