@@ -54,7 +54,10 @@ export const liveProvider = (
           return;
         }
 
-        return filters
+        // Supabase Realtime only supports a single filter per subscription.
+        // If multiple filters are provided, return undefined to skip
+        // server-side filtering (client-side filtering is handled in the listener).
+        const mapped = filters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
               return `${filter.field}=${mapOperator(filter.operator)}.${
@@ -63,8 +66,13 @@ export const liveProvider = (
             }
             return;
           })
-          .filter(Boolean)
-          .join(",");
+          .filter(Boolean);
+
+        if (mapped.length > 1) {
+          return;
+        }
+
+        return mapped[0];
       };
 
       const events = types
