@@ -69,7 +69,7 @@ This utility class Adds a linear spin animation to element. It can be useful on 
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/2-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/2-min.gif" alt="Spin animation demo" />
 </div>
 
 ### animate-ping
@@ -94,7 +94,7 @@ This utility class causes an element to scale and fade, much like a radar ping o
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/3-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/3-min.gif" alt="Ping ripple animation demo" />
 </div>
 
 ### animate-pulse
@@ -112,7 +112,7 @@ This utility class makes an element fade in and out gradually – This class is 
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/4-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/4-min.gif" alt="Pulse animation demo" />
 </div>
 
 ## animate-bounce
@@ -130,7 +130,7 @@ This utility class adds a bounce animation to an element. It is useful for eleme
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/5-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/5-min.gif" alt="Bounce animation demo" />
 </div>
 
 ## Create custom animations in Tailwind:
@@ -141,7 +141,7 @@ All we need to do is define your animation's keyframes in the `tailwind.config.j
 We will illustrate this with a simple animation on the Refine logo as shown below:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/6-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/6-min.gif" alt="Refine logo custom animation" />
 </div>
 
 ### Add keyframes to the Tailwind config file.
@@ -236,6 +236,7 @@ Next, we add the animation to the markup. To define a custom animation utility c
   <img
     class="animate-refine-slide relative h-16 w-16"
     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixkXz-MD-PkV6BOiGL5SAkJi9XGAyE9lLLQ&usqp=CAU"
+    alt="Animated logo"
   />
 </div>
 ```
@@ -243,7 +244,7 @@ Next, we add the animation to the markup. To define a custom animation utility c
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/7-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/7-min.gif" alt="Sliding logo animation preview" />
 </div>
 
 ## Improving Mobile-Friendliness in Tailwind Animations
@@ -361,7 +362,7 @@ For example, if you want to create a one-off "wiggle" animation, you can declare
 **View**:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/8-min.gif" alt="tailwind animations" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/8-min.gif" alt="Wiggle animation demo" />
 </div>
 
 ## Making Tailwind Dance with JavaScript for Interactive Animations

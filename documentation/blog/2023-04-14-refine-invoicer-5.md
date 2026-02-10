@@ -463,7 +463,7 @@ Do take note of the `meta.populate` property of the `useTable()` hook's argument
 
 OK. With this done, we can now go ahead and test our app and should be able to view the pdf document by clicking on the pdf document icon.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/pdf.avif" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/pdf.avif" alt="Generated PDF invoice preview" />
 
 <br />
 

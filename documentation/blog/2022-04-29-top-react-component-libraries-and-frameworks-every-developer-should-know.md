@@ -70,7 +70,7 @@ Simplicity is one of the terms that come to mind when describing Chakra UI. Its 
 
 ## Mantine
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/mantine.png" alt="Mantine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/mantine.png" alt="Mantine logo" />
 
 [Mantine](https://mantine.dev) is a full-featured React component library with 100+ customizable components and 30+ hooks that allows you to create fully functional and accessible web applications quickly. Mantine has a lot of packages and components that are ready-to-use and can be used in any project. With over 10k stars on [GitHub](https://github.com/mantinedev/mantine).
 
@@ -87,7 +87,7 @@ It stands out from other UI design systems with its simple structure and modular
 
 ## Storybook
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/storybook.png" alt="Storybook" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/storybook.png" alt="Storybook logo" />
 
 [Storybook](https://storybook.js.org/) is a JavaScript tool that allows developers to create organized UI systems making both the building process and documentation more efficient and easier to use. With over 70k stars on [GitHub](https://github.com/storybookjs/storybook/).
 
@@ -104,7 +104,7 @@ It makes development faster and easier by isolating components. This allows you 
 
 ## Refine
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/refine.png" alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/refine.png" alt="Refine logo" />
 
 [Refine](https://refine.dev/) A React-based framework for building internal tools, rapidly. It provides lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards. With over 2.1k stars on [Github](https://github.com/refinedev/refine) even though it has been released recently.
 

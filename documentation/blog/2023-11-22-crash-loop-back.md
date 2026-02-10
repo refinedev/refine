@@ -81,7 +81,7 @@ These are as follows:
 **The Output below can help us to identify any version discrepancies:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-1.png" alt="kubernetes crashloopbackoff" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-1.png" alt="Checking Docker and Kubernetes versions to identify compatibility issues" />
 </div>
 
 <br/>
@@ -121,7 +121,7 @@ If the configuration for volume mount is not set up properly, necessary data fil
 **Let's say we have applied a configuration with a missing volume dependency. In the Output below, you can see that the console has thrown an error after applying the configuration:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-2.png" alt="kubernetes crashloopbackoff" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-2.png" alt="Configuration error showing missing volume dependency causing pod failure" />
 </div>
 
 <br/>
@@ -154,7 +154,7 @@ To understand and solve the CrashLoopBackOff issue, identifying and examining th
 **The Output of this command will look something like this:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-3.png" alt="kubernetes crashloopbackoff" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-3.png" alt="Pod list showing multiple restarts indicating restart loop" />
 </div>
 
 <br/>
@@ -168,7 +168,7 @@ The `kubectl describe pod POD_NAME_HERE` command is useful in gaining a more ins
 **In the Output below, you can see highlighted words like Backoff, Failed, CrashLoopBackOff and so on. These words reflect the problem with the pod as well as the container and help you to narrow down the possible causes of the issue. For Example, in our case, the failed reason indicates that the pod cannot run the command 'Run', which does not exist:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-4.png" alt="kubernetes crashloopbackoff" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/crash-4.png" alt="Kubectl describe output showing Backoff, Failed, and CrashLoopBackOff events with failed Run command" />
 </div>
 
 <br/>

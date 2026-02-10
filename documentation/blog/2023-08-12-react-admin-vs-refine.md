@@ -375,7 +375,7 @@ npx @refinedev/codemod@latest refine3-to-refine4
 ```
 
  <div className="centered-image">
-   <img  width="600px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/code-mod.gif"  alt="react-admin-vs-refine" />
+  <img  width="600px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/code-mod.gif"  alt="Refine vs React Admin code modification demo" />
 </div>
 
 <br/>
@@ -405,7 +405,7 @@ When it comes to documentation, Refine has more useful resources.
 ## Community Engagement
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star-history-2.png"  alt="react-admin-vs-refine" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star-history-2.png"  alt="GitHub star history comparison" />
 </div>
 
 <br/>

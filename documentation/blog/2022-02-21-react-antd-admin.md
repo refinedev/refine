@@ -84,7 +84,7 @@ cd refine-advanced-tutorial
 npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.avif" alt="Refine Tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.avif" alt="Refine tutorial app initial view" />
 <br />
 
 As you have seen, our example project is ready. Now let's examine how the features offered by **Refine** are included in a project and how they are used.
@@ -337,7 +337,7 @@ return (
 
 Now our i18n Provider is ready to use, let's test it together.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.avif" alt="Refine i18n Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.avif" alt="Refine i18n provider language selector" />
 <br />
 
 ### Use the translation with Table Content
@@ -418,7 +418,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.avif" alt="Refine i18n Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.avif" alt="Data table with i18n translated labels" />
 <br />
 
 You can add the translation you want and organize your content according to different languages ​​together with the **Refine** i18n Provider.
@@ -512,7 +512,7 @@ Our project is now Realtime! Thanks to **Refine** Live Provider, we made our pro
 
 Let's see how our RealTime Project works.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/realtime.gif" alt="Refine Live Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/realtime.gif" alt="Real-time data updates demonstration" />
 <br />
 
 ## Add Access Control to Your Project with Refine
@@ -601,7 +601,7 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Refine Access Control Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Access control disabled edit button" />
 <br />
 
 In this article, we will use [Cerbos](https://cerbos.dev/) to **Refine** Access Control.
@@ -808,7 +808,7 @@ export const PostList = () => {
 
 Here, if the selected role is Admin, the 'Hit' section will appear in our Table. We have stated that the Editor role cannot display this section.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.avif" alt="Refine Access Control Provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.avif" alt="Access control provider in action" />
 <br />
 
 Check out [**Refine** Access Control](https://refine.dev/core/docs/guides-and-concepts/access-control/) Provider for more detailed information and step-by-step guide

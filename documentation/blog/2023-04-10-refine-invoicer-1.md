@@ -18,7 +18,7 @@ This five part guide aims to help developers learn the ins-and-outs of **Refine*
 
  <div className="centered-image"  >
 
-<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fmultiple_logo.png" alt="refine banner" />
+<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fmultiple_logo.png" alt="RefineWeek series logos" />
 
 </div>
 
@@ -189,7 +189,7 @@ For a complete list of all these modules, check out [this page](/core/docs/packa
 
  <div className="centered-image"  >
 
-<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Finvoicer_logo.png" alt="refine banner" />
+<img style={{alignSelf:"center", width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Finvoicer_logo.png" alt="Invoicer app logo banner" />
 
 </div>
 

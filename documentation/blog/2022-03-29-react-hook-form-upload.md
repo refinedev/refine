@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook
 hide_table_of_contents: false
 ---
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine upload example overview screen" />
 <br />
 
 In this example, we will learn how to upload files with [React Hook Form](https://react-hook-form.com/), which is very preferred for managing forms with React. We will use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData) to upload a file and we will upload a file of type multipart/form-data.
@@ -84,7 +84,7 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/server_start.gif" alt="Express Server" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/server_start.gif" alt="Express server running in the terminal" />
 <br />
 
 We created a server with Express. As you can see, we have successfully started our server, now we have an endpoint to handle requests to this port. Now let's create a React project and send our files to this server with React Hook Form.
@@ -117,7 +117,7 @@ Try [Refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 <div>
 <a href="https://github.com/pankod/refine">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.webp" alt="refine blog logo" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.webp" alt="Refine blog banner" />
 </a>
 </div>
 
@@ -208,7 +208,7 @@ Our project is ready! With React Hook Form, we can now send the selected file to
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -351,7 +351,7 @@ export const PostCreate: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine upload example overview screen" />
 <br />
 
 As you can see, we have easily saved both our data such as title, category, status and an image in the form of `multipart/form-data` to our database using the `refine-react-hook-form` adapter. We've only shown how to utilize the Multipart File Upload feature for our example in this tutorial. For examine **Refine** CMS example, checkout the live codeSandbox below.

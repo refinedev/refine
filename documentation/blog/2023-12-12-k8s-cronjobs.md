@@ -58,7 +58,7 @@ A CronJob in Kubernetes schedules recurring tasks, whereas a cron task runs scri
 **Here is the screenshot of our setup environment that we will be using for running cronjobs in Kubernetes:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_1.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_1.png" alt="Kubernetes CronJob setup environment screenshot" />
 </div>
 
 <br/>
@@ -72,7 +72,7 @@ We are going to create a simple cronjob that would use an nginx image and replac
 **Step 1: Create a YAML File for configuring CronJob based on the above Example:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_2.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_2.png" alt="CronJob YAML file for nginx example" />
 </div>
 
 <br/>
@@ -80,7 +80,7 @@ We are going to create a simple cronjob that would use an nginx image and replac
 **Step 2: Run '`kubectl apply -f Your_Config_File.YAML`' to apply configurations:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_3.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_3.png" alt="kubectl apply output for CronJob" />
 </div>
 
 <br/>
@@ -88,7 +88,7 @@ We are going to create a simple cronjob that would use an nginx image and replac
 **Step 3: Check if Cron Jobs are Running by Executing '`kubectl get jobs –watch`':**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_4.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_4.png" alt="kubectl get jobs --watch output" />
 </div>
 
 <br/>
@@ -96,7 +96,7 @@ We are going to create a simple cronjob that would use an nginx image and replac
 **Step 4: Access Pod Logs to Verify Output**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_5.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_5.png" alt="CronJob pod logs output" />
 </div>
 
 <br/>
@@ -104,7 +104,7 @@ We are going to create a simple cronjob that would use an nginx image and replac
 ### YAML configuration walkthrough (with a screenshot of the YAML file and command line execution)
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_Config.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_Config.png" alt="CronJob YAML configuration example" />
 </div>
 
 <br/>
@@ -148,7 +148,7 @@ There is another option as well where you can use labels and selectors to filter
 **The above command will return the following output:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_6.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_6.png" alt="kubectl get pods output filtered by cronjob-name" />
 </div>
 
 <br/>
@@ -158,7 +158,7 @@ There is another option as well where you can use labels and selectors to filter
 **The above command will return the following output:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_7.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_7.png" alt="kubectl logs output for cronjob-name selector" />
 </div>
 
 <br/>
@@ -171,7 +171,7 @@ CronJobs has a complex syntax like regular UNIX cron jobs that can take time to 
 **Let's suppose we have a wrong cron expression in our CronJob configuration that does not allow for creating a CronJob. While applying this configuration, it will return the error:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_8.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_8.png" alt="CronJob error output for invalid cron expression" />
 </div>
 
 <br/>
@@ -181,7 +181,7 @@ CronJobs has a complex syntax like regular UNIX cron jobs that can take time to 
 `kubectl create -f Nginx-Welcome-Example.yaml --dry-run=client -o yaml`
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_9.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_9.png" alt="kubectl create --dry-run output for CronJob" />
 </div>
 
 <br/>
@@ -196,7 +196,7 @@ To troubleshoot this issue, you can check the timezone of your cluster node by d
 **The command will return the following output:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_10.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_10.png" alt="Pod date command output for timezone check" />
 </div>
 
 <br/>
@@ -209,7 +209,7 @@ If a CronJob specifies an image that is not available, the job will fail. You mu
 **The Above Command will return the output below:**
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_11.png" alt="kubernetes-cronjobs" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/KCJ_11.png" alt="kubectl describe pod output with image pull error" />
 </div>
 
 <br/>

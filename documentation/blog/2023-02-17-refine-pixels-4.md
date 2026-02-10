@@ -49,7 +49,7 @@ In order to make drawing collaborative between our users, we have to run [**Supa
 We can do this from the **Supabase** dashboard for the database we created. If you haven't already, please go ahead and select `Enable Realtime` for the `pixels` table from its editor:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Frealtime.png"  alt="supabase realtime" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Frealtime.png"  alt="Supabase realtime data synchronization diagram" />
 </div>
 
 <br/>
@@ -85,7 +85,7 @@ And that's it! The channel for `pixels` resource that was specified above in **S
 
 Now, let's try opening the app in two browsers, one with Google account and one with GitHub. Navigate to a canvas page, the same one in both and try adding some `pixels` from each. We'll see that `pixel`s created in one are displayed in the other in real time:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/live-provider.avif"  alt="supabase realtime" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/live-provider.avif"  alt="Live provider implementation for real-time updates" />
 
 <br />
 

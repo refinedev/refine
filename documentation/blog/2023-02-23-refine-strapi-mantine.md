@@ -91,7 +91,7 @@ npm run dev
 
 After the app has started, you should see the following page:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/welcome.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/welcome.jpeg"  alt="Refine Mantine starter screen" />
 
 If your landing page is similar to the screenshot above, you have successfully created a Refine project. We will build a React admin panel by modifying the project you have just created.
 
@@ -466,11 +466,11 @@ For this demonstration, use the credentials below to log into an existing accoun
 > Email: demo@refine.dev
 > Password: demodemo
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/login-page.jpeg"  alt="react admin panel" className="border border-gray-200 rounded" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-23-refine-strapi-mantine/login-page.jpeg"  alt="Login page for Strapi demo" className="border border-gray-200 rounded" />
 
 When you log into your Refine application, you should have a table similar to the image below. Though still incomplete, it is a simple React admin panel.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list.jpeg"  alt="Posts list table" />
 
 ### How to handle relational data
 
@@ -531,7 +531,7 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
 
 The code above should modify your table to include a Category column like the image below.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list-with-category.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list-with-category.jpeg"  alt="Posts list with category column" />
 
 ### How to create a record
 
@@ -664,7 +664,7 @@ export default App;
 
 Clicking the create button will now navigate you to the `/posts/create` page. The `/posts/create` page looks like the image below. You can use it to create a new post. After filling and submitting the form with details of your post, it should now be available in the list of all posts.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-create.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-create.jpeg"  alt="Create post form" />
 
 ### How to edit a record
 
@@ -708,7 +708,7 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
 
 After adding the code above, your table should include the `Actions` column. Clicking the edit button at the moment will again redirect you to a non-existent page.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list-with-action.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-list-with-action.jpeg"  alt="Posts list with action buttons" />
 
 <br/>
 
@@ -829,7 +829,7 @@ export default App;
 
 Clicking the edit button should now redirect you to a page for editing the contents of a specific record. The edit page will look like the image below.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-edit.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-edit.jpeg"  alt="Edit post form" />
 
 ### How to delete a record
 
@@ -889,7 +889,7 @@ const columns = React.useMemo<ColumnDef<IPost>[]>(
 
 After making the above changes, your table will have the delete action button like in the image below. Click the delete button to delete a specific record.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-delete.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-delete.jpeg"  alt="Delete confirmation modal for a post" />
 
 #### How to add delete button on the edit page
 
@@ -929,7 +929,7 @@ export default App;
 
 Your edit page should now include a delete button on the bottom right.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-candelete.jpeg"  alt="react admin panel" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-23-refine-strapi-mantine%2Fpost-candelete.jpeg"  alt="Edit page with delete button enabled" />
 
 ## How to implement mutation mode
 

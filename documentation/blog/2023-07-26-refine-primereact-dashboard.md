@@ -54,7 +54,7 @@ For this tutorial, we'll be select the following options:
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
+    <img alt="Create Refine project prompt" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
 </div>
 
 Once you've completed the steps, you'll have the ability to download your project. From there, proceed to the project directory and run your app with:
@@ -101,7 +101,7 @@ In this blog, we won't be using the generated pages. Instead, we'll build our ad
 Once your project is successfully run, you will see the following page:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.webp" className="border border-gray-200 rounded" />
+    <img alt="Fresh Refine project structure" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.webp" className="border border-gray-200 rounded" />
 </div>
 
 ## What is PrimeReact?
@@ -121,7 +121,7 @@ Now that we've covered the basics of **Refine** and PrimeReact, let's build a Re
 At the end of this tutorial, we'll have a project structure like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/project-structure.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Project folder structure" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/project-structure.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 We'll use the [fake restaurant API](https://api.finefoods.refine.dev) for our data. It's a REST API that provides data for products, categories, orders, and specific endpoints for the dashboard.
@@ -551,7 +551,7 @@ We used the `useCustom` hook to fetch the data for the KPI cards. It makes a req
 After fetching the data, we passed the necessary props to the `<KpiCard />` component to render the cards. After these changes, our dashboard looks like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/kpi-cards.jpeg" className="border border-gray-200 rounded" />
+    <img alt="KPI cards grid" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/kpi-cards.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ### Create `ChartView` component
@@ -769,7 +769,7 @@ export const Dashboard: React.FC = () => {
 After these changes, our dashboard looks like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/charts.avif" className="border border-gray-200 rounded" />
+    <img alt="Sales charts section" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/charts.avif" className="border border-gray-200 rounded" />
 </div>
 
 ### Create `RecentSales` component
@@ -1004,7 +1004,7 @@ export const Dashboard: React.FC = () => {
 After these changes, the final version of the dashboard looks like below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/recent-sales.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Recent sales table" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/recent-sales.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ## Create Product CRUD Pages
@@ -1408,7 +1408,7 @@ export default App;
 After these changes, when you navigate to the `/products` path, you should see the product list page as below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-list.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Products list page" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-list.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ### Create Page
@@ -1653,7 +1653,7 @@ export default App;
 After these changes, when we navigate to the `/products/create` path, you should see the product create page as below:
 
 <div>
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-create.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Create product form" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-create.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ### Edit Page
@@ -1901,7 +1901,7 @@ export default App;
 After these changes, when we navigate to the `/products/edit/:id` path, you should see the product edit page as below:
 
 <div>
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-edit.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Edit product form" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-edit.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ### Show Page
@@ -2033,7 +2033,7 @@ export default App;
 After these changes, when we navigate to the `/products/show/:id` path, you should see the product show page as below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-show.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Product details page" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/product-show.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ## Create Category CRUD Pages
@@ -2678,7 +2678,7 @@ export default App;
 After these changes, you should be able to navigate to the category CRUD pages as the below:
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/category-pages.avif" className="border border-gray-200 rounded" />
+    <img alt="Category pages preview" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/category-pages.avif" className="border border-gray-200 rounded" />
 </div>
 
 ## Update the Layout
@@ -2942,7 +2942,7 @@ export const Breadcrumb = () => {
 After these changes, you can see the final result as below. Also, you can interact with the admin panel on [CodeSandbox](#live-codesandbox-example).
 
 <div className="flex justify-center">
-    <img alt="React admin panel" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/final-result.jpeg" className="border border-gray-200 rounded" />
+    <img alt="Final dashboard overview" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/final-result.jpeg" className="border border-gray-200 rounded" />
 </div>
 
 ## Conclusion

@@ -488,7 +488,7 @@ export const LoginPage = () => {
         <div style={{ marginTop: 8 }}>
           <img
             src="https://raw.githubusercontent.com/refinedev/refine/main/logo.png"
-            alt="refine-logo"
+            alt="Refine logo in login window"
             width={100}
           />
         </div>
@@ -618,7 +618,7 @@ export const Footer: React.FC = () => {
           >
             <img
               src="https://raw.githubusercontent.com/refinedev/refine/main/logo.png"
-              alt="refine logo"
+              alt="Refine logo in footer menu button"
               style={{ height: "20px", marginRight: 4 }}
             />
           </Button>

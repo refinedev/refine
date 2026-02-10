@@ -123,7 +123,7 @@ Notice also the `author` property. It is added when a user is authenticated. Oth
 Emanating from the log params object above, our `logs` table looks like this:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Fdiagram.png"  alt="react crud app" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-20-refine-pixels-7%2Fdiagram.png"  alt="Audit log flow diagram" />
 </div>
 
 <br/>
@@ -468,13 +468,13 @@ We are doing this to make sure that we are getting only the logs for the current
 
 With this completed, if we ask for the modal in the `CanvasShow` page, we should be able to see the pixels log list:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="react crud app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="Client audit log table" />
 
 <br />
 
 We don't have a case for creating a pixel in the **Pixels Admin** app. But we can go ahead and implement the same pixels `<LogList />` component for each `canvas` item in the `<CanvasList />` page at `/canvases`. The code is essentially the same, but the `View Changes` button appears inside each row in the table:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="react crud app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="Admin audit log table" />
 
 <br />
 

@@ -363,7 +363,7 @@ Lets you add custom CSS styles to the underlying image element. To enable custom
 ```tsx
 <Image
   src="/background.webp"
-  alt="Waterfall"
+  alt="Waterfall photo"
   width={800}
   height={800}
   style={{ opacity: 0.5 }}

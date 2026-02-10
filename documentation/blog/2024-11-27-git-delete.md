@@ -62,7 +62,7 @@ git branch -d "branch name"
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-1.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-1.png"  alt="Terminal output for deleting a local Git branch" />
 </div>
 
 <br/>
@@ -90,7 +90,7 @@ git push origin -d "branch name"
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-2.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-2.png"  alt="Terminal output for deleting a remote Git branch" />
 </div>
 
 <br/>
@@ -119,7 +119,7 @@ git branch -d <BranchName>
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-3.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-3.png"  alt="Deleting a merged Git branch with -d" />
 </div>
 
 ## Deleting a git branch with unmerged changes
@@ -131,7 +131,7 @@ git branch -D <branchName>
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-4.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-4.png"  alt="Force deleting an unmerged Git branch with -D" />
 </div>
 
 <br/>
@@ -203,7 +203,7 @@ A shorted version of the command is:
 Note that if you delete a remote branch "X" from the command line using `git push` then it will also remove the local remote-tracking branch "origin/X" so there is no need to prune the obsolete remote-tracking branch with `git fetch –prune` or `git fetch –p`.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-5.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-5.png"  alt="Deleting a local branch with verbose output" />
 </div>
 
 <br/>
@@ -227,7 +227,7 @@ git branch –r
 3.  Navigate to the branch you want to delete, then click delete icon
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-6.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-6.png"  alt="Pruning remote branches after deletion" />
 </div>
 
 <br/>
@@ -285,7 +285,7 @@ The workflow is triggered with each push to the main branch and cleans branches 
 Solution: You cannot delete a branch you are already on. You must first switch to another branch and then delete the required branch. See the below example:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-7.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-7.png"  alt="Listing all local and remote branches" />
 </div>
 
 <br/>
@@ -301,7 +301,7 @@ The `git reflog` command is used to record updates made to the tip of branches. 
 The below snapshot provides an example where a branch named "dev-arsam" will be recovered.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-8.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-8.png"  alt="Deleting a remote branch with git push --delete" />
 </div>
 
 <br/>
@@ -315,7 +315,7 @@ To avoid dangling branches, you can set up the configuration so that your branch
 3. Under "Pull Requests", select or unselect Automatically delete head branches.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-9.png"  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-9.png"  alt="Remote branch removed confirmation" />
 </div>
 
 <br/>

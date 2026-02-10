@@ -250,7 +250,7 @@ Run `npm run dev` to start the Refine development server.
 
 Within seconds it should automatically bring up your default browser with the preview of the app. If it does not, open the browser manually and navigate to `http://localhost:3000`.
 
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/welcome.jpg" alt="welcome" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/welcome.jpg" alt="Next.js Refine welcome screen" />
 
 ## Adding a Data provider
 
@@ -416,7 +416,7 @@ export default function Index() {
 
 Now if you save your progress and go back to the browser, you should see the Layout component rendered successfully.
 
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/layout.png" alt="layout" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/layout.png" alt="App layout preview" />
 
 <br/>
 
@@ -614,7 +614,7 @@ Also we created a `ProductCard` component and use it to render the query results
 
 If you save your progress and go back to the browser, you should see a nicely rendered grid of product cards.
 
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/final.png" alt="final" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/final.png" alt="Final PWA UI preview" />
 
 <br/>
 <br/>
@@ -629,7 +629,7 @@ Generating a manifest file manually is tedious. Fortunately for us, we can use s
 
 Head over to [SimiCart manifest generator](https://www.simicart.com/manifest-generator.html/) or any site you trust and generate your manifest with the following example:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/manifest.png" alt="manifest" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/manifest.png" alt="Web app manifest settings" />
 
 <br/>
 
@@ -727,7 +727,7 @@ After starting the server, head over to your browser and visit `http://localhost
 
 <br/>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/pwa.png" alt="pwa" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/pwa.png" alt="Installable PWA prompt" />
 
 <br/>
 

@@ -199,7 +199,7 @@ npm run dev
 
 The Refine application should be up and running after you run the command. To access it, go to `http://localhost:5173`.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg" className="rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/welcome.jpg" className="rounded" alt="Chakra admin dashboard welcome screen" />
 
 ### Setting AuthProvider
 
@@ -544,7 +544,7 @@ const columns = React.useMemo<GridColumns<IPost>>(
 );
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/handling-relationships.jpg" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/handling-relationships.jpg" className="border border-gray-100 rounded" alt="Handling relationships table view" />
 
 #### Pagination Of Listed Records
 
@@ -798,7 +798,7 @@ export default App;
 
 At this point, the `Show` page looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/show.jpg" className="border border-gray-100 rounded"  alt="Record details view" />
 
 ### Creating a record
 
@@ -956,7 +956,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/creating-record-min.avif" className="border border-gray-100 rounded" alt="Create record form" />
 
 ### Modifying/Editing records
 
@@ -1176,7 +1176,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/editing-record-min.avif" className="border border-gray-100 rounded" alt="Edit record form" />
 
 ### Deleting post record
 
@@ -1246,7 +1246,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/deleting-record-min.avif" className="border border-gray-100 rounded" alt="Delete record confirmation" />
 
 ### Implement sorting of listed records
 
@@ -1360,7 +1360,7 @@ You can set the `enableSorting` property of the column to false in the column de
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/sorting-record-min.avif" className="border border-gray-100 rounded" alt="Sorting records table" />
 
 ### Implement filters on listed records
 
@@ -1569,7 +1569,7 @@ We can also disable filtering for the `actions` column by setting the column's e
 },
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.avif" className="border border-gray-100 rounded" alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/filtering-min.avif" className="border border-gray-100 rounded" alt="Filtering records table" />
 
 ### Implementing mutation mode.
 
@@ -1603,7 +1603,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.avif" className="border border-gray-100 rounded"  alt="react admin tutorial" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/mutationmode-min.avif" className="border border-gray-100 rounded"  alt="Mutation mode options UI" />
 
 ## Conclusion
 

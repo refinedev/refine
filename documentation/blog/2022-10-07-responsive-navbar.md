@@ -45,7 +45,7 @@ npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 
 Navigate to the `refine-navbar` folder and run `npm run dev` command.
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="app welcome page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="Refine starter app welcome page" />
 
 <br/>
 
@@ -139,7 +139,7 @@ and import it inside `App.tsx`:
 import "App.css";
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="post page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="Posts page layout before adding the navbar" />
 
 <br/>
 
@@ -218,7 +218,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <img
               className="w-32 ml-2"
               src="https://refine.dev/img/refine_logo.png"
-              alt="Logo"
+              alt="Refine logo"
             />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
@@ -257,7 +257,7 @@ const App: React.FC = () => {
 
 The output of the above code is as follows:
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-3.png" alt="post page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-3.png" alt="Tailwind navbar on the posts page" />
 
 <br/>
 
@@ -276,7 +276,7 @@ Let's make it mobile responsive by adding the mobile menu:
 ...
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="post page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="Mobile menu view of the navbar" />
 
 <br/>
 
@@ -302,7 +302,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <img
               className="w-32 ml-2"
               src="https://refine.dev/img/refine_logo.png"
-              alt="Logo"
+              alt="Refine logo"
             />
             <ul className="hidden md:flex">
               {menuItems.map(({ name, route }) => (
@@ -384,7 +384,7 @@ Add following CSS classes to `App.css` file:
 }
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="post page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="Bootstrap navbar with brand image" />
 
 <br/>
 
@@ -407,6 +407,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
           width="100px"
           height="100px"
+          alt="Refine logo"
         />
         <Navbar.Toggle />
         <Navbar.Collapse>
@@ -423,14 +424,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="post page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="Bootstrap responsive navbar on posts page" />
 
 <br/>
 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -461,6 +462,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
           width="100px"
           height="100px"
+          alt="Refine logo"
         />
         <Navbar.Toggle />
         <Navbar.Collapse>

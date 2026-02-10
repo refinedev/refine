@@ -218,7 +218,7 @@ In the code above, `useMutation` is used to post new data to the Json Placeholde
 This is what it looks like in a Chrome browser:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/chrome-browser.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/chrome-browser.png"  alt="Create post form in the browser" />
 </div>
 
 <br/>
@@ -226,7 +226,7 @@ This is what it looks like in a Chrome browser:
 After feeling the options, click submit and wait for the response:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/click-submit.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/click-submit.png"  alt="Submitting the create post form" />
 </div>
 
 <br/>
@@ -234,7 +234,7 @@ After feeling the options, click submit and wait for the response:
 **Response**:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/response.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/response.png"  alt="API response after form submission" />
 </div>
 
 <br/>

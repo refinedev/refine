@@ -24,18 +24,18 @@ It is, also, one step forward towards the dream of <strong>making it headless</s
 
 To learn more about Refine, see: https://refine.dev/docs/
 
-|                                                 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="sider" />                                                  |
+|                                           <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/sider.png" alt="Sidebar navigation" />                                           |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | _Our panel has 7 resources (all listable), which 4 of them must have create and edit pages, 6 of them must be exportable to `.csv` files and some of those resources have images, all images must be uploaded in `base64` format._ |
 
 This is how it looks before the migration (React-Admin):
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="React Admin campaign list page before migration" />
 <br/>
 
 And this is how it looks like after the migration (Refine):
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="Refine campaign list table after migration" />
 <br/>
 
 Both of these images show a list page of a resource (campaign).
@@ -78,7 +78,7 @@ export default List;
 
 And looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="react-admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin.png" alt="React Admin campaign list page" />
 <br/>
 
 Here's the code that renders this same list in Refine:
@@ -223,7 +223,7 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
 It is long. Because we had to handle selection and bulk delete button manually. That's because Refine is decoupled from Ant Design components' code, too. But the advantage here is that you use Ant Design. You can use the Ant Design's Table as however you like, and then connect its data with refine. The point is customizability.
 And it looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/refine_table.png" alt="Refine campaign list table after migration" />
 <br/>
 
 In Refine, we use Ant Design's [Table](https://ant.design/components/table/) components.
@@ -281,7 +281,7 @@ export default Create;
 
 And it looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png" alt="react-admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-6-migrating-react-admin-to-refine/react_admin_create.png" alt="React Admin campaign create form" />
 <br/>
 
 For Refine, code of our campaign create page looks like:

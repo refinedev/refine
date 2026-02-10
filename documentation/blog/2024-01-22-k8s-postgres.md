@@ -169,7 +169,7 @@ Here’s how:
 3.  **Modify the Container Section**: Inside the `containers` section of the PostgreSQL deployment, add a `volumeMounts` field. This will mount the volume inside the PostgreSQL container. The below examples shows PVC configuration for a PostgreSQL database:
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image1.png" alt="pvc configuration for postgresql" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image1.png" alt="PostgreSQL StatefulSet PVC and volumeMounts configuration example" />
 </div>
 
 Note that `volumeMounts` specifies where inside the container the volume should be mounted (`/var/lib/postgresql/data` is the default data directory for PostgreSQL). Also, in case of cloud-managed cluster such as GKE, EKS, etc. cloud vendor automatically provisions PVs based on the PVCs in the StatefulSet so you do not need to explicitly specify the PV in your YAML file.
@@ -273,7 +273,7 @@ Apply the above YAML file after making the above changes.
 This sets the `POSTGRES_PASSWORD` environment variable in your PostgreSQL container to the password defined in the Secret. If you are using managed Kubernetes cluster on GKE for example, you can also set the environment variable from the web console, although the recommended practice is to use configmap and Kubernetes secret. See the below example of GKE PostgreSQL installation and adding environment variable.
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image2.png" alt="Adding env variable in GKE" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image2.png" alt="GKE console showing PostgreSQL environment variable configuration" />
 </div>
 
 **Expert Tips:**
@@ -293,7 +293,7 @@ deployment, let's verify the installation.
 3. After you are into the psql shell, type the command "\l " to display a list of databases. The below screenshots show the result of all these commands.
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image3.png" alt="Verifying PostgreSQL installation" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/image3.png" alt="psql session output listing databases after kubectl exec" />
 </div>
 
 ## Conclusion

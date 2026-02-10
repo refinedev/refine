@@ -180,7 +180,7 @@ We'll go through some examples to see how both functions work in real-world appl
 
 The GIF below shows how `getInitialProps` behaves when it's used to fetch data for server-side rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.avif"  alt="getinitialprops" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.avif"  alt="getInitialProps server and client log behavior demo" />
 
 <br />
 
@@ -231,7 +231,7 @@ However, when we make client-side navigation to the home page `localhost:3000` u
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -239,7 +239,7 @@ However, when we make client-side navigation to the home page `localhost:3000` u
 
 The GIF below shows the same example from the previous section using `getServerSideProps` to fetch a list of users from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API for server-side rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.avif"  alt="getserversideprops" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.avif"  alt="getServerSideProps server-only log behavior demo" />
 
 <br />
 

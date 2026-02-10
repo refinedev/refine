@@ -224,19 +224,22 @@ export default function Storefront() {
   return (
     <div className="gallery">
       <div className="col" ref={targetElement}>
-        <img src="https://i.postimg.cc/G207QNV7/image.png" alt="Product 1" />
+        <img
+          src="https://i.postimg.cc/G207QNV7/image.png"
+          alt="iWatch Series 6 product photo"
+        />
         <p>iWatch Series 6</p>
         <div className="btns">
           <button>
             <img
               src="https://api.iconify.design/flat-color-icons:like.svg?color=%23888888"
-              alt="like"
+              alt="Like icon"
             />
           </button>
           <button>
             <img
               src="https://api.iconify.design/icon-park:buy.svg?color=%23888888"
-              alt="add"
+              alt="Buy icon"
             />
           </button>
         </div>
@@ -250,7 +253,7 @@ In the code above, we we invoked the `useClickAway` custom hook in the `Storefro
 
 Now let’s see the output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/useref.avif"  alt="useRef" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-useref/useref.avif"  alt="Storefront card with click-away example" />
 
 <br />
 

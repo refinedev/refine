@@ -71,7 +71,7 @@ npm run dev
 
 And prepare ourselves to the call-to-action at `http://localhost:5173`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
 
 <br />
 
@@ -749,7 +749,7 @@ export default App;
 
 Since `authProvider` prop is already passed in by default, after we added the above resources and granted we are connected to the Internet, we will be redirected to the login page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
 
 <br />
 
@@ -772,7 +772,7 @@ password: demodemo
 
 :::
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
 
 <br />
 
@@ -1124,7 +1124,7 @@ return (
 
 With these additions, `/canvases` looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
 
 <br />
 

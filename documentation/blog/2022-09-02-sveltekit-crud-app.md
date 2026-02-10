@@ -50,7 +50,7 @@ The above command will prompt you to select the configurations for your project.
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="terminal" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="SvelteKit CLI setup prompt in terminal" />
 
 Now change the directory into the project folder and install the required dependencies with the command below.
 
@@ -100,7 +100,7 @@ Then create a components folder in the src folder and create a `Table.svelte` fi
 			<Row>
 				<Cell numeric>{item.id}</Cell>
 				<Cell>{item.title}</Cell>
-				<Cell><img width="100" src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="" /></Cell>
+				<Cell><img width="100" src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt="Blog post thumbnail placeholder" /></Cell>
 				<Cell>{item.createdAt}</Cell>
 				<Cell>
 					<a href={`/post/${item.id}`}>Edit</a>
@@ -137,7 +137,7 @@ In the above code snippet, we imported the **SMUI** components we need, and we d
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
+	<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="Support Refine on GitHub banner" />
 </a>
 </div>
 
@@ -190,7 +190,7 @@ In the above code snippet, we created a **Post** type to tell Typescript the obj
 
 Then we created the items variable to be a placeholder for the posts and created a `loadThings` function to fetch data from the API and update the `items` variable. The `loadThings` function will be called when the components mount, which are implemented in Svelte using the `onMount` decorator.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/list.png" alt="list1" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/list.png" alt="Blog posts table listing" />
 
 <br/>
 
@@ -293,7 +293,7 @@ let open = false;
 
 In the above code snippets, we attached an event handler to change the value of the open variable to show the modal.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/create.png" alt="create" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/create.png" alt="Create post dialog in SvelteKit app" />
 
 <br/>
 
@@ -371,7 +371,7 @@ In the above code snippet, we imported the components to create a UI for this pa
 
 Then we created an `editPost` function which sends a Put request to the API with the data we which to update in the payload as JSON.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/edit.png" alt="edit" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/edit.png" alt="Edit post form in SvelteKit app" />
 
 <br/>
 
@@ -403,7 +403,7 @@ Throughout this tutorial, we've implemented how to create a CRUD application usi
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
+	<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -421,7 +421,7 @@ Check out [Refine](https://github.com/refinedev/refine), if you are interested i
 
 <div>
 <a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.webp" alt="refine blog logo" />
+	<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/refine_blog_logo_1.webp" alt="Refine blog banner logo" />
 </a>
 </div>
 

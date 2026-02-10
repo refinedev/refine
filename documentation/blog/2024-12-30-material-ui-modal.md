@@ -343,7 +343,7 @@ export default function BasicModal() {
           <EditIcon></EditIcon>
         </Button>
         <div class="img-div">
-          <img src={contactImage} alt="" />
+          <img src={contactImage} alt="Contact avatar" />
         </div>
         <h2>
           <span>Doro Onome</span>

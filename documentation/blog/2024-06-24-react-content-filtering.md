@@ -71,7 +71,7 @@ We will place the filtering UI on the top section of the app. There will be sepa
 The content cards will be listed directly below.
 When putting everything into the wireframe, we get the following schema:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.jpeg" alt="wireframe" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.jpeg" alt="Filter UI wireframe" />
 
 ## Setting up the Refine
 
@@ -561,20 +561,20 @@ Check if your development server is still running in the terminal. If it is not 
 
 First, we will test the functionality of the filter buttons.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.avif" alt="filters" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.avif" alt="Filter panel options" className="border border-gray-200 rounded" />
 
 If the filter button is pressed, only the corresponding cards of that category is filtered. If the filter is already active and is pressed again, the filter is disabled and all the records are shown.
 
 Now type in some search queries in the search bar.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.avif" alt="search" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.avif" alt="Search input with filters" className="border border-gray-200 rounded" />
 
 Search results are fully dynamic, meaning the filtering is updated each time you add a new character to the query.
 
 Finally, let's test the app on mobile screen sizes.
 
 <div className="flex justify-center">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="mobile" className="border border-gray-200 rounded" style={{ height: "400px" }} />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="Mobile responsive filter UI" className="border border-gray-200 rounded" style={{ height: "400px" }} />
 </div>
 
 ## React filtering tips

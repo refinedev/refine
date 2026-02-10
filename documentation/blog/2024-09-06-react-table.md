@@ -312,7 +312,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table.png" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table.png" alt="Category table rendered with useTable" />
 </div>
 
 As in the above example, Refine's React Table adapter exports the `useTable` hook. You need to create the table column and pass it as an argument to the `useTable` hook.
@@ -435,7 +435,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-pagination.png" alt="Table with pagination controls" />
 </div>
 
 After adding the changes above, you can now navigate to any page of the data. By default, pagination is handled on the server side. If you want pagination to be handled on the client side, set the value of the `pagination.mode` property to `"client"` like so:
@@ -546,7 +546,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-sorting.png" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-sorting.png" alt="Table with sortable column headers" />
 </div>
 
 You can now click the Title header to sort the table in ascending or descending order of the title.
@@ -707,7 +707,7 @@ export const CategoryList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-filtering.png" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-filtering.png" alt="Table with title filter input" />
 </div>
 
 You will now see a search field that you can use to search for an entry in the title field.
@@ -718,7 +718,7 @@ You will now see a search field that you can use to search for an entry in the t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.avif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/react-table-with-refine.avif" alt="Refine table with filters and actions" />
 </div>
 
 There are several features of React Table that we haven't explored in this section. Check out the documentation.

@@ -57,7 +57,7 @@ Creating a database server is quite intuitive in **Supabase**. Just go over to y
 For our app, we have four tables: `auth.users`, `public.users`, `canvases` and `pixels`. The entity relational diagram for our database looks like this:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="react crud app" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="Supabase table editor" />
 </div>
 
 <br/>
@@ -80,7 +80,7 @@ The `auth.users` table is concerned with authentication in our app. It is create
 **Supabase** doesn't allow a client to query the `auth.users` table for security reasons. So, we need to create a shadow of the `auth.users` table in `public.users` with additional columns. We need this shadow table to be able to query `user` information, such as `avatar_url` and `roles` from this table.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/sql_editor.png"  alt="react crud app" />
+  <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/sql_editor.png"  alt="Supabase SQL editor" />
 </div>
 
 <br/>
@@ -182,7 +182,7 @@ Also, `public.users` has a one-to-many relationship with `pixels`.
 For simplicity, we'll disable Row Level Security:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/disable_rls.png"  alt="react crud app supabase" />
+  <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/disable_rls.png"  alt="Disable RLS setting" />
 </div>
 
 <br/>
@@ -553,7 +553,7 @@ If you are already looking at the [`useSimpleList()` argument object's propertie
 
 With this set up - and connected to the Internet - if we run the dev server with `npm run dev` and navigate to `http://localhost:5173`, we are faced with a `<CanvasFeaturedList/>` as a home page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 
@@ -1446,7 +1446,7 @@ After registration, the user is automatically signed in and the browser redirect
 
 And now, since we are logged in, we should be able to create a canvas. After successful creation of a canvas, we should be redirected to `/canvases/:id`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="Create canvas form" />
 
 <br />
 
@@ -1519,7 +1519,7 @@ There will not be any item in the home page because `is_featured` is set to `fal
 
 I've done that and the featured canvases are listed in the `Home` route:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="react crud app supabase" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 

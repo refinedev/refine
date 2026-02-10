@@ -39,7 +39,7 @@ ARG and ENV are dockerfile instructions through which you can apply the differen
 See the below diagram to understand the difference between ARG and ENV.
 
 <div class="img-container" align-items="center" >
-   <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-28-docker-build-args/docker-environment-build-args.png"  alt="Docker Build Arguments comparison" />
+   <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-28-docker-build-args/docker-environment-build-args.png"  alt="Docker build-time vs runtime environment variables comparison" />
 
 </div>
 

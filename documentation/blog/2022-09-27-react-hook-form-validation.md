@@ -50,7 +50,7 @@ The library allows you to isolate component re-renders by using uncontrolled inp
 The package is super light, it has a minified size of 24.6kb and a minified + gzipped size of 8.8kb. This is because the library doesn’t use any dependencies to handle any of its functionalities under the hood.
 
 <div class="img-container" align-items="center" >
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-package-size.png"  alt="react Hook Form package size" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-package-size.png"  alt="React Hook Form package size chart" />
 </div>
 
 <br/>
@@ -104,7 +104,7 @@ npm run dev
 
 The second command will start the development server for our project and automatically preview our app in the default browser. If it doesn't, open the browser manually and navigate to http://localhost:5173.
 
-<img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png"  alt="react Hook Form dashboard" />
+<img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png"  alt="Refine welcome dashboard" />
 
 <br />
 
@@ -293,7 +293,7 @@ export default App;
 
 If you save your progress and open up the browser, you should see a form similar to the one below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.png"  alt="react Hook Form view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.png"  alt="Basic form layout" />
 
 <br />
 
@@ -632,7 +632,7 @@ To display the error, we’d have to render a message based on the state of the 
 // highlight-end
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-2.png"  alt="react Hook Form input" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-2.png"  alt="Inline error message placement" />
 
 <br />
 
@@ -724,7 +724,7 @@ That’s all we have to do to set up our schema, next we’ll look at a new way 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -766,7 +766,7 @@ Then, pass the error object and message to the `error` and `helperText` props li
 
 This will check if there's an error with the `error` prop, then it'll display a dynamic message with the help of the `helperText` prop.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.png"  alt="react Hook Form yup" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.png"  alt="Yup validation error styling" />
 
 <br />
 
@@ -1068,7 +1068,7 @@ export default Create;
 
 Now, if you save your progress and go to the browser, the company and role fields should only display when the Employed option is selected.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.avif"  alt="react Hook Form error handling" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.avif"  alt="Conditional fields for employment" />
 
 <br />
 
@@ -1109,7 +1109,7 @@ Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` 
 
 Now, if you save your progress and head over to the browser, you should get a logged object of the form’s data in your console when you fill in the fields and submit the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.avif"  alt="React Hook Form error handling" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.avif"  alt="Form submission logged in console" />
 
 <br />
 

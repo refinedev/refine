@@ -283,7 +283,7 @@ export const CompanyItem: React.FC<CompanyItemProps> = ({ item }) => {
               padding: 24,
             }}
             src={image}
-            alt="logo"
+            alt="Company logo"
           />
         </div>
       }

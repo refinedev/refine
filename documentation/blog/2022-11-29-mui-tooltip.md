@@ -65,7 +65,7 @@ export default function BasicTooltip() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="Basic tooltip on zoom icon button" />
 </div>
 
 ## Positioning Material UI Tooltips
@@ -153,7 +153,7 @@ export default function PositionedTooltips() {
 </details>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.avif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.avif"  alt="Tooltip placement grid for 12 positions" />
 </div>
 
 **Note**: Tooltip positioning is critical when using them in a web application. A poorly placed Tooltip may detract from the overall UX of the app.
@@ -188,7 +188,7 @@ export default function ArrowTooltips() {
 Here’s what it looks like:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="Tooltip with arrow indicator" />
 </div>
 
 ### Width variations
@@ -243,7 +243,7 @@ export default function VariableWidth() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.avif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.avif"  alt="Tooltip width variations demo" />
 </div>
 
 ### Material UI Tooltip Transitions
@@ -287,7 +287,7 @@ In the code above, three tooltips have been set to display with varying transiti
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.avif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.avif"  alt="Tooltip transition styles with grow, fade, and zoom" />
 </div>
 
 ### Virtual element placement
@@ -360,7 +360,7 @@ In the code above,
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="Material UI tooltip " />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="Tooltip following cursor using virtual element" />
 </div>
 
 ## Material UI Tooltip Event Triggers
@@ -421,13 +421,13 @@ export default function TriggersTooltips() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="Material UI tooltip" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="Hover and click tooltip triggers" />
 </div>
 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -496,7 +496,7 @@ The code above illustrates a simple login form UI with instructions provided to 
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.avif"  alt="Material UI tooltip" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.avif"  alt="Login form with tooltip validation hints" />
 </div>
 
 ## Conclusion

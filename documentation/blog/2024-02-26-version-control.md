@@ -111,7 +111,7 @@ Version control is essential to CI/CD pipelines. Developers trigger the CI/CD pi
 Git is a distributed version control system. It’s popular due to its speed, data integrity, and support for distributed workflows. Platforms like GitHub, GitLab, and Bitbucket have increased its popularity. Below illustration explains how Git works.
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-26-version-control/version.png" alt="version control" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-26-version-control/version.png" alt="Diagram illustrating how Git version control works" />
 </div>
 
 ### Subversion (SVN)

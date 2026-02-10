@@ -238,7 +238,7 @@ const can = await enforcer.enforce("editor", resource, action);
 
 And if we refresh at `/canvases`, we can see that the `Delete` button on each row gets disabled.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="Delete buttons disabled for editor role" />
 
 <br />
 
@@ -384,7 +384,7 @@ In the `/canvases` route, an `editor` account should have the `Delete` buttons d
 
 In contrast, it is enabled for an `admin` role:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="Delete buttons enabled for admin role" />
 
 <br />
 
