@@ -43,9 +43,10 @@ export const EditButton: React.FC<EditButtonProps> = ({
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
-      replace={false}
+      disabled={isDisabled}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();
@@ -56,27 +57,22 @@ export const EditButton: React.FC<EditButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      startIcon={
+        !hideText && (
+          <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
+        )
+      }
+      title={title}
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.EditButton}
+      className={RefineButtonClassNames.EditButton}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={
-          !hideText && (
-            <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
-          )
-        }
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.EditButton}
-        className={RefineButtonClassNames.EditButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <EditOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <EditOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
