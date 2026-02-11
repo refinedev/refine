@@ -7,6 +7,7 @@ tags: [internal-tools, product, Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-21-what-is-internal-tools/internal-tools-blog.webp
 hide_table_of_contents: false
 is_featured: false
+category: ai-and-innovation
 ---
 
 Internal tools are the apps your team uses to run the business, not the ones customers see. Think dashboards, admin panels, inventory views, or back-office workflows. They are built to make internal work faster, safer, and more consistent.

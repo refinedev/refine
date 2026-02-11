@@ -12,13 +12,14 @@ import {
 } from "react-share";
 import clsx from "clsx";
 import { Breadcrumbs } from "@site/src/components/breadcrumbs";
-
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
 import { Date, ReadingTime } from "@site/src/components/blog/common";
 import { BannerBlog } from "@site/src/components/banner/banner-blog";
 
 import { RedditIcon, TwitterIcon, LinkedinIcon } from "../icons";
 
 export const BlogPostPageView = ({ children }) => {
+  const { withBaseUrl } = useBaseUrlUtils();
   const { metadata, isBlogPostPage } = useBlogPost();
   const {
     permalink,
@@ -47,7 +48,7 @@ export const BlogPostPageView = ({ children }) => {
   } = useDocusaurusContext();
 
   return (
-    <BlogPostItemContainer
+    <article
       className={clsx(
         "pb-10",
         "pt-4 blog-lg:pt-8",
@@ -56,7 +57,16 @@ export const BlogPostPageView = ({ children }) => {
         "blog-lg:max-w-[894px]",
         "px-2 blog-md:px-8 blog-lg:px-0",
       )}
+      itemProp="blogPost"
+      itemScope
+      itemType="http://schema.org/BlogPosting"
     >
+      {frontMatter.image && (
+        <meta
+          itemProp="image"
+          content={withBaseUrl(frontMatter.image, { absolute: true })}
+        />
+      )}
       <Breadcrumbs items={breadcrumbItems} className="mb-6" />
       <div
         className={clsx(
@@ -189,6 +199,6 @@ export const BlogPostPageView = ({ children }) => {
           <MDXContent>{children}</MDXContent>
         </div>
       </div>
-    </BlogPostItemContainer>
+    </article>
   );
 };

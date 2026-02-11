@@ -6,6 +6,7 @@ authors: arda
 tags: [guides, dashboards, internal-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/dashboards-top-image.webp
 hide_table_of_contents: false
+category: guides
 ---
 
 Dashboards are everywhere, but most teams still struggle with the same question: what should be on the screen?

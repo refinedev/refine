@@ -4,6 +4,7 @@ description: How shadcn/ui's component architecture and direct code ownership ar
 slug: shadcn-blog
 authors: ozgur
 tags: [ai]
+category: how-to-build
 is_featured: true
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn.png
 hide_table_of_contents: false

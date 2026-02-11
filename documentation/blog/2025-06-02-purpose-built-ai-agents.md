@@ -6,7 +6,7 @@ authors: civan
 tags: [ai]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-02-purpose-built-ai-agents/purpose-built-ai-agents.png
 hide_table_of_contents: false
-is_featured: true
+category: how-to-build
 ---
 
 # Introduction
@@ -21,13 +21,14 @@ Internal enterprise applications represent a distinct category where a high leve
 
 In this article, I want to explore whether the previously discussed agentic tools and vibe-coding platforms—despite their general-purpose approach—are suitable for creating high-quality internal software, or if we need solutions that are more specialized and tailored to specific domains. Below are the topics I want to cover:
 
-- [The Fragility of Generic AI](#the-fragility-of-generic-ai)
-- [Meet the Specialist](#meet-the-specialist)
-- [Why Refine Works Differently](#why-refine-works-differently)
-- [Real-World Thinking, Built In](#real-world-thinking-built-in)
-- [A Clear Difference](#a-clear-difference)
-- [Not Just Fast. Reliable.](#not-just-fast-reliable)
-- [Looking Ahead](#looking-ahead)
+- [Introduction](#introduction)
+  - [The Fragility of Generic AI](#the-fragility-of-generic-ai)
+  - [Meet the Specialist](#meet-the-specialist)
+  - [Why Refine Works Differently](#why-refine-works-differently)
+  - [Real-World Thinking, Built In](#real-world-thinking-built-in)
+  - [A Clear Difference](#a-clear-difference)
+  - [Not Just Fast. Reliable.](#not-just-fast-reliable)
+  - [Looking Ahead](#looking-ahead)
 
 ## The Fragility of Generic AI
 

@@ -7,6 +7,7 @@ tags: [low-code, internal-tools, product]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-26/code-ownership-blog-banner
 hide_table_of_contents: false
 is_featured: false
+category: integrations
 ---
 
 Low-code platforms help teams ship internal tools fast, but there is one question that matters more than the UI builder or the templates. Do you actually own the source code you are creating?

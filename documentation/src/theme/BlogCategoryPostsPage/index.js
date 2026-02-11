@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Head from "@docusaurus/Head";
-
 import {
   PageMetadata,
   HtmlClassNameProvider,
@@ -14,21 +13,23 @@ import BlogPostItems from "@theme/BlogPostItems";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
 
-import { FeaturedBlogPostItems } from "../../components/blog";
-
-function BlogListPageMetadata(props) {
-  const { metadata } = props;
+function BlogCategoryPostsPageMetadata(props) {
+  const { listMetadata, category } = props;
   const {
     siteConfig: { title: siteTitle },
   } = useDocusaurusContext();
-  const { blogDescription, blogTitle, page, permalink } = metadata;
-  const isBlogOnlyMode = permalink === "/";
-  const baseTitle = isBlogOnlyMode ? siteTitle : blogTitle;
-  const isPaginated = typeof page === "number" && page > 1;
-  const title = isPaginated ? `${baseTitle} - Page ${page}` : baseTitle;
+
+  const categoryName = category.name ?? category.value ?? "Category";
+  const isPaginated =
+    typeof listMetadata.page === "number" && listMetadata.page > 1;
+
+  const title = isPaginated
+    ? `${categoryName} - ${siteTitle} - Page ${listMetadata.page}`
+    : `${categoryName} - ${siteTitle}`;
   const description = isPaginated
-    ? `${blogDescription} - Page ${page}`
-    : blogDescription;
+    ? `${listMetadata.blogDescription} - Page ${listMetadata.page}`
+    : listMetadata.blogDescription;
+
   return (
     <>
       <Head>
@@ -36,38 +37,26 @@ function BlogListPageMetadata(props) {
         <meta property="og:title" content={title} />
       </Head>
       <PageMetadata description={description} />
-      <SearchMetadata tag="blog_posts_list" />
+      <SearchMetadata tag="blog_category_posts" />
     </>
   );
 }
 
-function BlogListPageContent(props) {
-  const { metadata, categories, items } = props;
+function BlogCategoryPostsPageContent(props) {
+  const { category, categories, items, listMetadata } = props;
 
-  const isFirstPage = metadata.page === 1;
+  const categoryName = category.name ?? category.value ?? "Category";
+
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
+    { label: categoryName, href: category.permalink },
   ];
-
-  const featuredPosts = items.filter(
-    (post) => post.content.metadata.frontMatter.is_featured === true,
-  );
-  if (featuredPosts.length > 3) {
-    throw new Error(
-      `Only 3 featured posts are allowed (you have: ${featuredPosts.length}). Please check your blog posts and set is_featured to true for at most 3 posts.`,
-    );
-  }
-
-  const paginatedPosts = items.filter(
-    (post) => post.content.metadata.frontMatter.is_featured !== true,
-  );
 
   return (
     <BlogLayout showSidebarBanner={false} showHero>
       <BreadcrumbJsonLd items={breadcrumbItems} />
-      {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
-      <BlogPostItems items={paginatedPosts} categories={categories} />
+      <BlogPostItems items={items} categories={categories} />
       <div
         className={clsx(
           "w-full",
@@ -79,13 +68,16 @@ function BlogListPageContent(props) {
           "mb-12",
         )}
       >
-        <BlogListPaginator metadata={metadata} />
+        <BlogListPaginator
+          metadata={listMetadata}
+          basePath={category.permalink}
+        />
       </div>
     </BlogLayout>
   );
 }
 
-export default function BlogListPage(props) {
+export default function BlogCategoryPostsPage(props) {
   return (
     <HtmlClassNameProvider
       className={clsx(
@@ -93,8 +85,8 @@ export default function BlogListPage(props) {
         ThemeClassNames.page.blogListPage,
       )}
     >
-      <BlogListPageMetadata {...props} />
-      <BlogListPageContent {...props} />
+      <BlogCategoryPostsPageMetadata {...props} />
+      <BlogCategoryPostsPageContent {...props} />
     </HtmlClassNameProvider>
   );
 }

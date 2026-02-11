@@ -33,7 +33,7 @@ export default function BlogTagsListPage({ tags, sidebar }) {
             "w-full",
             "mx-auto",
             "blog-sm:max-w-[592px]",
-            "blog-md:max-w-[656px]",
+            "blog-md:max-w-[704px]",
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
             "px-6 blog-sm:px-0",

@@ -3,6 +3,7 @@ const utils = require("@docusaurus/utils");
 const path = require("path");
 
 const defaultBlogPlugin = blogPluginExports.default;
+const DEFAULT_BLOG_CATEGORY = "engineering";
 
 const pluginDataDirRoot = path.join(
   ".docusaurus",
@@ -109,6 +110,125 @@ function getAuthorPosts(allBlogPosts, metadata) {
   return filteredPostInfos;
 }
 
+function getBlogPostCategory(frontMatter = {}) {
+  const { category } = frontMatter;
+
+  if (typeof category === "string") {
+    const normalized = category.trim();
+    return normalized || DEFAULT_BLOG_CATEGORY;
+  }
+
+  if (Array.isArray(category)) {
+    const firstValidCategory = category
+      .map((value) => `${value}`.trim())
+      .find(Boolean);
+
+    return firstValidCategory || DEFAULT_BLOG_CATEGORY;
+  }
+
+  return DEFAULT_BLOG_CATEGORY;
+}
+
+function toCategorySlug(label) {
+  const normalized = `${label}`
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  if (normalized) {
+    return normalized;
+  }
+
+  return encodeURIComponent(`${label}`.trim().toLowerCase());
+}
+
+function toCategoryName(label = "") {
+  let value = `${label}`.trim().replace(/-/g, " ");
+
+  if (!value) {
+    return "";
+  }
+
+  value = value
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+
+  const replacements = [
+    ["Ai", "AI"],
+    ["Ui", "UI"],
+    ["Ux", "UX"],
+    ["Api", "API"],
+  ];
+
+  replacements.forEach(([from, to]) => {
+    value = value.replace(new RegExp(`\\b${from}\\b`, "g"), to);
+  });
+
+  return value;
+}
+
+function createBlogCategories({
+  allBlogPosts,
+  basePageUrl,
+  blogTitle,
+  blogDescription,
+  postsPerPageOption,
+}) {
+  const categories = {};
+  const usedSlugs = new Set();
+
+  function getUniqueCategorySlug(baseSlug) {
+    let suffix = 2;
+    let candidate = baseSlug || "category";
+
+    while (usedSlugs.has(candidate)) {
+      candidate = `${baseSlug}-${suffix}`;
+      suffix += 1;
+    }
+
+    usedSlugs.add(candidate);
+
+    return candidate;
+  }
+
+  allBlogPosts.forEach((post) => {
+    const categoryValue = getBlogPostCategory(post.metadata.frontMatter);
+
+    if (!categoryValue) {
+      return;
+    }
+
+    const categoryKey = categoryValue.toLowerCase();
+
+    if (!categories[categoryKey]) {
+      const uniqueSlug = getUniqueCategorySlug(toCategorySlug(categoryValue));
+      categories[categoryKey] = {
+        value: categoryValue,
+        name: toCategoryName(categoryValue),
+        permalink: utils.normalizeUrl([basePageUrl, uniqueSlug]),
+        items: [],
+      };
+    }
+
+    categories[categoryKey].items.push(post);
+  });
+
+  Object.values(categories).forEach((category) => {
+    category.pages = paginateBlogPosts({
+      blogPosts: category.items,
+      basePageUrl: category.permalink,
+      blogTitle,
+      blogDescription,
+      postsPerPageOption,
+    });
+  });
+
+  return categories;
+}
+
 async function blogPluginExtended(...pluginArgs) {
   const blogPluginInstance = await defaultBlogPlugin(...pluginArgs);
 
@@ -128,6 +248,7 @@ async function blogPluginExtended(...pluginArgs) {
         blogTags,
         blogTagsListPath,
       } = blogContents;
+      const blogCategoriesListPath = "/blog/categories";
 
       const blogItemsToMetadata = {};
 
@@ -163,6 +284,14 @@ async function blogPluginExtended(...pluginArgs) {
         postsPerPageOption: postsPerPage,
       });
 
+      const blogCategories = createBlogCategories({
+        allBlogPosts,
+        basePageUrl: blogCategoriesListPath,
+        blogTitle,
+        blogDescription,
+        postsPerPageOption: postsPerPage,
+      });
+
       // Create routes for blog entries.
       await Promise.all(
         allBlogPosts.map(async (blogPost) => {
@@ -171,12 +300,18 @@ async function blogPluginExtended(...pluginArgs) {
           const relatedPosts = getReletadPosts(allBlogPosts, metadata);
 
           const authorPosts = getAuthorPosts(allBlogPosts, metadata);
+          const category = getBlogPostCategory(metadata.frontMatter);
+          const categoryName = toCategoryName(category);
 
           await createData(
             // Note that this created data path must be in sync with
             // metadataPath provided to mdx-loader.
             `${utils.docuHash(metadata.source)}.json`,
-            JSON.stringify({ ...metadata, relatedPosts, authorPosts }, null, 2),
+            JSON.stringify(
+              { ...metadata, relatedPosts, authorPosts, category, categoryName },
+              null,
+              2,
+            ),
           );
 
           addRoute({
@@ -214,6 +349,20 @@ async function blogPluginExtended(...pluginArgs) {
             JSON.stringify(tagsProp, null, 2),
           );
 
+          const categoriesProp = Object.values(blogCategories).map(
+            (category) => ({
+              value: category.value,
+              name: category.name,
+              permalink: category.permalink,
+              count: category.items.length,
+            }),
+          );
+
+          const categoriesPropPath = await createData(
+            `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
+            JSON.stringify(categoriesProp, null, 2),
+          );
+
           addRoute({
             path: permalink,
             component: "@theme/BlogListPage",
@@ -226,6 +375,7 @@ async function blogPluginExtended(...pluginArgs) {
               ),
               metadata: aliasedSource(pageMetadataPath),
               tags: aliasedSource(tagsPropPath),
+              categories: aliasedSource(categoriesPropPath),
             },
           });
         }),
@@ -264,8 +414,10 @@ async function blogPluginExtended(...pluginArgs) {
         });
       });
 
-      // Tags. This is the last part so we early-return if there are no tags.
-      if (Object.keys(blogTags).length === 0) {
+      const hasTags = Object.keys(blogTags).length > 0;
+      const hasCategories = Object.keys(blogCategories).length > 0;
+
+      if (!hasTags && !hasCategories) {
         return;
       }
 
@@ -337,8 +489,92 @@ async function blogPluginExtended(...pluginArgs) {
         );
       }
 
-      await createTagsListPage();
-      await Promise.all(Object.values(blogTags).map(createTagPostsListPage));
+      async function createCategoriesListPage() {
+        const categoriesProp = Object.values(blogCategories).map(
+          (category) => ({
+            value: category.value,
+            name: category.name,
+            permalink: category.permalink,
+            count: category.items.length,
+          }),
+        );
+
+        const categoriesPropPath = await createData(
+          `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
+          JSON.stringify(categoriesProp, null, 2),
+        );
+
+        addRoute({
+          path: blogCategoriesListPath,
+          component: "@theme/BlogTagsListPage",
+          exact: true,
+          modules: {
+            tags: aliasedSource(categoriesPropPath),
+          },
+        });
+      }
+
+      async function createCategoryPostsListPage(category) {
+        await Promise.all(
+          category.pages.map(async (blogPaginated) => {
+            const { metadata, items } = blogPaginated;
+            const categoryProp = {
+              value: category.value,
+              name: category.name,
+              permalink: category.permalink,
+              allCategoriesPath: blogCategoriesListPath,
+              count: category.items.length,
+            };
+            const categoryPropPath = await createData(
+              `${utils.docuHash(`${metadata.permalink}-category`)}.json`,
+              JSON.stringify(categoryProp, null, 2),
+            );
+
+            const listMetadataPath = await createData(
+              `${utils.docuHash(`${metadata.permalink}-category`)}-list.json`,
+              JSON.stringify(metadata, null, 2),
+            );
+
+            const categoriesProp = Object.values(blogCategories).map(
+              (blogCategory) => ({
+                value: blogCategory.value,
+                name: blogCategory.name,
+                permalink: blogCategory.permalink,
+                count: blogCategory.items.length,
+              }),
+            );
+
+            const categoriesPropPath = await createData(
+              `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
+              JSON.stringify(categoriesProp, null, 2),
+            );
+
+            addRoute({
+              path: metadata.permalink,
+              component: "@theme/BlogCategoryPostsPage",
+              exact: true,
+              modules: {
+                items: blogPostItemsModule(items),
+                category: aliasedSource(categoryPropPath),
+                categories: aliasedSource(categoriesPropPath),
+                listMetadata: aliasedSource(listMetadataPath),
+              },
+            });
+          }),
+        );
+      }
+
+      if (hasTags) {
+        await createTagsListPage();
+        await Promise.all(Object.values(blogTags).map(createTagPostsListPage));
+      }
+
+      if (hasCategories) {
+        await createCategoriesListPage();
+        await Promise.all(
+          Object.values(blogCategories).map(createCategoryPostsListPage),
+        );
+      }
     },
   };
 }

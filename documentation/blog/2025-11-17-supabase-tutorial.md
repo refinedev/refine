@@ -6,7 +6,7 @@ authors: ozgur
 tags: [supabase, database, backend, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
 hide_table_of_contents: false
-is_featured: true
+category: engineering
 ---
 
 If you’ve ever wanted to create a backend quickly — with a real database, authentication, storage, and auto-generated APIs — **Supabase** is a practical place to start. It’s open source, runs on top of PostgreSQL, and helps you move from idea to data in minutues.
@@ -19,12 +19,15 @@ No frontend, no API calls — just a clear, simple walkthrough of setting up a r
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Step 1: Create a Supabase Project](#step-1-create-a-supabase-project)
 - [Step 2: Understanding the Table Editor](#step-2-understanding-the-table-editor)
+  - [Row Level Security (RLS) \& Policies (Quick Primer)](#row-level-security-rls--policies-quick-primer)
 - [Step 3: Create Your First Table](#step-3-create-your-first-table)
 - [Step 4: Add a Related Table](#step-4-add-a-related-table)
 - [Step 5: Insert Sample Data](#step-5-insert-sample-data)
 - [Step 6: Explore the SQL Editor](#step-6-explore-the-sql-editor)
+- [This flexibility means you can build relational structures that Refine (or any frontend) can use directly.](#this-flexibility-means-you-can-build-relational-structures-that-refine-or-any-frontend-can-use-directly)
 - [Step 7: Enable APIs and Policies](#step-7-enable-apis-and-policies)
 - [Why This Matters](#why-this-matters)
 - [What to do after](#what-to-do-after)

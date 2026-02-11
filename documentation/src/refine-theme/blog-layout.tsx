@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CommonLayout } from "./common-layout";
-import { CommonHeader } from "./common-header";
+import { BlogHeader } from "./blog-header";
 import { BlogFooter } from "./blog-footer";
 import clsx from "clsx";
 import { BannerSidebar } from "../components/banner/banner-sidebar";
@@ -34,15 +34,9 @@ export const RefineBlogLayout = (props: Props) => {
   return (
     <CommonLayout
       {...layoutProps}
-      className={clsx("bg-white", "dark:bg-zinc-900")}
+      className={clsx("bg-zinc-100", "dark:bg-zinc-900")}
     >
-      {/* If there's TOC, then we can say that this is a blog post page. */}
-      {/* Then we can pass `trackProgress` prop to the header. */}
-      <CommonHeader
-        hasSticky={true}
-        trackProgress={!!toc}
-        showThemeToggle={true}
-      />
+      <BlogHeader />
       {props.showHero && <BlogHero />}
       <div
         className={clsx(
@@ -78,7 +72,9 @@ export const RefineBlogLayout = (props: Props) => {
             </div>
           </div>
         )}
-        <div className={clsx("refine-prose")}>{children}</div>
+        <div className={clsx("refine-prose", "w-full", "min-w-0", "flex-1")}>
+          {children}
+        </div>
         {toc && (
           <div
             className={clsx(

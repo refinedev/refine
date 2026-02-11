@@ -70,7 +70,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
           className={clsx(
             "px-4",
             "blog-sm:max-w-[592px]",
-            "blog-md:max-w-[656px]",
+            "blog-md:max-w-[704px]",
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
             "w-full",
@@ -85,7 +85,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
             "flex-row blog-lg:flex-col",
             "justify-between",
             "blog-sm:max-w-[592px]",
-            "blog-md:max-w-[656px]",
+            "blog-md:max-w-[704px]",
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
             "w-full",

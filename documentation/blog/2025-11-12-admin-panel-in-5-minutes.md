@@ -4,6 +4,7 @@ description: Build a powerful React-based admin panel with Supabase. Use Refine 
 slug: admin-panel-with-supabase
 authors: ozgur
 tags: [supabase, admin panel, AI, fast]
+category: tutorials
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-ai-big.png
 hide_table_of_contents: false
 is_featured: true
