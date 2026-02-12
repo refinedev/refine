@@ -9,30 +9,37 @@ export const BlogFooter = () => {
   return (
     <footer
       className={clsx(
-        "h-16",
         "w-full",
         "border-t",
-        "mt-auto",
+        "py-4",
         "border-zinc-200",
         "bg-zinc-50",
         "dark:border-zinc-800",
         "dark:bg-zinc-900",
+        "blog-md:h-16",
+        "blog-md:py-0",
       )}
     >
       <div
         className={clsx(
           "mx-auto",
           "flex",
-          "h-16",
-          "flex-row",
-          "items-center",
-          "justify-between",
-          "px-4 blog-sm:px-0",
           "w-full",
+          "flex-col",
+          "items-center",
+          "justify-center",
+          "gap-4",
+          "px-4",
+          "blog-sm:px-0",
           "blog-sm:max-w-[328px]",
+          "blog-md:h-16",
           "blog-md:max-w-[672px]",
           "blog-lg:max-w-[896px]",
           "blog-max:max-w-[1200px]",
+          "blog-md:flex-row",
+          "blog-md:items-center",
+          "blog-md:justify-between",
+          "blog-md:gap-0",
         )}
       >
         <div
@@ -62,15 +69,16 @@ export const BlogFooter = () => {
           </Link>
 
           <span
-            aria-hidden="true"
             className={clsx(
-              "h-6",
-              "w-1",
-              "border-l",
-              "border-zinc-300",
-              "dark:border-zinc-600",
+              "text-2xl",
+              "font-thin",
+              "leading-6",
+              "text-zinc-300",
+              "dark:text-zinc-600",
             )}
-          />
+          >
+            /
+          </span>
 
           <Link
             to="/"
@@ -87,19 +95,29 @@ export const BlogFooter = () => {
               "dark:text-white",
             )}
           >
-            Refine Home
+            Refine{" "}
+            <span
+              className={clsx(
+                "font-normal",
+                "text-teal-600",
+                "dark:text-teal-400",
+              )}
+            >
+              Home
+            </span>
           </Link>
 
           <span
-            aria-hidden="true"
             className={clsx(
-              "h-6",
-              "w-1",
-              "border-l",
-              "border-zinc-300",
-              "dark:border-zinc-600",
+              "text-2xl",
+              "font-thin",
+              "leading-6",
+              "text-zinc-300",
+              "dark:text-zinc-600",
             )}
-          />
+          >
+            /
+          </span>
 
           <Link
             to="/core"
@@ -116,13 +134,24 @@ export const BlogFooter = () => {
               "dark:text-white",
             )}
           >
-            Refine CORE
+            Refine{" "}
+            <span
+              className={clsx(
+                "font-bold",
+                "font-jetBrains-mono",
+                "text-orange-600",
+                "dark:text-orange-400",
+              )}
+            >
+              CORE
+            </span>
           </Link>
         </div>
 
         <div
           className={clsx(
-            "flex",
+            "hidden",
+            "blog-md:flex",
             "h-6",
             "flex-row",
             "items-center",
@@ -147,7 +176,6 @@ export const BlogFooter = () => {
 
           <div
             className={clsx(
-              "mx-auto",
               "flex",
               "h-6",
               "w-[184px]",
@@ -178,6 +206,40 @@ export const BlogFooter = () => {
               </a>
             ))}
           </div>
+        </div>
+
+        <div
+          className={clsx(
+            "flex",
+            "h-6",
+            "w-[184px]",
+            "flex-row",
+            "items-start",
+            "gap-4",
+            "blog-md:hidden",
+          )}
+        >
+          {socialLinks.map(({ href, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener"
+              className={clsx(
+                "flex",
+                "h-6",
+                "w-6",
+                "flex-col",
+                "items-center",
+                "justify-center",
+                "text-zinc-500",
+                "hover:no-underline",
+                "dark:text-zinc-400",
+              )}
+            >
+              <Icon className={clsx("h-5", "w-5")} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>

@@ -88,7 +88,7 @@ export const BlogHeader = React.memo(function BlogHeaderComponent() {
           </Link>
           <span
             className={clsx(
-              "text-base font-normal leading-6 tracking-[-0.004em]",
+              "text-2xl font-thin leading-6",
               "text-zinc-300 dark:text-zinc-600",
             )}
           >
