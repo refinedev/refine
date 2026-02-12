@@ -44,9 +44,10 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
   return (
     <Button
+      disabled={isDisabled}
       component={LinkComponent}
       to={to}
-      disabled={isDisabled}
+      replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();

@@ -45,9 +45,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
   return (
     <Button
+      disabled={isDisabled}
       component={LinkComponent}
       to={to}
-      disabled={isDisabled}
+      replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();
