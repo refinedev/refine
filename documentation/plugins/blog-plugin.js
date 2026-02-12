@@ -242,13 +242,15 @@ async function blogPluginExtended(...pluginArgs) {
      */
     contentLoaded: async function (data) {
       const { content: blogContents, actions } = data;
-      const { addRoute, createData } = actions;
+      const { addRoute, createData,  } = actions;
       const {
         blogPosts: allBlogPosts,
         blogTags,
         blogTagsListPath,
       } = blogContents;
       const blogCategoriesListPath = "/blog/categories";
+
+
 
       const blogItemsToMetadata = {};
 

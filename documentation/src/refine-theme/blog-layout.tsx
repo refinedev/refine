@@ -34,60 +34,62 @@ export const RefineBlogLayout = (props: Props) => {
   return (
     <CommonLayout
       {...layoutProps}
-      className={clsx("bg-zinc-100", "dark:bg-zinc-900")}
+      className={clsx("relative", "bg-zinc-100", "dark:bg-zinc-900")}
     >
       <BlogHeader />
       {props.showHero && <BlogHero />}
-      <div
-        className={clsx(
-          "flex",
-          "gap-12",
-          "justify-center",
-          "mx-auto",
-          "w-full",
-          "relative",
-        )}
-      >
-        {showSidebarBanner && (
-          <div
-            className={clsx(
-              "relative",
-              "py-10 blog-sm:py-12 blog-md:py-16",
-              "hidden blog-2xl:block",
-              shouldShowBanner && "opacity-100",
-              !shouldShowBanner && "opacity-0",
-              "transition-opacity duration-300 ease-in-out",
-            )}
-          >
+      <div className={clsx("relative", "flex-1")}>
+        <div
+          className={clsx(
+            "flex",
+            "gap-12",
+            "justify-center",
+            "mx-auto",
+            "w-full",
+            "relative",
+          )}
+        >
+          {showSidebarBanner && (
             <div
               className={clsx(
-                "sticky",
-                "w-[264px]",
-                "z-[1]",
-                "top-32",
-                "ml-auto",
+                "relative",
+                "py-10 blog-sm:py-12 blog-md:py-16",
+                "hidden blog-2xl:block",
+                shouldShowBanner && "opacity-100",
+                !shouldShowBanner && "opacity-0",
+                "transition-opacity duration-300 ease-in-out",
               )}
             >
-              <BannerSidebar />
+              <div
+                className={clsx(
+                  "sticky",
+                  "w-[264px]",
+                  "z-[1]",
+                  "top-32",
+                  "ml-auto",
+                )}
+              >
+                <BannerSidebar />
+              </div>
             </div>
+          )}
+          <div className={clsx("refine-prose", "w-full", "min-w-0", "flex-1")}>
+            {children}
           </div>
-        )}
-        <div className={clsx("refine-prose", "w-full", "min-w-0", "flex-1")}>
-          {children}
+          {toc && (
+            <div
+              className={clsx(
+                "w-[280px]",
+                "hidden blog-max:block",
+                "flex-shrink-0",
+              )}
+            >
+              {toc}
+            </div>
+          )}
         </div>
-        {toc && (
-          <div
-            className={clsx(
-              "w-[280px]",
-              "hidden blog-max:block",
-              "flex-shrink-0",
-            )}
-          >
-            {toc}
-          </div>
-        )}
+        <BlogFooter />
       </div>
-      <BlogFooter />
       {/* <BannerModal /> */}
     </CommonLayout>
   );
