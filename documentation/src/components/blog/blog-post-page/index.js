@@ -42,7 +42,7 @@ export const BlogPostPageView = ({ children }) => {
     ? withBaseUrl(image, { absolute: true })
     : undefined;
   const shareUrl = `${siteUrl}${permalink}`;
-  const breadcrumbItems = getBreadcrumbItems({ permalink, title, tags });
+  const breadcrumbItems = getBreadcrumbItems({ permalink, title, category });
 
   return (
     <article
@@ -91,14 +91,12 @@ export const BlogPostPageView = ({ children }) => {
   );
 };
 
-const getBreadcrumbItems = ({ permalink, title, tags }) => {
-  const primaryTag = tags?.[0];
-
+const getBreadcrumbItems = ({ permalink, title, category }) => {
   return [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
-    ...(primaryTag
-      ? [{ label: primaryTag.label, href: primaryTag.permalink }]
+    ...(category?.label && category?.permalink
+      ? [{ label: category.label, href: category.permalink }]
       : []),
     { label: title, href: permalink },
   ];
