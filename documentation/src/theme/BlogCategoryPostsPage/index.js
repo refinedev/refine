@@ -54,7 +54,7 @@ function BlogCategoryPostsPageContent(props) {
   ];
 
   return (
-    <BlogLayout showSidebarBanner={false} showHero>
+    <BlogLayout showHero>
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <BlogPostItems items={items} categories={categories} />
       <div

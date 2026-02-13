@@ -1,146 +1,560 @@
 import React from "react";
 import clsx from "clsx";
-import { useLocation, useHistory } from "@docusaurus/router";
-import { Tags } from "@site/src/components/blog";
 
-export const BlogTOC = (props) => {
-  const history = useHistory();
-  const location = useLocation();
-  const { toc, hasTOC, activeId, setActiveId } = useTOC(props.toc);
+// =============================================================================
+// Types
+// =============================================================================
 
-  const onIdChange = (id) => {
-    if (id !== `${location.hash ?? ""}`.replace("#", "")) {
-      setActiveId(id);
-      window.history.replaceState({}, "", `#${id}`);
-    }
+// =============================================================================
+// Types
+// =============================================================================
+
+/**
+ * Represents a single Table of Contents (TOC) entry.
+ * - id: The anchor id of the heading in the document
+ * - value: The HTML string for the heading text
+ * - level: The heading level (e.g. 2 for h2, 3 for h3)
+ */
+interface TocItem {
+  id: string;
+  value: string;
+  level: number;
+}
+
+/**
+ * SVG path and dimensions for the TOC line indicator.
+ */
+interface SvgData {
+  path: string;
+  width: number;
+  height: number;
+}
+
+/**
+ * Position and height of the active highlight (thumb) in the TOC.
+ */
+interface ThumbPosition {
+  top: number;
+  height: number;
+}
+
+// =============================================================================
+// Constants & Helpers
+// =============================================================================
+
+/**
+ * Returns the horizontal offset (x position) for the SVG line based on heading depth.
+ * Deeper headings are indented further right.
+ */
+/**
+ * Returns the horizontal offset (x position) for the SVG line based on heading depth.
+ * Deeper headings are indented further right.
+ */
+const getLineOffset = (depth: number): number => {
+  if (depth <= 2) return 1;
+  if (depth === 3) return 14;
+  return 22;
+};
+
+/**
+ * Returns Tailwind padding class for each heading level.
+ */
+/**
+ * Returns Tailwind padding class for each heading level.
+ */
+const getItemPaddingLeft = (level: number): string => {
+  const paddings: Record<number, string> = {
+    2: "pl-[24px]",
+    3: "pl-[36px]",
+    4: "pl-[44px]",
+    5: "pl-[52px]",
   };
+  return paddings[level] ?? paddings[2];
+};
+
+/**
+ * Creates an inline SVG data URL for use as a CSS mask.
+ */
+/**
+ * Creates an inline SVG data URL for use as a CSS mask.
+ */
+const createSvgMask = (svg: SvgData): string => {
+  const svgMarkup = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svg.width} ${svg.height}"><path d="${svg.path}" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" /></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svgMarkup)}")`;
+};
+
+// =============================================================================
+// Hooks
+// =============================================================================
+
+/**
+ * Returns TOC and a boolean indicating if TOC exists.
+ */
+export const useTOC = (toc: TocItem[]) => {
+  return {
+    toc,
+    hasTOC: toc.length > 0,
+  };
+};
+
+/**
+ * Builds SVG path data by measuring TOC item positions.
+ * Creates vertical lines for each item with diagonal transitions between different indent levels.
+ */
+/**
+ * Builds SVG path data for the TOC line indicator by measuring TOC item positions.
+ * Draws vertical lines for each item, with diagonal transitions between indent levels.
+ */
+const useSvgPath = (
+  containerRef: React.RefObject<HTMLDivElement | null>,
+  toc: TocItem[],
+): SvgData | undefined => {
+  const [svg, setSvg] = React.useState<SvgData>();
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const measureAndBuildPath = () => {
+      const items = container.querySelectorAll("[data-toc-item]");
+      if (!items.length) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const pathCommands: string[] = [];
+      let maxWidth = 0;
+      let totalHeight = 0;
+      let prevOffset = -1;
+      let prevBottom = 0;
+
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const styles = getComputedStyle(item);
+        const paddingTop = Number.parseFloat(styles.paddingTop);
+        const paddingBottom = Number.parseFloat(styles.paddingBottom);
+
+        // Calculate top and bottom of the item relative to the container
+        const top = rect.top - containerRect.top + paddingTop;
+        const bottom = rect.bottom - containerRect.top - paddingBottom;
+        const offset = getLineOffset(toc[index]?.level ?? 2);
+
+        maxWidth = Math.max(offset, maxWidth);
+        totalHeight = Math.max(totalHeight, bottom);
+
+        if (index === 0) {
+          // First item: start the path
+          pathCommands.push(`M${offset} ${top}`);
+        } else if (offset !== prevOffset) {
+          // Level changed: draw a lightly curved transition
+          const deltaY = top - prevBottom;
+          const directionY = Math.sign(deltaY) || 1;
+          const curveStrength = Math.min(
+            6,
+            Math.abs(deltaY) * 0.45,
+            Math.abs(offset - prevOffset) * 0.45,
+          );
+
+          if (curveStrength > 0) {
+            pathCommands.push(
+              `C${prevOffset} ${
+                prevBottom + directionY * curveStrength
+              } ${offset} ${top - directionY * curveStrength} ${offset} ${top}`,
+            );
+          } else {
+            pathCommands.push(`L${offset} ${top}`);
+          }
+        }
+
+        // Draw vertical line for this item
+        pathCommands.push(`L${offset} ${bottom}`);
+
+        prevOffset = offset;
+        prevBottom = bottom;
+      });
+
+      setSvg({
+        path: pathCommands.join(" "),
+        width: maxWidth + 1,
+        height: totalHeight,
+      });
+    };
+
+    // Recalculate path on resize
+    const observer = new ResizeObserver(measureAndBuildPath);
+    measureAndBuildPath();
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [toc, containerRef]);
+
+  return svg;
+};
+
+/**
+ * Calculates the position of the active highlight thumb.
+ * Covers all visible (active) headings.
+ */
+/**
+ * Calculates the position and height of the active highlight (thumb) in the TOC.
+ * The thumb covers all currently active (visible) headings.
+ */
+const useActiveThumb = (
+  containerRef: React.RefObject<HTMLDivElement | null>,
+  toc: TocItem[],
+  activeIds: Set<string>,
+  svg: SvgData | undefined,
+): ThumbPosition | undefined => {
+  const [thumb, setThumb] = React.useState<ThumbPosition>();
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container || activeIds.size === 0) {
+      setThumb(undefined);
+      return;
+    }
+
+    const items = container.querySelectorAll("[data-toc-item]");
+    const containerRect = container.getBoundingClientRect();
+
+    // Find indices of all active items
+    const activeIndices: number[] = [];
+    toc.forEach((item, index) => {
+      if (activeIds.has(item.id)) {
+        activeIndices.push(index);
+      }
+    });
+
+    if (activeIndices.length === 0) {
+      setThumb(undefined);
+      return;
+    }
+
+    // Get bounding box that covers all active items
+    const firstIndex = Math.min(...activeIndices);
+    const lastIndex = Math.max(...activeIndices);
+
+    const firstItem = items[firstIndex];
+    const lastItem = items[lastIndex];
+
+    if (firstItem && lastItem) {
+      const firstRect = firstItem.getBoundingClientRect();
+      const lastRect = lastItem.getBoundingClientRect();
+      const firstStyles = getComputedStyle(firstItem);
+      const lastStyles = getComputedStyle(lastItem);
+
+      const paddingTop = Number.parseFloat(firstStyles.paddingTop);
+      const paddingBottom = Number.parseFloat(lastStyles.paddingBottom);
+
+      // Top and bottom of the thumb highlight
+      const top = firstRect.top - containerRect.top + paddingTop;
+      const bottom = lastRect.bottom - containerRect.top - paddingBottom;
+
+      setThumb({
+        top,
+        height: bottom - top,
+      });
+    }
+  }, [activeIds, toc, svg, containerRef]);
+
+  return thumb;
+};
+
+/**
+ * Tracks visible headings based on scroll position.
+ * Returns all headings that are currently in the viewport,
+ * or the last heading above viewport if none are visible.
+ * Defaults to first heading on initial load.
+ */
+/**
+ * Tracks which headings are currently visible in the viewport.
+ * Returns all headings that are currently in the viewport,
+ * or the last heading above the viewport if none are visible.
+ * Defaults to first heading on initial load.
+ */
+const useVisibleHeadings = (toc: TocItem[]): Set<string> => {
+  const [visibleIds, setVisibleIds] = React.useState<Set<string>>(new Set());
+
+  React.useEffect(() => {
+    if (toc.length === 0) return;
+
+    const calculateVisibleHeadings = () => {
+      const viewportTop = 0;
+      const viewportBottom = window.innerHeight;
+      const visible: string[] = [];
+      let lastAboveViewport: string | null = null;
+
+      for (const item of toc) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+
+        // Heading is in viewport
+        if (rect.top >= viewportTop && rect.top <= viewportBottom) {
+          visible.push(item.id);
+        }
+        // Track the last heading that's above viewport
+        else if (rect.top < viewportTop) {
+          lastAboveViewport = item.id;
+        }
+      }
+
+      // If we have visible headings, use them
+      if (visible.length > 0) {
+        setVisibleIds(new Set(visible));
+      }
+      // Otherwise, use the last heading above viewport
+      else if (lastAboveViewport) {
+        setVisibleIds(new Set([lastAboveViewport]));
+      }
+      // Fallback to first heading if nothing else
+      else if (toc.length > 0) {
+        setVisibleIds(new Set([toc[0].id]));
+      }
+    };
+
+    // Throttle scroll handler to avoid excessive calculations
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          calculateVisibleHeadings();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Initial calculation
+    calculateVisibleHeadings();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [toc]);
+
+  // Return first heading as fallback if visibleIds is empty
+  if (visibleIds.size === 0 && toc.length > 0) {
+    return new Set([toc[0].id]);
+  }
+
+  return visibleIds;
+};
+
+// =============================================================================
+// Components
+// =============================================================================
+
+/**
+ * BlogTOC component renders the Table of Contents sidebar with SVG line indicator and active highlight.
+ * - Auto-scrolls to keep the active heading centered
+ * - Highlights all visible headings
+ */
+export const BlogTOC = (props: { toc: TocItem[] }) => {
+  const { toc, hasTOC } = useTOC(props.toc);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const visibleIds = useVisibleHeadings(toc);
+  const lastScrolledIdRef = React.useRef<string | null>(null);
+  const isInitialRenderRef = React.useRef(true);
+
+  // SVG path for the vertical/diagonal line
+  const svg = useSvgPath(containerRef, toc);
+  // Position and height of the active highlight
+  const activeThumb = useActiveThumb(containerRef, toc, visibleIds, svg);
+
+  // Auto-scroll TOC to keep the first active item centered in the sidebar
+  React.useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    const itemsContainer = containerRef.current;
+    if (!scrollContainer || !itemsContainer || visibleIds.size === 0) return;
+
+    // Find the first active item in the TOC
+    let firstActiveId: string | null = null;
+    for (const item of toc) {
+      if (visibleIds.has(item.id)) {
+        firstActiveId = item.id;
+        break;
+      }
+    }
+    if (!firstActiveId) return;
+
+    // Prevent unnecessary scrolls
+    if (lastScrolledIdRef.current === firstActiveId) return;
+    lastScrolledIdRef.current = firstActiveId;
+
+    const items = itemsContainer.querySelectorAll("[data-toc-item]");
+    const firstActiveIndex = toc.findIndex((item) => item.id === firstActiveId);
+    if (firstActiveIndex === -1 || !items[firstActiveIndex]) return;
+
+    const activeItem = items[firstActiveIndex] as HTMLElement;
+    const scrollContainerRect = scrollContainer.getBoundingClientRect();
+    const activeItemRect = activeItem.getBoundingClientRect();
+
+    // Center the active item in the visible area
+    const scrollContainerCenter = scrollContainerRect.height / 2;
+    const activeItemCenter =
+      activeItemRect.top - scrollContainerRect.top + activeItemRect.height / 2;
+    const scrollOffset = activeItemCenter - scrollContainerCenter;
+
+    // Use instant scroll on initial render, smooth after
+    scrollContainer.scrollBy({
+      top: scrollOffset,
+      behavior: isInitialRenderRef.current ? "instant" : "smooth",
+    });
+    isInitialRenderRef.current = false;
+  }, [visibleIds, toc]);
 
   return (
     <div
+      ref={scrollContainerRef}
       className={clsx(
         "hidden blog-md:block",
-        "w-full",
-        "sticky right-0 top-[67px]",
-        "max-w-[280px]",
-        "overflow-auto",
-        "h-[calc(100vh-67px)]",
-        "px-3",
-        "pb-10",
-        "pt-4 blog-lg:pt-9",
-        "border-l border-l-gray-200 dark:border-l-zinc-700 ",
+        "sticky right-0 top-[64px]",
+        "w-full max-w-[400px]",
+        "overflow-auto h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",
       )}
     >
-      <Tags />
-      <ul className="list-none m-0 p-0 pt-10 mt-1 not-prose space-y-1">
-        {toc.map((item) => {
-          return (
-            <li key={item.id}>
+      <div className={clsx()}>
+        {/* Header */}
+        <div
+          className={clsx(
+            "pt-16",
+            "pb-6",
+            "border-l",
+            "border-zinc-200",
+            "dark:border-zinc-800",
+            "ml-[0.5px]",
+          )}
+        >
+          <h2
+            className={clsx(
+              "font-semibold",
+              "text-[0.625rem]",
+              "leading-4",
+              "tracking-[0.01em]",
+              "uppercase",
+              "text-zinc-500 dark:text-zinc-400",
+              "pl-5",
+            )}
+          >
+            On this page
+          </h2>
+        </div>
+        {/* TOC Container */}
+        <div ref={containerRef} className="relative">
+          {/* SVG Line Indicator */}
+          {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
+
+          {/* TOC Items */}
+          <ul className={clsx("list-none m-0 p-0 not-prose")}>
+            {toc.map((item) => (
               <BlogTOCItem
+                key={item.id}
                 id={item.id}
                 value={item.value}
-                activeId={activeId}
                 level={item.level}
-                onIdChange={onIdChange}
+                isActive={visibleIds.has(item.id)}
               />
-            </li>
-          );
-        })}
-      </ul>
+            ))}
+          </ul>
+        </div>
+        {/* Footer */}
+        <div
+          className={clsx(
+            "pt-12",
+            "border-l",
+            "border-zinc-200",
+            "dark:border-zinc-800",
+            "ml-[0.5px]",
+          )}
+        />
+      </div>
     </div>
   );
 };
 
+/**
+ * Renders the SVG line with mask technique and active thumb highlight.
+ */
+/**
+ * Renders the SVG line indicator and the active highlight thumb.
+ * Uses a CSS mask to overlay the SVG path.
+ */
+const TocLineIndicator = ({
+  svg,
+  activeThumb,
+}: {
+  svg: SvgData;
+  activeThumb?: ThumbPosition;
+}) => (
+  <div
+    className="absolute start-0 top-0 pointer-events-none"
+    style={{
+      width: svg.width,
+      height: svg.height,
+      maskImage: createSvgMask(svg),
+    }}
+  >
+    {/* Background line (gray) */}
+    <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-700" />
+    {/* Active thumb highlight */}
+    {activeThumb && (
+      <div
+        className="absolute w-full bg-zinc-900 dark:bg-white transition-[top,height] duration-200"
+        style={{
+          top: activeThumb.top,
+          height: activeThumb.height,
+        }}
+      />
+    )}
+  </div>
+);
+
+/**
+ * Individual TOC item link.
+ */
+/**
+ * Renders a single TOC item as a link.
+ * Highlights if active.
+ */
 export const BlogTOCItem = ({
   id,
   value,
   level,
-  activeId,
-  onIdChange,
+  isActive,
 }: {
   id: string;
   value: string;
   level: number;
-  activeId: string;
-  onIdChange?: (id: string) => void;
+  isActive: boolean;
 }) => {
-  React.useEffect(() => {
-    const targetElement = document.getElementById(id);
-
-    if (targetElement) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              onIdChange(id);
-            }
-          });
-        },
-        {
-          rootMargin: "0px 0px -80% 0px",
-        },
-      );
-
-      observer.observe(targetElement);
-
-      return () => {
-        observer.unobserve(targetElement);
-      };
-    }
-  }, [id]);
-
-  const isActive = activeId === id;
-
   return (
     <a
       href={`#${id}`}
+      data-toc-item
       className={clsx(
         "refine-toc-item",
-        "py-2 pr-4",
-        level === 2 && "pl-4",
-        level === 3 && "pl-6",
-        level === 4 && "pl-8",
-        level === 5 && "pl-8",
-        isActive && "bg-zinc-200 dark:bg-zinc-700",
-        isActive && "text-zinc-900 dark:text-white",
-        !isActive && "text-zinc-700 dark:text-zinc-300",
-        !isActive && "hover:bg-zinc-100 dark:hover:bg-[#303035]",
-        "hover:text-zinc-900 dark:hover:text-white",
-        "rounded-md",
-        "block",
+        "py-2",
+        "pr-4",
+        "first:pt-0",
+        "last:pb-0",
         "text-sm",
         "no-underline hover:no-underline",
+        "hover:text-zinc-900 dark:hover:text-white",
         "transition-colors duration-200 ease-in-out",
-        "tracking-[-0.007em]",
+        isActive && "text-zinc-900 dark:text-white",
+        !isActive && "text-zinc-500 dark:text-zinc-400 ",
+        "block",
+        getItemPaddingLeft(level),
       )}
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled
-      dangerouslySetInnerHTML={{
-        __html: value,
-      }}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: TOC content is trusted
+      dangerouslySetInnerHTML={{ __html: value }}
     />
   );
-};
-
-export const useTOC = (toc) => {
-  const { hash } = useLocation();
-
-  const baseActiveId = `${hash}`.replace("#", "");
-
-  const [activeId, setActiveId] = React.useState<string | undefined>(
-    baseActiveId,
-  );
-
-  React.useEffect(() => {
-    setActiveId(baseActiveId);
-  }, [baseActiveId]);
-
-  const hasTOC = toc?.length > 0;
-
-  return {
-    toc,
-    activeId,
-    setActiveId,
-    hasTOC,
-  };
 };

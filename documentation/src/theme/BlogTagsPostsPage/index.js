@@ -63,7 +63,7 @@ function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
   ];
 
   return (
-    <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
+    <BlogLayout sidebar={sidebar}>
       <div className={clsx("py-8", "blog-md:py-16", "w-full", "mx-auto")}>
         <Breadcrumbs
           items={breadcrumbItems}

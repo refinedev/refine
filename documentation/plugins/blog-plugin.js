@@ -170,6 +170,21 @@ function toCategoryName(label = "") {
   return value;
 }
 
+function getBlogPostCategoryData({
+  frontMatter = {},
+  blogCategories = {},
+}) {
+  const value = getBlogPostCategory(frontMatter);
+  const categoryKey = value.toLowerCase();
+  const existingCategory = blogCategories[categoryKey];
+
+  return {
+    value,
+    label: existingCategory.name,
+    permalink: existingCategory.permalink,
+  };
+}
+
 function createBlogCategories({
   allBlogPosts,
   basePageUrl,
@@ -302,15 +317,17 @@ async function blogPluginExtended(...pluginArgs) {
           const relatedPosts = getReletadPosts(allBlogPosts, metadata);
 
           const authorPosts = getAuthorPosts(allBlogPosts, metadata);
-          const category = getBlogPostCategory(metadata.frontMatter);
-          const categoryName = toCategoryName(category);
+          const category = getBlogPostCategoryData({
+            frontMatter: metadata.frontMatter,
+            blogCategories,
+          });
 
           await createData(
             // Note that this created data path must be in sync with
             // metadataPath provided to mdx-loader.
             `${utils.docuHash(metadata.source)}.json`,
             JSON.stringify(
-              { ...metadata, relatedPosts, authorPosts, category, categoryName },
+              { ...metadata, relatedPosts, authorPosts, category },
               null,
               2,
             ),

@@ -5,73 +5,99 @@ import { Date } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
 export const PostPaginator = ({ posts, title }) => {
-  if (posts.length < 1) {
+  if (!posts?.length) {
     return null;
   }
 
   return (
     <div
       className={clsx(
-        "mx-auto w-full",
-        "py-10",
-        "blog-sm:py-12",
-        "blog-md:py-16",
-        "max-w-[512px]",
-        "blog-sm:max-w-screen-blog-sm",
-        "blog-lg:max-w-screen-content-2xl",
+        "w-full",
+        "mx-auto",
+        "px-4",
+        "blog-md:px-0",
+        "blog-md:max-w-[672px]",
+        "blog-lg:max-w-[720px]",
+        "pt-8",
+        "pb-10",
+        "blog-sm:pt-[72px] blog-sm:pb-[120px]",
       )}
     >
-      <div className="blog-sm:px-6 w-full px-4">
-        <h2 className="m-0 mb-4 p-0 pl-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+      <div className={clsx("w-full", "px-4", "blog-sm:px-0")}>
+        <h2
+          className={clsx(
+            "m-0",
+            "mb-4",
+            "p-0",
+            "text-2xl",
+            "leading-8",
+            "font-semibold",
+            "text-zinc-900",
+            "dark:text-white",
+          )}
+        >
           {title}
         </h2>
-        <div className="flex flex-col not-prose">
-          {posts.map((post) => (
-            <Link
-              to={post.permalink}
-              rel="dofollow"
-              key={post.permalink ?? post.id}
-              className={clsx(
-                "flex",
-                "flex-col",
-                "gap-2",
-                "p-5",
-                "mb-5",
-                "rounded-lg",
-                "border border-zinc-200 dark:border-zinc-700",
-                "bg-white dark:bg-zinc-800",
-                "hover:bg-zinc-100 dark:hover:bg-zinc-700",
-                "not-prose",
-                "no-underline",
-              )}
-            >
-              <div
+        <div className={clsx("flex", "flex-col", "not-prose")}>
+          {posts.map((post, index) => {
+            const isFirstItem = index === 0;
+
+            return (
+              <Link
                 to={post.permalink}
                 rel="dofollow"
+                key={post.permalink ?? post.id}
                 className={clsx(
-                  "font-bold",
-                  "text-zinc-900 dark:text-zinc-100",
+                  "flex",
+                  "w-full",
+                  "items-start",
+                  "gap-8",
+                  "px-4",
+                  "py-4",
                   "no-underline",
-                  "hover:text-zinc-800 hover:no-underline dark:hover:text-zinc-200",
+                  "hover:no-underline",
+                  "border-zinc-800",
+                  "border-b",
+                  isFirstItem && "border-t",
                 )}
               >
-                {post.title}
-              </div>
+                <div
+                  className={clsx(
+                    "flex-1",
+                    "min-w-0",
+                    "text-base",
+                    "leading-6",
+                    "font-medium",
+                    "tracking-[-0.004em]",
+                    "text-zinc-700",
+                    "dark:text-zinc-300",
+                    "line-clamp-2",
+                  )}
+                >
+                  {post.title}
+                </div>
 
-              <p
-                className={clsx("font-sm", "text-zinc-600 dark:text-zinc-400")}
-              >
-                {post.description}
-              </p>
-
-              <div
-                id="post-info"
-                className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
-              >
-                <Date date={post.date} formattedDate={post.formattedDate} />
-              </div>
-            </Link>
-          ))}
+                <div
+                  className={clsx(
+                    "w-[120px]",
+                    "h-6",
+                    "py-1",
+                    "text-right",
+                    "text-[10px]",
+                    "leading-4",
+                    "font-semibold",
+                    "uppercase",
+                    "tracking-[0.01em]",
+                    "text-zinc-500",
+                    "dark:text-zinc-400",
+                    "shrink-0",
+                  )}
+                >
+                  <Date date={post.date} formattedDate={post.formattedDate} />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

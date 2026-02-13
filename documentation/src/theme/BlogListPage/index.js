@@ -64,7 +64,7 @@ function BlogListPageContent(props) {
   );
 
   return (
-    <BlogLayout showSidebarBanner={false} showHero>
+    <BlogLayout showHero>
       <BreadcrumbJsonLd items={breadcrumbItems} />
       {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
       <BlogPostItems items={paginatedPosts} categories={categories} />

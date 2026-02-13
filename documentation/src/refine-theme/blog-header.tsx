@@ -1,12 +1,17 @@
 import Link from "@docusaurus/Link";
 import { useColorMode } from "@docusaurus/theme-common";
 import clsx from "clsx";
+import { motion, useScroll, useTransform } from "framer-motion";
 import React from "react";
 
 import { DarkModeIcon } from "./icons/dark-mode";
 import { BlogSearch } from "./blog-search";
 import { LightModeIcon } from "./icons/light-mode";
 import { RefineLogoSingleIcon } from "./icons/refine-logo-single";
+
+type BlogHeaderProps = {
+  trackProgress?: boolean;
+};
 
 const BlogThemeToggle = () => {
   const { colorMode, setColorMode } = useColorMode();
@@ -45,7 +50,16 @@ const BlogThemeToggle = () => {
   );
 };
 
-export const BlogHeader = React.memo(function BlogHeaderComponent() {
+export const BlogHeader = React.memo(function BlogHeaderComponent({
+  trackProgress = false,
+}: BlogHeaderProps) {
+  const { scrollYProgress } = useScroll();
+  const progressPercentage = useTransform(
+    scrollYProgress,
+    [0.03, 0.95],
+    ["0%", "100%"],
+  );
+
   return (
     <header
       className={clsx(
@@ -111,6 +125,19 @@ export const BlogHeader = React.memo(function BlogHeaderComponent() {
           <BlogThemeToggle />
         </div>
       </div>
+
+      {trackProgress && (
+        <div
+          className={clsx("h-px", "w-full", "bg-zinc-200", "dark:bg-zinc-800")}
+        >
+          {/* @ts-expect-error - framer-motion type issue */}
+          <motion.div
+            // @ts-expect-error - framer-motion type issue
+            className={clsx("h-full", "bg-teal-600", "dark:bg-teal-300")}
+            style={{ width: progressPercentage }}
+          />
+        </div>
+      )}
     </header>
   );
 });

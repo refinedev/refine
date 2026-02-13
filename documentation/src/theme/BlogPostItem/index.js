@@ -17,6 +17,7 @@ export default function BlogPostItem({ className }) {
     description,
     category,
   } = metadata;
+  const { label: categoryLabel, permalink: categoryPermalink } = category;
 
   return (
     <BlogPostItemContainer className={className}>
@@ -71,7 +72,23 @@ export default function BlogPostItem({ className }) {
             "tracking-[0.001em]",
           )}
         >
-          <div className={clsx("uppercase")}>{category}</div>
+          <Link
+            to={categoryPermalink}
+            className={clsx(
+              "uppercase",
+              "no-underline",
+              "hover:no-underline",
+              "text-zinc-500",
+              "dark:text-zinc-400",
+              "hover:text-zinc-600",
+              "dark:hover:text-zinc-300",
+              "transition-colors",
+              "duration-200",
+              "ease-in-out",
+            )}
+          >
+            {categoryLabel}
+          </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={6}

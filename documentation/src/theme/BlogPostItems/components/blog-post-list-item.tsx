@@ -7,14 +7,7 @@ import { Date as DateComponent } from "@site/src/components/blog/common";
 
 export function BlogPostListItem() {
   const { metadata } = useBlogPost();
-  const { permalink, title, date, formattedDate } = metadata;
-  const frontMatterCategory =
-    typeof metadata.frontMatter.category === "string"
-      ? metadata.frontMatter.category
-      : undefined;
-  const customMetadataCategory = (metadata as { category?: string }).category;
-  const category =
-    customMetadataCategory ?? frontMatterCategory ?? metadata.tags[0]?.label;
+  const { permalink, title, date, formattedDate, category } = metadata;
 
   return (
     <article
@@ -81,7 +74,7 @@ export function BlogPostListItem() {
             "dark:group-hover:text-zinc-300",
           )}
         >
-          {category}
+          {category.label}
         </div>
 
         <div

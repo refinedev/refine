@@ -27,7 +27,7 @@ export default function BlogTagsListPage({ tags, sidebar }) {
     >
       <PageMetadata title={title} />
       <SearchMetadata tag="blog_tags_list" />
-      <BlogLayout showSidebarBanner={false} sidebar={sidebar}>
+      <BlogLayout sidebar={sidebar}>
         <div
           className={clsx(
             "w-full",
