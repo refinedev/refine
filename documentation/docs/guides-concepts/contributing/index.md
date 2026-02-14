@@ -20,6 +20,10 @@ We follow a [code of conduct](https://github.com/refinedev/refine/blob/main/CODE
 - **Contribute to codebase**: your help is needed to make this project the best it can be! You could develop new features or fix [existing issues](https://github.com/refinedev/refine/issues) - every contribution will be welcomed with great pleasure!
 - **Share your own integrations**: If you've created an integration for Refine, this can be a data provider, an auth provider, a UI integration or a routing integration, please share it with us! Refine's community has been growing rapidly and we're sure that your integration will be useful for many people. We'll be happy to add your integration to our [integrations page](/core/integrations) along with the other community made integrations and share it with our community.
 
+:::tip Ready to submit a PR?
+Check out our detailed [Pull Request Guide](./pull-request-guide.md) for step-by-step instructions on creating effective pull requests.
+:::
+
 ## Setting Up Your Environment for Development
 
 :::simple Requirements
