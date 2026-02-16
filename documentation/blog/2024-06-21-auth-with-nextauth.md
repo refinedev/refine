@@ -311,7 +311,7 @@ export default function Home() {
           <div className={styles.blogCard}>
             <Image
               src="/Getting-Started-with-NextJS-Inside.jpeg"
-              alt="blog1"
+              alt="Next.js blog card cover image"
               width={300}
               height={200}
             />
@@ -328,7 +328,7 @@ export default function Home() {
           <div className={styles.blogCard}>
             <Image
               src="/pasted image 0.png"
-              alt="blog1"
+              alt="Django course blog card cover image"
               width={300}
               height={200}
             />
@@ -443,7 +443,7 @@ export default function Home() {
             <div className={styles.blogCard}>
               <Image
                 src="/Getting-Started-with-NextJS-Inside.jpeg"
-                alt="blog1"
+                alt="Next.js blog card cover image"
                 width={300}
                 height={200}
               />
@@ -460,7 +460,7 @@ export default function Home() {
             <div className={styles.blogCard}>
               <Image
                 src="/pasted image 0.png"
-                alt="blog1"
+                alt="Django course blog card cover image"
                 width={300}
                 height={200}
               />
@@ -622,6 +622,6 @@ Throughout this tutorial, we've implemented how to add Google and GitHub authent
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>

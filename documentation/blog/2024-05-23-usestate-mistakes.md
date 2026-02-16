@@ -69,7 +69,7 @@ function App() {
     <div className="App">
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
-        alt="profile image"
+        alt="User profile image placeholder"
       />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
@@ -81,12 +81,12 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="blank" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="Blank page error in the app UI" />
 
 <br/>
 
 Inspecting the console would throw a similar error as shown below:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="initializeError" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="Console error from uninitialized state" />
 <br/>
 
 Newer developers often make this mistake when initializing their state, especially when fetching data from a server or database, as the retrieved data is expected to update the state with the actual user object. However, this is bad practice and could lead to expected behavior, as shown above.
@@ -105,7 +105,7 @@ function App() {
     <div className="App">
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
-        alt="profile image"
+        alt="User profile image placeholder"
       />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
@@ -117,7 +117,7 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="fixBlankPage" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="UI rendering correctly after initializing state" />
 
 <br/>
 
@@ -139,7 +139,7 @@ function App() {
     <div className="App">
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
-        alt="profile image"
+        alt="User profile image placeholder"
       />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
@@ -170,7 +170,7 @@ function App() {
     <div className="App">
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
-        alt="profile image"
+        alt="User profile image placeholder"
       />
       <p>User: {user.names.firstName}</p>
       <p>About: {user.bio}</p>
@@ -183,7 +183,7 @@ export default App;
 
 Output error:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="chain" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="Error caused by accessing nested properties without checks" />
 <br/>
 
 A typical solution to this error and UI not rendering is using conditional checks to validate the state's existence to check if it is accessible before rendering the component, e.g., `user.names && user.names.firstName`, which only evaluates the right expression if the left expression is true (if the `user.names` exist). However, this solution is a messy one as it would require several checks for each object chain.
@@ -204,7 +204,7 @@ function App() {
     <div className="App">
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.comundefined"
-        alt="profile image"
+        alt="User profile image placeholder"
       />
       <p>User: {user?.names?.firstName}</p>
       <p>About: {user.bio}</p>
@@ -246,7 +246,7 @@ export default App;
 
 The output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="directUpdateGif" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="Direct state update demo" />
 
 <br/>
 
@@ -283,7 +283,7 @@ function App() {
 
 Pay attention to the bug in the output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="directUpdateError" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="State update race condition bug" />
 
 <br/>
 
@@ -323,7 +323,7 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="functionalState" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="Functional state update demo" />
 
 <br/>
 
@@ -363,13 +363,13 @@ export default function App() {
 
 Initial state before the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="objectState" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="Object state update example" />
 
 <br/>
 
 Updated state after the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="objectStateError" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="Incorrect object state update output" />
 
 <br/>
 
@@ -405,7 +405,7 @@ export default function App() {
 
 Updated state after the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="objectAssign" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="Object property assignment example" />
 
 <br/>
 

@@ -205,7 +205,7 @@ export default function Home() {
 As we can see, styling is a totally handled by Stylex. The page in browser now looks like this:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-13-stylex-post/1.png" alt="stylex" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-13-stylex-post/1.png" alt="StyleX output preview" />
 </div>
 
 <br/>

@@ -64,7 +64,7 @@ In order to set up your first Swarm and initialize the swarm mode, you can run t
 **This command will return the following output:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/swarm-init.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/swarm-init.png"  alt="Docker swarm init command initializing swarm mode" />
 </div>
 
 <br/>
@@ -79,7 +79,7 @@ You can join a node as a worker or a manager. Let's assume that you are the admi
 This command will return you the full command of '**docker swarm join**' along with a token that you just need to run for the worker node to join the Swarm.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-1.png"  alt="Docker swarm join-token worker command output" />
 </div>
 
 <br/>
@@ -87,7 +87,7 @@ This command will return you the full command of '**docker swarm join**' along w
 Now, you need to copy and run the full command you get in the output of '**docker swarm join-token worker**' in your **worker node** to join the Swarm.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/worker-2.png"  alt="Worker node successfully joining Docker swarm cluster" />
 </div>
 
 <br/>
@@ -108,7 +108,7 @@ We can deploy the '**nginx**' service in the docker swarm with 3 service replica
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/ngix-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/ngix-1.png"  alt="Docker service create deploying nginx with 3 replicas" />
 </div>
 
 <br/>
@@ -120,7 +120,7 @@ To ensure that the service is correctly deployed, you can list the services with
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/service-ls.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/service-ls.png"  alt="Docker service ls showing deployed services and replicas" />
 </div>
 
 <br/>
@@ -139,7 +139,7 @@ Where **SERVICE_NAME** is the name of the service to be scaled, and **REPLICA_CO
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/scaling-service-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/scaling-service-1.png"  alt="Docker service scale increasing nginx replicas from 3 to 4" />
 </div>
 
 <br/>
@@ -158,7 +158,7 @@ For Example, if we want to update the version of '**nginx-service**', we can uti
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-1.png"  alt="Docker service update rolling out nginx version 1.21.4" />
 </div>
 
 <br/>
@@ -175,7 +175,7 @@ For Example, if there is any issue in an updated version, you can rollback to th
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/rolling-2.png"  alt="Docker service rollback reverting nginx to previous version" />
 </div>
 
 <br/>
@@ -190,7 +190,7 @@ For monitoring purposes, you can run the command that will provide insights rela
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-1.png"  alt="Docker service ps showing task status and node distribution" />
 </div>
 
 <br/>
@@ -203,7 +203,7 @@ Sometimes, while troubleshooting an issue, you might need to view detailed logs 
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.webp"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/monitoring-2.webp"  alt="Docker service logs displaying nginx service output" />
 </div>
 
 <br/>
@@ -217,7 +217,7 @@ While administrating the docker swarm cluster, you may be required to restructur
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-1.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-1.png"  alt="Docker swarm leave command removing node from cluster" />
 </div>
 
 <br/>
@@ -229,7 +229,7 @@ Managers can remove a node from the node list if it has left the Swarm or if it 
 **This command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-2.png"  alt="docker swarm" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/cleaning-2.png"  alt="Docker node rm removing inactive node from swarm" />
 </div>
 
 <br/>

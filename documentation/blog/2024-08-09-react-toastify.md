@@ -20,7 +20,7 @@ Any Refine project that uses a supported design system or component libraries, s
 
 In the react ecosystem, there are several notification packages to choose from. React-toastify is one of the popular toast packages you can use to integrate a custom notification system in a React or Refine project. In this article, you will create a custom notification provider in a Refine application using react-toastify.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/react-toastify-min.avif" alt="react toastify" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/react-toastify-min.avif" alt="Toast notifications demo" />
 
 <br/>
 
@@ -70,7 +70,7 @@ Your project should look like the image below.
 <br/>
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/blog-post-list-page.png"  alt="react toastify" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/blog-post-list-page.png"  alt="Refine blog post list page" />
 </div>
 
 <br/>
@@ -193,7 +193,7 @@ The screenshot below shows a success notification with the message "Successfully
 <br/>
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/success-toast.png"  alt="react toastify" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/success-toast.png"  alt="Success toast notification" />
 </div>
 
 <br/>
@@ -203,7 +203,7 @@ Similarly, the screenshot below shows an error message with the text "Oops faile
 <br/>
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/error-toast.png"  alt="react toastify" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/error-toast.png"  alt="Error toast notification" />
 </div>
 
 <br/>

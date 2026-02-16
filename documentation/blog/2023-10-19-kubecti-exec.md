@@ -74,7 +74,7 @@ kubectl exec my-demo-pod -- date
 In the above command, '**my-demo-pod**' is the name of the pod and '**date**' is the command that kubectl will run inside the container. It will return the following output:
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/basic-usage.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/basic-usage.png"  alt="Terminal output showing kubectl exec running date command inside my-demo-pod" />
 </div>
 
 <br/>
@@ -88,7 +88,7 @@ kubectl exec -it my-demo-pod -- /bin/bash
 In the above command, `my-demo-pod` remains the pod name and `/bin/bash` runs inside the container for accessing the `bash` shell. The `-it` flags make it appear as though you are inside the container by making sure the session is interactive (-i) and allocating a pseudo-terminal (-t).
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/basic-usage-2.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/basic-usage-2.png"  alt="Interactive bash shell session inside container using kubectl exec with -it flags" />
 </div>
 
 <br/>
@@ -102,7 +102,7 @@ kubectl exec my-demo-pod -- cat /etc/nginx/nginx.conf
 ```
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/specific-shell.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/specific-shell.png"  alt="Viewing nginx configuration file content using kubectl exec cat command" />
 </div>
 
 <br/>
@@ -114,7 +114,7 @@ kubectl exec my-demo-pod -- ls /usr/share/nginx/html
 ```
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/specific-shell-2.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/specific-shell-2.png"  alt="Listing nginx web root directory contents with kubectl exec ls command" />
 </div>
 
 <br/>
@@ -138,7 +138,7 @@ kubectl exec -it my-demo-pod -c nginx -- /bin/sh
 ```
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/multi-container-1.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/multi-container-1.png"  alt="Accessing nginx container shell in multi-container pod using -c flag" />
 </div>
 
 <br/>
@@ -150,7 +150,7 @@ kubectl exec my-demo-pod -c redis -- redis-cli –version
 ```
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/multicontainer-2.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/multicontainer-2.png"  alt="Checking redis version in multi-container pod using redis-cli command" />
 </div>
 
 <br/>
@@ -166,7 +166,7 @@ tar cf demo_package.tar demo-transfer.txt demo-transfer2.txt
 ```
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/advance-1.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/advance-1.png"  alt="Creating tarball package with tar command for file transfer to pod" />
 </div>
 
 <br/>
@@ -181,7 +181,7 @@ type demo_package.tar | kubectl exec -i my-demo-pod -c nginx -- /bin/sh -c 'tar 
 2. The `cat demo_package.tgz |` part sends the content of the tarball to the kubectl exec command.
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/advance-2.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/advance-2.png"  alt="Transferring tarball to nginx container /tmp directory using kubectl exec and tar" />
 </div>
 
 <br/>
@@ -195,7 +195,7 @@ kubectl exec -it my-demo-pod -c redis -- redis-cli
 ```
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/interacting-database.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/interacting-database.png"  alt="Accessing Redis CLI inside container for database interaction" />
 </div>
 
 <br/>
@@ -234,7 +234,7 @@ kubectl get pods
 ```
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/trouble-1.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/trouble-1.png"  alt="CrashLoopBackOff error status shown in kubectl get pods output" />
 </div>
 
 <br/>
@@ -249,7 +249,7 @@ kubectl describe pod my-demo-pod
 ```
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/image-back-pull.png"  alt="kubectl exec" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/image-back-pull.png"  alt="ImagePullBackOff error details in kubectl describe pod Events section" />
 </div>
 
 <br/>

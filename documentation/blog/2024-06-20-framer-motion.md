@@ -79,7 +79,7 @@ From the code above, we can specify the initial animation property and value to 
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-opacity-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-opacity-min.gif" alt="Text opacity animation example" />
 </div>
 
 - Animating texts using its transform scale:
@@ -99,7 +99,7 @@ From the code above, we can specify the initial animation property and value to 
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-scale-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-scale-min.gif" alt="Text scale animation example" />
 </div>
 
 - Animating texts using their opacity and scale: you can also combine properties to get the desired animation.
@@ -119,7 +119,7 @@ From the code above, we can specify the initial animation property and value to 
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-scale-opacity-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-scale-opacity-min.gif" alt="Text scale and opacity animation example" />
 </div>
 
 - Animating texts with translate transforms: We can create a translate animation by defining the x and y positions.
@@ -139,7 +139,7 @@ From the code above, we can specify the initial animation property and value to 
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-translate-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/text-translate-min.gif" alt="Text translate animation example" />
 </div>
 
 - #### `layout`
@@ -172,7 +172,7 @@ Here is an example that uses motion layout to animate its expanded parent elemen
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/layout-animations-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/layout-animations-min.gif" alt="Layout animation example using Framer Motion" />
 </div>
 
 - #### `Gestures`
@@ -210,7 +210,7 @@ Below is an example of a scale animation displayed on hover:
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/hover-gesture-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/hover-gesture-min.gif" alt="Hover gesture animation example" />
 </div>
 
 - #### `Transitions`
@@ -239,7 +239,7 @@ An example of the `transition` prop with `duration`, `ease`, and `delay` on a mo
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/transition-properties-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/transition-properties-min.gif" alt="Transition properties animation example" />
 </div>
 
 the transition props can also receive props that specify which sort of animation to utilize (**Tween**, **Spring**, or **Inertia**).
@@ -275,7 +275,7 @@ the transition props can also receive props that specify which sort of animation
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/transition-types-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/transition-types-min.gif" alt="Transition types animation example" />
 </div>
 
 #### Examples of other animations with motion components
@@ -330,7 +330,7 @@ const App = () => {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/animation-presence-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/animation-presence-min.gif" alt="AnimatePresence enter and exit animation example" />
 </div>
 
 ## Hooks in Framer
@@ -402,7 +402,7 @@ const App = () => {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-spring-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-spring-min.gif" alt="useSpring animation example" />
 </div>
 
 ### useScroll
@@ -501,7 +501,7 @@ Let's look at an example of how we can use motion values to construct the classi
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-scroll-min.avif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/use-scroll-min.avif" alt="useScroll progress animation example" />
 </div>
 
 The `useScroll` motion values can be combined with other motion value hooks, such as `useTransform` and `useSpring`, to create sophisticated animations like the one shown below.
@@ -568,7 +568,7 @@ function App() {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usescroll-img-min.avif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usescroll-img-min.avif" alt="Image used in the useScroll parallax demo" />
 </div>
 
 ### useTransform
@@ -638,7 +638,7 @@ const App = () => {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-min.gif" alt="useTransform animation example" />
 </div>
 
 Another example is to combine the `useTransform` hook with the `useSpring` hook to get a spring animation on a transformed motion value on hover.
@@ -686,7 +686,7 @@ const App = () => {
 ```
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-usespring-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-usespring-min.gif" alt="useTransform with useSpring animation example" />
 </div>
 
 ### useVelocity
@@ -716,7 +716,7 @@ function Component() {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usevelocity-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usevelocity-min.gif" alt="useVelocity animation example" />
 </div>
 
 #### Use cases of the useVelocity hook.
@@ -768,7 +768,7 @@ const App = () => {
 **View:**
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-usespring-min.gif" alt="typescript zod" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/usetransform-usespring-min.gif" alt="useTransform with useSpring animation example" />
 </div>
 
 ## When to use Framer Motion

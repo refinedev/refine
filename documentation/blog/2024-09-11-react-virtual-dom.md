@@ -405,7 +405,7 @@ When we view the element with the browser's developer tools, we just see a simpl
 To see the shadow DOM, utilize Chrome DevTools and enable the `Show user agent shadow DOM` option from `preferences` in `Settings`:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/virtual-dom.png" alt="react virtual dom" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/virtual-dom.png" alt="Virtual DOM update diagram" />
 </div>
 
 <br/>

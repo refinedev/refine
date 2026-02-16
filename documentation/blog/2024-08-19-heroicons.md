@@ -247,7 +247,7 @@ body {
 The navbar now looks like this:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-initial2.avif"  alt="tailwind flex" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-initial2.avif"  alt="Navbar layout before adding Heroicons" />
 </div>
 
 <br/>
@@ -406,7 +406,7 @@ For the `<UserIcon />`, we are applying a `glow` class that animates the icon wi
 With the above changes Heroicons and their styles, the navbar looks like this:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-heroicons2.avif"  alt="tailwind flex" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/navbar-heroicons2.avif"  alt="Navbar with Heroicons added" />
 </div>
 
 <br/>
@@ -426,7 +426,7 @@ Native `<svg>` properties passed to Heroicons also get relayed to the `<svg>` el
 Okay. Now, we'll consider the case for responsive use of Heroicons. We want each nav item to have its own icon left of its text. Like this:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/icon-items.avif"  alt="tailwind flex" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/icon-items.avif"  alt="List of navigation items with Heroicons" />
 </div>
 
 <br/>

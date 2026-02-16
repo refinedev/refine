@@ -52,7 +52,7 @@ The configuration file that kubectl is looking for must be in this location. Thi
 **The below configuration is placed at the default location(i.e., C:\Users\username\ .kube), so every kubectl command will use this configuration:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/first.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/first.png"  alt="Default kubeconfig file showing clusters, contexts, and users configuration" />
 </div>
 
 <br/>
@@ -66,7 +66,7 @@ Now, suppose that we have another configuration, having the current context chan
 **Here is another configuration:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/config-flag.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/config-flag.png"  alt="Alternative configuration file with current-context set to docker-desktop" />
 </div>
 
 <br/>
@@ -82,7 +82,7 @@ You will be able to create a configuration file for the current shell session. T
 **Let's view the previous default configuration that has the current-context set to 'cluster-2':**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/kube-config-env.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/kube-config-env.png"  alt="Viewing configuration with current-context cluster-2 before environment variable change" />
 </div>
 
 <br/>
@@ -100,7 +100,7 @@ We have another configuration with the current-context set to '**docker-desktop*
 **The below output shows that the current shell session is using the configuration specified against the 'KUBECONFIG' environment variable that has the current-context set to 'docker-desktop':**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/command-linux.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/command-linux.png"  alt="Configuration switched to docker-desktop using KUBECONFIG environment variable" />
 </div>
 
 <br/>
@@ -120,7 +120,7 @@ It's not the usual practice to have one Kubernetes cluster, particularly when de
 `kubectl config set-context dev-context --cluster=cluster-2`
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/multiple-context.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/multiple-context.png"  alt="Creating new dev-context for cluster-2 using kubectl config set-context" />
 </div>
 
 <br/>
@@ -130,7 +130,7 @@ It's not the usual practice to have one Kubernetes cluster, particularly when de
 `kubectl config set-context prod-context --cluster=docker-desktop`
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/set-context-2.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/set-context-2.png"  alt="Creating prod-context for docker-desktop cluster" />
 </div>
 
 <br/>
@@ -144,7 +144,7 @@ When you've got a lot of different contexts, it often makes sense to switch betw
 `kubectl config use-context dev-context`
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/switch-between.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/switch-between.png"  alt="Switching from production to development context using kubectl config use-context" />
 </div>
 
 <br/>
@@ -158,7 +158,7 @@ It will be easier to remember your context if you use consistent naming conventi
 **As an example, consider the following sample context configuration with a naming convention:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/best-practice.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/best-practice.png"  alt="Example context configuration following CLUSTER-USER/ROLE-PROJECT naming convention" />
 </div>
 
 <br/>
@@ -180,7 +180,7 @@ To remove a context from the kubeconfig file, use the '**kubectl config delete-c
 `kubectl config delete-context QA-andrew-frontend`
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/pruning-old.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/pruning-old.png"  alt="Deleting unused QA-andrew-frontend context using kubectl config delete-context" />
 </div>
 
 <br/>
@@ -198,7 +198,7 @@ For instance, you can use the following command to update an existing context ca
 **After running the command above, the configuration will look like this:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/10.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/10.png"  alt="Context configuration with namespace app-frontend specified for dev-lex-frontend" />
 </div>
 
 <br/>
@@ -214,7 +214,7 @@ Now, let's modify an existing context that uses the cluster '**cluster-2**', by 
 **After running the command above, the configuration will look like this:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/11.png"  alt="kubectl set context" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/11.png"  alt="Context configuration with specific user lex assigned to dev-lex-frontend" />
 </div>
 
 <br/>

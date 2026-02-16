@@ -107,7 +107,7 @@ Above we can see that we do fetch call to [Refine](https://github.com/refinedev/
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="Support Refine on GitHub banner" />
 </a>
 </div>
 
@@ -296,6 +296,6 @@ We have seen how to test only the behavior of an application in isolation. Avoid
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Join Refine on Discord banner" />
 </a>
 </div>

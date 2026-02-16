@@ -252,4 +252,4 @@ You now have a complete admin panel featuring full CRUD operations, sortable and
 
 Whether you're building admin panels, internal dashboards, B2B applications, or customer portals, Refine CORE's low-code approach accelerates development without sacrificing the control and flexibility that professional applications demand. The framework grows with your needs, supporting advanced features like access control, audit logging, real-time updates, and internationalization when you need them.
 
-Ready to start building? Check out the [Refine CORE documentation](https://refine.dev/core/docs) for advanced topics, explore the [Refine low-code examples](https://refine.dev/core/examples) for real-world use cases, and join the [community](https://discord.gg/refine) to connect with other developers building with Refine.
+Ready to start building? Check out the [Refine CORE documentation](https://refine.dev/core/docs) for advanced topics, explore the [Refine low-code examples](https://refine.dev/core/templates) for real-world use cases, and join the [community](https://discord.gg/refine) to connect with other developers building with Refine.

@@ -47,7 +47,7 @@ In our Part I article, we created our company, contact and client collections. I
 - Day: Number
 - Daily_rate: Number
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi Mission Collection" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi missions collection type structure" />
 <br />
 
 `Invoice Collection:`
@@ -61,7 +61,7 @@ In our Part I article, we created our company, contact and client collections. I
 - Contact: Relation with Contact
 - Missions: Relation with Mission
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi invoices collection type structure" />
 <br />
 
 We created our missions and invoice collections fields. Our goal here is to define the products or services you offer specifically to your company and to create invoices based on them. By determining how many working days a product or service will last and its price on a daily basis, the total will be automatically reflected on your invoice. Now let's create our **Refine** Missions page using this collection. And let's understand better by creating an example missions with **Refine**.
@@ -135,7 +135,7 @@ export const MissionList: React.FC = () => {
 
 We defined the fields we created on the strapi side with the **Refine** Table and created our table. Let's take a look at how our table looks like.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Missions list page with CRUD operations" />
 <br />
 
 As you can see, we were able to create and display our table very simply thanks to the **Refine**. Let's learn how to create a Mission from our Refine interface now.
@@ -266,7 +266,7 @@ export const MissionList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Creating a new mission with form fields" />
 <br />
 
 Missions Page is now ready, you can create and manage your business's products or services here with **Refine**.
@@ -392,7 +392,7 @@ export const InvoiceList: React.FC = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Invoices list page with table view" />
 <br />
 
 As you can see, we were able to list invoices with **Refine**. Using the Invoice collection and the fields associated with it, we can create a fully featured Invoice.
@@ -504,7 +504,7 @@ export const CreateInvoice = () => {
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Creating an invoice with mission details" />
 <br />
 
 Our invoice generator is almost ready! As you can see, we can now create a fully featured invoice with **Refine** and display it in our table. As the last step, let's view and download the invoices we created as PDF.
@@ -914,7 +914,7 @@ const styles = StyleSheet.create({
 </p>
 </details>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.avif" alt="Refine Invoice PDF Export" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.avif" alt="Generated PDF invoice preview" />
 <br />
 
 ## Example

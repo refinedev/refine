@@ -222,4 +222,4 @@ Enterprise internal tools development largely depends on the complexity of the r
 
 With a rich ecosystem of future adaptive technologies, support for growing list of backend API and UI integrations, Refine is fully equipped to make internal tools development in 2024 a breeze. You can build complex systems like CRMs, admin panels, dashboards, data visualization and more.
 
-Feel free to check out Refine's [examples](https://refine.dev/core/docs/examples/) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.
+Feel free to check out Refine's [examples](https://refine.dev/core/templates) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.

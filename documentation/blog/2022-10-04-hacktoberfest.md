@@ -17,7 +17,7 @@ We've already labeled a bunch of **Refine** issues with `hacktoberfest` so you c
 [github.com/refinedev/refine/labels/hacktoberfest](https://github.com/refinedev/refine/labels/hacktoberfest)
 
 <div class="img-container" align-items="center" >
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="prize" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="Hacktoberfest prize graphic" />
 
 </div>
 

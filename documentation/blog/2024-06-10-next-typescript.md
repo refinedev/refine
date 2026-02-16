@@ -80,7 +80,7 @@ Installing devDependencies (yarn):
 
 When the installation is complete, open `tsconfig.json` and you'll see it populated with values like below:
 
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig.json settings" />
 
 <br/>
 
@@ -386,7 +386,7 @@ This looks way better and straightforward.
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

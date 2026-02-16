@@ -61,7 +61,7 @@ Even though Compose was primarily created for workflows in development and testi
 Installing Docker Desktop is the quickest and most convenient method to use Docker Compose. Along with Docker Engine and Docker CLI, which are necessary for Compose to function, Docker Desktop also contains Docker Compose. You can get Docker Desktop(**_Windows, Linux, MacOS_**) from the official Docker website(<https://www.docker.com/products/docker-desktop/>).
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image1.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image1.png"  alt="Docker Desktop download page" />
 </div>
 
 <br/>
@@ -71,7 +71,7 @@ Installing Docker Desktop is the quickest and most convenient method to use Dock
 In order to verify the installation of Docker Compose, go to the terminal or command prompt of your OS and then run the command `docker-compose --version`. If the output of the command shows the version of Docker compose, then your installation is successful.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image2.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image2.png"  alt="Terminal showing docker-compose --version output" />
 </div>
 
 <br/>
@@ -83,7 +83,7 @@ You have to create a Compose file that describes the services of your applicatio
 Let's suppose we have created a docker compose file(with yml extension) in our project directory, specify the components information, and this can be viewed and validated by navigating to the project directory from the terminal and then running `docker-compose –config` Command.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image3.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image3.png"  alt="Terminal output for docker-compose config" />
 </div>
 
 <br/>
@@ -105,7 +105,7 @@ specifies which version of the Docker Compose file syntax should be used. A stri
 The containers made for the services in your application are configured in the services mapping. Under the services key, a layered mapping is set for each service. Each service is capable of having whatever name you like. The services with the names web, db, and redis are shown in our example below:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image4.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image4.png"  alt="Docker Compose services section example" />
 </div>
 
 <br/>
@@ -125,7 +125,7 @@ The volume key mapping is utilized like that of docker volume create. Volumes ca
 Under the services section, begin by listing the services or containers that make up your application. Similar to how you configure containers using docker run command arguments, you define the configuration options for service containers inside of the service configuration mapping.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image5.png"  alt="docker volume" />
+   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image5.png"  alt="Docker Compose service definition example" />
 </div>
 
 <br/>
@@ -135,7 +135,7 @@ Under the services section, begin by listing the services or containers that mak
 Choose the image for each service from a container registry, such as Docker Hub. Additionally, you can use the '**latest**' tag or specify a specific image version.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image6.png"  alt="docker volume" />
+   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image6.png"  alt="Docker Compose image and version example" />
 </div>
 
 <br/>
@@ -145,7 +145,7 @@ Choose the image for each service from a container registry, such as Docker Hub.
 You need to specify the volume mapping between the host system and the container in order to configure the bind mount volume setting. It follows `\[host-path\]:\[container-path\]` format. The '**./html**' directory on the host system is mapped in the example below to the '**/usr/share/nginx/html**' directory in the web container. You can further configure or customize other volume settings as well, such as naming volumes or specifying read-only options for volumes, etc.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image7.png"  alt="docker volume" />
+   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image7.png"  alt="Docker Compose volume mapping example" />
 </div>
 
 <br/>
@@ -155,7 +155,7 @@ You need to specify the volume mapping between the host system and the container
 Your containers can be dynamically configured without affecting the container images themselves. In the Example Below, The '**environment'** variable for the database service of MySQL is defined. '**MYSQL_ROOT_PASSWORD**' is the name of the environment variable and 'secret' is the value that can dynamically change. This approach allows you to add several environment variables, with each variable appearing on a separate line and beginning with a hyphen (-).
 
  <div className="centered-image">
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image8.png"  alt="docker volume" />
+   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image8.png"  alt="Docker Compose environment variables example" />
 </div>
 
 <br/>
@@ -165,7 +165,7 @@ Your containers can be dynamically configured without affecting the container im
 You need to define the ports to expose on the host system and map them to the internal ports of the container using the '**ports**' key. In the example below, port '**80**' of the web container has been mapped to host system port '**8080**'.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image9.png"  alt="docker volume" />
+   <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image9.png"  alt="Docker Compose port mapping example" />
 </div>
 
 <br/>
@@ -181,7 +181,7 @@ You need to define the ports to expose on the host system and map them to the i
 - Any persistent data directories that could be mounted as volumes in your Docker Compose services are kept in the '**volume/**' directory.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image10.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image10.png"  alt="Docker Compose project directory structure" />
 </div>
 
 <br/>
@@ -193,7 +193,7 @@ You need to define the ports to expose on the host system and map them to the i
 For starting your application, you need to build and run all containers specified in the configuration file, and Docker compose will facilitate you for that purpose by just running one single command. Using the command line tool, you must go to the project root directory where the configuration file is placed and run the '`docker-compose up`' command. Please see the example below:
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image11.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image11.png"  alt="Terminal output for docker-compose up" />
 </div>
 
 <br/>
@@ -204,7 +204,7 @@ Now, if you want to stop your application and remove all containers or services 
 See the illustration below:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image12.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image12.png"  alt="Terminal output for docker-compose down" />
 </div>
 
 <br/>
@@ -218,7 +218,7 @@ If you want to rebuild the images for each service defined in the YAML configura
 If you want to start or stop your application, but you want to avoid removing the containers, Docker compose will help you achieve this purpose by using '`docker-compose start`' or '`docker-compose stop`' commands.
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image13.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image13.png"  alt="Terminal output for docker-compose start/stop" />
 </div>
 
 <br/>
@@ -232,7 +232,7 @@ It is possible to control how your application behaves in different environments
 Once you have created multiple compose files for different configurations of different environments, docker-compose also offer you to override one configuration with another. Override files can hold different values for any configurations specified in the main '`docker-compose.yml`' file. Let's suppose your application is currently running by using base configurations in the 'docker-compose.yml' file, and as a developer, you want to override development configurations for the development environment; for that purpose, you need to create another file(`docker-compose.development.override.xml`) in the same directory that contains development specific values and run docker-compose command that explicitly specifies the file(**use -f option**) that needs to override on the base file. According to this example, the command that shows the applied configuration will be '`docker-compose -f docker-compose.yml -f docker-compose.development.override.yml config`'
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image14.png"  alt="docker volume" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/image14.png"  alt="Docker Compose config with override files" />
 </div>
 
 <br/>

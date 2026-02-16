@@ -71,7 +71,7 @@ npm run dev
 
 And prepare ourselves to the call-to-action at `http://localhost:5173`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
 
 <br />
 
@@ -444,7 +444,7 @@ The components tree looks very plain, but there is plenty going on in there. Fir
 const { tableProps } = useTable<TUser>();
 ```
 
-`useTable()` is built on top of **Refine** core's [`useMany()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
+`useTable()` is built on top of **Refine** core's [`useMany()`](https://refine.dev/core/docs/data/hooks/use-many/) data hook. `useMany()`, in turn, invokes the [`getMany()`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/#getmany) data provider method.
 
 Here, we did not need to set any configuration for our API request and the returned response. The `resource.name` was figured by `useTable` from the `resources` prop that was passed to `<Refine />`. It is possible to set options for **sorting**, **filtering**, **pagination**, etc. with an object passed to `useTable()`.
 
@@ -749,7 +749,7 @@ export default App;
 
 Since `authProvider` prop is already passed in by default, after we added the above resources and granted we are connected to the Internet, we will be redirected to the login page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
 
 <br />
 
@@ -772,7 +772,7 @@ password: demodemo
 
 :::
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
 
 <br />
 
@@ -1124,7 +1124,7 @@ return (
 
 With these additions, `/canvases` looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="react supabase CRUD App" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
 
 <br />
 

@@ -75,7 +75,7 @@ npm run dev
 
 After the app has started, you should see the following page:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/welcome-page.jpeg" alt="Welcome Page" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/welcome-page.jpeg" alt="Refine app welcome page" />
 
 ## Creating mock API with Mockaroo and My JSON Server
 
@@ -110,7 +110,7 @@ Although **Refine** is a headless framework that can be used with any UI framewo
 We'll see how to leverage these components with Refine's [`useDataGrid`](https://refine.dev/core/docs/api-reference/mui/hooks/useDataGrid/) hook in our Refine app in the coming sections.
 
 <a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="github support banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/github-support-banner.png" alt="Support Refine on GitHub banner" />
 </a>
 
 ## Adding styled-components
@@ -358,7 +358,7 @@ Finally, we used the `<Layout />` component we created in the previous section t
 
 Now, if you navigate to `http://localhost:5173`, you should see the following:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees-list.jpeg" alt="employees list" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/employees-list.jpeg" alt="Employee list in MUI DataGrid" />
 
 <br/>
 
@@ -372,7 +372,7 @@ The `useDataGrid` hook simplifies operations such as pagination, sorting, and fi
 
 Pagination lets us display a certain number of rows on a DataGrid at a time and is enabled by default. It cannot be disabled either. It is available at the bottom of the DataGrid component like so:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/pagination.jpeg" alt="pagination" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/pagination.jpeg" alt="DataGrid pagination controls" />
 
 For example, our employees list has a total of 28 rows, but we may want to render just 5 rows per page. Here’s a demo showing how we can render 5 rows of items on the initial page render with the `pagination.pageSize` property (defaults to 25).
 
@@ -412,7 +412,7 @@ export default EmployeeList;
 
 Which renders our grid like this:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/page-size.jpeg" alt="page size setting" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/page-size.jpeg" alt="DataGrid page size selector" />
 
 :::caution
 
@@ -430,7 +430,7 @@ We can sort the rows in three orders: ascending (ASC), descending (DESC) or null
 
 To sort the rows, click or hover on any column header, this displays an arrow indicator pointing up or down depending on your sorting order. When it's ascending the arrow points upward, and points downward for descending. Alternatively, we can also access it from the grid column menu.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sort.jpeg" alt="sorting" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sort.jpeg" alt="DataGrid sorting example" />
 
 #### Initial sort order
 
@@ -446,7 +446,7 @@ const { dataGridProps } = useDataGrid({
 
 The above example will sort the rows using the _level_ column on the initial render in descending order like so:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sort-with-level.jpeg" alt="sorting employees" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/sort-with-level.jpeg" alt="DataGrid sorted by level column" />
 
 #### Controlled sorting
 
@@ -545,7 +545,7 @@ export default EmployeeList;
 Here's a GIF showing the result of the above example.
 
 <div className="flex justify-center">
-    <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-sort.avif" alt="employees Gif" />
+    <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-sort.avif" alt="External sort controls for DataGrid" />
 </div>
 
 You can refer to MU X DataGrid [documentation](https://mui.com/x/react-data-grid/sorting/) for more information on the sorting feature.
@@ -556,13 +556,13 @@ Filtering lets us search the rows for values in the `<DataGrid />` component bas
 
 We can access the sort feature by either clicking on the _filter_ item in the column menu:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-column.jpeg" alt="filtering Column" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-column.jpeg" alt="DataGrid column filter menu" />
 
 <br/>
 
 or by using the filter button in the grid toolbar:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-toolbar.jpeg" alt="filtering tab" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-toolbar.jpeg" alt="DataGrid toolbar filter panel" />
 
 <br/>
 
@@ -584,7 +584,7 @@ The filter feature works by searching the rows for values that match a given fil
 
 For instance in our employees table we can filter the _department_ column for rows that contain a `Support` value by using any of the above methods.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-value.jpeg" alt="employees filter" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/filter-value.jpeg" alt="Filter by department value" />
 
 <br/>
 
@@ -716,7 +716,7 @@ export default EmployeeList;
 
 Which gives the following result when you click on the checkbox:
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-filter.jpeg" alt="employees check" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedatagrid/controlled-filter.jpeg" alt="External filter checkbox for recruiter role" />
 
 You can refer to MU X DataGrid [filtering documentation](https://mui.com/x/react-data-grid/filtering/) for more information on the filtering feature.
 
@@ -731,7 +731,7 @@ Where to go next? Check the useDataGrid hook [documentation](https://refine.dev/
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

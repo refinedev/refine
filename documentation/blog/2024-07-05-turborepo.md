@@ -57,7 +57,7 @@ With your remote caching, builds can achieve amazingly fast build times by provi
 <br/>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/turbopack.png"  alt="turbopack" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/turbopack.png"  alt="Turbopack architecture diagram" />
 <em> Source - </em>
 </div>
 

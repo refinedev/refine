@@ -25,7 +25,7 @@ Let's celebrate their success together!
 ## ⭐ Best Overall Project
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/refine-native.png"  alt="docker volume" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/refine-native.png"  alt="Refine Native project screenshot" />
 </div>
 
 ### Refine Native
@@ -40,7 +40,7 @@ Inside this project, you'll discover two awesome libraries: [@refinenative/expo-
 ## ⭐ Most Technically Impressive
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/supaheroes.png"  alt="docker volume" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/supaheroes.png"  alt="Supaheroes project screenshot" />
 </div>
 
 ### Supaheroes
@@ -53,7 +53,7 @@ Introducing Supaheroes, the AI-powered platform that crafts character biographie
 ## ⭐ Most Visually Pleasing
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/tripstash.png"  alt="docker volume" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/tripstash.png"  alt="TripStash travel planning app screenshot" />
 </div>
 
 ### TripStash: Travel planning tool
@@ -68,7 +68,7 @@ Creating a project, inviting travel companions, and building a shared itinerary 
 ## ⭐ Best Project Using Supabase
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/anisong.png"  alt="docker volume" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/anisong.png"  alt="Anisong anime playlist app screenshot" />
 </div>
 
 ### Anisong: Anime playlist creator
@@ -81,7 +81,7 @@ Anisong, a web app that lets you curate personalized playlists filled with the m
 ## ⭐ Best Project Using Material UI
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/rvsquick.png"  alt="docker volume" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/rvsquick.png"  alt="RSVQuick online invitation app screenshot" />
 </div>
 
 ### RSVQuick: Online Invitation App
@@ -194,7 +194,7 @@ We are organizing a raffle for those who create a ticket and share it on Twitter
 
 ### 🔗 [Generate participation ticket ](https://hackathon.refine.dev)
 
-[![ticket](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_ticket.jpeg)](https://hackathon.refine.dev)
+[![Hackathon participation ticket banner](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_ticket.jpeg)](https://hackathon.refine.dev)
 
 ## Together with Open Source Community
 
@@ -204,7 +204,7 @@ It's worth noting that Refine has built-in [data provider support](https://refin
 
 Supabase and MUI will also be providing swag kits for the winners.
 
-![sponsors](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/sponsor_banner.png)
+![Hackathon sponsors banner](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/sponsor_banner.png)
 
 ## Hackathon Key Facts
 
@@ -248,7 +248,7 @@ You can use any data provider or UI framework in the Refine app for the three ma
 
 <br/>
 
-![swag_kits](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/swag_kit.jpeg)
+![Hackathon swag kits photo](https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/swag_kit.jpeg)
 
 ## Submission
 

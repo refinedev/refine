@@ -154,7 +154,7 @@ Using open-source tools and frameworks reduces development time and costs, as mo
 
 <a href="https://github.com/refinedev/refine">
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/refine-readme-banner.png" alt="refine.js" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/refine-readme-banner.png" alt="Refine README banner" />
 </div>
 </a>
 

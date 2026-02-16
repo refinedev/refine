@@ -77,7 +77,7 @@ npm run dev
 
 After that, navigate to `http://localhost:5173`, and lo and behold! we have a **Refine** app:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="react crud app welcome" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels app welcome screen" />
 
 <br />
 

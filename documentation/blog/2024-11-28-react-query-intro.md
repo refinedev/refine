@@ -218,7 +218,7 @@ In the code above, `useMutation` is used to post new data to the Json Placeholde
 This is what it looks like in a Chrome browser:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/chrome-browser.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/chrome-browser.png"  alt="Create post form in the browser" />
 </div>
 
 <br/>
@@ -226,7 +226,7 @@ This is what it looks like in a Chrome browser:
 After feeling the options, click submit and wait for the response:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/click-submit.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/click-submit.png"  alt="Submitting the create post form" />
 </div>
 
 <br/>
@@ -234,7 +234,7 @@ After feeling the options, click submit and wait for the response:
 **Response**:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/response.png"  alt="react query" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/response.png"  alt="API response after form submission" />
 </div>
 
 <br/>
@@ -344,7 +344,7 @@ Following the steps above illustrates how best to use the `useMutation` hook and
 
 ## React Query and Frameworks
 
-React-based framework like [Refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. Refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/core/docs/api-reference/core/data/hooks/useUpdate/) and [useList](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
+React-based framework like [Refine](https://github.com/refinedev/refine) has extended versions of the hooks provided by React Query. Refine extends the functionality of React Query's hooks, adding extra features and customization options to better suit data-intensive applications. These hooks include [useUpdate](https://refine.dev/core/docs/data/hooks/use-update/) and [useList](https://refine.dev/core/docs/data/hooks/use-list/).
 
 The `useUpdate` hook in Refine is an extended version of the `useMutation` hook from React Query. This hook is used when you want to update a record. It uses the `update` method as the mutation function from the `dataProvider` that is passed to **Refine**.
 

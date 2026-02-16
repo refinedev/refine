@@ -365,7 +365,7 @@ You will choose whether to deploy from a branch or GitHub actions. The default o
 
 After the deployment process completes, refresh the **Setting** page to obtain a link to your deployed project.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/github-pages-setting.png"  alt="github setting" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hosting/github-pages-setting.png"  alt="GitHub Pages settings screen" />
 
 <br />
 

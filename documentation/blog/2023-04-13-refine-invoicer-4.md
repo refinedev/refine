@@ -32,7 +32,7 @@ But before we move into writing code, we have to define the collections for `mis
 
 Let's revisit the ERD for our **Pdf Invoice Generator** app:
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/database.png" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/database.png" alt="Invoice app database schema diagram" />
 
 <br />
 
@@ -44,7 +44,7 @@ With this in mind, let's go ahead and create collections in our **Strapi** app.
 
 We should use the `Content-Type Builder` again to define these collections. The `missions` collection should look like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/mission_collection.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/mission_collection.png"  alt="Missions collection in Airtable" />
 
 <br />
 
@@ -52,24 +52,24 @@ We should use the `Content-Type Builder` again to define these collections. The 
 
 The `invoices` collection should look as below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_collection.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_collection.png"  alt="Invoices collection in Airtable" />
 
 <br />
 
 `invoices` has a `has one` association with `companies`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_company.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_company.png"  alt="Invoice company relation setup" />
 
 <br />
 
 It also has the same `has one` association with `contacts`
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasone.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasone.png"  alt="Invoice has-one relationship" />
 
 <br />
 
 It also maintains a `has many` association with `missions`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasmany.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/invoice_hasmany.png"  alt="Invoice has-many relationship" />
 
 <br />
 
@@ -81,7 +81,7 @@ Like we did before with the `companies`, `clients` and `contacts` collections, w
 
 We can do this from the following path in our **Strapi** app: `/admin/settings/users-permissions/roles/1`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/authenticated.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/authenticated.png"  alt="Authenticated invoicer dashboard" />
 
 <br />
 
@@ -471,7 +471,7 @@ It's render is triggered by a click on the `<EditButton />` placed inside a `<Ta
 
 Ok. With these views completed, we should be able to create, list and show `missions` records from our app.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/edit_view.png" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/edit_view.png" alt="Invoice edit form view" />
 
 <br />
 
@@ -845,7 +845,7 @@ We are using multiple `useSelect()` hooks that allow us fetch `companies`, `miss
 
 With these components added, we should be able to create, list and edit invoices.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/useselect.png" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/useselect.png" alt="useSelect dropdown in the invoice form" />
 
 <br />
 

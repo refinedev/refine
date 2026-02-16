@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pix
 hide_table_of_contents: false
 ---
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="refine banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="Refine and Supabase logos" />
 
 ### RefineWeek series
 
@@ -115,7 +115,7 @@ const dataProvider = {
 </p>
 </details>
 
-The underlying architecture involves any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has a corresponding hook via which a consumer component is able to fetch data from the backend, i.e. the [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) hook is the corresponding function accessing the `dataProvider.getList()` provider method.
+The underlying architecture involves any presentational component passed to `<Refine />` to be able to consume these configured methods via corresponding hooks. Each method in a provider has a corresponding hook via which a consumer component is able to fetch data from the backend, i.e. the [`useList()`](https://refine.dev/core/docs/data/hooks/use-list/) hook is the corresponding function accessing the `dataProvider.getList()` provider method.
 
 An example hook usage looks like this:
 
@@ -204,7 +204,7 @@ We'll be visiting code like this often, but if you examine closely you can see t
 
 The following diagram illustrates the interactions:
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine-flow.png" alt="refine banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine-flow.png" alt="Refine data flow diagram" />
 
 <br />
 
@@ -241,7 +241,7 @@ We'll be using **Supabase** to build our backend for **Pixels** app.
 
 ## A week of Refine ft. Supabase
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="refine banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="Pixels app logo banner" />
 
   <br/>
   <br/>

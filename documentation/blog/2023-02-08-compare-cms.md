@@ -42,13 +42,13 @@ yarn create strapi-starter project-name next-blog
 
 Once the installation is complete, Strapi will launch the admin panel. You will have to create your admin account by filling out the form.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-login-page.png"  alt="best headless cms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-login-page.png"  alt="Strapi admin sign-up screen" />
 
 <br />
 
 After creating your admin account, the Strapi dashboard looks like the image below. The Strapi documentation has detailed getting-started guides you can use to explore the main features of Strapi.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-dashboard.png"  alt="best headless cms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fstrapi-dashboard.png"  alt="Strapi admin dashboard" />
 
 <br />
 
@@ -106,7 +106,7 @@ The Hasura console doesn't provide functionality for managing content like the o
 
 Hasura cloud is the fastest way to start using Hasura. You can create an account using your email id or log in using GitHub or Google.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhasura-cloud-login-page.png"  alt="best headless cms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhasura-cloud-login-page.png"  alt="Hasura Cloud login page" />
 
 <br />
 
@@ -154,7 +154,7 @@ Hygraph provides a generous community plan for free without even asking for a cr
 
 To start using [Hygraph](https://hygraph.com/), you need to have an account. If you haven't, create an account using your email id or log in with your Google, Facebook, or GitHub account. You can create a new project or use one of the available starter projects after setting up an account to explore Hygraph.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhygraph-login-page.png"  alt="best headless cms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-08-compare-cms%2Fhygraph-login-page.png"  alt="Hygraph login page" />
 
 <br />
 
@@ -199,7 +199,7 @@ In this section, we will compare Hasura, Strapi, and Hygraph. The table below su
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

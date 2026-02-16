@@ -127,7 +127,7 @@ Very simple.
 Now, to pass props to a React Component, we pass them like attributes on an HTML element:
 
 ```ts
-<img src="./image.jpg" width="120" height="90" />
+<img src="./image.jpg" width="120" height="90" alt="Example image" />
 ```
 
 The attributes here are `src`, `width`, and `height`. The `img` uses them to render an image. So these attributes are just like passing arguments to a function.
