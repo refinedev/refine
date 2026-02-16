@@ -429,6 +429,8 @@ function SearchPageContent() {
                   <h2 className={styles.searchResultItemHeading}>
                     <Link
                       to={url}
+                      // Developer provided the HTML, so assume it's safe.
+                      // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted HTML from markdown
                       dangerouslySetInnerHTML={{ __html: title }}
                     />
                   </h2>
@@ -446,7 +448,7 @@ function SearchPageContent() {
                             key={index}
                             className="breadcrumbs__item"
                             // Developer provided the HTML, so assume it's safe.
-                            // eslint-disable-next-line react/no-danger
+                            // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted HTML from markdown
                             dangerouslySetInnerHTML={{ __html: html }}
                           />
                         ))}
@@ -458,7 +460,7 @@ function SearchPageContent() {
                     <p
                       className={styles.searchResultItemSummary}
                       // Developer provided the HTML, so assume it's safe.
-                      // eslint-disable-next-line react/no-danger
+                      // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted HTML from markdown
                       dangerouslySetInnerHTML={{ __html: summary }}
                     />
                   )}
