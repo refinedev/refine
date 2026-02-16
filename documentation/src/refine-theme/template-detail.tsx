@@ -34,6 +34,7 @@ type Props = {
     title: string;
     description: string;
     images: string[];
+    imageAlt?: string;
     runOnYourLocalPath: string | null;
     edition: TemplateEdition;
     liveDemo: string;
@@ -131,7 +132,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                 "aspect-[1168/736]",
               )}
               src={getImgixSrc(data.images[0])}
-              alt={data.title}
+              alt={data.imageAlt || data.title}
             />
             {data.edition === TemplateEdition.Enterprise && (
               <div

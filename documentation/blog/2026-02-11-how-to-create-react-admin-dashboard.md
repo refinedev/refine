@@ -4,7 +4,7 @@ description: Build a powerful React admin dashboard in minutes. Explore the best
 slug: how-to-create-react-admin-dashboard
 authors: ozgur
 tags: [react, refine, dashboards, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-12-react-admin-dashboard/react-admin-banner.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-12-react-admin-dashboard/react-admin-banner.png
 hide_table_of_contents: false
 ---
 
