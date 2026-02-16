@@ -1,7 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
+
+const SCROLL_POSITION_KEY = "categoryNavBarScrollLeft";
 
 type CategoryItem = {
   value: string;
@@ -259,9 +267,20 @@ function CategoryNavBarDesktop({
   const isAllPostsActive = isAllPath(normalizedPathname, normalizedAllPath);
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [hasOverflow, setHasOverflow] = useState(false);
-  const [showLeftShadow, setShowLeftShadow] = useState(false);
-  const [showRightShadow, setShowRightShadow] = useState(false);
+  const [hasOverflow, setHasOverflow] = useState(true);
+  const [showLeftShadow, setShowLeftShadow] = useState(true);
+  const [showRightShadow, setShowRightShadow] = useState(true);
+
+  useLayoutEffect(() => {
+    const element = scrollContainerRef.current;
+
+    if (!element) return;
+
+    const savedScrollLeft = localStorage.getItem(SCROLL_POSITION_KEY);
+    if (savedScrollLeft) {
+      element.scrollLeft = Number.parseInt(savedScrollLeft, 10);
+    }
+  }, []);
 
   const updateScrollIndicators = useCallback(() => {
     const element = scrollContainerRef.current;
@@ -271,6 +290,7 @@ function CategoryNavBarDesktop({
     const isOverflowing = element.scrollWidth > element.clientWidth + 1;
     const maxScrollLeft = element.scrollWidth - element.clientWidth;
 
+    localStorage.setItem(SCROLL_POSITION_KEY, element.scrollLeft.toString());
     setHasOverflow(isOverflowing);
     setShowLeftShadow(isOverflowing && element.scrollLeft > 0);
     setShowRightShadow(isOverflowing && element.scrollLeft < maxScrollLeft - 1);
