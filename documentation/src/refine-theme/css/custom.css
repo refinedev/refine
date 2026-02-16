@@ -3,6 +3,10 @@
   --primary-font-sans: "Inter";
 }
 
+a {
+  letter-spacing: -0.007em;
+}
+
 /* Firefox */
 .scrollbar-slim {
   scrollbar-width: thin;
@@ -77,6 +81,10 @@
   @apply prose-code:border-none;
 
   @apply max-w-none;
+}
+
+.blog-wrapper .refine-prose {
+  @apply prose-a:text-teal-600 prose-a:dark:text-teal-400;
 }
 
 .refine-prose li code {
@@ -273,6 +281,17 @@ p:has(> code) code {
 
 li a:has(> code) code {
   @apply !mx-0 !align-baseline;
+}
+
+/* blog-specific inline code link colors */
+.blog-wrapper a:has(> code) code {
+  @apply !text-teal-700 dark:!text-teal-400;
+  @apply !bg-teal-200 dark:!bg-teal-950;
+}
+
+.blog-wrapper a:has(> code):hover code {
+  @apply !text-teal-700 dark:!text-teal-400;
+  @apply !bg-teal-100 dark:!bg-teal-900;
 }
 
 /* admonition overrides */
