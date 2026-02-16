@@ -5,8 +5,9 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const src = getImgixSrc(props.src ?? "");
 
   return (
-    <div
+    <span
       className={clsx(
+        "block",
         "w-full",
         "h-auto",
         "overflow-hidden",
@@ -37,8 +38,9 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
         alt={props.alt ?? ""}
       />
       {props.alt && (
-        <div
+        <span
           className={clsx(
+            "block",
             "flex",
             "items-center",
             "font-medium",
@@ -52,9 +54,9 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
           )}
         >
           {props.alt}
-        </div>
+        </span>
       )}
-    </div>
+    </span>
   );
 };
 
