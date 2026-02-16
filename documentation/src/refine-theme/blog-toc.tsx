@@ -432,7 +432,7 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
       className={clsx(
         "hidden blog-md:block",
         "sticky right-0 top-[64px]",
-        "w-full max-w-[400px]",
+        "w-[388px]",
         "overflow-auto h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",

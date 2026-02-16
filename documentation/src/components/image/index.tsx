@@ -1,11 +1,26 @@
 import React from "react";
 import clsx from "clsx";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const src = getImgixSrc(props.src ?? "");
+  const handleWrapperClick: React.MouseEventHandler<HTMLSpanElement> = (
+    event,
+  ) => {
+    const clickedImage = (event.target as HTMLElement).closest("img");
+    const hasModifierKey =
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+
+    if (event.currentTarget.closest("a") && clickedImage && !hasModifierKey) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
 
   return (
     <span
+      onClick={handleWrapperClick}
       className={clsx(
         "block",
         "w-full",
@@ -23,20 +38,22 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
         props.className,
       )}
     >
-      <img
-        {...props}
-        src={src}
-        className={clsx(
-          "w-full h-auto",
-          "object-contain",
-          "object-center",
-          "rounded-lg",
-          "!m-0",
-        )}
-        loading="lazy"
-        decoding="async"
-        alt={props.alt ?? ""}
-      />
+      <Zoom isDisabled={!src} wrapElement="span">
+        <img
+          {...props}
+          src={src}
+          className={clsx(
+            "w-full h-auto",
+            "object-contain",
+            "object-center",
+            "rounded-lg",
+            "!m-0",
+          )}
+          loading="lazy"
+          decoding="async"
+          alt={props.alt ?? ""}
+        />
+      </Zoom>
       {props.alt && (
         <span
           className={clsx(

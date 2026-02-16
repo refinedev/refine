@@ -323,7 +323,7 @@ const BackToAllPosts = () => {
         "font-semibold",
         "uppercase",
         "tracking-[-0.01em]",
-        "text-zinc-600",
+        "text-zinc-500",
         "dark:text-zinc-400",
         "no-underline",
         "hover:no-underline",
@@ -352,7 +352,7 @@ const PostDateAndReading = ({ date, formattedDate, readingTime }) => {
         "font-semibold",
         "uppercase",
         "tracking-[-0.01em]",
-        "text-zinc-600",
+        "text-zinc-500",
         "dark:text-zinc-400",
       )}
     >
@@ -389,14 +389,14 @@ const PostCategoryAndTags = ({ category, tags = [] }) => {
         "font-semibold",
         "uppercase",
         "tracking-[-0.01em]",
-        "text-zinc-600",
+        "text-zinc-500",
         "dark:text-zinc-400",
       )}
     >
       <Link
         to={categoryLink}
         className={clsx(
-          "text-zinc-600",
+          "text-zinc-500",
           "dark:text-zinc-400",
           "no-underline",
           "hover:no-underline",
@@ -432,7 +432,7 @@ const PostCategoryAndTags = ({ category, tags = [] }) => {
               <Link
                 to={permalink}
                 className={clsx(
-                  "text-zinc-600",
+                  "text-zinc-500",
                   "dark:text-zinc-400",
                   "no-underline",
                   "hover:no-underline",
@@ -483,10 +483,12 @@ const PostTitle = ({ isBlogPostPage, title, permalink }) => {
 
 const PostBody = ({ children }) => {
   let firstH2Rendered = false;
+  const H2Component = MDXComponents.h2 ?? "h2";
+
   const components = {
     ...MDXComponents,
     h2: ({ children: headingChildren, ...props }) => {
-      const heading = <h2 {...props}>{headingChildren}</h2>;
+      const heading = <H2Component {...props}>{headingChildren}</H2Component>;
 
       if (firstH2Rendered) {
         return heading;

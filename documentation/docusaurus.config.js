@@ -150,6 +150,21 @@ const siteConfig = {
               postsPerPage: 12,
               blogSidebarTitle: "All posts",
               blogSidebarCount: 0,
+              admonitions: {
+                tag: ":::",
+                keywords: [
+                  "additional",
+                  "note",
+                  "tip",
+                  "info-tip",
+                  "info",
+                  "caution",
+                  "danger",
+                  "sourcecode",
+                  "create-example",
+                  "simple",
+                ],
+              },
               feedOptions: {
                 type: "all",
                 copyright: `Copyright © ${new Date().getFullYear()} Refine.`,

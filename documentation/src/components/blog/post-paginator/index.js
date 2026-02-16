@@ -56,7 +56,8 @@ export const PostPaginator = ({ posts, title }) => {
                   "py-4",
                   "no-underline",
                   "hover:no-underline",
-                  "border-zinc-800",
+                  "border-zinc-200",
+                  "dark:border-zinc-800",
                   "border-b",
                   isFirstItem && "border-t",
                 )}

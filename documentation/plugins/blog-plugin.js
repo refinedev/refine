@@ -12,6 +12,25 @@ const pluginDataDirRoot = path.join(
 const aliasedSource = (source) =>
   `~blog/${utils.posixPath(path.relative(pluginDataDirRoot, source))}`;
 
+function formatBlogDate(dateValue) {
+  if (!dateValue) {
+    return dateValue;
+  }
+
+  const parsedDate = new Date(dateValue);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return dateValue;
+  }
+
+  const shortDateFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+  return shortDateFormatter.format(parsedDate).toUpperCase();
+}
+
 function paginateBlogPosts({
   blogPosts,
   basePageUrl,
@@ -170,10 +189,7 @@ function toCategoryName(label = "") {
   return value;
 }
 
-function getBlogPostCategoryData({
-  frontMatter = {},
-  blogCategories = {},
-}) {
+function getBlogPostCategoryData({ frontMatter = {}, blogCategories = {} }) {
   const value = getBlogPostCategory(frontMatter);
   const categoryKey = value.toLowerCase();
   const existingCategory = blogCategories[categoryKey];
@@ -257,7 +273,7 @@ async function blogPluginExtended(...pluginArgs) {
      */
     contentLoaded: async function (data) {
       const { content: blogContents, actions } = data;
-      const { addRoute, createData,  } = actions;
+      const { addRoute, createData } = actions;
       const {
         blogPosts: allBlogPosts,
         blogTags,
@@ -265,7 +281,9 @@ async function blogPluginExtended(...pluginArgs) {
       } = blogContents;
       const blogCategoriesListPath = "/blog/categories";
 
-
+      allBlogPosts.forEach((post) => {
+        post.metadata.formattedDate = formatBlogDate(post.metadata.date);
+      });
 
       const blogItemsToMetadata = {};
 
