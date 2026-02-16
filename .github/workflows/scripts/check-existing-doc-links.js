@@ -88,6 +88,6 @@ if (!process.env.DEPLOY_URL) {
 }
 
 checkExistingLinks(
-  process.env.SITEMAP_URL ?? "https://refine.dev/sitemap.xml",
+  process.env.SITEMAP_URL ?? "https://refine.dev/core/sitemap.xml",
   process.env.DEPLOY_URL,
 );
