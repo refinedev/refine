@@ -676,3 +676,45 @@ h4 del code {
 .cm-gutter.cm-lineNumbers {
   @apply !text-xs !leading-5;
 }
+
+/* Open Files Tab - Curved Borders for Active Tab */
+.blog-tab-item.active .blog-tab-item-border {
+  display: block;
+  content: "";
+  position: absolute;
+  transition: opacity 0.2s ease-out;
+  opacity: 1;
+  left: -0.5rem;
+  top: -4px;
+  width: calc(100% + 1rem);
+  height: calc(100% + 0.75rem);
+  pointer-events: none;
+  z-index: 1;
+}
+
+ul[role="tablist"] > li.blog-tab-item:first-child.active .blog-tab-item-border {
+  top: -2px;
+}
+
+/* Light Mode Curved Borders */
+html[data-theme="light"] .blog-tab-item.active .blog-tab-item-border {
+  background-position: calc(100% - 1rem) 0.25rem, 0 100%, 100% 100%,
+    calc(100% - 1rem) 0.25rem;
+  background-size: calc(100% - 2rem) 1px, 1rem 100%, 1rem 100%,
+    calc(100% - 2rem) calc(100% - 0.25rem);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(0deg, #e4e4e7, #e4e4e7),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%23fff' d='M16 52H0v-3.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8z'/%3E%3Cpath stroke='%23e4e4e7' d='M0 48.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%23fff' d='M0 52h16v-3.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8z'/%3E%3Cpath stroke='%23e4e4e7' d='M16 48.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8'/%3E%3C/svg%3E"),
+    linear-gradient(0deg, #fff, #fff);
+}
+
+/* Dark Mode Curved Borders */
+html[data-theme="dark"] .blog-tab-item.active .blog-tab-item-border {
+  background-position: 0 100%, 100% 100%, calc(100% - 1rem) 0.25rem;
+  background-size: 1rem 100%, 1rem 100%, calc(100% - 2rem) calc(100% - 0.25rem);
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%2318181b' d='M16 52H0v-3.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%2318181b' d='M0 52h16v-3.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8z'/%3E%3C/svg%3E"),
+    linear-gradient(0deg, #18181b, #18181b);
+}
