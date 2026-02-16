@@ -451,15 +451,49 @@ async function blogPluginExtended(...pluginArgs) {
           `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
           JSON.stringify(tagsProp, null, 2),
         );
-
-        addRoute({
-          path: blogTagsListPath,
-          component: "@theme/BlogTagsListPage",
-          exact: true,
-          modules: {
-            tags: aliasedSource(tagsPropPath),
-          },
+        const allTagsListPaginated = paginateBlogPosts({
+          blogPosts: allBlogPosts,
+          basePageUrl: blogTagsListPath,
+          blogTitle,
+          blogDescription,
+          postsPerPageOption: postsPerPage,
         });
+
+        await Promise.all(
+          allTagsListPaginated.map(async (blogPaginated) => {
+            const { metadata, items } = blogPaginated;
+
+            const tagProp = {
+              label: "All tags",
+              permalink: blogTagsListPath,
+              allTagsPath: blogTagsListPath,
+              count: allBlogPosts.length,
+              isAllTagsPage: true,
+            };
+
+            const tagPropPath = await createData(
+              `${utils.docuHash(`${metadata.permalink}-all-tags`)}.json`,
+              JSON.stringify(tagProp, null, 2),
+            );
+
+            const listMetadataPath = await createData(
+              `${utils.docuHash(`${metadata.permalink}-all-tags`)}-list.json`,
+              JSON.stringify(metadata, null, 2),
+            );
+
+            addRoute({
+              path: metadata.permalink,
+              component: "@theme/BlogTagsPostsPage",
+              exact: true,
+              modules: {
+                items: blogPostItemsModule(items),
+                tag: aliasedSource(tagPropPath),
+                tags: aliasedSource(tagsPropPath),
+                listMetadata: aliasedSource(listMetadataPath),
+              },
+            });
+          }),
+        );
       }
 
       async function createTagPostsListPage(tag) {
@@ -525,10 +559,10 @@ async function blogPluginExtended(...pluginArgs) {
 
         addRoute({
           path: blogCategoriesListPath,
-          component: "@theme/BlogTagsListPage",
+          component: "@theme/BlogCategoriesListPage",
           exact: true,
           modules: {
-            tags: aliasedSource(categoriesPropPath),
+            categories: aliasedSource(categoriesPropPath),
           },
         });
       }

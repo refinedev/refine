@@ -33,6 +33,18 @@ function useBlogPostsPlural() {
 
 function useBlogTagsPostsPageTitle(tag) {
   const blogPostsPlural = useBlogPostsPlural();
+
+  if (tag?.isAllTagsPage) {
+    return translate(
+      {
+        id: "theme.blog.allTagsTitle",
+        description: "The title of the page showing all tagged blog posts",
+        message: "{nPosts} across all tags",
+      },
+      { nPosts: blogPostsPlural(tag.count) },
+    );
+  }
+
   return translate(
     {
       id: "theme.blog.tagTitle",
@@ -54,12 +66,16 @@ function BlogTagsPostsPageMetadata({ tag }) {
 }
 
 function BlogTagsPostsPageContent({ tags, tag, items, sidebar, listMetadata }) {
+  const isAllTagsPage = tag?.isAllTagsPage === true;
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
     { label: "Tags", href: "/blog/tags" },
-    { label: tag.label, href: tag.permalink },
   ];
+
+  if (!isAllTagsPage) {
+    breadcrumbItems.push({ label: tag.label, href: tag.permalink });
+  }
 
   return (
     <BlogLayout showHero sidebar={sidebar}>
