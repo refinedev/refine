@@ -87,6 +87,10 @@ a {
   @apply prose-a:text-teal-600 prose-a:dark:text-teal-400;
 }
 
+.blog-wrapper .refine-prose table thead {
+  @apply bg-white dark:bg-zinc-950;
+}
+
 .refine-prose li code {
   @apply align-baseline;
 }
@@ -158,7 +162,7 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
 }
 
 .refine-prose table {
-  @apply prose-table:border-none;
+  @apply prose-table:border-none border border-zinc-200 dark:border-zinc-700;
   @apply rounded-xl;
   border-collapse: separate;
   border-spacing: 0;
@@ -171,9 +175,21 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
 
 .refine-prose table th,
 .refine-prose table td {
-  @apply border border-zinc-200 px-2 py-2 dark:border-zinc-700;
+  @apply border-0 px-2 py-2;
   @apply text-base;
   @apply align-top;
+}
+
+.refine-prose table tr > * + * {
+  @apply border-l border-zinc-200 dark:border-zinc-700;
+}
+
+.refine-prose table tbody tr + tr > * {
+  @apply border-t border-zinc-200 dark:border-zinc-700;
+}
+
+.refine-prose table thead + tbody tr:first-child > * {
+  @apply border-t border-zinc-200 dark:border-zinc-700;
 }
 
 .refine-prose table thead tr:first-child th:first-child {
@@ -234,8 +250,19 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
   @apply bg-transparent;
 }
 
+.refine-prose
+  :where(thead):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+}
+
 .refine-prose table thead tr {
   @apply border-none;
+  border-bottom: 0 !important;
+}
+
+.refine-prose table thead th {
+  border-bottom-width: 0 !important;
 }
 
 .refine-prose .table-container {
