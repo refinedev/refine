@@ -1,5 +1,5 @@
 [default]
-locale = "en-us"
+locale = "en"
 
 extend-ignore-re = [
     "\\.refine",

@@ -75,4 +75,4 @@ jobs:
         timeout-minutes: 15
       - name: Check Existing Links in Documentation
         if: ${{ github.ref != 'refs/heads/main' && steps.netlify-deploy.outputs.deploy-url }}
-        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=https://refine.dev/sitemap.xml node ./.github/workflows/scripts/check-existing-doc-links.js
+        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=https://refine.dev/core/sitemap.xml node ./.github/workflows/scripts/check-existing-doc-links.js

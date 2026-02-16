@@ -1,7 +1,7 @@
 ---
 title: Top Frameworks for Building Admin Panels and Dashboards in 2024
 description: We'll look at the best frameworks for building admin panels and dashboards in 2024.
-slug: admin-panels
+slug: top-frameworks-for-building-admin-panel
 authors: chidume_nnamdi
 tags: [comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-29-admin-panel-frameworks/social.png
