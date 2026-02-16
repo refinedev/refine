@@ -11,6 +11,7 @@ const BLOG_POST_VIEW_MODE_STORAGE_KEY = "blog-post-view-mode";
 export default function BlogPostItems({
   items,
   categories,
+  tags,
   isAuthorPage,
   isTagsPage,
 }) {
@@ -38,6 +39,18 @@ export default function BlogPostItems({
     }
   }, [viewMode]);
 
+  const tagItems = (tags ?? [])
+    .filter(
+      (tag) =>
+        typeof tag?.label === "string" && typeof tag?.permalink === "string",
+    )
+    .map((tag) => ({
+      value: tag.label,
+      name: tag.label,
+      permalink: tag.permalink,
+      count: tag.count,
+    }));
+
   return (
     <div className={clsx("w-full")}>
       <div
@@ -64,8 +77,15 @@ export default function BlogPostItems({
             "gap-3",
           )}
         >
-          {!isAuthorPage && !isTagsPage && (
-            <CategoryNavBar categories={categories} />
+          {!isAuthorPage && tagItems.length > 0 ? (
+            <CategoryNavBar
+              categories={tagItems}
+              allPath="/blog/tags"
+              allLabel="All tags"
+            />
+          ) : (
+            !isAuthorPage &&
+            !isTagsPage && <CategoryNavBar categories={categories} />
           )}
           <BlogPostViewModeToggle viewMode={viewMode} onChange={setViewMode} />
         </div>

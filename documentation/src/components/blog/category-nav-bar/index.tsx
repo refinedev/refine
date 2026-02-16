@@ -13,35 +13,53 @@ type CategoryItem = {
 type CategoryNavBarProps = {
   categories?: CategoryItem[];
   className?: string;
+  allPath?: string;
+  allLabel?: string;
 };
 
-export function CategoryNavBar({ categories, className }: CategoryNavBarProps) {
+export function CategoryNavBar({
+  categories,
+  className,
+  allPath = "/blog",
+  allLabel = "All posts",
+}: CategoryNavBarProps) {
   return (
     <>
       <CategoryNavBarSelect
         categories={categories}
+        allPath={allPath}
+        allLabel={allLabel}
         className={clsx("max-w-[184px]", "blog-max:hidden", className)}
       />
       <CategoryNavBarDesktop
         categories={categories}
+        allPath={allPath}
+        allLabel={allLabel}
         className={clsx("hidden blog-max:block", className)}
       />
     </>
   );
 }
 
-function CategoryNavBarSelect({ categories, className }: CategoryNavBarProps) {
+function CategoryNavBarSelect({
+  categories,
+  className,
+  allPath = "/blog",
+  allLabel = "All posts",
+}: CategoryNavBarProps) {
   const { pathname } = useLocation();
   const normalizedPathname = normalizePathname(pathname);
-  const isAllPostsActive = isAllPostsPath(normalizedPathname);
+  const normalizedAllPath = normalizePathname(allPath);
+  const isAllPostsActive = isAllPath(normalizedPathname, normalizedAllPath);
   const selectedCategoryPermalink = getActiveCategoryPermalink(
     pathname,
     categories,
+    allPath,
   );
   const selectedCategory = (categories ?? []).find(
     (category) => category.permalink === selectedCategoryPermalink,
   );
-  const selectedLabel = selectedCategory?.name ?? "All posts";
+  const selectedLabel = selectedCategory?.name ?? allLabel;
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -159,7 +177,7 @@ function CategoryNavBarSelect({ categories, className }: CategoryNavBarProps) {
             role="listbox"
           >
             <Link
-              to="/blog"
+              to={allPath}
               className={clsx(
                 "block",
                 "no-underline hover:no-underline",
@@ -183,7 +201,7 @@ function CategoryNavBarSelect({ categories, className }: CategoryNavBarProps) {
               )}
               onClick={() => setIsOpen(false)}
             >
-              All posts
+              {allLabel}
             </Link>
 
             {(categories ?? []).map((category) => {
@@ -229,10 +247,16 @@ function CategoryNavBarSelect({ categories, className }: CategoryNavBarProps) {
   );
 }
 
-function CategoryNavBarDesktop({ categories, className }: CategoryNavBarProps) {
+function CategoryNavBarDesktop({
+  categories,
+  className,
+  allPath = "/blog",
+  allLabel = "All posts",
+}: CategoryNavBarProps) {
   const { pathname } = useLocation();
   const normalizedPathname = normalizePathname(pathname);
-  const isAllPostsActive = isAllPostsPath(normalizedPathname);
+  const normalizedAllPath = normalizePathname(allPath);
+  const isAllPostsActive = isAllPath(normalizedPathname, normalizedAllPath);
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [hasOverflow, setHasOverflow] = useState(false);
@@ -320,7 +344,7 @@ function CategoryNavBarDesktop({ categories, className }: CategoryNavBarProps) {
         >
           <div className={clsx("flex", "w-max", "items-center", "gap-1")}>
             <Link
-              to="/blog"
+              to={allPath}
               className={clsx(
                 "no-underline hover:no-underline",
                 "whitespace-nowrap",
@@ -335,7 +359,7 @@ function CategoryNavBarDesktop({ categories, className }: CategoryNavBarProps) {
                 !isAllPostsActive && "text-zinc-400 hover:text-zinc-200",
               )}
             >
-              All posts
+              {allLabel}
             </Link>
             {(categories ?? []).map((category) => {
               const categoryPath = normalizePathname(category.permalink);
@@ -416,19 +440,25 @@ function CategoryNavBarDesktop({ categories, className }: CategoryNavBarProps) {
   );
 }
 
-const normalizePathname = (pathname = "") => pathname.replace(/\/+$/, "");
+const normalizePathname = (pathname = "") => {
+  const normalized = pathname.replace(/\/+$/, "");
 
-const isAllPostsPath = (normalizedPathname: string) =>
-  normalizedPathname === "/blog" ||
-  normalizedPathname.startsWith("/blog/page/");
+  return normalized || "/";
+};
+
+const isAllPath = (normalizedPathname: string, normalizedAllPath: string) =>
+  normalizedPathname === normalizedAllPath ||
+  normalizedPathname.startsWith(`${normalizedAllPath}/page/`);
 
 const getActiveCategoryPermalink = (
   pathname: string,
   categories?: CategoryItem[],
+  allPath = "/blog",
 ) => {
   const normalizedPathname = normalizePathname(pathname);
+  const normalizedAllPath = normalizePathname(allPath);
 
-  if (isAllPostsPath(normalizedPathname)) return "/blog";
+  if (isAllPath(normalizedPathname, normalizedAllPath)) return allPath;
 
   const activeCategory = (categories ?? []).find((category) => {
     const categoryPath = normalizePathname(category.permalink);
@@ -439,5 +469,5 @@ const getActiveCategoryPermalink = (
     );
   });
 
-  return activeCategory?.permalink ?? "/blog";
+  return activeCategory?.permalink ?? allPath;
 };
