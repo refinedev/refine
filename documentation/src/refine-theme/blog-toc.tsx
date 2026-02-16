@@ -117,9 +117,15 @@ const useSvgPath = (
 
     const measureAndBuildPath = () => {
       const items = container.querySelectorAll("[data-toc-item]");
+      const list = container.querySelector<HTMLElement>("[data-toc-list]");
       if (!items.length) return;
+      if (!list) return;
 
       const containerRect = container.getBoundingClientRect();
+      const listRect = list.getBoundingClientRect();
+      const contentBottom = listRect.bottom - containerRect.top;
+      const containerHeight = container.clientHeight;
+      const lineBottom = Math.max(contentBottom, containerHeight);
       const pathCommands: string[] = [];
       let maxWidth = 0;
       let totalHeight = 0;
@@ -171,6 +177,14 @@ const useSvgPath = (
         prevBottom = bottom;
       });
 
+      // Extend the line to the bottom of the TOC area
+      if (prevOffset >= 0 && lineBottom > prevBottom) {
+        pathCommands.push(`L${prevOffset} ${lineBottom}`);
+      }
+
+      // Add a tiny buffer so the final line cap is not clipped by the mask bounds
+      totalHeight = Math.max(totalHeight, lineBottom) + 1;
+
       setSvg({
         path: pathCommands.join(" "),
         width: maxWidth + 1,
@@ -182,6 +196,10 @@ const useSvgPath = (
     const observer = new ResizeObserver(measureAndBuildPath);
     measureAndBuildPath();
     observer.observe(container);
+    const list = container.querySelector<HTMLElement>("[data-toc-list]");
+    if (list) {
+      observer.observe(list);
+    }
 
     return () => observer.disconnect();
   }, [toc, containerRef]);
@@ -420,7 +438,7 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
         "not-prose",
       )}
     >
-      <div className={clsx()}>
+      <div className={clsx("min-h-full", "flex", "flex-col")}>
         {/* Header */}
         <div
           className={clsx(
@@ -447,12 +465,15 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
           </h2>
         </div>
         {/* TOC Container */}
-        <div ref={containerRef} className="relative">
+        <div ref={containerRef} className="relative flex-1">
           {/* SVG Line Indicator */}
           {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
 
           {/* TOC Items */}
-          <ul className={clsx("list-none m-0 p-0 not-prose")}>
+          <ul
+            data-toc-list
+            className={clsx("list-none m-0 p-0 not-prose", "pb-12")}
+          >
             {toc.map((item) => (
               <BlogTOCItem
                 key={item.id}
@@ -464,16 +485,6 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
             ))}
           </ul>
         </div>
-        {/* Footer */}
-        <div
-          className={clsx(
-            "pt-12",
-            "border-l",
-            "border-zinc-200",
-            "dark:border-zinc-800",
-            "ml-[0.5px]",
-          )}
-        />
       </div>
     </div>
   );
