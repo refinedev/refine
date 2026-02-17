@@ -432,11 +432,14 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
       className={clsx(
         "hidden blog-md:block",
         "sticky right-0 top-[64px]",
-        "w-[388px]",
+        "w-[340px]",
         "overflow-auto h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",
       )}
+      style={{
+        scrollbarWidth: "none",
+      }}
     >
       <div className={clsx("min-h-full", "flex", "flex-col")}>
         {/* Header */}

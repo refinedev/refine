@@ -6,6 +6,7 @@ import { InfoIcon } from "./icons/info";
 import { TipIcon } from "./icons/tip";
 import { NoteIcon } from "./icons/note";
 import { GithubIcon } from "./icons/github";
+import { isCurrentBlogRoute } from "../utils/is-blog-route";
 
 type Props = {
   type:
@@ -110,9 +111,7 @@ const titles = {
 };
 
 export const Admonition = ({ type, title, children }: Props) => {
-  const isBlog =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/blog");
+  const isBlog = isCurrentBlogRoute();
   const colorTextClasses = isBlog ? colorTextClassesBlog : colorTextClassesDoc;
   const colorWrapperClasses = isBlog
     ? colorWrapperClassesBlog
@@ -136,7 +135,6 @@ export const Admonition = ({ type, title, children }: Props) => {
         "admonition",
         `admonition-${type}`,
         "mb-6",
-        !isBlog && "refine-wider-container",
         clsWrapper,
       )}
     >
@@ -179,9 +177,7 @@ export const Admonition = ({ type, title, children }: Props) => {
 };
 
 const Simple = ({ type, title, children }: Props) => {
-  const isBlog =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/blog");
+  const isBlog = isCurrentBlogRoute();
   const colorTextClasses = isBlog ? colorTextClassesBlog : colorTextClassesDoc;
   const colorWrapperClasses = isBlog
     ? colorWrapperClassesBlog

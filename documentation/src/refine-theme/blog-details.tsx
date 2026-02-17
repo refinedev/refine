@@ -93,7 +93,6 @@ export const BlogDetails = (props: any) => {
         "refine-details",
         "blog-details",
         "mb-4",
-        "refine-wider-container",
       )}
       data-has-code-title={codeTitle ? "true" : undefined}
       summary={summaryWithVariant}

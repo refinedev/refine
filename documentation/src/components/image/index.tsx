@@ -22,6 +22,7 @@ export const Image = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     <span
       onClick={handleWrapperClick}
       className={clsx(
+        "blog-content-bleed-16",
         "block",
         "w-full",
         "h-auto",

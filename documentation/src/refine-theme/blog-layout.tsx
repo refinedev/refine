@@ -23,16 +23,18 @@ export const RefineBlogLayout = (props: Props) => {
         <div
           className={clsx(
             "flex",
-            "gap-12",
             "justify-center",
+            "blog-max:justify-between",
             "mx-auto",
-            "w-full",
             "relative",
+            "w-full",
+            "blog-sm:max-w-[560px]",
+            "blog-md:max-w-[672px]",
+            "blog-lg:max-w-[896px]",
+            "blog-max:max-w-[1200px]",
           )}
         >
-          <div className={clsx("refine-prose", "w-full", "min-w-0", "flex-1")}>
-            {children}
-          </div>
+          <div className={clsx("refine-prose")}>{children}</div>
           {toc && (
             <div className={clsx("hidden blog-max:block", "flex-shrink-0")}>
               {toc}

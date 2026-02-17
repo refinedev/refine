@@ -3,14 +3,13 @@ import React from "react";
 
 import BlogTabs from "@site/src/refine-theme/blog-tabs";
 import CommonTabs from "@site/src/refine-theme/common-tabs";
-
-const BLOG_PATH_REGEX = /(^|\/)blog(\/|$)/;
+import { isBlogRoute } from "@site/src/utils/is-blog-route";
 
 export default function Tabs(props) {
   const { pathname = "" } = useLocation();
-  const isBlogRoute = BLOG_PATH_REGEX.test(pathname);
+  const isBlogPage = isBlogRoute(pathname);
 
-  if (isBlogRoute) {
+  if (isBlogPage) {
     return <BlogTabs {...props} />;
   }
 

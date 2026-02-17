@@ -157,8 +157,8 @@ function BlogTabsComponent(props) {
       className={clsx(
         "blog-tabs",
         "mb-6",
-        "refine-wider-container",
         "bg-white",
+        "blog-content-bleed-16",
         "dark:bg-zinc-900",
         "border",
         "border-zinc-200",

@@ -31,7 +31,7 @@ export const BlogFooter = () => {
           "gap-4",
           "px-4",
           "blog-sm:px-0",
-          "blog-sm:max-w-[328px]",
+          "blog-sm:max-w-[560px]",
           "blog-md:h-16",
           "blog-md:max-w-[672px]",
           "blog-lg:max-w-[896px]",
@@ -211,10 +211,11 @@ export const BlogFooter = () => {
         <div
           className={clsx(
             "flex",
-            "h-6",
-            "w-[184px]",
+            "h-9",
+            "w-auto",
             "flex-row",
-            "items-start",
+            "items-center",
+            "justify-center",
             "gap-4",
             "blog-md:hidden",
           )}
@@ -227,8 +228,8 @@ export const BlogFooter = () => {
               rel="noopener"
               className={clsx(
                 "flex",
-                "h-6",
-                "w-6",
+                "h-9",
+                "w-9",
                 "flex-col",
                 "items-center",
                 "justify-center",
@@ -237,7 +238,7 @@ export const BlogFooter = () => {
                 "dark:text-zinc-400",
               )}
             >
-              <Icon className={clsx("h-5", "w-5")} />
+              <Icon className={clsx("h-6", "w-6")} />
             </a>
           ))}
         </div>

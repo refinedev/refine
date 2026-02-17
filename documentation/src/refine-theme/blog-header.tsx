@@ -74,32 +74,31 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
           "mx-auto flex h-full w-full items-center justify-between",
           "px-4 blog-sm:px-0",
           "w-full",
-          "blog-sm:max-w-[328px]",
+          "blog-sm:max-w-[560px]",
           "blog-md:max-w-[672px]",
           "blog-lg:max-w-[896px]",
           "blog-max:max-w-[1200px]",
         )}
       >
-        <div className={clsx("flex items-center gap-2")}>
-          <Link
-            to="/core"
+        <Link
+          to="/blog"
+          className={clsx(
+            "blog-max:-ml-12",
+            "flex items-center gap-2",
+            "no-underline hover:no-underline",
+          )}
+        >
+          <RefineLogoSingleIcon
+            className={clsx("h-6 w-6 text-zinc-900 dark:text-white")}
+          />
+          <span
             className={clsx(
-              "flex items-center gap-2",
-              "no-underline hover:no-underline",
+              "text-base font-semibold leading-6 tracking-[-0.004em]",
+              "text-zinc-900 dark:text-white",
             )}
           >
-            <RefineLogoSingleIcon
-              className={clsx("h-6 w-6 text-zinc-900 dark:text-white")}
-            />
-            <span
-              className={clsx(
-                "text-base font-semibold leading-6 tracking-[-0.004em]",
-                "text-zinc-900 dark:text-white",
-              )}
-            >
-              Refine
-            </span>
-          </Link>
+            R<span>e</span>fine
+          </span>
           <span
             className={clsx(
               "text-2xl font-thin leading-6",
@@ -108,17 +107,15 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
           >
             /
           </span>
-          <Link
-            to="/blog"
+          <span
             className={clsx(
               "text-base font-normal leading-6 tracking-[-0.004em]",
               "text-zinc-700 dark:text-zinc-300",
-              "no-underline hover:no-underline",
             )}
           >
             Blog
-          </Link>
-        </div>
+          </span>
+        </Link>
 
         <div className={clsx("flex items-center gap-4")}>
           <BlogSearch />

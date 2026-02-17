@@ -46,6 +46,35 @@
   @apply !bg-teal-100 dark:!bg-teal-900;
 }
 
+@media (min-width: 720px) {
+  :is(
+      .blog-wrapper .blog-content-bleed-16,
+      .blog-wrapper .admonition,
+      .blog-wrapper .markdown p:has(> img:only-child),
+      .blog-wrapper .markdown p:has(> a:only-child > img:only-child),
+      .blog-wrapper .markdown figure:has(> img:only-child),
+      .blog-wrapper .markdown figure:has(> a:only-child > img:only-child)
+    ) {
+    margin-left: -16px;
+    margin-right: -16px;
+    width: calc(100% + 32px);
+    max-width: none;
+  }
+}
+
+.blog-wrapper
+  .markdown
+  :is(
+    p:has(> img:only-child) > img,
+    p:has(> a:only-child > img:only-child) > a > img,
+    figure:has(> img:only-child) > img,
+    figure:has(> a:only-child > img:only-child) > a > img
+  ) {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
 /* Admonition blog overrides */
 .blog-wrapper .admonition {
   @apply text-base tracking-[-0.004em];

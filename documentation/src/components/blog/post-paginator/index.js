@@ -18,8 +18,8 @@ export const PostPaginator = ({ posts, title }) => {
         "blog-md:px-0",
         "blog-md:max-w-[672px]",
         "blog-lg:max-w-[720px]",
-        "pt-8",
-        "pb-10",
+        "pt-16",
+        "pb-12",
         "blog-sm:pt-[72px] blog-sm:pb-[120px]",
       )}
     >
@@ -43,60 +43,58 @@ export const PostPaginator = ({ posts, title }) => {
             const isFirstItem = index === 0;
 
             return (
-              <Link
-                to={post.permalink}
-                rel="dofollow"
-                key={post.permalink ?? post.id}
-                className={clsx(
-                  "flex",
-                  "w-full",
-                  "items-start",
-                  "gap-8",
-                  "px-4",
-                  "py-4",
-                  "no-underline",
-                  "hover:no-underline",
-                  "border-zinc-200",
-                  "dark:border-zinc-800",
-                  "border-b",
-                  isFirstItem && "border-t",
-                )}
-              >
-                <div
+              <React.Fragment key={post.permalink ?? post.id}>
+                {isFirstItem && <PostDivider />}
+                <Link
+                  to={post.permalink}
+                  rel="dofollow"
                   className={clsx(
-                    "flex-1",
-                    "min-w-0",
-                    "text-base",
-                    "leading-6",
-                    "font-medium",
-                    "tracking-[-0.004em]",
-                    "text-zinc-700",
-                    "dark:text-zinc-300",
-                    "line-clamp-2",
+                    "flex",
+                    "w-full",
+                    "items-start",
+                    "gap-8",
+                    "py-4",
+                    "no-underline",
+                    "hover:no-underline",
                   )}
                 >
-                  {post.title}
-                </div>
+                  <div
+                    className={clsx(
+                      "flex-1",
+                      "min-w-0",
+                      "text-base",
+                      "leading-6",
+                      "font-medium",
+                      "tracking-[-0.004em]",
+                      "text-zinc-700",
+                      "dark:text-zinc-300",
+                      "line-clamp-2",
+                    )}
+                  >
+                    {post.title}
+                  </div>
 
-                <div
-                  className={clsx(
-                    "w-[120px]",
-                    "h-6",
-                    "py-1",
-                    "text-right",
-                    "text-[10px]",
-                    "leading-4",
-                    "font-semibold",
-                    "uppercase",
-                    "tracking-[0.01em]",
-                    "text-zinc-500",
-                    "dark:text-zinc-400",
-                    "shrink-0",
-                  )}
-                >
-                  <Date date={post.date} formattedDate={post.formattedDate} />
-                </div>
-              </Link>
+                  <div
+                    className={clsx(
+                      "w-[120px]",
+                      "h-6",
+                      "py-1",
+                      "text-right",
+                      "text-[10px]",
+                      "leading-4",
+                      "font-semibold",
+                      "uppercase",
+                      "tracking-[0.01em]",
+                      "text-zinc-500",
+                      "dark:text-zinc-400",
+                      "shrink-0",
+                    )}
+                  >
+                    <Date date={post.date} formattedDate={post.formattedDate} />
+                  </div>
+                </Link>
+                <PostDivider />
+              </React.Fragment>
             );
           })}
         </div>
@@ -104,3 +102,14 @@ export const PostPaginator = ({ posts, title }) => {
     </div>
   );
 };
+
+const PostDivider = () => (
+  <div
+    className={clsx(
+      "blog-content-bleed-16",
+      "h-px",
+      "bg-zinc-200",
+      "dark:bg-zinc-800",
+    )}
+  />
+);

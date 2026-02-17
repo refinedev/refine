@@ -48,7 +48,6 @@ export const BlogPostPageView = ({ children }) => {
     <article
       className={clsx(
         "w-full",
-        "mx-auto",
         "px-4",
         "blog-md:px-0",
         "blog-md:max-w-[672px]",
@@ -232,7 +231,7 @@ const CoverImage = ({ image, title, className }) => {
   }
 
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className, "blog-content-bleed-16")}>
       <img
         className={clsx("aspect-[894/504]", "w-full", "rounded-2xl")}
         src={coverUrl}
@@ -327,6 +326,7 @@ const BackToAllPosts = () => {
         "ease-in-out",
         "hover:text-zinc-900",
         "dark:hover:text-white",
+        "blog-max:-ml-[22px]",
       )}
     >
       <ArrowLeft className={clsx("h-4", "w-4")} />
@@ -493,7 +493,7 @@ const PostBody = ({ children }) => {
 
       return (
         <>
-          <div className={clsx("not-prose", "my-12")}>
+          <div className={clsx("not-prose", "my-12", "blog-content-bleed-16")}>
             <BannerBlog />
           </div>
           {heading}

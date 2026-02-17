@@ -13,6 +13,7 @@ import React from "react";
 import { CommonCodeBlockContainer } from "./common-codeblock-container";
 import { CommonCopyButton } from "./common-copy-button";
 import { CommonWordWrapButton } from "./common-wordwrap-button";
+import { isCurrentBlogRoute } from "../utils/is-blog-route";
 
 const DefaultDocumentIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -70,6 +71,8 @@ export const CodeBlockString = ({
   icon,
   style,
 }) => {
+  const isBlog = isCurrentBlogRoute();
+
   const {
     prism: { defaultLanguage, magicComments },
   } = useThemeConfig();
@@ -102,7 +105,7 @@ export const CodeBlockString = ({
         "dark:bg-refine-react-dark-code",
         "mb-6",
         "relative",
-        "refine-wider-container",
+        !isBlog && "refine-wider-container",
       )}
       style={style}
     >

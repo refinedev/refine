@@ -13,6 +13,7 @@ import {
 import Translate from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
+import { isBlogRoute } from "@site/src/utils/is-blog-route";
 import translations from "@theme/SearchTranslations";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -247,7 +248,7 @@ export default function SearchBar({ CustomButton }: { CustomButton?: any }) {
   const { pathname } = useLocation();
 
   const algoliaConfig = siteConfig.themeConfig.algolia as Record<string, any>;
-  const isBlogPage = /^\/blog(\/|$)/.test(pathname);
+  const isBlogPage = isBlogRoute(pathname);
 
   const resolvedAlgoliaConfig = isBlogPage
     ? {
