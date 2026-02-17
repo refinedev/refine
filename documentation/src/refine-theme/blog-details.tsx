@@ -81,7 +81,6 @@ export const BlogDetails = (props: any) => {
   const summaryWithVariant =
     summary && React.isValidElement(summary)
       ? React.cloneElement(summary, {
-          hasCode,
           codeTitle,
         })
       : summary;
@@ -95,18 +94,11 @@ export const BlogDetails = (props: any) => {
         "blog-details",
         "mb-4",
         "refine-wider-container",
-        hasCode && "blog-details--has-code",
-        codeTitle && "blog-details--has-code-title",
       )}
+      data-has-code-title={codeTitle ? "true" : undefined}
       summary={summaryWithVariant}
     >
-      <div
-        className={clsx(
-          "blog-details-content",
-          !hasCode && "blog-details-content--default",
-          hasCode && "blog-details-content--has-code",
-        )}
-      >
+      <div className={clsx("blog-details-content", !hasCode && "p-4")}>
         {contentItems}
       </div>
     </DetailsGeneric>

@@ -52,8 +52,8 @@ interface ThumbPosition {
  */
 const getLineOffset = (depth: number): number => {
   if (depth <= 2) return 1;
-  if (depth === 3) return 14;
-  return 22;
+  if (depth === 3) return 9;
+  return 9;
 };
 
 /**
@@ -154,9 +154,9 @@ const useSvgPath = (
           const deltaY = top - prevBottom;
           const directionY = Math.sign(deltaY) || 1;
           const curveStrength = Math.min(
-            6,
-            Math.abs(deltaY) * 0.45,
-            Math.abs(offset - prevOffset) * 0.45,
+            8,
+            // Math.abs(deltaY) * 0.45,
+            // Math.abs(offset - prevOffset) * 0.45,
           );
 
           if (curveStrength > 0) {
@@ -472,7 +472,11 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
           {/* TOC Items */}
           <ul
             data-toc-list
-            className={clsx("list-none m-0 p-0 not-prose", "pb-12")}
+            className={clsx(
+              "list-none m-0 p-0 not-prose",
+              "pb-12",
+              "w-[296px]",
+            )}
           >
             {toc.map((item) => (
               <BlogTOCItem

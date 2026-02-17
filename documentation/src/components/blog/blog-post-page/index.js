@@ -166,7 +166,7 @@ const ShareActions = ({ shareUrl, title, tags, description, siteUrl }) => {
           "font-semibold",
           "uppercase",
           "tracking-[-0.01em]",
-          "text-zinc-600",
+          "text-zinc-500",
           "dark:text-zinc-400",
         )}
       >
@@ -234,12 +234,7 @@ const CoverImage = ({ image, title, className }) => {
   return (
     <div className={clsx(className)}>
       <img
-        className={clsx(
-          "aspect-[894/504]",
-          "w-full",
-          "rounded-xl",
-          "blog-lg:rounded-[2.25rem]",
-        )}
+        className={clsx("aspect-[894/504]", "w-full", "rounded-2xl")}
         src={coverUrl}
         alt={title}
       />
@@ -261,7 +256,7 @@ const PostHeader = ({
   siteUrl,
 }) => {
   return (
-    <header className={clsx("not-prose", "pt-8", "blog-lg:pt-12")}>
+    <header className={clsx("not-prose", "pt-8", "blog-lg:pt-16")}>
       <div
         className={clsx(
           "flex",

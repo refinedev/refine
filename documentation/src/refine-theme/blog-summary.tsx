@@ -4,36 +4,21 @@ import React from "react";
 export const BlogSummary = ({
   children,
   className,
-  hasCode = false,
   codeTitle,
   ...props
 }: any) => {
-  const summaryLabel = hasCode && codeTitle ? codeTitle : children;
+  const normalizedCodeTitle =
+    typeof codeTitle === "string" ? codeTitle.trim() : undefined;
+  const summaryLabel = normalizedCodeTitle || children;
 
   return (
-    <summary
-      className={clsx(
-        "blog-summary",
-        !hasCode && "blog-summary--default",
-        hasCode && "blog-summary--has-code",
-        className,
-      )}
-      {...props}
-    >
+    <summary className={clsx("blog-summary", className)} {...props}>
       <div className={clsx("w-4 h-4", "flex items-center justify-center")}>
         <BlogSummaryChevronIcon
           className={clsx("blog-summary-chevron", "w-4 h-4")}
         />
       </div>
-      <span
-        className={clsx(
-          "blog-summary-label",
-          !hasCode && "blog-summary-label--default",
-          hasCode && "blog-summary-label--has-code",
-        )}
-      >
-        {summaryLabel}
-      </span>
+      <span className={clsx("blog-summary-label")}>{summaryLabel}</span>
     </summary>
   );
 };
