@@ -107,7 +107,7 @@ export const CodeBlockString = ({
       style={style}
     >
       {title && <CodeBlockTitle icon={icon}>{title}</CodeBlockTitle>}
-      <div className={clsx("relative", "pt-3", "pb-0", "not-prose")}>
+      <div className={clsx("relative", "pt-4", "pb-0", "not-prose")}>
         <Highlight
           {...defaultProps}
           theme={prismTheme}
@@ -160,7 +160,7 @@ export const CodeBlockString = ({
       <div
         className={clsx(
           "absolute",
-          title ? "top-2 right-2" : "top-3 right-3",
+          title ? "top-14 right-4" : "top-3 right-3",
           "flex items-center gap-2",
         )}
       >
