@@ -18,6 +18,24 @@
   @apply prose-a:text-teal-600 prose-a:dark:text-teal-400;
 }
 
+.blog-wrapper .refine-prose h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 0;
+}
+
+.blog-wrapper .refine-prose h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+}
+
+.blog-wrapper .refine-prose h4 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.004em;
+}
+
 .blog-wrapper a:has(> code):not(.refine-toc-item) code {
   @apply !text-teal-700 dark:!text-teal-400;
   @apply !bg-teal-200 dark:!bg-teal-950;
