@@ -1,5 +1,4 @@
-.docs-wrapper:root,
-.blog-wrapper:root {
+.docs-wrapper:root {
   --primary-font-sans: "Inter";
 }
 
@@ -262,18 +261,6 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
   @apply my-0 table table-auto;
 }
 
-.blog-wrapper .refine-prose table thead {
-  @apply bg-white dark:bg-zinc-950 text-sm;
-}
-
-.blog-wrapper .refine-prose table thead th {
-  @apply bg-white dark:bg-zinc-950 text-sm tracking-[-0.004em] text-start;
-}
-
-.blog-wrapper .refine-prose table tbody td {
-  @apply text-sm tracking-[-0.007em];
-}
-
 .refine-toc-item {
   @apply cursor-pointer;
 }
@@ -308,20 +295,6 @@ p:has(> code) code {
 
 li a:has(> code) code {
   @apply !mx-0 !align-baseline;
-}
-
-.blog-wrapper .refine-prose {
-  @apply prose-a:text-teal-600 prose-a:dark:text-teal-400;
-}
-
-.blog-wrapper a:has(> code):not(.refine-toc-item) code {
-  @apply !text-teal-700 dark:!text-teal-400;
-  @apply !bg-teal-200 dark:!bg-teal-950;
-}
-
-.blog-wrapper a:has(> code):not(.refine-toc-item):hover code {
-  @apply !text-teal-700 dark:!text-teal-400;
-  @apply !bg-teal-100 dark:!bg-teal-900;
 }
 
 /* admonition overrides */
@@ -372,146 +345,6 @@ li a:has(> code) code {
 
 .admonition.admonition-note li::marker {
   @apply text-teal-700 dark:text-teal-400 text-xl leading-7;
-}
-
-/* admonition blog overrides */
-
-.blog-wrapper .admonition {
-  @apply text-base tracking-[-0.004em];
-}
-
-.blog-wrapper .admonition li::marker {
-  @apply text-base;
-}
-
-.blog-wrapper .admonition code:not(pre > code) {
-  @apply bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white px-1.5;
-}
-
-.blog-wrapper .admonition.admonition-caution a:has(> code) code {
-  @apply !text-amber-700 dark:!text-amber-400;
-  @apply !bg-amber-100 dark:!bg-amber-950;
-}
-
-.blog-wrapper .admonition.admonition-caution a:has(> code):hover code {
-  @apply !bg-amber-200 dark:!bg-amber-950;
-}
-
-.blog-wrapper .admonition.admonition-danger a:has(> code) code {
-  @apply !text-red-700 dark:!text-red-400;
-  @apply !bg-red-100 dark:!bg-red-950;
-}
-
-.blog-wrapper .admonition.admonition-danger a:has(> code):hover code {
-  @apply !bg-red-200 dark:!bg-red-950;
-}
-
-.blog-wrapper .admonition.admonition-info a:has(> code) code {
-  @apply !text-blue-700 dark:!text-blue-400;
-  @apply !bg-blue-100 dark:!bg-blue-950;
-}
-
-.blog-wrapper .admonition.admonition-info a:has(> code):hover code {
-  @apply !bg-blue-200 dark:!bg-blue-950;
-}
-
-.blog-wrapper .admonition.admonition-info-tip a:has(> code) code {
-  @apply !text-blue-700 dark:!text-blue-400;
-  @apply !bg-blue-100 dark:!bg-blue-950;
-}
-
-.blog-wrapper .admonition.admonition-info-tip a:has(> code):hover code {
-  @apply !bg-blue-200 dark:!bg-blue-950;
-}
-
-.blog-wrapper .admonition.admonition-tip a:has(> code) code {
-  @apply !text-green-700 dark:!text-green-400;
-  @apply !bg-green-100 dark:!bg-green-950;
-}
-
-.blog-wrapper .admonition.admonition-tip a:has(> code):hover code {
-  @apply !bg-green-200 dark:!bg-green-950;
-}
-
-.blog-wrapper .admonition.admonition-note a:has(> code) code {
-  @apply !text-teal-700 dark:!text-teal-400;
-  @apply !bg-teal-100 dark:!bg-teal-950;
-}
-
-.blog-wrapper .admonition.admonition-note a:has(> code):hover code {
-  @apply !bg-teal-200 dark:!bg-teal-950;
-}
-
-.blog-wrapper .admonition.admonition-caution a:not(:has(> code)) {
-  @apply !text-amber-700 dark:!text-amber-400;
-}
-
-.blog-wrapper .admonition.admonition-caution a:not(:has(> code)):hover {
-  @apply !text-amber-800 dark:!text-amber-300;
-}
-
-.blog-wrapper .admonition.admonition-danger a:not(:has(> code)) {
-  @apply !text-red-700 dark:!text-red-400;
-}
-
-.blog-wrapper .admonition.admonition-danger a:not(:has(> code)):hover {
-  @apply !text-red-800 dark:!text-red-300;
-}
-
-.blog-wrapper .admonition.admonition-info a:not(:has(> code)) {
-  @apply !text-blue-700 dark:!text-blue-400;
-}
-
-.blog-wrapper .admonition.admonition-info a:not(:has(> code)):hover {
-  @apply !text-blue-800 dark:!text-blue-300;
-}
-
-.blog-wrapper .admonition.admonition-info-tip a:not(:has(> code)) {
-  @apply !text-blue-700 dark:!text-blue-400;
-}
-
-.blog-wrapper .admonition.admonition-info-tip a:not(:has(> code)):hover {
-  @apply !text-blue-800 dark:!text-blue-300;
-}
-
-.blog-wrapper .admonition.admonition-tip a:not(:has(> code)) {
-  @apply !text-green-700 dark:!text-green-400;
-}
-
-.blog-wrapper .admonition.admonition-tip a:not(:has(> code)):hover {
-  @apply !text-green-800 dark:!text-green-300;
-}
-
-.blog-wrapper .admonition.admonition-note a:not(:has(> code)) {
-  @apply !text-teal-700 dark:!text-teal-400;
-}
-
-.blog-wrapper .admonition.admonition-note a:not(:has(> code)):hover {
-  @apply !text-teal-800 dark:!text-teal-300;
-}
-
-.blog-wrapper .admonition.admonition-caution li::marker {
-  @apply text-amber-700 dark:text-amber-400;
-}
-
-.blog-wrapper .admonition.admonition-danger li::marker {
-  @apply dark:text-refine-red text-refine-red;
-}
-
-.blog-wrapper .admonition.admonition-info li::marker {
-  @apply text-blue-700 dark:text-blue-400;
-}
-
-.blog-wrapper .admonition.admonition-info-tip li::marker {
-  @apply text-blue-700 dark:text-blue-400;
-}
-
-.blog-wrapper .admonition.admonition-tip li::marker {
-  @apply text-green-700 dark:text-green-400;
-}
-
-.blog-wrapper .admonition.admonition-note li::marker {
-  @apply text-teal-700 dark:text-teal-400;
 }
 
 .admonition pre.prism-code code {
@@ -815,46 +648,4 @@ h4 del code {
 
 .cm-gutter.cm-lineNumbers {
   @apply !text-xs !leading-5;
-}
-
-/* Open Files Tab - Curved Borders for Active Tab */
-.blog-tab-item.active .blog-tab-item-border {
-  display: block;
-  content: "";
-  position: absolute;
-  transition: opacity 0.2s ease-out;
-  opacity: 1;
-  left: -0.5rem;
-  top: -4px;
-  width: calc(100% + 1rem);
-  height: calc(100% + 0.75rem);
-  pointer-events: none;
-  z-index: 1;
-}
-
-ul[role="tablist"] > li.blog-tab-item:first-child.active .blog-tab-item-border {
-  top: -2px;
-}
-
-/* Light Mode Curved Borders */
-html[data-theme="light"] .blog-tab-item.active .blog-tab-item-border {
-  background-position: calc(100% - 1rem) 0.25rem, 0 100%, 100% 100%,
-    calc(100% - 1rem) 0.25rem;
-  background-size: calc(100% - 2rem) 1px, 1rem 100%, 1rem 100%,
-    calc(100% - 2rem) calc(100% - 0.25rem);
-  background-repeat: no-repeat;
-  background-image: linear-gradient(0deg, #e4e4e7, #e4e4e7),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%23fff' d='M16 52H0v-3.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8z'/%3E%3Cpath stroke='%23e4e4e7' d='M0 48.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%23fff' d='M0 52h16v-3.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8z'/%3E%3Cpath stroke='%23e4e4e7' d='M16 48.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8'/%3E%3C/svg%3E"),
-    linear-gradient(0deg, #fff, #fff);
-}
-
-/* Dark Mode Curved Borders */
-html[data-theme="dark"] .blog-tab-item.active .blog-tab-item-border {
-  background-position: 0 100%, 100% 100%, calc(100% - 1rem) 0.25rem;
-  background-size: 1rem 100%, 1rem 100%, calc(100% - 2rem) calc(100% - 0.25rem);
-  background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%2318181b' d='M16 52H0v-3.5a8 8 0 0 0 8-8v-28a8 8 0 0 1 8-8z'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='52' fill='none' viewBox='0 0 16 52'%3E%3Cpath fill='%2318181b' d='M0 52h16v-3.5a8 8 0 0 1-8-8v-28a8 8 0 0 0-8-8z'/%3E%3C/svg%3E"),
-    linear-gradient(0deg, #18181b, #18181b);
 }

@@ -13,8 +13,6 @@ import PropTag from "@site/src/components/prop-tag";
 import PropsTable from "@site/src/components/props-table";
 import { RouterBadge } from "@site/src/components/router-badge";
 import UIConditional from "@site/src/components/ui-conditional";
-import CommonDetails from "@site/src/refine-theme/common-details";
-import CommonSummary from "@site/src/refine-theme/common-summary";
 import { Blockquote } from "@site/src/refine-theme/common-blockquote";
 import { DocThumbsUpDownFeedbackWidget } from "@site/src/refine-theme/doc-thumbs-up-down-feedback-widget";
 import { Image } from "@site/src/components/image";
@@ -25,6 +23,8 @@ import { TutorialConditional } from "@site/src/refine-theme/tutorial-conditional
 import { VideoInView } from "@site/src/components/video-in-view";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Details from "./details";
+import Summary from "./summary";
 
 export default {
   ...MDXComponents,
@@ -33,8 +33,8 @@ export default {
   UIConditional: UIConditional,
   PropsTable: PropsTable,
   PropTag: PropTag,
-  details: CommonDetails,
-  summary: CommonSummary,
+  details: Details,
+  summary: Summary,
   Tabs,
   TabItem,
   blockquote: Blockquote,

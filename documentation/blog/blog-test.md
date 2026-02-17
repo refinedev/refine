@@ -147,6 +147,7 @@ npm run dev
 ## Tabs Test
 
 <Tabs>
+
   <TabItem value="quick-start" label="Quick Start" default>
 
 Hızlı başlangıç akışı. Önce [Quickstart](/core/docs/getting-started/quickstart/) bölümünü kontrol et, sonra linked code olarak [`useTable`](/core/docs/data/hooks/use-table/) ve [`useForm`](/core/docs/data/hooks/use-form/) örneklerini uygula.
@@ -367,8 +368,6 @@ Now that we've created our Login page, but we need to add it as a route to our a
 <summary>src/App.tsx</summary>
 
 ```tsx title="src/App.tsx"
-// ...
-
 import { Refine, Authenticated } from "@refinedev/core";
 import { NavigateToResource } from "@refinedev/react-router-v6";
 import { Outlet, Route, Routes } from "react-router-dom";
@@ -403,5 +402,16 @@ function App() {
 
 export default App;
 ```
+
+</details>
+
+## Details Summary Example Without code
+
+<details>
+<summary>Details Summary Example</summary>
+
+This is a details summary example without code blocks. It can be used to hide long explanations or additional information that may not be relevant to all readers.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Ex
 
 </details>
