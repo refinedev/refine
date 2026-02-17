@@ -18,11 +18,13 @@ export const BlogFooter = () => {
         "dark:bg-zinc-900",
         "blog-md:h-16",
         "blog-md:py-0",
+        "not-prose",
       )}
     >
       <div
         className={clsx(
           "mx-auto",
+          "not-prose",
           "flex",
           "w-full",
           "flex-col",
@@ -50,6 +52,7 @@ export const BlogFooter = () => {
             "items-center",
             "justify-end",
             "gap-4",
+            "not-prose",
           )}
         >
           <Link

@@ -23,7 +23,7 @@ export const PostPaginator = ({ posts, title }) => {
         "blog-sm:pt-[72px] blog-sm:pb-[120px]",
       )}
     >
-      <div className={clsx("w-full", "px-4", "blog-sm:px-0")}>
+      <div className={clsx("w-full")}>
         <h2
           className={clsx(
             "m-0",
@@ -49,13 +49,21 @@ export const PostPaginator = ({ posts, title }) => {
                   to={post.permalink}
                   rel="dofollow"
                   className={clsx(
+                    "group",
                     "flex",
                     "w-full",
                     "items-start",
                     "gap-8",
+                    "rounded-lg",
+                    "-mx-2",
+                    "px-2",
                     "py-4",
                     "no-underline",
                     "hover:no-underline",
+                    "transition-colors",
+                    "duration-200",
+                    "hover:bg-zinc-100/80",
+                    "dark:hover:bg-zinc-800/60",
                   )}
                 >
                   <div
@@ -68,6 +76,10 @@ export const PostPaginator = ({ posts, title }) => {
                       "tracking-[-0.004em]",
                       "text-zinc-700",
                       "dark:text-zinc-300",
+                      "transition-colors",
+                      "duration-200",
+                      "group-hover:text-zinc-900",
+                      "dark:group-hover:text-white",
                       "line-clamp-2",
                     )}
                   >
@@ -87,6 +99,10 @@ export const PostPaginator = ({ posts, title }) => {
                       "tracking-[0.01em]",
                       "text-zinc-500",
                       "dark:text-zinc-400",
+                      "transition-colors",
+                      "duration-200",
+                      "group-hover:text-zinc-700",
+                      "dark:group-hover:text-zinc-300",
                       "shrink-0",
                     )}
                   >

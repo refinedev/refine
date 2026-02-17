@@ -46,6 +46,10 @@
   @apply !bg-teal-100 dark:!bg-teal-900;
 }
 
+.blog-wrapper .refine-prose code:not(pre > code) {
+  @apply text-zinc-700 dark:text-zinc-300 bg-[#e4e4e7] dark:bg-[#3f3f4680];
+}
+
 @media (min-width: 720px) {
   :is(
       .blog-wrapper .blog-content-bleed-16,
@@ -246,6 +250,10 @@
 
 .blog-details[open] .blog-summary {
   @apply rounded-b-none border-b border-b-zinc-200 dark:border-b-transparent;
+}
+
+.refine-common-code-block {
+  @apply bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-transparent;
 }
 
 .blog-details-content .refine-common-code-block {

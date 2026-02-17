@@ -40,19 +40,27 @@ const CodeBlockTitle = ({
   children?: React.ReactNode;
   icon?: React.ReactNode;
 }) => {
+  const isBlog = isCurrentBlogRoute();
+
   return (
     <div
       className={clsx(
         "py-3",
         "px-4",
-        "bg-zinc-200 dark:bg-zinc-800",
-        "text-zinc-900",
-        "dark:text-white",
         "text-xs",
         "flex items-center",
         "gap-2",
-        "rounded-tl-xl",
-        "rounded-tr-xl",
+        !isBlog && "bg-zinc-200 dark:bg-zinc-800",
+        !isBlog && "text-zinc-900",
+        !isBlog && "dark:text-white",
+        !isBlog && "rounded-tl-xl",
+        !isBlog && "rounded-tr-xl",
+        isBlog && "border-b border-zinc-200 dark:border-transparent",
+        isBlog && "text-zinc-700",
+        isBlog && "dark:text-white",
+        isBlog && "bg-zinc-100 dark:bg-zinc-800",
+        isBlog && "rounded-tl-lg",
+        isBlog && "rounded-tr-lg",
       )}
     >
       {icon}
@@ -100,7 +108,8 @@ export const CodeBlockString = ({
       className={clsx(
         "refine-common-code-block",
         language && `language-${language}`,
-        "rounded-xl",
+        !isBlog && "rounded-xl",
+        isBlog && "rounded-lg",
         "bg-refine-react-light-code",
         "dark:bg-refine-react-dark-code",
         "mb-6",

@@ -378,11 +378,96 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
   const visibleIds = useVisibleHeadings(toc);
   const lastScrolledIdRef = React.useRef<string | null>(null);
   const isInitialRenderRef = React.useRef(true);
+  const [scrollMask, setScrollMask] = React.useState({
+    showTop: false,
+    showBottom: false,
+  });
 
   // SVG path for the vertical/diagonal line
   const svg = useSvgPath(containerRef, toc);
   // Position and height of the active highlight
   const activeThumb = useActiveThumb(containerRef, toc, visibleIds, svg);
+
+  const updateScrollMask = React.useCallback(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const maxScrollTop = Math.max(
+      scrollContainer.scrollHeight - scrollContainer.clientHeight,
+      0,
+    );
+
+    if (maxScrollTop <= 1) {
+      setScrollMask((previous) => {
+        if (!previous.showTop && !previous.showBottom) {
+          return previous;
+        }
+
+        return { showTop: false, showBottom: false };
+      });
+      return;
+    }
+
+    const showTop = scrollContainer.scrollTop > 1;
+    const showBottom = scrollContainer.scrollTop < maxScrollTop - 1;
+
+    setScrollMask((previous) => {
+      if (previous.showTop === showTop && previous.showBottom === showBottom) {
+        return previous;
+      }
+
+      return { showTop, showBottom };
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    let frameId: number | null = null;
+    const scheduleScrollMaskUpdate = () => {
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+
+      frameId = requestAnimationFrame(() => {
+        frameId = null;
+        updateScrollMask();
+      });
+    };
+
+    scheduleScrollMaskUpdate();
+    scrollContainer.addEventListener("scroll", scheduleScrollMaskUpdate, {
+      passive: true,
+    });
+    window.addEventListener("resize", scheduleScrollMaskUpdate, {
+      passive: true,
+    });
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", scheduleScrollMaskUpdate);
+      window.removeEventListener("resize", scheduleScrollMaskUpdate);
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+    };
+  }, [updateScrollMask, toc, svg]);
+
+  const scrollMaskImage = React.useMemo(() => {
+    if (!scrollMask.showTop && !scrollMask.showBottom) {
+      return "none";
+    }
+
+    if (scrollMask.showTop && scrollMask.showBottom) {
+      return "linear-gradient(#0000, #fff 16px calc(100% - 16px), #0000)";
+    }
+
+    if (scrollMask.showTop) {
+      return "linear-gradient(#0000, #fff 16px, #fff)";
+    }
+
+    return "linear-gradient(#fff, #fff calc(100% - 16px), #0000)";
+  }, [scrollMask.showBottom, scrollMask.showTop]);
 
   // Auto-scroll TOC to keep the first active item centered in the sidebar
   React.useEffect(() => {
@@ -428,28 +513,22 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
 
   return (
     <div
-      ref={scrollContainerRef}
       className={clsx(
         "hidden blog-md:block",
         "sticky right-0 top-[64px]",
         "w-[340px]",
-        "overflow-auto h-[calc(100vh-64px)]",
+        "h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",
+        "pt-16",
       )}
-      style={{
-        scrollbarWidth: "none",
-      }}
     >
-      <div className={clsx("min-h-full", "flex", "flex-col")}>
+      <div className={clsx("h-full", "flex", "flex-col")}>
         {/* Header */}
         <div
           className={clsx(
-            "pt-16",
-            "pb-6",
-            "border-l",
-            "border-zinc-200",
-            "dark:border-zinc-800",
+            "shrink-0",
+            "bg-zinc-50 dark:bg-zinc-900",
             "ml-[0.5px]",
           )}
         >
@@ -462,35 +541,49 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
               "uppercase",
               "text-zinc-500 dark:text-zinc-400",
               "pl-5",
+              "mt-4",
             )}
           >
             On this page
           </h2>
         </div>
-        {/* TOC Container */}
-        <div ref={containerRef} className="relative flex-1">
-          {/* SVG Line Indicator */}
-          {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
+        <div
+          ref={scrollContainerRef}
+          className={clsx(
+            "relative flex-1 overflow-auto scrollbar-hidden",
+            "pt-6",
+          )}
+          style={{
+            scrollbarWidth: "none",
+            WebkitMaskImage: scrollMaskImage,
+            maskImage: scrollMaskImage,
+          }}
+        >
+          {/* TOC Container */}
+          <div ref={containerRef} className="relative flex-1 h-full">
+            {/* SVG Line Indicator */}
+            {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
 
-          {/* TOC Items */}
-          <ul
-            data-toc-list
-            className={clsx(
-              "list-none m-0 p-0 not-prose",
-              "pb-12",
-              "w-[296px]",
-            )}
-          >
-            {toc.map((item) => (
-              <BlogTOCItem
-                key={item.id}
-                id={item.id}
-                value={item.value}
-                level={item.level}
-                isActive={visibleIds.has(item.id)}
-              />
-            ))}
-          </ul>
+            {/* TOC Items */}
+            <ul
+              data-toc-list
+              className={clsx(
+                "list-none m-0 p-0 not-prose",
+                "pb-12",
+                "w-[296px]",
+              )}
+            >
+              {toc.map((item) => (
+                <BlogTOCItem
+                  key={item.id}
+                  id={item.id}
+                  value={item.value}
+                  level={item.level}
+                  isActive={visibleIds.has(item.id)}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
