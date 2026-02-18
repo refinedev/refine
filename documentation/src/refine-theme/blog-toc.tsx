@@ -376,8 +376,15 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const visibleIds = useVisibleHeadings(toc);
-  const lastScrolledIdRef = React.useRef<string | null>(null);
+  const lastAutoScrollRef = React.useRef<{
+    id: string | null;
+    footerOverlap: number;
+  }>({
+    id: null,
+    footerOverlap: 0,
+  });
   const isInitialRenderRef = React.useRef(true);
+  const [footerOverlap, setFooterOverlap] = React.useState(0);
   const [scrollMask, setScrollMask] = React.useState({
     showTop: false,
     showBottom: false,
@@ -453,6 +460,61 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
     };
   }, [updateScrollMask, toc, svg]);
 
+  React.useEffect(() => {
+    let frameId: number | null = null;
+
+    const updateFooterOverlap = () => {
+      const footerElement = document.querySelector<HTMLElement>(
+        "footer[data-blog-footer]",
+      );
+
+      if (!footerElement) {
+        setFooterOverlap((previous) => (previous === 0 ? previous : 0));
+        return;
+      }
+
+      const footerTop = footerElement.getBoundingClientRect().top;
+      const nextOverlap = Math.max(0, window.innerHeight - footerTop);
+
+      setFooterOverlap((previous) => {
+        if (Math.abs(previous - nextOverlap) < 1) {
+          return previous;
+        }
+
+        return nextOverlap;
+      });
+    };
+
+    const scheduleFooterOverlapUpdate = () => {
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+
+      frameId = requestAnimationFrame(() => {
+        frameId = null;
+        updateFooterOverlap();
+      });
+    };
+
+    scheduleFooterOverlapUpdate();
+
+    window.addEventListener("scroll", scheduleFooterOverlapUpdate, {
+      passive: true,
+    });
+    window.addEventListener("resize", scheduleFooterOverlapUpdate, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", scheduleFooterOverlapUpdate);
+      window.removeEventListener("resize", scheduleFooterOverlapUpdate);
+
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+      }
+    };
+  }, []);
+
   const scrollMaskImage = React.useMemo(() => {
     if (!scrollMask.showTop && !scrollMask.showBottom) {
       return "none";
@@ -485,9 +547,12 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
     }
     if (!firstActiveId) return;
 
-    // Prevent unnecessary scrolls
-    if (lastScrolledIdRef.current === firstActiveId) return;
-    lastScrolledIdRef.current = firstActiveId;
+    // Prevent unnecessary scrolls unless footer overlap changed and layout height shifted.
+    const hasSameActiveId = lastAutoScrollRef.current.id === firstActiveId;
+    const hasSameFooterOverlap =
+      Math.abs(lastAutoScrollRef.current.footerOverlap - footerOverlap) < 1;
+
+    if (hasSameActiveId && hasSameFooterOverlap) return;
 
     const items = itemsContainer.querySelectorAll("[data-toc-item]");
     const firstActiveIndex = toc.findIndex((item) => item.id === firstActiveId);
@@ -506,83 +571,100 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
     // Use instant scroll on initial render, smooth after
     scrollContainer.scrollBy({
       top: scrollOffset,
-      behavior: isInitialRenderRef.current ? "instant" : "smooth",
+      behavior:
+        isInitialRenderRef.current || !hasSameFooterOverlap
+          ? "instant"
+          : "smooth",
     });
+
+    lastAutoScrollRef.current = {
+      id: firstActiveId,
+      footerOverlap,
+    };
     isInitialRenderRef.current = false;
-  }, [visibleIds, toc]);
+  }, [visibleIds, toc, footerOverlap]);
 
   return (
     <div
       className={clsx(
         "hidden blog-md:block",
-        "sticky right-0 top-[64px]",
         "w-[340px]",
-        "h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",
-        "pt-12",
       )}
     >
-      <div className={clsx("h-full", "flex", "flex-col")}>
-        {/* Header */}
-        <div
-          className={clsx(
-            "shrink-0",
-            "bg-zinc-50 dark:bg-zinc-900",
-            "ml-[0.5px]",
-          )}
-        >
-          <h2
+      <div
+        className={clsx(
+          "fixed top-[64px]",
+          "left-[calc(50%+260px)]",
+          "w-[340px]",
+          "pt-12",
+        )}
+        style={{
+          height: `calc(100vh - 64px - ${footerOverlap}px)`,
+        }}
+      >
+        <div className={clsx("h-full", "flex", "flex-col")}>
+          {/* Header */}
+          <div
             className={clsx(
-              "font-semibold",
-              "text-[0.625rem]",
-              "leading-4",
-              "tracking-[0.01em]",
-              "uppercase",
-              "text-zinc-500 dark:text-zinc-400",
-              "pl-5",
-              "mt-4",
+              "shrink-0",
+              "bg-zinc-50 dark:bg-zinc-900",
+              "ml-[0.5px]",
             )}
           >
-            On this page
-          </h2>
-        </div>
-        <div
-          ref={scrollContainerRef}
-          className={clsx(
-            "relative flex-1 overflow-auto scrollbar-hidden",
-            "pt-6",
-          )}
-          style={{
-            scrollbarWidth: "none",
-            WebkitMaskImage: scrollMaskImage,
-            maskImage: scrollMaskImage,
-          }}
-        >
-          {/* TOC Container */}
-          <div ref={containerRef} className="relative flex-1 h-full">
-            {/* SVG Line Indicator */}
-            {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
-
-            {/* TOC Items */}
-            <ul
-              data-toc-list
+            <h2
               className={clsx(
-                "list-none m-0 p-0 not-prose",
-                "pb-12",
-                "w-[296px]",
+                "font-semibold",
+                "text-[0.625rem]",
+                "leading-4",
+                "tracking-[0.01em]",
+                "uppercase",
+                "text-zinc-500 dark:text-zinc-400",
+                "pl-5",
+                "mt-4",
               )}
             >
-              {toc.map((item) => (
-                <BlogTOCItem
-                  key={item.id}
-                  id={item.id}
-                  value={item.value}
-                  level={item.level}
-                  isActive={visibleIds.has(item.id)}
-                />
-              ))}
-            </ul>
+              On this page
+            </h2>
+          </div>
+          <div
+            ref={scrollContainerRef}
+            className={clsx(
+              "relative flex-1 overflow-auto scrollbar-hidden",
+              "pt-6",
+            )}
+            style={{
+              scrollbarWidth: "none",
+              WebkitMaskImage: scrollMaskImage,
+              maskImage: scrollMaskImage,
+            }}
+          >
+            {/* TOC Container */}
+            <div ref={containerRef} className="relative flex-1 h-full">
+              {/* SVG Line Indicator */}
+              {svg && <TocLineIndicator svg={svg} activeThumb={activeThumb} />}
+
+              {/* TOC Items */}
+              <ul
+                data-toc-list
+                className={clsx(
+                  "list-none m-0 p-0 not-prose",
+                  "pb-12",
+                  "w-[296px]",
+                )}
+              >
+                {toc.map((item) => (
+                  <BlogTOCItem
+                    key={item.id}
+                    id={item.id}
+                    value={item.value}
+                    level={item.level}
+                    isActive={visibleIds.has(item.id)}
+                  />
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

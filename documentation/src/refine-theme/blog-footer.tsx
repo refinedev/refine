@@ -8,6 +8,7 @@ import { RefineLogoSingleIcon } from "./icons/refine-logo-single";
 export const BlogFooter = () => {
   return (
     <footer
+      data-blog-footer
       className={clsx(
         "w-full",
         "border-t",
