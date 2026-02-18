@@ -3,7 +3,7 @@ const utils = require("@docusaurus/utils");
 const path = require("path");
 
 const defaultBlogPlugin = blogPluginExports.default;
-const DEFAULT_BLOG_CATEGORY = "engineering";
+const DEFAULT_BLOG_CATEGORY = "Engineering";
 
 const pluginDataDirRoot = path.join(
   ".docusaurus",
@@ -80,7 +80,19 @@ function getMultipleRandomElement(arr, num) {
   return shuffled.slice(0, num);
 }
 
-function getReletadPosts(allBlogPosts, metadata) {
+function toPostInfo(post) {
+  return {
+    title: post.metadata.title,
+    description: post.metadata.description,
+    permalink: post.metadata.permalink,
+    formattedDate: post.metadata.formattedDate,
+    authors: post.metadata.authors,
+    readingTime: post.metadata.readingTime,
+    date: post.metadata.date,
+  };
+}
+
+function getRelatedPosts(allBlogPosts, metadata) {
   const relatedPosts = allBlogPosts.filter(
     (post) =>
       post.metadata.frontMatter.tags?.some((tag) =>
@@ -88,21 +100,7 @@ function getReletadPosts(allBlogPosts, metadata) {
       ) && post.metadata.title !== metadata.title,
   );
 
-  const randomThreeRelatedPosts = getMultipleRandomElement(relatedPosts, 3);
-
-  const filteredPostInfos = randomThreeRelatedPosts.map((post) => {
-    return {
-      title: post.metadata.title,
-      description: post.metadata.description,
-      permalink: post.metadata.permalink,
-      formattedDate: post.metadata.formattedDate,
-      authors: post.metadata.authors,
-      readingTime: post.metadata.readingTime,
-      date: post.metadata.date,
-    };
-  });
-
-  return filteredPostInfos;
+  return getMultipleRandomElement(relatedPosts, 3).map(toPostInfo);
 }
 
 function getAuthorPosts(allBlogPosts, metadata) {
@@ -112,40 +110,13 @@ function getAuthorPosts(allBlogPosts, metadata) {
       post.metadata.title !== metadata.title,
   );
 
-  const randomThreeAuthorPosts = getMultipleRandomElement(authorPosts, 3);
-
-  const filteredPostInfos = randomThreeAuthorPosts.map((post) => {
-    return {
-      title: post.metadata.title,
-      description: post.metadata.description,
-      permalink: post.metadata.permalink,
-      formattedDate: post.metadata.formattedDate,
-      authors: post.metadata.authors,
-      readingTime: post.metadata.readingTime,
-      date: post.metadata.date,
-    };
-  });
-
-  return filteredPostInfos;
+  return getMultipleRandomElement(authorPosts, 3).map(toPostInfo);
 }
 
 function getBlogPostCategory(frontMatter = {}) {
   const { category } = frontMatter;
-
-  if (typeof category === "string") {
-    const normalized = category.trim();
-    return normalized || DEFAULT_BLOG_CATEGORY;
-  }
-
-  if (Array.isArray(category)) {
-    const firstValidCategory = category
-      .map((value) => `${value}`.trim())
-      .find(Boolean);
-
-    return firstValidCategory || DEFAULT_BLOG_CATEGORY;
-  }
-
-  return DEFAULT_BLOG_CATEGORY;
+  const normalized = typeof category === "string" ? category.trim() : "";
+  return normalized || DEFAULT_BLOG_CATEGORY;
 }
 
 function toCategorySlug(label) {
@@ -227,11 +198,6 @@ function createBlogCategories({
 
   allBlogPosts.forEach((post) => {
     const categoryValue = getBlogPostCategory(post.metadata.frontMatter);
-
-    if (!categoryValue) {
-      return;
-    }
-
     const categoryKey = categoryValue.toLowerCase();
 
     if (!categories[categoryKey]) {
@@ -258,6 +224,23 @@ function createBlogCategories({
   });
 
   return categories;
+}
+
+function mapTagsProp(blogTags) {
+  return Object.values(blogTags).map((tag) => ({
+    label: tag.label,
+    permalink: tag.permalink,
+    count: tag.items.length,
+  }));
+}
+
+function mapCategoriesProp(blogCategories) {
+  return Object.values(blogCategories).map((category) => ({
+    value: category.value,
+    name: category.name,
+    permalink: category.permalink,
+    count: category.items.length,
+  }));
 }
 
 async function blogPluginExtended(...pluginArgs) {
@@ -326,13 +309,39 @@ async function blogPluginExtended(...pluginArgs) {
         blogDescription,
         postsPerPageOption: postsPerPage,
       });
+      const tagsProp = mapTagsProp(blogTags);
+      const categoriesProp = mapCategoriesProp(blogCategories);
+      let tagsPropPathPromise;
+      let categoriesPropPathPromise;
+
+      function getTagsPropPath() {
+        if (!tagsPropPathPromise) {
+          tagsPropPathPromise = createData(
+            `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
+            JSON.stringify(tagsProp, null, 2),
+          );
+        }
+
+        return tagsPropPathPromise;
+      }
+
+      function getCategoriesPropPath() {
+        if (!categoriesPropPathPromise) {
+          categoriesPropPathPromise = createData(
+            `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
+            JSON.stringify(categoriesProp, null, 2),
+          );
+        }
+
+        return categoriesPropPathPromise;
+      }
 
       // Create routes for blog entries.
       await Promise.all(
         allBlogPosts.map(async (blogPost) => {
           const { id, metadata } = blogPost;
 
-          const relatedPosts = getReletadPosts(allBlogPosts, metadata);
+          const relatedPosts = getRelatedPosts(allBlogPosts, metadata);
 
           const authorPosts = getAuthorPosts(allBlogPosts, metadata);
           const category = getBlogPostCategoryData({
@@ -375,30 +384,10 @@ async function blogPluginExtended(...pluginArgs) {
             JSON.stringify(metadata, null, 2),
           );
 
-          const tagsProp = Object.values(blogTags).map((tag) => ({
-            label: tag.label,
-            permalink: tag.permalink,
-            count: tag.items.length,
-          }));
-
-          const tagsPropPath = await createData(
-            `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
-            JSON.stringify(tagsProp, null, 2),
-          );
-
-          const categoriesProp = Object.values(blogCategories).map(
-            (category) => ({
-              value: category.value,
-              name: category.name,
-              permalink: category.permalink,
-              count: category.items.length,
-            }),
-          );
-
-          const categoriesPropPath = await createData(
-            `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
-            JSON.stringify(categoriesProp, null, 2),
-          );
+          const [tagsPropPath, categoriesPropPath] = await Promise.all([
+            getTagsPropPath(),
+            getCategoriesPropPath(),
+          ]);
 
           addRoute({
             path: permalink,
@@ -423,7 +412,7 @@ async function blogPluginExtended(...pluginArgs) {
         .filter((authorName) => authorName !== undefined);
       const uniqueAuthors = [...new Set(authorsArray)];
 
-      uniqueAuthors.map(async (author) => {
+      uniqueAuthors.forEach((author) => {
         const authorPosts = allBlogPosts.filter(
           (post) => post.metadata.frontMatter.authors === author,
         );
@@ -436,7 +425,7 @@ async function blogPluginExtended(...pluginArgs) {
           postsPerPageOption: "ALL",
         });
 
-        authorListPaginated.map((authorListPage) => {
+        authorListPaginated.forEach((authorListPage) => {
           const { metadata, items } = authorListPage;
           const { permalink } = metadata;
 
@@ -459,16 +448,7 @@ async function blogPluginExtended(...pluginArgs) {
       }
 
       async function createTagsListPage() {
-        const tagsProp = Object.values(blogTags).map((tag) => ({
-          label: tag.label,
-          permalink: tag.permalink,
-          count: tag.items.length,
-        }));
-
-        const tagsPropPath = await createData(
-          `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
-          JSON.stringify(tagsProp, null, 2),
-        );
+        const tagsPropPath = await getTagsPropPath();
         const allTagsListPaginated = paginateBlogPosts({
           blogPosts: allBlogPosts,
           basePageUrl: blogTagsListPath,
@@ -534,16 +514,7 @@ async function blogPluginExtended(...pluginArgs) {
               JSON.stringify(metadata, null, 2),
             );
 
-            const tagsProp = Object.values(blogTags).map((tag) => ({
-              label: tag.label,
-              permalink: tag.permalink,
-              count: tag.items.length,
-            }));
-
-            const tagsPropPath = await createData(
-              `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
-              JSON.stringify(tagsProp, null, 2),
-            );
+            const tagsPropPath = await getTagsPropPath();
 
             addRoute({
               path: metadata.permalink,
@@ -561,19 +532,7 @@ async function blogPluginExtended(...pluginArgs) {
       }
 
       async function createCategoriesListPage() {
-        const categoriesProp = Object.values(blogCategories).map(
-          (category) => ({
-            value: category.value,
-            name: category.name,
-            permalink: category.permalink,
-            count: category.items.length,
-          }),
-        );
-
-        const categoriesPropPath = await createData(
-          `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
-          JSON.stringify(categoriesProp, null, 2),
-        );
+        const categoriesPropPath = await getCategoriesPropPath();
 
         addRoute({
           path: blogCategoriesListPath,
@@ -606,19 +565,7 @@ async function blogPluginExtended(...pluginArgs) {
               JSON.stringify(metadata, null, 2),
             );
 
-            const categoriesProp = Object.values(blogCategories).map(
-              (blogCategory) => ({
-                value: blogCategory.value,
-                name: blogCategory.name,
-                permalink: blogCategory.permalink,
-                count: blogCategory.items.length,
-              }),
-            );
-
-            const categoriesPropPath = await createData(
-              `${utils.docuHash(`${blogCategoriesListPath}-categories`)}.json`,
-              JSON.stringify(categoriesProp, null, 2),
-            );
+            const categoriesPropPath = await getCategoriesPropPath();
 
             addRoute({
               path: metadata.permalink,
