@@ -12,6 +12,7 @@ import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
+import { FeaturedBlogPostItems } from "../../components/blog";
 
 function BlogCategoryPostsPageMetadata(props) {
   const { listMetadata, category } = props;
@@ -43,7 +44,13 @@ function BlogCategoryPostsPageMetadata(props) {
 }
 
 function BlogCategoryPostsPageContent(props) {
-  const { category, categories, items, listMetadata } = props;
+  const {
+    category,
+    categories,
+    items,
+    listMetadata,
+    featuredPosts = [],
+  } = props;
 
   const categoryName = category.name ?? category.value ?? "Category";
 
@@ -56,6 +63,9 @@ function BlogCategoryPostsPageContent(props) {
   return (
     <BlogLayout showHero>
       <BreadcrumbJsonLd items={breadcrumbItems} />
+      {featuredPosts.length > 0 && (
+        <FeaturedBlogPostItems items={featuredPosts} />
+      )}
       <BlogPostItems items={items} categories={categories} />
       <div
         className={clsx(

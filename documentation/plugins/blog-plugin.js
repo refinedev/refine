@@ -435,6 +435,7 @@ async function blogPluginExtended(...pluginArgs) {
       const featuredBlogPosts = allBlogPosts.filter(
         (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] === true,
       );
+      const featuredBlogPostIds = featuredBlogPosts.map((post) => post.id);
 
       const blogPosts = allBlogPosts.filter(
         (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] !== true,
@@ -540,11 +541,8 @@ async function blogPluginExtended(...pluginArgs) {
             component: BLOG_LIST_PAGE_COMPONENT,
             exact: true,
             modules: {
-              items: blogPostItemsModule(
-                permalink === BLOG_BASE_PATH
-                  ? [...items, ...featuredBlogPosts.map((post) => post.id)]
-                  : items,
-              ),
+              items: blogPostItemsModule(items),
+              featuredPosts: blogPostItemsModule(featuredBlogPostIds),
               metadata: aliasedSource(pageMetadataPath),
               tags: aliasedSource(tagsPropPath),
               categories: aliasedSource(categoriesPropPath),
@@ -720,6 +718,7 @@ async function blogPluginExtended(...pluginArgs) {
               exact: true,
               modules: {
                 items: blogPostItemsModule(items),
+                featuredPosts: blogPostItemsModule(featuredBlogPostIds),
                 category: aliasedSource(categoryPropPath),
                 categories: aliasedSource(categoriesPropPath),
                 listMetadata: aliasedSource(listMetadataPath),

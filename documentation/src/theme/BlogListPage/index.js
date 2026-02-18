@@ -42,17 +42,12 @@ function BlogListPageMetadata(props) {
 }
 
 function BlogListPageContent(props) {
-  const { metadata, categories, items } = props;
-
-  const isFirstPage = metadata.page === 1;
+  const { metadata, categories, items, featuredPosts = [] } = props;
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
   ];
 
-  const featuredPosts = items.filter(
-    (post) => post.content.metadata.frontMatter.is_featured === true,
-  );
   if (featuredPosts.length > 3) {
     throw new Error(
       `Only 3 featured posts are allowed (you have: ${featuredPosts.length}). Please check your blog posts and set is_featured to true for at most 3 posts.`,
@@ -66,7 +61,9 @@ function BlogListPageContent(props) {
   return (
     <BlogLayout showHero>
       <BreadcrumbJsonLd items={breadcrumbItems} />
-      {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
+      {featuredPosts.length > 0 && (
+        <FeaturedBlogPostItems items={featuredPosts} />
+      )}
       <BlogPostItems items={paginatedPosts} categories={categories} />
       <div
         className={clsx(
