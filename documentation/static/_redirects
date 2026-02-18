@@ -1303,3 +1303,12 @@
 /core/docs/api-reference/core/data/hooks/useList/ /core/docs/data/hooks/use-list/ 301
 /core/docs/api-reference/core/data/hooks/useOne/ /core/docs/data/hooks/use-one/ 301
 /core/docs/core/data/hooks/use-one/ /core/docs/data/hooks/use-one/ 301
+
+# Refine Pixels series consolidated into master guide
+/blog/refine-pixels-1/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-2/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-3/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-4/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-5/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-6/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-7/ /blog/refine-pixels-guide/ 301
