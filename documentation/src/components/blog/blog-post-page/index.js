@@ -405,7 +405,7 @@ const PostCategoryAndTags = ({ category, tags = [] }) => {
         {categoryLabel}
       </Link>
 
-      {tags.map((tag, index) => {
+      {/* {tags.map((tag, index) => {
         const label = typeof tag === "string" ? tag : tag?.label;
         const permalink =
           typeof tag === "object" && tag !== null ? tag.permalink : undefined;
@@ -445,7 +445,7 @@ const PostCategoryAndTags = ({ category, tags = [] }) => {
             )}
           </React.Fragment>
         );
-      })}
+      })} */}
     </div>
   );
 };
