@@ -450,7 +450,7 @@ When you navigate to `/posts` route, you can see our placeholder page. We will b
 
 ### Listing posts records
 
-First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/core/templatestable/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
+First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
 
 ```bash
 npm i @refinedev/react-table @tanstack/react-table
@@ -607,7 +607,7 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/core/templatestable/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
+In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
 
 We also use the [`useNavigation()`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 

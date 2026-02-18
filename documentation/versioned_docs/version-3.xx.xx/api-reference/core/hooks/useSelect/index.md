@@ -11,7 +11,7 @@ import DefaultValueLivePreview from "./default-value-live-preview.md";
 
 `useSelect` hook allows you to manage any `select` (like a [Html `<select>` tag](https://www.w3schools.com/tags/tag_select.asp), [React Select](https://react-select.com/home), etc...) component. Since it is designed as headless, It expects you to handle the UI.
 
-This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/)
+This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/)
 
 :::info-tip DERIVATIVES
 
@@ -358,7 +358,7 @@ You may want to get all the data without pagination. In this case you should use
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/), gets the data and mark as seleted.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
 <DefaultValueLivePreview />
 

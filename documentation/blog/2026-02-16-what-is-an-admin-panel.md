@@ -290,7 +290,7 @@ Through access controls, audit logging, and encryption. Every access to sensitiv
 ## Related content
 
 - [What is a CRUD App?](/blog/crud-apps/) — The complete guide to CRUD applications
-- [What is a Dashboard?](/blog/dashboards/) — Dashboards explained
+- [What is a Dashboard?](/blog/what-is-a-dashboard/) — Dashboards explained
 - [What is an Internal Tool?](/blog/what-is-internal-tools/) — The complete guide
 
 ## Start building with Refine

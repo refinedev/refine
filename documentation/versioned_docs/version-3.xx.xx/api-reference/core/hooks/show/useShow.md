@@ -6,7 +6,7 @@ title: useShow
 import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useShow` is an extended version of [`useOne`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useOne/). It supports all the features of `useOne` and adds some extra features.
+`useShow` is an extended version of [`useOne`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useOne/). It supports all the features of `useOne` and adds some extra features.
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 

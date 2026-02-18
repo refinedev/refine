@@ -87,10 +87,10 @@ mutate({
 
 ### Supported data hooks
 
-- [`useUpdate` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/)
-- [`useUpdateMany` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdateMany/)
-- [`useDelete` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/)
-- [`useDeleteMany` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/)
+- [`useUpdate` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)
+- [`useUpdateMany` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/)
+- [`useDelete` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)
+- [`useDeleteMany` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/)
 
 <br />
 

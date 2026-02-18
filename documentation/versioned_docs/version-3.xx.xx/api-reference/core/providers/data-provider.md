@@ -280,7 +280,7 @@ getList: async ({
 
 :::tip
 
-`getList` also can support cursor-based pagination. Refer to [this example](/core/docs/3.xx.xx/api-reference/core/data/hooks/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
+`getList` also can support cursor-based pagination. Refer to [this example](/core/docs/3.xx.xx/api-reference/core/hooks/data/useInfiniteList/#how-to-use-cursor-based-pagination) for more information.
 
 :::
 
@@ -373,7 +373,7 @@ deleteOne: async ({ resource, id, variables, metaData }) => {
 | variables | `TVariables[]`               | `{}`    |
 | metaData? | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) to type `variables`.
 
 ### getOne <PropTag required />
 
@@ -749,20 +749,20 @@ const myDataProvider = {
 [create-a-data-provider]: /core/docs/3.xx.xx/tutorial/understanding-dataprovider/create-dataprovider/
 [swizzle-a-data-provider]: /core/docs/3.xx.xx/tutorial/understanding-dataprovider/swizzle/
 [data-provider-tutorial]: /core/docs/3.xx.xx/tutorial/understanding-dataprovider/index/
-[use-api-url]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useApiUrl/
-[use-create]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/
-[use-create-many]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/
-[use-custom]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCustom/
-[use-custom-mutation]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCustomMutation/
+[use-api-url]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/
+[use-create]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/
+[use-create-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/
+[use-custom]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/
+[use-custom-mutation]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustomMutation/
 [use-data-provider]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useDataProvider/
-[use-delete]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/
-[use-delete-many]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/
-[use-list]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useList/
-[use-infinite-list]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useInfiniteList/
-[use-many]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/
-[use-one]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useOne/
-[use-update]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/
-[use-update-many]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdateMany/
+[use-delete]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/
+[use-delete-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/
+[use-list]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useList/
+[use-infinite-list]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useInfiniteList/
+[use-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/
+[use-one]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useOne/
+[use-update]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/
+[use-update-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/
 [crud-sorting]: /core/docs/3.xx.xx/api-reference/core/interfaceReferences/#crudsorting
 [crud-filters]: /core/docs/3.xx.xx/api-reference/core/interfaceReferences/#crudfilters
 [pagination]: /core/docs/3.xx.xx/api-reference/core/interfaceReferences/#pagination

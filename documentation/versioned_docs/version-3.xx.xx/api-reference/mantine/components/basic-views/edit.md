@@ -216,7 +216,7 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/mantine/components/buttons/save)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/mantine/components/buttons/save-button)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);

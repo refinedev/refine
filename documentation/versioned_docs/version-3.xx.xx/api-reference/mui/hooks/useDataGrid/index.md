@@ -8,7 +8,7 @@ import BasicUsagePreview from "./\_partial-use-data-grid-basic-usage-live-previe
 import RelationalPreview from "./\_partial-use-data-grid-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) for the fetch.
+By using `useDataGrid`, you can get properties that are compatible with MUI X [`<DataGrid>`][data-grid] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch.
 
 For all the other features, you can refer to the MUI X [`<DataGrid>`][data-grid] documentation
 
@@ -427,7 +427,7 @@ useDataGrid({
 
 ### `queryOptions`
 
-`useDataGrid` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useDataGrid` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useDataGrid({
@@ -633,11 +633,11 @@ When the user sorts or filters a column, this function is called with the new st
 
 #### `rows`
 
-Contains the data to be displayed in the data grid. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Contains the data to be displayed in the data grid. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `rowCount`
 
-Total number of data. Value fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Total number of data. Value fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 
@@ -649,7 +649,7 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `sorter`
 

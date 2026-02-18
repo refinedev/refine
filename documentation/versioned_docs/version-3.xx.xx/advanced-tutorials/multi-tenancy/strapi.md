@@ -296,7 +296,7 @@ Here we have created a select component. Then we fetch the store id and title we
 
 Let's define the select component in the **refine** Sider Menu. First, we need to customize the default Sider.
 
-[Check out how you can customize Sider Menu →](https://refine.dev/core/templatescustomization/customSider/)
+[Check out how you can customize Sider Menu →](https://refine.dev/docs/3.xx.xx/examples/customization/customSider/)
 
 <details>
 <summary>Show Code</summary>

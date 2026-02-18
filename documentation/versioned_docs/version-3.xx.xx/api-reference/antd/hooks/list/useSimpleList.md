@@ -464,7 +464,7 @@ return (
 
 ### `queryResult`
 
-Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `searchFormProps`
 
@@ -519,7 +519,7 @@ return (
 
 #### `dataSource`
 
-Contains the data to be displayed in the list. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Contains the data to be displayed in the list. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 

@@ -10,7 +10,7 @@ import SortingLivePreview from "./\_partial-sorting-live-preview.md";
 import RelationalLivePreview from "./\_partial-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+**refine** offers a [TanStack Table][tanstack-table] adapter with [@pankod/refine-react-table][refine-react-table] that allows you to use the TanStack Table library with **refine**. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
@@ -255,7 +255,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -401,7 +401,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 #### `tableQueryResult`
 
-Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `sorter`
 
@@ -467,7 +467,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/) hook to fetch relational data.
+You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalLivePreview/>
 

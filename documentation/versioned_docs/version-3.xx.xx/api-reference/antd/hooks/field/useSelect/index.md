@@ -12,7 +12,7 @@ import CrudLivePreview from "./crud-live-preview.md";
 
 `useSelect` hook allows you to manage Ant Design [`<Select>`](https://ant.design/components/select) component when records in a resource needs to be used as select options.
 
-This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/)
+This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/)
 
 :::info-tip DERIVATIVES
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
@@ -124,7 +124,7 @@ useSelect({
 });
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)
 
 ### `debounce`
 
@@ -368,7 +368,7 @@ Params to pass to liveProvider's [subscribe](/core/docs/3.xx.xx/api-reference/co
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/), gets the data and mark as seleted.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
 <DefaultValueLivePreview />
 

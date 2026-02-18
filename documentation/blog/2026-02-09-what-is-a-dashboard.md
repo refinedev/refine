@@ -205,7 +205,7 @@ Cons: Newer approach, so fewer people know about it yet.
 
 Best for teams that want speed without sacrificing flexibility.
 
-[Refine](https://refine.dev) uses this approach. Connect your database ([Supabase](/blog/supabase-tutorial/), PostgreSQL, or a REST API), describe what you want, and get a working dashboard in minutes. The generated code is React/TypeScript that you fully own and can customize.
+[Refine](https://refine.dev) uses this approach. Connect your database ([Supabase](/blog/admin-panel-with-supabase/), PostgreSQL, or a REST API), describe what you want, and get a working dashboard in minutes. The generated code is React/TypeScript that you fully own and can customize.
 
 <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/refine-ai-example-1.webp" alt="Refine AI generating a dashboard from natural language description" />

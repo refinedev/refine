@@ -530,7 +530,7 @@ Refine CORE provides a realtime feature that allows you to subscribe to the chan
 
 Similar to Refine CORE, react-admin also provides a realtime feature behind a paywall of their enterprise edition. However, it still lacks the customization and composability that Refine CORE provides.
 
-Here's an example of using [Ably](https://refine.dev/core/templateslive-provider/ably/) with Refine CORE:
+Here's an example of using [Ably](https://refine.dev/docs/3.xx.xx/examples/live-provider/ably/) with Refine CORE:
 
 ```tsx
 // highlight-next-line

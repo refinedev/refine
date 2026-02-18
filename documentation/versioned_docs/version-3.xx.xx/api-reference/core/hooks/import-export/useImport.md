@@ -186,7 +186,7 @@ return (
 
 ### `mutationResult`
 
-Returns the result of the [`useCreate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/) or [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/) hook.
+Returns the result of the [`useCreate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) hook.
 
 ## FAQ
 

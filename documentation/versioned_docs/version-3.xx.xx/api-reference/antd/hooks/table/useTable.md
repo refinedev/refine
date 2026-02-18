@@ -11,7 +11,7 @@ import SearchPreview from "./\_partial-use-table-search-live-preview.md";
 import RelationalLivePreview from "./\_partial-use-table-relational-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) for the fetch.
+By using `useTable`, you can get properties that are compatible with Ant Design [`<Table>`][table] component. All features such as sorting, filtering, and pagination come out of the box. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch.
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
@@ -347,7 +347,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -495,7 +495,7 @@ const { tableProps } = useTable()
 
 #### `dataSource`
 
-Contains the data to be displayed in the table. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Contains the data to be displayed in the table. Values fetched with [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 #### `loading`
 
@@ -571,7 +571,7 @@ const PostList: React.FC<IResourceComponentsProps> = () => {
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `sorter`
 
@@ -637,7 +637,7 @@ A function creates accessible links for `syncWithLocation`. It takes an [SyncWit
 
 ### How can I handle relational data?
 
-You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
+You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) hook to fetch relational data and filter `<Table>` by categories with help of [`useSelect`](http://localhost:3000/docs/api-reference/antd/hooks/field/useSelect/)
 
 <RelationalLivePreview/>
 

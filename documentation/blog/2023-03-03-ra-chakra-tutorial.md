@@ -803,7 +803,7 @@ At this point, the `Show` page looks like this:
 ### Creating a record
 
 To create a record, we will use the `@refinedev/react-hook-form` package.
-It provides the [`useForm()`](https://refine.dev/core/templatesform/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
+It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
 Next, in the `posts` folder under the `pages` folder, we'll include a `create.tsx` file with the following code:
 

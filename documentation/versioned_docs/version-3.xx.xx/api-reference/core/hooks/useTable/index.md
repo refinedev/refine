@@ -11,7 +11,7 @@ import FilteringLivePreview from "./\_partial-filtering-live-preview.md";
 import RelationalDataLivePreview from "./\_partial-relational-data-live-preview.md";
 import PropResource from "@site/src/partials/prop-resource";
 
-`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
+`useTable` allows us to fetch data according to the sorter, filter, and pagination states. Under the hood it uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) for the fetch. Since it is designed as headless, It expects you to handle the UI.
 
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out of the box.
@@ -249,7 +249,7 @@ useTable({
 
 ### `queryOptions`
 
-`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
+`useTable` uses [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook to fetch data. You can pass [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery).
 
 ```tsx
 useTable({
@@ -379,7 +379,7 @@ Params to pass to liveProvider's [subscribe](/core/docs/3.xx.xx/api-reference/co
 
 ### `tableQueryResult`
 
-Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/) hook.
+Returned values from [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/) hook.
 
 ### `sorter`
 
@@ -445,7 +445,7 @@ A function creates accessible links for `syncWithLocation`. It takes [SyncWithLo
 
 ### How can I handle relational data ?
 
-You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/) hook to fetch relational data.
+You can use [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/) hook to fetch relational data.
 
 <RelationalDataLivePreview/>
 

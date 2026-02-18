@@ -266,7 +266,7 @@ render(
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider).
+When clicked on, the delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider).
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/mui/components/buttons/delete)
 
