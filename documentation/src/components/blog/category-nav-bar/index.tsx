@@ -169,8 +169,8 @@ function CategoryNavBarSelect({
           <div
             className={clsx(
               "absolute",
-              "left-1",
-              "right-1",
+              "min-w-[180px]",
+              "right-2",
               "top-[calc(100%+0.25rem)]",
               "z-20",
               "rounded-lg",
