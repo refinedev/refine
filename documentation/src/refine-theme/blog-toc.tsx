@@ -520,7 +520,7 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
         "h-[calc(100vh-64px)]",
         !hasTOC && "invisible",
         "not-prose",
-        "pt-16",
+        "pt-12",
       )}
     >
       <div className={clsx("h-full", "flex", "flex-col")}>

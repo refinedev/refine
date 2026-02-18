@@ -50,14 +50,13 @@ export const PostPaginator = ({ posts, title }) => {
                   rel="dofollow"
                   className={clsx(
                     "group",
+                    "blog-content-bleed-16",
                     "flex",
                     "w-full",
                     "items-start",
                     "gap-8",
-                    "rounded-lg",
-                    "-mx-2",
-                    "px-2",
                     "py-4",
+                    "blog-md:px-4",
                     "no-underline",
                     "hover:no-underline",
                     "transition-colors",
