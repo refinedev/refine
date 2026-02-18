@@ -3,6 +3,7 @@ title: React useMemo Hook Guide with Examples
 description: Improve React app performance with the useMemo() hook.
 slug: react-usememo
 authors: abdullah_numan
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/social2.png
 hide_table_of_contents: false

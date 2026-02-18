@@ -3,7 +3,8 @@ title: Next.js 13.4's Server Actions and Data Fetching
 description: We'll delve into the Next.js alpha feature Server actions and data fetching techniques.
 slug: next-js-server-actions-and-data-fetching
 authors: victor_uma
-tags: [nextjs]
+category: "Tutorials"
+tags: [nextjs, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-29-next-js-server-actions/social-2.png
 hide_table_of_contents: false
 ---

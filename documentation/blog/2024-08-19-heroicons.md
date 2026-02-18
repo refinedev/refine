@@ -3,7 +3,8 @@ title: Using Heroicons with TailwindCSS
 description: In this post, we see how to use Heroicons with TailwindCSS.
 slug: heroicons-with-tailwind
 authors: abdullah_numan
-tags: [tailwind, css]
+category: "Ecosystem / Integrations"
+tags: [tailwind]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/social.png
 hide_table_of_contents: false
 ---

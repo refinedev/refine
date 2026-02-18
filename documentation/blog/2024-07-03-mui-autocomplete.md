@@ -3,7 +3,8 @@ title: A Guide on Material UI AutoComplete in React
 description: We'll discover the Material UI AutoComplete component with examples
 slug: material-ui-autocomplete-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/social-2.png
 hide_table_of_contents: false
 ---

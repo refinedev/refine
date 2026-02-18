@@ -3,7 +3,8 @@ title: Understanding the Basics of Kubernetes CronJob
 description: CronJobs in Kubernetes is the way of running jobs automatically based on time intervals.
 slug: kubernetes-cron-jobs
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/social.png
 hide_table_of_contents: false
 ---

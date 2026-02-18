@@ -3,7 +3,8 @@ title: "daisyUI Guide: Setup & Integration for React Admin Panels"
 description: Learn how to create a lightweight, customizable React admin panel using Tailwind CSS, DaisyUI components, and the Refine framework.
 slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
-tags: [refine, tutorial, react]
+category: "How To Build"
+tags: [react, admin-panel, tailwind]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg
 hide_table_of_contents: false
 ---

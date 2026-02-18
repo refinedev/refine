@@ -3,10 +3,10 @@ title: "Quality Code Generation: Multi-Agent Systems and Token Dilution"
 description: How Refine's multi-agent system architecture effectively tackles token dilution, drastically improving code generation quality.
 slug: quality-code-generation
 authors: youwei
-tags: [ai]
+category: "AI & Innovation"
+tags: [ai, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/cover.png
 hide_table_of_contents: false
-category: tutorials
 ---
 
 Refine.dev has established itself as a leader in React-based enterprise application development with their open-source framework that streamlines CRUD operations, authentication, and state management. Building on this foundation, Refine represents their next evolution—an AI-powered platform that uses natural language to generate production-ready React applications with clean architecture and thoughtful separation of concerns.

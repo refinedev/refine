@@ -3,7 +3,8 @@ title: Kubectl Scale - DevOps Guide
 description: Kubectl scale is a powerful command that allows you to scale your Kubernetes resources. This article will explore different scenarios to scale your Kubernetes replica/nodes.
 slug: kubectl-scale
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-25-kubectl-scale/social.png
 hide_table_of_contents: false
 ---

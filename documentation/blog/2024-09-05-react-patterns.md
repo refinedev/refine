@@ -3,7 +3,8 @@ title: React Design Patterns
 description: We'll explore React design patterns and examine how they might improve the development of React applications.
 slug: react-design-patterns
 authors: peter_osah
-tags: [dev-tools]
+category: "Engineering"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-17-react-patterns/social-2.png
 hide_table_of_contents: false
 ---

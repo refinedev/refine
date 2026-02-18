@@ -3,7 +3,8 @@ title: The Rise and Journey of Arc Browser - From The Browser Company to Atlassi
 description: Explore the complete journey of The Browser Company, Arc browser, and their innovative Dia tool - from startup vision to the recent Atlassian acquisition.
 slug: arc-browser
 authors: ozgur
-tags: [browser, arc, atlassian, tech-industry, innovation]
+category: "Engineering"
+tags: [dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-10-08-arc-blog/arc-blog.png
 hide_table_of_contents: false
 ---

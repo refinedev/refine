@@ -3,7 +3,8 @@ title: Does My Code Dream of Electric Bugs?
 description: A reflective deep-dive into the surreal, uncanny relationship between AI, bugs, and human intention in software development.
 slug: code-electric-bugs
 authors: ozgur
-tags: [ai, software, bugs, philosophy, devlife]
+category: "AI & Innovation"
+tags: [ai, bugs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-07-28-electric-bugs/Frame%2019%20from%20Figma%202.png
 hide_table_of_contents: false
 ---

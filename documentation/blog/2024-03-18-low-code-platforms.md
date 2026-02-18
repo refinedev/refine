@@ -3,7 +3,8 @@ title: What are Low Code Development Platforms?
 description: We'll looking into low-code platforms, when and where they can be used, and limitations you might face during the development.
 slug: low-code
 authors: necati
-tags: [dev-tools]
+category: "Tutorials"
+tags: [tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: How to use Docker Exec command?
 description: We'll go over the Docker exec command syntax, usage as well as some examples.
 slug: docker-exec
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-18-docker-exec/social.png
 hide_table_of_contents: false
 ---

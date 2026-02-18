@@ -3,7 +3,8 @@ title: We are going back to 1995! The perfect harmony of Modern stack and Win95
 description: With the Refine being headless, we may use any UI we choose for our Admin Panel. In this tutorial, we'll create a Nostalgic-style admin panel using Refine and React95 UI.
 slug: awesome-react-windows95-ui-with-refine
 authors: melih
-tags: [refine, react, supabase, tutorial]
+category: "How To Build"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: A Guide for Delete Pods from Kubernetes Nodes - kubectl delete
 description: We'll learn how to delete pods from Kubernetes nodes using the kubectl delete command.
 slug: kubectl-delete-pod
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-19-kubectl-delete-pod/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: How to use Material UI Modal
 description: We'll learn how to use Material UI Modal to create a popup window that can display important information or facilitate user input.
 slug: material-ui-modal
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/social-2.png
 hide_table_of_contents: false
 ---

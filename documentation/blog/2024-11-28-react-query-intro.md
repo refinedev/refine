@@ -3,7 +3,8 @@ title: Beginner's Guide to React Query
 description: We'll be looking at the basics of React Query, how to use it, and why you should use it.
 slug: react-query-guide
 authors: marvel_ken
-tags: [react, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/social-2.png
 hide_table_of_contents: false
 ---

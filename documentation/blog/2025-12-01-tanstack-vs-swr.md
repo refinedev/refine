@@ -3,7 +3,8 @@ title: "React Query vs TanStack Query vs SWR: A 2025 Comparison"
 description: What's the difference between React Query, TanStack Query, and SWR? A straightforward comparison of these data-fetching libraries and how Refine uses them.
 slug: react-query-vs-tanstack-query-vs-swr-2025
 authors: ozgur
-tags: [react, tanstack-query, swr, data-fetching, comparison]
+category: "Alternatives"
+tags: [react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-12-01-tanstack-vs-swr/tanstack-vs-swr.webp
 hide_table_of_contents: false
 ---

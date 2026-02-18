@@ -3,7 +3,8 @@ title: Kubernetes CrashLoopBackOff - What is it and how to fix it?
 description: In this article, we will discuss the Kubernetes CrashLoopBackOff error, its causes, and how to fix it.
 slug: crashloopbackoff-kubernetes
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Engineering"
+tags: [kubernetes, bugs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-22-crash-loop-back/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: Creating a React search bar and content filtering components
 description: Article about how to create Search bar and filter component in React
 slug: react-search-bar-and-filtering
 authors: madars_biss
-tags: [react, refine, tutorial]
+category: "Tutorials"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/social-2.png
 hide_table_of_contents: false
 ---

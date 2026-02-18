@@ -3,7 +3,8 @@ title: Adding PDF Renderer
 description: We are going to add PDF renderer to our PDF Invoice Generator app that we have been building last few days. This is also where we summarize our accomplishments and wrap up the series.
 slug: refine-react-invoice-generator-5
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: "React Admin Dashboard: Best Templates & Frameworks (2026 Guide)"
 description: Build a powerful React admin dashboard in minutes. Explore the best react admin templates, themes, and frameworks for 2026. Step-by-step guide included!
 slug: how-to-create-react-admin-dashboard
 authors: ozgur
-tags: [react, refine, dashboards, tutorial]
+category: "How To Build"
+tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-12-react-admin-dashboard/react-admin-banner.png
 hide_table_of_contents: false
 ---

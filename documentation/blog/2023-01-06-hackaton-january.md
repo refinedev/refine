@@ -3,7 +3,8 @@ title: The Refine Open Source Hackathon
 description: refine Hackathon is an excellent opportunity for developers to showcase their skills, learn Refine and win prizes!
 slug: refine-hackathon
 authors: necati
-tags: [community]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
 social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
 hide_table_of_contents: false

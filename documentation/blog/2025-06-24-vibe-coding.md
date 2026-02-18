@@ -3,7 +3,8 @@ title: What is "Vibe Coding"
 description: Ever had a half-formed idea that you just wanted to see in motion, without the usual development overhead?
 slug: vibe-coding
 authors: ozgur
-tags: [ai]
+category: "AI & Innovation"
+tags: [ai, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-24-vibe-coding/vibe-coding-image.webp
 hide_table_of_contents: false
 ---

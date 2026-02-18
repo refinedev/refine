@@ -3,8 +3,8 @@ title: Introducing Refine Core - A New Chapter
 description: We're splitting Refine into two products - Refine Core (our open source framework) and Refine (our AI-powered product builder).
 slug: refine-core-introduction
 authors: ozgur
-tags: [community, Refine, announcement]
-category: announcements
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-12-refine-core-introduction/refine-core-introduction-banner
 hide_table_of_contents: false
 is_featured: true

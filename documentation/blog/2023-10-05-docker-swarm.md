@@ -3,7 +3,8 @@ title: Docker Swarm Mode Guide
 description: We'll cover the basics of Docker Swarm mode, including how to set up your first Swarm, join nodes to the Swarm, deploy services, scale services, and monitor services.
 slug: docker-swarm
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/social.png
 hide_table_of_contents: false
 ---

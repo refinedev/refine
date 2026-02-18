@@ -3,7 +3,8 @@ title: Using React Hot Toast as a Notification Provider for CRUD apps
 description: We'll introduce create a custom notification provider using the react-hot-toast library.
 slug: react-hot-toast
 authors: david_omotayo
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/social.png
 hide_table_of_contents: false
 ---

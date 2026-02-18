@@ -3,7 +3,8 @@ title: How to Change Node Version
 description: A comprehensive guide on how to change the node version.
 slug: change-node-version
 authors: muhammad_khabbab
-tags: [dev-tools, git]
+category: "Engineering"
+tags: [dev-tools, javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-27-change-node-version/social.png
 hide_table_of_contents: false
 ---

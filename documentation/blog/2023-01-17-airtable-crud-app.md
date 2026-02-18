@@ -3,7 +3,8 @@ title: Building a Complete React CRUD App with Airtable
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---

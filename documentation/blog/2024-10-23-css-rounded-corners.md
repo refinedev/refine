@@ -3,6 +3,7 @@ title: CSS Rounded Corners Examples
 description: We'll examine CSS rounded corners in this article.
 slug: css-rounded-corners
 authors: peter_osah
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-15-css-rounded-corners/social.png
 hide_table_of_contents: false

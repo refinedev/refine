@@ -3,6 +3,7 @@ title: Understanding Virtual DOM in React
 description: We'll dive into the concept of a virtual DOM in the React as well as explore its purpose.
 slug: react-virtual-dom
 authors: peter_osah
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/social.webp
 hide_table_of_contents: false

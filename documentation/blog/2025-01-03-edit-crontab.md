@@ -3,7 +3,8 @@ title: How to Edit a crontab
 description: Crontab is a powerful scheduling tool in Unix-like systems. This article provides a comprehensive guide on using crontab, covering the basics of creating a crontab, setting up environment variables, scheduling jobs, and error handling.
 slug: edit-crontab
 authors: muhammad_khabbab
-tags: [kubernetes, docker, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-27-kubectl-edit-crontab/social.png
 hide_table_of_contents: false
 ---

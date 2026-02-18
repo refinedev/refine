@@ -3,6 +3,7 @@ title: Memoization in React - How useCallback Works
 description: Improve app performance with React useCallback() hook.
 slug: react-usecallback-guide
 authors: abdullah_numan
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/social-2.png
 hide_table_of_contents: false

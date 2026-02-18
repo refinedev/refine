@@ -3,7 +3,8 @@ title: git switch and git checkout – How to switch branches in git
 description: We will go through different use cases and examples for using git checkout and git switch.
 slug: git-switch-and-git-checkout
 authors: muhammad_khabbab
-tags: [git, dev-tools]
+category: "Alternatives"
+tags: [git]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/social-2.png
 hide_table_of_contents: false
 ---

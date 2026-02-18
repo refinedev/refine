@@ -3,7 +3,8 @@ title: gRPC vs REST - A Brief Comparison
 description: We'll explore practical use cases of REST and gRPC to enable you to select the most appropriate API for your project.
 slug: grpc-vs-rest
 authors: deborah_emeni
-tags: [comparison, javascript]
+category: "Alternatives"
+tags: [backend, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/social2.png
 hide_table_of_contents: false
 ---

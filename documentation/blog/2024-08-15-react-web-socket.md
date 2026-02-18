@@ -3,7 +3,8 @@ title: How to set up a WebSocket connection with Node.js and React.js?
 description: Understanding Real-time communication with React and WebSocket
 slug: react-websocket-tutorial-nodejs
 authors: frank_joseph
-tags: [react]
+category: "Tutorials"
+tags: [react, backend, javascript]
 hide_table_of_contents: false
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social-2.png
 ---

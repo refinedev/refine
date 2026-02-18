@@ -3,6 +3,7 @@ title: Essentials of TypeScript Classes
 description: TypeScript classes are a superset of JavaScript classes. This post covers the fundamentals of type annotations in TypeScript Classes and their associated quirks.
 slug: typescript-classes
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social-2.png
 hide_table_of_contents: false

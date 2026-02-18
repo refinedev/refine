@@ -3,6 +3,7 @@ title: How to Use the JavaScript Ternary Operator
 description: We expound on the use of JS Ternary Operator with examples of what it is, how it works and discuss the best practices.
 slug: javascript-ternary-operator
 authors: abdullah_numan
+category: "Tutorials"
 tags: [javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-15-js-ternary/social.png
 hide_table_of_contents: false

@@ -3,6 +3,7 @@ title: A Guide for Next.js with TypeScript
 description: We will explain the entire process of how to use Next.js in TypeScript
 slug: next-js-with-typescript
 authors: michael
+category: "Tutorials"
 tags: [nextjs, typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/social-3.png
 hide_table_of_contents: false

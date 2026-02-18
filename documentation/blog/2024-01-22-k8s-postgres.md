@@ -3,7 +3,8 @@ title: How to deploy Postgres on Kubernetes
 description: This article will serve as a guide for installing PostgreSQL on Kubernetes, covering pre-requisites such as setting up Kubectl, Kubernetes clusters, and Docker.
 slug: postgres-on-kubernetes
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-22-k8s-postgres/social.png
 hide_table_of_contents: false
 ---

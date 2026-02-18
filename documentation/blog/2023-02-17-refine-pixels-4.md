@@ -3,7 +3,8 @@ title: Adding Realtime Collaboration
 description: We'll implement realtime broadcast and subscription of pixels updates in Pixels app.
 slug: refine-pixels-4
 authors: abdullah_numan
-tags: [refine-week, refine, supabase]
+category: "How To Build"
+tags: [refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-02-11-refine-pixels-4%2Fsocial.png
 hide_table_of_contents: false
 ---

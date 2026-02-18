@@ -3,7 +3,8 @@ title: Adding CRUD Actions and Authentication
 description: We'll initialize our Pixels app using Refine and get familiar with the boilerplate code to be created with the create refine-app CLI tool.
 slug: refine-pixels-3
 authors: abdullah_numan
-tags: [refine-week, refine, supabase]
+category: "How To Build"
+tags: [refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: Top 6 Free Online Code Editors and IDEs with Pros and Cons
 description: We'll compare the best online IDEs and code editors for web development. We'll also look at the pros and cons of each.
 slug: 6-best-online-code-editors-comparison
 authors: joseph_mawa
-tags: [comparison]
+category: "Alternatives"
+tags: [comparison, dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/social.png
 hide_table_of_contents: false
 ---

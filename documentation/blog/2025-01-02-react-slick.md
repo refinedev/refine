@@ -3,6 +3,7 @@ title: React Slick Examples - Creating a carousel
 description: We'll see how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 slug: react-slick
 authors: deborah_emeni
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social-2.png
 hide_table_of_contents: false

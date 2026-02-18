@@ -3,7 +3,8 @@ title: Announcing the Refine Open Source Hackathon 2 Winners
 description: We're thrilled to announce the winners of the Refine Open Source Hackathon 2!
 slug: refine-hackathon-2-winners
 authors: necati
-tags: [community, Refine]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-04-refine-hackathon-2-winners/winner-cover.png
 hide_table_of_contents: false
 ---

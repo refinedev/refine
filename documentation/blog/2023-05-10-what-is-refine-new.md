@@ -3,7 +3,8 @@ title: refine.new - Introducing the Fastest Way to Create Refine Apps
 description: Discover how refine.new and the Refine framework are transforming the way developers create front-end applications in the React ecosystem
 slug: what-is-refine-new
 authors: necati
-tags: [community, Refine]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-10-what-is-refine-new/social.png
 hide_table_of_contents: false
 ---

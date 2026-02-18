@@ -3,7 +3,8 @@ title: Introduction to Docker Networking
 description: We'll go over the basics of Docker networking, including the default networks, bridge networking, host networking, overlay networking, Macvlan networking, and custom bridge networking.
 slug: docker-networking
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-18-docker-networking/social.png
 hide_table_of_contents: false
 ---

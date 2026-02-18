@@ -3,7 +3,8 @@ title: Error Boundaries in React -  Handling Errors Gracefully
 description: We'll see how to handle errors in React using Error Boundaries and how to use the react-error-boundary library to handle errors in React.
 slug: react-error-boundaries
 authors: chidume_nnamdi
-tags: [react]
+category: "Engineering"
+tags: [react, bugs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/social-2.png
 hide_table_of_contents: false
 ---

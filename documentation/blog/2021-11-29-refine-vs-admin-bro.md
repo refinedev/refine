@@ -3,7 +3,8 @@ title: Refine vs AdminBro - Comparison Admin Panel Framework
 description: Refine vs AdminBro
 slug: refine-vs-adminbro
 authors: melih
-tags: [refine, react, comparison]
+category: "Alternatives"
+tags: [admin-panel, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

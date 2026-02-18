@@ -3,7 +3,8 @@ title: A Detailed Guide on Docker Volumes
 description: We'll go over the fundamentals of Docker volumes, including what they are, why they're important, and how to use them.
 slug: docker-volumes
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-11-docker-volume/social.webp
 hide_table_of_contents: false
 ---

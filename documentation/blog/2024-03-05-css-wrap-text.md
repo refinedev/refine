@@ -3,6 +3,7 @@ title: How do you wrap text content in CSS?
 description: We'll look at the CSS features that allow us to wrap overflowing text in containers.
 slug: css-text-wrap
 authors: peter_osah
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-05-css-wrap-text/social.png
 hide_table_of_contents: false

@@ -3,6 +3,7 @@ title: React Props Explained with Examples
 description: A detailed guide on React props with examples
 slug: react-props
 authors: chidume_nnamdi
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-16-react-props/social-2.png
 hide_table_of_contents: false

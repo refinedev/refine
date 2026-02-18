@@ -3,7 +3,8 @@ title: Creating a Responsive React Navbar with Tailwind CSS
 description: In this brief guide, we'll create a responsive navbar with Tailwind CSS and Bootstrap in React.
 slug: react-navbar-responsive-tailwind
 authors: muhammed_arslan
-tags: [tailwind, css, react]
+category: "Ecosystem / Integrations"
+tags: [react, tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/social.png
 hide_table_of_contents: false
 ---

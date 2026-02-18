@@ -3,7 +3,8 @@ title: Next.js vs React - A Beginner's Guide
 description: We briefly run through the innovation driven differences between React and Next.js in rendering behavior, routing, data fetching, backend API development and app configuration.
 slug: next-js-vs-react
 authors: marvel_ken
-tags: [react, nextjs]
+category: "Alternatives"
+tags: [nextjs, react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-10-nextjs-vs-react/social-2.png
 hide_table_of_contents: false
 ---

@@ -3,6 +3,7 @@ title: How to use TypeScript Partial Type?
 description: We'll explain the TypeScript Partial utility type with examples
 slug: typescript-partial-utility-type
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-10-typescript-partial/social-2.png
 hide_table_of_contents: false

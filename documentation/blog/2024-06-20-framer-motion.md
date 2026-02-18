@@ -3,7 +3,8 @@ title: Framer Motion React Animations
 description: We'll walk you through the features and functionalities of Framer Motion.
 slug: framer-motion
 authors: peter_osah
-tags: [react]
+category: "Ecosystem / Integrations"
+tags: [react, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-motion/social.png
 hide_table_of_contents: false
 ---

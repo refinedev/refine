@@ -3,7 +3,8 @@ title: Introduction to Docker Compose
 description: We'll go over the basics of Docker Compose in this article, including what it is, how it works, and how to use it.
 slug: docker-compose
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/social.png
 hide_table_of_contents: false
 ---

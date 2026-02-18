@@ -3,7 +3,8 @@ title: A complete guide to Kubectl exec
 description: We'll go over the basics of kubectl exec, including its syntax, parameters, and how to use it to interact with containers in a Kubernetes pod.
 slug: kubectl-exec-command
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-19-kubecti-exec/social.png
 hide_table_of_contents: false
 ---

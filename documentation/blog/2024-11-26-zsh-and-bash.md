@@ -3,7 +3,8 @@ title: Zsh and Bash
 description: We'll explore the unique features of these tools and their similarities and differences.
 slug: zsh-vs-bash
 authors: muhammad_khabbab
-tags: [dev-tools]
+category: "Alternatives"
+tags: [dev-tools, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-14-zsh-and-bash/social-2.png
 hide_table_of_contents: false
 ---

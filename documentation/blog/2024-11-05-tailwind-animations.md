@@ -3,7 +3,8 @@ title: Tailwind Animations with Examples
 description: Understanding the cleanup function of the useEffect hook in React. Learn how to clean up side effects in React components to prevent memory leaks and improve performance.
 slug: tailwind-animations
 authors: peter_osah
-tags: [tailwind]
+category: "Ecosystem / Integrations"
+tags: [tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/social.png
 hide_table_of_contents: false
 ---

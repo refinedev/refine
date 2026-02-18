@@ -3,7 +3,8 @@ title: Docker Alternatives
 description: We'll discuss top alternatives of Docker walking your through their pros and cons and how they compare to Docker.
 slug: docker-alternatives
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Alternatives"
+tags: [docker, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-05-docker-alternatives/social.png
 hide_table_of_contents: false
 ---

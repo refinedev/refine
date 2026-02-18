@@ -3,7 +3,8 @@ title: "Code Comments: The Good, The Bad, and The Hilarious"
 description: A guide to writing comments that help (and avoiding the ones that hurt), with a collection of the funniest gems from real codebases.
 slug: code-comments
 authors: ozgur
-tags: [ai, comments, bugs, devlife]
+category: "Engineering"
+tags: [tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-08-19-code-comments/Frame%2021%20from%20Figma.png
 hide_table_of_contents: false
 ---

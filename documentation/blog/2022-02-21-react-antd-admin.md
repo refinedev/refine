@@ -3,7 +3,8 @@ title: Create Full Featured Admin Panel with React and Ant Design
 description: We will see how easy it is to develop a functional Admin panel with the perfect harmony of Refine and Ant Design.
 slug: refine-react-ant-design-admin-panel-framework
 authors: melih
-tags: [refine, ant-design, react, tutorial]
+category: "How To Build"
+tags: [ant-design, react, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

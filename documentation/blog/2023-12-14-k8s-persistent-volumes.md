@@ -3,7 +3,8 @@ title: Kubernetes Persistent Volumes - Best Practices and Use Cases
 description: Kubernetes Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) are key tools for storing data in containerized environments.
 slug: kubernetes-persistent-volumes
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/social.png
 hide_table_of_contents: false
 ---

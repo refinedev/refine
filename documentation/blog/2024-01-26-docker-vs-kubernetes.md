@@ -3,7 +3,8 @@ title: Kubernetes vs Docker - A Detailed Comparison
 description: Explore an in-depth comparison between Docker and Kubernetes, focusing on their unique features, advantages, and ideal use scenarios.
 slug: kubernetes-vs-docker
 authors: muhammad_khabbab
-tags: [docker, dev-tools, kubernetes]
+category: "Alternatives"
+tags: [kubernetes, docker, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-25-docker-vs-kubernates/social.png
 hide_table_of_contents: false
 ---

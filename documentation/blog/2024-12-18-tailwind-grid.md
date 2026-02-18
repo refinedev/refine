@@ -3,6 +3,7 @@ title: How to Use Tailwind CSS Grid
 description: We look at how to implement responsive layouts with CSS Grid using TailwindCSS Grid classes.
 slug: tailwind-grid
 authors: abdullah_numan
+category: "Ecosystem / Integrations"
 tags: [tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social-2.png
 hide_table_of_contents: false

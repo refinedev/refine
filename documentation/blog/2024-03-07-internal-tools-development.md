@@ -3,7 +3,8 @@ title: Developing Internal Tools in 2024
 description: Internal tools are specialized software applications used by a company's back-office departments.
 slug: internal-tools
 authors: abdullah_numan
-tags: [dev-tools]
+category: "Tutorials"
+tags: [admin-panel, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-07-internal-tools-development/social.png
 hide_table_of_contents: false
 ---

@@ -3,6 +3,7 @@ title: A Guide to Using the useLayoutEffect Hook in React
 description: We'll explore the useLayoutEffect hook in-depth, how it differs from useEffect and learn how to properly leverage its capabilities to enhance the user experience.
 slug: uselayouteffect-vs-useeffect
 authors: wisdom_ekpotu
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-02-react-uselayouteffect/social-2.png
 hide_table_of_contents: false

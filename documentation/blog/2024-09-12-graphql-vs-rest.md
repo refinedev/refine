@@ -3,7 +3,8 @@ title: GraphQL vs REST - Key Differences and Use Cases
 description: We'll explore the key differences between GraphQL and REST, and discuss the use cases where each approach excels.
 slug: graphql-vs-rest
 authors: chidume_nnamdi
-tags: [dev-tools, comparison]
+category: "Alternatives"
+tags: [backend, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-03-graphql-vs-rest/social-2.png
 hide_table_of_contents: false
 ---

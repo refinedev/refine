@@ -3,7 +3,8 @@ title: How to use Material UI Checkbox
 description: We'll discover the Material UI Checkbox component with examples
 slug: material-ui-checkbox-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/social-2.png
 hide_table_of_contents: false
 ---

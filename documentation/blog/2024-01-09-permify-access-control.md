@@ -3,7 +3,8 @@ title: Build Access Control Mechanism using Permify
 description: We'll examine how to build an Access Control mechanism in Refine using Permify, an authorization as a service that helps you create any kind of authorization system easily with its panel.
 slug: access-control
 authors: ege
-tags: [dev-tools, access-control, Refine]
+category: "Ecosystem / Integrations"
+tags: [admin-panel, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-09-permify-access-control/social.png
 hide_table_of_contents: false
 ---

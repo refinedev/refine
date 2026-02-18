@@ -3,6 +3,7 @@ title: How to Hide Scrollbar Using CSS?
 description: We'll demonstrate how to hide scrollbars using CSS.
 slug: css-hide-scrollbar
 authors: peter_osah
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-20-css-scroll-bar/social.png
 hide_table_of_contents: false
