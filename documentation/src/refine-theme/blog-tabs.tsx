@@ -158,7 +158,7 @@ function BlogTabsComponent(props) {
         "blog-tabs",
         "mb-6",
         "bg-white",
-        "blog-content-bleed-16",
+        "blog-content-bleed",
         "dark:bg-zinc-900",
         "border",
         "border-zinc-200",

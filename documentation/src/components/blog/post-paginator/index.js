@@ -16,11 +16,13 @@ export const PostPaginator = ({ posts, title }) => {
         "mx-auto",
         "px-4",
         "blog-md:px-0",
+        "blog-max:px-4",
+        "max-w-[320px]",
         "blog-md:max-w-[672px]",
         "blog-lg:max-w-[720px]",
         "pt-16",
         "pb-12",
-        "blog-sm:pt-[72px] blog-sm:pb-[120px]",
+        "blog-md:pt-[72px] blog-md:pb-[120px]",
       )}
     >
       <div className={clsx("w-full")}>
@@ -30,7 +32,6 @@ export const PostPaginator = ({ posts, title }) => {
             "mb-4",
             "p-0",
             "text-2xl",
-            "leading-8",
             "font-semibold",
             "text-zinc-900",
             "dark:text-white",
@@ -50,12 +51,16 @@ export const PostPaginator = ({ posts, title }) => {
                   rel="dofollow"
                   className={clsx(
                     "group",
-                    "blog-content-bleed-16",
+                    "blog-content-bleed",
                     "flex",
+                    "flex-col",
+                    "blog-md:flex-row",
                     "w-full",
                     "items-start",
-                    "gap-8",
-                    "py-4",
+                    "gap-2",
+                    "py-3",
+                    "blog-md:py-4",
+                    "px-3",
                     "blog-md:px-4",
                     "no-underline",
                     "hover:no-underline",
@@ -79,7 +84,6 @@ export const PostPaginator = ({ posts, title }) => {
                       "duration-200",
                       "group-hover:text-zinc-900",
                       "dark:group-hover:text-white",
-                      "line-clamp-2",
                     )}
                   >
                     {post.title}
@@ -88,9 +92,7 @@ export const PostPaginator = ({ posts, title }) => {
                   <div
                     className={clsx(
                       "w-[120px]",
-                      "h-6",
-                      "py-1",
-                      "text-right",
+                      "blog-md:text-right",
                       "text-[10px]",
                       "leading-4",
                       "font-semibold",
@@ -121,7 +123,7 @@ export const PostPaginator = ({ posts, title }) => {
 const PostDivider = () => (
   <div
     className={clsx(
-      "blog-content-bleed-16",
+      "blog-content-bleed",
       "h-px",
       "bg-zinc-200",
       "dark:bg-zinc-800",

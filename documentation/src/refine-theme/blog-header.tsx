@@ -72,9 +72,8 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
       <div
         className={clsx(
           "mx-auto flex h-full w-full items-center justify-between",
-          "px-4 blog-sm:px-0",
           "w-full",
-          "blog-sm:max-w-[560px]",
+          "max-w-[328px]",
           "blog-md:max-w-[672px]",
           "blog-lg:max-w-[896px]",
           "blog-max:max-w-[1200px]",
@@ -83,7 +82,6 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
         <Link
           to="/blog"
           className={clsx(
-            "blog-max:-ml-12",
             "flex items-center gap-2",
             "no-underline hover:no-underline",
           )}
@@ -97,7 +95,7 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
               "text-zinc-900 dark:text-white",
             )}
           >
-            R<span>e</span>fine
+            Refine
           </span>
           <span
             className={clsx(

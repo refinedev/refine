@@ -18,6 +18,12 @@
   @apply prose-a:text-teal-600 prose-a:dark:text-teal-400;
 }
 
+@media (max-width: 720px) {
+  .blog-wrapper .markdown p {
+    @apply text-sm;
+  }
+}
+
 .blog-wrapper .refine-prose h2 {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -50,9 +56,22 @@
   @apply text-zinc-700 dark:text-zinc-300 bg-[#e4e4e7] dark:bg-[#3f3f4680];
 }
 
+:is(
+    .blog-wrapper .blog-content-bleed,
+    .blog-wrapper .markdown p:has(> img:only-child),
+    .blog-wrapper .markdown p:has(> a:only-child > img:only-child),
+    .blog-wrapper .markdown figure:has(> img:only-child),
+    .blog-wrapper .markdown figure:has(> a:only-child > img:only-child)
+  ) {
+  margin-left: -12px;
+  margin-right: -12px;
+  width: calc(100% + 24px);
+  max-width: none;
+}
+
 @media (min-width: 720px) {
   :is(
-      .blog-wrapper .blog-content-bleed-16,
+      .blog-wrapper .blog-content-bleed,
       .blog-wrapper .admonition,
       .blog-wrapper .markdown p:has(> img:only-child),
       .blog-wrapper .markdown p:has(> a:only-child > img:only-child),

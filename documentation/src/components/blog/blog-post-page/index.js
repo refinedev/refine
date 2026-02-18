@@ -48,8 +48,9 @@ export const BlogPostPageView = ({ children }) => {
     <article
       className={clsx(
         "w-full",
-        "px-4",
+        "px-3",
         "blog-md:px-0",
+        "max-w-[320px]",
         "blog-md:max-w-[672px]",
         "blog-lg:max-w-[720px]",
       )}
@@ -148,15 +149,7 @@ const ShareActions = ({ shareUrl, title, tags, description, siteUrl }) => {
   const hashtags = getHashtags(tags);
 
   return (
-    <div
-      className={clsx(
-        "hidden",
-        "items-center",
-        "gap-2",
-        "not-prose",
-        "blog-md:flex",
-      )}
-    >
+    <div className={clsx("items-center", "gap-2", "not-prose", "flex")}>
       <span
         className={clsx(
           "mr-1",
@@ -231,9 +224,16 @@ const CoverImage = ({ image, title, className }) => {
   }
 
   return (
-    <div className={clsx(className, "blog-content-bleed-16")}>
+    <div className={clsx(className, "blog-content-bleed")}>
       <img
-        className={clsx("aspect-[894/504]", "w-full", "rounded-2xl")}
+        className={clsx(
+          "aspect-[720/400]",
+          "max-w-[720px]",
+          "w-full",
+          "h-auto",
+          "mx-auto",
+          "rounded-2xl",
+        )}
         src={coverUrl}
         alt={title}
       />
@@ -286,8 +286,11 @@ const PostHeader = ({
           "mt-4",
           "flex",
           "flex-wrap",
-          "items-center",
-          "justify-between",
+          "flex-col",
+          "blog-md:flex-row",
+          "items-start",
+          "blog-md:items-center",
+          "blog-md:justify-between",
           "gap-4",
         )}
       >
@@ -493,7 +496,14 @@ const PostBody = ({ children }) => {
 
       return (
         <>
-          <div className={clsx("not-prose", "my-12", "blog-content-bleed-16")}>
+          <div
+            className={clsx(
+              "not-prose",
+              "my-6",
+              "blog-md:my-12",
+              "blog-content-bleed",
+            )}
+          >
             <BannerBlog />
           </div>
           {heading}
@@ -505,7 +515,7 @@ const PostBody = ({ children }) => {
   return (
     <div
       id={blogPostContainerID}
-      className={clsx("markdown")}
+      className={clsx("markdown", "blog-max:px-4")}
       itemProp="articleBody"
     >
       <MDXProvider components={components}>{children}</MDXProvider>

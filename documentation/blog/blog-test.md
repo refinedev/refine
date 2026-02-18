@@ -261,8 +261,6 @@ Opsiyonel test snippet:
   </TabItem>
 </Tabs>
 
-<br />
-
 ## Login Page
 
 We will create a simple login page to demonstrate the authentication flow. We will use the [`useLogin`](https://refine.dev/core/docs/api-reference/core/hooks/authentication/useLogin/) hook to handle the login process. This hook will call the `login` function that is defined in the `authProvider`.

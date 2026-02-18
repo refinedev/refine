@@ -26,14 +26,14 @@ export const BannerBlog = () => {
         alt={text}
         title={description}
         loading="lazy"
-        className={clsx("hidden", "md:block", "w-full")}
+        className={clsx("hidden", "blog-md:block", "w-full")}
       />
       <img
         src={mobileImage}
         alt={text}
         title={description}
         loading="lazy"
-        className={clsx("block", "md:hidden", "w-full")}
+        className={clsx("block", "blog-md:hidden", "w-full")}
       />
     </Link>
   );

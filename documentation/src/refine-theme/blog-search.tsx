@@ -29,18 +29,18 @@ export const BlogSearch = () => {
               "bg-transparent",
               "dark:border-zinc-700",
               "transition-colors",
-              "blog-max:w-[304px]",
-              "blog-max:items-start",
-              "blog-max:justify-start",
-              "blog-max:bg-white",
-              "blog-max:dark:bg-[#18181B]",
+              "blog-md:w-[304px]",
+              "blog-md:items-start",
+              "blog-md:justify-start",
+              "blog-md:bg-white",
+              "blog-md:dark:bg-[#18181B]",
             )}
             {...props}
             ref={ref}
             aria-label="Search blog"
           >
             <MagnifierIcon
-              className={clsx("h-5 w-5 text-zinc-400 blog-max:hidden")}
+              className={clsx("h-5 w-5 text-zinc-400 blog-md:hidden")}
             />
 
             <div
@@ -52,7 +52,7 @@ export const BlogSearch = () => {
                 "items-center",
                 "justify-center",
                 "gap-2",
-                "blog-max:flex",
+                "blog-md:flex",
               )}
             >
               <MagnifierIcon

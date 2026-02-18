@@ -38,6 +38,8 @@ interface ThumbPosition {
   height: number;
 }
 
+const MIN_SCROLLABLE_OVERFLOW_PX = 8;
+
 // =============================================================================
 // Constants & Helpers
 // =============================================================================
@@ -385,6 +387,7 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
   });
   const isInitialRenderRef = React.useRef(true);
   const [footerOverlap, setFooterOverlap] = React.useState(0);
+  const [allowTocScroll, setAllowTocScroll] = React.useState(false);
   const [scrollMask, setScrollMask] = React.useState({
     showTop: false,
     showBottom: false,
@@ -404,7 +407,12 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
       0,
     );
 
-    if (maxScrollTop <= 1) {
+    if (maxScrollTop <= MIN_SCROLLABLE_OVERFLOW_PX) {
+      if (scrollContainer.scrollTop !== 0) {
+        scrollContainer.scrollTop = 0;
+      }
+
+      setAllowTocScroll((previous) => (previous ? false : previous));
       setScrollMask((previous) => {
         if (!previous.showTop && !previous.showBottom) {
           return previous;
@@ -414,6 +422,8 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
       });
       return;
     }
+
+    setAllowTocScroll((previous) => (previous ? previous : true));
 
     const showTop = scrollContainer.scrollTop > 1;
     const showBottom = scrollContainer.scrollTop < maxScrollTop - 1;
@@ -516,26 +526,20 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
   }, []);
 
   const scrollMaskImage = React.useMemo(() => {
-    if (!scrollMask.showTop && !scrollMask.showBottom) {
+    if (!scrollMask.showTop) {
       return "none";
     }
 
-    if (scrollMask.showTop && scrollMask.showBottom) {
-      return "linear-gradient(#0000, #fff 16px calc(100% - 16px), #0000)";
-    }
-
-    if (scrollMask.showTop) {
-      return "linear-gradient(#0000, #fff 16px, #fff)";
-    }
-
-    return "linear-gradient(#fff, #fff calc(100% - 16px), #0000)";
-  }, [scrollMask.showBottom, scrollMask.showTop]);
+    // Keep only the top fade and remove the bottom fade shadow.
+    return "linear-gradient(#0000, #fff 16px, #fff)";
+  }, [scrollMask.showTop]);
 
   // Auto-scroll TOC to keep the first active item centered in the sidebar
   React.useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     const itemsContainer = containerRef.current;
     if (!scrollContainer || !itemsContainer || visibleIds.size === 0) return;
+    if (!allowTocScroll) return;
 
     // Find the first active item in the TOC
     let firstActiveId: string | null = null;
@@ -582,7 +586,7 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
       footerOverlap,
     };
     isInitialRenderRef.current = false;
-  }, [visibleIds, toc, footerOverlap]);
+  }, [visibleIds, toc, footerOverlap, allowTocScroll]);
 
   return (
     <div
@@ -611,8 +615,10 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
               "shrink-0",
               "bg-zinc-50 dark:bg-zinc-900",
               "ml-[0.5px]",
+              "relative",
             )}
           >
+            <OnThisPageIcon />
             <h2
               className={clsx(
                 "font-semibold",
@@ -631,8 +637,10 @@ export const BlogTOC = (props: { toc: TocItem[] }) => {
           <div
             ref={scrollContainerRef}
             className={clsx(
-              "relative flex-1 overflow-auto scrollbar-hidden",
-              "pt-6",
+              "relative flex-1",
+              allowTocScroll ? "overflow-auto" : "overflow-hidden",
+              "pt-2",
+              "mt-4",
             )}
             style={{
               scrollbarWidth: "none",
@@ -751,3 +759,29 @@ export const BlogTOCItem = ({
     />
   );
 };
+
+const OnThisPageIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    fill="none"
+    className={clsx(
+      "h-4",
+      "w-4",
+      "text-zinc-500",
+      "dark:text-zinc-400",
+      "absolute",
+      "top-4",
+      "-left-2",
+    )}
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M8 4.667A2.667 2.667 0 0 0 5.333 2h-4v10H6a2 2 0 0 1 2 2m0-9.333V14m0-9.333A2.667 2.667 0 0 1 10.667 2h4v10H10a2 2 0 0 0-2 2M4 5.333h1.333M4 8h1.333m5.334-2.667H12M10.667 8H12"
+    />
+  </svg>
+);
