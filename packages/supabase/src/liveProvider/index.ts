@@ -72,8 +72,7 @@ export const liveProvider = (
           // for postgres_changes. Joining multiple filters with commas
           // results in an invalid payload and may break the subscription.
           console.warn(
-            `[refine/supabase] Multiple filters are not supported for Supabase Realtime subscriptions. ` +
-              `Using only the first filter: "${mapped[0]}".`,
+            `[refine/supabase] Multiple filters are not supported for Supabase Realtime subscriptions. Using only the first filter: "${mapped[0]}".`,
           );
         }
 
