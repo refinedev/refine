@@ -3,12 +3,8 @@ title: "Refine Pixels: A Complete Guide to Full-Stack Apps"
 description: Build a production-ready app from scratch with the Refine Pixels series, covering auth, CRUD, state management, and deployment.
 slug: refine-pixels-guide
 authors: abdullah_numan
-<<<<<<< HEAD
 category: "How To Build"
 tags: [refine-week]
-=======
-tags: [refine-week, refine, supabase, ant-design, access-control]
->>>>>>> main
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/social.png
 hide_table_of_contents: false
 ---
