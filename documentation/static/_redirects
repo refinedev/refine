@@ -1220,15 +1220,11 @@
 
 /blog/admin-panels/ /blog/top-frameworks-for-building-admin-panel/ 301
 
-/blog/rtk-query-redux-toolkit/  /blog/ 404
+/blog/edit-crontab/ /blog/ 301
 
-/blog/edit-crontab/ /blog/ 404
+/blog/new-features-in-next-js-13/ /blog/ 301
 
-/blog/article-guidance/ /blog/ 404
-
-/blog/new-features-in-next-js-13/ /blog/next-js-getinitialprops-and-getserversideprops/ 404
-
-/blog/code-electric-bugs /blog/ 404
+/blog/code-electric-bugs /blog/ 301
 
 # 3.xx.xx versioned docs button redirects
 /core/docs/3.xx.xx/api-reference/antd/components/buttons/list/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/list-button/ 301
@@ -1303,3 +1299,16 @@
 /core/docs/api-reference/core/data/hooks/useList/ /core/docs/data/hooks/use-list/ 301
 /core/docs/api-reference/core/data/hooks/useOne/ /core/docs/data/hooks/use-one/ 301
 /core/docs/core/data/hooks/use-one/ /core/docs/data/hooks/use-one/ 301
+
+# Refine Pixels series consolidated into master guide
+/blog/refine-pixels-1/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-2/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-3/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-4/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-5/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-6/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-7/ /blog/refine-pixels-guide/ 301
+
+/blog/tags/kubernetes/page/3/ /blog/ 301
+/blog/tags/philosophy/ /blog/ 301
+/blog/tags/software/ /blog/ 301
