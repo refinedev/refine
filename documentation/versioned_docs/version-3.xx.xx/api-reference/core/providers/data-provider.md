@@ -346,7 +346,7 @@ update: async ({ resource, id, variables, metaData }) => {
 | variables | `TVariables`                 | `{}`    |
 | metaData? | [`MetaDataQuery`][meta-data] |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate#type-parameters) to type `variables`.
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`.
 
 ### deleteOne <PropTag required />
 
@@ -754,7 +754,7 @@ const myDataProvider = {
 [use-create-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/
 [use-custom]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/
 [use-custom-mutation]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustomMutation/
-[use-data-provider]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useDataProvider/
+[use-data-provider]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useDataProvider/
 [use-delete]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/
 [use-delete-many]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/
 [use-list]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useList/

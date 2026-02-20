@@ -123,7 +123,7 @@ useSelect({
 });
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)
 
 ### `debounce`
 

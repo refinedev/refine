@@ -106,4 +106,4 @@ In the above example, we pass the `headers` property in the `metaData` object to
 
 [Refer to the how to pass `metaData` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
 
-[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql)
+[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/core/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/)

@@ -309,7 +309,7 @@ useForm({
 });
 ```
 
-To learn more about the routing, check out the [Routing](/guides-concepts/routing/index#router-integrations) guide and the [General Concepts](/guides-concepts/general-concepts/index#router-provider) guide to learn more about how it benefits the development experience.
+To learn more about the routing, check out the [Routing](/Users/ozgurakca/refine/documentation/docs/guides-concepts/routing/) guide and the [General Concepts](/Users/ozgurakca/refine/documentation/docs/guides-concepts/general-concepts/) guide to learn more about how it benefits the development experience.
 
 ### Redirection
 

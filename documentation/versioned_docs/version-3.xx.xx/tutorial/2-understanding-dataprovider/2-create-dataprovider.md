@@ -638,7 +638,7 @@ import { useApiUrl } from "@pankod/refine-core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/data/hooks/useApiUrl)
+> [Refer to the useApiUrl documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/)
 
 ### custom
 

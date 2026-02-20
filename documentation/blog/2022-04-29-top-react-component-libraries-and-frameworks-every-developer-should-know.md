@@ -121,4 +121,4 @@ It has many examples to help you get started, as well as documentation. Also it 
 - **Backend Agnostic**: Connects to any custom backend.
 - **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/) (It can also be used with any UI Framework).
 
-👉 [Showcase](https://refine.dev/demo/)
+👉 [Showcase](https://refine.dev/core/templates/)

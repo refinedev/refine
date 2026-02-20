@@ -401,7 +401,7 @@ All features of **Refine** are available as **open source**.
 - Search
 - Navigation and more features are available
 
-**Refine** Docs & Demo: [Documentation](https://refine.dev/core/docs/) - [Live Demo](https://refine.dev/demo/)
+**Refine** Docs & Demo: [Documentation](https://refine.dev/core/docs/) - [Live Demo](https://refine.dev/core/templates/)
 
 ## AdminBro
 

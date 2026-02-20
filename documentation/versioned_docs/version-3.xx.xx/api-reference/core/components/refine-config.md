@@ -783,7 +783,7 @@ const App: React.FC = () => (
 );
 ```
 
-[Refer to the Custom Layout documentation for detailed information. &#8594](/advanced-tutorials/custom-layout)
+[Refer to the Custom Layout documentation for detailed information. &#8594](core/docs/3.xx.xx/advanced-tutorials/custom-layout/)
 
 > `children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
 
