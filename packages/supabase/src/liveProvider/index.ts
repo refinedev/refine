@@ -69,6 +69,9 @@ export const liveProvider = (
           .filter(Boolean);
 
         if (mapped.length > 1) {
+          console.warn(
+            "[refine/supabase] Supabase Realtime only supports a single filter per subscription. Multiple filters provided - subscribing to all changes on the table.",
+          );
           return;
         }
 
