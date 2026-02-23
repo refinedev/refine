@@ -12,7 +12,7 @@ import OnSearchLivePreview from "./on-search-live-preview.md";
 
 `useAutocomplete` hook allows you to manage Material UI [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/) component when records in a resource needs to be used as select options.
 
-This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/)
+This hook uses the `useList` hook for fetching data. [Refer to useList hook for details. →](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/)
 
 :::info-tip DERIVATIVES
 If you're looking for a complete select library, refine has out-of-the-box support for the libraries below:
@@ -96,7 +96,7 @@ useAutocomplete({
 });
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)
 
 ### `debounce`
 
@@ -359,7 +359,7 @@ Params to pass to liveProvider's [subscribe](/core/docs/3.xx.xx/api-reference/co
 
 ### How to ensure `defaultValue` is included in the options?
 
-In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/), gets the data and mark as seleted.
+In some cases we only have `id`, it may be necessary to show it selected in the selection box. This hook sends the request via [`useMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/), gets the data and mark as seleted.
 
 <DefaultValueLivePreview />
 
@@ -385,7 +385,7 @@ return <Autocomplete {...autocompleteProps} options={options || []} />;
 The use of `useAutocomplete` with [`useForm`](/core/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm` hook.
 
 :::info
-By default, refine does the search using the [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 :::
 
 ## API Reference

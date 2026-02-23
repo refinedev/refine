@@ -3,7 +3,8 @@ title: refine Joins the Hacktoberfest Fun
 description: Hactoberfest is back and we are excited to be a part of it. Join us in making open source contributions.
 slug: hacktoberfest-refine
 authors: necati
-tags: [community]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/social.png
 hide_table_of_contents: false
 ---
@@ -17,7 +18,7 @@ We've already labeled a bunch of **Refine** issues with `hacktoberfest` so you c
 [github.com/refinedev/refine/labels/hacktoberfest](https://github.com/refinedev/refine/labels/hacktoberfest)
 
 <div class="img-container" align-items="center" >
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="prize" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="Hacktoberfest prize graphic" />
 
 </div>
 

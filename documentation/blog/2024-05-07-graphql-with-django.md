@@ -3,7 +3,8 @@ title: How to Create a GraphQL API with Python and Django
 description: We will discuss how to create a GraphQL API with Python.
 slug: graphql-with-python
 authors: muhammad_khabbab
-tags: [dev-tools]
+category: "Ecosystem / Integrations"
+tags: [backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-07-graphql-with-django/social.png
 hide_table_of_contents: false
 ---

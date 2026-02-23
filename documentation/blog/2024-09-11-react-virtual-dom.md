@@ -3,6 +3,7 @@ title: Understanding Virtual DOM in React
 description: We'll dive into the concept of a virtual DOM in the React as well as explore its purpose.
 slug: react-virtual-dom
 authors: peter_osah
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/social.webp
 hide_table_of_contents: false
@@ -405,7 +406,7 @@ When we view the element with the browser's developer tools, we just see a simpl
 To see the shadow DOM, utilize Chrome DevTools and enable the `Show user agent shadow DOM` option from `preferences` in `Settings`:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/virtual-dom.png" alt="react virtual dom" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/virtual-dom.png" alt="Virtual DOM update diagram" />
 </div>
 
 <br/>

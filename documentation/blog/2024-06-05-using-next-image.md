@@ -3,6 +3,7 @@ title: Nextjs image optimization with examples
 description: Built-in image optimization using the next image component
 slug: using-next-image
 authors: michael
+category: "Tutorials"
 tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-17-using-next-image/social-2.png
 hide_table_of_contents: false
@@ -363,7 +364,7 @@ Lets you add custom CSS styles to the underlying image element. To enable custom
 ```tsx
 <Image
   src="/background.webp"
-  alt="Waterfall"
+  alt="Waterfall photo"
   width={800}
   height={800}
   style={{ opacity: 0.5 }}

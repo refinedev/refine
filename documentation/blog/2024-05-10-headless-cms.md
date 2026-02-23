@@ -3,7 +3,8 @@ title: What is Headless CMS?
 description: We'll check out what a headless CMS is and its benefits.
 slug: headless-cms
 authors: necati
-tags: [dev-tools]
+category: "Engineering"
+tags: [strapi, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-10-headless-cms/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: How to use Material UI Select in React
 description: We'll discover the Material UI select component with examples
 slug: material-ui-select-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social-2.png
 hide_table_of_contents: false
 ---
@@ -380,7 +381,7 @@ The preceding code shows a `Select` field with organized input values. As shown 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

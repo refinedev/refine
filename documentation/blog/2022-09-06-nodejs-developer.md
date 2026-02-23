@@ -3,7 +3,8 @@ title: How to become a modern Node.js developer?
 description: The most essential skills to have as a modern Node.js developer
 slug: node-js-developer-skills
 authors: david_herbert
-tags: [community, javascript]
+category: "Engineering"
+tags: [javascript, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-06-nodejs-developer/social.png
 hide_table_of_contents: false
 ---
@@ -77,7 +78,7 @@ Therefore, having a proper understanding of Middlewares will allow you to write 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

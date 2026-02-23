@@ -3,10 +3,10 @@ title: Purpose-Built AI Agents - The Future of Internal Enterprise Apps
 description: How AI shapes the internal enterprise software development with purpose-built agents.
 slug: ai-future-of-internal-enterprise-apps
 authors: civan
-tags: [ai]
+category: "AI & Innovation"
+tags: [ai, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-02-purpose-built-ai-agents/purpose-built-ai-agents.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 # Introduction

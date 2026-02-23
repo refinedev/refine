@@ -3,7 +3,8 @@ title: How to use Material UI Checkbox
 description: We'll discover the Material UI Checkbox component with examples
 slug: material-ui-checkbox-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/social-2.png
 hide_table_of_contents: false
 ---
@@ -648,7 +649,7 @@ Here’s the result:
 
 ## Material UI Checkbox Accessibility
 
-All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilizing the <Label/>`component. You can also add an attribute to the input component with the`inputProps`prop. Some of these attributes include`aria-label`, `aria-labelledby`, and `title`.
+All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilizing the `<Label/>` component. You can also add an attribute to the input component with the `inputProps` prop. Some of these attributes include `aria-label`, `aria-labelledby` and `title`.
 
 ```ts
 <Checkbox

@@ -3,7 +3,8 @@ title: How to Create Dynamic Forms in React CRUD app with Ant Design
 description: Easy way to creating dynamic forms in React CRUD apps with Ant Design
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
-tags: [react, refine, tutorial, ant-design]
+category: "Ecosystem / Integrations"
+tags: [react, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social-2.png
 hide_table_of_contents: false
 ---
@@ -975,7 +976,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

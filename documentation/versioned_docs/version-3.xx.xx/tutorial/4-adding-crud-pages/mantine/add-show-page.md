@@ -99,7 +99,7 @@ In the show page, we have a single record. The record may have relationships wit
 
 For example, the `blog_posts` resource has a relationship with the `categories` resource. In this case, we can use the `useOne` hook provided by **refine**. This hook allows us to fetch single record data by using the `id` and `resource` parameters.
 
-[Refer to the `useOne` documentation for more information &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useOne/)
+[Refer to the `useOne` documentation for more information &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)
 
 In the auto-generated show page code, Inferencer used the `useOne` hook to fetch the category data of the blog post record.
 

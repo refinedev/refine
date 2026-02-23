@@ -57,7 +57,7 @@ The following components has been deprecated since `@refinedev/mui@6` and remove
 | `<ThemedSider />`      | `<ThemedSider />`         | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#sider)                                 |
 | `<Header />`           | `<ThemedHeader />`        | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#header)                                |
 | `<ThemedHeader />`     | `<ThemedHeader />`        | [View Docs](/core/docs/ui-integrations/material-ui/components/themed-layout/#header)                                |
-| `<LoginPage />`        | `<ThemedLoginPage />`     | [View Docs](/core/docs/api-reference/mui/components/auth-page/)                                                     |
+| `<LoginPage />`        | `<ThemedLoginPage />`     | [View Docs](/core/docs/ui-integrations/material-ui/components/auth-page/)                                           |
 | `<WelcomePage />`      | `@refinedev/core`         |                                                                                                                     |
 | `<ReadyPage />`        | no replacement            |                                                                                                                     |
 

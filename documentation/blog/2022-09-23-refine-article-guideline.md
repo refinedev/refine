@@ -3,7 +3,8 @@ title: An article guideline for Refine blog posts
 description: A guideline for writing articles
 slug: article-guideline
 authors: necati
-tags: [community]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-refine-article-guideline/social.png
 hide_table_of_contents: false
 ---

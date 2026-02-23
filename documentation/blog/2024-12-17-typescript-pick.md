@@ -3,6 +3,7 @@ title: A Detailed Guide on TypeScript Pick Type
 description: We'll deep dive into the TypeScript Pick utility type with examples and use cases.
 slug: typescript-pick-utility-type
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social-2.png
 hide_table_of_contents: false
@@ -192,7 +193,7 @@ console.log(guest.roles); // undefined
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

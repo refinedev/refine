@@ -3,7 +3,8 @@ title: How to use Next.js API Routes?
 description: We will deep dive into Next.js API Routes with Dynamic Routes.
 slug: next-js-api-routes
 authors: michael
-tags: [nextjs]
+category: "Tutorials"
+tags: [nextjs, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social-2.png
 hide_table_of_contents: false
 ---
@@ -56,7 +57,7 @@ export default function handler(req, res) {
 Navigating to `localhost:3000/api/hello` in the browser or making a `GET` request to it returns the following JSON response:
 
 <div class="img-container" align-items="center" >
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/response.png"  alt="response" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/response.png"  alt="API response in browser" />
 </div>
 
 <br/>

@@ -3,6 +3,7 @@ title: TypeScript Decorators in Brief
 description: We'll explore four main types of TypeScript Decorators with examples from a class that resembles those in typical class based TypeScript libraries.
 slug: typescript-decorators
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-24-typescript-decorators/social-2.png
 hide_table_of_contents: false

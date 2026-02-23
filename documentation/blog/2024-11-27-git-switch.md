@@ -3,7 +3,8 @@ title: git switch and git checkout – How to switch branches in git
 description: We will go through different use cases and examples for using git checkout and git switch.
 slug: git-switch-and-git-checkout
 authors: muhammad_khabbab
-tags: [git, dev-tools]
+category: "Alternatives"
+tags: [git]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/social-2.png
 hide_table_of_contents: false
 ---
@@ -273,7 +274,7 @@ If you want to restore both index and the working tree, then you would use the f
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

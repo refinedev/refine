@@ -3,7 +3,8 @@ title: gRPC vs REST - A Brief Comparison
 description: We'll explore practical use cases of REST and gRPC to enable you to select the most appropriate API for your project.
 slug: grpc-vs-rest
 authors: deborah_emeni
-tags: [comparison, javascript]
+category: "Alternatives"
+tags: [backend, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/social2.png
 hide_table_of_contents: false
 ---
@@ -46,7 +47,7 @@ Let's look at a simple example that describes APIs and their importance in appli
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/illustration.png" alt="grpc-vs-rest" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/illustration.png" alt="Illustration comparing gRPC and REST" />
 </div>
 
 For instance, let's say you are building a book application called BookFinder (that provides information about books) and want to design an API for it.
@@ -263,7 +264,7 @@ The code above creates a new gRPC client using the generated client code. The cl
 Below illustration will help you understand how both these technologies work.
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/image2.png" alt="REST vs gRPC" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/image2.png" alt="Comparison table of REST vs gRPC" />
 </div>
 
 ## How developers can use gRPC and REST

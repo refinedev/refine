@@ -11,7 +11,7 @@ import type { IResourceItem } from "../../contexts/resource/types";
 export type HistoryType = "push" | "replace";
 
 /**
- * `refine` uses {@link https://reactrouter.com/en/main/hooks/use-navigate#usenavigate `React Router`} and comes with all redirects out of the box.
+ * `refine` uses {@link https://reactrouter.com/api/hooks/useNavigate `React Router`} and comes with all redirects out of the box.
  * It allows you to manage your routing operations in refine.
  * Using this hook, you can manage all the routing operations of your application very easily.
  *

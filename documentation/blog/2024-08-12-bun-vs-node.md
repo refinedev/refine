@@ -3,7 +3,8 @@ title: Bun vs. Node.js
 description: We'll go over the new Bun runtime that has created a buzz in the tech space lately.
 slug: bun-js-vs-node
 authors: victor_uma
-tags: [javascript, dev-tools]
+category: "Alternatives"
+tags: [javascript, comparison, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social-3.png
 hide_table_of_contents: false
 ---
@@ -194,8 +195,7 @@ Here is the result for our Node server:
 Here is the result for our Bun server:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/bun.png
-"  alt="bun vs node js" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/bun.png"  alt="bun vs node js" />
 </div>
 
 <br/>

@@ -3,7 +3,8 @@ title: Introduction to Mantine UI
 description: Let's explore Mantine UI React Component Library.
 slug: mantine-ui-react
 authors: marvel_ken
-tags: [mantine, react]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-11-mantine-ui/social-2.png
 hide_table_of_contents: false
 ---

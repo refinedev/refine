@@ -3,6 +3,7 @@ title: How to use React Strict Mode in React 18
 description: What is Strict Mode in React 18 and how to use it to find and fix bugs in your React application.
 slug: react-strict-mode-in-react-18
 authors: deborah_emeni
+category: "Engineering"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-24-react-strict-mode/social-2.png
 hide_table_of_contents: false
@@ -149,7 +150,7 @@ FindDOMNode was a React feature designed to search the DOM node tree for a speci
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

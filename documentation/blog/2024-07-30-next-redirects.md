@@ -3,6 +3,7 @@ title: How Next.js Redirects Work
 description: We'll examine the concept of URL redirection in Next.js and how redirects work.
 slug: next-js-redirect
 authors: michael
+category: "Tutorials"
 tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-16-next-redirects/social-2.png
 hide_table_of_contents: false

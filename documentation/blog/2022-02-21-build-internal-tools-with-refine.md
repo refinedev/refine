@@ -3,7 +3,8 @@ title: What Is Refine Core & How To Use It?
 description: A simple guide to what Refine CORE is and how to utilize it to build internal tools of your choice. Learn to create flexible React apps without constraints.
 slug: what-is-refine-core-how-to-use-it
 authors: salih
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [opensource]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-what-is-refine-core/how-to-use-refine-core
 hide_table_of_contents: false
 ---
@@ -252,11 +253,11 @@ const authProvider = {
 
 ### Out-of-the-box Auth providers
 
-- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-auth0/) - [Demo](https://refine.dev/core/docs/examples/auth-provider/auth0)
-- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak/) - [Demo](https://refine.dev/core/docs/examples/auth-provider/keycloak)
-- Google - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-google-login) - [Demo](https://refine.dev/core/docs/examples/auth-provider/google-auth)
+- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0/)
+- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak/)
+- Google - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth/)
 - Kinde - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-kinde)
-- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-otp) - [Demo](https://refine.dev/core/docs/examples/auth-provider/otpLogin)
+- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin/)
 
 ## Authorization
 

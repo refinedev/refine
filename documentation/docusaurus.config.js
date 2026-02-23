@@ -102,12 +102,13 @@ const siteConfig = {
             require.resolve("./src/refine-theme/css/fonts.css"),
             require.resolve("./src/refine-theme/css/custom.css"),
             require.resolve("./src/css/custom.css"),
+            require.resolve("./src/refine-theme/css/blog.css"),
             require.resolve("./src/css/split-pane.css"),
             require.resolve("./src/css/demo-page.css"),
           ],
         },
-        gtag: {
-          trackingID: ["G-27Z1WY952H", "G-PSTZ6M7LTY"],
+        googleTagManager: {
+          containerId: "GTM-TPCTPDFK",
         },
         sitemap: {
           ignorePatterns: ["**/_*.md"],
@@ -150,6 +151,21 @@ const siteConfig = {
               postsPerPage: 12,
               blogSidebarTitle: "All posts",
               blogSidebarCount: 0,
+              admonitions: {
+                tag: ":::",
+                keywords: [
+                  "additional",
+                  "note",
+                  "tip",
+                  "info-tip",
+                  "info",
+                  "caution",
+                  "danger",
+                  "sourcecode",
+                  "create-example",
+                  "simple",
+                ],
+              },
               feedOptions: {
                 type: "all",
                 copyright: `Copyright © ${new Date().getFullYear()} Refine.`,
@@ -158,7 +174,6 @@ const siteConfig = {
           ],
         ]),
     "./plugins/clarity.js",
-    "./plugins/ahref.js",
     "./plugins/templates.js",
     "./plugins/tutorial-navigation.js",
     [

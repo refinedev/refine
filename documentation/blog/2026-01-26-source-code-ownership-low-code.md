@@ -3,10 +3,10 @@ title: Why Is Source Code Ownership Important in Low-Code?
 description: Learn why source code ownership is critical in low-code platforms, how it prevents vendor lock-in, and ensures scalability, control, and long-term flexibility.
 slug: source-code-ownership-low-code
 authors: ozgur
-tags: [low-code, internal-tools, product]
+category: "Engineering"
+tags: [tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-26/code-ownership-blog-banner
 hide_table_of_contents: false
-is_featured: false
 ---
 
 Low-code platforms help teams ship internal tools fast, but there is one question that matters more than the UI builder or the templates. Do you actually own the source code you are creating?

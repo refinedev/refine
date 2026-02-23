@@ -3,6 +3,7 @@ title: Creating testable React applications with Playwright
 description: We'll take a look at how to create testable React applications with Playwright.
 slug: playwright-react
 authors: peter_osah
+category: "Ecosystem / Integrations"
 tags: [react, dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-04-playwright/social.png
 hide_table_of_contents: false

@@ -3,7 +3,8 @@ title: Using React Hot Toast as a Notification Provider for CRUD apps
 description: We'll introduce create a custom notification provider using the react-hot-toast library.
 slug: react-hot-toast
 authors: david_omotayo
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/social.png
 hide_table_of_contents: false
 ---
@@ -34,7 +35,7 @@ Steps we'll cover:
 ## What is react-hot-toast
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/hot-toast.png"  alt="react-hot-toast" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/hot-toast.png"  alt="React Hot Toast homepage" />
 </div>
 
 <br/>
@@ -145,7 +146,7 @@ npm run dev
 Upon successfully starting the development server, navigate to [http://localhost:5173](http://localhost:5173) on your browser of choice. Your project should render as shown in the image below.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/initial-app.png"  alt="react-hot-toast" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/initial-app.png"  alt="Refine starter app running in browser" />
 </div>
 
 <br/>
@@ -170,7 +171,7 @@ return (
 The code above uses Refine's built-in notification provider for Ant Design. When a notification is triggered, Refine will use the notification provider to invoke the Ant Design notification object and display notifications in the application. The same goes for the highlighted design systems.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/w-refine-provider.png"  alt="react-hot-toast" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/w-refine-provider.png"  alt="Refine app with custom notification provider" />
 </div>
 
 <br/>
@@ -406,7 +407,7 @@ Congratulations! You have successfully created a custom notification provider fo
 **Success notification**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/success-min.avif"  alt="react-hot-toast" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/success-min.avif"  alt="Success toast notification example" />
 </div>
 
 <br/>
@@ -466,7 +467,7 @@ toast.success("Successfully logged in", {
 ```
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/location-min.avif"  alt="react-hot-toast" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/location-min.avif"  alt="Toast position options screenshot" />
 </div>
 
 <br/>

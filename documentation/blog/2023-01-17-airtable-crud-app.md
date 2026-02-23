@@ -3,7 +3,8 @@ title: Building a Complete React CRUD App with Airtable
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
@@ -49,7 +50,7 @@ It can also connect to any REST or GraphQL backend service and includes support 
 
 To use Airtable, we will have to sign up for Airtable. To sign up, visit [here](https://airtable.com/signup).
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/signup.jpeg"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/signup.jpeg"  alt="Airtable sign-up screen" />
 
 <br />
 <br />
@@ -58,7 +59,7 @@ After signup, you will be redirected to the dashboard from where you can create 
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_base.jpeg"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_base.jpeg"  alt="Create Airtable base" />
 
 <br />
 
@@ -68,7 +69,7 @@ To create a base, click **Add a base**. On creating a base, we will create a tab
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.webp"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_table.webp"  alt="Create table in Airtable" />
 
 <br />
 <br />
@@ -77,7 +78,7 @@ We will create a table called **categories** which will hold the categories' dat
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_categories.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create_categories.png"  alt="Create categories table" />
 
 <br />
 
@@ -119,7 +120,7 @@ npm run dev
 
 After running the command, the **Refine** application should be up and running. Visit http://localhost:5173 to access it.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.jpg"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/welcome.jpg"  alt="Refine app welcome screen" />
 
 <br />
 
@@ -310,7 +311,7 @@ export const PostList: React.FC = () => {
 Folder structure looks like this:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center", width:"300px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/folder-structure.png"  alt="react crud app airtable" />
+  <img style={{alignSelf:"center", width:"300px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/folder-structure.png"  alt="Project folder structure" />
 </div>
 
 In the `App.tsx` file, we are going to include the "posts" `resource` and set up a route for it.
@@ -340,7 +341,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <img
                 className="w-32"
                 src="https://refine.dev/img/refine_logo.png"
-                alt="Logo"
+                alt="Refine logo"
               />
             </Link>
 
@@ -450,7 +451,7 @@ When you navigate to `/posts` route, you can see our placeholder page. We will b
 
 ### Listing posts records
 
-First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/core/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
+First and foremost, To list our records, we will install the `@refinedev/react-table` to use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook to display all posts records in a table format. To install the table, run the following command:
 
 ```bash
 npm i @refinedev/react-table @tanstack/react-table
@@ -607,7 +608,7 @@ export const PostList: React.FC = () => {
 </p>
 </details>
 
-In the code above, we use the [`useTable()`](https://refine.dev/core/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
+In the code above, we use the [`useTable()`](https://refine.dev/docs/examples/table/antd/useTable/) hook from the `@refinedev/react-table` package to fetch records from our Airtable base. It allows us to fetch data according to the sorter, filter, and pagination states.
 
 We also use the [`useNavigation()`](https://refine.dev/core/docs/api-reference/core/hooks/navigation/useNavigation/) hook to navigate to the `show`, `edit`, and `create` pages of the `posts` resource.
 
@@ -627,10 +628,10 @@ export interface ICategory {
 // highlight-end
 ```
 
-Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/) **Refine** hook.
+Next, we need to map records from different the **category** field to the **category** base on Airtable. For this, we're going to use the [`useMany()`](https://refine.dev/core/docs/data/hooks/use-many/) **Refine** hook.
 
 The `useMany()` hook is a variant of the `react-query's` [useQuery()](https://tanstack.com/query/v4/docs/react/guides/queries?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2Fguides%2Fqueries) hook. it is used to obtain multiple items from a resource.
-To get more information about this hook, view its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useMany/).
+To get more information about this hook, view its documentation [here](https://refine.dev/core/docs/data/hooks/use-many/).
 
 Update the `<PostList />` component with the highlighted code below:
 
@@ -774,14 +775,14 @@ In the code above, The `useMany()` hook fetches records from the category base u
 
 We also update the category row on the table to display the category record assigned to a category field from the mapping.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/handling-relationships.jpeg"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/handling-relationships.jpeg"  alt="Handling relationships view" />
 
 <br />
 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -949,7 +950,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/view_single_post.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/view_single_post.png"  alt="Single post detail view" />
 
 <br />
 
@@ -1139,7 +1140,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create.gif"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/create.gif"  alt="Create post flow" />
 
 <br />
 
@@ -1353,7 +1354,7 @@ export const PostList: React.FC = () => {
 
 After this, we can now add the component `<PostEdit />` in the `edit.tsx` file to our resource present in the `App.tsx` file.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/edit.gif"  alt="Edit post flow" />
 
 <br />
 
@@ -1409,7 +1410,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.avif"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/delete.avif"  alt="Delete post confirmation" />
 
 <br />
 

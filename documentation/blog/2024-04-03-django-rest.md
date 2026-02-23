@@ -3,7 +3,8 @@ title: Django REST Framework - How to use it to create APIs?
 description: Explore the Django REST Framework and learn how to create APIs using it.
 slug: django-rest-framework
 authors: muhammad_khabbab
-tags: [dev-tools]
+category: "Ecosystem / Integrations"
+tags: [backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-03-django-rest/social.png
 hide_table_of_contents: false
 ---

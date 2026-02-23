@@ -3,7 +3,8 @@ title: The Anatomy of the Web Development in 2024
 description: This post depicts a general picture of where web development is headed in 2024 with a focus on the Node.js/React ecosystem - and provides an inside-out report on how Refine.js is starting to make an impact as a React-based meta-framework.
 slug: web-development
 authors: abdullah_numan
-tags: [react, comparison]
+category: "Engineering"
+tags: [tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/social.webp
 hide_table_of_contents: false
 ---
@@ -154,7 +155,7 @@ Using open-source tools and frameworks reduces development time and costs, as mo
 
 <a href="https://github.com/refinedev/refine">
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/refine-readme-banner.png" alt="refine.js" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/refine-readme-banner.png" alt="Refine README banner" />
 </div>
 </a>
 

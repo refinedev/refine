@@ -3,7 +3,8 @@ title: Essentials of Managing Form State with React Hook Form
 description: This post covers the essentials of form state management with React Hook Form library.
 slug: react-hook-form
 authors: abdullah_numan
-tags: [react, react-hook-form]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-26-react-hook-form/social.png
 hide_table_of_contents: false
 ---

@@ -3,10 +3,10 @@ title: Refine Investment Announcement
 description: We're excited to share that Refine has successfully closed a $2.8M seed round.
 slug: refine-investment-announcement
 authors: necati
-tags: [Refine]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-06-investment-announce/social.png
 hide_table_of_contents: false
-is_featured: false
 ---
 
 We're excited to share that Refine has successfully closed a $2.8M seed round.🎉

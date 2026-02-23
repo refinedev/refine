@@ -3,7 +3,8 @@ title: Developing Internal Tools in 2024
 description: Internal tools are specialized software applications used by a company's back-office departments.
 slug: internal-tools
 authors: abdullah_numan
-tags: [dev-tools]
+category: "Tutorials"
+tags: [admin-panel, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-07-internal-tools-development/social.png
 hide_table_of_contents: false
 ---
@@ -222,4 +223,4 @@ Enterprise internal tools development largely depends on the complexity of the r
 
 With a rich ecosystem of future adaptive technologies, support for growing list of backend API and UI integrations, Refine is fully equipped to make internal tools development in 2024 a breeze. You can build complex systems like CRMs, admin panels, dashboards, data visualization and more.
 
-Feel free to check out Refine's [examples](https://refine.dev/core/docs/examples/) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.
+Feel free to check out Refine's [examples](https://refine.dev/core/templates) and [templates](https://refine.dev/templates/) to learn more about the internal tools you can build with Refine.

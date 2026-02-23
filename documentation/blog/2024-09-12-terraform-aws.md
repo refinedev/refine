@@ -3,7 +3,8 @@ title: Getting Started with Terraform on AWS
 description: We'll walk through getting started with Terraform specifically for infrastructure provisioning on Amazon Web Services (AWS).
 slug: terraform-aws
 authors: shingai_zivuku
-tags: [dev-tools]
+category: "Ecosystem / Integrations"
+tags: [dev-tools, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-28-terraform-aws/social.png
 hide_table_of_contents: false
 ---

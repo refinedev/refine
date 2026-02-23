@@ -3,7 +3,8 @@ title: Creating Polished Content with React Markdown
 description: We will explore the process of integrating the markdown editor into a Refine application
 slug: react-markdown
 authors: david_omotayo
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/social-2.png
 hide_table_of_contents: false
 ---
