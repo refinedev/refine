@@ -47,7 +47,6 @@ const nextConfig = {
     "@refinedev/antd",
     "antd",
     "@ant-design/pro-components",
-    "@ant-design/pro-layout",
     "@ant-design/pro-utils",
     "@ant-design/pro-provider",
     "rc-pagination",
