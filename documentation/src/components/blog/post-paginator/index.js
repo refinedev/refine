@@ -57,6 +57,7 @@ export const PostPaginator = ({ posts, title }) => {
                     "blog-md:flex-row",
                     "w-full",
                     "items-start",
+                    "blog-md:items-center",
                     "gap-2",
                     "py-3",
                     "blog-md:py-4",
