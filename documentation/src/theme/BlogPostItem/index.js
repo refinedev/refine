@@ -56,6 +56,7 @@ export default function BlogPostItem({ className }) {
           "blog-md:pt-4",
           "px-3",
           "blog-md:px-6",
+          "blog-md:pb-6",
           "h-full",
         )}
       >
