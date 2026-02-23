@@ -1,15 +1,7 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import clsx from "clsx";
-
-const SCROLL_POSITION_KEY = "categoryNavBarScrollLeft";
 
 type CategoryItem = {
   value: string;
@@ -266,77 +258,9 @@ function CategoryNavBarDesktop({
   const normalizedAllPath = normalizePathname(allPath);
   const isAllPostsActive = isAllPath(normalizedPathname, normalizedAllPath);
 
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [hasOverflow, setHasOverflow] = useState(true);
-  const [showLeftShadow, setShowLeftShadow] = useState(true);
-  const [showRightShadow, setShowRightShadow] = useState(true);
-
-  useLayoutEffect(() => {
-    const element = scrollContainerRef.current;
-
-    if (!element) return;
-
-    const savedScrollLeft = localStorage.getItem(SCROLL_POSITION_KEY);
-    if (savedScrollLeft) {
-      element.scrollLeft = Number.parseInt(savedScrollLeft, 10);
-    }
-  }, []);
-
-  const updateScrollIndicators = useCallback(() => {
-    const element = scrollContainerRef.current;
-
-    if (!element) return;
-
-    const isOverflowing = element.scrollWidth > element.clientWidth + 1;
-    const maxScrollLeft = element.scrollWidth - element.clientWidth;
-
-    localStorage.setItem(SCROLL_POSITION_KEY, element.scrollLeft.toString());
-    setHasOverflow(isOverflowing);
-    setShowLeftShadow(isOverflowing && element.scrollLeft > 0);
-    setShowRightShadow(isOverflowing && element.scrollLeft < maxScrollLeft - 1);
-  }, []);
-
-  useEffect(() => {
-    const element = scrollContainerRef.current;
-
-    if (!element) return;
-
-    updateScrollIndicators();
-
-    const handleScroll = () => updateScrollIndicators();
-
-    element.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", updateScrollIndicators);
-
-    const resizeObserver =
-      typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(() => updateScrollIndicators())
-        : null;
-
-    if (resizeObserver) {
-      resizeObserver.observe(element);
-
-      if (element.firstElementChild instanceof HTMLElement) {
-        resizeObserver.observe(element.firstElementChild);
-      }
-    }
-
-    return () => {
-      element.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", updateScrollIndicators);
-      resizeObserver?.disconnect();
-    };
-  }, [updateScrollIndicators]);
-
-  useEffect(() => {
-    updateScrollIndicators();
-  }, [categories, pathname, updateScrollIndicators]);
-
   return (
     <div
       className={clsx(
-        "w-full",
-        "max-w-[800px]",
         "border",
         "border-zinc-200",
         "dark:border-zinc-800",
@@ -345,116 +269,66 @@ function CategoryNavBarDesktop({
         className,
       )}
     >
-      <div className={clsx("relative", "w-full")}>
-        <div
-          ref={scrollContainerRef}
-          className={clsx(
-            "overflow-x-auto",
-            "[&::-webkit-scrollbar]:hidden",
-            "w-full",
-            "rounded-lg",
-            "bg-white",
-            "dark:bg-zinc-950",
-            "p-1",
-          )}
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          <div className={clsx("flex", "w-max", "items-center", "gap-1")}>
-            <Link
-              to={allPath}
-              className={clsx(
-                "no-underline hover:no-underline",
-                "whitespace-nowrap",
-                "rounded-[0.25rem]",
-                "py-2",
-                "px-3",
-                "tracking-[-0.006em]",
-                "text-xs",
-                "font-medium",
-                isAllPostsActive &&
-                  "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
-                !isAllPostsActive && "text-zinc-400 hover:text-zinc-200",
-              )}
-            >
-              {allLabel}
-            </Link>
-            {(categories ?? []).map((category) => {
-              const categoryPath = normalizePathname(category.permalink);
-              const isActive =
-                normalizedPathname === categoryPath ||
-                normalizedPathname.startsWith(`${categoryPath}/page/`);
+      <div
+        className={clsx(
+          "w-full",
+          "rounded-lg",
+          "bg-white",
+          "dark:bg-zinc-950",
+          "p-1",
+        )}
+      >
+        <div className={clsx("flex", "flex-wrap", "items-center", "gap-1")}>
+          <Link
+            to={allPath}
+            className={clsx(
+              "no-underline hover:no-underline",
+              "rounded-[0.25rem]",
+              "py-2",
+              "px-3",
+              "tracking-[-0.006em]",
+              "text-xs",
+              "font-medium",
+              isAllPostsActive &&
+                "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
+              !isAllPostsActive && "text-zinc-400 hover:text-zinc-200",
+            )}
+          >
+            {allLabel}
+          </Link>
+          {(categories ?? []).map((category) => {
+            const categoryPath = normalizePathname(category.permalink);
+            const isActive =
+              normalizedPathname === categoryPath ||
+              normalizedPathname.startsWith(`${categoryPath}/page/`);
 
-              return (
-                <Link
-                  key={category.permalink}
-                  to={category.permalink}
-                  className={clsx(
-                    "no-underline hover:no-underline",
-                    "whitespace-nowrap",
-                    "rounded-[0.25rem]",
-                    "py-2",
-                    "px-3",
-                    "tracking-[-0.006em]",
-                    "text-xs",
-                    "font-medium",
-                    isActive &&
-                      "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
-                    !isActive && "text-zinc-500 dark:text-zinc-400",
-                    !isActive && "hover:text-zinc-200 dark:hover:text-zinc-300",
-                    !isActive &&
-                      "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
-                    "transition-colors",
-                    "duration-200",
-                    "ease-in-out",
-                  )}
-                >
-                  {category.name}
-                </Link>
-              );
-            })}
-          </div>
+            return (
+              <Link
+                key={category.permalink}
+                to={category.permalink}
+                className={clsx(
+                  "no-underline hover:no-underline",
+                  "rounded-[0.25rem]",
+                  "py-2",
+                  "px-3",
+                  "tracking-[-0.006em]",
+                  "text-xs",
+                  "font-medium",
+                  isActive &&
+                    "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
+                  !isActive && "text-zinc-500 dark:text-zinc-400",
+                  !isActive && "hover:text-zinc-200 dark:hover:text-zinc-300",
+                  !isActive && "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
+                  "transition-colors",
+                  "duration-200",
+                  "ease-in-out",
+                )}
+              >
+                {category.name}
+              </Link>
+            );
+          })}
         </div>
-
-        {hasOverflow && showLeftShadow && (
-          <div
-            className={clsx(
-              "pointer-events-none",
-              "absolute",
-              "left-0",
-              "top-1",
-              "bottom-1",
-              "w-12",
-              "bg-gradient-to-r",
-              "from-white",
-              "via-white/95",
-              "dark:from-zinc-950",
-              "dark:via-zinc-950/95",
-              "to-transparent",
-            )}
-          />
-        )}
-
-        {hasOverflow && showRightShadow && (
-          <div
-            className={clsx(
-              "pointer-events-none",
-              "absolute",
-              "right-0",
-              "top-1",
-              "bottom-1",
-              "w-12",
-              "bg-gradient-to-l",
-              "from-white",
-              "via-white/95",
-              "dark:from-zinc-950",
-              "dark:via-zinc-950/95",
-              "to-transparent",
-            )}
-          />
-        )}
       </div>
     </div>
   );

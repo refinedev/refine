@@ -221,6 +221,7 @@ function toCategoryName(label = "") {
     ["Ui", "UI"],
     ["Ux", "UX"],
     ["Api", "API"],
+    ["Ecosystem / Integrations", "Integrations"],
   ];
 
   replacements.forEach(([from, to]) => {
