@@ -255,7 +255,9 @@ const PostHeader = ({
   siteUrl,
 }) => {
   return (
-    <header className={clsx("not-prose", "pt-8", "blog-lg:pt-16")}>
+    <div
+      className={clsx("not-prose", "pt-8", "blog-lg:pt-16", "blog-max:px-4")}
+    >
       <div
         className={clsx(
           "flex",
@@ -303,7 +305,7 @@ const PostHeader = ({
           siteUrl={siteUrl}
         />
       </div>
-    </header>
+    </div>
   );
 };
 
@@ -329,7 +331,7 @@ const BackToAllPosts = () => {
         "ease-in-out",
         "hover:text-zinc-900",
         "dark:hover:text-white",
-        "blog-max:-ml-[22px]",
+        "blog-max:-ml-[20px]",
       )}
     >
       <ArrowLeft className={clsx("h-4", "w-4")} />
