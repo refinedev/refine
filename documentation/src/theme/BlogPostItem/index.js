@@ -32,6 +32,7 @@ export default function BlogPostItem({ className }) {
           "aspect-[320/178]",
           "blog-lg:aspect-[428/238]",
           "blog-max:aspect-[360/200]",
+          "blog-max:max-w-[360px]",
           "rounded-lg",
           "overflow-hidden",
         )}

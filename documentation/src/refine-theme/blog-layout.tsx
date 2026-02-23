@@ -28,7 +28,7 @@ export const RefineBlogLayout = (props: Props) => {
             "mx-auto",
             "relative",
             "w-full",
-            "blog-max:px-8",
+            "blog-max:px-3",
             "blog-sm:max-w-[560px]",
             "blog-md:max-w-[672px]",
             "blog-lg:max-w-[896px]",
