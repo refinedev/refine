@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.0.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^6.0.3",
     "@refinedev/cli": "^2.16.51",
@@ -31,7 +31,7 @@
     "@refinedev/inferencer": "^7.0.0",
     "@refinedev/kbar": "^2.0.1",
     "@refinedev/react-router": "^2.0.3",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "graphql": "^15.6.1",
     "graphql-request": "^5.2.0",
     "react": "^19.1.0",

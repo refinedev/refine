@@ -30,7 +30,7 @@
     "@refinedev/react-router": "^2.0.3",
     "@refinedev/simple-rest": "^6.0.1",
     "@uiw/react-md-editor": "^4.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "axios": "^1.11.0",
     "keycloak-js": "^25.0.1",
     "react": "^19.1.0",

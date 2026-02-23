@@ -31,7 +31,7 @@
     "@refinedev/react-router": "^2.0.3",
     "@uiw/react-md-editor": "^4.0.8",
     "@urql/core": "^5.0.6",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "graphql-ws": "^5.9.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

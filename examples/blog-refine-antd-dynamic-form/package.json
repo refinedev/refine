@@ -23,14 +23,14 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.0.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^5.44.0",
     "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/simple-rest": "^5.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.0.2",

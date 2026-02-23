@@ -30,7 +30,7 @@
     "@refinedev/nestjs-query": "^2.0.1",
     "@refinedev/react-router": "^2.0.3",
     "@uiw/react-md-editor": "^4.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.9.1",

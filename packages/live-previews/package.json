@@ -12,7 +12,7 @@
     "test": "vitest run --silent"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.0.0",
     "@auth0/auth0-react": "^1.5.0",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.8.2",
@@ -48,7 +48,7 @@
     "@tabler/icons-react": "^3.1.0",
     "@tanstack/react-table": "^8.2.6",
     "@uiw/react-md-editor": "^4.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "axios": "^1.11.0",
     "base64url": "^3.0.1",
     "casbin": "^5.15.2",

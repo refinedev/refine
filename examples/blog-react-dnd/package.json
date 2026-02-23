@@ -32,7 +32,7 @@
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/simple-rest": "^5.0.8",
     "@uiw/react-md-editor": "^4.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "cross-env": "^7.0.3",
     "immutability-helper": "^3.1.1",
     "next": "^14.2.26",

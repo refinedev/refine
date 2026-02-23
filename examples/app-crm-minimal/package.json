@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.0.0",
     "@ant-design/plots": "^1.2.5",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@dnd-kit/core": "^6.0.8",
@@ -27,7 +27,7 @@
     "@refinedev/nestjs-query": "^2.0.1",
     "@refinedev/react-router": "^2.0.3",
     "@uiw/react-md-editor": "^4.0.8",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",

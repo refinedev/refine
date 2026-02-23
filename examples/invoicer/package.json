@@ -29,7 +29,7 @@
     "@refinedev/devtools": "^2.0.4",
     "@refinedev/react-router": "^2.0.3",
     "@refinedev/strapi-v4": "^7.0.1",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "antd-style": "^3.6.1",
     "axios": "^1.11.0",
     "react": "^19.1.0",

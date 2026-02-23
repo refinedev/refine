@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.0.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^5.9.0",
     "@refinedev/cli": "^2.5.3",
@@ -31,7 +31,7 @@
     "@refinedev/react-router": "^4.1.0",
     "@refinedev/simple-rest": "^4.5.0",
     "@uiw/react-md-editor": "^3.23.5",
-    "antd": "^6.2.1",
+    "antd": "^6.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.0.2"
