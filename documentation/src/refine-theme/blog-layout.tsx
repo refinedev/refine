@@ -15,7 +15,12 @@ export const RefineBlogLayout = (props: Props) => {
   return (
     <CommonLayout
       {...layoutProps}
-      className={clsx("relative", "bg-zinc-50", "dark:bg-zinc-900")}
+      className={clsx(
+        "relative",
+        toc && "bg-zinc-50",
+        !toc && "bg-zinc-100",
+        "dark:bg-zinc-900",
+      )}
     >
       <BlogHeader trackProgress={Boolean(toc)} />
       {props.showHero && <BlogHero />}

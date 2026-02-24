@@ -37,7 +37,7 @@ export function BlogPostListItem() {
           "py-5",
           "no-underline",
           "hover:no-underline",
-          "hover:bg-[#FFFFFF80]",
+          "hover:bg-white/50",
           "dark:hover:bg-[#09090B80]",
           "transition-colors",
           "duration-200",
@@ -72,6 +72,7 @@ export function BlogPostListItem() {
             "truncate",
             "group-hover:text-zinc-600",
             "dark:group-hover:text-zinc-300",
+            "text-right",
           )}
         >
           {category.label}
@@ -88,6 +89,7 @@ export function BlogPostListItem() {
             "uppercase",
             "group-hover:text-zinc-600",
             "dark:group-hover:text-zinc-300",
+            "text-right",
           )}
         >
           <DateComponent date={date} formattedDate={formattedDate} />

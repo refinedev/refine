@@ -190,9 +190,10 @@ function CategoryNavBarSelect({
                 "font-medium",
                 isAllPostsActive &&
                   "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
+                isAllPostsActive && "hover:text-zinc-900 dark:hover:text-white",
                 !isAllPostsActive && "text-zinc-500 dark:text-zinc-400",
                 !isAllPostsActive &&
-                  "hover:text-zinc-200 dark:hover:text-zinc-300",
+                  "hover:text-zinc-700 dark:hover:text-zinc-300",
                 !isAllPostsActive &&
                   "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
                 "transition-colors",
@@ -226,8 +227,9 @@ function CategoryNavBarSelect({
                     "font-medium",
                     isActive &&
                       "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
+                    isActive && "hover:text-zinc-900 dark:hover:text-white",
                     !isActive && "text-zinc-500 dark:text-zinc-400",
-                    !isActive && "hover:text-zinc-200 dark:hover:text-zinc-300",
+                    !isActive && "hover:text-zinc-700 dark:hover:text-zinc-300",
                     !isActive &&
                       "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
                     "transition-colors",
@@ -291,7 +293,15 @@ function CategoryNavBarDesktop({
               "font-medium",
               isAllPostsActive &&
                 "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
-              !isAllPostsActive && "text-zinc-400 hover:text-zinc-200",
+              isAllPostsActive && "hover:text-zinc-900 dark:hover:text-white",
+              !isAllPostsActive && "text-zinc-500 dark:text-zinc-400",
+              !isAllPostsActive &&
+                "hover:text-zinc-700 dark:hover:text-zinc-300",
+              !isAllPostsActive &&
+                "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
+              "transition-colors",
+              "duration-200",
+              "ease-in-out",
             )}
           >
             {allLabel}
@@ -316,8 +326,9 @@ function CategoryNavBarDesktop({
                   "font-medium",
                   isActive &&
                     "text-zinc-900 bg-zinc-200 dark:bg-zinc-800 dark:text-white",
+                  isActive && "hover:text-zinc-900 dark:hover:text-white",
                   !isActive && "text-zinc-500 dark:text-zinc-400",
-                  !isActive && "hover:text-zinc-200 dark:hover:text-zinc-300",
+                  !isActive && "hover:text-zinc-700 dark:hover:text-zinc-300",
                   !isActive && "hover:bg-zinc-200/80 dark:hover:bg-zinc-800/80",
                   "transition-colors",
                   "duration-200",

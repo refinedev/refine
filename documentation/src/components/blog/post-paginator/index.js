@@ -67,8 +67,8 @@ export const PostPaginator = ({ posts, title }) => {
                     "hover:no-underline",
                     "transition-colors",
                     "duration-200",
-                    "hover:bg-zinc-100/80",
-                    "dark:hover:bg-zinc-800/60",
+                    "hover:bg-white/50",
+                    "dark:hover:bg-[#09090B80]",
                   )}
                 >
                   <div
