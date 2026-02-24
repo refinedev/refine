@@ -24,12 +24,16 @@ function BlogCategoryPostsPageMetadata(props) {
   const isPaginated =
     typeof listMetadata.page === "number" && listMetadata.page > 1;
 
+  const baseTitle = category.seoTitle ?? `${categoryName} - ${siteTitle}`;
+  const baseDescription =
+    category.seoDescription ?? listMetadata.blogDescription;
+
   const title = isPaginated
-    ? `${categoryName} - ${siteTitle} - Page ${listMetadata.page}`
-    : `${categoryName} - ${siteTitle}`;
+    ? `${baseTitle} - Page ${listMetadata.page}`
+    : baseTitle;
   const description = isPaginated
-    ? `${listMetadata.blogDescription} - Page ${listMetadata.page}`
-    : listMetadata.blogDescription;
+    ? `${baseDescription} - Page ${listMetadata.page}`
+    : baseDescription;
 
   return (
     <>

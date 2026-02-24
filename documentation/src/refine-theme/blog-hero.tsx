@@ -8,7 +8,7 @@ export const BlogHero: FC<Props> = ({ className }) => {
     <div
       className={clsx(
         "pl-8",
-        "blog-max:pl-[68px]",
+        "blog-max:pl-[46px]",
         "mt-[80px]",
         "blog-max:mt-[120px]",
         "text-[2.5rem]",

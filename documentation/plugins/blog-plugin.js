@@ -37,6 +37,43 @@ const ALLOWED_CATEGORIES = [
   "How To Build",
   "Tutorials",
 ];
+const CATEGORY_SEO_BY_VALUE = {
+  "how to build": {
+    title: "How to Build: Step-by-Step Development Guides",
+    description:
+      "Learn how to build modern web applications from scratch with our comprehensive, step-by-step development guides and best practices.",
+  },
+  tutorials: {
+    title: "Practical Web Development Tutorials",
+    description:
+      "Explore hands-on tutorials covering the latest frameworks, tools, and libraries to enhance your coding skills and efficiency.",
+  },
+  "ai & innovation": {
+    title: "AI & Innovation: The Future of Technology",
+    description:
+      "Discover the latest trends in Artificial Intelligence, machine learning, and innovative tech solutions shaping the future of software.",
+  },
+  "ecosystem / integrations": {
+    title: "Ecosystem & Third-Party Integrations",
+    description:
+      "Master the art of connecting tools. In-depth guides on integrations, APIs, and expanding your software ecosystem.",
+  },
+  alternatives: {
+    title: "Top Software Tool Alternatives & Framework Comparisons",
+    description:
+      "Explore the best alternatives to popular dev tools. Compare top frameworks and libraries with Refine to find the perfect fit for your next software project.",
+  },
+  engineering: {
+    title: "Engineering Blog: Architecture & Scalability",
+    description:
+      "Deep dives into software architecture, system design, performance optimization, and professional engineering insights.",
+  },
+  announcement: {
+    title: "Product Announcements, News & Feature Updates",
+    description:
+      "Stay up to date with the latest product releases, company news, and major feature announcements from our team.",
+  },
+};
 const ALLOWED_TAGS = [
   "admin-panel",
   "ai",
@@ -159,12 +196,23 @@ function toPostInfo(post) {
 }
 
 function getRelatedPosts(allBlogPosts, metadata) {
-  const relatedPosts = allBlogPosts.filter(
-    (post) =>
-      post.metadata.frontMatter.tags?.some((tag) =>
-        metadata.frontMatter.tags?.includes(tag),
-      ) && post.metadata.title !== metadata.title,
-  );
+  const currentPostTags = normalizeTags(metadata.frontMatter.tags);
+  const currentPostCategory = getBlogPostCategory(metadata.frontMatter);
+  const hasTags = currentPostTags.length > 0;
+
+  const relatedPosts = allBlogPosts.filter((post) => {
+    if (post.metadata.title === metadata.title) {
+      return false;
+    }
+
+    if (hasTags) {
+      const postTags = normalizeTags(post.metadata.frontMatter.tags);
+      return postTags.some((tag) => currentPostTags.includes(tag));
+    }
+
+    const postCategory = getBlogPostCategory(post.metadata.frontMatter);
+    return postCategory === currentPostCategory;
+  });
 
   return getMultipleRandomElement(relatedPosts, RANDOM_POSTS_LIMIT).map(
     toPostInfo,
@@ -187,6 +235,10 @@ function getBlogPostCategory(frontMatter = {}) {
   const { category } = frontMatter;
   const normalized = typeof category === "string" ? category.trim() : "";
   return normalized || DEFAULT_BLOG_CATEGORY;
+}
+
+function getCategorySeo(categoryValue = "") {
+  return CATEGORY_SEO_BY_VALUE[`${categoryValue}`.trim().toLowerCase()];
 }
 
 function toCategorySlug(label) {
@@ -277,6 +329,7 @@ function createBlogCategories({
         value: categoryValue,
         name: toCategoryName(categoryValue),
         permalink: utils.normalizeUrl([basePageUrl, uniqueSlug]),
+        seo: getCategorySeo(categoryValue),
         items: [],
       };
     }
@@ -700,6 +753,8 @@ async function blogPluginExtended(...pluginArgs) {
               permalink: category.permalink,
               allCategoriesPath: blogCategoriesListPath,
               count: category.items.length,
+              seoTitle: category.seo?.title,
+              seoDescription: category.seo?.description,
             };
             const categoryPropPath = await createData(
               `${utils.docuHash(`${metadata.permalink}${CATEGORY_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
