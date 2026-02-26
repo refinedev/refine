@@ -49,6 +49,16 @@ const App = () => (
 );
 ```
 
+### Supported Operators
+
+The `@refinedev/hasura` data provider correctly maps typical Crud operations to their equivalent Hasura `_` actions (e.g. `eq` -> `_eq`).
+
+Additionally, native JSONB and Array operators are also supported, mapping easily right out-of-the-box:
+
+- JSONB & Arrays: `_contains`, `_contained_in`, `_has_key`, `_has_keys_any`, `_has_keys_all`.
+
+If an unsupported or custom operator string is used in a Refine query filter, the data provider automatically safely falls back—detecting the arbitrary operator and appending a `_` prefix (if not provided). It passes the arbitrary JSON payload directly downstream, neatly matching Hashura's conventions without throwing errors.
+
 ### Developer Experience
 
 We suggest using `GraphQL Code Generator` to generate types for your queries and mutations. You can check out the [GraphQL Code Generator Documentation](https://the-guild.dev/graphql/codegen/docs/getting-started) to learn more about it.

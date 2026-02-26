@@ -29,9 +29,25 @@ export type HasuraFilterCondition =
   | "_similar"
   | "_nsimilar"
   | "_regex"
-  | "_iregex";
+  | "_iregex"
+  | "_contains"
+  | "_contained_in"
+  | "_has_key"
+  | "_has_keys_any"
+  | "_has_keys_all";
 
-export type HasuraCrudOperators = CrudOperators | "not";
+export type HasuraCrudOperators =
+  | CrudOperators
+  | "not"
+  | "contained_in"
+  | "has_key"
+  | "has_keys_any"
+  | "has_keys_all"
+  | "_contains"
+  | "_contained_in"
+  | "_has_key"
+  | "_has_keys_any"
+  | "_has_keys_all";
 
 export type HasuraLogicalFilter = Omit<LogicalFilter, "operator"> & {
   operator: Exclude<HasuraCrudOperators, "or" | "and" | "not">;
@@ -77,6 +93,15 @@ const hasuraFilters: Partial<
   nstartswiths: "_nsimilar",
   endswiths: "_similar",
   nendswiths: "_nsimilar",
+  contained_in: "_contained_in",
+  has_key: "_has_key",
+  has_keys_any: "_has_keys_any",
+  has_keys_all: "_has_keys_all",
+  _contains: "_contains",
+  _contained_in: "_contained_in",
+  _has_key: "_has_key",
+  _has_keys_any: "_has_keys_any",
+  _has_keys_all: "_has_keys_all",
 };
 
 export const handleFilterValue = (
@@ -131,13 +156,15 @@ export const generateNestedFilterQuery = (
     const { field, value } = filter;
 
     const defaultNamingConvention = namingConvention === "hasura-default";
-    const hasuraOperator = defaultNamingConvention
+    let hasuraOperator = defaultNamingConvention
       ? hasuraFilters[filter.operator]
       : convertHasuraOperatorToGraphqlDefaultNaming(
           hasuraFilters[filter.operator],
         );
     if (!hasuraOperator) {
-      throw new Error(`Operator ${operator} is not supported`);
+      hasuraOperator = filter.operator.startsWith("_")
+        ? (filter.operator as HasuraFilterCondition)
+        : (`_${filter.operator}` as HasuraFilterCondition);
     }
 
     const fieldsArray = field.split(".");

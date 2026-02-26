@@ -132,6 +132,13 @@ describe("handleFilterValue", () => {
     ["ncontains", "test", "%test%"],
     ["ncontainss", "test", "%test%"],
     ["eq", "test", "test"],
+    ["_contains", { a: 1 }, { a: 1 }],
+    ["_contains", ["a", "b"], ["a", "b"]],
+    ["_contained_in", { a: 1 }, { a: 1 }],
+    ["_contained_in", ["a", "b"], ["a", "b"]],
+    ["_has_key", "a", "a"],
+    ["_has_keys_any", ["a", "b"], ["a", "b"]],
+    ["_has_keys_all", ["a", "b"], ["a", "b"]],
   ];
 
   it.each(testCases)(
