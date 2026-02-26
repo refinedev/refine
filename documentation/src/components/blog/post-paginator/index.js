@@ -21,8 +21,7 @@ export const PostPaginator = ({ posts, title }) => {
         "blog-md:max-w-[672px]",
         "blog-lg:max-w-[720px]",
         "pt-16",
-        "pb-12",
-        "blog-md:pt-[72px] blog-md:pb-[120px]",
+        "blog-md:pt-[72px]",
       )}
     >
       <div className={clsx("w-full")}>
@@ -57,7 +56,7 @@ export const PostPaginator = ({ posts, title }) => {
                     "blog-md:flex-row",
                     "w-full",
                     "items-start",
-                    "blog-md:items-center",
+                    "blog-md:items-start",
                     "gap-2",
                     "py-3",
                     "blog-md:py-4",
@@ -95,7 +94,7 @@ export const PostPaginator = ({ posts, title }) => {
                       "w-[120px]",
                       "blog-md:text-right",
                       "text-[10px]",
-                      "leading-4",
+                      "leading-6",
                       "font-semibold",
                       "uppercase",
                       "tracking-[0.01em]",
