@@ -4,8 +4,16 @@ import { useBlogPost } from "@docusaurus/theme-common/internal";
 
 export default function BlogPostPageMetadata() {
   const { assets, metadata } = useBlogPost();
-  const { title, description, date, tags, authors, frontMatter, category } =
-    metadata;
+  const {
+    title,
+    description,
+    date,
+    tags,
+    authors,
+    frontMatter,
+    category,
+    lastUpdate,
+  } = metadata;
   const { keywords } = frontMatter;
   const categoryLabel = category?.label ?? frontMatter.category;
   const articleTags = tags.map((tag) => tag.label).join(",");
@@ -21,6 +29,9 @@ export default function BlogPostPageMetadata() {
     >
       <meta property="og:type" content="article" />
       <meta property="article:published_time" content={date} />
+      {lastUpdate && (
+        <meta property="article:modified_time" content={lastUpdate} />
+      )}
       {/* TODO double check those article meta array syntaxes, see https://ogp.me/#array */}
       {authors.some((author) => author.url) && (
         <meta

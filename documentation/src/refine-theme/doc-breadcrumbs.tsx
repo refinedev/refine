@@ -6,7 +6,7 @@ import React, { useMemo } from "react";
 import {
   BreadcrumbJsonLd,
   type BreadcrumbItem,
-} from "@site/src/components/breadcrumbs";
+} from "@site/src/components/json-ld";
 import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
 import { ChevronRightIcon } from "./icons/chevron-right";
 import { HomeIcon } from "./icons/home";

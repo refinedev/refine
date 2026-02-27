@@ -1,77 +1,13 @@
 import React from "react";
-import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
 import { ChevronRightIcon } from "@site/src/refine-theme/icons/chevron-right";
 import { HomeIcon } from "@site/src/refine-theme/icons/home";
+import { BreadcrumbJsonLd } from "@site/src/components/json-ld";
 
 export type BreadcrumbItem = {
   label: string;
   href?: string;
-};
-
-type BreadcrumbListItem = {
-  "@type": "ListItem";
-  position: number;
-  name: string;
-  item?: string;
-};
-
-const toAbsoluteUrl = (siteUrl: string, href: string) => {
-  try {
-    const url = new URL(href, siteUrl);
-    // Ensure trailing slash so breadcrumb items align with canonical URLs.
-    if (!url.pathname.endsWith("/")) {
-      url.pathname = `${url.pathname}/`;
-    }
-    return url.toString();
-  } catch {
-    return href.endsWith("/") ? href : `${href}/`;
-  }
-};
-
-/**
- * Emits JSON-LD BreadcrumbList markup so search engines can display breadcrumb
- * paths in SERP results.
- */
-export const BreadcrumbJsonLd = ({ items }: { items: BreadcrumbItem[] }) => {
-  const { siteConfig } = useDocusaurusContext();
-
-  const itemListElement = React.useMemo(() => {
-    return items.map((item, index): BreadcrumbListItem => {
-      const listItem: BreadcrumbListItem = {
-        "@type": "ListItem",
-        position: index + 1,
-        name: item.label,
-      };
-
-      if (item.href) {
-        listItem.item = toAbsoluteUrl(siteConfig.url, item.href);
-      }
-
-      return listItem;
-    });
-  }, [items, siteConfig.url]);
-
-  if (!items.length) {
-    return null;
-  }
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement,
-  };
-
-  return (
-    <Head>
-      {/* Search engines use this to render breadcrumb paths in SERP results. */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-    </Head>
-  );
 };
 
 type BreadcrumbsProps = {

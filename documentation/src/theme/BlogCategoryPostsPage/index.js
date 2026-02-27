@@ -11,7 +11,7 @@ import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import BlogListPaginator from "@theme/BlogListPaginator";
-import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
+import { BreadcrumbJsonLd } from "@site/src/components/json-ld";
 import { FeaturedBlogPostItems } from "../../components/blog";
 
 function BlogCategoryPostsPageMetadata(props) {

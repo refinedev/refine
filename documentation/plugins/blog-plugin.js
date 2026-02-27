@@ -1,8 +1,13 @@
 const blogPluginExports = require("@docusaurus/plugin-content-blog");
 const utils = require("@docusaurus/utils");
 const path = require("path");
+const fs = require("fs");
+const { XMLParser, XMLBuilder } = require("fast-xml-parser");
 
 const defaultBlogPlugin = blogPluginExports.default;
+
+// Module-level map populated during contentLoaded, consumed by postBuild.
+let blogLastmodMap = {};
 const DEFAULT_BLOG_CATEGORY = "Engineering";
 const DEFAULT_POSTS_PER_PAGE_MODE = "ALL";
 const PAGINATION_PATH_SEGMENT = "page";
@@ -111,7 +116,9 @@ const pluginDataDirRoot = path.join(
   CONTENT_BLOG_PLUGIN_DIR,
 );
 const aliasedSource = (source) =>
-  `${BLOG_ALIAS_PREFIX}/${utils.posixPath(path.relative(pluginDataDirRoot, source))}`;
+  `${BLOG_ALIAS_PREFIX}/${utils.posixPath(
+    path.relative(pluginDataDirRoot, source),
+  )}`;
 
 function formatBlogDate(dateValue) {
   if (!dateValue) {
@@ -151,7 +158,10 @@ function paginateBlogPosts({
 
   function permalink(page) {
     return page > 0
-      ? utils.normalizeUrl([basePageUrl, `${PAGINATION_PATH_SEGMENT}/${page + 1}`])
+      ? utils.normalizeUrl([
+          basePageUrl,
+          `${PAGINATION_PATH_SEGMENT}/${page + 1}`,
+        ])
       : basePageUrl;
   }
 
@@ -188,10 +198,12 @@ function toPostInfo(post) {
     title: post.metadata.title,
     description: post.metadata.description,
     permalink: post.metadata.permalink,
-    formattedDate: post.metadata.formattedDate,
     authors: post.metadata.authors,
     readingTime: post.metadata.readingTime,
     date: post.metadata.date,
+    formattedDate: post.metadata.formattedDate,
+    lastUpdate: post.metadata.lastUpdate,
+    formattedLastUpdateDate: post.metadata.formattedLastUpdateDate,
   };
 }
 
@@ -427,15 +439,116 @@ function validateCategoryAndTags({ allBlogPosts, allowedValues }) {
 
   if (unknownTags.size > 0) {
     messageLines.push(
-      `Unknown tags (${unknownTags.size}): ${[...unknownTags].sort().join(", ")}`,
+      `Unknown tags (${unknownTags.size}): ${[...unknownTags]
+        .sort()
+        .join(", ")}`,
     );
     messageLines.push(...invalidTags);
     messageLines.push("");
   }
 
-  messageLines.push("Update ALLOWED_CATEGORIES / ALLOWED_TAGS in blog-plugin.js.");
+  messageLines.push(
+    "Update ALLOWED_CATEGORIES / ALLOWED_TAGS in blog-plugin.js.",
+  );
 
   throw new Error(messageLines.join("\n"));
+}
+
+/**
+ * Patches the generated sitemap.xml with <lastmod> dates from blog frontmatter.
+ *
+ * Sitemap uses absolute URLs (https://refine.dev/blog/foo) while our map stores
+ * relative permalinks (/blog/foo), so we compare by pathname only.
+ */
+function injectSitemapLastmod(sitemapPath) {
+  const xmlOptions = {
+    ignoreAttributes: false,
+    preserveOrder: true,
+    commentPropName: "#comment",
+    format: true,
+    indentBy: "  ",
+  };
+
+  // Normalize permalinks by stripping trailing slashes for consistent matching
+  const permalinkToLastmod = new Map();
+  for (const [permalink, lastmod] of Object.entries(blogLastmodMap)) {
+    permalinkToLastmod.set(permalink.replace(/\/+$/, ""), lastmod);
+  }
+
+  const sitemapXml = fs.readFileSync(sitemapPath, "utf-8");
+  const parser = new XMLParser(xmlOptions);
+  const parsed = parser.parse(sitemapXml);
+
+  const urlsetNode = parsed.find((node) => node.urlset);
+  if (!urlsetNode) return;
+
+  let patchCount = 0;
+
+  for (const child of urlsetNode.urlset) {
+    if (!child.url) continue;
+
+    const urlChildren = child.url;
+    const locNode = urlChildren.find((c) => c.loc !== undefined);
+    if (!locNode) continue;
+
+    const locValue = locNode.loc?.[0]?.["#text"];
+    if (!locValue) continue;
+
+    // Extract pathname from absolute URL to match against relative permalinks
+    let pathname;
+    try {
+      pathname = new URL(locValue).pathname;
+    } catch {
+      pathname = locValue;
+    }
+
+    const lastmod = permalinkToLastmod.get(pathname.replace(/\/+$/, ""));
+    if (!lastmod) continue;
+
+    // Don't duplicate if the entry already has a <lastmod> (e.g. from another plugin)
+    const hasLastmod = urlChildren.some((c) => c.lastmod !== undefined);
+    if (hasLastmod) continue;
+
+    // Insert <lastmod> right after <loc> to follow standard sitemap element order
+    const locIndex = urlChildren.indexOf(locNode);
+    urlChildren.splice(locIndex + 1, 0, {
+      lastmod: [{ "#text": lastmod }],
+    });
+    patchCount++;
+  }
+
+  if (patchCount > 0) {
+    const builder = new XMLBuilder(xmlOptions);
+    fs.writeFileSync(sitemapPath, builder.build(parsed), "utf-8");
+    console.log(
+      `[blog-plugin] Injected <lastmod> into ${patchCount} sitemap entries.`,
+    );
+  }
+}
+
+/**
+ * Waits for a file to appear on disk within a timeout.
+ * Returns true if the file exists, false if the timeout is reached.
+ */
+function waitForFile(filePath, { timeoutMs = 30_000, intervalMs = 200 } = {}) {
+  return new Promise((resolve) => {
+    if (fs.existsSync(filePath)) {
+      resolve(true);
+      return;
+    }
+
+    let elapsed = 0;
+    const timer = setInterval(() => {
+      elapsed += intervalMs;
+      if (fs.existsSync(filePath)) {
+        clearInterval(timer);
+        resolve(true);
+      } else if (elapsed >= timeoutMs) {
+        clearInterval(timer);
+        resolve(false);
+      }
+    }, intervalMs);
+  });
 }
 
 async function blogPluginExtended(...pluginArgs) {
@@ -464,8 +577,15 @@ async function blogPluginExtended(...pluginArgs) {
         allowedValues: allowedCategoryAndTagValues,
       });
 
+      blogLastmodMap = {};
+
       allBlogPosts.forEach((post) => {
         post.metadata.formattedDate = formatBlogDate(post.metadata.date);
+        const lastUpdateRaw =
+          post.metadata.frontMatter.last_update ?? post.metadata.date;
+        post.metadata.lastUpdate = new Date(lastUpdateRaw).toISOString();
+        post.metadata.formattedLastUpdateDate = formatBlogDate(lastUpdateRaw);
+        blogLastmodMap[post.metadata.permalink] = post.metadata.lastUpdate;
       });
 
       const blogItemsToMetadata = {};
@@ -487,12 +607,14 @@ async function blogPluginExtended(...pluginArgs) {
       }
 
       const featuredBlogPosts = allBlogPosts.filter(
-        (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] === true,
+        (post) =>
+          post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] === true,
       );
       const featuredBlogPostIds = featuredBlogPosts.map((post) => post.id);
 
       const blogPosts = allBlogPosts.filter(
-        (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] !== true,
+        (post) =>
+          post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] !== true,
       );
 
       const blogListPaginated = paginateBlogPosts({
@@ -518,7 +640,9 @@ async function blogPluginExtended(...pluginArgs) {
       function getTagsPropPath() {
         if (!tagsPropPathPromise) {
           tagsPropPathPromise = createData(
-            `${utils.docuHash(`${blogTagsListPath}${TAGS_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+            `${utils.docuHash(
+              `${blogTagsListPath}${TAGS_DATA_SUFFIX}`,
+            )}${JSON_FILE_EXTENSION}`,
             JSON.stringify(tagsProp, null, 2),
           );
         }
@@ -529,7 +653,9 @@ async function blogPluginExtended(...pluginArgs) {
       function getCategoriesPropPath() {
         if (!categoriesPropPathPromise) {
           categoriesPropPathPromise = createData(
-            `${utils.docuHash(`${blogCategoriesListPath}${CATEGORIES_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+            `${utils.docuHash(
+              `${blogCategoriesListPath}${CATEGORIES_DATA_SUFFIX}`,
+            )}${JSON_FILE_EXTENSION}`,
             JSON.stringify(categoriesProp, null, 2),
           );
         }
@@ -669,12 +795,16 @@ async function blogPluginExtended(...pluginArgs) {
             };
 
             const tagPropPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`,
+              )}${JSON_FILE_EXTENSION}`,
               JSON.stringify(tagProp, null, 2),
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
@@ -709,7 +839,9 @@ async function blogPluginExtended(...pluginArgs) {
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(metadata.permalink)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                metadata.permalink,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
@@ -757,12 +889,16 @@ async function blogPluginExtended(...pluginArgs) {
               seoDescription: category.seo?.description,
             };
             const categoryPropPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${CATEGORY_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${CATEGORY_DATA_SUFFIX}`,
+              )}${JSON_FILE_EXTENSION}`,
               JSON.stringify(categoryProp, null, 2),
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${CATEGORY_DATA_SUFFIX}`)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${CATEGORY_DATA_SUFFIX}`,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
@@ -795,6 +931,27 @@ async function blogPluginExtended(...pluginArgs) {
           Object.values(blogCategories).map(createCategoryPostsListPage),
         );
       }
+    },
+
+    /**
+     * Runs after build completes. All plugin postBuild hooks execute
+     * concurrently via Promise.all, so we wait for the sitemap plugin
+     * to finish writing sitemap.xml before patching it.
+     */
+    async postBuild({ outDir }) {
+      if (Object.keys(blogLastmodMap).length === 0) return;
+
+      const sitemapPath = path.join(outDir, "sitemap.xml");
+      const sitemapReady = await waitForFile(sitemapPath);
+
+      if (!sitemapReady) {
+        console.warn(
+          "[blog-plugin] sitemap.xml not found after timeout, skipping <lastmod> injection.",
+        );
+        return;
+      }
+
+      injectSitemapLastmod(sitemapPath);
     },
   };
 }
