@@ -1,6 +1,6 @@
 import execa from "execa";
+import fs from "fs";
 import path from "path";
-import rimraf from "rimraf";
 
 function isInGitRepository(root: string): boolean {
   try {
@@ -57,7 +57,7 @@ export function gitInit(root: string, message: string) {
   } catch (e) {
     if (didInit) {
       try {
-        rimraf.sync(path.join(root, ".git"));
+        fs.rmSync(path.join(root, ".git"), { recursive: true, force: true });
       } catch (_) {}
     }
 
