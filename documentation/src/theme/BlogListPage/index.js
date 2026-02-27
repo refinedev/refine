@@ -34,6 +34,14 @@ function BlogListPageMetadata(props) {
       <Head>
         <title>{title}</title>
         <meta property="og:title" content={title} />
+        <meta
+          property="og:image"
+          content="https://refine.dev/img/og-blog.png"
+        />
+        <meta
+          name="twitter:image"
+          content="https://refine.dev/img/og-blog.png"
+        />
       </Head>
       <PageMetadata description={description} />
       <SearchMetadata tag="blog_posts_list" />
