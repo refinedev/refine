@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -99,6 +100,36 @@ describe("useDeleteButton", () => {
 
     await waitFor(() => {
       expect(result.current.loading).toBeFalsy();
+    });
+  });
+
+  it("should pass meta to useButtonCanAccess", async () => {
+    const canMock = vi.fn().mockResolvedValue({ can: true });
+
+    const { result } = renderHook(
+      () =>
+        useDeleteButton({
+          id: 123,
+          resource: "posts",
+          meta: { tenantId: "tenant-1" },
+        }),
+      {
+        wrapper: TestWrapper({
+          accessControlProvider: {
+            can: canMock,
+          },
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(canMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          params: expect.objectContaining({
+            meta: { tenantId: "tenant-1" },
+          }),
+        }),
+      );
     });
   });
 

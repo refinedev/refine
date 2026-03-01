@@ -54,6 +54,7 @@ export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
     accessControl: props.accessControl,
     id,
     resource,
+    meta: props.meta,
   });
 
   const label = translate("buttons.delete", "Delete");
