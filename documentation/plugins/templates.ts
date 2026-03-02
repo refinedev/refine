@@ -57,7 +57,9 @@ export default async function RefineTemplates(): Promise<Plugin> {
         const hasUiTemplates = (content as typeof templates).some(
           (t) => t.uiFramework === uiFramework,
         );
-        if (!hasUiTemplates) continue;
+        if (!hasUiTemplates) {
+          continue;
+        }
 
         const uiSlug = toSlug(uiFramework);
         const uiJson = await createData(
@@ -79,7 +81,9 @@ export default async function RefineTemplates(): Promise<Plugin> {
           const hasComboTemplates = (content as typeof templates).some(
             (t) => t.uiFramework === uiFramework && t.dataProvider === backend,
           );
-          if (!hasComboTemplates) continue;
+          if (!hasComboTemplates) {
+            continue;
+          }
 
           const backendSlug = toSlug(backend);
           const comboJson = await createData(

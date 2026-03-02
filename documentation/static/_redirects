@@ -1361,3 +1361,30 @@
 /core/week-of-refine/ /core/ 301
 /core/week-of-refine-strapi/ /core/ 301
 
+/core/templates/ant-design/graphql /core/templates/ant-design 301
+/core/templates/ant-design/appwrite /core/templates/ant-design 301
+/core/templates/ant-design/medusa /core/templates/ant-design 301
+
+/core/templates/material-ui/supabase /core/templates/material-ui 301
+/core/templates/material-ui/graphql /core/templates/material-ui 301
+/core/templates/material-ui/strapi /core/templates/material-ui 301
+/core/templates/material-ui/appwrite /core/templates/material-ui 301
+/core/templates/material-ui/medusa /core/templates/material-ui 301
+
+/core/templates/headless/graphql /core/templates/headless 301
+/core/templates/headless/strapi /core/templates/headless 301
+/core/templates/headless/appwrite /core/templates/headless 301
+/core/templates/headless/medusa /core/templates/headless 301
+
+/core/templates/chakra-ui/supabase /core/templates/chakra-ui 301
+/core/templates/chakra-ui/graphql /core/templates/chakra-ui 301
+/core/templates/chakra-ui/strapi /core/templates/chakra-ui 301
+/core/templates/chakra-ui/appwrite /core/templates/chakra-ui 301
+/core/templates/chakra-ui/medusa /core/templates/chakra-ui 301
+
+/core/templates/mantine/supabase /core/templates/mantine 301
+/core/templates/mantine/graphql /core/templates/mantine 301
+/core/templates/mantine/strapi /core/templates/mantine 301
+/core/templates/mantine/appwrite /core/templates/mantine 301
+/core/templates/mantine/medusa /core/templates/mantine 301
+

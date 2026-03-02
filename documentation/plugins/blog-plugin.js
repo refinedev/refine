@@ -111,7 +111,9 @@ const pluginDataDirRoot = path.join(
   CONTENT_BLOG_PLUGIN_DIR,
 );
 const aliasedSource = (source) =>
-  `${BLOG_ALIAS_PREFIX}/${utils.posixPath(path.relative(pluginDataDirRoot, source))}`;
+  `${BLOG_ALIAS_PREFIX}/${utils.posixPath(
+    path.relative(pluginDataDirRoot, source),
+  )}`;
 
 function formatBlogDate(dateValue) {
   if (!dateValue) {
@@ -151,7 +153,10 @@ function paginateBlogPosts({
 
   function permalink(page) {
     return page > 0
-      ? utils.normalizeUrl([basePageUrl, `${PAGINATION_PATH_SEGMENT}/${page + 1}`])
+      ? utils.normalizeUrl([
+          basePageUrl,
+          `${PAGINATION_PATH_SEGMENT}/${page + 1}`,
+        ])
       : basePageUrl;
   }
 
@@ -427,13 +432,17 @@ function validateCategoryAndTags({ allBlogPosts, allowedValues }) {
 
   if (unknownTags.size > 0) {
     messageLines.push(
-      `Unknown tags (${unknownTags.size}): ${[...unknownTags].sort().join(", ")}`,
+      `Unknown tags (${unknownTags.size}): ${[...unknownTags]
+        .sort()
+        .join(", ")}`,
     );
     messageLines.push(...invalidTags);
     messageLines.push("");
   }
 
-  messageLines.push("Update ALLOWED_CATEGORIES / ALLOWED_TAGS in blog-plugin.js.");
+  messageLines.push(
+    "Update ALLOWED_CATEGORIES / ALLOWED_TAGS in blog-plugin.js.",
+  );
 
   throw new Error(messageLines.join("\n"));
 }
@@ -487,12 +496,14 @@ async function blogPluginExtended(...pluginArgs) {
       }
 
       const featuredBlogPosts = allBlogPosts.filter(
-        (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] === true,
+        (post) =>
+          post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] === true,
       );
       const featuredBlogPostIds = featuredBlogPosts.map((post) => post.id);
 
       const blogPosts = allBlogPosts.filter(
-        (post) => post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] !== true,
+        (post) =>
+          post.metadata.frontMatter[IS_FEATURED_FRONTMATTER_KEY] !== true,
       );
 
       const blogListPaginated = paginateBlogPosts({
@@ -518,7 +529,9 @@ async function blogPluginExtended(...pluginArgs) {
       function getTagsPropPath() {
         if (!tagsPropPathPromise) {
           tagsPropPathPromise = createData(
-            `${utils.docuHash(`${blogTagsListPath}${TAGS_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+            `${utils.docuHash(
+              `${blogTagsListPath}${TAGS_DATA_SUFFIX}`,
+            )}${JSON_FILE_EXTENSION}`,
             JSON.stringify(tagsProp, null, 2),
           );
         }
@@ -529,7 +542,9 @@ async function blogPluginExtended(...pluginArgs) {
       function getCategoriesPropPath() {
         if (!categoriesPropPathPromise) {
           categoriesPropPathPromise = createData(
-            `${utils.docuHash(`${blogCategoriesListPath}${CATEGORIES_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+            `${utils.docuHash(
+              `${blogCategoriesListPath}${CATEGORIES_DATA_SUFFIX}`,
+            )}${JSON_FILE_EXTENSION}`,
             JSON.stringify(categoriesProp, null, 2),
           );
         }
@@ -669,12 +684,16 @@ async function blogPluginExtended(...pluginArgs) {
             };
 
             const tagPropPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`,
+              )}${JSON_FILE_EXTENSION}`,
               JSON.stringify(tagProp, null, 2),
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${ALL_TAGS_DATA_SUFFIX}`,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
@@ -709,7 +728,9 @@ async function blogPluginExtended(...pluginArgs) {
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(metadata.permalink)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                metadata.permalink,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
@@ -757,12 +778,16 @@ async function blogPluginExtended(...pluginArgs) {
               seoDescription: category.seo?.description,
             };
             const categoryPropPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${CATEGORY_DATA_SUFFIX}`)}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${CATEGORY_DATA_SUFFIX}`,
+              )}${JSON_FILE_EXTENSION}`,
               JSON.stringify(categoryProp, null, 2),
             );
 
             const listMetadataPath = await createData(
-              `${utils.docuHash(`${metadata.permalink}${CATEGORY_DATA_SUFFIX}`)}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
+              `${utils.docuHash(
+                `${metadata.permalink}${CATEGORY_DATA_SUFFIX}`,
+              )}${LIST_DATA_SUFFIX}${JSON_FILE_EXTENSION}`,
               JSON.stringify(metadata, null, 2),
             );
 
