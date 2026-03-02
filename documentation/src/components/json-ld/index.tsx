@@ -13,7 +13,7 @@ const organizationJsonLdString = JSON.stringify({
   url: "https://refine.dev",
   logo: {
     "@type": "ImageObject",
-    url: "https://refine.dev/img/refine_logo.png",
+    url: "https://refine.dev/img/org-json-ld-logo.png",
   },
   sameAs: [
     "https://github.com/refinedev/refine",
@@ -163,7 +163,7 @@ export const BlogPostingJsonLd = ({
       url: "https://refine.dev",
       logo: {
         "@type": "ImageObject",
-        url: "https://refine.dev/img/refine_logo.png",
+        url: "https://refine.dev/img/org-json-ld-logo.png",
       },
     },
   };
