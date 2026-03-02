@@ -14,7 +14,7 @@ export const BlogFooter = () => {
         "border-t",
         "py-4",
         "border-zinc-200",
-        "bg-zinc-50",
+        "bg-white",
         "dark:border-zinc-800",
         "dark:bg-zinc-900",
         "blog-md:h-16",

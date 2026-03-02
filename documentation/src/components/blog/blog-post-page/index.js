@@ -35,6 +35,7 @@ export const BlogPostPageView = ({ children }) => {
     frontMatter,
     tags,
     description,
+    authors,
   } = metadata;
 
   const image = frontMatter?.image;
@@ -72,6 +73,7 @@ export const BlogPostPageView = ({ children }) => {
           readingTime={readingTime}
           category={category}
           tags={tags}
+          authors={authors ?? []}
           shareUrl={shareUrl}
           description={description}
           siteUrl={siteUrl}
@@ -250,6 +252,7 @@ const PostHeader = ({
   readingTime,
   category,
   tags,
+  authors,
   shareUrl,
   description,
   siteUrl,
@@ -296,7 +299,11 @@ const PostHeader = ({
           "gap-4",
         )}
       >
-        <PostCategoryAndTags category={category} tags={tags} />
+        <PostCategoryAndTags
+          category={category}
+          tags={tags}
+          authors={authors}
+        />
         <ShareActions
           shareUrl={shareUrl}
           title={title}
@@ -375,8 +382,9 @@ const PostDateAndReading = ({ date, formattedDate, readingTime }) => {
   );
 };
 
-const PostCategoryAndTags = ({ category, tags = [] }) => {
+const PostCategoryAndTags = ({ category, tags = [], authors = [] }) => {
   const { label: categoryLabel, permalink: categoryLink } = category;
+  const author = authors[0];
 
   return (
     <div
@@ -409,6 +417,35 @@ const PostCategoryAndTags = ({ category, tags = [] }) => {
       >
         {categoryLabel}
       </Link>
+      {author && (
+        <>
+          <span
+            className={clsx(
+              "h-1.5",
+              "w-1.5",
+              "rounded-full",
+              "bg-zinc-300",
+              "dark:bg-zinc-600",
+            )}
+          />
+          <Link
+            to={`/blog/author/${author.key}/`}
+            className={clsx(
+              "text-zinc-500",
+              "dark:text-zinc-400",
+              "no-underline",
+              "hover:no-underline",
+              "transition-colors",
+              "duration-200",
+              "ease-in-out",
+              "hover:text-zinc-900",
+              "dark:hover:text-white",
+            )}
+          >
+            {author.name}
+          </Link>
+        </>
+      )}
 
       {/* {tags.map((tag, index) => {
         const label = typeof tag === "string" ? tag : tag?.label;

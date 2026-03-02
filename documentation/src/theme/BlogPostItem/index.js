@@ -6,6 +6,19 @@ import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 import { Date as DateComponent } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
+const Dot = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={6}
+    height={6}
+    viewBox="0 0 6 6"
+    fill="none"
+    className={clsx("flex-shrink-0", "text-zinc-300 dark:text-zinc-600")}
+  >
+    <circle cx={3} cy={3} r={3} fill="currentColor" />
+  </svg>
+);
+
 export default function BlogPostItem({ className }) {
   const { metadata } = useBlogPost();
   const {
@@ -16,8 +29,10 @@ export default function BlogPostItem({ className }) {
     frontMatter,
     description,
     category,
+    authors,
   } = metadata;
   const { label: categoryLabel, permalink: categoryPermalink } = category;
+  const author = authors?.[0];
 
   return (
     <BlogPostItemContainer className={className}>
@@ -91,19 +106,29 @@ export default function BlogPostItem({ className }) {
           >
             {categoryLabel}
           </Link>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={6}
-            height={6}
-            viewBox="0 0 6 6"
-            fill="none"
-            className={clsx(
-              "flex-shrink-0",
-              "text-zinc-300 dark:text-zinc-600",
-            )}
-          >
-            <circle cx={3} cy={3} r={3} fill="currentColor" />
-          </svg>
+          {author && (
+            <>
+              <Dot />
+              <Link
+                to={`/blog/author/${author.key}/`}
+                className={clsx(
+                  "uppercase",
+                  "no-underline",
+                  "hover:no-underline",
+                  "text-zinc-500",
+                  "dark:text-zinc-400",
+                  "hover:text-zinc-600",
+                  "dark:hover:text-zinc-300",
+                  "transition-colors",
+                  "duration-200",
+                  "ease-in-out",
+                )}
+              >
+                {author.name}
+              </Link>
+            </>
+          )}
+          <Dot />
           <DateComponent date={date} formattedDate={formattedDate} />
         </div>
         <div>
