@@ -50,7 +50,7 @@ export const liveProvider = (
       };
 
       const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
+        if (!filters || filters.length === 0) {
           return;
         }
 
@@ -66,7 +66,9 @@ export const liveProvider = (
             }
             return;
           })
-          .filter(Boolean);
+          .filter((x): x is string => Boolean(x));
+
+        if (mapped.length === 0) return;
 
         if (mapped.length > 1) {
           console.warn(
@@ -81,10 +83,13 @@ export const liveProvider = (
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
+
       const filter = mapFilter(params?.filters);
+
       const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
       let client = supabaseClient.channel(ch);
+
       for (let i = 0; i < events.length; i++) {
         client = client.on(
           "postgres_changes",
