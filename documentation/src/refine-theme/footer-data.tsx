@@ -53,6 +53,26 @@ export const menuItems = [
       },
     ],
   },
+  {
+    label: "Compare",
+    items: [
+      {
+        label: "VS",
+        href: "/vs",
+        icon: null,
+      },
+      {
+        label: "Alternatives",
+        href: "/alternatives",
+        icon: null,
+      },
+      {
+        label: "Compare",
+        href: "/compare",
+        icon: null,
+      },
+    ],
+  },
 ];
 
 export const secondaryMenuItems = [
@@ -68,6 +88,12 @@ export const secondaryMenuItems = [
     label: "License",
     href: "https://github.com/refinedev/refine/blob/main/LICENSE",
   },
+];
+
+export const comparisonLinks = [
+  { href: "/vs", label: "VS" },
+  { href: "/alternatives", label: "Alternatives" },
+  { href: "/compare", label: "Compare" },
 ];
 
 export const footerDescription =

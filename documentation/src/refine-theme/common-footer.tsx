@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
-import { socialLinks } from "./footer-data";
+import { comparisonLinks, socialLinks } from "./footer-data";
 import { RefineCoreLogoIcon } from "./icons/refine-logo";
 
 export const CommonFooter = () => {
@@ -50,6 +50,19 @@ export const CommonFooter = () => {
           >
             Tutorial
           </Link>
+          {comparisonLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              to={href}
+              className={clsx(
+                "appearance-none",
+                "hover:no-underline",
+                "md:mr-12",
+              )}
+            >
+              {label}
+            </Link>
+          ))}
           <div className={clsx("md:mr-4")}>Join us on</div>
           <div
             className={clsx(

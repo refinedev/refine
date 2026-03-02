@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
-import { socialLinks } from "./footer-data";
+import { comparisonLinks, socialLinks } from "./footer-data";
 
 export const TutorialFooter = () => {
   return (
@@ -61,6 +61,19 @@ export const TutorialFooter = () => {
           >
             Documentation
           </Link>
+          {comparisonLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              to={href}
+              className={clsx(
+                "hover:no-underline",
+                "hover:text-refine-link-light",
+                "dark:hover:text-refine-link-dark",
+              )}
+            >
+              {label}
+            </Link>
+          ))}
           <div
             className={clsx(
               "flex flex-col sm:flex-row justify-center items-center",

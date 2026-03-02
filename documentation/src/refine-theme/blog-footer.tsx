@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 
-import { socialLinks } from "./footer-data";
+import { comparisonLinks, socialLinks } from "./footer-data";
 import { RefineLogoSingleIcon } from "./icons/refine-logo-single";
 
 export const BlogFooter = () => {
@@ -51,7 +51,8 @@ export const BlogFooter = () => {
             "h-6",
             "flex-row",
             "items-center",
-            "justify-end",
+            "justify-center",
+            "blog-md:justify-end",
             "gap-4",
             "not-prose",
           )}
@@ -150,6 +151,74 @@ export const BlogFooter = () => {
               CORE
             </span>
           </Link>
+
+          {/* Desktop-only comparison links, inline with muted style */}
+          {comparisonLinks.map(({ href, label }) => (
+            <React.Fragment key={href}>
+              <span
+                className={clsx(
+                  "hidden blog-md:inline",
+                  "text-2xl",
+                  "font-thin",
+                  "leading-6",
+                  "text-zinc-300",
+                  "dark:text-zinc-600",
+                )}
+              >
+                /
+              </span>
+              <Link
+                to={href}
+                className={clsx(
+                  "hidden blog-md:block",
+                  "h-6",
+                  "text-sm",
+                  "font-normal",
+                  "leading-6",
+                  "text-zinc-400",
+                  "dark:text-zinc-500",
+                  "whitespace-nowrap",
+                  "hover:no-underline",
+                  "hover:text-zinc-600",
+                  "dark:hover:text-zinc-300",
+                )}
+              >
+                {label}
+              </Link>
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* Comparison links — separate muted row on mobile, inline on desktop */}
+        <div
+          className={clsx(
+            "flex",
+            "flex-row",
+            "items-center",
+            "justify-center",
+            "gap-6",
+            "blog-md:hidden",
+          )}
+        >
+          {comparisonLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              to={href}
+              className={clsx(
+                "text-sm",
+                "font-normal",
+                "leading-5",
+                "text-zinc-400",
+                "dark:text-zinc-500",
+                "hover:no-underline",
+                "hover:text-zinc-600",
+                "dark:hover:text-zinc-300",
+                "whitespace-nowrap",
+              )}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
 
         <div
