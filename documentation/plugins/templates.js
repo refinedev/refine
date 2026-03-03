@@ -62,9 +62,6 @@ async function RefineTemplates() {
           (t) => t.uiFramework === uiFramework,
         );
         if (!hasUiTemplates) {
-          console.log(
-            `No templates found for UI framework: ${uiFramework}, skipping filter page generation for this UI.`,
-          );
           continue;
         }
 
@@ -89,9 +86,6 @@ async function RefineTemplates() {
             (t) => t.uiFramework === uiFramework && t.dataProvider === backend,
           );
           if (!hasComboTemplates) {
-            console.log(
-              `No templates found   for UI framework: ${uiFramework} + backend: ${backend}, skipping filter page generation for this combo.`,
-            );
             continue;
           }
 
