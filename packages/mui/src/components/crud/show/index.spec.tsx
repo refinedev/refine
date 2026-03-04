@@ -95,10 +95,10 @@ describe("Show", () => {
     );
 
     await waitFor(() =>
-      expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+      expect(getByText("Edit").closest("button, a")).not.toBeDisabled(),
     );
     await waitFor(() =>
-      expect(getAllByText("Posts")[1].closest("button")).not.toBeDisabled(),
+      expect(getAllByText("Posts")[1].closest("button, a")).not.toBeDisabled(),
     );
 
     await waitFor(() =>
