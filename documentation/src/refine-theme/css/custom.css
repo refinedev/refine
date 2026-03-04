@@ -1,6 +1,9 @@
-.docs-wrapper:root,
-.blog-wrapper:root {
+.docs-wrapper:root {
   --primary-font-sans: "Inter";
+}
+
+a {
+  letter-spacing: -0.007em;
 }
 
 /* Firefox */
@@ -124,24 +127,20 @@
 
 .refine-prose a.hash-link::before {
   content: "";
-  background-size: 12px 12px;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2318181B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>');
-  @apply bg-zinc-200 dark:bg-zinc-800;
+  background-size: 16px 16px;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.66669 6H13.3334M2.66669 10H13.3334M6.66669 2L5.33335 14M10.6667 2L9.33335 14' stroke='%2371717A' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  @apply bg-zinc-100 dark:bg-zinc-800;
   @apply leading-8;
   @apply absolute;
-  @apply w-8 h-8 inline-flex rounded-lg;
-  @apply bg-center bg-no-repeat bg-[size:0.875rem];
+  @apply w-8 h-8 inline-flex rounded-[0.25rem];
+  @apply bg-center bg-no-repeat;
   @apply top-1/2 -translate-y-1/2;
   @apply transition-all duration-200 ease-in-out;
-  @apply -left-px;
-}
-
-.refine-prose a.hash-link:hover::before {
-  @apply bg-[size:1rem];
+  @apply left-2;
 }
 
 html[data-theme="dark"] .refine-prose a.hash-link::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23D4D4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>');
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.66669 6H13.3334M2.66669 10H13.3334M6.66669 2L5.33335 14M10.6667 2L9.33335 14' stroke='%23D4D4D8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .refine-prose blockquote,
@@ -150,7 +149,7 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
 }
 
 .refine-prose table {
-  @apply prose-table:border-none;
+  @apply prose-table:border-none border border-zinc-200 dark:border-zinc-700;
   @apply rounded-xl;
   border-collapse: separate;
   border-spacing: 0;
@@ -163,9 +162,21 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
 
 .refine-prose table th,
 .refine-prose table td {
-  @apply border border-zinc-200 px-2 py-2 dark:border-zinc-700;
+  @apply border-0 px-2 py-2;
   @apply text-base;
   @apply align-top;
+}
+
+.refine-prose table tr > * + * {
+  @apply border-l border-zinc-200 dark:border-zinc-700;
+}
+
+.refine-prose table tbody tr + tr > * {
+  @apply border-t border-zinc-200 dark:border-zinc-700;
+}
+
+.refine-prose table thead + tbody tr:first-child > * {
+  @apply border-t border-zinc-200 dark:border-zinc-700;
 }
 
 .refine-prose table thead tr:first-child th:first-child {
@@ -226,8 +237,19 @@ html[data-theme="dark"] .refine-prose a.hash-link::before {
   @apply bg-transparent;
 }
 
+.refine-prose
+  :where(thead):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+}
+
 .refine-prose table thead tr {
   @apply border-none;
+  border-bottom: 0 !important;
+}
+
+.refine-prose table thead th {
+  border-bottom-width: 0 !important;
 }
 
 .refine-prose .table-container {
@@ -257,12 +279,12 @@ a:has(> code) {
   text-decoration: none !important;
 }
 
-a:has(> code) code {
+a:has(> code):not(.refine-toc-item) code {
   @apply !text-sky-700 dark:!text-sky-400 !align-baseline;
   @apply !bg-sky-100 dark:!bg-sky-950;
 }
 
-a:has(> code):hover code {
+a:has(> code):not(.refine-toc-item):hover code {
   @apply !bg-sky-200 dark:!bg-sky-400;
   @apply dark:!text-white;
 }
@@ -340,8 +362,6 @@ li a:has(> code) code {
 .refine-prose blockquote .refine-common-code-block {
   @apply mx-0;
 }
-
-/*  */
 
 .refine-details > summary + div > div {
   @apply mt-0 border-t-0 pt-0;
@@ -512,7 +532,6 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(
 }
 
 .admonition-simple ul {
-  margin: 0;
   list-style-position: outside;
   padding-left: 24px;
   list-style-type: "-   ";

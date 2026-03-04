@@ -67,7 +67,7 @@ Mutation mode can be set application-wide in [`<Refine>`](/core/docs/3.xx.xx/api
 
 <br />
 
-It can also be set in supported [data hooks](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate#mutation-mode) and [form hooks](/core/docs/3.xx.xx/api-reference/core/hooks/useForm#properties) for fine-grained configuration.
+It can also be set in supported [data hooks](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) and [form hooks](/core/docs/3.xx.xx/api-reference/core/hooks/useForm#properties) for fine-grained configuration.
 
 ```tsx
 import { useUpdate } from "@pankod/refine-core";
@@ -87,10 +87,10 @@ mutate({
 
 ### Supported data hooks
 
-- [`useUpdate` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/)
-- [`useUpdateMany` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdateMany/)
-- [`useDelete` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/)
-- [`useDeleteMany` &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/)
+- [`useUpdate` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)
+- [`useUpdateMany` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/)
+- [`useDelete` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)
+- [`useDeleteMany` &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/)
 
 <br />
 

@@ -3,7 +3,8 @@ title: How to use Next.js API Routes?
 description: We will deep dive into Next.js API Routes with Dynamic Routes.
 slug: next-js-api-routes
 authors: michael
-tags: [nextjs]
+category: "Tutorials"
+tags: [nextjs, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social-2.png
 hide_table_of_contents: false
 ---
@@ -17,15 +18,6 @@ Next.js is a React framework and platform for building production-grade, static 
 Next.js has a page-based routing system, and an API route feature which allows you to create APIs endpoints in a pages directory as though you're writing backend code. **Next.js API Routes** let you combine backend code along with your frontend code, thereby eliminating the need for extra codebases. With Next.js, building your RESTful or GraphQL APIs has never been easier!
 
 In this article, you'll learn how to set up Next.js API Routes and we'll explain some of their core features and how you can leverage them in your applications along the way. You'll also learn how to submit form data to an API route.
-
-Steps we'll cover:
-
-- [What are Next.js API Routes?](#what-are-nextjs-api-routes)
-- [How to create API Routes in Next.js](#how-to-create-api-routes-in-nextjs)
-- [Dynamic API Routes](#dynamic-api-routes)
-- [API Routes custom configuration](#api-routes-custom-configuration)
-- [Typing API Routes with TypeScript](#typing-api-routes-with-typescript)
-- [Testing API Routes in Next.js](#testing-api-routes-in-nextjs)
 
 ## What are Next.js API Routes?
 
@@ -56,7 +48,7 @@ export default function handler(req, res) {
 Navigating to `localhost:3000/api/hello` in the browser or making a `GET` request to it returns the following JSON response:
 
 <div class="img-container" align-items="center" >
-   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/response.png"  alt="response" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/response.png"  alt="API response in browser" />
 </div>
 
 <br/>

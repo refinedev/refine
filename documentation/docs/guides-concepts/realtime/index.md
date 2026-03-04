@@ -431,7 +431,7 @@ useSubscription({
   params: {
     resource: "posts",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
     },
     subscriptionType: "useList",

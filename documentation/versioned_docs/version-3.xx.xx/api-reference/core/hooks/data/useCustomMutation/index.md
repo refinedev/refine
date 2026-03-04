@@ -11,11 +11,11 @@ source: packages/core/src/data/hooks/useCustomMutation.ts
 It is useful when you want to send a custom mutation request using the TanStack Query advantages.
 
 :::danger attention
-`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/), [useUpdate](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/) or [useDelete](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) hooks should be used instead.
+`useCustomMutation` should **not** be used when creating, updating, or deleting a resource. To do these; [useCreate](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/), [useUpdate](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/) or [useDelete](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) hooks should be used instead.
 
 This is because `useCustomMutation`, unlike other data hooks, does not [invalidate queries](https://tanstack.com/query/latest/docs/react/guides/query-invalidation) and therefore will not update the application state either.
 
-If you need to custom query request, use the [useCustom](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCustomMutation/) hook.
+If you need to custom query request, use the [useCustom](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCustomMutation/) hook.
 :::
 
 ## Basic Usage

@@ -21,7 +21,8 @@ export default function BlogListPaginator(props) {
   return (
     <nav
       className={clsx(
-        "blog-md:justify-end flex items-center justify-center",
+        "blog-md:justify-end",
+        "flex items-center justify-center",
         "not-prose",
       )}
       aria-label={translate({
@@ -30,95 +31,125 @@ export default function BlogListPaginator(props) {
         description: "The ARIA label for the blog pagination",
       })}
     >
-      <ul className="flex list-none items-center gap-2 py-6">
-        <li>
-          <Link
-            to={
-              currentPage === 1
-                ? undefined
-                : currentPage - 1 === 1
-                  ? basePath
-                  : `${basePath}/page/${currentPage - 1}`
-            }
-            className={clsx(
-              "rounded-lg",
-              "hover:no-underline",
-              "text-zinc-600 dark:text-zinc-400",
-              "hover:text-zinc-900 dark:hover:text-white",
-              currentPage !== 1 && "opacity-70",
-              currentPage === 1 && "pointer-events-none opacity-20",
-            )}
-          >
-            <ChevronLeft />
-          </Link>
-        </li>
+      <div
+        className={clsx(
+          "my-6",
+          "inline-flex",
+          "flex-col",
+          "items-start",
+          "rounded-2xl",
+          "border",
+          "border-zinc-200",
+          "dark:border-zinc-800",
+          "bg-zinc-100",
+          "dark:bg-zinc-900",
+          "p-2",
+        )}
+      >
+        <ul
+          className={clsx(
+            "m-0",
+            "flex",
+            "list-none",
+            "items-center",
+            "gap-1",
+            "rounded-lg",
+            "bg-white",
+            "dark:bg-zinc-950",
+            "p-1",
+          )}
+        >
+          <li>
+            <Link
+              to={
+                currentPage === 1
+                  ? undefined
+                  : currentPage - 1 === 1
+                    ? basePath
+                    : `${basePath}/page/${currentPage - 1}`
+              }
+              className={clsx(
+                "flex h-8 w-8 items-center justify-center",
+                "rounded",
+                "no-underline hover:no-underline",
+                "text-zinc-500 dark:text-zinc-400",
+                "hover:text-zinc-900 dark:hover:text-zinc-300",
+                "transition-colors",
+                currentPage === 1 && "pointer-events-none opacity-30",
+              )}
+            >
+              <ChevronLeft width={16} height={16} />
+            </Link>
+          </li>
 
-        {paginationRange.map((pageNumber) => {
-          if (pageNumber === DOTS) {
+          {paginationRange.map((pageNumber, index) => {
+            let key = `page:${pageNumber}`;
+            if (typeof pageNumber === "string") {
+              key += `:${index}`;
+            }
+            if (pageNumber === DOTS) {
+              return (
+                <li
+                  key={key}
+                  className={clsx(
+                    "flex h-8 w-8 items-center justify-center",
+                    "text-xs font-medium leading-4 tracking-[-0.006em]",
+                    "text-zinc-500 dark:text-zinc-400",
+                  )}
+                >
+                  &#8230;
+                </li>
+              );
+            }
+
             return (
-              <li
-                key={`page:${pageNumber}`}
-                className={clsx(
-                  "flex items-center justify-center",
-                  "text-zinc-600 dark:text-zinc-400",
-                  "rounded-lg",
-                  "hover:no-underline",
-                  "no-underline",
-                  "h-[40px] w-[40px]",
-                )}
-              >
-                &#8230;
+              <li key={pageNumber}>
+                <Link
+                  to={
+                    pageNumber === 1
+                      ? basePath
+                      : `${basePath}/page/${pageNumber}`
+                  }
+                  className={clsx(
+                    "flex h-8 w-8 items-center justify-center",
+                    "rounded",
+                    "text-xs font-medium leading-4 tracking-[-0.006em]",
+                    "no-underline hover:no-underline",
+                    "transition-colors",
+                    pageNumber === currentPage &&
+                      "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white",
+                    pageNumber !== currentPage &&
+                      "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white",
+                  )}
+                >
+                  {pageNumber}
+                </Link>
               </li>
             );
-          }
+          })}
 
-          return (
-            <li key={pageNumber}>
-              <Link
-                to={
-                  pageNumber === 1 ? basePath : `${basePath}/page/${pageNumber}`
-                }
-                className={clsx(
-                  "text-sm",
-                  "flex items-center justify-center",
-                  "rounded-lg",
-                  "hover:no-underline",
-                  "hover:text-zinc-900 dark:hover:text-white",
-                  "hover:bg-zinc-200 dark:hover:bg-zinc-700",
-                  "h-[40px] w-[40px]",
-                  "no-underline",
-                  pageNumber !== currentPage &&
-                    "text-zinc-600 dark:text-zinc-400",
-                  pageNumber === currentPage && "text-zinc-900 dark:text-white",
-                  pageNumber === currentPage && "bg-zinc-200 dark:bg-zinc-800",
-                )}
-              >
-                {pageNumber}
-              </Link>
-            </li>
-          );
-        })}
-
-        <li>
-          <Link
-            to={
-              currentPage === lastPage
-                ? undefined
-                : `${basePath}/page/${currentPage + 1}`
-            }
-            className={clsx(
-              "rounded-lg",
-              "hover:no-underline",
-              "text-zinc-600 dark:text-zinc-400",
-              "hover:text-zinc-900 dark:hover:text-white",
-              currentPage !== lastPage && "opacity-70",
-              currentPage === lastPage && "pointer-events-none opacity-20",
-            )}
-          >
-            <ChevronRight />
-          </Link>
-        </li>
-      </ul>
+          <li>
+            <Link
+              to={
+                currentPage === lastPage
+                  ? undefined
+                  : `${basePath}/page/${currentPage + 1}`
+              }
+              className={clsx(
+                "flex h-8 w-8 items-center justify-center",
+                "rounded",
+                "no-underline hover:no-underline",
+                "text-zinc-500 dark:text-zinc-400",
+                "hover:text-zinc-900 dark:hover:text-zinc-300",
+                "transition-colors",
+                currentPage === lastPage && "pointer-events-none opacity-30",
+              )}
+            >
+              <ChevronRight width={16} height={16} />
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

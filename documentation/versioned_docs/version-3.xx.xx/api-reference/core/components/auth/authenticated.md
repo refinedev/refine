@@ -61,5 +61,5 @@ Component to render while checking whether the user is logged in.
 | loading  | Component to render while checking whether user is logged in                                              | `ReactNode` |         |
 
 [useauthenticated]: /core/docs/3.xx.xx/api-reference/core/hooks/auth/useAuthenticated
-[custom pages explanation]: /advanced-tutorials/custom-pages#authenticated-custom-pages
+[custom pages explanation]: /core/docs/3.xx.xx/advanced-tutorials/custom-pages#authenticated-custom-pages
 [custom pages example]: /core/docs/examples/custom-pages

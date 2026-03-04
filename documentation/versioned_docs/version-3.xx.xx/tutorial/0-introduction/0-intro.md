@@ -21,7 +21,7 @@ We'll cover the following topics:
 <!-- -   Understanding the `authProvider` -->
 
 :::note
-If you would rather start exploring **refine** with some examples before diving in, visit our [examples](/core/docs/3.xx.xx/examples/) page and choose an example to open and explore it in an online editor.
+If you would rather start exploring **refine** with some examples before diving in, visit our [examples](/core/docs/3.xx.xx/examples/real-world-refine-example/) page and choose an example to open and explore it in an online editor.
 :::
 
 :::note Thank you Astro Community! ❤️

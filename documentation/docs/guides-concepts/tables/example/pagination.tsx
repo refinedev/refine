@@ -50,7 +50,7 @@ export const ProductTable: React.FC = () => {
   const { result, tableQuery, pageCount, pageSize, currentPage, setCurrentPage } = useTable<IProduct>({
     resource: "products",
     pagination: {
-        current: 1,
+        currentPage: 1,
         pageSize: 10,
         mode: "server", // "client" or "server"
     },

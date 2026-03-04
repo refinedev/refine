@@ -3,7 +3,8 @@ title: Setting Up the Invoicer App
 description: We start with setting up the Invoicer app by choosing Ant Design as a UI framework and Strapi as a dataprovider
 slug: refine-react-invoice-generator-2
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/social.png
 hide_table_of_contents: false
 ---
@@ -48,7 +49,7 @@ For this tutorial, we'll be select the following options:
 **Backend**: Strapi
 **Authentication Provider**: Strapi
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.avif" alt="react invoice generator" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/refine-new.avif" alt="refine.new project setup wizard options" />
 
 <br />
 
@@ -116,13 +117,13 @@ npm run dev
 
 After that, if we navigate to `http://localhost:3000`, and we should have a **Refine** app asking us to log in:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="react invoice generator" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/login.png"  alt="Refine app login screen" />
 
 <br />
 
 If we log in with the default values, we should be able to view a dashboard with the following `blog posts` and `categories` resources:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="react invoice generator" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/welcome.png"  alt="Refine dashboard showing blog posts and categories" />
 
 <br />
 
@@ -736,7 +737,7 @@ These are pretty much the essentials we should get familiar with in order to sta
 For this app, we are going to have several collections in stored with the **Strapi** backend server. The entity relational diagram looks like this:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/database.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/database.png"  alt="Entity relationship diagram for Strapi collections" />
 </div>
 
 <br/>
@@ -763,7 +764,7 @@ Next, we have to be able to access the **Strapi** Admin UI that is hosted locall
 
 The admin dashboard at `/admin` after signing up and logging in should look something like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="react invoice generator" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/strapi_welcome.png"  alt="Strapi admin dashboard home screen" />
 
 <br />
 
@@ -781,7 +782,7 @@ The `users` collection is already created when we initialize a **Strapi** instan
 
 The `companies` collection should look like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="react invoice generator" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/company_collection.png"  alt="Strapi collection type for companies" />
 
 <br />
 
@@ -789,14 +790,14 @@ The `companies` collection should look like this:
 
 The `clients` collection looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="react invoice generator" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/client.png"  alt="Strapi collection type for clients" />
 
 <br />
 
 `clients` has a `has many` optional relation with `contacts`. So, its relation with `contacts` looks like this:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/edit_contact.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/edit_contact.png"  alt="Strapi relation editor for client contacts" />
 </div>
 
 <br/>
@@ -806,7 +807,7 @@ The `clients` collection looks like this:
 The `contacts` collection should look as below:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_collection.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_collection.png"  alt="Strapi collection type for contacts" />
 </div>
 
 <br />
@@ -814,7 +815,7 @@ The `contacts` collection should look as below:
 And a contact has a `has one` association with client:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_hasmany.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/contacts_hasmany.png"  alt="Strapi contact relation with clients" />
 </div>
 
 <br />
@@ -833,7 +834,7 @@ password: demodemo
 After creating the app user, we need to set the value of its `role` field to `Authenticated`:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/demo.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/demo.png"  alt="Strapi user creation form with demo credentials" />
 </div>
 
 <br />
@@ -841,7 +842,7 @@ After creating the app user, we need to set the value of its `role` field to `Au
 We only want our app users to access the CRUD actions when `Authenticated`. So, let's set the appropriate permissions from `Settings >> USERS & PERMISSIONS >> Roles`. More details are available in [this section of the **Strapi** quickstart guide](https://docs.strapi.io/dev-docs/quick-start#step-3-set-roles--permissions).
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/authenticated.png"  alt="react invoice generator" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/authenticated.png"  alt="Strapi roles and permissions for authenticated users" />
 </div>
 
 <br />

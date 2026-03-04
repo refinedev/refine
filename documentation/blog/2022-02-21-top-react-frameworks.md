@@ -3,7 +3,8 @@ title: Top React JS Frameworks Every Developer Should Know
 description: We will compare the features of Refine and react-admin
 slug: best-react-frameworks
 authors: aydin
-tags: [comparison]
+category: "Alternatives"
+tags: [react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -48,7 +49,7 @@ npm start
 
 **Example**
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/create-react-app.png" alt="create-react-app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/create-react-app.png" alt="Create React App logo" />
 
 ### 2. Material UI <a name="material-ui"></a>
 
@@ -68,7 +69,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 [Link](https://mui.com/getting-started/templates/dashboard/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/material-ui.png" alt="material-ui" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/material-ui.png" alt="Material UI logo" />
 
 ### 3. Ant Design <a name="antd"></a>
 
@@ -86,7 +87,7 @@ yarn add antd
 
 [Link](https://preview.pro.ant.design/dashboard/analysis/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/antd.png" alt="antd" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/antd.png" alt="Ant Design logo" />
 
 ### 4. React Bootstrap <a name="react-bootstrap"></a>
 
@@ -101,7 +102,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 [Link](https://demos.creative-tim.com/light-bootstrap-dashboard-react/#/admin/dashboard)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/react-bootstrap.png" alt="react-bootstrap" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/react-bootstrap.png" alt="React Bootstrap logo" />
 
 ### 5. Refine <a name="refine"></a>
 
@@ -151,11 +152,11 @@ npm create refine-app@latest
 
 [Link](https://example.admin.refine.dev/?current=1&pageSize=5)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine.png" alt="refine-admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine.png" alt="Refine logo" />
 
 [Link](https://example.refine.dev)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine-2.png" alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-top-react-frameworks/refine-2.png" alt="Refine logo" />
 
 If you enjoyed this article, please hit that little heart button and share with others!
 This will help us grow our community so we can all learn more together.

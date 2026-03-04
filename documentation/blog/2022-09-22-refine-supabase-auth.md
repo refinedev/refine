@@ -3,7 +3,8 @@ title: OTP Authentication with Supabase and Twilio in React
 description: We'll implement OTP(SMS) authorization using Twilio and Supabase in React app.
 slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
-tags: [react, supabase, refine, access-control, tutorial]
+category: "Ecosystem / Integrations"
+tags: [supabase, react, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
@@ -17,18 +18,6 @@ Another significant problem with password-based login is that keeping track of d
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
 You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/main/examples/blog-refine-supabase-auth)
-
-Steps we'll cover:
-
-- [What is Supabase?](#what-is-supabase)
-- [What is Refine?](#what-is-refine)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Installing Tailwind CSS for Refine project](#installing-tailwind-css-for-refine-project)
-- [Set up the Supabase Project](#set-up-the-supabase-project)
-- [Create the Login Page](#create-the-login-page)
-- [Data Provider](#data-provider)
-- [Auth Provider](#auth-provider)
 
 ## What is Supabase?
 
@@ -154,7 +143,7 @@ Run the `npm run dev` command to start the Refine development server.
 npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="React Supabase OTP authentication" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="Refine app dashboard preview" />
 
 <br/>
 
@@ -162,7 +151,7 @@ npm run dev
 
 Head over to app.supabase.com and sign in to your Supabase account. Next, create a new project by clicking on the "New Project" button.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="React Supabase OTP authentication" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="Supabase project setup screen" />
 
 <br/>
 
@@ -171,8 +160,8 @@ Add the name of the project and the database password, and wait for Supabase to 
 Once the project is created, go to Authentication -> Settings to configure the Auth providers.
 
 <div style={{display:"flex"}}>
-<img style={{alignSelf:"center", width:"50%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="React Supabase OTP authentication" />
-<img style={{alignSelf:"center", width:"50%", marginLeft:"8px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="React Supabase OTP authentication" />
+<img style={{alignSelf:"center", width:"50%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="Supabase project settings panel" />
+<img style={{alignSelf:"center", width:"50%", marginLeft:"8px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="Supabase API keys section" />
 </div>
 
 <br/>
@@ -187,7 +176,7 @@ You will find the Phone Auth option in the Auth providers section; enable it and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="Supabase authentication settings" />
 </div>
 
 <br/>
@@ -201,7 +190,7 @@ The backend setup is now complete. In the next section, you will start building 
 <br/>
 <div>
 <a href="https://github.com/refinedev/refine/blob/main/hackathon/refine-hackathon.md">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" alt="React Supabase OTP authentication" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" alt="Refine hackathon cover banner" />
 </a>
 </div>
 
@@ -454,7 +443,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="Login form with OTP option" />
 </div>
 
 <br/>
@@ -464,7 +453,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="Invalid login error message" />
 </div>
 
 <br/>
@@ -530,7 +519,7 @@ If the OTP is invalid, the error message will be displayed as shown below.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="OTP token entry screen" />
 </div>
 
 <br/>
@@ -545,7 +534,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="Supabase database tables view" />
 </div>
 
 <br/>
@@ -555,7 +544,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="Supabase table rows view" />
 </div>
 
 <br/>
@@ -737,7 +726,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="React Supabase OTP authentication" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="Authenticated app dashboard after login" />
 </div>
 
 <br/>
@@ -751,6 +740,6 @@ Following this article's steps, you should now have a **Refine** application wit
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="React Supabase OTP authentication discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Join Refine on Discord banner" />
 </a>
 </div>

@@ -3,10 +3,10 @@ title: What is an Internal Tool? Types, Benefits, and Best Practices
 description: What is an internal tool? Explore types, use cases, and benefits of custom internal apps. Learn how to choose the right framework to streamline your operations.
 slug: what-is-internal-tools
 authors: ozgur
-tags: [internal-tools, product, Refine]
+category: "How To Build"
+tags: [admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-21-what-is-internal-tools/internal-tools-blog.webp
 hide_table_of_contents: false
-is_featured: false
 ---
 
 Internal tools are the apps your team uses to run the business, not the ones customers see. Think dashboards, admin panels, inventory views, or back-office workflows. They are built to make internal work faster, safer, and more consistent.

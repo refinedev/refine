@@ -3,6 +3,7 @@ title: A Detailed Guide on TypeScript Pick Type
 description: We'll deep dive into the TypeScript Pick utility type with examples and use cases.
 slug: typescript-pick-utility-type
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social-2.png
 hide_table_of_contents: false
@@ -21,19 +22,6 @@ This is a series on Object Type Transformations in TypeScript. In this series, w
 We will dive into the details of commonly used utilities individually in each article in the series. In this part, we will consider how to generate a new type from an existing type by cherry-picking a few properties from a base type or interface using `Pick<Type, Keys>`.
 
 But first let's understand what transforming an object type means and under what circumstances do we need one.
-
-Steps we'll cover:
-
-- [TL;DR: What is TypeScript Pick?](#tldr-what-is-typescript-pick)
-- [What is Object Type Transformation?](#what-is-object-type-transformation)
-  - [The Scenario](#the-scenario)
-- [What is TypeScript Pick?](#what-is-typescript-pick)
-  - [Picking Items with `Pick<Type, Keys>`](#picking-items-with-picktype-keys)
-  - [For Types Only](#for-types-only)
-  - [Picking from a Type](#picking-from-a-type)
-  - [When to Avoid](#when-to-avoid)
-- [Add a Comparison Table: Pick vs. Other Utilities](#add-a-comparison-table-pick-vs-other-utilities)
-  - [Pick vs. Omit vs. Partial](#pick-vs-omit-vs-partial)
 
 ## What is Object Type Transformation?
 
@@ -192,7 +180,7 @@ console.log(guest.roles); // undefined
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

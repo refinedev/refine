@@ -3,6 +3,7 @@ title: React Slick Examples - Creating a carousel
 description: We'll see how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 slug: react-slick
 authors: deborah_emeni
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social-2.png
 hide_table_of_contents: false
@@ -17,16 +18,6 @@ Developers need a visually appealing way to display or showcase multiple items, 
 However, developers still need an efficient and easier way to create customizable and responsive carousels. A library called [React Slick](http://react-slick.neostack.com/) was developed to help developers achieve this. This library is popularly used and highly efficient, as it offers a variety of features that will be covered in this article.
 
 In this article, you will learn about React Slick—what it is, why it's important, its features, benefits, and more. You'll learn how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
-
-Steps we'll cover:
-
-- [Overview of React Slick](#overview-of-react-slick)
-- [About React Slick APIs](#about-react-slick-apis)
-- [Benefits of using React Slick](#benefits-of-using-react-slick)
-- [Demo: Getting Started with React Slick](#demo-getting-started-with-react-slick)
-- [Using React Slick](#using-react-slick)
-- [Building a Fashion Carousel with React Slick](#building-a-fashion-carousel-with-react-slick)
-- [Common Mistakes When Using React Slick (and How to Avoid Them)](#common-mistakes-when-using-react-slick-and-how-to-avoid-them)
 
 ## Overview of React Slick
 
@@ -58,7 +49,7 @@ Let’s see some of the core features of React Slick:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/1-min.gif" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/1-min.gif" alt="Autoplay carousel demo" /> 
 </div>
 
 - **Lazy loading**: This [feature](https://react-slick.neostack.com/docs/example/lazy-load/) allows developers to implement lazy loading for their images, which means that images load only when they become visible to the user. This reduces the initial data load and improves the performance of sliders by reducing page load times, particularly on mobile devices.
@@ -73,7 +64,7 @@ This is the Desktop view:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/2-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/2-min.gif" alt="Responsive carousel on desktop" />
 </div>
 
 This is the Mobile view:
@@ -84,7 +75,7 @@ This is the Mobile view:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/3-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/3-min.gif" alt="Responsive carousel on mobile" />
 </div>
 
 The demonstrations show how the carousels automatically become responsive when switched from a desktop device to a mobile device
@@ -97,7 +88,7 @@ The demonstrations show how the carousels automatically become responsive when s
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/4-min.avif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/4-min.avif" alt="Swipe-to-slide carousel on mobile" />
 </div>
 
 ## About React Slick APIs
@@ -304,7 +295,7 @@ Go to the URL where it is running:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/5-min.gif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/5-min.gif" alt="Basic carousel output" />
 </div>
 
 ## Building a Fashion Carousel with React Slick
@@ -491,7 +482,7 @@ Run your application to view your carousel. It should look like this:
         <div class="control green"></div>
     </div>
     <img src="
-https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/66-min.gif" alt="react slick" /> 
+  https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/66-min.gif" alt="Fashion carousel animation" /> 
 </div>
 
 ### Adding Arrow Navigation
@@ -536,7 +527,7 @@ Run your application and see your custom arrows displayed on both sides:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/77-min.avif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/77-min.avif" alt="Carousel with custom arrow buttons" />
 </div>
 
 ### Adding Thumbnails
@@ -658,7 +649,7 @@ Run your application to see how thumbnails look:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/88-min.avif" alt="react slick" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/88-min.avif" alt="Carousel with thumbnail navigation" /> 
 </div>
 
 ### Adding Responsiveness
@@ -692,7 +683,7 @@ Run your application and see how the carousel shrinks from 2 to 1 when it reache
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/99-min.avif" alt="react slick" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/99-min.avif" alt="Responsive carousel with breakpoint settings" />
 </div>
 
 ## Common Mistakes When Using React Slick (and How to Avoid Them)

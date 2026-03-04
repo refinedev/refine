@@ -3,6 +3,7 @@ title: CSS Box Shadow with 25 Examples
 description: We'll explore the CSS `box-shadow` property.
 slug: box-shadow-css
 authors: joseph_mawa
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-28-css-shadows/social.png
 hide_table_of_contents: false

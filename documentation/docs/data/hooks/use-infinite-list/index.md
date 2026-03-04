@@ -358,9 +358,9 @@ Consumes data from data provider `useInfiniteList` with the `getList` method. Fi
 
 ```ts
 getList: async ({ resource, pagination }) => {
-    const { current } = pagination;
+    const { currentPage } = pagination;
     const { data } = await axios.get(
-        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${currentPage || 0}`,
     );
 
     return {
@@ -380,9 +380,9 @@ After this process, we successfully retrieved the first page of data. Let's fill
 
 ```ts
 getList: async ({ resource, pagination }) => {
-    const { current } = pagination;
+    const { currentPage } = pagination;
     const { data } = await axios.get(
-        `https://api.fake-rest.refine.dev/${resource}?cursor=${current || 0}`,
+        `https://api.fake-rest.refine.dev/${resource}?cursor=${currentPage || 0}`,
     );
 
     return {

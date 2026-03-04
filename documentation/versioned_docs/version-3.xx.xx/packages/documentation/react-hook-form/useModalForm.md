@@ -892,6 +892,6 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 <CodeSandboxExample path="form-react-hook-form-use-modal-form" />
 
 [@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/v3/packages/react-hook-form
-[refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm
+[refine-react-hook-form-use-form]: /core/docs/3.xx.xx/packages/documentation/react-hook-form/useForm
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /core/docs/3.xx.xx/api-reference/core/hooks/useForm

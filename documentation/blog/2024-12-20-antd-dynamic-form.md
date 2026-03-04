@@ -3,7 +3,8 @@ title: How to Create Dynamic Forms in React CRUD app with Ant Design
 description: Easy way to creating dynamic forms in React CRUD apps with Ant Design
 slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
-tags: [react, refine, tutorial, ant-design]
+category: "Ecosystem / Integrations"
+tags: [react, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynamic-form/social-2.png
 hide_table_of_contents: false
 ---
@@ -22,22 +23,6 @@ However, due to the sporadic complexity of the information they collect, they te
 To solve this user experience issue, developers devised a dynamic form, a simple yet complex form that can grow in size on command.
 
 This guide will teach us how to create a dynamic form using Ant design and Refine's React template.
-
-Steps we'll cover:
-
-- [What is a dynamic form?](#what-is-a-dynamic-form)
-- [What is Refine?](#what-is-refine)
-- [Project setup](#project-setup)
-- [Building the List page](#building-the-list-page)
-- [Creating a form](#creating-a-form)
-- [Adding form items](#adding-form-items)
-- [Adding form list](#adding-form-list)
-- [Using form actions](#using-form-actions)
-- [Adding icons](#adding-icons)
-- [Validation](#validation)
-- [Building the edit page](#building-the-edit-page)
-- [FAQ's](#faqs)
-- [Why Use AntD Dynamic Forms?](#why-use-antd-dynamic-forms)
 
 **Prerequisite**
 
@@ -975,7 +960,7 @@ What's left for us now is setting up the edit page to update fetched records fro
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

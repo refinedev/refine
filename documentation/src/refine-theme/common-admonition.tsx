@@ -6,6 +6,7 @@ import { InfoIcon } from "./icons/info";
 import { TipIcon } from "./icons/tip";
 import { NoteIcon } from "./icons/note";
 import { GithubIcon } from "./icons/github";
+import { isCurrentBlogRoute } from "../utils/is-blog-route";
 
 type Props = {
   type:
@@ -35,7 +36,7 @@ const icons = {
   "info-tip": TipIcon,
 };
 
-const colorTextClasses = {
+const colorTextClassesDoc = {
   caution: "text-orange-700 dark:text-orange-400",
   info: "text-refine-react-light-purple dark:text-refine-react-dark-purple",
   tip: "text-green-700 dark:text-green-400",
@@ -48,7 +49,7 @@ const colorTextClasses = {
   simple: "text-zinc-900 dark:text-white",
 };
 
-const colorWrapperClasses = {
+const colorWrapperClassesDoc = {
   caution:
     "bg-[#FEEADC] dark:bg-[#3A261A] border-l-orange-700 dark:border-l-orange-400",
   info: "bg-refine-react-light-purple bg-opacity-[0.15] dark:bg-refine-react-dark-purple dark:bg-opacity-[0.15] border-l-refine-react-light-purple dark:border-l-refine-react-dark-purple",
@@ -63,6 +64,36 @@ const colorWrapperClasses = {
   additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
   simple:
     "bg-zinc-50 dark:bg-zinc-800 border-l-zinc-400 dark:border-l-zinc-600",
+};
+
+const colorTextClassesBlog = {
+  caution: "text-amber-700 dark:text-amber-300",
+  info: "text-blue-700 dark:text-blue-300",
+  tip: "text-green-700 dark:text-green-300",
+  note: "text-teal-700 dark:text-teal-300",
+  "info-tip": "text-blue-700 dark:text-blue-300",
+  danger: "text-refine-red",
+  "command-line": "text-refine-purple",
+  sourcecode: "text-refine-pink",
+  additional: "text-refine-cyan",
+  simple: "text-zinc-900 dark:text-white",
+};
+
+const colorWrapperClassesBlog = {
+  caution:
+    "bg-[#FBBF2426] dark:bg-[#F59E0B33] border-l-amber-700 dark:border-l-amber-300",
+  info: "bg-[#60A5FA26] dark:bg-[#3B82F633] border-l-blue-700 dark:border-l-blue-300",
+  tip: "bg-[#4ADE8026] dark:bg-[#22C55E33] border-l-green-700 dark:border-l-green-300",
+  note: "bg-[#2DD4BF26] dark:bg-[#14B8A633] border-l-teal-700 dark:border-l-teal-300",
+  "info-tip":
+    "bg-[#60A5FA26] dark:bg-[#3B82F633] border-l-blue-700 dark:border-l-blue-300",
+  "command-line": "bg-refine-purple bg-opacity-10 border-l-refine-purple",
+  danger: "bg-refine-red bg-opacity-10 border-l-refine-red",
+  warning: "bg-refine-red bg-opacity-10 border-l-refine-red",
+  sourcecode: "bg-refine-pink bg-opacity-10 border-l-refine-pink",
+  additional: "bg-refine-cyan bg-opacity-10 border-l-refine-cyan",
+  simple:
+    "bg-zinc-100 dark:bg-[#27272A] border-l-zinc-400 dark:border-l-zinc-600",
 };
 
 const titles = {
@@ -80,6 +111,11 @@ const titles = {
 };
 
 export const Admonition = ({ type, title, children }: Props) => {
+  const isBlog = isCurrentBlogRoute();
+  const colorTextClasses = isBlog ? colorTextClassesBlog : colorTextClassesDoc;
+  const colorWrapperClasses = isBlog
+    ? colorWrapperClassesBlog
+    : colorWrapperClassesDoc;
   const Icon = icons[type] ?? (() => null);
   const clsText = colorTextClasses[type] ?? "tex-inherit";
   const clsWrapper = colorWrapperClasses[type] ?? "bg-inherit";
@@ -99,7 +135,6 @@ export const Admonition = ({ type, title, children }: Props) => {
         "admonition",
         `admonition-${type}`,
         "mb-6",
-        "refine-wider-container",
         clsWrapper,
       )}
     >
@@ -142,12 +177,20 @@ export const Admonition = ({ type, title, children }: Props) => {
 };
 
 const Simple = ({ type, title, children }: Props) => {
+  const isBlog = isCurrentBlogRoute();
+  const colorTextClasses = isBlog ? colorTextClassesBlog : colorTextClassesDoc;
+  const colorWrapperClasses = isBlog
+    ? colorWrapperClassesBlog
+    : colorWrapperClassesDoc;
   const clsText = colorTextClasses[type] ?? "tex-inherit";
   const clsWrapper = colorWrapperClasses[type] ?? "bg-inherit";
 
   return (
     <div
       className={clsx(
+        isBlog && "border-l-4",
+        isBlog && "border-l-solid",
+        isBlog && "border-l-inherit",
         "rounded-lg",
         "admonition",
         `admonition-${type}`,

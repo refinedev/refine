@@ -3,7 +3,8 @@ title: How to use Material UI Select in React
 description: We'll discover the Material UI select component with examples
 slug: material-ui-select-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social-2.png
 hide_table_of_contents: false
 ---
@@ -29,18 +30,6 @@ Material UI Select is a component to create dropdowns in React that provides nat
 - Options Grouped Together: A categorization of options contributes towards better usability. 4. Clearable Select: Add a clear button for resetting the selection. 5. - - - Accessibility: Native support for ARIA attributes.
 
 Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customizable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
-
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with Material UI Select](#getting-started-with-material-ui-select)
-- [The Option component](#the-option-component)
-- [Other Material UI Select features](#other-material-ui-select-features)
-- [Clearing the Select field](#clearing-the-select-field)
-- [Accessibility](#accessibility)
-- [Building a Sign-up Form UI with React and Material UI Select](#building-a-sign-up-form-ui-with-react-and-material-ui-select)
-- [Advanced Styling with Material UI Select](#advanced-styling-with-material-ui-select)
-- [Integration with Form Libraries (Formik and React Hook Form)](#integration-with-form-libraries-formik-and-react-hook-form)
 
 ## What is Material UI
 
@@ -380,7 +369,7 @@ The preceding code shows a `Select` field with organized input values. As shown 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

@@ -3,6 +3,7 @@ title: Essentials of TypeScript Classes
 description: TypeScript classes are a superset of JavaScript classes. This post covers the fundamentals of type annotations in TypeScript Classes and their associated quirks.
 slug: typescript-classes
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social-2.png
 hide_table_of_contents: false
@@ -22,7 +23,8 @@ Key points to remember:
 - The fields marked as `readonly` can only be assigned during declaration or in the constructor.
 - Declare and initialize fields directly in the constructor using parameter properties.
 - TypeScript mitigates the issues with `this` binding by using arrow functions or the `this` parameter. - Classes support generics and multiple interfaces using the `implements` keyword.
-  :::
+
+:::
 
 TypeScript supports all the features of JavaScript Class syntax introduced in ES2015. Basically, type annotations are applied to all members, namely: fields, constructors, methods and accessors -- and where applicable, parameters as well. TypeScript also bakes in a special syntax to class constructors called **parameter properties** which allows us to declare a class **field** from the constructor function's parameters.
 

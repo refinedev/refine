@@ -58,6 +58,13 @@ async function RefineTemplates() {
 
       // Filtered list routes for UI framework and UI+backend combos.
       for (const uiFramework of exports.TEMPLATE_UI_FRAMEWORKS) {
+        const hasUiTemplates = content.some(
+          (t) => t.uiFramework === uiFramework,
+        );
+        if (!hasUiTemplates) {
+          continue;
+        }
+
         const uiSlug = exports.toSlug.call(void 0, uiFramework);
         const uiJson = await createData(
           `templates-filter-${uiSlug}.json`,
@@ -75,6 +82,13 @@ async function RefineTemplates() {
         });
 
         for (const backend of exports.TEMPLATE_BACKENDS) {
+          const hasComboTemplates = content.some(
+            (t) => t.uiFramework === uiFramework && t.dataProvider === backend,
+          );
+          if (!hasComboTemplates) {
+            continue;
+          }
+
           const backendSlug = exports.toSlug.call(void 0, backend);
           const comboJson = await createData(
             `templates-filter-${uiSlug}-${backendSlug}.json`,
@@ -107,6 +121,8 @@ const templates = [
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.png",
     ],
+    imageAlt:
+      "CRM application dashboard showing sales pipeline, kanban board, and customer management interface",
     runOnYourLocalPath: null,
     edition: "Enterprise",
     liveDemo: "https://example.crm.refine.dev/",
@@ -162,6 +178,8 @@ This CRM app template can be used in for various app requirements like B2B appli
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-hr.png",
     ],
+    imageAlt:
+      "HR management application showing employee directory, leave management, and organizational hierarchy",
     runOnYourLocalPath: null,
     github: null,
     liveDemo: "https://hr.refine.dev",
@@ -218,6 +236,8 @@ By using this app as a starting point, companies can build a customized HR platf
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-storefront.png",
     ],
+    imageAlt:
+      "E-commerce storefront with product listings, shopping cart, and modern Tailwind CSS design",
     runOnYourLocalPath: "finefoods-client",
     edition: "Community",
     liveDemo: "https://example.refine.dev/",
@@ -245,6 +265,8 @@ The source code is also open-source; feel free to use or inspect it to discover 
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.png",
     ],
+    imageAlt:
+      "Food delivery admin panel with Material UI showing orders dashboard, analytics charts, and order management",
     runOnYourLocalPath: "finefoods-material-ui",
     edition: "Community",
     liveDemo: "https://example.mui.admin.refine.dev",
@@ -296,6 +318,8 @@ This admin panel template can be used in for various app requirements like B2B a
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.png",
     ],
+    imageAlt:
+      "Food delivery admin panel with Ant Design showing orders list, filters, and detailed order information",
     runOnYourLocalPath: "finefoods-antd",
     edition: "Community",
     liveDemo: "https://example.admin.refine.dev",
@@ -349,6 +373,8 @@ This admin panel template can be used in for various app requirements like B2B a
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.png",
     ],
+    imageAlt:
+      "Collaborative pixel canvas application with real-time drawing features powered by Supabase",
     runOnYourLocalPath: "pixels",
     edition: "Community",
     liveDemo: "https://pixels.refine.dev/",
@@ -380,6 +406,8 @@ We built this template to demonstrate how the Refine framework simplifies and sp
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.png",
     ],
+    imageAlt:
+      "Invoice generator interface showing client management, invoice creation form, and PDF preview",
     runOnYourLocalPath: "invoicer",
     edition: "Community",
     liveDemo: "https://refine-invoicer-8mk7d.ondigitalocean.app/",
@@ -410,6 +438,8 @@ We built this template to showcase the efficiency and ease of using the Refine f
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club-win95.png",
     ],
+    imageAlt:
+      "Retro Windows 95 styled video club admin panel with classic UI elements and nostalgic design",
     runOnYourLocalPath: "win95",
     edition: "Community",
     liveDemo: "https://videoclub.refine.dev",
@@ -430,6 +460,8 @@ The source code of the CRUD app is also open-source; feel free to use or inspect
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-realworld.png",
     ],
+    imageAlt:
+      "RealWorld example application showing article feed, user authentication, and social features",
     runOnYourLocalPath: "real-world-example",
     edition: "Community",
     liveDemo: "https://refine-real-world.netlify.app/",
@@ -464,6 +496,8 @@ Since the source code of this RealWorld app is open-source, you have the freedom
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.webp",
     ],
+    imageAlt:
+      "Multi-tenant application dashboard with store selection, product management, and Strapi integration",
     runOnYourLocalPath: null,
     edition: "Enterprise",
     liveDemo: "https://multi-tenancy-strapi.refine.dev",
@@ -487,6 +521,8 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.png",
     ],
+    imageAlt:
+      "Generic internal tool template with Ant Design showing authentication screens and CRUD operations",
     runOnYourLocalPath: "auth-antd",
     edition: "Community",
     liveDemo:
@@ -507,6 +543,8 @@ Complete internal tool template built with Material UI. Features authentication 
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.png",
     ],
+    imageAlt:
+      "Generic internal tool template with Material UI showing login page and data table interface",
     runOnYourLocalPath: "auth-material-ui",
     edition: "Community",
     liveDemo:
@@ -528,6 +566,8 @@ Complete internal tool template built with Material UI. Features authentication 
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.png",
     ],
+    imageAlt:
+      "Generic internal tool template with Mantine UI showing clean design with authentication and data management",
     runOnYourLocalPath: "auth-mantine",
     edition: "Community",
     liveDemo:
@@ -549,6 +589,8 @@ Complete internal tool template built with Mantine. Features authentication and 
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.png",
     ],
+    imageAlt:
+      "Generic admin panel template with Chakra UI showing authentication screens and CRUD functionality",
     runOnYourLocalPath: "auth-chakra-ui",
     edition: "Community",
     liveDemo:

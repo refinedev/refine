@@ -3,7 +3,8 @@ title: The Refine Open Source Hackathon
 description: refine Hackathon is an excellent opportunity for developers to showcase their skills, learn Refine and win prizes!
 slug: refine-hackathon
 authors: necati
-tags: [community]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
 social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
 hide_table_of_contents: false
@@ -33,7 +34,7 @@ It's worth noting that Refine has built-in data provider support for Strapi, App
 Strapi, Appwrite, Medusa, and Meilisearch will also be providing swag kits for the winners.
 
 <div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsors_banner.png"  alt="refine hackathon" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/sponsors_banner.png"  alt="January hackathon sponsors banner" />
 
 </div>
 
@@ -65,7 +66,7 @@ There are 3 chances to win, there will be prizes for:
 The all winners will get Refine Special Swag Kit + Swag Kits from **Strapi**, **Appwrite**, **Medusa**, and **Meilisearch**!
 
 <div>
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="refine hackathon" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/swag_kits.png"  alt="Refine swag kit prizes for hackathon winners" />
 
 </div>
 

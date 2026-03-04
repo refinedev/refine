@@ -3,7 +3,8 @@ title: JWT Authentication - What is JSON web token?
 description: We will focus mainly on using JWTs for securing web applications.
 slug: jwt-authentication
 authors: joseph_mawa
-tags: [dev-tools]
+category: "Ecosystem / Integrations"
+tags: [backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-11-jwt-authentication/social.png
 hide_table_of_contents: false
 ---

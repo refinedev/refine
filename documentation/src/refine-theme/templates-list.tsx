@@ -2,7 +2,7 @@ import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React, { type FC, type SVGProps } from "react";
 import type { TemplateEdition } from "../types/integrations";
-import { Image } from "../components/image";
+import { getImgixSrc } from "../components/image";
 import {
   BreadcrumbJsonLd,
   type BreadcrumbItem,
@@ -63,9 +63,15 @@ export const TemplatesList: FC<Props> = ({
                 "not-prose",
               )}
             >
-              <Image
-                className={clsx("aspect-[590/405]", "rounded-t-md")}
-                src={item.image}
+              <img
+                className={clsx(
+                  "w-full h-auto",
+                  "object-contain",
+                  "object-center",
+                  "aspect-[590/405]",
+                  "rounded-t-md",
+                )}
+                src={getImgixSrc(item.image)}
               />
               <div
                 className={clsx(

@@ -1,11 +1,8 @@
-import {
-  useScrollPositionBlocker,
-  useTabs,
-} from "@docusaurus/theme-common/internal";
+import { useTabs } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import clsx from "clsx";
 import React, { cloneElement } from "react";
-
+import { useScrollPositionBlocker } from "@docusaurus/theme-common/internal";
 function TabList({
   className,
   block,
@@ -15,40 +12,11 @@ function TabList({
   wrapContent = true,
   smallTabs = false,
 }) {
-  const tabRefs = [];
-  const { blockElementScrollPositionUntilNextRender } =
-    useScrollPositionBlocker();
-  const handleTabChange = (event) => {
-    const newTab = event.currentTarget;
-    const newTabIndex = tabRefs.indexOf(newTab);
-    const newTabValue = tabValues[newTabIndex].value;
-    if (newTabValue !== selectedValue) {
-      blockElementScrollPositionUntilNextRender(newTab);
-      selectValue(newTabValue);
-    }
-  };
-  const handleKeydown = (event) => {
-    let focusElement = null;
-    switch (event.key) {
-      case "Enter": {
-        handleTabChange(event);
-        break;
-      }
-      case "ArrowRight": {
-        const nextTab = tabRefs.indexOf(event.currentTarget) + 1;
-        focusElement = tabRefs[nextTab] ?? tabRefs[0];
-        break;
-      }
-      case "ArrowLeft": {
-        const prevTab = tabRefs.indexOf(event.currentTarget) - 1;
-        focusElement = tabRefs[prevTab] ?? tabRefs[tabRefs.length - 1];
-        break;
-      }
-      default:
-        break;
-    }
-    focusElement?.focus();
-  };
+  const { handleKeydown, handleTabChange, setTabRef } = useTabListLogic({
+    selectedValue,
+    selectValue,
+    tabValues,
+  });
 
   return (
     <div
@@ -76,7 +44,7 @@ function TabList({
           "bg-zinc-50 dark:bg-zinc-950",
         )}
       >
-        {tabValues.map(({ value, label, attributes }) => {
+        {tabValues.map(({ value, label, attributes }, index) => {
           const isSelected = selectedValue === value;
 
           return (
@@ -85,7 +53,7 @@ function TabList({
               tabIndex={selectedValue === value ? 0 : -1}
               aria-selected={selectedValue === value}
               key={value}
-              ref={(tabControl) => tabRefs.push(tabControl)}
+              ref={setTabRef(index)}
               onKeyDown={handleKeydown}
               onClick={handleTabChange}
               {...attributes}
@@ -120,14 +88,10 @@ function TabList({
 }
 
 function TabContent({ lazy, children, selectedValue, smallTabs, wrapContent }) {
-  const childTabs = (Array.isArray(children) ? children : [children]).filter(
-    Boolean,
-  );
+  const childTabs = getChildTabs(children);
 
   if (lazy) {
-    const selectedTabItem = childTabs.find(
-      (tabItem) => tabItem.props.value === selectedValue,
-    );
+    const selectedTabItem = findSelectedTab(childTabs, selectedValue);
     if (!selectedTabItem) {
       // fail-safe or fail-fast? not sure what's best here
       return null;
@@ -182,3 +146,82 @@ export default function CommonTabs(props) {
     />
   );
 }
+
+export const getChildTabs = (children: any) =>
+  (Array.isArray(children) ? children : [children]).filter(Boolean);
+
+export const findSelectedTab = (childTabs: any[], selectedValue: any) =>
+  childTabs.find((tabItem) => tabItem.props.value === selectedValue);
+
+export const useTabListLogic = ({
+  selectedValue,
+  selectValue,
+  tabValues,
+}: any) => {
+  const tabRefs = React.useRef<any[]>([]);
+  const { blockElementScrollPositionUntilNextRender } =
+    useScrollPositionBlocker();
+
+  const setTabRef = React.useCallback(
+    (index: number) => (element: any) => {
+      tabRefs.current[index] = element;
+    },
+    [],
+  );
+
+  const handleTabChange = React.useCallback(
+    (event: any) => {
+      const newTab = event.currentTarget;
+      const newTabIndex = tabRefs.current.indexOf(newTab);
+      const newTabValue = tabValues[newTabIndex]?.value;
+
+      if (newTabValue && newTabValue !== selectedValue) {
+        blockElementScrollPositionUntilNextRender(newTab);
+        selectValue(newTabValue);
+      }
+    },
+    [
+      blockElementScrollPositionUntilNextRender,
+      selectedValue,
+      selectValue,
+      tabValues,
+    ],
+  );
+
+  const handleKeydown = React.useCallback(
+    (event: any) => {
+      const currentIndex = tabRefs.current.indexOf(event.currentTarget);
+      let focusElement = null;
+
+      switch (event.key) {
+        case "Enter": {
+          handleTabChange(event);
+          break;
+        }
+        case "ArrowRight": {
+          const nextTab = currentIndex + 1;
+          focusElement = tabRefs.current[nextTab] ?? tabRefs.current[0];
+          break;
+        }
+        case "ArrowLeft": {
+          const prevTab = currentIndex - 1;
+          focusElement =
+            tabRefs.current[prevTab] ??
+            tabRefs.current[tabRefs.current.length - 1];
+          break;
+        }
+        default:
+          break;
+      }
+
+      focusElement?.focus();
+    },
+    [handleTabChange],
+  );
+
+  return {
+    handleKeydown,
+    handleTabChange,
+    setTabRef,
+  };
+};

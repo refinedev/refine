@@ -3,7 +3,8 @@ title: CSS Grid vs Flexbox - A brief guide
 description: In this brief guide, we compare some concepts of the two most popular CSS layout methods - Grid and Flexbox.
 slug: css-grid-vs-flexbox
 authors: muhammed_arslan
-tags: [css]
+category: "Alternatives"
+tags: [css, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/social-2.png
 hide_table_of_contents: false
 ---
@@ -139,7 +140,10 @@ In extrinsic sizing, you declare a specific width. Flexbox relies heavily on the
 
 ```html
 <div class="product">
-  <img src="https://assets.codepen.io/308367/betteroutreach-logo.avif" />
+  <img
+    src="https://assets.codepen.io/308367/betteroutreach-logo.avif"
+    alt="BetterOutreach logo"
+  />
   <div class="product__info">
     <h2>Product One</h2>
     <p>A collection of the best cold email templates ever sent</p>
@@ -151,7 +155,10 @@ In extrinsic sizing, you declare a specific width. Flexbox relies heavily on the
 </div>
 
 <div class="product">
-  <img src="https://assets.codepen.io/308367/sliderule-logo.avif" />
+  <img
+    src="https://assets.codepen.io/308367/sliderule-logo.avif"
+    alt="Sliderule logo"
+  />
   <div class="product__info">
     <h2>Product two</h2>
     <p>The no-code rules engine for risk & fraud</p>
@@ -163,7 +170,10 @@ In extrinsic sizing, you declare a specific width. Flexbox relies heavily on the
 </div>
 
 <div class="product">
-  <img src="https://assets.codepen.io/308367/warmy-logo.avif" />
+  <img
+    src="https://assets.codepen.io/308367/warmy-logo.avif"
+    alt="Warmy logo"
+  />
   <div class="product__info">
     <h2>Product three</h2>
     <p>Auto all-in-one tool to make your email channel reliable</p>
@@ -426,10 +436,10 @@ Manage to wrap with `flex-wrap`.
 
 ## Browser Support
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/grid.png" alt="grid" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/grid.png" alt="CSS grid layout example" />
 
 <br/>
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/flex.png" alt="flex" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-30-flex-vs-grid/flex.png" alt="Flexbox layout example" />
 
 <br/>
 

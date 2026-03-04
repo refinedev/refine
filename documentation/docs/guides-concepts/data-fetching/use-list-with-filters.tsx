@@ -72,9 +72,9 @@ export const dataProvider = (url: string): DataProvider => ({
         }
 
         // pagination is optional, so we need give default values if it is undefined.
-        const { current = 1, pageSize = 10 } = pagination ?? {};
-        params.push(\`_start=\${(current - 1) * pageSize}\`);
-        params.push(\`_end=\${current * pageSize}\`);
+        const { currentPage = 1, pageSize = 10 } = pagination ?? {};
+        params.push(\`_start=\${(currentPage - 1) * pageSize}\`);
+        params.push(\`_end=\${currentPage * pageSize}\`);
 
         // combine all params with "&" character to create query string.
         const query = params.join("&");

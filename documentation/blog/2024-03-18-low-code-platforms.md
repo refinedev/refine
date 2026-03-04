@@ -3,7 +3,8 @@ title: What are Low Code Development Platforms?
 description: We'll looking into low-code platforms, when and where they can be used, and limitations you might face during the development.
 slug: low-code
 authors: necati
-tags: [dev-tools]
+category: "Tutorials"
+tags: [tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/social.png
 hide_table_of_contents: false
 ---
@@ -17,18 +18,6 @@ The Gartner has thrown a spotlight on the low-code sector, forecasting an impres
 Low-code platforms open the doors of app development wide to those who might not have deep coding knowledge—often referred to as "citizen developers." These can be anyone from project managers to business analysts who, despite lacking formal programming training, are now empowered to build app prototypes and simple apps. This democratization of app development allows professional IT teams to allocate their focus and resources on tackling more complex projects.
 
 In this article, we'll looking into low-code platforms, when and where they can be used, and limitations you might face during the development.
-
-Steps we'll cover:
-
-- [What is low code?](#what-is-low-code)
-- [When to use low code platforms?](#when-to-use-low-code-platforms)
-- [Most used Low Code Platforms in the Market](#most-used-low-code-platforms-in-the-market)
-  - [Microsoft Powerapp](#microsoft-powerapp)
-  - [Outsystems](#outsystems)
-  - [Appian](#appian)
-  - [Mendix](#mendix)
-  - [Retool](#retool)
-- [What are the Limitation of low code platforms?](#what-are-the-limitation-of-low-code-platforms)
 
 ## When to use low code platforms?
 

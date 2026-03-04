@@ -122,7 +122,7 @@ render(
 
 The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages)
+[Refer to the custom pages documentation for detailed usage. &#8594](/core/docs/3.xx.xx/advanced-tutorials/custom-pages)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
@@ -176,7 +176,7 @@ render(
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider) and the edit button redirects the user to the record edit page.
 
 Refer to the [`<DeleteButton>`](/core/docs/3.xx.xx/api-reference/mui/components/buttons/delete) and the [`<EditButton>`](/core/docs/3.xx.xx/api-reference/mui/components/buttons/edit) documentation for detailed usage.
 

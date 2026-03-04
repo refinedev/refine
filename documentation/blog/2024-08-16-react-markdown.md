@@ -3,7 +3,8 @@ title: Creating Polished Content with React Markdown
 description: We will explore the process of integrating the markdown editor into a Refine application
 slug: react-markdown
 authors: david_omotayo
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/social-2.png
 hide_table_of_contents: false
 ---
@@ -17,15 +18,6 @@ Prior to John Gruber's invention of Markdown in 2004, WYSIWYG editors were commo
 Markdown has gained popularity due to its straightforward syntax, making it accessible to anyone familiar with basic text formatting tools. It offers a wide range of features compared to traditional methods, leading to the widespread adoption of Markdown in enterprise web applications that require text formatting capabilities.
 
 In this article, we will explore the process of integrating the [**uiw/react-md-editor**](https://www.npmjs.com/package/@uiw/react-md-editor) library into a React application to create a standard Markdown editor.
-
-Steps we'll cover:
-
-- [What is react-md-editor](#what-is-react-md-editor)
-- [Using the MDEditor component](#using-the-mdeditor-component)
-- [Advanced Customization](#advanced-customization)
-- [Sanitize Markdown](#sanitize-markdown)
-- [rehype-sanitize plugin](#rehype-sanitize-plugin)
-- [Optimizing Performance in Markdown Editor](#optimizing-performance-in-markdown-editor)
 
 ## What is react-md-editor
 

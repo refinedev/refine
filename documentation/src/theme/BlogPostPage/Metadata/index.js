@@ -4,8 +4,11 @@ import { useBlogPost } from "@docusaurus/theme-common/internal";
 
 export default function BlogPostPageMetadata() {
   const { assets, metadata } = useBlogPost();
-  const { title, description, date, tags, authors, frontMatter } = metadata;
+  const { title, description, date, tags, authors, frontMatter, category } =
+    metadata;
   const { keywords } = frontMatter;
+  const categoryLabel = category?.label ?? frontMatter.category;
+  const articleTags = tags.map((tag) => tag.label).join(",");
 
   const image = frontMatter.social_image ?? assets.image ?? frontMatter.image;
 
@@ -28,11 +31,11 @@ export default function BlogPostPageMetadata() {
             .join(",")}
         />
       )}
-      {tags.length > 0 && (
-        <meta
-          property="article:tag"
-          content={tags.map((tag) => tag.label).join(",")}
-        />
+      {categoryLabel && (
+        <meta property="article:section" content={categoryLabel} />
+      )}
+      {articleTags.length > 0 && (
+        <meta property="article:tag" content={articleTags} />
       )}
     </PageMetadata>
   );

@@ -86,9 +86,9 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
 
 ## Pagination <GuideBadge id="guides-concepts/data-fetching/#filters-sorters-and-pagination" />
 
-`useTable` has a pagination feature. The pagination is done by passing the `current`, `pageSize` and, `mode` keys to `pagination` object.
+`useTable` has a pagination feature. The pagination is done by passing the `currentPage`, `pageSize` and, `mode` keys to `pagination` object.
 
-- **current**: The page index.
+- **currentPage**: The page index.
 - **pageSize**: The number of items per page.
 - **mode**: Whether to use server side pagination or not.
   - When `server` is selected, the pagination will be handled on the server side.

@@ -3,10 +3,10 @@ title: Create Your Own Supabase Database In 5 Minutes
 description: Learn how to create and configure a scalable Supabase database. A step-by-step guide to getting your backend ready for your next web project.
 slug: supabase-database-setup
 authors: ozgur
-tags: [supabase, database, backend, tutorial]
+category: "Tutorials"
+tags: [supabase, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 If you’ve ever wanted to create a backend quickly — with a real database, authentication, storage, and auto-generated APIs — **Supabase** is a practical place to start. It’s open source, runs on top of PostgreSQL, and helps you move from idea to data in minutues.
@@ -16,19 +16,6 @@ In this guide, we’ll focus entirely on **setting up your Supabase database** �
 No frontend, no API calls — just a clear, simple walkthrough of setting up a real, production-grade database the easy way.
 
 ---
-
-## Table of contents
-
-- [Step 1: Create a Supabase Project](#step-1-create-a-supabase-project)
-- [Step 2: Understanding the Table Editor](#step-2-understanding-the-table-editor)
-- [Step 3: Create Your First Table](#step-3-create-your-first-table)
-- [Step 4: Add a Related Table](#step-4-add-a-related-table)
-- [Step 5: Insert Sample Data](#step-5-insert-sample-data)
-- [Step 6: Explore the SQL Editor](#step-6-explore-the-sql-editor)
-- [Step 7: Enable APIs and Policies](#step-7-enable-apis-and-policies)
-- [Why This Matters](#why-this-matters)
-- [What to do after](#what-to-do-after)
-- [Helpful Links](#helpful-links)
 
 ---
 
@@ -187,7 +174,8 @@ If you see `ERROR: 42P01: relation "public.employees" does not exist`:
 - Confirm the schema is `public` (default) and the table name is lowercase `employees`.
 - Refresh the browser tab—occasionally the SQL Editor metadata lags.
 - Verify you’re in the same project where the table was created.
-  :::
+
+:::
 
 :::tip No results or NULL department values?
 
