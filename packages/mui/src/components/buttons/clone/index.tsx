@@ -44,7 +44,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      disabled={isDisabled}
+      component={LinkComponent}
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -57,23 +59,18 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
+      title={title}
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.CloneButton}
+      className={RefineButtonClassNames.CloneButton}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.CloneButton}
-        className={RefineButtonClassNames.CloneButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <AddBoxOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <AddBoxOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };

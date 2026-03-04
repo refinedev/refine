@@ -5,6 +5,7 @@ import {
   type RouterProvider,
   matchResourceFromRoute,
   ResourceContext,
+  QS_PARSE_DEPTH,
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import qs from "qs";
@@ -42,7 +43,11 @@ export const routerProvider: RouterProvider = {
         const urlQuery = {
           ...(keepQuery &&
             existingSearch &&
-            qs.parse(existingSearch, { ignoreQueryPrefix: true })),
+            qs.parse(existingSearch, {
+              ignoreQueryPrefix: true,
+              depth: QS_PARSE_DEPTH,
+            })),
+
           ...query,
         };
 
@@ -106,7 +111,10 @@ export const routerProvider: RouterProvider = {
     }
 
     const fn = useCallback(() => {
-      const parsedSearch = qs.parse(search, { ignoreQueryPrefix: true });
+      const parsedSearch = qs.parse(search, {
+        ignoreQueryPrefix: true,
+        depth: QS_PARSE_DEPTH,
+      });
 
       const combinedParams = {
         ...params,

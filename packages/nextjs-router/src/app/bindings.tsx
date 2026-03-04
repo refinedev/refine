@@ -4,6 +4,7 @@ import {
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
+  QS_PARSE_DEPTH,
 } from "@refinedev/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import NextLink from "next/link";
@@ -48,6 +49,7 @@ export const routerProvider: RouterProvider = {
           ...(keepQuery
             ? qs.parse(searchParamsObj.toString(), {
                 ignoreQueryPrefix: true,
+                depth: QS_PARSE_DEPTH,
               })
             : {}),
           ...query,
@@ -109,7 +111,10 @@ export const routerProvider: RouterProvider = {
 
     const parsedParams = React.useMemo(() => {
       const searchParams = searchParamsObj.toString();
-      return qs.parse(searchParams, { ignoreQueryPrefix: true });
+      return qs.parse(searchParams, {
+        ignoreQueryPrefix: true,
+        depth: QS_PARSE_DEPTH,
+      });
     }, [searchParamsObj]);
 
     const fn = React.useCallback(() => {
