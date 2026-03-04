@@ -1,79 +1,125 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BlogPostProvider } from "@docusaurus/theme-common/internal";
-import TagsList from "@theme/TagsList";
-
 import BlogPostItem from "@theme/BlogPostItem";
 import clsx from "clsx";
+import { CategoryNavBar } from "@site/src/components/blog";
+import { BlogPostViewModeToggle } from "./components/blog-post-view-mode-toggle";
+import { BlogPostListItem } from "./components/blog-post-list-item";
+
+const BLOG_POST_VIEW_MODE_STORAGE_KEY = "blog-post-view-mode";
 
 export default function BlogPostItems({
   items,
+  categories,
   tags,
-  component: BlogPostItemComponent = BlogPostItem,
   isAuthorPage,
   isTagsPage,
 }) {
+  const [viewMode, setViewMode] = useState(() => {
+    if (typeof window === "undefined") return "grid";
+
+    try {
+      const persistedViewMode = window.localStorage.getItem(
+        BLOG_POST_VIEW_MODE_STORAGE_KEY,
+      );
+
+      return persistedViewMode === "list" ? "list" : "grid";
+    } catch {
+      return "grid";
+    }
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      window.localStorage.setItem(BLOG_POST_VIEW_MODE_STORAGE_KEY, viewMode);
+    } catch {
+      // ignore storage errors
+    }
+  }, [viewMode]);
+
+  const tagItems = (tags ?? [])
+    .filter(
+      (tag) =>
+        typeof tag?.label === "string" && typeof tag?.permalink === "string",
+    )
+    .map((tag) => ({
+      value: tag.label,
+      name: tag.label,
+      permalink: tag.permalink,
+      count: tag.count,
+    }));
+
   return (
     <div className={clsx("w-full")}>
       <div
         className={clsx(
           "blog-sm:max-w-[592px]",
-          "blog-md:max-w-[656px]",
+          "blog-md:max-w-[704px]",
           "blog-lg:max-w-[896px]",
           "blog-max:max-w-[1200px]",
           "w-full",
-          "px-6 blog-sm:px-0",
-          "pt-14 blog-md:pt-12",
+          "pt-4",
           "pb-6",
           "mx-auto",
           "not-prose",
         )}
       >
-        {!isAuthorPage && !isTagsPage && (
-          <>
-            <div
-              className={clsx(
-                "flex flex-row blog-lg:flex-col justify-between",
-                "items-center blog-lg:items-start",
-                "not-prose",
-                "px-6",
-                "mb-6 blog-lg:mb-12",
-                "gap-6",
-              )}
-            >
-              <h2
-                className={clsx(
-                  "!m-0 !mt-0 !mb-0 p-0",
-                  "blog-lg:mb-12 blog-md:mb-8 mb-8",
-                  "text-2xl blog-sm:text-[32px] blog-sm:leading-10",
-                  "text-white",
-                  "font-medium",
-                  "whitespace-nowrap",
-                )}
-              >
-                All Posts
-              </h2>
-              <TagsList tags={tags} />
-            </div>
-          </>
-        )}
-
         <div
           className={clsx(
-            "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
-            "gap-1",
+            viewMode === "grid" && "mb-4",
+            viewMode === "list" && "mb-8",
+            "w-full",
+            "px-4",
+            "flex",
+            "items-center",
+            "gap-3",
           )}
         >
-          {items.map(({ content: BlogPostContent }) => (
-            <BlogPostProvider
-              key={BlogPostContent.metadata.permalink}
-              content={BlogPostContent}
-            >
-              <BlogPostItemComponent>
-                <BlogPostContent />
-              </BlogPostItemComponent>
-            </BlogPostProvider>
-          ))}
+          {!isAuthorPage && tagItems.length > 0 ? (
+            <CategoryNavBar
+              categories={tagItems}
+              allPath="/blog/tags"
+              allLabel="All tags"
+            />
+          ) : (
+            !isAuthorPage &&
+            !isTagsPage && <CategoryNavBar categories={categories} />
+          )}
+          <BlogPostViewModeToggle viewMode={viewMode} onChange={setViewMode} />
         </div>
+
+        {viewMode === "grid" ? (
+          <div
+            className={clsx(
+              "w-full",
+              "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
+            )}
+          >
+            {items.map(({ content: BlogPostContent }) => (
+              <BlogPostProvider
+                key={BlogPostContent.metadata.permalink}
+                content={BlogPostContent}
+              >
+                <BlogPostItem>
+                  <BlogPostContent />
+                </BlogPostItem>
+              </BlogPostProvider>
+            ))}
+          </div>
+        ) : (
+          <div className={clsx("w-full")}>
+            {items.map(({ content: BlogPostContent }) => (
+              <BlogPostProvider
+                key={BlogPostContent.metadata.permalink}
+                content={BlogPostContent}
+              >
+                <BlogPostListItem />
+              </BlogPostProvider>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

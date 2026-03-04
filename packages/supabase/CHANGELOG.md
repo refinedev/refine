@@ -1,5 +1,17 @@
 # @refinedev/supabase
 
+## 6.0.2
+
+### Patch Changes
+
+- [#7281](https://github.com/refinedev/refine/pull/7281) [`e22740f7a90901bdf0089c41e7ae51678e4793a5`](https://github.com/refinedev/refine/commit/e22740f7a90901bdf0089c41e7ae51678e4793a5) Thanks [@jwild2027](https://github.com/jwild2027)! - fix(supabase): handle realtime subscriptions with multiple filters #6360
+
+  Supabase Realtime `postgres_changes` subscriptions support a single `filter` string.
+  When multiple filters are provided, `liveProvider` now uses only the first valid filter
+  and logs a warning instead of generating an invalid subscription payload.
+
+  Resolves #6360
+
 ## 6.0.1
 
 ### Patch Changes

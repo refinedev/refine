@@ -3,6 +3,7 @@ title: JavaScript Substring Method
 description: We'll learn how to use JavaScript substring method to extract substrings from a parent string.
 slug: javascript-substring-method
 authors: abdullah_numan
+category: "Tutorials"
 tags: [javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-23-js-substring/social-2.png
 hide_table_of_contents: false

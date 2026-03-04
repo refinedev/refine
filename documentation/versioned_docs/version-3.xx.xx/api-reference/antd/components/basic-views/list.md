@@ -134,7 +134,7 @@ render(
 
 `<List>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<List>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages)
+[Refer to the custom pages documentation for detailed usage. &#8594](/core/docs/3.xx.xx/advanced-tutorials/custom-pages/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 setInitialRoutes(["/custom"]);

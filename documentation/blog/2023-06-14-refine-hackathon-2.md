@@ -3,7 +3,8 @@ title: refine Open Source Hackathon 2
 description: The second Refine Open Source Hackathon is an excellent opportunity for developers to showcase their skills, learn Refine and win prizes!
 slug: refine-hackathon-2
 authors: necati
-tags: [community, Refine]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png
 hide_table_of_contents: false
 ---

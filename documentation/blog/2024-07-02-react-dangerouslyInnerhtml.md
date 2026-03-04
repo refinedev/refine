@@ -3,6 +3,7 @@ title: When to use dangerouslySetInnerHTML in React?
 description: Find out when to use dangerouslySetInnerHTML in React and how it can help avoid XSS attacks.
 slug: use-react-dangerouslysetinnerhtml
 authors: clara_ekekenta
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-25-react-dangerouslyInnerhtml/social-2.png
 hide_table_of_contents: false

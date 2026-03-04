@@ -3,7 +3,8 @@ title: Introduction to Docker Compose
 description: We'll go over the basics of Docker Compose in this article, including what it is, how it works, and how to use it.
 slug: docker-compose
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-31-docker-compose/social.png
 hide_table_of_contents: false
 ---
@@ -11,14 +12,6 @@ hide_table_of_contents: false
 ## Brief explanation of Docker Compose and its purpose
 
 For multi-container Docker applications, Docker Compose is a tool that is designed for application definition and execution. By enabling you to execute several container applications simultaneously from a single YAML file, Docker Compose finds a solution to the problem. Docker Compose is the best option for environments used for development, testing, and staging, as well as for quick integration processes. By utilizing Docker Compose, which enables you to store and version control your application stack in a file, you can also just make it possible for others to contribute to your project. Compose additionally allows the isolation of your application from the host environment and consistency across several instances.
-
-Steps we'll cover:
-
-- [Overview of the benefits and use cases of Docker Compose](#overview-of-the-benefits-and-use-cases-of-docker-compose)
-- [Instructions for installing Docker Compose on different operating systems](#instructions-for-installing-docker-compose-on-different-operating-systems)
-- [Configuring Docker Compose for your environment](#configuring-docker-compose-for-your-environment)
-- [Writing a Docker Compose File](#writing-a-docker-compose-file)
-- [Managing Docker Compose Projects](#managing-docker-compose-projects)
 
 ## Overview of the benefits and use cases of Docker Compose
 

@@ -121,7 +121,7 @@ After setting the `canDelete` property to `true`, you will see a delete button o
 
 You can also use `useDelete` hook provided by **refine** to delete a record.
 
-[Refer to the `useDelete` documentation for more information information &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/)
+[Refer to the `useDelete` documentation for more information information &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)
 
 :::
 

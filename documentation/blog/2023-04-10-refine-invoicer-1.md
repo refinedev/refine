@@ -3,7 +3,8 @@ title: Pilot & Refine architecture
 description: We'll be taking a look at the architecture of Refine and how week of RefineWeek series will be structured.
 slug: refine-react-invoice-generator-1
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fsocial.png
 hide_table_of_contents: false
 ---
@@ -102,7 +103,7 @@ const { listProps } = useSimpleList<IClient>({
 });
 ```
 
-The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
+The above `useSimpleList()` hook is a `@refinedev/antd` UI hook that is built on top of the low level [`useList()`](https://refine.dev/core/docs/data/hooks/use-list/) data hook. Low level hooks, in turn, leverage **React Query** hooks in order to make API calls invoked from inside the provider methods. Here's an early sneak peek into the action under the hood:
 
 ```tsx title="Inside useList() hook"
 const queryResponse = useQuery<GetListResponse<TData>, TError>(

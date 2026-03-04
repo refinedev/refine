@@ -3,7 +3,8 @@ title: Build a Progressive Web App (PWA) with Next.js
 description: We will walk you through the entire process of building a PWA using Next.JS and Refine framework, from start to finish!
 slug: next-js-pwa
 authors: david_omotayo
-tags: [nextjs, tutorial, Refine]
+category: "How To Build"
+tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social-2.png
 hide_table_of_contents: false
 ---
@@ -21,19 +22,6 @@ Fast forward to today, there are several frameworks and libraries in the picture
 In this article, we'll look at what Refine is and demonstrate how to use it to build a **Next.js PWA** storefront application.
 
 <!--truncate-->
-
-Steps we'll cover:
-
-- [What is a PWA?](#what-is-a-pwa)
-- [Project Setup](#project-setup)
-- [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
-- [Using Next.js SSR](#using-nextjs-ssr)
-- [Creating product cards](#creating-product-cards)
-- [Generating PWA manifest](#generating-pwa-manifest)
-- [Configuring PWA](#configuring-pwa)
-- [SEO Considerations for PWAs](#seo-considerations-for-pwas)
-- [Advance techniques: Customizing the Service Worker](#advance-techniques-customizing-the-service-worker)
-- [Accessibility Considerations for PWAs](#accessibility-considerations-for-pwas)
 
 ## Prerequisites
 

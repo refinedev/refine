@@ -3,6 +3,7 @@ title: How to use the useParams hook in React Router
 description: We'll discover how to access the parameters of the current route with the useParams hook in React Router.
 slug: react-router-useparams
 authors: joseph_mawa
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use-params/social-2.png
 hide_table_of_contents: false
@@ -19,18 +20,6 @@ The `useParams` hook in React Router means that the dynamic parts of URLs are ju
 For example, in a route like /blog/:id, you could access id using `useParams` from the component being rendered. Given the URL /blog/123, useParams() will return `{ id: "123" }`. This comes in handy for dynamic rendering of content depending on the URL.
 
 The `useParams` hook is one of the several hooks in React router. It has been available in React router since version 5. You can use it to retrieve route parameters from the component rendered by the matching route. You will explore the React Router `useParams` hook and how to use it in this article.
-
-Steps we'll cover:
-
-- [What is React useParams?](#what-is-react-useparams)
-- [Setting up React Router](#setting-up-react-router)
-  - [Step 1 - Install React Router](#step-1---install-react-router)
-  - [Step 2 - How to set up React router](#step-2---how-to-set-up-react-router)
-  - [Step 3 - How to set up routes](#step-3---how-to-set-up-routes)
-- [What are URL parameters in React router](#what-are-url-parameters-in-react-router)
-- [How to use the `useParams` hook](#how-to-use-the-useparams-hook)
-- [Using Nested Routes with useParams](#using-nested-routes-with-useparams)
-- [Validating URL Parameters](#validating-url-parameters)
 
 ## Prerequisites
 

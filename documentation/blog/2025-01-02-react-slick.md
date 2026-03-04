@@ -3,6 +3,7 @@ title: React Slick Examples - Creating a carousel
 description: We'll see how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 slug: react-slick
 authors: deborah_emeni
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social-2.png
 hide_table_of_contents: false
@@ -17,16 +18,6 @@ Developers need a visually appealing way to display or showcase multiple items, 
 However, developers still need an efficient and easier way to create customizable and responsive carousels. A library called [React Slick](http://react-slick.neostack.com/) was developed to help developers achieve this. This library is popularly used and highly efficient, as it offers a variety of features that will be covered in this article.
 
 In this article, you will learn about React Slick—what it is, why it's important, its features, benefits, and more. You'll learn how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
-
-Steps we'll cover:
-
-- [Overview of React Slick](#overview-of-react-slick)
-- [About React Slick APIs](#about-react-slick-apis)
-- [Benefits of using React Slick](#benefits-of-using-react-slick)
-- [Demo: Getting Started with React Slick](#demo-getting-started-with-react-slick)
-- [Using React Slick](#using-react-slick)
-- [Building a Fashion Carousel with React Slick](#building-a-fashion-carousel-with-react-slick)
-- [Common Mistakes When Using React Slick (and How to Avoid Them)](#common-mistakes-when-using-react-slick-and-how-to-avoid-them)
 
 ## Overview of React Slick
 

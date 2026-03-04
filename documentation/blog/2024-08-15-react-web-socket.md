@@ -3,7 +3,8 @@ title: How to set up a WebSocket connection with Node.js and React.js?
 description: Understanding Real-time communication with React and WebSocket
 slug: react-websocket-tutorial-nodejs
 authors: frank_joseph
-tags: [react]
+category: "Tutorials"
+tags: [react, backend, javascript]
 hide_table_of_contents: false
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social-2.png
 ---
@@ -15,16 +16,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-
 With the advent of Social Media and other internet-enabled communication tools, delivering real-time communication has become increasingly important. Hypertext Transfer Protocol (HTTP) is a communication protocol like WebSocket that follows the Request-Response, one-way communication pattern. It has been used by most developers to implement real-time communication but it falls short when the use case involves instant updates and building a full-duplex bidirectional communication tool. Although HTTP through its various methods such as HTTP Polling, Streaming, and server-sent events (SSE) helped developers implement data transfer, there are restrictions and disadvantages that have paved the way for WebSocket. WebSocket helps developers implement a full-duplex bidirectional communication mechanism and helps developers build a real-time communication system.
 
 In this article, we’ll discuss the shortcomings of the HTTP protocol, and explore the concept of real-time communication and how to implement it with the WebSocket protocol while building a basic client communication application.
-
-Steps we'll cover:
-
-- [Why WebSocket?](#why-websocket)
-- [Unleashing the Power of WebSockets using Node.js and React](#unleashing-the-power-of-websockets-using-nodejs-and-react)
-- [Accessing the Code](#accessing-the-code)
-- [Run the application after Setting up the Environment](#run-the-application-after-setting-up-the-environment)
-- [Understanding the Code\*\*](#understanding-the-code)
-- [Security Considerations with WebSockets](#security-considerations-with-websockets)
-- [Bonus: WebSocket Protocols and Subprotocols](#bonus-websocket-protocols-and-subprotocols)
 
 ## Why WebSocket?
 

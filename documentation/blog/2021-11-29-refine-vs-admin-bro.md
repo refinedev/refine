@@ -3,7 +3,8 @@ title: Refine vs AdminBro - Comparison Admin Panel Framework
 description: Refine vs AdminBro
 slug: refine-vs-adminbro
 authors: melih
-tags: [refine, react, comparison]
+category: "Alternatives"
+tags: [admin-panel, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---
@@ -400,7 +401,7 @@ All features of **Refine** are available as **open source**.
 - Search
 - Navigation and more features are available
 
-**Refine** Docs & Demo: [Documentation](https://refine.dev/core/docs/) - [Live Demo](https://refine.dev/demo/)
+**Refine** Docs & Demo: [Documentation](https://refine.dev/core/docs/) - [Live Demo](https://refine.dev/core/templates/)
 
 ## AdminBro
 

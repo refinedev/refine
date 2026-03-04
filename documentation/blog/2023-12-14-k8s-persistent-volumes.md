@@ -3,7 +3,8 @@ title: Kubernetes Persistent Volumes - Best Practices and Use Cases
 description: Kubernetes Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) are key tools for storing data in containerized environments.
 slug: kubernetes-persistent-volumes
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/social.png
 hide_table_of_contents: false
 ---
@@ -13,15 +14,6 @@ hide_table_of_contents: false
 Welcome to our guide on Kubernetes Persistent Volumes (PVs) and Persistent Volume Claims (PVCs). In this article, we'll explore how Kubernetes handles data storage, a key part of running applications that need to save data permanently. We'll start with a basic introduction to Kubernetes and why keeping data safe and accessible is important in systems where applications are in containers.
 
 Our goal is to give you a clear and straightforward understanding of PVs and PVCs—how they work, how they differ from temporary storage, and how to set them up and use them in different scenarios. This guide is designed for anyone interested in Kubernetes, whether you're just starting out or looking to deepen your knowledge about Kubernetes storage.
-
-Steps we'll cover:
-
-- [Conceptual Overview of Persistent Volumes and Claims](#conceptual-overview-of-persistent-volumes-and-claims)
-- [Setting Up Your Environment for PV](#setting-up-your-environment-for-pv)
-- [Deep Dive into Persistent Volume Types](#deep-dive-into-persistent-volume-types)
-- [Creating and Configuring a Persistent Volume](#creating-and-configuring-a-persistent-volume)
-- [Working with Persistent Volume Claims](#working-with-persistent-volume-claims)
-- [Advanced Scenarios and Best Practices](#advanced-scenarios-and-best-practices)
 
 ## Conceptual Overview of Persistent Volumes and Claims
 

@@ -3,7 +3,8 @@ title: "Tremor Guide: Step-by-Step React Dashboard Setup & Implementation"
 description: Understand building react admin dashboard with tremor with real use cases and common mistakes to avoid. Trade-offs summarized.
 slug: building-react-admin-dashboard-with-tremor
 authors: joseph_mawa
-tags: [refine, tutorial, react]
+category: "How To Build"
+tags: [react, dashboards, tailwind]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: How to use Material UI Tooltip
 description: We'll discover the Material UI Tooltip component with examples
 slug: material-ui-tooltip-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/social-2.png
 hide_table_of_contents: false
 ---
@@ -13,16 +14,6 @@ hide_table_of_contents: false
 Material UI is a dynamic React framework that offers abundant customizable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.
 
 This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application.
-
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
-- [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
-- [How to customize your Material UI Tooltip component](#how-to-customize-your-material-ui-tooltip-component)
-- [Material UI Tooltip Event Triggers](#material-ui-tooltip-event-triggers)
-- [Material UI Tooltip custom children elements](#material-ui-tooltip-custom-children-elements)
-- [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
 
 ## What is Material UI?
 

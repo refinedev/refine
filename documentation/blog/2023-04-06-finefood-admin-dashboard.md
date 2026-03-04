@@ -3,7 +3,8 @@ title: Building a React Admin Dashboard with Refine
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: building-react-admin-dashboard
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
 ---
@@ -855,13 +856,13 @@ export const DailyRevenue: React.FC = () => {
 
 In the code above:
 
-- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useApiUrl/).
+- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/core/docs/data/hooks/use-api-url/).
 - We used the `useCustom()` hook to handle sending a request to the endpoint. The `useCustom` hook expects a `url`, `method` and `config` properties.
   - the `url` property accepts the endpoint url.
   - the `method` property accepts the type of method of the endpoint (a "`get`" endpoint in our case)
   - the `config` property accepts values like the `headers` for the endpoint, `query` parameters, `sorters`, `filters`, `payloads` and many more.
 
-To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useCustom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
+To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/core/docs/data/hooks/use-custom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
 
 - These parameters will be passed to the `custom` method from the `dataProvider` as a parameter. When properties are changed, the `useCustom` hook will trigger a new request.
 - On getting the data back from the endpoint using the `useCustom` hook, we add the data to the `Line` chart component from the `@ant-design charts` we installed previously.we also memoize the data represented on the chart to optimize performance.
@@ -1822,7 +1823,7 @@ export const DeliveryMap: React.FC = () => {
 In the code above:
 
 - We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in Refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
-  To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
+  To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/data/hooks/use-list/).
 
 - On getting the data back from the endpoint, we render the position of the order on the map using the marker.
 

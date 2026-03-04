@@ -3,7 +3,8 @@ title: Using Heroicons with TailwindCSS
 description: In this post, we see how to use Heroicons with TailwindCSS.
 slug: heroicons-with-tailwind
 authors: abdullah_numan
-tags: [tailwind, css]
+category: "Ecosystem / Integrations"
+tags: [tailwind]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/social.png
 hide_table_of_contents: false
 ---
@@ -23,12 +24,6 @@ Besides, we can also pass regular properties such as `stroke`, `fill`, `width` a
 In this post, we use Heroicons with both TailwindCSS and non-Tailwind classes. We'll work on an already built navbar that currently has Tailwind styled regular `<svg>` icons (they are the same `<svg>`'s produced from the Heroicons we'll be using). We'll be replacing them with Heroicon React components and styling them accordingly.
 
 The existing navbar is available in [this repository](https://github.com/anewman15/navbar-hero). As using Heroicons is pretty easy, to grasp how the examples work, it is enough just to follow the JSX. If you want to run the app and see what's going on in the browser when the style changes, please follow the steps below to clone the repo and run it locally.
-
-Steps we'll cover:
-
-- [A Navbar with Heroicons](#a-navbar-with-heroicons)
-- [Customizing Heroicons](#customizing-heroicons)
-- [Optimizing Icon Performance](#optimizing-icon-performance)
 
 ## Preparation
 

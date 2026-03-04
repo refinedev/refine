@@ -3,7 +3,8 @@ title: A Quick Introduction to Meta's Stylex
 description: This post quickly explores how to apply statically typed, atomic CSS styles to React components with Stylex APIs in a Next.js application.
 slug: meta-stylex
 authors: abdullah_numan
-tags: [react, css]
+category: "Ecosystem / Integrations"
+tags: [css, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-13-stylex-post/social.png
 hide_table_of_contents: false
 ---

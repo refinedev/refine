@@ -3,6 +3,7 @@ title: How to Use Tailwind CSS Grid
 description: We look at how to implement responsive layouts with CSS Grid using TailwindCSS Grid classes.
 slug: tailwind-grid
 authors: abdullah_numan
+category: "Ecosystem / Integrations"
 tags: [tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social-2.png
 hide_table_of_contents: false
@@ -17,18 +18,6 @@ In this article we look at how to implement responsive layouts with CSS Grid usi
 TailwindCSS, or just Tailwind, is a CSS framework used for rapidly building websites. It comes with a core set of already defined CSS utility classes that can be composed and easily custom configured afterwards to implement any design with respect to repsonsivenes, layout and themes.
 
 It is possible to build multi column layouts using Tailwind with its Flexbox classes by dividing the width of the container with `w-{fraction}` classes. However, with versions 1.2 and above, we can build highly elaborate layouts with Tailwind's CSS Grid classes.
-
-Steps we'll cover:
-
-- [What is Tailwind Grid System](#what-is-tailwind-grid-system)
-- [Project Goals](#project-goals)
-- [Project Setup](#project-setup)
-- [Basic Tailwind Grid Example](#basic-tailwind-grid-example)
-- [Add Grid Formatting Context](#add-grid-formatting-context)
-- [Size and Placement](#size-and-placement)
-- [Grid Rows](#grid-rows)
-- [Reorder Regions](#reorder-regions)
-- [Customizing TailwindCSS Theme](#customizing-tailwindcss-theme)
 
 ## What is Tailwind Grid System
 

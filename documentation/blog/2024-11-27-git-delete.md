@@ -3,7 +3,8 @@ title: How to Delete Local and Remote Git Branches
 description: We will take a look the example of deleting local and remote Git branches.
 slug: git-delete-remote-branch-and-local-branch
 authors: muhammad_khabbab
-tags: [git, dev-tools]
+category: "Engineering"
+tags: [git]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/social-2.png
 hide_table_of_contents: false
 ---
@@ -34,20 +35,6 @@ Actually, there is a third type of branch, which is the reference to the remote 
 Today we will discuss various scenarios related to branch deletion. We will show you how to **delete local and remote branches** on GitHub. We will also go through some common errors while deleting a branch.
 
 For this article, we assume you have installed GIT, and you have the access rights to **delete a branch**. Let's start with the need to delete a branch.
-
-Steps we'll cover:
-
-- [Why you might need to remove a branch](#why-you-might-need-to-remove-a-branch)
-- [Deleting a GIT local branch](#deleting-a-git-local-branch)
-- [Deleting a Git remote branch](#deleting-a-git-remote-branch)
-- [Deleting a branch with merged changes](#deleting-a-branch-with-merged-changes)
-- [Deleting a git branch with unmerged changes](#deleting-a-git-branch-with-unmerged-changes)
-- [Advanced Scenarios for Branch Deletion](#advanced-scenarios-for-branch-deletion)
-- [What are tracking branches and how to delete them](#what-are-tracking-branches-and-how-to-delete-them)
-- [How to delete a branch on Github using web console](#how-to-delete-a-branch-on-github-using-web-console)
-- [Automate Deletion with a Scheduled Task](#automate-deletion-with-a-scheduled-task)
-- [Running on CI/CD Pipelines](#running-on-cicd-pipelines)
-- [Frequently asked questions](#frequently-asked-questions)
 
 ## Why you might need to remove a branch
 

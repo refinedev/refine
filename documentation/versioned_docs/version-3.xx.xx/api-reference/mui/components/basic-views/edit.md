@@ -171,7 +171,7 @@ render(
 
 The `<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages)
+[Refer to the custom pages documentation for detailed usage. &#8594](/core/docs/3.xx.xx/advanced-tutorials/custom-pages)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 // handle initial routes in new way
@@ -266,7 +266,7 @@ render(
 
 `canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider).
+When clicked on, the delete button executes the [`useDelete`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) method provided by the [`dataProvider`](/core/docs/3.xx.xx/api-reference/core/providers/data-provider).
 
 [Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/mui/components/buttons/delete)
 
@@ -397,7 +397,7 @@ The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/c
 
 Determines which mode mutation will have while executing [`<DeleteButton>`](/core/docs/3.xx.xx/api-reference/mui/components/buttons/delete).
 
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode)
+[Refer to the mutation mode docs for further information. &#8594](/core/docs/3.xx.xx/advanced-tutorials/mutation-mode)
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
 // visible-block-start

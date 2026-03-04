@@ -3,6 +3,7 @@ title: Material UI button in React
 description: A complete guide on using Material UI button in a React app
 slug: mui-button-in-react
 authors: doro_onome
+category: "Ecosystem / Integrations"
 tags: [material-ui, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/social.png
 hide_table_of_contents: false
@@ -24,18 +25,6 @@ Material-UI provides a customizable button with various color and size options, 
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`.
 
 In this article, we will deeply explore the Material UI `Button` component, its variants, and the different ways it can be used in a React application.
-
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with the Material UI Button component](#getting-started-with-the-material-ui-button-component)
-- [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
-- [Creating a Calculator UI with light and dark mode using React Material UI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-material-ui-button-component)
-  - [The Navbar Component](#the-navbar-component)
-- [Advance Material UI Buttons](#advance-material-ui-buttons)
-  - [Accessibility (Making Buttons More User-Friendly)](#accessibility-making-buttons-more-user-friendly)
-  - [Button Animations](#button-animations)
-  - [The Main Component](#the-main-component)
 
 ## What is Material UI
 

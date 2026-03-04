@@ -3,6 +3,7 @@ title: Tailwind Flex for Responsive React Components
 description: This post is about how to use TailwindCSS Flex classes effectively to implement responsive components in React.
 slug: tailwind-flex
 authors: abdullah_numan
+category: "Ecosystem / Integrations"
 tags: [tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/social-2.png
 hide_table_of_contents: false
@@ -23,18 +24,6 @@ We'll employ a mobile-first approach, so we'll be starting with using `flex-dire
 We'll start with a collapsible React navbar that already comes in a collapsed state with the necessary spacing and sizing implemented so that we can focus on the use of Tailwind Flex classes in this article.
 
 Before starting, though, let's talk about the prerequisites that need to be managed for getting hands-on with Tailwind Flex.
-
-Steps we'll cover:
-
-- [Starter Files](#starter-files)
-- [Styling a Navbar with TailwindCSS classes](#styling-a-navbar-with-tailwindcss-classes)
-- [Flexbox Accessibility Considerations](#flexbox-accessibility-considerations)
-- [Best Practices for Performance Optimization](#best-practices-for-performance-optimization)
-- [Avoid Layout Shifts](#avoid-layout-shifts)
-- [Use Tailwind's JIT (Just-In-Time) Mode](#use-tailwinds-jit-just-in-time-mode)
-- [Optimize for Critical Rendering Path](#optimize-for-critical-rendering-path)
-- [Lazy Load Non-essential Content](#lazy-load-non-essential-content)
-- [PurgeCSS with Tailwind](#purgecss-with-tailwind)
 
 ## Prerequisites
 

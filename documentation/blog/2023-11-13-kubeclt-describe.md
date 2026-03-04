@@ -3,7 +3,8 @@ title: A Detailed Guide on kubectl describe
 description: In this article, we will discuss the kubectl describe command in detail.
 slug: kubectl-describe-pod
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-13-kubeclt-describe/social.png
 hide_table_of_contents: false
 ---

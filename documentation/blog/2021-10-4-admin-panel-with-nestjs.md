@@ -3,7 +3,8 @@ title: Build Fast and Customizable Admin Panel with NestJS
 description: We will prepare a simple `job-posting` application. We will also use the Refine framework for the admin panel. The project will consist of two parts, api and admin.
 slug: customizable-admin-panel-with-nestjs
 authors: yildiray
-tags: [refine, nestjs, react, tutorial]
+category: "How To Build"
+tags: [admin-panel, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

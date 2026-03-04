@@ -229,7 +229,7 @@ You can get the auto-generated pages codes by clicking the `Show Code` button on
 👉 Read more on [Advanced Tutorials
 ](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
-👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
+👉 See the real-life [Finefoods Demo](https://refine.dev/core/templates/) project.
 
 👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
 

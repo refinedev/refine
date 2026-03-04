@@ -3,7 +3,8 @@ title: Unraveling the Kubernetes ImagePullBackOff Error
 description: We'll discuss the ImagePullBackOff error in Kubernetes, its causes, and how to resolve it.
 slug: kubernetes-imagepullbackoff-error
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Engineering"
+tags: [kubernetes, bugs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-04-kubecti-image-pull/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: kubectl port-forward - Kubernetes Port Forwarding Explained
 description: We'll see how to use kubectl port-forward to access internal Kubernetes services from outside the cluster.
 slug: kubectl-port-forward
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/social.png
 hide_table_of_contents: false
 ---

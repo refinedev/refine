@@ -3,7 +3,8 @@ title: The Advantages and Disadvantages of Working on Open Source Projects
 description: We'll looking The Advantages and Disadvantages of Working on Open Source Projects
 slug: open-source-advantages-disadvantages
 authors: ozkalai
-tags: [community]
+category: "Engineering"
+tags: [opensource]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-open-source-adv-disadv/social.jpg
 hide_table_of_contents: false
 ---

@@ -3,7 +3,8 @@ title: How to use Material UI Checkbox
 description: We'll discover the Material UI Checkbox component with examples
 slug: material-ui-checkbox-component
 authors: doro_onome
-tags: [material-ui, react]
+category: "Ecosystem / Integrations"
+tags: [material-ui]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/social-2.png
 hide_table_of_contents: false
 ---
@@ -28,17 +29,6 @@ Key Features and Benefits
 Material UI offers a wide range of component and utilities that empowers developers with the appropriate tools to create more responsive web designs and bolster the UX of their apps. A checkbox is a small box that, when selected by the user, indicates that a specific feature or option has been enabled. Material UI provides this valuable component on a platter and makes them customizable to apply to your project fittingly.
 
 This article will deeply traverse the Material UI Checkbox component, investigate its processes and highlight its syntax application. We will also explore a potential use case in a real-world application.
-
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting started with Material UI Checkbox](#getting-started-with-material-ui-checkbox)
-- [Customizing your Material UI Checkbox](#customizing-your-material-ui-checkbox)
-- [Other handy features](#other-handy-features)
-- [Error Handling \& Validation](#error-handling--validation)
-- [Advanced Customization](#advanced-customization)
-- [When to use the Material UI Checkbox](#when-to-use-the-material-ui-checkbox)
-- [Material UI Checkbox Accessibility](#material-ui-checkbox-accessibility)
 
 ## What is Material UI?
 

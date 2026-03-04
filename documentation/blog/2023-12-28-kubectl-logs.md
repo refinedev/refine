@@ -3,7 +3,8 @@ title: Using kubectl logs - DevOps Guide
 description: Kubernetes pod logs show container operations and events in real-time. Containers in Kubernetes pods log their stdout and stderr streams. Debugging and monitoring Kubernetes cluster applications requires these logs.
 slug: kubectl-logs
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-28-kubectl-logs/social.png
 hide_table_of_contents: false
 ---

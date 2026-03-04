@@ -3,7 +3,8 @@ title: Creating a Responsive React Navbar with Tailwind CSS
 description: In this brief guide, we'll create a responsive navbar with Tailwind CSS and Bootstrap in React.
 slug: react-navbar-responsive-tailwind
 authors: muhammed_arslan
-tags: [tailwind, css, react]
+category: "Ecosystem / Integrations"
+tags: [react, tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/social.png
 hide_table_of_contents: false
 ---
@@ -26,14 +27,6 @@ In this article, you'll see how to create responsive navbars in **Refine** apps 
 2. Bootstrap
 
 Refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
-
-Steps we'll cover:
-
-- [Setting Up a Refine App](#setting-up-a-refine-app)
-- [Responsive Navbar with Tailwind](#responsive-navbar-with-tailwind)
-- [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
-- [Responsive Navbar with Bootstrap](#responsive-navbar-with-bootstrap)
-- [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
 
 ## Setting Up a Refine App
 

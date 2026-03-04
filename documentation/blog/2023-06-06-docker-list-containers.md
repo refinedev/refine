@@ -3,7 +3,8 @@ title: A Complete Guide to Listing Docker Containers
 description: We'll discuss the importance of listing docker containers, how to list running and stopped containers, listing the latest containers, and how to disable truncation of container names.
 slug: docker-list-containers
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-06-docker-list-containers/social.png
 hide_table_of_contents: false
 ---

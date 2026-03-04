@@ -3,7 +3,8 @@ title: React Ecosystem in 2024 - Sustaining Popularity
 description: We'll look at the React ecosystem and the tools and libraries that have been created to support React.
 slug: react-js-ecosystem-in-2024
 authors: chidume_nnamdi
-tags: [comparison, react]
+category: "Engineering"
+tags: [react, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-11-react-ecosystem-2024/social.png
 hide_table_of_contents: false
 ---

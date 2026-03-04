@@ -10,7 +10,7 @@ source: /packages/core/src/hooks/invalidate
 
 `useInvalidate` can be used to invalidate the state of a particular `resource` or [`dataProvider`][data-provider] (with dataProviderName).
 
-This hook is used on mutation hooks. when a mutation is success, this hook will called. For example, creating a `Posts` with [useCreate](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/) hook will invalidate the `list` ([useList](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/)) and `many` ([useMany](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/)) state of the `Posts` resource.
+This hook is used on mutation hooks. when a mutation is success, this hook will called. For example, creating a `Posts` with [useCreate](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) hook will invalidate the `list` ([useList](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/)) and `many` ([useMany](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)) state of the `Posts` resource.
 
 :::info-tip
 

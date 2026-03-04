@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/supabase",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "private": false,
   "description": "Supabase integration for Refine, utilizing Supabase's backend-as-a-service.",
   "repository": {

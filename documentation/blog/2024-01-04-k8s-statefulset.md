@@ -3,7 +3,8 @@ title: Kubernetes Statefulset vs Deployment with Examples
 description: We'll discuss the practical differences between Deployments and StatefulSets.
 slug: kubernetes-statefulset-vs-deployment
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Alternatives"
+tags: [kubernetes, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-04-k8s-statefulset/social.png
 hide_table_of_contents: false
 ---

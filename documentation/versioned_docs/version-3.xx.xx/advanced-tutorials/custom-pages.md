@@ -513,7 +513,7 @@ export default App;
 
 Now, let's create the custom page with the name `<PostReview>`. We will use the properties of `useList`, `filter`, and `pagination` to fetch a post with "draft" status.
 
-[Refer to the `useList` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/)
+[Refer to the `useList` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/)
 
 ```tsx title="src/pages/post-review.tsx"
 import { useList } from "@pankod/refine-core";
@@ -710,7 +710,7 @@ Now our page looks like this:
 
 Now let's put in approve and reject buttons to change the status of the post shown on the page. When these buttons are clicked, we will change the status of the post using `useUpdate`.
 
-[Refer to the `useUpdate` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/)
+[Refer to the `useUpdate` documentation for detailed usage. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)
 
 ```tsx title="src/pages/post-review.tsx"
 import {

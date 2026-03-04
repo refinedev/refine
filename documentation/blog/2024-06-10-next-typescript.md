@@ -3,6 +3,7 @@ title: A Guide for Next.js with TypeScript
 description: We will explain the entire process of how to use Next.js in TypeScript
 slug: next-js-with-typescript
 authors: michael
+category: "Tutorials"
 tags: [nextjs, typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/social-3.png
 hide_table_of_contents: false
@@ -17,13 +18,6 @@ Next.js is an open source React framework for building single-page web applicati
 Combining **Next.js and TypeScript** gives us superpowers to rapidly create applications with a good developer and user experiences. Every developer hates bugs. Especially pesky ones such as typos or trying to use or access undeclared variables. **TypeScript** helps catch these types of bugs early during development, and this is one of the many features that make integrating it with a tool like Next.js fantastic.
 
 In this article, we'll look at how you can integrate TypeScript in your Next.js apps. We'll also explore reasons why you should consider using this tool in your Next.js projects and also talk about its benefits.
-
-Steps we'll cover:
-
-- [What is TypeScript?](#what-is-typescript)
-- [How to add TypeScript to your Next.js app](#how-to-add-typescript-to-your-nextjs-app)
-- [How to use Typescript in Next.js API routes](#how-to-use-typescript-in-nextjs-api-routes)
-- [Disabling Typescript Errors in Production](#disabling-typescript-errors-in-production)
 
 ## What is TypeScript?
 

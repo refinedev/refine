@@ -1,7 +1,7 @@
 import { useDocSearchKeyboardEvents } from "@docsearch/react";
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
-import { useHistory } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 import {
   isRegexpStringMatch,
   useSearchLinkCreator,
@@ -13,17 +13,25 @@ import {
 import Translate from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
+import { isBlogRoute } from "@site/src/utils/is-blog-route";
 import translations from "@theme/SearchTranslations";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+
 let DocSearchModal = null;
+
 function Hit({ hit, children }) {
   return <Link to={hit.url}>{children}</Link>;
 }
-function ResultsFooter({ state, onClose }) {
+function ResultsFooter({ state, onClose, searchScope }) {
   const createSearchLink = useSearchLinkCreator();
+  const baseSearchLink = createSearchLink(state.query);
+  const searchLink = searchScope
+    ? `${baseSearchLink}&scope=${encodeURIComponent(searchScope)}`
+    : baseSearchLink;
+
   return (
-    <Link to={createSearchLink(state.query)} onClick={onClose}>
+    <Link to={searchLink} onClick={onClose}>
       <Translate
         id="theme.SearchBar.seeAll"
         values={{ count: state.context.nbHits }}
@@ -33,14 +41,40 @@ function ResultsFooter({ state, onClose }) {
     </Link>
   );
 }
+
 function mergeFacetFilters(f1, f2) {
   const normalize = (f) => (typeof f === "string" ? [f] : f);
   return [...normalize(f1), ...normalize(f2)];
 }
+
+// Prevents DocSearch URL parsing crashes when Algolia hits contain relative or missing URLs.
+function safeProcessSearchHitUrl({
+  item,
+  processSearchResultUrl,
+}: {
+  item: any;
+  processSearchResultUrl: (url: string) => string;
+}) {
+  const rawUrl = item?.url ?? item?.url_without_anchor ?? "/";
+  const url = typeof rawUrl === "string" && rawUrl.trim() ? rawUrl : "/";
+
+  try {
+    return processSearchResultUrl(url);
+  } catch {
+    try {
+      const absoluteUrl = new URL(url, window.location.origin).toString();
+      return processSearchResultUrl(absoluteUrl);
+    } catch {
+      return url.startsWith("/") ? url : "/";
+    }
+  }
+}
+
 function DocSearch({
   contextualSearch,
   externalUrlRegex,
   CustomButton,
+  searchScope,
   ...props
 }: any) {
   const { siteMetadata } = useDocusaurusContext();
@@ -115,15 +149,21 @@ function DocSearch({
       : // Default transformItems
         items.map((item) => ({
           ...item,
-          url: processSearchResultUrl(item.url),
+          url: safeProcessSearchHitUrl({ item, processSearchResultUrl }),
         })),
   ).current;
   const resultsFooterComponent = useMemo(
     () =>
       function ResultsFooterWrapper(footerProps) {
-        return <ResultsFooter {...footerProps} onClose={onClose} />;
+        return (
+          <ResultsFooter
+            {...footerProps}
+            onClose={onClose}
+            searchScope={searchScope}
+          />
+        );
       },
-    [onClose],
+    [onClose, searchScope],
   );
   const transformSearchClient = useCallback(
     (searchClient) => {
@@ -131,9 +171,10 @@ function DocSearch({
         "docusaurus",
         siteMetadata.docusaurusVersion,
       );
+
       return searchClient;
     },
-    [siteMetadata.docusaurusVersion],
+    [siteMetadata.docusaurusVersion, props.indexName],
   );
   useDocSearchKeyboardEvents({
     isOpen,
@@ -204,10 +245,26 @@ function DocSearch({
 
 export default function SearchBar({ CustomButton }: { CustomButton?: any }) {
   const { siteConfig } = useDocusaurusContext();
-  return (
-    <DocSearch
-      {...(siteConfig.themeConfig.algolia as Record<string, any>)}
-      CustomButton={CustomButton}
-    />
-  );
+  const { pathname } = useLocation();
+
+  const algoliaConfig = siteConfig.themeConfig.algolia as Record<string, any>;
+  const isBlogPage = isBlogRoute(pathname);
+
+  const resolvedAlgoliaConfig = isBlogPage
+    ? {
+        ...algoliaConfig,
+        indexName: "refine_blog",
+        searchScope: "blog",
+        contextualSearch: false,
+        searchParameters: {
+          ...(algoliaConfig?.searchParameters ?? {}),
+          attributesToHighlight: [],
+        },
+      }
+    : {
+        ...algoliaConfig,
+        indexName: algoliaConfig?.indexName ?? "refine",
+      };
+
+  return <DocSearch {...resolvedAlgoliaConfig} CustomButton={CustomButton} />;
 }

@@ -3,6 +3,7 @@ title: Memoization in React - How useCallback Works
 description: Improve app performance with React useCallback() hook.
 slug: react-usecallback-guide
 authors: abdullah_numan
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/social-2.png
 hide_table_of_contents: false
@@ -22,16 +23,6 @@ The preceding two parts are:
 2. [React useMemo Hook Guide With Examples](https://refine.dev/blog/react-usememo/)
 
 In this post, we explore how to use React `useCallback` in order to memoize a function passed from a parent to a child component. We follow up by making changes to the demo blog app in [Part II](https://refine.dev/blog/react-usememo/) and try to understand how function memoization using `useCallback` gives performance gains to a React app.
-
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [What is React `useCallback` ?](#what-is-react-usecallback-)
-- [useCallback vs useMemo](#usecallback-vs-usememo)
-- [When to Use React `useCallback`](#when-to-use-react-usecallback)
-- [When Not to Use React's `useCallback` Hook](#when-not-to-use-reacts-usecallback-hook)
-- [Bonus:useCallback with Other Hooks](#bonususecallback-with-other-hooks)
-- [Example](#example)
 
 ## What is React `useCallback` ?
 

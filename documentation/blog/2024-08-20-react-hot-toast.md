@@ -3,7 +3,8 @@ title: Using React Hot Toast as a Notification Provider for CRUD apps
 description: We'll introduce create a custom notification provider using the react-hot-toast library.
 slug: react-hot-toast
 authors: david_omotayo
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-toast/social.png
 hide_table_of_contents: false
 ---
@@ -21,15 +22,6 @@ Javascript libraries like React simplify the difficulty of building data-intensi
 Using a modular design, [Refine](https://github.com/refinedev/refine) leverages the best of what the React ecosystem has to offer, ranging from design systems to state management and notification libraries, to create a multipurpose React toolkit. This toolkit not only makes building enterprise-grade applications like admin panels, dashboards, and B2B applications a breeze but also provides built-in notification providers for centralized notification management.
 
 In this article, we'll introduce Refine and explore how to set up a Refine application and create a custom notification provider using the [react-hot-toast](https://react-hot-toast.com/) library.
-
-Steps we'll cover:
-
-- [What is react-hot-toast](#what-is-react-hot-toast)
-- [What is Refine notification provider](#what-is-refine-notification-provider)
-- [Create custom notification provider with react-hot-toast](#create-custom-notification-provider-with-react-hot-toast)
-- [Accessibility Considerations](#accessibility-considerations)
-- [Dismissing React Hot Toast Notifications](#dismissing-react-hot-toast-notifications)
-- [Testing React Hot Toast Notifications](#testing-react-hot-toast-notifications)
 
 ## What is react-hot-toast
 

@@ -2989,7 +2989,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/react-router
       '@refinedev/supabase':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/supabase
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -6455,7 +6455,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/react-router
       '@refinedev/supabase':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/supabase
       antd:
         specifier: ^5.23.0
@@ -6513,7 +6513,7 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/react-router
       '@refinedev/supabase':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/supabase
       antd:
         specifier: ^5.23.0
@@ -10059,7 +10059,7 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/react-table
       '@refinedev/supabase':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/supabase
       '@tanstack/react-table':
         specifier: ^8.2.6

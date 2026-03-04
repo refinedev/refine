@@ -3,6 +3,7 @@ title: 10 Methods for Vertical Alignment Using CSS
 description: We'll look at different techniques to vertically align HTML content using CSS.
 slug: css-vertical-align
 authors: peter_osah
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-13-css-vertical-align/social.png
 hide_table_of_contents: false

@@ -3,6 +3,7 @@ title: How to use TypeScript Partial Type?
 description: We'll explain the TypeScript Partial utility type with examples
 slug: typescript-partial-utility-type
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-10-typescript-partial/social-2.png
 hide_table_of_contents: false
@@ -21,16 +22,6 @@ In this article, we discuss object type transformations in TypeScript using `Par
 In the previous post, we went through an example where we derived a `Subscriber` type by omitting a property from the base type, `SuperbUser`, with `Omit<>`.
 
 In this post, we will consider an example of **TypeScript `Partial<>`** by modifying our `Subscriber` type to assume a more realistic scenario.
-
-Steps we'll cover:
-
-- [TL;DR: What is TypeScript Partial?](#tldr-what-is-typescript-partial)
-- [Optional Registration Scenario](#optional-registration-scenario)
-- [Enter TypeScript `Partial<Type>`](#enter-typescript-partialtype)
-- [With Interfaces](#with-interfaces)
-  - [Comparison: Pick vs Omit vs Partial](#comparison-pick-vs-omit-vs-partial)
-    - [Common Use Cases for `Partial`](#common-use-cases-for-partial)
-- [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 
 ## Optional Registration Scenario
 

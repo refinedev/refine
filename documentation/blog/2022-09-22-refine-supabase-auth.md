@@ -3,7 +3,8 @@ title: OTP Authentication with Supabase and Twilio in React
 description: We'll implement OTP(SMS) authorization using Twilio and Supabase in React app.
 slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
-tags: [react, supabase, refine, access-control, tutorial]
+category: "Ecosystem / Integrations"
+tags: [supabase, react, backend]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
@@ -17,18 +18,6 @@ Another significant problem with password-based login is that keeping track of d
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
 You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/main/examples/blog-refine-supabase-auth)
-
-Steps we'll cover:
-
-- [What is Supabase?](#what-is-supabase)
-- [What is Refine?](#what-is-refine)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Installing Tailwind CSS for Refine project](#installing-tailwind-css-for-refine-project)
-- [Set up the Supabase Project](#set-up-the-supabase-project)
-- [Create the Login Page](#create-the-login-page)
-- [Data Provider](#data-provider)
-- [Auth Provider](#auth-provider)
 
 ## What is Supabase?
 

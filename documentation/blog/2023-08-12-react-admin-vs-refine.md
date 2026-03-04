@@ -3,7 +3,8 @@ title: React-admin vs Refine CORE - Which React Framework is Best for B2B Apps?
 description: We'll compare the architectural structures of two web development frameworks - Refine CORE and React-admin.
 slug: react-admin-vs-refine
 authors: ali_emir
-tags: [refine, comparison]
+category: "Alternatives"
+tags: [react, admin-panel, comparison]
 hide_table_of_contents: false
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social-2.png
 ---
@@ -23,30 +24,6 @@ Refine doesn't focus on problems that have already been solved; instead, it cent
 If we were to summarize the comparison with an analogy, if you think Refine as Lego Technique, then React-admin would be like Lego Duplo.
 
 Whether you are an experienced developer seeking a powerful and adaptable framework or a newcomer venturing into web development, this article aims to equip you with the knowledge to make an informed decision.
-
-Steps we'll cover:
-
-- [About Refine CORE](#about-refine)
-- [About react-admin](#about-react-admin)
-- [Architecture](#architecture)
-  - [Refine CORE's advantages on architecture](#refines-advantages-on-architecture)
-- [Bundle Size and Performance](#bundle-size-and-performance)
-- [Headless Architecture](#headless-architecture)
-- [Routing and SSR (Server Side Rendering)](#routing-and-ssr-server-side-rendering)
-- [Multitenancy](#multitenancy)
-- [Differences in supported UI frameworks between Refine CORE and react-admin,](#differences-in-supported-ui-frameworks-between-refine-and-react-admin)
-  - [Refine CORE has built-in support for four UI Frameworks:](#refine-has-built-in-support-for-four-ui-frameworks)
-  - [React-admin's Limitations:](#react-admins-limitations)
-- [Unique Refine CORE Features: Differentiating From React-admin](#unique-refine-features-differentiating-from-react-admin)
-- [Common Features: Free in Refine CORE, Requires enterprise package in react-admin](#common-features-free-in-refine-requires-enterprise-package-in-react-admin)
-- [Refine CORE App Scaffolder: Simplify Your Project Setup](#refine-app-scaffolder-simplify-your-project-setup)
-- [CLI](#cli)
-- [Refine CORE Devtools](#refine-devtools)
-- [Customization](#customization)
-- [Backward Compatibility](#backward-compatibility)
-- [Documentation and and Learning Resources](#documentation-and-and-learning-resources)
-- [Community Engagement](#community-engagement)
-- [Enterprise Features](#enterprise-features)
 
 ## About Refine CORE
 
@@ -530,7 +507,7 @@ Refine CORE provides a realtime feature that allows you to subscribe to the chan
 
 Similar to Refine CORE, react-admin also provides a realtime feature behind a paywall of their enterprise edition. However, it still lacks the customization and composability that Refine CORE provides.
 
-Here's an example of using [Ably](https://refine.dev/core/docs/examples/live-provider/ably/) with Refine CORE:
+Here's an example of using [Ably](https://refine.dev/docs/3.xx.xx/examples/live-provider/ably/) with Refine CORE:
 
 ```tsx
 // highlight-next-line

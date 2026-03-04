@@ -3,7 +3,8 @@ title: How to build a React Admin Panel with PrimeReact and Refine
 description: Discover how to combine PrimeReact's rich UI components with Refine to create enterprise-grade React admin panels quickly.
 slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
-tags: [refine, tutorial, react]
+category: "How To Build"
+tags: [react, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
 ---
@@ -384,7 +385,7 @@ This component is built using PrimeReact and PrimeFlex libraries. If you want to
 
 In the code above, we created a `<KpiCard />` component that renders a card with the given props. It displays the title, total, trend, and icon. The `formatTotal` prop allows you to format the total value as you wish.
 
-Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/core/docs/api-reference/core/data/hooks/useCustom/) hook from **Refine** and `dayjs` to arrange query parameters.
+Let's import the `<KpiCard />` component in `src/pages/dashboard/index.tsx` and pass the necessary props to render the cards. Before that, we need to fetch the data from the API. For this, we'll use the [`useCustom`](https://refine.dev/core/docs/data/hooks/use-custom/) hook from **Refine** and `dayjs` to arrange query parameters.
 
 `useCustom` allows us to make specific requests to the API. It should be used on non-resource endpoints which means that it doesn't have a CRUD operation. In our case, we'll use it to fetch the data for the KPI cards and charts.
 
@@ -1314,7 +1315,7 @@ We used the `useTable` hook to fetch the data for the table. It makes a request 
 
 After fetching the data, we passed the necessary props to the `<DataTable />` component to render the table.
 
-Additionally, we used the [`useDelete`](https://refine.dev/core/docs/api-reference/core/data/hooks/useDelete/) hook and [`confirmDialog`](https://primereact.org/confirmdialog/) method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render [`<ConfirmDialog />`](https://primereact.org/confirmdialog/) component in the root of the application. So we'll also add it in `src/App.tsx`.
+Additionally, we used the [`useDelete`](https://refine.dev/core/docs/data/hooks/use-delete/) hook and [`confirmDialog`](https://primereact.org/confirmdialog/) method from PrimeReact to delete the products. To open the delete confirmation dialog, we should to render [`<ConfirmDialog />`](https://primereact.org/confirmdialog/) component in the root of the application. So we'll also add it in `src/App.tsx`.
 
 To export the product CRUD pages, let's create an `index.ts` file in `src/pages/products` directory with the following code:
 
@@ -1966,7 +1967,7 @@ export const ProductShow = () => {
 
 </details>
 
-In the code above, we used the [`useShow`](https://refine.dev/core/docs/api-reference/core/hooks/show/useShow/) hook to fetch the product details. It makes a request to the `/products/:id` endpoint to fetch the product details. After fetching the data, we used the [`useOne`](https://refine.dev/core/docs/api-reference/core/data/hooks/useOne/) hook to fetch the category details related to the product.
+In the code above, we used the [`useShow`](https://refine.dev/core/docs/api-reference/core/hooks/show/useShow/) hook to fetch the product details. It makes a request to the `/products/:id` endpoint to fetch the product details. After fetching the data, we used the [`useOne`](https://refine.dev/core/docs/data/hooks/use-one/) hook to fetch the category details related to the product.
 
 First, let's export the product show page on `src/pages/products/index.tsx` file as follows:
 

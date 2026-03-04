@@ -3,7 +3,8 @@ title: 10 High-Quality Free Resources That Will Make Every Web Developer's Life 
 description: We will examine the resources that will make our job easier when making a website.
 slug: 10-high-quality-free-resources
 authors: aydin
-tags: [comparison]
+category: "Engineering"
+tags: [dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/social.jpg
 hide_table_of_contents: false
 ---

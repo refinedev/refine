@@ -3,7 +3,8 @@ title: Zsh and Bash
 description: We'll explore the unique features of these tools and their similarities and differences.
 slug: zsh-vs-bash
 authors: muhammad_khabbab
-tags: [dev-tools]
+category: "Alternatives"
+tags: [dev-tools, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-14-zsh-and-bash/social-2.png
 hide_table_of_contents: false
 ---
@@ -17,16 +18,6 @@ In the early days of computing, programmers used a non-graphical interface calle
 Among all Unix-based shell environments, two of the most famous are Zsh and Bash. Zsh is fully customizable, having features like auto-completion, syntax highlighting, and support for plugins, which is ideal for an interactive, modern workflow. On the other hand, Bash excels in simplicity with POSIX compliance and in scripting with strong automation and cross-platform capabilities. Thus, Zsh is the ideal choice when advanced customization and a modern user experience are desired, while Bash serves best for standardized scripting and in terms of being highly reliable.
 
 In this article, we’ll explore the unique features of these tools and their similarities and differences. We’ll also compare some of their features, so you'll have enough knowledge to make an informed choice when choosing the right shell. Let's dive in!
-
-Steps we'll cover:
-
-- [What is Bash?](#what-is-bash)
-- [What is Zsh?](#what-is-zsh)
-- [Basic Features of Bash and Zsh](#basic-features-of-bash-and-zsh)
-- [How to setup Bash and Zsh on your computer](#how-to-setup-bash-and-zsh-on-your-computer)
-- [Deep Dive into Bash Features](#deep-dive-into-bash-features)
-- [Deep Dive into Zsh Features](#deep-dive-into-zsh-features)
-- [Case Study: When to Use Bash and When to Use Zsh](#case-study-when-to-use-bash-and-when-to-use-zsh)
 
 ## What is Bash?
 

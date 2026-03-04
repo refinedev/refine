@@ -6,6 +6,7 @@ import ErrorPageContent from "@theme/ErrorPageContent";
 import LayoutProvider from "@theme/Layout/Provider";
 import SkipToContent from "@theme/SkipToContent";
 import { LivePreviewProvider } from "../components/live-preview-context";
+import useRouteFavicon from "../hooks/use-route-favicon";
 import clsx from "clsx";
 
 type Props = {
@@ -16,6 +17,7 @@ export const CommonLayout = (props: Props) => {
   const { children, title, description, className } = props;
 
   useKeyboardNavigation();
+  useRouteFavicon();
 
   return (
     <LayoutProvider>

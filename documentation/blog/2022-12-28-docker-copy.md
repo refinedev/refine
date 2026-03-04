@@ -3,7 +3,8 @@ title: How to Use Docker Copy Command
 description: We'll discuss how to copy files in Docker using the docker copy command.
 slug: docker-copy
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-28-docker-copy/social.png
 hide_table_of_contents: false
 ---
@@ -11,14 +12,6 @@ hide_table_of_contents: false
 ## Introduction
 
 We will discuss how to copy files in Docker using the docker copy command. The `docker cp` command is a powerful command through which you can move files between your host file system and your Docker containers. It works with both files and directories.
-
-Steps we'll cover:
-
-- [How to copy files in Docker](#how-to-copy-files-in-docker)
-- [How docker copy command works](#how-docker-copy-command-works)
-- [Difference between Copy and Add command](#difference-between-copy-and-add-command)
-- [Limitations of Copy command](#limitations-of-copy-command)
-- [When should you use Docker copy](#when-should-you-use-docker-copy)
 
 ## How to copy files in Docker
 

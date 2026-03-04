@@ -215,7 +215,7 @@ It is a boolean value that indicates whether the import is in progress.
 
 ### `mutationResult`
 
-Result of the [`useCreate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/) or [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/) method of your data provider.
+Result of the [`useCreate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/) or [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) method of your data provider.
 
 ## FAQ
 
@@ -291,8 +291,8 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [button]: https://ant.design/components/button/
 [upload]: https://ant.design/components/upload/
 [importbutton]: /core/docs/3.xx.xx/api-reference/antd/components/buttons/import
-[usecreate]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/
-[usecreatemany]: /core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/
+[usecreate]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/
+[usecreatemany]: /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/
 [dataprovider]: /core/docs/3.xx.xx/api-reference/core/providers/data-provider
 [baserecord]: /core/docs/3.xx.xx/api-reference/core/interfaces#baserecord
 [httperror]: /core/docs/3.xx.xx/api-reference/core/interfaces#httperror

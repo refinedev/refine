@@ -3,7 +3,8 @@ title: React Admin Panel Tutorial with Chakra UI and Strapi
 description: We'll build a React admin tutorial app with Refine
 slug: react-admin-tutorial
 authors: peter_osah
-tags: [refine, react, strapi, tutorial, chakra-ui]
+category: "How To Build"
+tags: [react, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-03-ra-chakra-tutorial/Group%20818%20(1).png
 hide_table_of_contents: false
 ---
@@ -803,7 +804,7 @@ At this point, the `Show` page looks like this:
 ### Creating a record
 
 To create a record, we will use the `@refinedev/react-hook-form` package.
-It provides the [`useForm()`](https://refine.dev/core/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
+It provides the [`useForm()`](https://refine.dev/docs/examples/form/chakra-ui/useForm/) hook, which includes form validation and handles our form submission request to Strapi.
 
 Next, in the `posts` folder under the `pages` folder, we'll include a `create.tsx` file with the following code:
 

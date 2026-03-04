@@ -3,7 +3,8 @@ title: Adding CRUD Pages
 description: We'll be adding CRUD pages for Company, Client and Contact resources in this post.
 slug: refine-react-invoice-generator-3
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/social.png
 hide_table_of_contents: false
 ---
