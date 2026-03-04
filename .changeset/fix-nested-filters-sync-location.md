@@ -2,6 +2,7 @@
 "@refinedev/core": patch
 "@refinedev/nextjs-router": patch
 "@refinedev/remix-router": patch
+"@refinedev/react-router": patch
 ---
 
 fix: correctly parse deeply nested conditional filters from URL with syncWithLocation
