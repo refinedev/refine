@@ -3,6 +3,7 @@ title: Using Google Lighthouse to improve app performance
 description: Learn how to use the Google Chrome Lighthouse performance audit tool to identify and improve problems with your app.
 slug: lighthouse-google-chrome
 authors: joseph_mawa
+category: "Ecosystem / Integrations"
 tags: [dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-31-google-lighthouse/social-2.png
 hide_table_of_contents: false

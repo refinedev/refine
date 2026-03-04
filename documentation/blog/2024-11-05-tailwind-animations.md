@@ -3,7 +3,8 @@ title: Tailwind Animations with Examples
 description: Understanding the cleanup function of the useEffect hook in React. Learn how to clean up side effects in React components to prevent memory leaks and improve performance.
 slug: tailwind-animations
 authors: peter_osah
-tags: [tailwind]
+category: "Ecosystem / Integrations"
+tags: [tailwind, css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-25-tailwind-animations/social.png
 hide_table_of_contents: false
 ---
@@ -13,28 +14,6 @@ hide_table_of_contents: false
 ## Introduction
 
 `TailwindCSS` is a widely used, utility-first `CSS` framework that enables developers to easily create modern, responsive, and visually appealing user interfaces. Tailwind’s utility-first approach makes it easy to create `CSS` animations. This article will illustrate how to use `TailwindCSS` to add beautiful and complicated animations to your websites or applications.
-
-Steps we'll cover:
-
-- [Built-in utility classes in Tailwind for animating elements](#built-in-utility-classes-in-tailwind-for-animating-elements)
-  - [animate-none](#animate-none)
-  - [animate-spin](#animate-spin)
-  - [animate-ping](#animate-ping)
-  - [animate-pulse](#animate-pulse)
-- [animate-bounce](#animate-bounce)
-- [Create custom animations in Tailwind:](#create-custom-animations-in-tailwind)
-  - [Add keyframes to the Tailwind config file.](#add-keyframes-to-the-tailwind-config-file)
-  - [Extend animation in the Tailwind config file.](#extend-animation-in-the-tailwind-config-file)
-- [Improving Mobile-Friendliness in Tailwind Animations](#improving-mobile-friendliness-in-tailwind-animations)
-  - [Keep Animations Simple and Lightweight](#keep-animations-simple-and-lightweight)
-  - [Use Media Queries to Control Animation on Mobile](#use-media-queries-to-control-animation-on-mobile)
-  - [Shorten Animation Duration on Mobile](#shorten-animation-duration-on-mobile)
-  - [Optimize Performance with GPU-Friendly Transitions](#optimize-performance-with-gpu-friendly-transitions)
-- [Animate elements using arbitrary values in Tailwind.](#animate-elements-using-arbitrary-values-in-tailwind)
-- [Making Tailwind Dance with JavaScript for Interactive Animations](#making-tailwind-dance-with-javascript-for-interactive-animations)
-  - [JavaScript Toggle Animations](#javascript-toggle-animations)
-  - [Animation Triggers on Scroll](#animation-triggers-on-scroll)
-  - [Conditional Animations with JavaScript](#conditional-animations-with-javascript)
 
 ## Built-in utility classes in Tailwind for animating elements
 

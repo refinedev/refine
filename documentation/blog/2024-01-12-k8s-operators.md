@@ -3,7 +3,8 @@ title: Kubernetes Operators
 description: This article digs deep into the essence of Kubernetes operators, explaining their purpose, functionality, and how they are actually implemented.
 slug: kubernetes-operators
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-12-k8s-operators/social.png
 hide_table_of_contents: false
 ---

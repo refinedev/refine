@@ -3,7 +3,8 @@ title: gRPC vs REST - A Brief Comparison
 description: We'll explore practical use cases of REST and gRPC to enable you to select the most appropriate API for your project.
 slug: grpc-vs-rest
 authors: deborah_emeni
-tags: [comparison, javascript]
+category: "Alternatives"
+tags: [backend, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/social2.png
 hide_table_of_contents: false
 ---
@@ -17,22 +18,6 @@ In this modern age, building applications with Application Programming Interface
 As a result, frameworks that help create high-performing APIs have been developed in recent years. Some examples of such frameworks include Representational State Transfer ([REST](<https://en.wikipedia.org/wiki/Representational_state_transfer#:~:text=Representational%20state%20transfer%20(REST)%20is,as%20the%20Web%2C%20should%20behave.>)) and Google Remote Procedure Call ([gRPC](https://grpc.io/)).
 
 This article will teach you about REST APIs and gRPC APIs, including their definitions, functionalities, and distinctions. Additionally, you’ll explore various scenarios that highlight practical use cases of REST and gRPC to enable you to select the most appropriate framework for your project.
-
-Steps we'll cover:
-
-- [Understanding APIs](#understanding-apis)
-- [What is a REST API?](#what-is-a-rest-api)
-- [How REST APIs work](#how-rest-apis-work)
-- [What is gRPC?](#what-is-grpc)
-- [How gRPC APIs work](#how-grpc-apis-work)
-- [How developers can use gRPC and REST](#how-developers-can-use-grpc-and-rest)
-- [Security Considerations](#security-considerations)
-  - [Authentication and Authorization](#authentication-and-authorization)
-  - [Data Encryption](#data-encryption)
-- [Similarities and differences between gRPC and REST](#similarities-and-differences-between-grpc-and-rest)
-- [Comparison summary](#comparison-summary)
-- [When to use REST and when to use gRPC](#when-to-use-rest-and-when-to-use-grpc)
-- [Bonus: Migration Strategies](#bonus-migration-strategies)
 
 ## Understanding APIs
 

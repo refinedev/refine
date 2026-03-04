@@ -3,7 +3,8 @@ title: "How to Build a React Admin Dashboard with Refine"
 description: A step-by-step guide to building a React admin dashboard from scratch using Refine. Covers project setup, data providers, CRUD resources, authentication, and theming.
 slug: how-to-create-react-admin-dashboard
 authors: ozgur
-tags: [react, refine, dashboards, tutorial]
+category: "How To Build"
+tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-12-react-admin-dashboard/react-admin-banner.png
 hide_table_of_contents: false
 ---

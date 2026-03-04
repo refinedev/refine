@@ -1,5 +1,4 @@
 import Link from "@docusaurus/Link";
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as Icons from "@site/src/assets/integration-icons";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
@@ -20,13 +19,9 @@ import { GithubIcon } from "./icons/github";
 import { LockedIcon } from "./icons/locked";
 import { ShareIcon } from "./icons/share";
 import { TutorialIcon } from "./icons/tutorial";
-import { Image } from "../components/image";
+import { getImgixSrc, Image } from "../components/image";
 import { Breadcrumbs } from "@site/src/components/breadcrumbs";
-import {
-  TEMPLATE_BACKENDS,
-  TEMPLATE_UI_FRAMEWORKS,
-  toSlug,
-} from "../../plugins/templates";
+import { TEMPLATE_BACKENDS, toSlug } from "../../plugins/templates";
 
 const backendLabelMap: Record<string, string> = {
   "Nestjs-query": "GraphQL",
@@ -128,9 +123,15 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               "aspect-[1168/736]",
             )}
           >
-            <Image
-              className={clsx("block", "aspect-[1168/736]")}
-              src={data.images[0]}
+            <img
+              className={clsx(
+                "w-full h-auto",
+                "object-contain",
+                "object-center",
+                "block",
+                "aspect-[1168/736]",
+              )}
+              src={getImgixSrc(data.images[0])}
               alt={data.imageAlt || data.title}
             />
             {data.edition === TemplateEdition.Enterprise && (

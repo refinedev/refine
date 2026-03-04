@@ -1300,6 +1300,53 @@
 /core/docs/api-reference/core/data/hooks/useOne/ /core/docs/data/hooks/use-one/ 301
 /core/docs/core/data/hooks/use-one/ /core/docs/data/hooks/use-one/ 301
 
+
+# Blog tags to categories redirects
+/blog/tags/access-control/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/announcement/ /blog/categories/announcement/ 301
+/blog/tags/arc/ /blog/categories/engineering/ 301
+/blog/tags/atlassian/ /blog/categories/engineering/ 301
+/blog/tags/browser/ /blog/categories/engineering/ 301
+/blog/tags/claude-4/ /blog/categories/announcement/ 301
+/blog/tags/comments/ /blog/categories/engineering/ 301
+/blog/tags/community/ /blog/categories/announcement/ 301
+/blog/tags/community/page/2/ /blog/categories/announcement/ 301
+/blog/tags/crud/ /blog/categories/how-to-build/ 301
+/blog/tags/data-fetching/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/database/ /blog/categories/tutorials/ 301
+/blog/tags/dev-tools/page/4/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/dev-tools/page/5/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/dev-tools/page/6/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/devlife/ /blog/categories/engineering/ 301
+/blog/tags/docker/page/3/ /blog/categories/engineering/ 301
+/blog/tags/fast/ /blog/categories/how-to-build/ 301
+/blog/tags/guides/ /blog/categories/tutorials/ 301
+/blog/tags/innovation/ /blog/categories/engineering/ 301
+/blog/tags/internal-tools/ /blog/categories/how-to-build/ 301
+/blog/tags/javascript/page/3/ /blog/categories/tutorials/ 301
+/blog/tags/kubernetes/page/3/ /blog/categories/engineering/ 301
+/blog/tags/low-code/ /blog/categories/how-to-build/ 301
+/blog/tags/mantine/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/nestjs/ /blog/categories/how-to-build/ 301
+/blog/tags/philosophy/ /blog/categories/ai-and-innovation/ 301
+/blog/tags/product/ /blog/categories/how-to-build/ 301
+/blog/tags/react-hook-form/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/react/page/9/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/refine/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/2/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/3/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/4/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/5/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/6/ /blog/categories/how-to-build/ 301
+/blog/tags/rtk-query/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/svelte/ /blog/categories/alternatives/ 301
+/blog/tags/swr/ /blog/categories/alternatives/ 301
+/blog/tags/tanstack-query/ /blog/categories/alternatives/ 301
+/blog/tags/tutorial/ /blog/categories/how-to-build/ 301
+/blog/tags/tutorial/page/2/ /blog/categories/how-to-build/ 301
+/blog/tags/tutorial/page/3/ /blog/categories/how-to-build/ 301
+/blog/tags/software/ /blog/ 301
+
 # Refine Pixels series consolidated into master guide
 /blog/refine-pixels-1/ /blog/refine-pixels-guide/ 301
 /blog/refine-pixels-2/ /blog/refine-pixels-guide/ 301
@@ -1309,6 +1356,35 @@
 /blog/refine-pixels-6/ /blog/refine-pixels-guide/ 301
 /blog/refine-pixels-7/ /blog/refine-pixels-guide/ 301
 
-/blog/tags/kubernetes/page/3/ /blog/ 301
-/blog/tags/philosophy/ /blog/ 301
-/blog/tags/software/ /blog/ 301
+/blog/vibe-coding /blog/what-is-vibe-coding/ 301
+/core/week-of-refine-supabase /core/ 301
+/core/week-of-refine/ /core/ 301
+/core/week-of-refine-strapi/ /core/ 301
+
+/core/templates/ant-design/graphql /core/templates/ant-design 301
+/core/templates/ant-design/appwrite /core/templates/ant-design 301
+/core/templates/ant-design/medusa /core/templates/ant-design 301
+
+/core/templates/material-ui/supabase /core/templates/material-ui 301
+/core/templates/material-ui/graphql /core/templates/material-ui 301
+/core/templates/material-ui/strapi /core/templates/material-ui 301
+/core/templates/material-ui/appwrite /core/templates/material-ui 301
+/core/templates/material-ui/medusa /core/templates/material-ui 301
+
+/core/templates/headless/graphql /core/templates/headless 301
+/core/templates/headless/strapi /core/templates/headless 301
+/core/templates/headless/appwrite /core/templates/headless 301
+/core/templates/headless/medusa /core/templates/headless 301
+
+/core/templates/chakra-ui/supabase /core/templates/chakra-ui 301
+/core/templates/chakra-ui/graphql /core/templates/chakra-ui 301
+/core/templates/chakra-ui/strapi /core/templates/chakra-ui 301
+/core/templates/chakra-ui/appwrite /core/templates/chakra-ui 301
+/core/templates/chakra-ui/medusa /core/templates/chakra-ui 301
+
+/core/templates/mantine/supabase /core/templates/mantine 301
+/core/templates/mantine/graphql /core/templates/mantine 301
+/core/templates/mantine/strapi /core/templates/mantine 301
+/core/templates/mantine/appwrite /core/templates/mantine 301
+/core/templates/mantine/medusa /core/templates/mantine 301
+

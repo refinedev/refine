@@ -3,7 +3,8 @@ title: How to Build Internal Tools with Low-Code in React Using Refine CORE
 description: A step-by-step guide to building low-code internal tools and admin apps using the React-based Refine CORE framework and its core features.
 slug: low-code-internal-tools-react
 authors: ozgur
-tags: [refine, react, tutorial, low-code, admin-panel]
+category: "How To Build"
+tags: [react, admin-panel, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/internal-tools-blog-banner.png
 hide_table_of_contents: false
 ---
@@ -15,22 +16,6 @@ Low-code promises to fix this. And for internal tools? It actually makes sense. 
 That's why Refine CORE hits different. It's open-source React that gives you the speed of low-code platforms but keeps you in control. You're still writing React and TypeScript. You can use whatever UI library you want. Any backend API works. And when you need custom logic? You just write React, no fighting the framework or finding workarounds.
 
 <!--truncate-->
-
-## Table of Contents
-
-- [What You'll Build](#what-youll-build)
-- [Getting Started: Initialize Your Project](#getting-started-initialize-your-project)
-- [Understanding Your Project Structure](#understanding-your-project-structure)
-- [Exploring the Core Configuration](#exploring-the-core-configuration)
-- [Working with the Data Provider](#working-with-the-data-provider)
-- [Building Your First CRUD Pages](#building-your-first-crud-pages)
-- [Running Your Admin Panel](#running-your-admin-panel)
-- [Understanding the Power of Refine CORE Hooks](#understanding-the-power-of-refine-core-hooks)
-- [Key Features You Get Out of the Box](#key-features-you-get-out-of-the-box)
-- [Customization and Flexibility](#customization-and-flexibility)
-- [Connecting to Your Real Backend](#connecting-to-your-real-backend)
-- [FAQ](#faq)
-- [Conclusion](#conclusion)
 
 ## What You'll Build
 

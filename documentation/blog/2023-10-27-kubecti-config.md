@@ -3,7 +3,8 @@ title: Kubectl config set context Tutorial and Best Practices
 description: We'll discuss the kubectl config set-context command and how it can be used to manage contexts in Kubernetes. We'll also cover some best practices for managing contexts.
 slug: kubectl-config-set-context
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-27-kubecti-config/social.png
 hide_table_of_contents: false
 ---

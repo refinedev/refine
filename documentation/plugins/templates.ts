@@ -54,6 +54,13 @@ export default async function RefineTemplates(): Promise<Plugin> {
 
       // Filtered list routes for UI framework and UI+backend combos.
       for (const uiFramework of TEMPLATE_UI_FRAMEWORKS) {
+        const hasUiTemplates = (content as typeof templates).some(
+          (t) => t.uiFramework === uiFramework,
+        );
+        if (!hasUiTemplates) {
+          continue;
+        }
+
         const uiSlug = toSlug(uiFramework);
         const uiJson = await createData(
           `templates-filter-${uiSlug}.json`,
@@ -71,6 +78,13 @@ export default async function RefineTemplates(): Promise<Plugin> {
         });
 
         for (const backend of TEMPLATE_BACKENDS) {
+          const hasComboTemplates = (content as typeof templates).some(
+            (t) => t.uiFramework === uiFramework && t.dataProvider === backend,
+          );
+          if (!hasComboTemplates) {
+            continue;
+          }
+
           const backendSlug = toSlug(backend);
           const comboJson = await createData(
             `templates-filter-${uiSlug}-${backendSlug}.json`,

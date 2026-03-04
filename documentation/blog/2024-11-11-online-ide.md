@@ -3,7 +3,8 @@ title: Top 6 Free Online Code Editors and IDEs with Pros and Cons
 description: We'll compare the best online IDEs and code editors for web development. We'll also look at the pros and cons of each.
 slug: 6-best-online-code-editors-comparison
 authors: joseph_mawa
-tags: [comparison]
+category: "Alternatives"
+tags: [comparison, dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide/social.png
 hide_table_of_contents: false
 ---
@@ -19,14 +20,6 @@ This article will introduce you to some of the most popular free online Editors 
 Your choice of an online IDE largely depends on whether you want to build a front-end, back-end, or full-stack application. We will explore the pros and cons of these IDEs and text editors.
 
 It is worth pointing out that this article will explore the main features of the most popular online editors and IDEs. It will not identify which editor is the best. We will also go above and beyond to explore the strengths and weaknesses of each editor so that you can choose one which meets your needs.
-
-Steps we will cover:
-
-- [What Is an Online Code Editor](#what-is-an-online-code-editor)
-- [Why We Need Online Code Editors](#why-we-need-online-code-editors)
-- [Bootstrapping a project for demonstration](#bootstrapping-a-project-for-demonstration)
-- [Top free online Editors and IDEs with free plans for hobby projects](#top-free-online-editors-and-ides-with-free-plans-for-hobby-projects)
-- [Comparing top online Editors and IDEs](#comparing-top-online-editors-and-ides)
 
 ## What Is an Online Code Editor
 

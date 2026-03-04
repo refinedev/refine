@@ -3,7 +3,8 @@ title: Docker Swarm Mode Guide
 description: We'll cover the basics of Docker Swarm mode, including how to set up your first Swarm, join nodes to the Swarm, deploy services, scale services, and monitor services.
 slug: docker-swarm
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Engineering"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-05-docker-swarm/social.png
 hide_table_of_contents: false
 ---
@@ -13,20 +14,6 @@ hide_table_of_contents: false
 ### Brief overview of Docker
 
 In the modern world of DevOps, you can package up your application(s) in portable containers using the Docker platform. Containers bundle software with all dependencies, ensuring consistent execution across environments. This enables a team of developers to concurrently work on multiple components of software. This isolation, portability, and scalability make Docker preferred for microservices, development consistency, and efficient resource utilization.
-
-Steps we'll cover:
-
-- [Brief overview of Docker](#brief-overview-of-docker)
-- [Explanation of what Docker Swarm mode is and its significance](#explanation-of-what-docker-swarm-mode-is-and-its-significance)
-  - [Docker Swarm Mode is Significant due to the following reasons:](#docker-swarm-mode-is-significant-due-to-the-following-reasons)
-- [Pre-requisites](#pre-requisites)
-- [Setting up Your First Swarm](#setting-up-your-first-swarm)
-- [Joining Nodes to the Swarm](#joining-nodes-to-the-swarm)
-- [Deploying Services in Swarm](#deploying-services-in-swarm)
-- [Scaling Services](#scaling-services)
-- [Rolling Updates and Rollbacks](#rolling-updates-and-rollbacks)
-- [Monitoring Swarm Services](#monitoring-swarm-services)
-- [Cleaning Up and Removing Nodes](#cleaning-up-and-removing-nodes)
 
 ## Explanation of what Docker Swarm mode is and its significance
 

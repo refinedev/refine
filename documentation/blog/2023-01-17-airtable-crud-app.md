@@ -3,7 +3,8 @@ title: Building a Complete React CRUD App with Airtable
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: react-crud-app-airtable
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-18-airtable-crud-app/social.png
 hide_table_of_contents: false
 ---
@@ -13,25 +14,6 @@ hide_table_of_contents: false
 Before the existence of **Refine**, building CRUD applications and data-intensive apps in React had always involved a painstaking repetitive process. [Refine](https://github.com/refinedev/refine) eliminates this by providing a set of helper hooks, components, and service providers that are decoupled and independent of the UI components and business logic used in your application. This provides room for customizability and speed in building your application.
 
 **Refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **Refine** and Airtable, a famous backend service to illustrate how you can power your applications with **Refine**.
-
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [Why Use Refine?](#why-use-refine)
-- [What is Airtable?](#what-is-airtable)
-  - [Setup Airtable](#setup-airtable)
-- [Bootstrapping the Refine Application](#bootstrapping-the-refine-application)
-- [Implementing CRUD operations](#implementing-crud-operations)
-  - [Creating pages for CRUD operations](#creating-pages-for-crud-operations)
-  - [Listing posts records](#listing-posts-records)
-    - [Handling relationships](#handling-relationships)
-  - [Viewing a single post record](#viewing-a-single-post-record)
-  - [Creating post record](#creating-post-record)
-  - [Editing post record](#editing-post-record)
-  - [Deleting post record](#deleting-post-record)
-  - [Adding Pagination](#adding-pagination)
-- [Conclusion](#conclusion)
-- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Why Use Refine?
 

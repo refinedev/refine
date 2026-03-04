@@ -3,7 +3,8 @@ title: Become a Refine guest technical writer
 description: Guideline and tips for writing technical articles for Refine
 slug: refine-writer-program
 authors: necati
-tags: [community]
+category: "Announcement"
+tags: []
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-20-refine-writer-program/social.jpg
 hide_table_of_contents: false
 ---

@@ -3,6 +3,7 @@ title: React useReducer Hook - The Basics
 description: This post is about the useReducer() hook in React. We demonstrate with examples how to use it for action based state updates and discuss some safe practices.
 slug: react-usereducer
 authors: abdullah_numan
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-28-react-usereducer/social.png
 hide_table_of_contents: false

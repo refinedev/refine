@@ -12,7 +12,7 @@ Data that is resolved from the `useAuthenticated` will be returned as the `data`
 
 ## Usage
 
-`useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/advanced-tutorials/custom-pages) manually.
+`useAuthenticated` can be useful when you want to ask for authentication to grant access to [custom pages](/core/docs/3.xx.xx/advanced-tutorials/custom-pages) manually.
 
 We have used this hook in refine's [`<Authenticated>`](/core/docs/3.xx.xx/api-reference/core/components/auth/authenticated) component which allows only authenticated users to access the page or any part of the code.
 

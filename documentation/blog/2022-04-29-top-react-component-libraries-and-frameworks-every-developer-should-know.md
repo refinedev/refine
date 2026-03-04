@@ -3,7 +3,8 @@ title: Top React Component Libraries and Frameworks Every Developer Should Know
 description: Learn about the top React component libraries and frameworks.
 slug: top-react-component-libraries-and-frameworks-every-developer-should-know
 authors: salih
-tags: [comparison]
+category: "Tutorials"
+tags: [react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/social.jpg
 hide_table_of_contents: false
 ---
@@ -120,4 +121,4 @@ It has many examples to help you get started, as well as documentation. Also it 
 - **Backend Agnostic**: Connects to any custom backend.
 - **Powerful UI**: Works seamlessly with integrated [Ant Design](https://ant.design/) and [Material UI](https://mui.com/material-ui/getting-started/overview/) (It can also be used with any UI Framework).
 
-👉 [Showcase](https://refine.dev/demo/)
+👉 [Showcase](https://refine.dev/core/templates/)

@@ -405,7 +405,7 @@ const App: React.FC = () => {
 
 `undoable`: The mutation is applied locally, and redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be canceled from the notification with the ?undo? button. UI will revert accordingly.
 
-[Refer to the Mutation Mode docs for further information. &#8594](/advanced-tutorials/mutation-mode)
+[Refer to the Mutation Mode docs for further information. &#8594](/core/docs/3.xx.xx/advanced-tutorials/mutation-mode)
 
 ### `undoableTimeout`
 
@@ -783,7 +783,7 @@ const App: React.FC = () => (
 );
 ```
 
-[Refer to the Custom Layout documentation for detailed information. &#8594](/advanced-tutorials/custom-layout)
+[Refer to the Custom Layout documentation for detailed information. &#8594](/core/docs/3.xx.xx/advanced-tutorials/custom-layout/)
 
 > `children` will be what is passed as a component for the route in a resource(list, edit..) or a custom route.
 

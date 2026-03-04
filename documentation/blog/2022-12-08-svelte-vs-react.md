@@ -3,7 +3,8 @@ title: Svelte vs React Comparison
 description: We will compare the optimal performance of React and Svelte
 slug: svelte-vs-react
 authors: chidume_nnamdi
-tags: [comparison, svelte, react]
+category: "Alternatives"
+tags: [react, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-08-svelte-vs-react/social.png
 hide_table_of_contents: false
 ---

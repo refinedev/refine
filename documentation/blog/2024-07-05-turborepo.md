@@ -3,7 +3,8 @@ title: What is Turborepo and Why Should You Care?
 description: The advantages of using Turborepo for monorepo development.
 slug: how-to-use-turborepo
 authors: muhammad_khabbab
-tags: [nextjs, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/social-2.png
 hide_table_of_contents: false
 ---
@@ -26,16 +27,6 @@ In this article, we will discuss [Turborepo](https://turbo.build/) in detail. Tu
 - Source code sharing
 
 Today we will cover why we should use Turborepo, what are its major features and when are the best use cases for adopting it in your projects.
-
-Steps we'll cover:
-
-- [Why Turborepo?](#why-turborepo)
-- [Unique Features of Turborepo](#unique-features-of-turborepo)
-  - [Remote caching](#remote-caching)
-  - [Prune now supports all package managers](#prune-now-supports-all-package-managers)
-  - [Support for Polyrepo](#support-for-polyrepo)
-- [When should you use Turborepo?](#when-should-you-use-turborepo)
-- [How to use Turborepo?](#how-to-use-turborepo)
 
 ## Why Turborepo?
 

@@ -3,6 +3,7 @@ title: A Guide to Using the useLayoutEffect Hook in React
 description: We'll explore the useLayoutEffect hook in-depth, how it differs from useEffect and learn how to properly leverage its capabilities to enhance the user experience.
 slug: uselayouteffect-vs-useeffect
 authors: wisdom_ekpotu
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-02-react-uselayouteffect/social-2.png
 hide_table_of_contents: false
@@ -17,15 +18,6 @@ In recent years, [React](https://react.dev/) has solidified itself in the ever-c
 With Hooks you can use state and other React features without the need to write ES6 class components. One important hook though not very popular is the `useLayoutEffect` hook, which allows developers to handle and perform side effects in React components.
 
 In this article, you will explore the `useLayoutEffect` hook in-depth, how it differs from `useEffect` and learn how to properly leverage its capabilities to enhance the user experience. Also, to follow along with this article you should have some experience working with Reactjs.
-
-Steps we'll cover:
-
-- [What are side effects in React?](#what-are-side-effects-in-react)
-- [The `useEffect` hook](#the-useeffect-hook)
-- [What is the problem with `useEffect`?](#what-is-the-problem-with-useeffect)
-- [Introducing the `useLayoutEffect` hook?](#introducing-the-uselayouteffect-hook)
-- [How does the `useLayoutEffect` hook work](#how-does-the-uselayouteffect-hook-work)
-- [When should you use the `useLayoutEffect` hook?](#when-should-you-use-the-uselayouteffect-hook)
 
 - [Comparing `useEffect` to `useLayoutEffect`](#comparing-useeffect-to-uselayouteffect)
 - [Benefits of using the `useLayoutEffect` hook](#benefits-of-using-the-uselayouteffect-hook)

@@ -3,7 +3,8 @@ title: What Is Refine Core & How To Use It?
 description: A simple guide to what Refine CORE is and how to utilize it to build internal tools of your choice. Learn to create flexible React apps without constraints.
 slug: what-is-refine-core-how-to-use-it
 authors: salih
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [opensource]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-what-is-refine-core/how-to-use-refine-core
 hide_table_of_contents: false
 ---

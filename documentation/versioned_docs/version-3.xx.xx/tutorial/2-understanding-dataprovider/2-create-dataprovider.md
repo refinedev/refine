@@ -431,7 +431,7 @@ const { data } = useList({
 });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList)
+> [Refer to the useList documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList)
 
 ### create
 
@@ -460,7 +460,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -509,7 +509,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | id        | [BaseKey](../../api-reference/core/interfaces#basekey) |         |
 | variables | `TVariables`                                           | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -638,7 +638,7 @@ import { useApiUrl } from "@pankod/refine-core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/data/hooks/useApiUrl)
+> [Refer to the useApiUrl documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/)
 
 ### custom
 

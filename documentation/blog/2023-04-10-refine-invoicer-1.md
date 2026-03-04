@@ -3,7 +3,8 @@ title: Pilot & Refine architecture
 description: We'll be taking a look at the architecture of Refine and how week of RefineWeek series will be structured.
 slug: refine-react-invoice-generator-1
 authors: abdullah_numan
-tags: [refine-week, refine, strapi, ant-design]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-10-refine-invoicer-1%2Fsocial.png
 hide_table_of_contents: false
 ---

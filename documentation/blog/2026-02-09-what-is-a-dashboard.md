@@ -3,7 +3,8 @@ title: What is a Dashboard? The Complete Guide for 2026
 description: Learn what dashboards are, key types, and real examples, plus how to build a modern dashboard fast using code, BI tools, low‑code, or AI-powered generation.
 slug: what-is-a-dashboard
 authors: arda
-tags: [guides, dashboards, internal-tools]
+category: "Tutorials"
+tags: [dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/dashboard-banner.webp
 hide_table_of_contents: false
 ---

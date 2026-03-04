@@ -3,6 +3,7 @@ title: React useMemo Hook Guide with Examples
 description: Improve React app performance with the useMemo() hook.
 slug: react-usememo
 authors: abdullah_numan
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/social2.png
 hide_table_of_contents: false
@@ -23,16 +24,6 @@ The three parts are:
 3. [Memoization in React - How useCallback Works](https://refine.dev/blog/react-usecallback-guide/)
 
 In this post, we dive into the details of the **useMemo** hook with an extension of the example demonstrated in the first post titled [React Memo Guide with Examples](https://refine.dev/blog/react-memo-guide/).
-
-Steps we'll cover:
-
-- [What is React useMemo ?](#what-is-react-usememo-)
-- [Optimizing Expensive Utility Functions with React `useMemo` Hook](#optimizing-expensive-utility-functions-with-react-usememo-hook)
-- [React useMemo: How to Cache the Value of Expensive Utilities](#react-usememo-how-to-cache-the-value-of-expensive-utilities)
-- [Using React useMemo with Dependencies](#using-react-usememo-with-dependencies)
-- [More Use Cases for `useMemo()` Hook](#more-use-cases-for-usememo-hook)
-- [Bonus: Best Practices for Using `useMemo()` in React](#bonus-best-practices-for-using-usememo-in-react)
-- [Live Example](#live-example)
 
 ## What is React useMemo ?
 

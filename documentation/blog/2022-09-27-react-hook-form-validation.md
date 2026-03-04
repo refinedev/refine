@@ -3,7 +3,8 @@ title: React Hook Form Validation with Complete Examples
 description: We'll implement React Hook Form custom validations and schema validations using yup.
 slug: react-hook-form-validation-examples
 authors: david_omotayo
-tags: [react, react-hook-form, refine, tutorial]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/social.png
 hide_table_of_contents: false
 ---
@@ -15,19 +16,6 @@ Forms are crucial in how web administrators connect with their audience and how 
 However, due to how complicated and frustrating form validation can get, developers often settle for third-party libraries that simplify the process.
 
 In this guide, we’ll introduce [React Hook Form](https://www.react-hook-form.com/), a form validation library for React, and demonstrate how to use it to validate forms in React applications.
-
-Steps we'll cover:
-
-- [What is React Hook Form?](#what-is-react-hook-form)
-- [What is Refine?](#what-is-refine)
-- [Project setup](#project-setup)
-  - [Integrating React Hook Forms](#integrating-react-hook-forms)
-- [Validating forms with React Hook Forms](#validating-forms-with-react-hook-forms)
-- [Schema Validation](#schema-validation)
-- [Handling errors](#handling-errors)
-- [How to conditionally render input fields](#how-to-conditionally-render-input-fields)
-- [Form submission](#form-submission)
-- [Conclusion](#conclusion)
 
 ## Prerequisite
 

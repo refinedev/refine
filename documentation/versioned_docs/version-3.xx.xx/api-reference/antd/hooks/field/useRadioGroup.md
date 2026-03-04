@@ -59,7 +59,7 @@ interface ILanguage {
 
 All we have to do is pass the `radioGroupProps` it returns to the `<Radio.Group>` component.
 
-`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList)
+`useRadioGroup` uses the `useList` hook for fetching data. [Refer to Ant Design `useList` hook for details. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList)
 
 ## Options
 

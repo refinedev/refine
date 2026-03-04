@@ -3,7 +3,8 @@ title: Check Kubernetes Version - Advanced Use Cases with kubectl version
 description: Kubectl version is a very basic command, however, you might still face some errors like connection issues, version mismatches, or configuration problems. Here are some steps to debug these common errors.
 slug: kubectl-version
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-05-kubectl-version/social.png
 hide_table_of_contents: false
 ---

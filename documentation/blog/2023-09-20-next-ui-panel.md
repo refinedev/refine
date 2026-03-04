@@ -3,7 +3,8 @@ title: How to Build a Modern React Admin with NextUI & Refine
 description: A complete tutorial on building sleek, modern React admin interfaces using NextUI's design system and Refine’s powerful hooks.
 slug: next-ui-react-admin-panel
 authors: joseph_mawa
-tags: [refine, tutorial, react, tailwind]
+category: "How To Build"
+tags: [react, admin-panel, nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg
 hide_table_of_contents: false
 ---
@@ -21,17 +22,6 @@ Any Refine project has built-in features for state management, routing, networki
 </div>
 
 <br/>
-
-Steps we'll cover:
-
-- [What is Refine](#what-is-refine)
-- [How to create a Refine application](#how-to-create-a-refine-application)
-- [What is NextUI](#what-is-nextui)
-- [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
-- [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
-- [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
-- [Update the layout](#update-the-layout)
-- [Update the breadcrumb](#update-the-breadcrumb)
 
 ## What is Refine
 

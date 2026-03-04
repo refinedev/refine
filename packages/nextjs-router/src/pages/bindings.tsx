@@ -4,6 +4,7 @@ import {
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
+  QS_PARSE_DEPTH,
 } from "@refinedev/core";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
@@ -46,6 +47,7 @@ export const routerProvider: RouterProvider = {
           ...(keepQuery
             ? qs.parse(pathname.split("?")[1], {
                 ignoreQueryPrefix: true,
+                depth: QS_PARSE_DEPTH,
               })
             : {}),
           ...query,
@@ -110,12 +112,16 @@ export const routerProvider: RouterProvider = {
 
     const parsedParams = React.useMemo(() => {
       const searchParams = pathname.split("?")[1];
-      return qs.parse(searchParams, { ignoreQueryPrefix: true });
+      return qs.parse(searchParams, {
+        ignoreQueryPrefix: true,
+        depth: QS_PARSE_DEPTH,
+      });
     }, [pathname]);
 
     const fn = React.useCallback(() => {
       const parsedQuery = qs.parse(query as Record<string, string>, {
         ignoreQueryPrefix: true,
+        depth: QS_PARSE_DEPTH,
       });
       const combinedParams = {
         ...inferredParams,

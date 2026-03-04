@@ -3,7 +3,8 @@ title: Building a Complete React CRM App with Refine, Ant Design and GraphQL
 description: We'll explore the key features of our CRM app, the technologies we used.
 slug: react-crm-with-refine
 authors: necati
-tags: [refine, react]
+category: "How To Build"
+tags: [react, admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/social.jpg
 hide_table_of_contents: false
 ---

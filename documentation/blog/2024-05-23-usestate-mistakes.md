@@ -3,6 +3,7 @@ title: 5 Most Common useState Mistakes React Developers Often Make
 description: Find out what the five most common mistakes React developers make with useState and how to avoid them.
 slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
+category: "Tutorials"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/social.png
 hide_table_of_contents: false
@@ -21,17 +22,6 @@ The difficulty of state management is the reason why so many state management li
 It's no secret that hooks have become increasingly crucial in React component development, particularly in functional components, as they have entirely replaced the need for class-based components, which were the conventional way to manage stateful components. The `useState` hook is one of many hooks introduced in React, but although the `useState` hook has been around for a few years now, developers are still prone to making common mistakes due to inadequate understanding.
 
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
-
-Steps we'll cover:
-
-- [What is React useState?](#what-is-react-usestate)
-- [Initializing useState Wrongly](#initializing-usestate-wrongly)
-- [Not Using Optional Chaining](#not-using-optional-chaining)
-- [Updating useState Directly](#updating-usestate-directly)
-- [Updating Specific Object Property](#updating-specific-object-property)
-- [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
-- [Bonus: Optimize performance when using useState](#bonus-optimize-performance-when-using-usestate)
-- [Bonus: use `useReducer` for complex state management](#bonus-use-usereducer-for-complex-state-management)
 
 ## What is React useState?
 

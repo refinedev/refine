@@ -3,7 +3,8 @@ title: Create Your Easy Customizable Internal Issue Tracker With Refine and Supa
 description: This web application will  us to create issue and tasks for your team members. You will also be able to choose the priority of these tasks, their tags, and which person to assign them to.
 slug: customizable-issue-tracker-with-refine-and-supabase
 authors: melih
-tags: [refine, supabase, react, tutorial]
+category: "How To Build"
+tags: [supabase, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

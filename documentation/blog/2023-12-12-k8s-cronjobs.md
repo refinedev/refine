@@ -3,7 +3,8 @@ title: Understanding the Basics of Kubernetes CronJob
 description: CronJobs in Kubernetes is the way of running jobs automatically based on time intervals.
 slug: kubernetes-cron-jobs
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-12-k8s-cronjobs/social.png
 hide_table_of_contents: false
 ---
@@ -15,14 +16,6 @@ Kubernetes is an open-source container orchestration platform that manages conta
 CronJobs are very useful for keeping your system up-to-date as well as automating tasks such as backups, maintenance of the system, triggering automated emails, monitoring and alerts, automatically restarting the containers, and many other automation tasks.
 
 This article will discuss how to incorporate CronJobs into your workflow. We will explain through examples how you can set up CronJobs for your Kubernetes environment and implement them in your Kubernetes configuration files. We will also explore ways to troubleshoot any issues related to CronJobs in the Kubernetes environment. At the end of this article, we will list some best practices to help you implement the cronjobs most efficiently and effectively.
-
-Steps we'll cover:
-
-- [Understanding the Basics of Kubernetes CronJobs](#understanding-the-basics-of-kubernetes-cronjobs)
-- [Setting Up Your Environment for Kubernetes CronJobs](#setting-up-your-environment-for-kubernetes-cronjobs)
-- [Creating Your First Kubernetes CronJob](#creating-your-first-kubernetes-cronjob)
-- [Debugging and Logging in Kubernetes CronJobs](#debugging-and-logging-in-kubernetes-cronjobs)
-- [Real-world Scenarios and Best Practices](#real-world-scenarios-and-best-practices)
 
 ## Understanding the Basics of Kubernetes CronJobs
 

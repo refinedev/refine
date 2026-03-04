@@ -32,7 +32,7 @@ export const buttonCloneTests = (
 
       expect(container).toBeTruthy();
 
-      expect(getByText("Clone").closest("button")).not.toBeDisabled();
+      expect(getByText("Clone").closest("button, a")).not.toBeDisabled();
     });
 
     it("should be disabled by prop", async () => {
@@ -45,9 +45,9 @@ export const buttonCloneTests = (
         },
       );
 
-      expect(getByText("Clone").closest("button")).toBeDisabled();
+      expect(getByText("Clone").closest("button, a")).toBeDisabled();
 
-      fireEvent.click(getByText("Clone").closest("button") as Element);
+      fireEvent.click(getByText("Clone").closest("button, a") as Element);
       expect(mockOnClick).not.toHaveBeenCalled();
     });
 
@@ -119,12 +119,14 @@ export const buttonCloneTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Clone").closest("button")).toBeDisabled(),
+                expect(getByText("Clone").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("Clone").closest("button")?.getAttribute("title"),
+                  getByText("Clone")
+                    .closest("button, a")
+                    ?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });
@@ -155,7 +157,9 @@ export const buttonCloneTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Clone").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("Clone").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
 
@@ -171,7 +175,7 @@ export const buttonCloneTests = (
                 },
               );
 
-              const button = getByText("Clone").closest("button");
+              const button = getByText("Clone").closest("button, a");
               expect(button).toBeDisabled();
             });
           });
@@ -222,7 +226,7 @@ export const buttonCloneTests = (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Clone").closest("button")).not.toBeDisabled();
+            expect(getByText("Clone").closest("button, a")).not.toBeDisabled();
           });
         });
       });
@@ -257,7 +261,9 @@ export const buttonCloneTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Clone").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("Clone").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
           });
@@ -321,12 +327,14 @@ export const buttonCloneTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Clone").closest("button")).toBeDisabled(),
+                expect(getByText("Clone").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("Clone").closest("button")?.getAttribute("title"),
+                  getByText("Clone")
+                    .closest("button, a")
+                    ?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });

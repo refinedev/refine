@@ -3,8 +3,8 @@ title: "AI-First UIs: Why shadcn/ui's Model is Leading the Pack"
 description: How shadcn/ui's component architecture and direct code ownership are setting the standard for AI-native UI development.
 slug: shadcn-blog
 authors: ozgur
-tags: [ai]
-is_featured: true
+category: "AI & Innovation"
+tags: [ai, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-04-shadcn-ui/shadcn.png
 hide_table_of_contents: false
 ---

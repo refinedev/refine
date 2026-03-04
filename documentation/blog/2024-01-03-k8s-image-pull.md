@@ -3,7 +3,8 @@ title: Kubernetes Image Pull Policy - A Detailed Guide
 description: Image pull policy in Kubernetes is a strategic decision that impacts applications' efficiency, reliability, and security.
 slug: kubernetes-image-pull-policy
 authors: muhammad_khabbab
-tags: [kubernetes, docker]
+category: "Engineering"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-03-k8s-image-pull/social.png
 hide_table_of_contents: false
 ---

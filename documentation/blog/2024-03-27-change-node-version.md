@@ -3,7 +3,8 @@ title: How to Change Node Version
 description: A comprehensive guide on how to change the node version.
 slug: change-node-version
 authors: muhammad_khabbab
-tags: [dev-tools, git]
+category: "Engineering"
+tags: [dev-tools, javascript]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-27-change-node-version/social.png
 hide_table_of_contents: false
 ---
@@ -11,23 +12,6 @@ hide_table_of_contents: false
 ## Introduction
 
 Changing Node.js versions was always difficult for developers. Due to version compatibility, changing Node.js versions for the current session was common but tedious. The end of 2023 release of Node version manager solves this problem. This article shows how to use NVM to check and modify Node.js version. We'll explain how to install and use NVM to swap Node.js versions. Let's understand what is an NVM and how it boosts developer productivity.
-
-Steps we'll cover:
-
-- [What is Node Version Manager (NVM)?](#what-is-node-version-manager-nvm)
-- [Why Developers Need NVM](#why-developers-need-nvm)
-- [Preparing for NVM Installation](#preparing-for-nvm-installation)
-  - [Prerequisites for Installing NVM](#prerequisites-for-installing-nvm)
-  - [Compatibility of NVM with Different Operating Systems](#compatibility-of-nvm-with-different-operating-systems)
-- [Installing NVM](#installing-nvm)
-- [Possible Errors and Edge Cases](#possible-errors-and-edge-cases)
-- [Installing and Managing Node.js Versions with NVM](#installing-and-managing-nodejs-versions-with-nvm)
-  - [Installing Latest Version](#installing-latest-version)
-  - [Installing a Specific Node.js Version](#installing-a-specific-nodejs-version)
-- [Listing All Available Node.js Versions](#listing-all-available-nodejs-versions)
-- [How do I change Node.js Versions](#how-do-i-change-nodejs-versions)
-  - [How do I revert to an older version of node?](#how-do-i-revert-to-an-older-version-of-node)
-  - [Verify the current version](#verify-the-current-version)
 
 ## What is Node Version Manager (NVM)?
 

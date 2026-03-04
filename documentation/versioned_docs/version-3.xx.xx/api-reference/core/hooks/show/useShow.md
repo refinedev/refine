@@ -33,7 +33,7 @@ When the `useShow` hook is mounted, it will call the `subscribe` method from the
 <PropResource
 hook={{
         name:"useOne",
-        URL:"/docs/api-reference/core/data/hooks/useOne/"
+        URL:"/docs/api-reference/core/hooks/data/useOne/"
     }}
 method={{
         name:"getOne",

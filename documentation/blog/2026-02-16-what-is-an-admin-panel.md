@@ -3,9 +3,11 @@ title: "What is an Admin Panel? The Complete Guide for 2026"
 description: "Learn what admin panels are, how they differ from dashboards, and the best approaches to building them. Covers security, architecture, and build vs buy decisions."
 slug: what-is-an-admin-panel
 authors: arda
-tags: [guides, admin-panel, internal-tools]
+category: "Tutorials"
+tags: [admin-panel]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-16-what-is-an-admin-panel/what-is-an-admin-panel-banner.webp
 hide_table_of_contents: false
+is_featured: true
 ---
 
 Your support team needs to look up customer records, update subscription status, and occasionally issue refunds. Right now they message engineering in Slack, wait hours for a response, and sometimes resort to asking for direct database access. The risk is obvious. One wrong query could delete production data.

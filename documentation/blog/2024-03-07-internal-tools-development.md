@@ -3,7 +3,8 @@ title: Developing Internal Tools in 2024
 description: Internal tools are specialized software applications used by a company's back-office departments.
 slug: internal-tools
 authors: abdullah_numan
-tags: [dev-tools]
+category: "Tutorials"
+tags: [admin-panel, tech-industry]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-07-internal-tools-development/social.png
 hide_table_of_contents: false
 ---
@@ -17,18 +18,6 @@ Internal tools are specialized software applications used by a company's back-of
 In this post, we briefly review the current state of the enterprise tools landscape to understand how internal tools development looks like entering 2024. We first get a brief historical account of how off-the-shelf desktop based internal tools solutions made their way to the web via cloud hosted applications. We evaluate the pros and cons of internal tool builder platforms and differentiate them from more custom development using cutting edge open source technologies in the React/Node.js ecosystem.
 
 We emphasize on the importance of developing interoperable, extensible and future-adaptive bespoke enterprise tools with greater velocity and eficiency. To that end, we assess leading frameworks and tools in the React/Node.js ecosystem that are used for building internal tools from scratch. We then present a detailed guide on what to consider while building future proof internal tools and how Refine's architecture, core features and support packages are geared to build highly efficient, future-adaptive internal tools in 2024.
-
-Steps we'll cover:
-
-- [Business Process \& Workflow Automation: Traditional Internal Tools](#business-process--workflow-automation-traditional-internal-tools)
-  - [Enterprise Internal Tools: Their Types and Features](#enterprise-internal-tools-their-types-and-features)
-  - [Off-the-shelf Internal Tools](#off-the-shelf-internal-tools-pros-and-cons)
-- [Custom Internal Tool Builders: No Code / Low Code Platforms](#custom-internal-tool-builders-no-code--low-code-platforms)
-  - [Citizen Developers for No Code Internal Tools](#citizen-developers-for-no-code-internal-tools)
-  - [Low Code Convenience for the Internal Tools Developer](#low-code-convenience-for-the-internal-tools-developer)
-- [Custom Internal Tools Development with Open Source Technologies](#custom-internal-tools-development-with-open-source-technologies)
-  - [Essentials of Internal Tools Development](#essentials-of-internal-tools-development)
-- [Refine.js: a React Based Framework for Internal Tools Development](#refinejs-a-react-based-framework-for-internal-tools-development)
 
 ## Business Process & Workflow Automation: Traditional Internal Tools
 

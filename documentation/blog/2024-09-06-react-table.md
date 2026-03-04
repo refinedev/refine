@@ -3,6 +3,7 @@ title: Introduction to React Table - TanStack Table Adapter for React
 description: We'll explore how to use TanStack Table(React Table) in a react project. We'll also explore how to use TanStack Table with refine.
 slug: tanstack-react-table
 authors: joseph_mawa
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-table/social.png
 hide_table_of_contents: false

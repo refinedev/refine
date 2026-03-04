@@ -258,6 +258,10 @@ html.docs-wrapper {
   margin-left: 5px;
 }
 
+html[data-theme="dark"] [data-rmiz-modal-overlay="visible"] {
+  background-color: rgba(9, 9, 11, 0.92);
+}
+
 /* .deprecated {
     font-size: 13px;
     border-radius: 3px;

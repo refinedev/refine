@@ -154,7 +154,7 @@ When the `useTable` hook is mounted, it will call the `subscribe` method from th
 <PropResource
 hook={{
     name:"useList",
-    URL:"/docs/api-reference/core/data/hooks/useList/"
+    URL:"/docs/api-reference/core/hooks/data/useList/"
 }}
 method={{
     name:"getList",

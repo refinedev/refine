@@ -3,6 +3,7 @@ title: How to implement a date picker in React
 description: We’ll show you how to implement a date picker using the ‘react-datepicker’ library and how to customize the functionality for your use case.
 slug: react-date-picker
 authors: irakli_tchigladze
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/social-2.png
 hide_table_of_contents: false

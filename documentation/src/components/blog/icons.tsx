@@ -156,3 +156,23 @@ export const RedditIcon = (
     />
   </svg>
 );
+
+export const ArrowLeft = (
+  props: React.SVGProps<SVGSVGElement>,
+): JSX.Element => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M8 12.667 3.333 8m0 0L8 3.333M3.333 8h9.334"
+    />
+  </svg>
+);

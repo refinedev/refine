@@ -3,7 +3,8 @@ title: Beginner's Guide to React Query
 description: We'll be looking at the basics of React Query, how to use it, and why you should use it.
 slug: react-query-guide
 authors: marvel_ken
-tags: [react, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/social-2.png
 hide_table_of_contents: false
 ---
@@ -25,15 +26,6 @@ Improve performance, develop responsive designs, and provide seamless user exper
 Step into the world of web development, where loading server data, handling errors, and keeping clients and servers in sync are all part of the exciting puzzle. But wait, there's more! Picture a scenario where poor internet connections add another layer of complexity. It's enough to make any developer's head spin.
 
 Now, imagine a solution that takes these challenges and turns them into a breeze. [React Query](https://tanstack.com/query/v3/) as a solution helps in caching and server state management. Whether you're a seasoned developer or just starting your coding journey, React Query is a great option to try.
-
-Steps we'll cover:
-
-- [What is React Query?](#what-is-react-query)
-- [Querying Data](#querying-data)
-- [Why use React Query?](#why-use-react-query)
-- [Mutating Data](#mutating-data)
-- [React Query and Frameworks](#react-query-and-frameworks)
-- [Bonus: Subject: Advanced Querying Techniques using React Query](#bonus-subject-advanced-querying-techniques-using-react-query)
 
 ## Article Objective
 

@@ -3,7 +3,8 @@ title: A Detailed Guide on Docker run Command
 description: We'll discuss the Docker run command in detail, including its syntax, options, and examples.
 slug: docker-run-command
 authors: muhammad_khabbab
-tags: [docker, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [docker]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-24-docker-run-command/social.png
 hide_table_of_contents: false
 ---

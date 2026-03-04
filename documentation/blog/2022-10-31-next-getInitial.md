@@ -3,6 +3,7 @@ title: What is Next.js getInitialProps and getServerSideProps?
 description: We will deep dive into Next.js getInitialProps and getServerSideProps.
 slug: next-js-getinitialprops-and-getserversideprops
 authors: michael
+category: "Tutorials"
 tags: [nextjs]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/social.png
 hide_table_of_contents: false
@@ -17,18 +18,6 @@ One of the many interesting features in Next.js are its data fetching methods. N
 At times, it may be confusing as to which of the methods or functions to use for data fetching if you're new to Next.js.
 
 Next.js has two functions for server-side rendering (pre-rendering or pre-population of data/contents on the server) namely: `getInitialProps` and `getServerSideProps`. As we go on, we'll explore both functions, understand how they work and learn when it's appropriate to use them in our applications.
-
-Steps we'll cover:
-
-- [What is `getInitialProps`?](#what-is-getinitialprops)
-  - [Context parameter](#context-parameter)
-- [What is `getServerSideProps`?](#what-is-getserversideprops)
-  - [Context parameter](#context-parameter-1)
-  - [Return value](#return-value)
-  - [Automatic caching capabilities](#automatic-caching-capabilities)
-- [`getInitialProps` vs `getServerSideProps`](#getinitialprops-vs-getserversideprops)
-  - [`getInitialProps`](#getinitialprops)
-  - [`getServerSideProps`](#getserversideprops)
 
 ## What is `getInitialProps`?
 

@@ -43,9 +43,11 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   const { sx, ...restProps } = rest;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();
@@ -56,23 +58,18 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
+      title={title}
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.ShowButton}
+      className={RefineButtonClassNames.ShowButton}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.ShowButton}
-        className={RefineButtonClassNames.ShowButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <VisibilityOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <VisibilityOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };

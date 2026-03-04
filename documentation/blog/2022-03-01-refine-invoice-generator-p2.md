@@ -3,7 +3,8 @@ title: Building an Customizable Invoice Generator App with Refine, Strapi & Ant 
 description: Looking for an invoice generator? Try out Refine. With our custom interface, you can build your own invoice in minutes! Learn more here.
 slug: refine-invoice-generator
 authors: melih
-tags: [refine, react, strapi]
+category: "How To Build"
+tags: [react, refine-week]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

@@ -238,7 +238,7 @@ render(
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode)
+[Refer to the mutation mode docs for further information. &#8594](/core/docs/3.xx.xx/advanced-tutorials/mutation-mode)
 
 ```tsx
 import { useTable } from "@pankod/refine-core";

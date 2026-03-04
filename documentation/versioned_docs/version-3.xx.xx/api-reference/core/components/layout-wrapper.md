@@ -81,4 +81,4 @@ In this example, we hide the left sider only for this page. The rest should look
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.
 
 [refine]: ./refine-config
-[custom pages]: /advanced-tutorials/custom-pages
+[custom pages]: /core/docs/3.xx.xx/advanced-tutorials/custom-pages

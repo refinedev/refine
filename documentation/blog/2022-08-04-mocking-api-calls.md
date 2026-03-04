@@ -3,7 +3,8 @@ title: Mocking API calls in React Tests with Nock
 description: How to test API calls in React?
 slug: mocking-api-calls-in-react
 authors: necati
-tags: [react]
+category: "Engineering"
+tags: [react, dev-tools]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/social.webp
 hide_table_of_contents: false
 ---
@@ -17,22 +18,6 @@ In testing, we often want to make mock requests to test our code without actuall
 We'll use a third-party package called [nock](https://github.com/nock/nock) that helps us to mock HTTP requests. With nock, we can specify the desired behavior of our mock HTTP requests, including the URL, headers, and body. This allows us to test our code against a known data set, making debugging and testing much more straightforward.
 
 I'll show how to write unit tests for API calls by mocking method in the simple React app.
-
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [Why mocking HTTP requests during testing is important?](#why-mocking-http-requests-during-testing-is-important)
-- [What is Nock?](#what-is-nock)
-- [Bootstrapping the example app](#bootstrapping-the-example-app)
-- [Adding a unit test](#adding-a-unit-test)
-- [Nock installation and configuration](#nock-installation-and-configuration)
-- [Custom requests in Nock](#custom-requests-in-nock)
-  - [All HTTP methods like `GET`, `POST`, `PUT`, `DELETE` can be mock.](#all-http-methods-like-get-post-put-delete-can-be-mock)
-  - [To handle query parameters, the `query` option can be used.](#to-handle-query-parameters-the-query-option-can-be-used)
-  - [Mocking server Errors](#mocking-server-errors)
-- [Recording in Nock](#recording-in-nock)
-- [Alternative API mocking libraries](#alternative-api-mocking-libraries)
-- [Conclusion](#conclusion)
 
 ## Why mocking HTTP requests during testing is important?
 

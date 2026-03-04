@@ -3,7 +3,8 @@ title: Kubectl Restart Pod - Restarting Pods in Kubernetes
 description: We'll discuss the importance of restarting pods in Kubernetes, the different methods to do so, and the best practices to follow.
 slug: kubectl-restart-pod
 authors: muhammad_khabbab
-tags: [kubernetes, dev-tools]
+category: "Ecosystem / Integrations"
+tags: [kubernetes]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-22-kubecti-restart-pod/social.png
 hide_table_of_contents: false
 ---

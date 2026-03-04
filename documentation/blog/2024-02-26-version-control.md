@@ -3,7 +3,8 @@ title: What is Version Control and Benefits of Using It?
 description: Version control systems are essential to any successful software project. Understand version control fundamentals and compare version control systems.
 slug: version-control
 authors: muhammad_khabbab
-tags: [dev-tools, git]
+category: "Engineering"
+tags: [git]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-26-version-control/social.png
 hide_table_of_contents: false
 ---

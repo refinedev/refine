@@ -3,7 +3,8 @@ title: Building a React Admin Dashboard with Refine
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: building-react-admin-dashboard
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
 ---

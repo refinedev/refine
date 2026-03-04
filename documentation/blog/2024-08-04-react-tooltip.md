@@ -3,6 +3,7 @@ title: Creating responsive tooltips in React with react-tooltip
 description: We'll explore how to create a custom tooltip component in a React application, as well as integrating the react-tooltip library.
 slug: react-tooltip
 authors: david_omotayo
+category: "Ecosystem / Integrations"
 tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/social-2.png
 hide_table_of_contents: false

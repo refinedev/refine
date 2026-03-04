@@ -3,6 +3,7 @@ title: CSS Rounded Corners Examples
 description: We'll examine CSS rounded corners in this article.
 slug: css-rounded-corners
 authors: peter_osah
+category: "Tutorials"
 tags: [css]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-15-css-rounded-corners/social.png
 hide_table_of_contents: false
@@ -13,15 +14,6 @@ hide_table_of_contents: false
 ## Introduction
 
 Rounded corners on `HTML` help soften the overall design of a website, giving it a more inviting and user-friendly appearance. We'll examine CSS-created rounded corners in this article.
-
-Steps we'll cover:
-
-- [What is CSS border-radius?](#what-is-css-border-radius)
-- [Rounded corners using CSS border-radius](#rounded-corners-using-css-border-radius)
-- [Elliptical corners using CSS border-radius](#elliptical-corners-using-css-border-radius)
-- [Random corners using CSS border-radius.](#random-corners-using-css-border-radius)
-- [Inverted corners](#inverted-corners)
-- [Notched corners](#notched-corners)
 
 ## What is CSS border-radius?
 

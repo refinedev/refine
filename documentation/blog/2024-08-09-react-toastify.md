@@ -3,7 +3,8 @@ title: How to create a notification provider with react-toastify
 description: We'll create a custom notification provider in a Refine application using react-toastify.
 slug: react-toastify
 authors: joseph_mawa
-tags: [react, Refine]
+category: "Ecosystem / Integrations"
+tags: [react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/social-2.png
 hide_table_of_contents: false
 ---
