@@ -45,6 +45,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     <Button
       component={LinkComponent}
       to={to}
+      replace={false}
       disabled={isDisabled}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
