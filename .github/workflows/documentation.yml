@@ -57,7 +57,7 @@ jobs:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: |
           cd documentation
-          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm build
+          LIVE_PREVIEW_URL=https://cloud2.refine.dev/preview pnpm build
       - name: Deploy to Netlify
         id: netlify-deploy
         uses: nwtgck/actions-netlify@v1.2
