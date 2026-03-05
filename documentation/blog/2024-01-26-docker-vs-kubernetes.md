@@ -17,21 +17,6 @@ Containerization is one of the core aspects of application modernization, and al
 
 We will compare both in terms of features, pros, and cons and in which scenario you should prefer one over another. Note that Docker is just a container runtime, whereas Kubernetes is a container orchestration platform, so both complement each other. Let’s start with a brief introduction of both technologies.
 
-Steps we'll cover:
-
-- [What is Docker?](#what-is-docker)
-- [What are the Containers?](#what-are-the-containers)
-- [Core features of Docker](#core-features-of-docker)
-- [Use cases and benefits of Docker](#use-cases-and-benefits-of-docker)
-- [What is Kubernetes?](#what-is-kubernetes)
-- [Core features of Kubernetes](#core-features-of-kubernetes)
-- [Use cases and benefits of Kubernetes](#use-cases-and-benefits-of-kubernetes)
-- [Challenges of Using Docker](#challenges-of-using-docker)
-- [Challenges of Using Kubernetes](#challenges-of-using-kubernetes)
-- [Docker and Kubernetes: How They Work Together](#docker-and-kubernetes-how-they-work-together)
-- [Comparing Docker and Kubernetes](#comparing-docker-and-kubernetes)
-- [Factors to consider when choosing between Docker and Kubernetes](#factors-to-consider-when-choosing-between-docker-and-kubernetes)
-
 ## What is Docker?
 
 [Docker](https://www.docker.com/) is a platform designed to provide an environment for developers to develop, run and deploy applications. It's technology is based on containerization; we must first understand the containers to understand this conceptWhatever you need for an application, Docker can provide you with a separate isolated environment to have it all. Think of docker as a capsule that has packaged all your application dependencies inside the capsule. You can deploy that capsule anywhere to run your application anywhere.

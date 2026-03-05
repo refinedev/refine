@@ -58,6 +58,7 @@ export const FeaturedBlogPostItem = () => {
           "blog-md:pt-4",
           "px-3",
           "blog-md:px-6",
+          "blog-max:pb-6",
           "h-full",
         )}
       >

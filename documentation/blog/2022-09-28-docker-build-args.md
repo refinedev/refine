@@ -17,14 +17,6 @@ Today, we will discuss docker ARG and ENV variables in detail. We will go throug
 
 Let’s start with the difference between ARG and ENV variables and their best use cases.
 
-Steps we'll cover:
-
-- [Build arg vs. Env arg](#build-arg-vs-env-arg)
-- [How to pass arg variables](#how-to-pass-arg-variables)
-- [How to pass env variables](#how-to-pass-env-variables)
-- [Using ENV file](#using-env-file)
-- [How to secure your environment variables in docker](#how-to-secure-your-environment-variables-in-docker)
-
 ## Build arg vs. Env arg
 
 ARG and ENV are dockerfile instructions through which you can apply the different configurations. However, both look pretty similar when you look at the dockerfile. Some of the notable differences between these two are below:

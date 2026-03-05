@@ -18,14 +18,6 @@ Docker ENTRYPOINT instructions can be written in both shell and exec forms, such
 • Shell form: ENTRYPOINT node app.js
 • Exec form: ENTRYPOINT ["node", "app.js"]
 
-Steps we'll cover:
-
-- [How does docker ENTRYPOINT work?](#how-does-docker-entrypoint-work)
-- [Docker entrypoint example commands](#docker-entrypoint-example-commands)
-- [Difference between ENTRYPOINT and CMD](#difference-between-entrypoint-and-cmd)
-- [When to use docker ENTRYPOINT vs CMD](#when-to-use-docker-entrypoint-vs-cmd)
-- [How to use a script as ENTRYPOINT](#how-to-use-a-script-as-entrypoint)
-
 ## How does docker ENTRYPOINT work?
 
 Both forms of Docker entrypoint work differently when you specify any command at run time. The major difference between the two is whether the specified command is invoked inside a shell or not. Let's discuss both in detail:

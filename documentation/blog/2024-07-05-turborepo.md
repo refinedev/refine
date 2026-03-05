@@ -28,16 +28,6 @@ In this article, we will discuss [Turborepo](https://turbo.build/) in detail. Tu
 
 Today we will cover why we should use Turborepo, what are its major features and when are the best use cases for adopting it in your projects.
 
-Steps we'll cover:
-
-- [Why Turborepo?](#why-turborepo)
-- [Unique Features of Turborepo](#unique-features-of-turborepo)
-  - [Remote caching](#remote-caching)
-  - [Prune now supports all package managers](#prune-now-supports-all-package-managers)
-  - [Support for Polyrepo](#support-for-polyrepo)
-- [When should you use Turborepo?](#when-should-you-use-turborepo)
-- [How to use Turborepo?](#how-to-use-turborepo)
-
 ## Why Turborepo?
 
 There was a need for a monorepo tool that could take advantage of advanced techniques with zero configuration. Something that is easy to scale and adapt while at the same time improving the speed of monorepo pipelines. Turborepo provides all these features and more.

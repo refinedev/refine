@@ -19,15 +19,6 @@ Next.js has a page-based routing system, and an API route feature which allows y
 
 In this article, you'll learn how to set up Next.js API Routes and we'll explain some of their core features and how you can leverage them in your applications along the way. You'll also learn how to submit form data to an API route.
 
-Steps we'll cover:
-
-- [What are Next.js API Routes?](#what-are-nextjs-api-routes)
-- [How to create API Routes in Next.js](#how-to-create-api-routes-in-nextjs)
-- [Dynamic API Routes](#dynamic-api-routes)
-- [API Routes custom configuration](#api-routes-custom-configuration)
-- [Typing API Routes with TypeScript](#typing-api-routes-with-typescript)
-- [Testing API Routes in Next.js](#testing-api-routes-in-nextjs)
-
 ## What are Next.js API Routes?
 
 Before you dive into **Next.js API Routes** let's provide a little background first.

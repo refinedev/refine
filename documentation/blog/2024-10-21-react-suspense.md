@@ -21,17 +21,6 @@ Similarly, you can use React suspense to split large React components into chunk
 
 In this article, we will discuss the React Suspense API and some of its common use cases. You must have a working knowledge of React and JavaScript to follow along.
 
-Steps we'll cover:
-
-- [What is React Suspense?](#what-is-react-suspense)
-- [Comparing React Suspense to Transitions](#comparing-react-suspense-to-transitions)
-- [Use cases of React Suspense](#use-cases-of-react-suspense)
-- [When to use React Suspense](#when-to-use-react-suspense)
-- [React suspense and Error boundaries](#react-suspense-and-error-boundaries)
-- [Using React Suspense along with Server-Side Rendering (SSR)](#using-react-suspense-along-with-server-side-rendering-ssr)
-- [Common Mistakes When Using React Suspense](#common-mistakes-when-using-react-suspense)
-- [Advanced React Suspense Use Cases: Streaming and Progressive Loading](#advanced-react-suspense-use-cases-streaming-and-progressive-loading)
-
 ## What is React Suspense?
 
 React Suspense is a built-in React component that you can use to declaratively render a fallback UI until its children finish loading.

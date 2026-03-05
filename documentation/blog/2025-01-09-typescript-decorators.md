@@ -28,20 +28,6 @@ Applying the decorators is done with `@`, which exposes several parameters such 
 
 In the sections ahead, we work with an existing `User` class that we seek to decorate. However, below let's first talk about the environment we need to get started.
 
-Steps we'll cover:
-
-- [TypeScript and Runtime](#typescript-and-runtime)
-- [Enabling Decorators Support](#enabling-decorators-support)
-- [Decorating a Class with TypeScript Decorators](#decorating-a-class-with-typescript-decorators)
-- [TypeScript Decorators Syntax](#typescript-decorators-syntax)
-- [Class Decoration in TypeScript](#class-decoration-in-typescript)
-- [Property Decorators in TypeScript](#property-decorators-in-typescript)
-- [Accessor Decorators in TypeScript](#accessor-decorators-in-typescript)
-- [Different Types of Decorators](#different-types-of-decorators)
-- [TypeScript Decorator Factories](#typescript-decorator-factories)
-- [Method Decorators in TypeScript](#method-decorators-in-typescript)
-- [Top 5 Best Ways for Applying Decorators](#top-5-best-ways-for-applying-decorators)
-
 ## Prerequisites
 
 ### TypeScript and Runtime

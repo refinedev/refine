@@ -5,7 +5,7 @@ slug: refine-v5-announcement
 authors: ozgur
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-10-18-refine-v5-blog/refine-v5-blog.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-10-18-refine-v5-blog/refine-v5-blog-1.png
 hide_table_of_contents: false
 ---
 

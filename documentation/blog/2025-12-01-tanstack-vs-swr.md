@@ -5,7 +5,7 @@ slug: react-query-vs-tanstack-query-vs-swr-2025
 authors: ozgur
 category: "Alternatives"
 tags: [react, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-12-01-tanstack-vs-swr/tanstack-vs-swr.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-12-01-tanstack-vs-swr/tanstack-vs-swr-1.png
 hide_table_of_contents: false
 ---
 

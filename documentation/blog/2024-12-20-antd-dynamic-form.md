@@ -24,22 +24,6 @@ To solve this user experience issue, developers devised a dynamic form, a simple
 
 This guide will teach us how to create a dynamic form using Ant design and Refine's React template.
 
-Steps we'll cover:
-
-- [What is a dynamic form?](#what-is-a-dynamic-form)
-- [What is Refine?](#what-is-refine)
-- [Project setup](#project-setup)
-- [Building the List page](#building-the-list-page)
-- [Creating a form](#creating-a-form)
-- [Adding form items](#adding-form-items)
-- [Adding form list](#adding-form-list)
-- [Using form actions](#using-form-actions)
-- [Adding icons](#adding-icons)
-- [Validation](#validation)
-- [Building the edit page](#building-the-edit-page)
-- [FAQ's](#faqs)
-- [Why Use AntD Dynamic Forms?](#why-use-antd-dynamic-forms)
-
 **Prerequisite**
 
 To follow along with this tutorial, you need to have a good understanding of Typescript and the following:

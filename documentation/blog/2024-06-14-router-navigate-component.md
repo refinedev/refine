@@ -17,14 +17,6 @@ React Router version 6 shipped recently with several new features and improvemen
 
 This article will take a deep dive into the `Navigate` component.
 
-Steps we'll cover:
-
-- [Getting started with React router](#getting-started-with-react-router)
-- [How to use the `Navigate` component](#how-to-use-the-navigate-component)
-- [Features of React Router V6](#features-of-react-router-v6)
-- [Performance Optimization](#performance-optimization)
-- [React Router Testing](#react-router-testing)
-
 ## Getting started with React router
 
 In this section, you will learn how to set up React router in an existing React project.

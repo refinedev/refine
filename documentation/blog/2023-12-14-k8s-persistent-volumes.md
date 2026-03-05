@@ -15,15 +15,6 @@ Welcome to our guide on Kubernetes Persistent Volumes (PVs) and Persistent Volum
 
 Our goal is to give you a clear and straightforward understanding of PVs and PVCs—how they work, how they differ from temporary storage, and how to set them up and use them in different scenarios. This guide is designed for anyone interested in Kubernetes, whether you're just starting out or looking to deepen your knowledge about Kubernetes storage.
 
-Steps we'll cover:
-
-- [Conceptual Overview of Persistent Volumes and Claims](#conceptual-overview-of-persistent-volumes-and-claims)
-- [Setting Up Your Environment for PV](#setting-up-your-environment-for-pv)
-- [Deep Dive into Persistent Volume Types](#deep-dive-into-persistent-volume-types)
-- [Creating and Configuring a Persistent Volume](#creating-and-configuring-a-persistent-volume)
-- [Working with Persistent Volume Claims](#working-with-persistent-volume-claims)
-- [Advanced Scenarios and Best Practices](#advanced-scenarios-and-best-practices)
-
 ## Conceptual Overview of Persistent Volumes and Claims
 
 ### Basic explanation of Persistent Volumes (PV) and Persistent Volume Claims (PVC)

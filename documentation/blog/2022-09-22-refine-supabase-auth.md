@@ -19,18 +19,6 @@ When we talk about OTP-based authentication, users need to enter a six-digit OTP
 
 You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/main/examples/blog-refine-supabase-auth)
 
-Steps we'll cover:
-
-- [What is Supabase?](#what-is-supabase)
-- [What is Refine?](#what-is-refine)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Installing Tailwind CSS for Refine project](#installing-tailwind-css-for-refine-project)
-- [Set up the Supabase Project](#set-up-the-supabase-project)
-- [Create the Login Page](#create-the-login-page)
-- [Data Provider](#data-provider)
-- [Auth Provider](#auth-provider)
-
 ## What is Supabase?
 
 [Supabase](https://supabase.com/) is an open-source Firebase alternative. It provides a real-time database, authentication, and media buckets in one platform. You can use Supabase with any frontend tool, such as React, Angular, or Vue.js.

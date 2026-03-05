@@ -19,17 +19,6 @@ In this article, we'll delve into the essential key competencies that a Node Js 
 
 <!--truncate-->
 
-Steps we'll cover:
-
-- [Understanding of JavaScript ES6](#understanding-of-javascript-es6)
-- [Understanding of Node's Async Nature (Promises and Callbacks)](#understanding-of-nodes-async-nature-promises-and-callbacks)
-- [Understanding of Event-Driven Programming in Node](#understanding-of-event-driven-programming-in-node)
-- [Experience with Express Framework](#experience-with-express-framework)
-- [Understanding of Middlewares](#understanding-of-middlewares)
-- [Version Control Tools and Package management](#version-control-tools-and-package-management)
-- [Database Management](#database-management)
-- [Security](#security)
-
 ## Understanding of JavaScript ES6
 
 JavaScript is far from being a perfect language because of many shortcomings induced by the circumstances surrounding its inception. However, over the years, developers have gained more experience with the language, which has resulted in further advancements - one of which is ES6. Due to the introduction of many innovative and useful features that modernized JavaScript, ECMAScript 2015, or ES6, is the most commonly preferred edition of JavaScript in most software development environments.

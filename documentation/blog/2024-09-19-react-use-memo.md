@@ -25,16 +25,6 @@ The three parts are:
 
 In this post, we dive into the details of the **useMemo** hook with an extension of the example demonstrated in the first post titled [React Memo Guide with Examples](https://refine.dev/blog/react-memo-guide/).
 
-Steps we'll cover:
-
-- [What is React useMemo ?](#what-is-react-usememo-)
-- [Optimizing Expensive Utility Functions with React `useMemo` Hook](#optimizing-expensive-utility-functions-with-react-usememo-hook)
-- [React useMemo: How to Cache the Value of Expensive Utilities](#react-usememo-how-to-cache-the-value-of-expensive-utilities)
-- [Using React useMemo with Dependencies](#using-react-usememo-with-dependencies)
-- [More Use Cases for `useMemo()` Hook](#more-use-cases-for-usememo-hook)
-- [Bonus: Best Practices for Using `useMemo()` in React](#bonus-best-practices-for-using-usememo-in-react)
-- [Live Example](#live-example)
-
 ## What is React useMemo ?
 
 React [`useMemo()`](https://react.dev/reference/react/useMemo) hook is a function that caches the value produced from an expensive function used inside a React component. It accepts the expensive function and works by storing the value produced from the function when that is passed the same arguments repeatedly. When different arguments are passed, it returns the new value and updates the cache.

@@ -31,18 +31,6 @@ Material UI Select is a component to create dropdowns in React that provides nat
 
 Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customizable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
 
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with Material UI Select](#getting-started-with-material-ui-select)
-- [The Option component](#the-option-component)
-- [Other Material UI Select features](#other-material-ui-select-features)
-- [Clearing the Select field](#clearing-the-select-field)
-- [Accessibility](#accessibility)
-- [Building a Sign-up Form UI with React and Material UI Select](#building-a-sign-up-form-ui-with-react-and-material-ui-select)
-- [Advanced Styling with Material UI Select](#advanced-styling-with-material-ui-select)
-- [Integration with Form Libraries (Formik and React Hook Form)](#integration-with-form-libraries-formik-and-react-hook-form)
-
 ## What is Material UI
 
 Material UI is a React framework based on [Google's Material Design](https://material.io/design/introduction) that contains all the tools required to create a web application. Material UI empowers developers to build desktop and mobile web apps for companies by leveraging widely available responsive components. Many developers now use Material UI to structure their projects since it simplifies and improves web design.

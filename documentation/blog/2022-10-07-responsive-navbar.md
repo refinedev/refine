@@ -28,14 +28,6 @@ In this article, you'll see how to create responsive navbars in **Refine** apps 
 
 Refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
 
-Steps we'll cover:
-
-- [Setting Up a Refine App](#setting-up-a-refine-app)
-- [Responsive Navbar with Tailwind](#responsive-navbar-with-tailwind)
-- [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
-- [Responsive Navbar with Bootstrap](#responsive-navbar-with-bootstrap)
-- [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
-
 ## Setting Up a Refine App
 
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **Refine** application.

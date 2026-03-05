@@ -19,15 +19,6 @@ Markdown has gained popularity due to its straightforward syntax, making it acce
 
 In this article, we will explore the process of integrating the [**uiw/react-md-editor**](https://www.npmjs.com/package/@uiw/react-md-editor) library into a React application to create a standard Markdown editor.
 
-Steps we'll cover:
-
-- [What is react-md-editor](#what-is-react-md-editor)
-- [Using the MDEditor component](#using-the-mdeditor-component)
-- [Advanced Customization](#advanced-customization)
-- [Sanitize Markdown](#sanitize-markdown)
-- [rehype-sanitize plugin](#rehype-sanitize-plugin)
-- [Optimizing Performance in Markdown Editor](#optimizing-performance-in-markdown-editor)
-
 ## What is react-md-editor
 
 The React markdown editor, also known as `uiw/react-md-editor`, is a straightforward yet powerful Markdown editing library developed for React by the UIW (React UI components) team. It offers a seamless text editing experience for creating and modifying Markdown content within a React application.

@@ -28,7 +28,7 @@ export const buttonListTests = (
 
       expect(container).toBeTruthy();
 
-      expect(getByText("List").closest("button")).not.toBeDisabled();
+      expect(getByText("List").closest("button, a")).not.toBeDisabled();
     });
 
     it("should have the correct test-id", async () => {
@@ -51,9 +51,9 @@ export const buttonListTests = (
         },
       );
 
-      expect(getByText("List").closest("button")).toBeDisabled();
+      expect(getByText("List").closest("button, a")).toBeDisabled();
 
-      fireEvent.click(getByText("List").closest("button") as Element);
+      fireEvent.click(getByText("List").closest("button, a") as Element);
       expect(mockOnClick).not.toHaveBeenCalled();
     });
 
@@ -166,12 +166,12 @@ export const buttonListTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("List").closest("button")).toBeDisabled(),
+                expect(getByText("List").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("List").closest("button")?.getAttribute("title"),
+                  getByText("List").closest("button, a")?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });
@@ -202,7 +202,9 @@ export const buttonListTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("List").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("List").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
 
@@ -218,7 +220,7 @@ export const buttonListTests = (
                 },
               );
 
-              const button = getByText("List").closest("button");
+              const button = getByText("List").closest("button, a");
               expect(button).toBeDisabled();
             });
           });
@@ -269,7 +271,7 @@ export const buttonListTests = (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("List").closest("button")).not.toBeDisabled();
+            expect(getByText("List").closest("button, a")).not.toBeDisabled();
           });
         });
       });
@@ -304,7 +306,9 @@ export const buttonListTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("List").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("List").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
           });
@@ -366,12 +370,12 @@ export const buttonListTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("List").closest("button")).toBeDisabled(),
+                expect(getByText("List").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("List").closest("button")?.getAttribute("title"),
+                  getByText("List").closest("button, a")?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });

@@ -23,16 +23,6 @@ In the previous post, we went through an example where we derived a `Subscriber`
 
 In this post, we will consider an example of **TypeScript `Partial<>`** by modifying our `Subscriber` type to assume a more realistic scenario.
 
-Steps we'll cover:
-
-- [TL;DR: What is TypeScript Partial?](#tldr-what-is-typescript-partial)
-- [Optional Registration Scenario](#optional-registration-scenario)
-- [Enter TypeScript `Partial<Type>`](#enter-typescript-partialtype)
-- [With Interfaces](#with-interfaces)
-  - [Comparison: Pick vs Omit vs Partial](#comparison-pick-vs-omit-vs-partial)
-    - [Common Use Cases for `Partial`](#common-use-cases-for-partial)
-- [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
-
 ## Optional Registration Scenario
 
 For our blog, we would have `GuestUser`s who are not allowed to like or comment on a post. We would allow registered `Subscriber`s to like and comment. So, the scenario goes:

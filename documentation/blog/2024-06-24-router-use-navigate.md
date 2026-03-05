@@ -17,11 +17,6 @@ React Router is a popular routing library for React. The latest version, React r
 
 One such hook is the `useNavigate` hook. The `useNavigate` hook lets you navigate programmatically within your React code. In this article, you will learn the `useNavigate` hook and how to use it. We will also hint at when you might choose the `useNavigate` hook over the `Navigate` component.
 
-Steps we'll cover:
-
-- [How to set up React Router V6](#how-to-set-up-react-router-v6)
-- [How to use the useNavigate hook](#how-to-use-the-usenavigate-hook)
-
 ## Prerequisites
 
 To run the examples in this article, be sure to have some or all of the following.

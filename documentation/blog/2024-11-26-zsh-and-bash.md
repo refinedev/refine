@@ -19,16 +19,6 @@ Among all Unix-based shell environments, two of the most famous are Zsh and Bash
 
 In this article, we’ll explore the unique features of these tools and their similarities and differences. We’ll also compare some of their features, so you'll have enough knowledge to make an informed choice when choosing the right shell. Let's dive in!
 
-Steps we'll cover:
-
-- [What is Bash?](#what-is-bash)
-- [What is Zsh?](#what-is-zsh)
-- [Basic Features of Bash and Zsh](#basic-features-of-bash-and-zsh)
-- [How to setup Bash and Zsh on your computer](#how-to-setup-bash-and-zsh-on-your-computer)
-- [Deep Dive into Bash Features](#deep-dive-into-bash-features)
-- [Deep Dive into Zsh Features](#deep-dive-into-zsh-features)
-- [Case Study: When to Use Bash and When to Use Zsh](#case-study-when-to-use-bash-and-when-to-use-zsh)
-
 ## What is Bash?
 
 Bash (short for Bourne Again Shell) is a Unix-based shell and command processor that provides a command-line interface where you can interact with all components of your operating system by executing commands or running scripts. It offers a rich set of built-in commands and utilities for tasks such as file manipulation, text processing, and system administration. In the coming sections, we’ll look at some of the available features in Bash.

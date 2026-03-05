@@ -17,36 +17,6 @@ Filtering systems are common for most modern web applications. They are especial
 
 You will often meet various implementations in e-commerce stores, human resource management systems, video/blogging platforms, and many other sites.
 
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [Why Refine framework?](#why-refine-framework)
-- [App wireframe](#app-wireframe)
-- [Setting up the Refine](#setting-up-the-refine)
-- [Add global styling](#add-global-styling)
-- [Creating the components](#creating-the-components)
-  - [Creating a filter box](#creating-a-filter-box)
-  - [Creating a search bar](#creating-a-search-bar)
-  - [Content card](#content-card)
-- [Implementing the logic](#implementing-the-logic)
-- [Testing the app](#testing-the-app)
-- [React filtering tips](#react-filtering-tips)
-  - [Filter Optimization for Large Data Volumes](#filter-optimization-for-large-data-volumes)
-  - [When Do You Need a Search Bar in React?](#when-do-you-need-a-search-bar-in-react)
-    - [1. Large Data Sets](#1-large-data-sets)
-    - [2. Dynamic Content Filtering](#2-dynamic-content-filtering)
-    - [3. User Directories](#3-user-directories)
-    - [4. Navigation and Quick Access](#4-navigation-and-quick-access)
-    - [5. Autocomplete and Suggestions](#5-autocomplete-and-suggestions)
-    - [6. Filters and Sorting Options](#6-filters-and-sorting-options)
-- [Bonus: Using npm Packages for React Search Bar](#bonus-using-npm-packages-for-react-search-bar)
-  - [1. `react-search-input`](#1-react-search-input)
-  - [2. `react-select`](#2-react-select)
-  - [3. `downshift`](#3-downshift)
-  - [4. `react-autosuggest`](#4-react-autosuggest)
-- [Conclusion](#conclusion)
-- [Example](#example)
-
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
 <img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/final-app.jpeg" alt="Final app view" />

@@ -19,16 +19,6 @@ However, developers still need an efficient and easier way to create customizabl
 
 In this article, you will learn about React Slick—what it is, why it's important, its features, benefits, and more. You'll learn how to use React Slick in your React projects through a step-by-step guide and hands-on demo.
 
-Steps we'll cover:
-
-- [Overview of React Slick](#overview-of-react-slick)
-- [About React Slick APIs](#about-react-slick-apis)
-- [Benefits of using React Slick](#benefits-of-using-react-slick)
-- [Demo: Getting Started with React Slick](#demo-getting-started-with-react-slick)
-- [Using React Slick](#using-react-slick)
-- [Building a Fashion Carousel with React Slick](#building-a-fashion-carousel-with-react-slick)
-- [Common Mistakes When Using React Slick (and How to Avoid Them)](#common-mistakes-when-using-react-slick-and-how-to-avoid-them)
-
 ## Overview of React Slick
 
 Before you learn how to use React Slick in your React projects, it's essential to understand what it is, why you need it as a developer, its core features, and how they can help you create carousels more efficiently.

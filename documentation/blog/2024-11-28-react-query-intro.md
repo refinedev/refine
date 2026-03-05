@@ -27,15 +27,6 @@ Step into the world of web development, where loading server data, handling erro
 
 Now, imagine a solution that takes these challenges and turns them into a breeze. [React Query](https://tanstack.com/query/v3/) as a solution helps in caching and server state management. Whether you're a seasoned developer or just starting your coding journey, React Query is a great option to try.
 
-Steps we'll cover:
-
-- [What is React Query?](#what-is-react-query)
-- [Querying Data](#querying-data)
-- [Why use React Query?](#why-use-react-query)
-- [Mutating Data](#mutating-data)
-- [React Query and Frameworks](#react-query-and-frameworks)
-- [Bonus: Subject: Advanced Querying Techniques using React Query](#bonus-subject-advanced-querying-techniques-using-react-query)
-
 ## Article Objective
 
 This beginner's guide aims to introduce you to React Query, its core concepts, and how to use it effectively in your projects. Whether you are new to React or an experienced developer looking to enhance your data fetching capabilities, this guide will provide you with a solid foundation to get started with React Query.

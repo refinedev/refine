@@ -12,8 +12,10 @@ import { useLocation } from "@docusaurus/router";
 import SearchMetadata from "@theme/SearchMetadata";
 
 function appendTrailingSlash(url) {
-  return url.endsWith("/") ? url : `${url}/`;
+  const clean = url.split(/[?#]/)[0];
+  return clean.endsWith("/") ? clean : `${clean}/`;
 }
+
 // TODO move to SiteMetadataDefaults or theme-common ?
 // Useful for i18n/SEO
 // See https://developers.google.com/search/docs/advanced/crawling/localized-versions

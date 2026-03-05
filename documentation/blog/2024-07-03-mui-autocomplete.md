@@ -15,17 +15,6 @@ hide_table_of_contents: false
 
 Material UI provides a unique set of components and utilities to help developers have a better creative experience with web applications. One such component is the Material UI `<Autocomplete/>` component. This article will dive deep into the **Material UI Autocomplete** component, highlight its accompanied features and explore a potential use case in a real-world application.
 
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting Started with Material UI Autocomplete](#getting-started-with-material-ui-autocomplete)
-- [Material UI Autocomplete props](#material-ui-autocomplete-props)
-- [Material UI Autocomplete features](#material-ui-autocomplete-features)
-- [Accessibility Features](#accessibility-features)
-- [Cloning Google’s Home Page UI with Material UI Autocomplete](#cloning-googles-home-page-ui-with-material-ui-autocomplete)
-- [Material UI Autocomplete Limitations](#material-ui-autocomplete-limitations)
-- [Using AutoComplete with Formik](#using-autocomplete-with-formik)
-
 ## What is Material UI?
 
 Developed in 2014, Material UI is a React framework that provides adequate tools(components and utilities) to create a web application. Material UI enables the use of various customizable components to create a UI for a company's web and mobile apps. Many developers now use Material UI to structure their projects because it makes web design more straightforward and effective.

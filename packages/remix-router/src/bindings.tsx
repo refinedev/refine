@@ -4,6 +4,7 @@ import {
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
+  QS_PARSE_DEPTH,
 } from "@refinedev/core";
 import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
 import qs from "qs";
@@ -36,7 +37,10 @@ export const routerProvider: RouterProvider = {
         const urlQuery = {
           ...(keepQuery &&
             existingSearch &&
-            qs.parse(existingSearch, { ignoreQueryPrefix: true })),
+            qs.parse(existingSearch, {
+              ignoreQueryPrefix: true,
+              depth: QS_PARSE_DEPTH,
+            })),
           ...query,
         };
 
@@ -98,7 +102,10 @@ export const routerProvider: RouterProvider = {
     const inferredId = inferredParams.id;
 
     const fn = useCallback(() => {
-      const parsedSearch = qs.parse(search, { ignoreQueryPrefix: true });
+      const parsedSearch = qs.parse(search, {
+        ignoreQueryPrefix: true,
+        depth: QS_PARSE_DEPTH,
+      });
 
       const combinedParams = {
         ...inferredParams,

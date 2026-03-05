@@ -19,20 +19,6 @@ Developers can use React to define a number of distinct functional components th
 
 In this article, you'll learn about Conditional Rendering in React and the various ways to use it in your React applications.
 
-Steps we'll cover:
-
-- [What is Conditional Rendering in React?](#what-is-conditional-rendering-in-react)
-- [Demo: Methods of Conditional Rendering in React](#demo-methods-of-conditional-rendering-in-react)
-- [Using If-else](#using-if-else)
-- [Rendering nothing with null](#rendering-nothing-with-null)
-- [Conditional rendering with switch statements](#conditional-rendering-with-switch-statements)
-- [Using ternary operators](#using-ternary-operators)
-- [Using Logical AND (\&\&) and OR (||) operators (Short Circuit Evaluation)](#using-logical-and--and-or--operators-short-circuit-evaluation)
-- [Common Pitfalls in Conditional Rendering](#common-pitfalls-in-conditional-rendering)
-- [Using IIFEs (Immediately Invoked Function Expressions)](#using-iifes-immediately-invoked-function-expressions)
-- [Use cases of conditional rendering](#use-cases-of-conditional-rendering)
-- [Best Practices for Testing Conditional Rendering in React](#best-practices-for-testing-conditional-rendering-in-react)
-
 ## What is Conditional Rendering in React?
 
 When developing applications, you must consider the experience of your application's users. You may want to show or deliver certain functionalities to your users based on their interaction with your application. In other words, depending on the state of your application, you may want your users to have access to specific content or functionalities built into your app. All of these are made possible by conditional rendering.

@@ -19,13 +19,6 @@ Combining **Next.js and TypeScript** gives us superpowers to rapidly create appl
 
 In this article, we'll look at how you can integrate TypeScript in your Next.js apps. We'll also explore reasons why you should consider using this tool in your Next.js projects and also talk about its benefits.
 
-Steps we'll cover:
-
-- [What is TypeScript?](#what-is-typescript)
-- [How to add TypeScript to your Next.js app](#how-to-add-typescript-to-your-nextjs-app)
-- [How to use Typescript in Next.js API routes](#how-to-use-typescript-in-nextjs-api-routes)
-- [Disabling Typescript Errors in Production](#disabling-typescript-errors-in-production)
-
 ## What is TypeScript?
 
 It's a strict JavaScript superset used for large enterprise projects and writing programs that scale. In the end, TypeScript transpiles to plain JavaScript and can be used for developing applications on the client-side and server-side.

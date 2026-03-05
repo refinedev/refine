@@ -23,19 +23,6 @@ In this article, we'll look at what Refine is and demonstrate how to use it to b
 
 <!--truncate-->
 
-Steps we'll cover:
-
-- [What is a PWA?](#what-is-a-pwa)
-- [Project Setup](#project-setup)
-- [Adding Tailwind CSS for styling](#adding-tailwind-css-for-styling)
-- [Using Next.js SSR](#using-nextjs-ssr)
-- [Creating product cards](#creating-product-cards)
-- [Generating PWA manifest](#generating-pwa-manifest)
-- [Configuring PWA](#configuring-pwa)
-- [SEO Considerations for PWAs](#seo-considerations-for-pwas)
-- [Advance techniques: Customizing the Service Worker](#advance-techniques-customizing-the-service-worker)
-- [Accessibility Considerations for PWAs](#accessibility-considerations-for-pwas)
-
 ## Prerequisites
 
 **Refine** templates are shipped with TypeScript by default. This is because TypeScript is the recommended language for writing **Refine** applications.

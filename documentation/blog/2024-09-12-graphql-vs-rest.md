@@ -17,19 +17,6 @@ The internet is connected using a standard method called HTTP. This enabled comm
 
 In this article, we will explore the key differences between GraphQL and REST, and discuss the use cases where each approach excels.
 
-Steps we'll cover:
-
-- [Architectural Style](#architectural-style)
-- [Architectural Style](#architectural-style)
-- [Data Fetching](#data-fetching)
-- [Flexibility and Efficiency](#flexibility-and-efficiency)
-- [Caching](#caching)
-- [Performance](#performance)
-- [Use Cases](#use-cases)
-- [Summary of differences: REST vs. GraphQL](#summary-of-differences-rest-vs-graphql)
-- [Batching Multiple Requests](#batching-multiple-requests)
-- [Versioning](#versioning)
-
 ## Architectural Style
 
 In this section, we will discuss the architectural style of REST and GraphQL, and highlight the key differences between the two approaches. Let's start with REST.

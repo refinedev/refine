@@ -30,17 +30,6 @@ Material UI offers a wide range of component and utilities that empowers develop
 
 This article will deeply traverse the Material UI Checkbox component, investigate its processes and highlight its syntax application. We will also explore a potential use case in a real-world application.
 
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting started with Material UI Checkbox](#getting-started-with-material-ui-checkbox)
-- [Customizing your Material UI Checkbox](#customizing-your-material-ui-checkbox)
-- [Other handy features](#other-handy-features)
-- [Error Handling \& Validation](#error-handling--validation)
-- [Advanced Customization](#advanced-customization)
-- [When to use the Material UI Checkbox](#when-to-use-the-material-ui-checkbox)
-- [Material UI Checkbox Accessibility](#material-ui-checkbox-accessibility)
-
 ## What is Material UI?
 
 Material UI is a powerful and efficient tool that simplifies web design by providing ready-made components and technically available utilities. It is a design language created by Google in 2014. It can be used with all JavaScript frameworks and libraries, such as AngularJS and VueJS, to make the application more amazing and responsive. Material UI is one of the top React User Interface libraries, with over 35,000 stars on GitHub. Many developers now structure their projects with Material UI because it simplifies and improves web design.

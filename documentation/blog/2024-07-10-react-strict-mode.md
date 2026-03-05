@@ -19,15 +19,6 @@ Among all of the new features, the React Strict Mode feature stood out for its e
 
 In this article, we'll see the **React Strict Mode**, how it relates to the JavaScript `“use strict”` expression, its importance, benefits, features, and significant improvements.
 
-Steps we'll cover:
-
-- [What is React Strict Mode?](#what-is-react-strict-mode)
-- [Comparison between React Strict Mode and Use Strict](#comparison-between-react-strict-mode-and-use-strict)
-- [What’s new in React v18.0?](#whats-new-in-react-v180)
-- [Benefits of React Strict Mode](#benefits-of-react-strict-mode)
-- [Features of React Strict Mode](#features-of-react-strict-mode)
-  - [Cool Features of React Strict Mode You Should Know About](#cool-features-of-react-strict-mode-you-should-know-about)
-
 ## What is React Strict Mode?
 
 React Strict Mode is a developer tool highlighting potential bugs or issues in a React application's codebase. It provides warnings to developers as feedback for errors that occur in an application, with no effect on the result because it does not render any visible UI.

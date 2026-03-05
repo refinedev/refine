@@ -15,15 +15,6 @@ hide_table_of_contents: false
 
 Rounded corners on `HTML` help soften the overall design of a website, giving it a more inviting and user-friendly appearance. We'll examine CSS-created rounded corners in this article.
 
-Steps we'll cover:
-
-- [What is CSS border-radius?](#what-is-css-border-radius)
-- [Rounded corners using CSS border-radius](#rounded-corners-using-css-border-radius)
-- [Elliptical corners using CSS border-radius](#elliptical-corners-using-css-border-radius)
-- [Random corners using CSS border-radius.](#random-corners-using-css-border-radius)
-- [Inverted corners](#inverted-corners)
-- [Notched corners](#notched-corners)
-
 ## What is CSS border-radius?
 
 The `border-radius` attribute in CSS specifies the radius of a `HTML` element's corners. The `border-radius` attribute can have between one and four values.

@@ -21,19 +21,6 @@ React hooks only work with functional components. You can't use them with ES6 cl
 
 React has several built-in hooks such as `useState`, `useReducer`, `useRef`, and `useEffect`. In this article, we will explore the React `useRef` hook. We will also discuss how to use refs to access DOM elements and highlight the differences between the `createRef` function and the `useRef` hook.
 
-Steps we'll cover:
-
-- [What is useRef hook?](#what-is-useref-hook)
-- [What is createRef function?](#what-is-createref-function)
-- [Using refs to Access DOM Elements in React](#using-refs-to-access-dom-elements-in-react)
-- [Differences between the useRef hook and the createRef function](#differences-between-the-useref-hook-and-the-createref-function)
-- [Best practices when working with refs](#best-practices-when-working-with-refs)
-- [Using the useRef hook in an Application](#using-the-useref-hook-in-an-application)
-- [Common Pitfalls using useRef](#common-pitfalls-using-useref)
-- [When to use React useRef hook?](#when-to-use-react-useref-hook)
-- [Use-cases of refs in React](#use-cases-of-refs-in-react)
-- [Performance Optimization with useRef](#performance-optimization-with-useref)
-
 ## What is useRef hook?
 
 The `useRef` hook is one of the built-in hooks in React. You can use it to persist or preserve values between re-renders. The `useRef` hook takes an initial value of any type as argument and returns an object with a single `current` property.

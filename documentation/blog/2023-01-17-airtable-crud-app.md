@@ -15,25 +15,6 @@ Before the existence of **Refine**, building CRUD applications and data-intensiv
 
 **Refine**'s service providers make sure that you can easily connect to any custom REST, GraphQL backend as well as most BAAS(Backend as a service) such as [Airtable](https://www.airtable.com/). In this article, we will be building a simple React CRUD application using **Refine** and Airtable, a famous backend service to illustrate how you can power your applications with **Refine**.
 
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [Why Use Refine?](#why-use-refine)
-- [What is Airtable?](#what-is-airtable)
-  - [Setup Airtable](#setup-airtable)
-- [Bootstrapping the Refine Application](#bootstrapping-the-refine-application)
-- [Implementing CRUD operations](#implementing-crud-operations)
-  - [Creating pages for CRUD operations](#creating-pages-for-crud-operations)
-  - [Listing posts records](#listing-posts-records)
-    - [Handling relationships](#handling-relationships)
-  - [Viewing a single post record](#viewing-a-single-post-record)
-  - [Creating post record](#creating-post-record)
-  - [Editing post record](#editing-post-record)
-  - [Deleting post record](#deleting-post-record)
-  - [Adding Pagination](#adding-pagination)
-- [Conclusion](#conclusion)
-- [Live CodeSandbox Example](#live-codesandbox-example)
-
 ## Why Use Refine?
 
 [Refine](https://github.com/refinedev/refine) is an open-source front-end development framework based on React that allows developers to create and deploy web applications in record time and with unrivaled flexibility. By design, Refine decouples UI from frontend application logic to give developers complete styling and customization control.

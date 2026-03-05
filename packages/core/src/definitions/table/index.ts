@@ -10,9 +10,17 @@ import type {
   SortOrder,
 } from "../../contexts/data/types";
 
+/**
+ * Depth limit for `qs.parse`. Deeply nested conditional filters
+ * (e.g. `or -> and -> { field, operator, value }`) require at least 7 levels.
+ * We use 10 to leave comfortable headroom.
+ */
+export const QS_PARSE_DEPTH = 10;
+
 export const parseTableParams = (url: string) => {
   const { currentPage, pageSize, sorters, sorter, filters } = qs.parse(
     url.substring(1), // remove first ? character
+    { depth: QS_PARSE_DEPTH },
   );
 
   return {
@@ -44,6 +52,9 @@ export const stringifyTableParams = (params: {
   filters: CrudFilter[];
   [key: string]: any;
 }): string => {
+  // Note: qs.stringify has no depth limit by default, so it correctly
+  // serialises deeply nested filters without extra configuration.
+  // The matching qs.parse call uses QS_PARSE_DEPTH to deserialise them.
   const options: IStringifyOptions = {
     skipNulls: true,
     arrayFormat: "indices",

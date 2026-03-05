@@ -17,14 +17,6 @@ CronJobs are very useful for keeping your system up-to-date as well as automatin
 
 This article will discuss how to incorporate CronJobs into your workflow. We will explain through examples how you can set up CronJobs for your Kubernetes environment and implement them in your Kubernetes configuration files. We will also explore ways to troubleshoot any issues related to CronJobs in the Kubernetes environment. At the end of this article, we will list some best practices to help you implement the cronjobs most efficiently and effectively.
 
-Steps we'll cover:
-
-- [Understanding the Basics of Kubernetes CronJobs](#understanding-the-basics-of-kubernetes-cronjobs)
-- [Setting Up Your Environment for Kubernetes CronJobs](#setting-up-your-environment-for-kubernetes-cronjobs)
-- [Creating Your First Kubernetes CronJob](#creating-your-first-kubernetes-cronjob)
-- [Debugging and Logging in Kubernetes CronJobs](#debugging-and-logging-in-kubernetes-cronjobs)
-- [Real-world Scenarios and Best Practices](#real-world-scenarios-and-best-practices)
-
 ## Understanding the Basics of Kubernetes CronJobs
 
 ### Definition and fundamental concepts of CronJobs in Kubernetes

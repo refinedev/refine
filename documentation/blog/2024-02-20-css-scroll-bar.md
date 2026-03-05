@@ -15,13 +15,6 @@ A scrollbar is a GUI element that appears on the right side (or bottom corner) o
 
 With the help of new `CSS` attributes, scrollbars can now be styled and hidden without affecting the user's ability to scroll. In this article, we will demonstrate how to hide the scrollbar in most web browsers using `CSS`.
 
-Steps we'll cover:
-
-- [CSS properties to hide element scrollbars.](#css-properties-to-hide-element-scrollbars)
-- [Hide scrollbars on specific elements.](#hide-scrollbars-on-specific-elements)
-- [CSS properties to hide browser scrollbars.](#css-properties-to-hide-browser-scrollbars)
-- [Hide scrollbars in Webkit browsers like Chrome, Safari, Edge, and Firefox.](#hide-scrollbars-in-webkit-browsers-like-chrome-safari-edge-and-firefox)
-
 ## CSS properties to hide element scrollbars
 
 - The `CSS` property `overflow: hidden` is used to hide the vertical and horizontal scrollbar on an element. However, This property also affects the element's ability to scroll on its vertical and horizontal axis.

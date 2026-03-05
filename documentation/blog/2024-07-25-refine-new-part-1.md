@@ -25,13 +25,6 @@ This is the first of a two-part series. In part one, we will take time to share 
 </a>
 </div>
 
-Steps we'll cover:
-
-- [What are the key features?](#what-are-the-key-features)
-- [Why we build Refine.new?](#why-we-build-refinenew)
-- [Designing the Technical Architecture](#designing-the-technical-architecture)
-- [Implementation phase](#implementation-phase)
-
 ## What are the key features?
 
 Before diving into the details, let's quickly highlight some of the key features that make Refine.new a powerful tool for developers.

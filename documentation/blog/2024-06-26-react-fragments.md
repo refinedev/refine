@@ -18,19 +18,6 @@ This is because React depends on creating a tree-like structure that is used for
 
 React Fragment fixed this problem in version 16.2 of the library.
 
-Steps we'll cover:
-
-- [What is React Fragment?](#what-is-react-fragment)
-- [React Fragment vs Div Element](#react-fragment-vs-div-element)
-- [Problem with using div](#problem-with-using-div)
-- [Advantages of Fragment](#advantages-of-fragment)
-  - [Limitations of React Fragments](#limitations-of-react-fragments)
-- [Using the key prop with React fragments](#using-the-key-prop-with-react-fragments)
-- [Using shortcut version](#using-shortcut-version)
-- [Fragment in Action](#fragment-in-action)
-  - [Other Use Cases for a React Fragment](#other-use-cases-for-a-react-fragment)
-  - [Common Problems and Solutions](#common-problems-and-solutions)
-
 ## What is React Fragment?
 
 React Fragment is a feature in React that allows you to return multiple elements from a React component by allowing you to group a list of children without adding extra nodes to the DOM.

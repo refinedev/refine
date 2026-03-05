@@ -17,18 +17,6 @@ React, a popular JavaScript library for building user interfaces offers a powerf
 
 Developers can utilize Error Boundaries to present users with informative error messages, log error specifics to aid in debugging, and ensure the application remains resilient even in the face of unforeseen challenges. In the forthcoming sections, we will investigate the critical role of error handling and examine how React Error Boundaries can elevate the user experience by serving as a protective shield for your application.
 
-Steps we'll cover:
-
-- [What Are React Error Boundaries?](#what-are-react-error-boundaries)
-- [Basic Usage of Error Boundaries](#basic-usage-of-error-boundaries)
-- [Error Boundary Limitations](#error-boundary-limitations)
-- [Handling errors using `react-error-boundary` library](#handling-errors-using-react-error-boundary-library)
-- [How Error Boundaries are Used for Logging and Reporting Errors](#how-error-boundaries-are-used-for-logging-and-reporting-errors)
-- [Resetting your app after an Error](#resetting-your-app-after-an-error)
-- [FallbackComponent prop](#fallbackcomponent-prop)
-- [Bonus: Best Practices for Error Boundaries](#bonus-best-practices-for-error-boundaries)
-- [Dealing with Errors in Asynchronous Operations in React\*\*](#dealing-with-errors-in-asynchronous-operations-in-react)
-
 ## What Are React Error Boundaries?
 
 In JavaScript, we use the `try...catch` statement to catch errors.

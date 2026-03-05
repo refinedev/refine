@@ -5,7 +5,7 @@ slug: quality-code-generation
 authors: youwei
 category: "AI & Innovation"
 tags: [ai, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/cover.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/cover-1.png
 hide_table_of_contents: false
 ---
 

@@ -21,21 +21,6 @@ In this beginner's guide, I will walk through getting started with Terraform spe
 
 Whether you're already using AWS or looking to explore it with an IaC approach, this article will equip you with the fundamentals for provisioning just about any infrastructure you need.
 
-Steps we'll cover:
-
-- [Configuring AWS Credentials](#configuring-aws-credentials)
-- [Creating a Simple Configuration](#creating-a-simple-configuration)
-- [State Management in Terraform](#state-management-in-terraform)
-- [Terraform Workspaces for Multi-Environment Management](#terraform-workspaces-for-multi-environment-management)
-- [Security Best Practices](#security-best-practices)
-- [Automating Terraform with CI/CD Pipelines](#automating-terraform-with-cicd-pipelines)
-- [Handling Resource Dependencies](#handling-resource-dependencies)
-- [Modifying Infrastructure](#modifying-infrastructure)
-- [Cleaning Up](#cleaning-up)
-- [Cost Estimation with Terraform](#cost-estimation-with-terraform)
-- [Managing Secrets and Sensitive Data](#managing-secrets-and-sensitive-data)
-- [Using Terraform Modules](#using-terraform-modules)
-
 ## Prerequisites
 
 Before you can start using Terraform to manage infrastructure on AWS, you need a few prerequisites:

@@ -17,19 +17,6 @@ However, due to how complicated and frustrating form validation can get, develop
 
 In this guide, we’ll introduce [React Hook Form](https://www.react-hook-form.com/), a form validation library for React, and demonstrate how to use it to validate forms in React applications.
 
-Steps we'll cover:
-
-- [What is React Hook Form?](#what-is-react-hook-form)
-- [What is Refine?](#what-is-refine)
-- [Project setup](#project-setup)
-  - [Integrating React Hook Forms](#integrating-react-hook-forms)
-- [Validating forms with React Hook Forms](#validating-forms-with-react-hook-forms)
-- [Schema Validation](#schema-validation)
-- [Handling errors](#handling-errors)
-- [How to conditionally render input fields](#how-to-conditionally-render-input-fields)
-- [Form submission](#form-submission)
-- [Conclusion](#conclusion)
-
 ## Prerequisite
 
 We'll be using Refine to set up an example project for this article, and since Refine is a TypeScript first library, you need to have a good understanding of TypeScript to follow along with this tutorial.

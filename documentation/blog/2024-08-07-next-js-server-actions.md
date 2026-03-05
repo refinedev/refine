@@ -19,12 +19,6 @@ Understanding the fundamentals of data fetching is essential to harnessing the p
 
 Server actions are an alpha feature in Next.js, enable you to build custom server endpoints that handle specific actions and data operations. Next.js API routes offer a robust foundation to implement server actions effectively, bridging the gap between the client and server seamlessly. We'll delve into the intricacies of creating API routes, handling client-server communication, and implementing server-side functionalities.
 
-Steps we'll cover:
-
-- [Basics of Next.js](#basics-of-nextjs)
-- [Data Fetching in Next.js](#data-fetching-in-nextjs)
-- [Server actions in Next.js](#server-actions-in-nextjs)
-
 ## Basics of Next.js
 
 Next.js is a powerful framework built on top of React that simplifies and improves the building of modern front-end apps. It combines the best features of server-side rendering (SSR) and client-side rendering (CSR), offering developers flexibility and performance optimization.

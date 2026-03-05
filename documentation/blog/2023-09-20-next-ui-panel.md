@@ -23,17 +23,6 @@ Any Refine project has built-in features for state management, routing, networki
 
 <br/>
 
-Steps we'll cover:
-
-- [What is Refine](#what-is-refine)
-- [How to create a Refine application](#how-to-create-a-refine-application)
-- [What is NextUI](#what-is-nextui)
-- [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
-- [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
-- [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
-- [Update the layout](#update-the-layout)
-- [Update the breadcrumb](#update-the-breadcrumb)
-
 ## What is Refine
 
 As highlighted above, Refine is a React-based framework for building data-intensive front-end applications such as dashboards and admin panels. It is a feature-rich library with built-in support for routing, networking, authentication, state management, and internationalization.

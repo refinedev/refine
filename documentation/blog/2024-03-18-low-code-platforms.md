@@ -19,18 +19,6 @@ Low-code platforms open the doors of app development wide to those who might not
 
 In this article, we'll looking into low-code platforms, when and where they can be used, and limitations you might face during the development.
 
-Steps we'll cover:
-
-- [What is low code?](#what-is-low-code)
-- [When to use low code platforms?](#when-to-use-low-code-platforms)
-- [Most used Low Code Platforms in the Market](#most-used-low-code-platforms-in-the-market)
-  - [Microsoft Powerapp](#microsoft-powerapp)
-  - [Outsystems](#outsystems)
-  - [Appian](#appian)
-  - [Mendix](#mendix)
-  - [Retool](#retool)
-- [What are the Limitation of low code platforms?](#what-are-the-limitation-of-low-code-platforms)
-
 ## When to use low code platforms?
 
 **Fast Development for Simple Apps**: Use low-code platforms when you want to quickly create and launch simple applications.

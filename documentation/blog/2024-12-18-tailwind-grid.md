@@ -19,18 +19,6 @@ TailwindCSS, or just Tailwind, is a CSS framework used for rapidly building webs
 
 It is possible to build multi column layouts using Tailwind with its Flexbox classes by dividing the width of the container with `w-{fraction}` classes. However, with versions 1.2 and above, we can build highly elaborate layouts with Tailwind's CSS Grid classes.
 
-Steps we'll cover:
-
-- [What is Tailwind Grid System](#what-is-tailwind-grid-system)
-- [Project Goals](#project-goals)
-- [Project Setup](#project-setup)
-- [Basic Tailwind Grid Example](#basic-tailwind-grid-example)
-- [Add Grid Formatting Context](#add-grid-formatting-context)
-- [Size and Placement](#size-and-placement)
-- [Grid Rows](#grid-rows)
-- [Reorder Regions](#reorder-regions)
-- [Customizing TailwindCSS Theme](#customizing-tailwindcss-theme)
-
 ## What is Tailwind Grid System
 
 Unlike Twitter's Bootstrap and Foundation, that still use flexbox to implement their 12 column layout under the hood, Tailwind uses CSS Grid to allow us build responsive and highly customizable layouts of any number of columns and rows. It ships with CSS classes that implement a CSS Grid container with names like `grid`, `grid-cols-{n}` and `grid-rows-{n}`, etc. It also comes with Grid child classes that helps us define grid behavior of child elements of the grid with classes like `col-span-{n}`, `row-span-{n}`, and so on.

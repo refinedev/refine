@@ -23,17 +23,6 @@ It's no secret that hooks have become increasingly crucial in React component de
 
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
 
-Steps we'll cover:
-
-- [What is React useState?](#what-is-react-usestate)
-- [Initializing useState Wrongly](#initializing-usestate-wrongly)
-- [Not Using Optional Chaining](#not-using-optional-chaining)
-- [Updating useState Directly](#updating-usestate-directly)
-- [Updating Specific Object Property](#updating-specific-object-property)
-- [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
-- [Bonus: Optimize performance when using useState](#bonus-optimize-performance-when-using-usestate)
-- [Bonus: use `useReducer` for complex state management](#bonus-use-usereducer-for-complex-state-management)
-
 ## What is React useState?
 
 We would like to describe shortly the `useState` hook in React, which we use very often in all of our projects. The `useState` hook is one of the fundamental hooks. With it, we can introduce state variables into our functional components. The hook returns an array with two elements: the current state value and a function to maintain or set that value.

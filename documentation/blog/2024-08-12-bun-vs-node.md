@@ -30,16 +30,6 @@ You need the followings:
 
 In this tutorial, we will go over the new Bun runtime that has created a buzz in the tech space lately. We will talk about what a runtime does and why some developers are switching over to using bun. We will also carry out some benchmark test to see if bun really has the fastest runtime as the Bun team says. Let's dive rignt in.
 
-Steps we'll cover:
-
-- [What is a runtime](#what-is-a-runtime)
-- [What is Bun](#what-is-bun)
-- [Why is Bun Fast](#why-is-bun-fast)
-- [Installing the Bun runtime](#installing-the-bun-runtime)
-- [How does Bun compare with Node](#how-does-bun-compare-with-node)
-- [Benchmarking Bun](#benchmarking-bun)
-- [Comparison of Bun with Other JavaScript Runtimes (e.g., Deno and Node.js)](#comparison-of-bun-with-other-javascript-runtimes-eg-deno-and-nodejs)
-
 ## What is a runtime
 
 Imagine you have a big box of LEGO blocks and you want to build a cool spaceship. You have all the instructions on how to put the pieces together, but you need something to actually assemble the spaceship and make it work. That's where a runtime comes in!

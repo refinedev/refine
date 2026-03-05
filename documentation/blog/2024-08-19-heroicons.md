@@ -25,12 +25,6 @@ In this post, we use Heroicons with both TailwindCSS and non-Tailwind classes. W
 
 The existing navbar is available in [this repository](https://github.com/anewman15/navbar-hero). As using Heroicons is pretty easy, to grasp how the examples work, it is enough just to follow the JSX. If you want to run the app and see what's going on in the browser when the style changes, please follow the steps below to clone the repo and run it locally.
 
-Steps we'll cover:
-
-- [A Navbar with Heroicons](#a-navbar-with-heroicons)
-- [Customizing Heroicons](#customizing-heroicons)
-- [Optimizing Icon Performance](#optimizing-icon-performance)
-
 ## Preparation
 
 Clone the repository [here](https://github.com/refinedev/refine/tree/main/examples/blog-heroicons-example).

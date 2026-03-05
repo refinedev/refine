@@ -23,19 +23,6 @@ We will dive into the details of commonly used utilities individually in each ar
 
 But first let's understand what transforming an object type means and under what circumstances do we need one.
 
-Steps we'll cover:
-
-- [TL;DR: What is TypeScript Pick?](#tldr-what-is-typescript-pick)
-- [What is Object Type Transformation?](#what-is-object-type-transformation)
-  - [The Scenario](#the-scenario)
-- [What is TypeScript Pick?](#what-is-typescript-pick)
-  - [Picking Items with `Pick<Type, Keys>`](#picking-items-with-picktype-keys)
-  - [For Types Only](#for-types-only)
-  - [Picking from a Type](#picking-from-a-type)
-  - [When to Avoid](#when-to-avoid)
-- [Add a Comparison Table: Pick vs. Other Utilities](#add-a-comparison-table-pick-vs-other-utilities)
-  - [Pick vs. Omit vs. Partial](#pick-vs-omit-vs-partial)
-
 ## What is Object Type Transformation?
 
 Object Type Transformation refers to generating a modified type from an existing type or interface that represents an object. Such transformations are related to one or more properties, in other words, the shape of an object.

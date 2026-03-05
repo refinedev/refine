@@ -6,6 +6,19 @@ import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 import { Date as DateComponent } from "@site/src/components/blog/common";
 import clsx from "clsx";
 
+const Dot = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={6}
+    height={6}
+    viewBox="0 0 6 6"
+    fill="none"
+    className={clsx("flex-shrink-0", "text-zinc-300 dark:text-zinc-600")}
+  >
+    <circle cx={3} cy={3} r={3} fill="currentColor" />
+  </svg>
+);
+
 export default function BlogPostItem({ className }) {
   const { metadata } = useBlogPost();
   const {
@@ -32,6 +45,7 @@ export default function BlogPostItem({ className }) {
           "aspect-[320/178]",
           "blog-lg:aspect-[428/238]",
           "blog-max:aspect-[360/200]",
+          "blog-max:max-w-[360px]",
           "rounded-lg",
           "overflow-hidden",
         )}
@@ -56,6 +70,7 @@ export default function BlogPostItem({ className }) {
           "blog-md:pt-4",
           "px-3",
           "blog-md:px-6",
+          "blog-md:pb-6",
           "h-full",
         )}
       >
@@ -89,19 +104,7 @@ export default function BlogPostItem({ className }) {
           >
             {categoryLabel}
           </Link>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={6}
-            height={6}
-            viewBox="0 0 6 6"
-            fill="none"
-            className={clsx(
-              "flex-shrink-0",
-              "text-zinc-300 dark:text-zinc-600",
-            )}
-          >
-            <circle cx={3} cy={3} r={3} fill="currentColor" />
-          </svg>
+          <Dot />
           <DateComponent date={date} formattedDate={formattedDate} />
         </div>
         <div>

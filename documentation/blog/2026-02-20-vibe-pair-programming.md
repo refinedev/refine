@@ -4,7 +4,7 @@ description: "Is AI the new partner in code? Explore the shift from traditional 
 slug: pair-programming-vs-ai-pair-programming
 authors: arda
 tags: [ai]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-18-enterprise-ai-agents/ai-agents-banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-20-vibe-pair-programming.md/vibe-pair-programming.png
 hide_table_of_contents: false
 ---
 

@@ -17,15 +17,6 @@ The `createPortal` API is part of the React DOM. You can use it to flexibly rend
 
 This behavior of the `createPortal` API makes it easy to create UIs such as tooltips, toasts, modals, and popups. This article will take a deep dive into the `createPortal` API. We will explore its advantages, disadvantages, and possible use cases.
 
-Steps we'll cover:
-
-- [Complete guide to the `createPortal` API](#complete-guide-to-the-createportal-api)
-- [Pros of the `createPortal` API](#pros-of-the-createportal-api)
-- [Best Practices for Using Portals in React](#best-practices-for-using-portals-in-react)
-- [Cons of the `createPortal` API](#cons-of-the-createportal-api)
-- [Use cases of the `createPortal` API](#use-cases-of-the-createportal-api)
-- [Testing Portals in React Applications](#testing-portals-in-react-applications)
-
 ## Complete guide to the `createPortal` API
 
 As explained above, the `createPortal` API is part of the React DOM API. Therefore, before using it, you need to import it from `react-dom` like so:

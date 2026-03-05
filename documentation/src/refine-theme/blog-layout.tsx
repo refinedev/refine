@@ -15,7 +15,12 @@ export const RefineBlogLayout = (props: Props) => {
   return (
     <CommonLayout
       {...layoutProps}
-      className={clsx("relative", "bg-zinc-50", "dark:bg-zinc-900")}
+      className={clsx(
+        "relative",
+        toc && "!bg-zinc-50",
+        !toc && "!bg-zinc-100",
+        "dark:!bg-zinc-900",
+      )}
     >
       <BlogHeader trackProgress={Boolean(toc)} />
       {props.showHero && <BlogHero />}
@@ -28,7 +33,7 @@ export const RefineBlogLayout = (props: Props) => {
             "mx-auto",
             "relative",
             "w-full",
-            "blog-max:px-8",
+            "blog-max:px-3",
             "blog-sm:max-w-[560px]",
             "blog-md:max-w-[672px]",
             "blog-lg:max-w-[896px]",

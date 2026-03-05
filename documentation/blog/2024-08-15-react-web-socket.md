@@ -17,16 +17,6 @@ With the advent of Social Media and other internet-enabled communication tools, 
 
 In this article, we’ll discuss the shortcomings of the HTTP protocol, and explore the concept of real-time communication and how to implement it with the WebSocket protocol while building a basic client communication application.
 
-Steps we'll cover:
-
-- [Why WebSocket?](#why-websocket)
-- [Unleashing the Power of WebSockets using Node.js and React](#unleashing-the-power-of-websockets-using-nodejs-and-react)
-- [Accessing the Code](#accessing-the-code)
-- [Run the application after Setting up the Environment](#run-the-application-after-setting-up-the-environment)
-- [Understanding the Code\*\*](#understanding-the-code)
-- [Security Considerations with WebSockets](#security-considerations-with-websockets)
-- [Bonus: WebSocket Protocols and Subprotocols](#bonus-websocket-protocols-and-subprotocols)
-
 ## Why WebSocket?
 
 In creating web applications with a full-duplex (two-way) bidirectional communication functionality, developers must tweak the traditional HTTP protocol to implement data transfer. The HTTP protocol has several methods such as HTTP Polling, HTTP Streaming, and server-sent events that help developers build a real-time application. These methods have several shortcomings where WebSockets has proved superior as we’ll see in the following few sections.

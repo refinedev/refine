@@ -17,17 +17,6 @@ In this post, we first look at the confusion around currying in JavaScript, espe
 
 In the later part, we delve into variadic currying in a stricter sense with an example that returns unary accumulators.
 
-Steps we'll cover:
-
-- [What is JavaScript Currying?](#what-is-javascript-currying)
-- [What is Variadic Currying?](#what-is-variadic-currying)
-  - [Benefits of Variadic Currying](#benefits-of-variadic-currying)
-- [Variadic Partial Application](#variadic-partial-application)
-- [Using `Function.prototype` Methods](#using-functionprototype-methods)
-- [Variadic Currying with Termination](#variadic-currying-with-termination)
-- [Performance Consideration when Using Javascript Currying](#performance-consideration-when-using-javascript-currying)
-- [Bonus: Advanced JavaScript Currying Techniques](#bonus-advanced-javascript-currying-techniques)
-
 This post is about variadic currying in JavaScript. It is the fifth part of the series titled [Curry Functions in JavaScript](https://dev.to/anewman15/curry-functions-in-javascript-4jpa).
 
 ## What is JavaScript Currying?

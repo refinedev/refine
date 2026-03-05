@@ -13,15 +13,6 @@ hide_table_of_contents: false
 
 Docker, also known as Docker Engine, has a major impact on the modern industry as it is an open-source platform for creating, distributing, and running applications. Applications are packaged and executed using Docker containers in a loosely isolated environment. You can execute applications without depending on what is already installed on the host because containers are lightweight and come up with everything you need to run them. Its containerization solution addresses major issues with application deployment, supporting microservices design, allowing CI/CD pipelines, enhancing scalability and resource efficiency, enabling hybrid and cloud-native settings, and encouraging DevOps collaboration.
 
-Steps we'll cover:
-
-- [What are Docker volumes?](#what-are-docker-volumes)
-- [Why Docker Volumes are Important](#why-docker-volumes-are-important)
-- [Understanding Docker Volumes](#understanding-docker-volumes)
-- [Working with Docker Volumes](#working-with-docker-volumes)
-- [Backup and Restore Docker Volumes](#backup-and-restore-docker-volumes)
-- [Best Practices for Docker Volumes](#best-practices-for-docker-volumes)
-
 ## Why Docker Volumes are Important
 
 Data created and utilized by Docker containers can be stored on Docker volumes. Docker volumes are important due to the following reasons:

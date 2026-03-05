@@ -84,6 +84,7 @@ export const BlogHeader = React.memo(function BlogHeaderComponent({
           className={clsx(
             "flex items-center gap-2",
             "no-underline hover:no-underline",
+            "blog-max:-ml-1",
           )}
         >
           <RefineLogoSingleIcon

@@ -24,17 +24,6 @@ Let's go through some examples of switching branches through `git checkout`, and
 
 Switching between branches is one of the basic Git operations when one needs to work with multiple features. To switch to an already existing branch, use `git checkout branch_name`. To create and switch to a new branch in one command, use `git checkout -b new_branch`. For remote branches, first fetch the branch using `git fetch --all`, then switch using `git checkout remote_branch_name`. With newer versions of Git, `git switch branch_name` is an easier way to switch to another branch.
 
-Steps we'll cover:
-
-- [Using git checkout to switch branches](#using-git-checkout-to-switch-branches)
-- [Troubleshooting Branch Issues](#troubleshooting-branch-issues)
-- [Using git switch vs git checkout](#using-git-switch-vs-git-checkout)
-- [Difference between git checkout and git reset](#difference-between-git-checkout-and-git-reset)
-- [Difference between git checkout and git restore](#difference-between-git-checkout-and-git-restore)
-- [Difference between git checkout and git Clone](#difference-between-git-checkout-and-git-clone)
-- [Branch Management Techniques](#branch-management-techniques)
-- [Performance Optimization in Branch Management](#performance-optimization-in-branch-management)
-
 ## Using git checkout to switch branches
 
 The `git checkout` command allows you to navigate between different branches created through the command `git branch`. When you checkout a branch, it updates all the files in your working directory to match the version stored in that branch. It also informs Git to preserve all the new commits on that branch.

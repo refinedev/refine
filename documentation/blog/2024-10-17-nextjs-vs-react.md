@@ -21,24 +21,6 @@ The more useful, real questions would be: which one is simpler to learn for a ne
 
 In this post, we provide an in-depth account of how Next.js compares to React - especially as a fullstack framework founded on React's component based fundamentals, and extended with demand driven patterns and conventions such as server side rendering (SSR), static / dynamic page generation, page based routing and backend API features. The primary goal of this comparison is to understand the core differences relevant of Next.js and React. This involves relating each other in terms of their architecture, conventions, configurations, and use cases they are best suited for. By understanding such fundamental relations, developers can gain enough insight into how each can be leveraged for different projects.
 
-Steps we'll cover:
-
-- [What is React?](#what-is-react)
-- [What is Next.js?](#what-is-nextjs)
-- [Next.js vs React.js: The Core Differences](#nextjs-vs-reactjs-the-core-differences)
-  - [Server Side Rendering vs Client Side Rendering](#server-side-rendering-vs-client-side-rendering)
-  - [Static Site Generation](#static-site-generation)
-  - [Data Fetching and Caching](#data-fetching-and-caching)
-  - [Routing](#routing)
-- [Next.js vs React: SEO Considerations](#nextjs-vs-react-seo-considerations)
-- [Handling Images in React vs Next.js](#handling-images-in-react-vs-nextjs)
-- [Security Features in Next.js vs React](#security-features-in-nextjs-vs-react)
-- [Middleware for Protecting Routes](#middleware-for-protecting-routes)
-- [React vs Next.js: Backend API Development](#react-vs-nextjs-backend-api-development)
-- [Next.js vs React: Configuration Differences](#nextjs-vs-react-configuration-differences)
-- [React vs Next.js: Use Cases and Suitability](#react-vs-nextjs-use-cases-and-suitability)
-- [React and Next.js: Starting Up Both Projects](#react-and-nextjs-starting-up-both-projects)
-
 ## What is React?
 
 [React](https://react.dev/learn), also called React.js, is an open-source JavaScript library focused on building user interfaces, particularly for single-page applications. It equips developers to author super fast front-end applications by including HTML markup alongside rendering logic inside JavaScript based functions called components. Its core strength lies in a component-based architecture, that allows developers to encapsulate application concerns inside reusable components that determine how HTML elements and data in a page should be displayed on the screen.

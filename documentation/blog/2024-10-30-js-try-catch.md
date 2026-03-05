@@ -15,23 +15,6 @@ hide_table_of_contents: false
 
 This post is about graceful error handling in JavaScript where we explore the use of `try/catch/finally` blocks.
 
-Steps we'll cover:
-
-- [What are Errors?](#what-are-errors)
-  - [What is Graceful Error Handling?](#what-is-graceful-error-handling)
-- [How `try/catch/finally` Blocks Work](#how-trycatchfinally-blocks-work)
-  - [Running Usual Code In The `try` Block](#running-usual-code-in-the-try-block)
-- [The `catch` Block](#the-catch-block)
-  - [The `finally` Block](#the-finally-block)
-- [Error Types in JavaScript](#error-types-in-javascript)
-- [Custom Error Handling with throw](#custom-error-handling-with-throw)
-- [Error Handling in Promises](#error-handling-in-promises)
-- [When to use try-catch in JavaScript?](#when-to-use-try-catch-in-javascript)
-  - [External Data Fetching](#external-data-fetching)
-  - [JSON Parsing](#json-parsing)
-  - [User Input Processing](#user-input-processing)
-  - [File Operations in Node.js](#file-operations-in-nodejs)
-
 ## What are Errors?
 
 Errors are integral part of programming. Errors in JavaScript can arise while writing code due to syntax related issues like missing or mistyped variables, duplicate variables, wrong use of JavaScript constructs, etc. They can also happen at run time due to internal errors at an external server, unreachable resources at an API endpoint, broken or missing data structures - whose interfaces are usually manipulated by our program, etc.

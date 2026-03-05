@@ -19,22 +19,6 @@ As a result, frameworks that help create high-performing APIs have been develope
 
 This article will teach you about REST APIs and gRPC APIs, including their definitions, functionalities, and distinctions. Additionally, you’ll explore various scenarios that highlight practical use cases of REST and gRPC to enable you to select the most appropriate framework for your project.
 
-Steps we'll cover:
-
-- [Understanding APIs](#understanding-apis)
-- [What is a REST API?](#what-is-a-rest-api)
-- [How REST APIs work](#how-rest-apis-work)
-- [What is gRPC?](#what-is-grpc)
-- [How gRPC APIs work](#how-grpc-apis-work)
-- [How developers can use gRPC and REST](#how-developers-can-use-grpc-and-rest)
-- [Security Considerations](#security-considerations)
-  - [Authentication and Authorization](#authentication-and-authorization)
-  - [Data Encryption](#data-encryption)
-- [Similarities and differences between gRPC and REST](#similarities-and-differences-between-grpc-and-rest)
-- [Comparison summary](#comparison-summary)
-- [When to use REST and when to use gRPC](#when-to-use-rest-and-when-to-use-grpc)
-- [Bonus: Migration Strategies](#bonus-migration-strategies)
-
 ## Understanding APIs
 
 Developers often need to integrate various services from external sources or exchange data with other applications to build highly functional applications. APIs are crucial in this process by serving as intermediaries between different systems. They define rules or protocols that facilitate communication between services or applications. By utilizing APIs, developers can access and incorporate functionalities from other applications into their own, enabling them to focus on other tasks or functionalities within their application.

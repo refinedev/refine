@@ -26,18 +26,6 @@ Material UI is a dynamic React library because it provides numerous component in
 
 In this article, we will deeply explore the Material UI `Button` component, its variants, and the different ways it can be used in a React application.
 
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with the Material UI Button component](#getting-started-with-the-material-ui-button-component)
-- [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
-- [Creating a Calculator UI with light and dark mode using React Material UI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-material-ui-button-component)
-  - [The Navbar Component](#the-navbar-component)
-- [Advance Material UI Buttons](#advance-material-ui-buttons)
-  - [Accessibility (Making Buttons More User-Friendly)](#accessibility-making-buttons-more-user-friendly)
-  - [Button Animations](#button-animations)
-  - [The Main Component](#the-main-component)
-
 ## What is Material UI
 
 Material UI is a React component library that is open source and based on Google's Material Design. It includes a comprehensive set of UI tools to assist developers in building and maintaining React applications, as well as effectively importing components into various parts of their projects. More developers have incorporated Material UI into their projects over the years because it makes the web design process much easier and faster.

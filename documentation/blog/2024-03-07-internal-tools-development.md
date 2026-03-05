@@ -19,18 +19,6 @@ In this post, we briefly review the current state of the enterprise tools landsc
 
 We emphasize on the importance of developing interoperable, extensible and future-adaptive bespoke enterprise tools with greater velocity and efficiency. To that end, we assess leading frameworks and tools in the React/Node.js ecosystem that are used for building internal tools from scratch. We then present a detailed guide on what to consider while building future proof internal tools and how Refine's architecture, core features and support packages are geared to build highly efficient, future-adaptive internal tools in 2024.
 
-Steps we'll cover:
-
-- [Business Process \& Workflow Automation: Traditional Internal Tools](#business-process--workflow-automation-traditional-internal-tools)
-  - [Enterprise Internal Tools: Their Types and Features](#enterprise-internal-tools-their-types-and-features)
-  - [Off-the-shelf Internal Tools](#off-the-shelf-internal-tools-pros-and-cons)
-- [Custom Internal Tool Builders: No Code / Low Code Platforms](#custom-internal-tool-builders-no-code--low-code-platforms)
-  - [Citizen Developers for No Code Internal Tools](#citizen-developers-for-no-code-internal-tools)
-  - [Low Code Convenience for the Internal Tools Developer](#low-code-convenience-for-the-internal-tools-developer)
-- [Custom Internal Tools Development with Open Source Technologies](#custom-internal-tools-development-with-open-source-technologies)
-  - [Essentials of Internal Tools Development](#essentials-of-internal-tools-development)
-- [Refine.js: a React Based Framework for Internal Tools Development](#refinejs-a-react-based-framework-for-internal-tools-development)
-
 ## Business Process & Workflow Automation: Traditional Internal Tools
 
 Historically, internal tools such as Finance, Accounting and HR software were run offline on desktop based business computers. Major providers of enterprise software are SAP, Oracle, Microsoft, Salesforce, HubSpot and Zoho. They offer comprehensive suites of on-premise solutions that include ERP software, CRM systems, CMSs and host of other domain specific tools. Since the dot-com boom of 2000s, these off-the-shelf solutions are also available via cloud hosted web applications.

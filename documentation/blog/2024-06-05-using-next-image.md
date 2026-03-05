@@ -18,20 +18,6 @@ Traditionally, images are added to web pages with the HTML `img` tag. This might
 
 NextJS introduced a solution for delivering performant images on the web in v.10. It features a new Image component and built-in automatic image optimization. In the coming sections, you'll learn how to leverage this solution for optimizing and developing performant applications, thereby improving developer and end-user experiences.
 
-Steps we'll cover:
-
-- [Preparing your images for optimization](#preparing-your-images-for-optimization)
-- [The NextJS image component](#the-nextjs-image-component)
-- [Using the `<Image/>` component](#using-the-image-component)
-- [The image component properties](#the-image-component-properties)
-- [`next/image` optional props](#nextimage-optional-props)
-  - [`next/image` advanced props](#nextimage-advanced-props)
-- [`next/image` configuration options](#nextimage-configuration-options)
-- [Optimization of Image: Advantages](#optimization-of-image-advantages)
-- [Common Pitfalls in Optimizing Images](#common-pitfalls-in-optimizing-images)
-- [Troubleshooting Ergonomic Problems](#troubleshooting-ergonomic-problems)
-- [Commonly Asked Questions About NextJS Image Optimization](#commonly-asked-questions-about-nextjs-image-optimization)
-
 ## Preparing your images for optimization
 
 Before you dive into using the Image component, it's important to prepare your images to achieve optimum performance results. If you are dealing with a dynamic and large amount of images, you may want to consider a Content Delivery Network (CDN) such as Cloudinary to host your images. CDNs provide many images and application performance benefits such as automatic caching, file compression, and image resizing on the fly.

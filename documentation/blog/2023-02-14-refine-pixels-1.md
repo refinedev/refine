@@ -37,16 +37,6 @@ To get completed admin source code simply run:
  npm create refine-app@latest -- --example pixels-admin
 ```
 
-## Table of Contents
-
-- [Part 1: Pilot & Refine Architecture](#part-1-pilot--refine-architecture)
-- [Part 2: Setting Up the Client App](#part-2-setting-up-the-client-app)
-- [Part 3: Adding CRUD Actions and Authentication](#part-3-adding-crud-actions-and-authentication)
-- [Part 4: Adding Realtime Collaboration](#part-4-adding-realtime-collaboration)
-- [Part 5: Creating an Admin Dashboard with Refine](#part-5-creating-an-admin-dashboard-with-refine)
-- [Part 6: Implementing Role Based Access Control](#part-6-implementing-role-based-access-control)
-- [Part 7: Audit Log With Refine](#part-7-audit-log-with-refine)
-
 ---
 
 ## Part 1: Pilot & Refine Architecture

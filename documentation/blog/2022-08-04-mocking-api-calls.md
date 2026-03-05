@@ -19,22 +19,6 @@ We'll use a third-party package called [nock](https://github.com/nock/nock) that
 
 I'll show how to write unit tests for API calls by mocking method in the simple React app.
 
-Steps we'll cover:
-
-- [Introduction](#introduction)
-- [Why mocking HTTP requests during testing is important?](#why-mocking-http-requests-during-testing-is-important)
-- [What is Nock?](#what-is-nock)
-- [Bootstrapping the example app](#bootstrapping-the-example-app)
-- [Adding a unit test](#adding-a-unit-test)
-- [Nock installation and configuration](#nock-installation-and-configuration)
-- [Custom requests in Nock](#custom-requests-in-nock)
-  - [All HTTP methods like `GET`, `POST`, `PUT`, `DELETE` can be mock.](#all-http-methods-like-get-post-put-delete-can-be-mock)
-  - [To handle query parameters, the `query` option can be used.](#to-handle-query-parameters-the-query-option-can-be-used)
-  - [Mocking server Errors](#mocking-server-errors)
-- [Recording in Nock](#recording-in-nock)
-- [Alternative API mocking libraries](#alternative-api-mocking-libraries)
-- [Conclusion](#conclusion)
-
 ## Why mocking HTTP requests during testing is important?
 
 Mock testing is a great way to speed up running tests because you can eliminate external systems and servers.

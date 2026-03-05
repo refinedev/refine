@@ -21,14 +21,6 @@ Your choice of an online IDE largely depends on whether you want to build a fron
 
 It is worth pointing out that this article will explore the main features of the most popular online editors and IDEs. It will not identify which editor is the best. We will also go above and beyond to explore the strengths and weaknesses of each editor so that you can choose one which meets your needs.
 
-Steps we will cover:
-
-- [What Is an Online Code Editor](#what-is-an-online-code-editor)
-- [Why We Need Online Code Editors](#why-we-need-online-code-editors)
-- [Bootstrapping a project for demonstration](#bootstrapping-a-project-for-demonstration)
-- [Top free online Editors and IDEs with free plans for hobby projects](#top-free-online-editors-and-ides-with-free-plans-for-hobby-projects)
-- [Comparing top online Editors and IDEs](#comparing-top-online-editors-and-ides)
-
 ## What Is an Online Code Editor
 
 In simple terms, an online code editor is a web-based tool for developers to write, edit, and test code in their browsers. These online code editors come packed with features for languages and all the other features of the conventional text editors.

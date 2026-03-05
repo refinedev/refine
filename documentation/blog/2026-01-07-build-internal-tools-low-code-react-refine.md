@@ -17,22 +17,6 @@ That's why Refine CORE hits different. It's open-source React that gives you the
 
 <!--truncate-->
 
-## Table of Contents
-
-- [What You'll Build](#what-youll-build)
-- [Getting Started: Initialize Your Project](#getting-started-initialize-your-project)
-- [Understanding Your Project Structure](#understanding-your-project-structure)
-- [Exploring the Core Configuration](#exploring-the-core-configuration)
-- [Working with the Data Provider](#working-with-the-data-provider)
-- [Building Your First CRUD Pages](#building-your-first-crud-pages)
-- [Running Your Admin Panel](#running-your-admin-panel)
-- [Understanding the Power of Refine CORE Hooks](#understanding-the-power-of-refine-core-hooks)
-- [Key Features You Get Out of the Box](#key-features-you-get-out-of-the-box)
-- [Customization and Flexibility](#customization-and-flexibility)
-- [Connecting to Your Real Backend](#connecting-to-your-real-backend)
-- [FAQ](#faq)
-- [Conclusion](#conclusion)
-
 ## What You'll Build
 
 This guide walks you through building a complete admin panel with Refine CORE, demonstrating how to go from zero to production-ready internal tool in under an hour. You'll see how the framework handles the repetitive aspects—data fetching, routing, forms, and notifications—while keeping your code clean and customizable.

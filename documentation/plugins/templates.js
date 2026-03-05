@@ -58,6 +58,13 @@ async function RefineTemplates() {
 
       // Filtered list routes for UI framework and UI+backend combos.
       for (const uiFramework of exports.TEMPLATE_UI_FRAMEWORKS) {
+        const hasUiTemplates = content.some(
+          (t) => t.uiFramework === uiFramework,
+        );
+        if (!hasUiTemplates) {
+          continue;
+        }
+
         const uiSlug = exports.toSlug.call(void 0, uiFramework);
         const uiJson = await createData(
           `templates-filter-${uiSlug}.json`,
@@ -75,6 +82,13 @@ async function RefineTemplates() {
         });
 
         for (const backend of exports.TEMPLATE_BACKENDS) {
+          const hasComboTemplates = content.some(
+            (t) => t.uiFramework === uiFramework && t.dataProvider === backend,
+          );
+          if (!hasComboTemplates) {
+            continue;
+          }
+
           const backendSlug = exports.toSlug.call(void 0, backend);
           const comboJson = await createData(
             `templates-filter-${uiSlug}-${backendSlug}.json`,

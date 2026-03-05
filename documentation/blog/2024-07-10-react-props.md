@@ -17,20 +17,6 @@ React.js is the backbone of modern web development. Almost all companies use it.
 
 It has a plethora of simple features that made it incredibly powerful. One of those features is Props, and we are going to learn what it is in this article.
 
-Steps we'll cover:
-
-- [Props in React](#props-in-react)
-- [Passing Array to React Component](#passing-array-to-react-component)
-- [Passing Function to React Component](#passing-function-to-react-component)
-- [Default Props in React](#default-props-in-react)
-- [Destructuring Props](#destructuring-props)
-- [React children prop](#react-children-prop)
-- [Dynamic Component Rendering](#dynamic-component-rendering)
-- [State vs Props](#state-vs-props)
-- [Optimize Performance with Props](#optimize-performance-with-props)
-  - [Memoization via React.memo](#memoization-via-reactmemo)
-  - [useCallback and useMemo Hooks](#usecallback-and-usememo-hooks)
-
 Props in simple terms are used for communication among components in React app. Component communication is a very essential feature that any framework based on component-driven design should have. Most popular frameworks like Angular and Vuejs have their own way of components passing data to each other.
 
 In a component-drive framework, every single unit of the UI is made up of components. Now, each of these components might need to communicate data among themselves, so you see that this becomes a necessity to have in frameworks.

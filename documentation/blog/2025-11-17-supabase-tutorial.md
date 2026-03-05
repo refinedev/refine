@@ -17,19 +17,6 @@ No frontend, no API calls — just a clear, simple walkthrough of setting up a r
 
 ---
 
-## Table of contents
-
-- [Step 1: Create a Supabase Project](#step-1-create-a-supabase-project)
-- [Step 2: Understanding the Table Editor](#step-2-understanding-the-table-editor)
-- [Step 3: Create Your First Table](#step-3-create-your-first-table)
-- [Step 4: Add a Related Table](#step-4-add-a-related-table)
-- [Step 5: Insert Sample Data](#step-5-insert-sample-data)
-- [Step 6: Explore the SQL Editor](#step-6-explore-the-sql-editor)
-- [Step 7: Enable APIs and Policies](#step-7-enable-apis-and-policies)
-- [Why This Matters](#why-this-matters)
-- [What to do after](#what-to-do-after)
-- [Helpful Links](#helpful-links)
-
 ---
 
 ## Step 1: Create a Supabase Project

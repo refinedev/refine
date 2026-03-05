@@ -15,16 +15,6 @@ Material UI is a dynamic React framework that offers abundant customizable compo
 
 This article will deeply dive into the Material UI Tooltip component and highlight its functionalities, variations, and event placements. We will also explore a potential use case in a typical React application.
 
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
-- [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
-- [How to customize your Material UI Tooltip component](#how-to-customize-your-material-ui-tooltip-component)
-- [Material UI Tooltip Event Triggers](#material-ui-tooltip-event-triggers)
-- [Material UI Tooltip custom children elements](#material-ui-tooltip-custom-children-elements)
-- [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
-
 ## What is Material UI?
 
 Material UI is a user interface framework that provides pre-defined and customizable React components to help with web development. The Material UI components are based on Google's top Material Design. Many developers now structure their projects with Material UI because it simplifies and improves web design.

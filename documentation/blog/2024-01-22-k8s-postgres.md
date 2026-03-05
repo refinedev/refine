@@ -13,20 +13,6 @@ hide_table_of_contents: false
 
 PostgreSQL, renowned for its reliability and robustness, plays a pivotal role in database management within Kubernetes environments. This article will serve as a guide for installing PostgreSQL on Kubernetes, covering pre-requisites such as setting up Kubectl, Kubernetes clusters, and Docker. It guides through dockerizing PostgreSQL, configuring persistent storage, deploying using ConfigMaps and Secrets, and concludes with verification steps to ensure a successful setup. Let's start with the pre-requisites of this guide.
 
-Steps we'll cover:
-
-- [Dockerizing PostgreSQL](#dockerizing-postgresql)
-  - [Creating a Docker image for PostgreSQL](#creating-a-docker-image-for-postgresql)
-  - [Add custom configurations or scripts here](#add-custom-configurations-or-scripts-here)
-  - [Additional commands for setting up the container](#additional-commands-for-setting-up-the-container)
-  - [Pushing the image to a container registry](#pushing-the-image-to-a-container-registry)
-  - [Why you might need a custom image?](#why-you-might-need-a-custom-image)
-- [Configuring Persistent Storage](#configuring-persistent-storage)
-  - [Configure YAML files for PV and PVC](#configure-yaml-files-for-pv-and-pvc)
-  - [Utilizing the YAML Files](#utilizing-the-yaml-files)
-- [Deploying PostgreSQL Using ConfigMaps and Secrets](#deploying-postgresql-using-configmaps-and-secrets)
-- [Verifying PostgreSQL Installation](#verifying-postgresql-installation)
-
 ## Pre-requisites
 
 Following are the pre-requisites for this hands-on guide.

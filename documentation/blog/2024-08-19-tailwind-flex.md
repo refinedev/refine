@@ -25,18 +25,6 @@ We'll start with a collapsible React navbar that already comes in a collapsed st
 
 Before starting, though, let's talk about the prerequisites that need to be managed for getting hands-on with Tailwind Flex.
 
-Steps we'll cover:
-
-- [Starter Files](#starter-files)
-- [Styling a Navbar with TailwindCSS classes](#styling-a-navbar-with-tailwindcss-classes)
-- [Flexbox Accessibility Considerations](#flexbox-accessibility-considerations)
-- [Best Practices for Performance Optimization](#best-practices-for-performance-optimization)
-- [Avoid Layout Shifts](#avoid-layout-shifts)
-- [Use Tailwind's JIT (Just-In-Time) Mode](#use-tailwinds-jit-just-in-time-mode)
-- [Optimize for Critical Rendering Path](#optimize-for-critical-rendering-path)
-- [Lazy Load Non-essential Content](#lazy-load-non-essential-content)
-- [PurgeCSS with Tailwind](#purgecss-with-tailwind)
-
 ## Prerequisites
 
 You must first have [**Node.js**](https://nodejs.org/en) to initialize a React App. You can get it from [here](https://nodejs.org/en/download).
