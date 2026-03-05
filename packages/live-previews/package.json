@@ -41,6 +41,7 @@
     "@refinedev/react-hook-form": "^5.0.0",
     "@refinedev/react-router": "^2.0.0",
     "@refinedev/react-table": "^6.0.0",
+    "@refinedev/rest": "^2.1.0",
     "@refinedev/simple-rest": "^6.0.0",
     "@refinedev/strapi-graphql": "^6.0.4",
     "@refinedev/strapi-v4": "^7.0.0",
