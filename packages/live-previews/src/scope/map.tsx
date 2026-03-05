@@ -8,7 +8,7 @@ export const packageMap: Record<string, string> = {
   "@refinedev/mantine": "RefineMantine",
   "@refinedev/chakra-ui": "RefineChakra",
   "@refinedev/simple-rest": "RefineSimpleRest",
-  "@refinedev/rest": "RefineRest",
+  "@refinedev/rest/simple-rest": "RefineRest",
   "@refinedev/react-hook-form": "RefineReactHookForm",
   "@refinedev/react-table": "RefineReactTable",
   "@refinedev/inferencer/antd": "RefineAntdInferencer",
@@ -67,5 +67,5 @@ export const packageScopeMap: Record<string, RegExp> = {
   "@mui/material": /@mui\/material\/(.*)/,
   "@mui/icons-material": /@mui\/icons-material\/(.*)/,
   "@mui/x-data-grid": /@mui\/x-data-grid\/(.*)/,
-  "@refinedev/rest": /@refinedev\/rest\/(.*)/,
+  "@refinedev/rest/simple-rest": /@refinedev\/rest\/simple-rest\/(.*)/,
 };
