@@ -1,4 +1,4 @@
-import * as RefineRest from "@refinedev/rest";
+import * as RefineRest from "@refinedev/rest/simple-rest";
 
 const RefineRestScope = {
   RefineRest,

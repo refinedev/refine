@@ -3,7 +3,7 @@ import * as ReactRouter from "react-router";
 import type * as RefineCoreTypes from "@refinedev/core";
 import * as RefineReactRouter from "@refinedev/react-router";
 import * as RefineSimpleRest from "@refinedev/simple-rest";
-import * as RefineRest from "@refinedev/rest";
+import * as RefineRest from "@refinedev/rest/simple-rest";
 import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as RefineReactTable from "@refinedev/react-table";
 import * as ReactHookForm from "react-hook-form";
