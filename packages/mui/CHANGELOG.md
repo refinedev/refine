@@ -1,5 +1,11 @@
 # @refinedev/mui
 
+## 8.0.1
+
+### Patch Changes
+
+- [#7266](https://github.com/refinedev/refine/pull/7266) [`91f0eac72e58fd220add066c12329d39bb38a326`](https://github.com/refinedev/refine/commit/91f0eac72e58fd220add066c12329d39bb38a326) Thanks [@kaigritun](https://github.com/kaigritun)! - fix(mui): prevent nested interactive elements in navigation buttons
+
 ## 8.0.0
 
 ### Major Changes
