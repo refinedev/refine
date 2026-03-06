@@ -111,7 +111,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -131,8 +131,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       casbin:
         specifier: ^5.15.2
         version: 5.29.0
@@ -178,7 +178,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@cerbos/http':
         specifier: ^0.6.0
         version: 0.6.0
@@ -201,8 +201,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -236,7 +236,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -256,8 +256,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -293,14 +293,14 @@ importers:
         specifier: ^1.17.2
         version: 1.20.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@dnd-kit/core':
         specifier: ^6.0.8
         version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -332,8 +332,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -475,11 +475,11 @@ importers:
   examples/auth-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -499,8 +499,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -534,7 +534,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@auth0/auth0-react':
         specifier: ^1.5.0
         version: 1.12.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -557,8 +557,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -656,7 +656,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -676,8 +676,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -766,7 +766,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-keycloak/web':
         specifier: ^3.4.0
         version: 3.4.0(keycloak-js@25.0.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
@@ -789,8 +789,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -830,7 +830,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refine-auth/kinde-react':
         specifier: ^1.0.2
         version: 1.0.3(@refinedev/core@packages+core)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -850,8 +850,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -1024,11 +1024,11 @@ importers:
   examples/auth-otp:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1048,8 +1048,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1083,7 +1083,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1106,8 +1106,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1400,7 +1400,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1417,8 +1417,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1451,11 +1451,11 @@ importers:
   examples/command-palette-kbar:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1478,8 +1478,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1685,7 +1685,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1702,8 +1702,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1737,7 +1737,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@craco/craco':
         specifier: ^7.1.0
         version: 7.1.0(@types/node@20.5.1)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@9.35.0(jiti@2.5.1))(react@19.1.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.8.3)
@@ -1760,8 +1760,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -1794,11 +1794,11 @@ importers:
   examples/customization-offlayout-area:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1815,8 +1815,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1850,7 +1850,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1870,8 +1870,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1905,7 +1905,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1922,8 +1922,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1957,7 +1957,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -1977,8 +1977,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2213,7 +2213,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2230,8 +2230,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2265,7 +2265,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/airtable':
         specifier: ^5.0.1
         version: link:../../packages/airtable
@@ -2285,8 +2285,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2320,7 +2320,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2340,8 +2340,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2375,7 +2375,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2395,8 +2395,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2436,7 +2436,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2459,8 +2459,8 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6(graphql@16.9.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       graphql-ws:
         specifier: ^5.9.1
         version: 5.16.0(graphql@16.9.0)
@@ -2509,7 +2509,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2529,8 +2529,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -2582,7 +2582,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2602,8 +2602,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2637,7 +2637,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2657,8 +2657,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -2713,7 +2713,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2733,8 +2733,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2768,7 +2768,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2794,8 +2794,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2832,7 +2832,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2852,8 +2852,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -2905,7 +2905,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2928,8 +2928,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -2971,11 +2971,11 @@ importers:
   examples/data-provider-supabase:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -2995,8 +2995,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3030,7 +3030,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3050,8 +3050,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3085,7 +3085,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3105,8 +3105,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3140,7 +3140,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3160,8 +3160,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3195,7 +3195,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3215,8 +3215,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3319,17 +3319,17 @@ importers:
         specifier: ^1.2.7
         version: 1.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/use-emotion-css':
         specifier: ^1.0.4
-        version: 1.0.4(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.4(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@emotion/react':
         specifier: ^11.8.2
         version: 11.11.4(@types/react@19.1.8)(react@19.1.0)
@@ -3361,11 +3361,11 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@19.1.8)(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 3.6.2(@types/react@19.1.8)(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -3638,7 +3638,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3658,8 +3658,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3693,7 +3693,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3713,8 +3713,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3748,7 +3748,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3765,8 +3765,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3800,7 +3800,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3820,8 +3820,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3855,7 +3855,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3872,8 +3872,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3907,7 +3907,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -3927,8 +3927,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -5174,14 +5174,14 @@ importers:
   examples/i18n-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.0(@ant-design/cssinjs@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -5204,8 +5204,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -5253,11 +5253,11 @@ importers:
   examples/i18n-react:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -5277,8 +5277,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       i18next:
         specifier: ^20.1.0
         version: 20.6.1
@@ -5324,7 +5324,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -5344,8 +5344,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -5512,11 +5512,11 @@ importers:
   examples/inferencer-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -5539,8 +5539,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       i18next:
         specifier: ^20.1.0
         version: 20.6.1
@@ -5694,11 +5694,11 @@ importers:
   examples/inferencer-graphql-hasura:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -5721,8 +5721,8 @@ importers:
         specifier: ^2.0.3
         version: link:../../packages/react-router
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -6062,7 +6062,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6082,8 +6082,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6117,7 +6117,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6137,8 +6137,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6172,7 +6172,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6192,11 +6192,11 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/strapi-v4
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@19.1.8)(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 3.6.2(@types/react@19.1.8)(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -6241,11 +6241,11 @@ importers:
   examples/live-provider-ably:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/ably':
         specifier: ^5.0.1
         version: link:../../packages/ably
@@ -6268,8 +6268,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6303,7 +6303,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6323,8 +6323,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6383,7 +6383,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6403,8 +6403,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6437,11 +6437,11 @@ importers:
   examples/pixels:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6458,8 +6458,8 @@ importers:
         specifier: ^6.0.2
         version: link:../../packages/supabase
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dotenv:
         specifier: ^16.0.3
         version: 16.4.5
@@ -6495,11 +6495,11 @@ importers:
   examples/pixels-admin:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6516,8 +6516,8 @@ importers:
         specifier: ^6.0.2
         version: link:../../packages/supabase
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       casbin:
         specifier: ^5.15.2
         version: 5.29.0
@@ -6668,11 +6668,11 @@ importers:
   examples/refine-week-invoice-generator:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-pdf/renderer':
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@19.1.0)
@@ -6698,8 +6698,8 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/strapi-v4
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -6735,11 +6735,11 @@ importers:
   examples/search:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6759,8 +6759,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -6800,7 +6800,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -6820,8 +6820,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -7108,7 +7108,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7128,8 +7128,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -7162,11 +7162,11 @@ importers:
   examples/table-antd-table-filter:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7186,8 +7186,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -7224,7 +7224,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7244,8 +7244,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -7279,7 +7279,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7296,8 +7296,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -7331,7 +7331,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7348,8 +7348,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -7383,7 +7383,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -7403,8 +7403,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -8334,7 +8334,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -8708,7 +8708,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -8728,8 +8728,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -8963,11 +8963,11 @@ importers:
   examples/tutorial-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -8987,8 +8987,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -9362,7 +9362,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -9379,8 +9379,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -9414,7 +9414,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -9434,8 +9434,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -9935,7 +9935,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -9952,8 +9952,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -9987,7 +9987,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10004,8 +10004,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -10130,7 +10130,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10150,8 +10150,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -10185,7 +10185,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10205,8 +10205,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -10322,7 +10322,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10339,8 +10339,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -10373,14 +10373,14 @@ importers:
   examples/with-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.0(@ant-design/cssinjs@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10403,8 +10403,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -10449,14 +10449,14 @@ importers:
   examples/with-nextjs-next-auth:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.0(@ant-design/cssinjs@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10482,8 +10482,8 @@ importers:
         specifier: ^6.0.1
         version: link:../../packages/simple-rest
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -10648,7 +10648,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10674,8 +10674,8 @@ importers:
         specifier: ^2.4.0
         version: 2.9.1(typescript@5.8.3)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cookie:
         specifier: ^0.5.0
         version: 0.5.0
@@ -10712,7 +10712,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -10741,8 +10741,8 @@ importers:
         specifier: ^2.4.0
         version: 2.9.1(typescript@5.8.3)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       cookie:
         specifier: ^0.5.0
         version: 0.5.0
@@ -11013,7 +11013,7 @@ importers:
     dependencies:
       '@ant-design/v5-patch-for-react-19':
         specifier: ^1.0.3
-        version: 1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^6.0.3
         version: link:../../packages/antd
@@ -11033,8 +11033,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -11090,7 +11090,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^5.0.5
         version: link:../core
@@ -11133,7 +11133,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: 5.0.9
         version: link:../core
@@ -11171,11 +11171,11 @@ importers:
   packages/antd:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/pro-layout':
-        specifier: ^7.21.1
-        version: 7.21.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-components':
+        specifier: ^2.8.10
+        version: 2.8.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/ui-types':
         specifier: ^2.0.1
         version: link:../ui-types
@@ -11183,8 +11183,8 @@ importers:
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -12385,8 +12385,8 @@ importers:
   packages/inferencer:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@chakra-ui/react':
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -12427,8 +12427,8 @@ importers:
         specifier: ^8.2.6
         version: 8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -12615,8 +12615,8 @@ importers:
   packages/live-previews:
     dependencies:
       '@ant-design/icons':
-        specifier: ^5.5.1
-        version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@auth0/auth0-react':
         specifier: ^1.5.0
         version: 1.12.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -12723,8 +12723,8 @@ importers:
         specifier: ^4.0.8
         version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd:
-        specifier: ^6.2.1
-        version: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.3.0
+        version: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.11.0
         version: 1.11.0
@@ -14087,17 +14087,14 @@ packages:
   '@ant-design/colors@4.0.5':
     resolution: {integrity: sha512-3mnuX2prnWOWvpFTS2WH2LoouWlOgtnIpc6IarWN6GOzzLF8dW/U8UctuvIPhoboETehZfJ61XP+CGakBEPJ3Q==}
 
-  '@ant-design/colors@7.0.2':
-    resolution: {integrity: sha512-7KJkhTiPiLHSu+LmMJnehfJ6242OCxSlR3xHVBecYxnMW8MS/878NXct1GqYARyL59fyeFdKRxXTfvR9SnDgJg==}
-
   '@ant-design/colors@7.2.1':
     resolution: {integrity: sha512-lCHDcEzieu4GA3n8ELeZ5VQ8pKQAWcGGLRTQ50aQM2iqPpq2evTxER84jfdPvsPAtEcZ7m44NI45edFMo8oOYQ==}
 
   '@ant-design/colors@8.0.1':
     resolution: {integrity: sha512-foPVl0+SWIslGUtD/xBr1p9U4AKzPhNYEseXYRRo5QSzGACYZrQbe11AYJbYfAWnWSpGBx6JjBmSeugUsD9vqQ==}
 
-  '@ant-design/cssinjs-utils@2.0.2':
-    resolution: {integrity: sha512-Mq3Hm6fJuQeFNKSp3+yT4bjuhVbdrsyXE2RyfpJFL0xiYNZdaJ6oFaE3zFrzmHbmvTd2Wp3HCbRtkD4fU+v2ZA==}
+  '@ant-design/cssinjs-utils@2.1.2':
+    resolution: {integrity: sha512-5fTHQ158jJJ5dC/ECeyIdZUzKxE/mpEMRZxthyG1sw/AKRHKgJBg00Yi6ACVXgycdje7KahRNvNET/uBccwCnA==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -14108,20 +14105,14 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  '@ant-design/cssinjs@1.21.1':
-    resolution: {integrity: sha512-tyWnlK+XH7Bumd0byfbCiZNK43HEubMoCcu9VxwsAwiHdHTgWa+tMN0/yvxa+e8EzuFP1WdUNNPclRpVtD33lg==}
-    peerDependencies:
-      react: '>=16.0.0'
-      react-dom: '>=16.0.0'
-
   '@ant-design/cssinjs@1.24.0':
     resolution: {integrity: sha512-K4cYrJBsgvL+IoozUXYjbT6LHHNt+19a9zkvpBPxLjFHas1UpPM2A5MlhROb0BT8N8WoavM5VsP9MeSeNK/3mg==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  '@ant-design/cssinjs@2.0.3':
-    resolution: {integrity: sha512-HAo8SZ3a6G8v6jT0suCz1270na6EA3obeJWM4uzRijBhdwdoMAXWK2f4WWkwB28yUufsfk3CAhN1coGPQq4kNQ==}
+  '@ant-design/cssinjs@2.1.2':
+    resolution: {integrity: sha512-2Hy8BnCEH31xPeSLbhhB2ctCPXE2ZnASdi+KbSeS79BNbUhL9hAEe20SkUk+BR8aKTmqb6+FKFruk7w8z0VoRQ==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -14130,8 +14121,8 @@ packages:
     resolution: {integrity: sha512-y2217gk4NqL35giHl72o6Zzqji9O7vHh9YmhUVkPtAOpoTCH4uWxo/pr4VE8t0+ChEPs0qo4eJRC5Q1eXWo3vA==}
     engines: {node: '>=8.x'}
 
-  '@ant-design/fast-color@3.0.0':
-    resolution: {integrity: sha512-eqvpP7xEDm2S7dUzl5srEQCBTXZMmY3ekf97zI+M2DHOYyKdJGH0qua0JACHTqbkRnD/KHFQP9J1uMJ/XWVzzA==}
+  '@ant-design/fast-color@3.0.1':
+    resolution: {integrity: sha512-esKJegpW4nckh0o6kV3Tkb7NPIZYbPnnFxmQDUmL08ukXZAvV85TZBr70eGuke/CIArLaP6aw8lt9KILjnWuOw==}
     engines: {node: '>=8.x'}
 
   '@ant-design/graphs@1.4.1':
@@ -14142,13 +14133,6 @@ packages:
 
   '@ant-design/icons-svg@4.4.2':
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
-
-  '@ant-design/icons@5.5.1':
-    resolution: {integrity: sha512-0UrM02MA2iDIgvLatWrj6YTCYe0F/cwXvVE0E2SqGrL7PZireQwgEKTKBisWpZyal5eXZLvuM98kju6YtYne8w==}
-    engines: {node: '>=8'}
-    peerDependencies:
-      react: '>=16.0.0'
-      react-dom: '>=16.0.0'
 
   '@ant-design/icons@5.6.1':
     resolution: {integrity: sha512-0/xS39c91WjPAZOWsvi1//zjx6kAp4kxWwctR6kuU6p133w8RU0D2dSCvZC19uQyharg/sAvYxGYWl01BbZZfg==}
@@ -14179,22 +14163,77 @@ packages:
       react: '>=16.8.4'
       react-dom: '>=16.8.4'
 
-  '@ant-design/pro-layout@7.21.1':
-    resolution: {integrity: sha512-9B+MBPTYZbhe5xdUxgfikoUZtB/77R3hAve8iI4fVNBoc4KAm/wpejasvKgWZn/8gRht8KOXfmfe2ngjz/BWOA==}
+  '@ant-design/pro-card@2.10.0':
+    resolution: {integrity: sha512-sLONn1odmE0Wkbse8pol4WiaEzBV8JU5s3FAMflPpycfUcbSaa1ktXzQ7LCo2SAvOS7gkfmpFjBPtrfbigKh4g==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+
+  '@ant-design/pro-components@2.8.10':
+    resolution: {integrity: sha512-QHnnIXdmC5GTAtm6i8eeJy5yT9npPlFyxpDm+duiDrTRKRFaAQBduArxlH3DA/hoRCCypzPONxfK9BQNIhIyZA==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-provider@2.15.1':
-    resolution: {integrity: sha512-UiNhQ3Yl+h8liC24LLWpqbcdhC9ggiXvHeCYrqBHjOx2WNFWpWO5JP0327k3RQjShprt+jZQ/cdNHx6s7BToXA==}
+  '@ant-design/pro-descriptions@2.6.10':
+    resolution: {integrity: sha512-+4MbiOfumnWlW0Awm4m8JML5o3lR649FD24AaivCmr8BQvIAAXdTITnDMXEg8BqvdP4KOvNsStZrvYfqoev33A==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+
+  '@ant-design/pro-field@3.1.0':
+    resolution: {integrity: sha512-+Dgp31WjD+iwg9KIRAMgNkfQivkJKMcYBrIBmho1e8ep/O0HgWSp48g70tBIWi/Lfem/Ky2schF7O8XCFouczw==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+
+  '@ant-design/pro-form@2.32.0':
+    resolution: {integrity: sha512-GZnVAMeYv+YHJb17lJ7rX5PYuQPvEA6EotQnPbHi9tGLN3PfexcAd21rqzuO+OrulU2x7TEMDIxtY9MzvvOGbg==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      rc-field-form: '>=1.22.0'
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@ant-design/pro-layout@7.22.7':
+    resolution: {integrity: sha512-fvmtNA1r9SaasVIQIQt611VSlNxtVxDbQ3e+1GhYQza3tVJi/3gCZuDyfMfTnbLmf3PaW/YvLkn7MqDbzAzoLA==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-utils@2.16.1':
-    resolution: {integrity: sha512-GaBEgP638fvddO0YqevuIT3O8pQIrqfHhlQ4UDnf1JkhVxuVxP3XdwDituQWnyRoxLPSjNBZBOBghBBMb8nWsg==}
+  '@ant-design/pro-list@2.6.10':
+    resolution: {integrity: sha512-xSWwnqCr+hPEYR4qY7nFUaxO5RQBxNlFaPNmobP2i+Im31slk9JuAusgWeIYO0mNhLJuLbxd8CCma2AZij3fBQ==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@ant-design/pro-provider@2.16.2':
+    resolution: {integrity: sha512-0KmCH1EaOND787Jz6VRMYtLNZmqfT0JPjdUfxhyOxFfnBRfrjyfZgIa6CQoAJLEUMWv57PccWS8wRHVUUk2Yiw==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@ant-design/pro-skeleton@2.2.1':
+    resolution: {integrity: sha512-3M2jNOZQZWEDR8pheY00OkHREfb0rquvFZLCa6DypGmiksiuuYuR9Y4iA82ZF+mva2FmpHekdwbje/GpbxqBeg==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@ant-design/pro-table@3.21.0':
+    resolution: {integrity: sha512-sI81d3FYRv5sXamUc+M5CsHZ9CchuUQgOAPzo5H4oPAVL5h+mkYGRsBzPsxQX7khTNpWjrAtPoRm5ipx3vvWog==}
+    peerDependencies:
+      antd: ^4.24.15 || ^5.11.2
+      rc-field-form: '>=1.22.0'
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+
+  '@ant-design/pro-utils@2.18.0':
+    resolution: {integrity: sha512-8+ikyrN8L8a8Ph4oeHTOJEiranTj18+9+WHCHjKNdEfukI7Rjn8xpYdLJWb2AUJkb9d4eoAqjd5+k+7w81Df0w==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
@@ -15405,10 +15444,6 @@ packages:
     resolution: {integrity: sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.25.7':
-    resolution: {integrity: sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.26.0':
     resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
@@ -16052,6 +16087,11 @@ packages:
 
   '@changesets/write@0.3.0':
     resolution: {integrity: sha512-slGLb21fxZVUYbyea+94uFiD6ntQW0M2hIKNznFizDhZPDgn2c/fv1UzzlW43RVzh1BEDuIqW6hzlJ1OflNmcw==}
+
+  '@chenshuai2144/sketch-color@1.0.9':
+    resolution: {integrity: sha512-obzSy26cb7Pm7OprWyVpgMpIlrZpZ0B7vbrU0RMbvRg0YAI890S5Xy02Aj1Nhl4+KTbi1lVYHt6HQP8Hm9s+1w==}
+    peerDependencies:
+      react: '>=16.12.0'
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -19371,14 +19411,14 @@ packages:
     resolution: {integrity: sha512-n4HcR5siNUXRX23nDizbZBQPO0ZM/5oTtmKZ6/eqL0L2bo747cklFdZGRN2f+c9qWGICwDzrhW0H7tE9PptdcA==}
     engines: {node: '>=14.x'}
 
-  '@rc-component/cascader@1.11.0':
-    resolution: {integrity: sha512-VDiEsskThWi8l0/1Nquc9I4ytcMKQYAb9Jkm6wiX5O5fpcMRsm+b8OulBMbr/b4rFTl/2y2y4GdKqQ+2whD+XQ==}
+  '@rc-component/cascader@1.14.0':
+    resolution: {integrity: sha512-Ip9356xwZUR2nbW5PRVGif4B/bDve4pLa/N+PGbvBaTnjbvmN4PFMBGQSmlDlzKP1ovxaYMvwF/dI9lXNLT4iQ==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  '@rc-component/checkbox@1.0.1':
-    resolution: {integrity: sha512-08yTH8m+bSm8TOqbybbJ9KiAuIATti6bDs2mVeSfu4QfEnyeF6X0enHVvD1NEAyuBWEAo56QtLe++MYs2D9XiQ==}
+  '@rc-component/checkbox@2.0.0':
+    resolution: {integrity: sha512-3CXGPpAR9gsPKeO2N78HAPOzU30UdemD6HGJoWVJOpa6WleaGB5kzZj3v6bdTZab31YuWgY/RxV3VKPctn0DwQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -19389,8 +19429,8 @@ packages:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  '@rc-component/color-picker@3.0.3':
-    resolution: {integrity: sha512-V7gFF9O7o5XwIWafdbOtqI4BUUkEUkgdBwp6favy3xajMX/2dDqytFaiXlcwrpq6aRyPLp5dKLAG5RFKLXMeGA==}
+  '@rc-component/color-picker@3.1.1':
+    resolution: {integrity: sha512-OHaCHLHszCegdXmIq2ZRIZBN/EtpT6Wm8SG/gpzLATHbVKc/avvuKi+zlOuk05FTWvgaMmpxAko44uRJ3M+2pg==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -19401,14 +19441,14 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@rc-component/dialog@1.8.0':
-    resolution: {integrity: sha512-zGksezfULKixYCIWctIhUC2M3zUJrc81JKWbi9dJrQdPaM7J+8vSOrhLoOHHkZFpBpb2Ri6JqnSuGYb2N+FrRA==}
+  '@rc-component/dialog@1.8.4':
+    resolution: {integrity: sha512-Ay6PM7phkTkquplG8fWfUGFZ2GTLx9diTl4f0d8Eqxd7W1u1KjE9AQooFQHOHnhZf0Ya3z51+5EKCWHmt/dNEw==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
-  '@rc-component/drawer@1.4.0':
-    resolution: {integrity: sha512-Zr1j1LRLDauz4a5JXHEmeYQfvEzfh4CddNa7tszyJnfd5GySYdZ5qLO63Tt2tgG4k+qi6tkFDKmcT46ikZfzbQ==}
+  '@rc-component/drawer@1.4.2':
+    resolution: {integrity: sha512-1ib+fZEp6FBu+YvcIktm+nCQ+Q+qIpwpoaJH6opGr4ofh2QMq+qdr5DLC4oCf5qf3pcWX9lUWPYX652k4ini8Q==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -19460,8 +19500,8 @@ packages:
     resolution: {integrity: sha512-jS4E7T9Li2GuYwI6PyiVXmxTiM6b07rlD9Ge8uGZSCz3WlzcG5ZK7g5bbuKNeZ9pgUuPK/5guV781ujdVpm4HQ==}
     engines: {node: '>=8.x'}
 
-  '@rc-component/motion@1.1.6':
-    resolution: {integrity: sha512-aEQobs/YA0kqRvHIPjQvOytdtdRVyhf/uXAal4chBjxDu6odHckExJzjn2D+Ju1aKK6hx3pAs6BXdV9+86xkgQ==}
+  '@rc-component/motion@1.3.1':
+    resolution: {integrity: sha512-Wo1mkd0tCcHtvYvpPOmlYJz546z16qlsiwaygmW7NPJpOZOF9GBjhGzdzZSsC2lEJ1IUkWLF4gMHlRA1aSA+Yw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -19551,8 +19591,8 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  '@rc-component/select@1.5.1':
-    resolution: {integrity: sha512-ARXtwfCVnpDJj1bQjh1cimUlNQkZiN72hvtL2G4mKXIYfkokYdA2Vyu2deAfY7kuHSWpmZygVuohQt6TxOYjnA==}
+  '@rc-component/select@1.6.14':
+    resolution: {integrity: sha512-T1IWeLlSas7Z/igZtPtJ/bweCxMMkXIGKQBtnigK+I/n1AVNjCs+ZdL3Fj42mq3uqm4sd1uzeQLZkdCqR26ADw==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '*'
@@ -19611,14 +19651,14 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@rc-component/tree-select@1.6.0':
-    resolution: {integrity: sha512-UvEGmZT+gcVvRwImAZg3/sXw9nUdn4FmCs1rSIMWjEXEIAo0dTGmIyWuLCvs+1rGe9AZ7CHMPiQUEbdadwV0fw==}
+  '@rc-component/tree-select@1.8.0':
+    resolution: {integrity: sha512-iYsPq3nuLYvGqdvFAW+l+I9ASRIOVbMXyA8FGZg2lGym/GwkaWeJGzI4eJ7c9IOEhRj0oyfIN4S92Fl3J05mjQ==}
     peerDependencies:
       react: '*'
       react-dom: '*'
 
-  '@rc-component/tree@1.1.0':
-    resolution: {integrity: sha512-HZs3aOlvFgQdgrmURRc/f4IujiNBf4DdEeXUlkS0lPoLlx9RoqsZcF0caXIAMVb+NaWqKtGQDnrH8hqLCN5zlA==}
+  '@rc-component/tree@1.2.3':
+    resolution: {integrity: sha512-mG8hF2ogQcKaEpfyxzPvMWqqkptofd7Sf+YiXOpPzuXLTLwNKfLDJtysc1/oybopbnzxNqWh2Vgwi+GYwNIb7w==}
     engines: {node: '>=10.x'}
     peerDependencies:
       react: '*'
@@ -19639,6 +19679,12 @@ packages:
 
   '@rc-component/util@1.7.0':
     resolution: {integrity: sha512-tIvIGj4Vl6fsZFvWSkYw9sAfiCKUXMyhVz6kpKyZbwyZyRPqv2vxYZROdaO1VB4gqTNvUZFXh6i3APUiterw5g==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@rc-component/util@1.9.0':
+    resolution: {integrity: sha512-5uW6AfhIigCWeEQDthTozlxiT4Prn6xYQWeO0xokjcaa186OtwPRHBZJ2o0T0FhbjGhZ3vXdbkv0sx3gAYW7Vg==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -21454,6 +21500,9 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  add-dom-event-listener@1.1.0:
+    resolution: {integrity: sha512-WCxx1ixHT0GQU9hb0KI/mhgRQhnU+U3GvwY6ZvVjYq8rsihIGoaIOUbY0yMPBxLH5MDtr0kz3fisWGNcbWW7Jw==}
+
   add-stream@1.0.0:
     resolution: {integrity: sha512-qQLMr+8o0WC4FZGQTcJiKBVC59JylcPSrTtk6usvmIDFUOCKegapy1VHQwRbFMOFyb/inzUVqHs+eMYKDM1YeQ==}
 
@@ -21590,8 +21639,8 @@ packages:
       antd: '>=5.8.1'
       react: '>=18'
 
-  antd@6.2.1:
-    resolution: {integrity: sha512-ycw/XX7So4MdrwYKGfvZJdkGiCYUOSTebAIi+ejE95WJ138b11oy/iJg7iH0qydaD/B5sFd7Tz8XfPBuW7CRmw==}
+  antd@6.3.1:
+    resolution: {integrity: sha512-8pRjvxitZFyrYAtgwml93Km7fCXjw9IeqlmzpIsusRsmO3eWFVrOMum6+0TsGCtR/WrXVnPwfsgrFg3ChzGCeA==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -24855,11 +24904,13 @@ packages:
   git-raw-commits@2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==}
     engines: {node: '>=10'}
+    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-raw-commits@3.0.0:
     resolution: {integrity: sha512-b5OHmZ3vAgGrDn/X0kS+9qCfNKWe4K/jFnhwzVWWg0/k5eLa3060tZShrRg8Dja5kPc+YjS0Gc6y7cRr44Lpjw==}
     engines: {node: '>=14'}
+    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-remote-origin-url@2.0.0:
@@ -24869,6 +24920,7 @@ packages:
   git-semver-tags@5.0.1:
     resolution: {integrity: sha512-hIvOeZwRbQ+7YEUmCkHqo8FOLQZCEn18yevLHADlFPZY02KJGsu5FZt9YW/lybfK2uhWFI7Qg/07LekJiTv7iA==}
     engines: {node: '>=14'}
+    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-up@7.0.0:
@@ -28201,9 +28253,6 @@ packages:
     resolution: {integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==}
     engines: {node: ^10.13.0 || >=12.0.0}
 
-  omit.js@2.0.2:
-    resolution: {integrity: sha512-hJmu9D+bNB40YpL9jYebQl4lsTW6yEHRTroJzNLqQJYHm7c+NQnJGfZmIWh8S3q3KoaxV1aLhV6B3+0N0/kyJg==}
-
   on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
@@ -28529,6 +28578,10 @@ packages:
 
   path-to-regexp@8.0.0:
     resolution: {integrity: sha512-GAWaqWlTjYK/7SVpIUA6CTxmcg65SP30sbjdCvyYReosRkk7Z/LyHWwkK3Vu0FcIi0FNTADUs4eh1AsU5s10cg==}
+    engines: {node: '>=16'}
+
+  path-to-regexp@8.2.0:
+    resolution: {integrity: sha512-TdrF7fW9Rphjq4RjrW0Kp2AW0Ahwu9sRGTkS6bvDi0SCwZlEZYmcfDbEsTz8RVk0EHIS/Vd1bv3JhG+1xZuAyQ==}
     engines: {node: '>=16'}
 
   path-type@3.0.0:
@@ -29416,6 +29469,19 @@ packages:
     resolution: {integrity: sha512-9G8cA+tuMS75+6G/TzW8OtLzmBDMo8p1JRxN5AZ+LAp8uxGA8V8GZm4GQ4/N5QNQEnLmg6SS7wyuSmbKepiKqA==}
     engines: {node: '>= 0.10'}
 
+  rc-field-form@2.7.1:
+    resolution: {integrity: sha512-vKeSifSJ6HoLaAB+B8aq/Qgm8a3dyxROzCtKNCsBQgiverpc4kWDQihoUwzUj+zNWJOykwSY4dNX3QrGwtVb9A==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-resize-observer@0.2.6:
+    resolution: {integrity: sha512-YX6nYnd6fk7zbuvT6oSDMKiZjyngjHoy+fz+vL3Tez38d/G5iGdaDJa2yE7345G6sc4Mm1IGRUIwclvltddhmA==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   rc-resize-observer@1.4.0:
     resolution: {integrity: sha512-PnMVyRid9JLxFavTjeDXEXo65HCRqbmLBw9xX9gfC4BZiSzbLXKzW3jPz+J0P71pLbD5tBMTT+mkstV5gD0c9Q==}
     peerDependencies:
@@ -29428,14 +29494,11 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+  rc-util@4.21.1:
+    resolution: {integrity: sha512-Z+vlkSQVc1l8O2UjR3WQ+XdWlhj5q9BMQNLk2iOBch75CqPfrJyGtcWMcnhRlNuDu0Ndtt4kLVO8JI8BrABobg==}
+
   rc-util@5.39.1:
     resolution: {integrity: sha512-OW/ERynNDgNr4y0oiFmtes3rbEamXw7GHGbkbNd9iRr7kgT03T6fT0b9WpJ3mbxKhyOcAHnGcIoh5u/cjrC2OQ==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
-  rc-util@5.41.0:
-    resolution: {integrity: sha512-xtlCim9RpmVv0Ar2Nnc3WfJCxjQkTf3xHPWoFdjp1fSs2NirQwqiQrfqdU9HUe0kdfb168M/T8Dq0IaX50xeKg==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -29811,6 +29874,11 @@ packages:
   react@19.1.0:
     resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
+
+  reactcss@1.2.3:
+    resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==}
+    peerDependencies:
+      react: '*'
 
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -32986,23 +33054,19 @@ snapshots:
     dependencies:
       tinycolor2: 1.6.0
 
-  '@ant-design/colors@7.0.2':
-    dependencies:
-      '@ctrl/tinycolor': 3.6.1
-
   '@ant-design/colors@7.2.1':
     dependencies:
       '@ant-design/fast-color': 2.0.6
 
   '@ant-design/colors@8.0.1':
     dependencies:
-      '@ant-design/fast-color': 3.0.0
+      '@ant-design/fast-color': 3.0.1
 
-  '@ant-design/cssinjs-utils@2.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/cssinjs-utils@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ant-design/cssinjs': 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/cssinjs': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@babel/runtime': 7.28.6
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -33018,18 +33082,6 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       stylis: 4.3.2
 
-  '@ant-design/cssinjs@1.21.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@babel/runtime': 7.28.6
-      '@emotion/hash': 0.8.0
-      '@emotion/unitless': 0.7.5
-      classnames: 2.5.1
-      csstype: 3.1.3
-      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      stylis: 4.3.4
-
   '@ant-design/cssinjs@1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.28.6
@@ -33042,12 +33094,12 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       stylis: 4.3.4
 
-  '@ant-design/cssinjs@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/cssinjs@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       csstype: 3.1.3
       react: 19.1.0
@@ -33058,7 +33110,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
 
-  '@ant-design/fast-color@3.0.0': {}
+  '@ant-design/fast-color@3.0.1': {}
 
   '@ant-design/graphs@1.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -33072,16 +33124,6 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@ant-design/icons-svg@4.4.2': {}
-
-  '@ant-design/icons@5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@ant-design/colors': 7.0.2
-      '@ant-design/icons-svg': 4.4.2
-      '@babel/runtime': 7.25.7
-      classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
 
   '@ant-design/icons@5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -33102,10 +33144,10 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ant-design/cssinjs': 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/cssinjs': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -33118,46 +33160,184 @@ snapshots:
       react-content-loader: 5.1.4(react@19.1.0)
       react-dom: 19.1.0(react@19.1.0)
 
-  '@ant-design/pro-layout@7.21.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/pro-card@2.10.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ant-design/cssinjs': 1.21.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/icons': 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/pro-provider': 2.15.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/pro-utils': 2.16.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.25.7
+      '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      rc-resize-observer: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+    transitivePeerDependencies:
+      - react-dom
+
+  '@ant-design/pro-components@2.8.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/pro-card': 2.10.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-descriptions': 2.6.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-field': 3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-form': 2.32.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-layout': 7.22.7(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-list': 2.6.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-skeleton': 2.2.1(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-table': 3.21.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    transitivePeerDependencies:
+      - rc-field-form
+
+  '@ant-design/pro-descriptions@2.6.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/pro-field': 3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-form': 2.32.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-skeleton': 2.2.1(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-resize-observer: 0.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+    transitivePeerDependencies:
+      - rc-field-form
+      - react-dom
+
+  '@ant-design/pro-field@3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      '@chenshuai2144/sketch-color': 1.0.9(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      swr: 2.2.5(react@19.1.0)
+    transitivePeerDependencies:
+      - react-dom
+
+  '@ant-design/pro-form@2.32.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-field': 3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      '@chenshuai2144/sketch-color': 1.0.9(react@19.1.0)
+      '@umijs/use-params': 1.0.9(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      rc-field-form: 2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-resize-observer: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@ant-design/pro-layout@7.22.7(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
       '@umijs/route-utils': 4.0.1
       '@umijs/use-params': 1.0.9(react@19.1.0)
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       lodash: 4.17.21
       lodash-es: 4.17.21
-      omit.js: 2.0.2
-      path-to-regexp: 8.0.0
+      path-to-regexp: 8.2.0
       rc-resize-observer: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      rc-util: 5.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       swr: 2.2.5(react@19.1.0)
       warning: 4.0.3
 
-  '@ant-design/pro-provider@2.15.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/pro-list@2.6.10(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-card': 2.10.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-field': 3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-table': 3.21.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      dayjs: 1.11.13
+      rc-resize-observer: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 4.21.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    transitivePeerDependencies:
+      - rc-field-form
+
+  '@ant-design/pro-provider@2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@babel/runtime': 7.28.6
       '@ctrl/tinycolor': 3.6.1
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       dayjs: 1.11.13
       rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       swr: 2.2.5(react@19.1.0)
 
-  '@ant-design/pro-utils@2.16.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/pro-skeleton@2.2.1(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@babel/runtime': 7.28.6
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@ant-design/pro-table@3.21.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-card': 2.10.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-field': 3.1.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-form': 2.32.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-utils': 2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@babel/runtime': 7.28.6
+      '@dnd-kit/core': 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/utilities': 3.2.2(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      classnames: 2.5.1
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      rc-field-form: 2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-resize-observer: 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@ant-design/pro-utils@2.18.0(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ant-design/icons': 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/pro-provider': 2.15.1(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/pro-provider': 2.16.2(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@babel/runtime': 7.28.6
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       classnames: 2.5.1
       dayjs: 1.11.13
       lodash: 4.17.21
@@ -33177,16 +33357,16 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       throttle-debounce: 5.0.2
 
-  '@ant-design/use-emotion-css@1.0.4(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/use-emotion-css@1.0.4(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@emotion/css': 11.11.2
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@ant-design/v5-patch-for-react-19@1.0.3(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@ant-design/v5-patch-for-react-19@1.0.3(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -35938,10 +36118,6 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@babel/runtime@7.25.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.26.0':
     dependencies:
       regenerator-runtime: 0.14.1
@@ -36946,6 +37122,12 @@ snapshots:
       human-id: 1.0.2
       prettier: 2.8.8
 
+  '@chenshuai2144/sketch-color@1.0.9(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      reactcss: 1.2.3(react@19.1.0)
+      tinycolor2: 1.6.0
+
   '@colors/colors@1.5.0':
     optional: true
 
@@ -37284,7 +37466,7 @@ snapshots:
   '@emotion/babel-plugin@11.11.0':
     dependencies:
       '@babel/helper-module-imports': 7.24.3
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.28.6
       '@emotion/hash': 0.9.1
       '@emotion/memoize': 0.8.1
       '@emotion/serialize': 1.1.4
@@ -39720,7 +39902,7 @@ snapshots:
 
   '@mui/base@5.0.0-beta.61(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.2.19(@types/react@19.1.8)
       '@mui/utils': 6.1.6(@types/react@19.1.8)(react@19.1.0)
@@ -39782,7 +39964,7 @@ snapshots:
 
   '@mui/private-theming@6.1.6(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       prop-types: 15.8.1
       react: 19.1.0
@@ -39800,7 +39982,7 @@ snapshots:
 
   '@mui/styled-engine@6.1.6(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@emotion/cache': 11.13.1
       '@emotion/serialize': 1.3.2
       '@emotion/sheet': 1.4.0
@@ -39842,7 +40024,7 @@ snapshots:
 
   '@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@mui/private-theming': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       '@mui/styled-engine': 6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.2.19(@types/react@19.1.8)
@@ -39880,7 +40062,7 @@ snapshots:
 
   '@mui/utils@6.1.7(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@mui/types': 7.2.19(@types/react@19.1.8)
       '@types/prop-types': 15.7.13
       clsx: 2.1.1
@@ -40026,7 +40208,7 @@ snapshots:
 
   '@mui/x-internals@7.23.0(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       react: 19.1.0
     transitivePeerDependencies:
@@ -40052,7 +40234,7 @@ snapshots:
 
   '@mui/x-license@7.23.2(@types/react@19.1.8)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@mui/utils': 6.1.7(@types/react@19.1.8)(react@19.1.0)
       react: 19.1.0
     transitivePeerDependencies:
@@ -40931,7 +41113,7 @@ snapshots:
 
   '@radix-ui/react-portal@1.0.4(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41040,7 +41222,7 @@ snapshots:
 
   '@radix-ui/react-scroll-area@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.28.6
       '@radix-ui/number': 1.0.0
       '@radix-ui/primitive': 1.0.0
       '@radix-ui/react-compose-refs': 1.0.0(react@19.1.0)
@@ -41311,18 +41493,18 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
 
-  '@rc-component/cascader@1.11.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/cascader@1.14.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/select': 1.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/tree': 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/select': 1.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/tree': 1.2.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/checkbox@1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/checkbox@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41330,40 +41512,40 @@ snapshots:
   '@rc-component/collapse@1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.28.6
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/color-picker@3.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/color-picker@3.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@ant-design/fast-color': 3.0.0
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/fast-color': 3.0.1
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/context@2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/dialog@1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/dialog@1.8.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/portal': 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/drawer@1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/drawer@1.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/portal': 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41371,7 +41553,7 @@ snapshots:
   '@rc-component/dropdown@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41379,16 +41561,16 @@ snapshots:
   '@rc-component/form@1.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@rc-component/async-validator': 5.1.0
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/image@1.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/portal': 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41396,14 +41578,14 @@ snapshots:
   '@rc-component/input-number@1.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@rc-component/mini-decimal': 1.1.0
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/input@1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41414,17 +41596,17 @@ snapshots:
       '@rc-component/menu': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/textarea': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/menu@1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/overflow': 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41433,23 +41615,23 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
 
-  '@rc-component/motion@1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/motion@1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/mutate-observer@2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/notification@1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41458,14 +41640,14 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/pagination@1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41475,7 +41657,7 @@ snapshots:
       '@rc-component/overflow': 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41487,14 +41669,14 @@ snapshots:
 
   '@rc-component/portal@2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/progress@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41507,31 +41689,31 @@ snapshots:
 
   '@rc-component/rate@1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/resize-observer@1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/segmented@1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.28.6
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/select@1.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/select@1.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@rc-component/overflow': 1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/virtual-list': 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
@@ -41539,21 +41721,21 @@ snapshots:
 
   '@rc-component/slider@1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/steps@1.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/switch@1.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41562,7 +41744,7 @@ snapshots:
     dependencies:
       '@rc-component/context': 2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/virtual-list': 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
@@ -41572,9 +41754,9 @@ snapshots:
     dependencies:
       '@rc-component/dropdown': 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/menu': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41583,7 +41765,7 @@ snapshots:
     dependencies:
       '@rc-component/input': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41591,7 +41773,7 @@ snapshots:
   '@rc-component/tooltip@1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41600,24 +41782,24 @@ snapshots:
     dependencies:
       '@rc-component/portal': 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/tree-select@1.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/tree-select@1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/select': 1.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/tree': 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/select': 1.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/tree': 1.2.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  '@rc-component/tree@1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@rc-component/tree@1.2.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/virtual-list': 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
@@ -41625,17 +41807,17 @@ snapshots:
 
   '@rc-component/trigger@3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/portal': 2.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/upload@1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -41647,11 +41829,18 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       react-is: 18.3.1
 
+  '@rc-component/util@1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      is-mobile: 5.0.0
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-is: 18.3.1
+
   '@rc-component/virtual-list@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -43518,7 +43707,7 @@ snapshots:
 
   '@uiw/react-markdown-preview@5.1.5(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       '@uiw/copy-to-clipboard': 1.0.17
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -43952,6 +44141,10 @@ snapshots:
 
   acorn@8.15.0: {}
 
+  add-dom-event-listener@1.1.0:
+    dependencies:
+      object-assign: 4.1.1
+
   add-stream@1.0.0: {}
 
   address@1.2.2: {}
@@ -44073,7 +44266,7 @@ snapshots:
 
   ansicolors@0.3.2: {}
 
-  antd-style@3.6.2(@types/react@19.1.8)(antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  antd-style@3.6.2(@types/react@19.1.8)(antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@ant-design/cssinjs': 1.20.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@babel/runtime': 7.24.4
@@ -44083,28 +44276,28 @@ snapshots:
       '@emotion/serialize': 1.1.4
       '@emotion/server': 11.11.0(@emotion/css@11.11.2)
       '@emotion/utils': 1.2.1
-      antd: 6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd: 6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       use-merge-value: 1.2.0(react@19.1.0)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
 
-  antd@6.2.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  antd@6.3.1(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@ant-design/colors': 8.0.1
-      '@ant-design/cssinjs': 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/cssinjs-utils': 2.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@ant-design/fast-color': 3.0.0
+      '@ant-design/cssinjs': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/cssinjs-utils': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/fast-color': 3.0.1
       '@ant-design/icons': 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/react-slick': 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@babel/runtime': 7.28.6
-      '@rc-component/cascader': 1.11.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/checkbox': 1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/cascader': 1.14.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/checkbox': 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/collapse': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/color-picker': 3.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/dialog': 1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/drawer': 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/color-picker': 3.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/dialog': 1.8.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/drawer': 1.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/dropdown': 1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/form': 1.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/image': 1.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -44112,7 +44305,7 @@ snapshots:
       '@rc-component/input-number': 1.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/mentions': 1.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/menu': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/motion': 1.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/mutate-observer': 2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/notification': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/pagination': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -44122,7 +44315,7 @@ snapshots:
       '@rc-component/rate': 1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/segmented': 1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/select': 1.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/select': 1.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/slider': 1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/steps': 1.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/switch': 1.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -44131,11 +44324,11 @@ snapshots:
       '@rc-component/textarea': 1.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/tooltip': 1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/tour': 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/tree': 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/tree-select': 1.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/tree': 1.2.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/tree-select': 1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/trigger': 3.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/upload': 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@rc-component/util': 1.7.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
       dayjs: 1.11.13
       react: 19.1.0
@@ -44662,7 +44855,7 @@ snapshots:
       '@babel/preset-env': 7.24.4(@babel/core@7.24.4)
       '@babel/preset-react': 7.24.1(@babel/core@7.24.4)
       '@babel/preset-typescript': 7.24.1(@babel/core@7.24.4)
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       babel-plugin-macros: 3.1.0
       babel-plugin-transform-react-remove-prop-types: 0.4.24
     transitivePeerDependencies:
@@ -46423,7 +46616,7 @@ snapshots:
 
   dom-helpers@5.2.1:
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       csstype: 3.1.3
 
   dom-serializer@0.2.2:
@@ -52992,8 +53185,6 @@ snapshots:
 
   oidc-token-hash@5.0.3: {}
 
-  omit.js@2.0.2: {}
-
   on-finished@2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -53357,6 +53548,8 @@ snapshots:
   path-to-regexp@6.3.0: {}
 
   path-to-regexp@8.0.0: {}
+
+  path-to-regexp@8.2.0: {}
 
   path-type@3.0.0:
     dependencies:
@@ -54255,6 +54448,23 @@ snapshots:
       iconv-lite: 0.7.0
       unpipe: 1.0.0
 
+  rc-field-form@2.7.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      '@rc-component/async-validator': 5.1.0
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  rc-resize-observer@0.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      '@babel/runtime': 7.28.6
+      classnames: 2.5.1
+      rc-util: 5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      resize-observer-polyfill: 1.5.1
+
   rc-resize-observer@1.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.28.6
@@ -54272,19 +54482,20 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
+  rc-util@4.21.1:
+    dependencies:
+      add-dom-event-listener: 1.1.0
+      prop-types: 15.8.1
+      react-is: 16.13.1
+      react-lifecycles-compat: 3.0.4
+      shallowequal: 1.1.0
+
   rc-util@5.39.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       react-is: 18.3.1
-
-  rc-util@5.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
-    dependencies:
-      '@babel/runtime': 7.24.6
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      react-is: 18.3.0
 
   rc-util@5.44.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
@@ -54392,7 +54603,7 @@ snapshots:
 
   react-error-boundary@3.1.4(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.28.6
       react: 19.1.0
 
   react-error-overlay@6.0.11: {}
@@ -54735,7 +54946,7 @@ snapshots:
 
   react-textarea-autosize@8.3.4(@types/react@19.1.8)(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.28.6
       react: 19.1.0
       use-composed-ref: 1.3.0(react@19.1.0)
       use-latest: 1.2.1(@types/react@19.1.8)(react@19.1.0)
@@ -54750,7 +54961,7 @@ snapshots:
 
   react-transition-group@4.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.28.6
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -54793,6 +55004,11 @@ snapshots:
       loose-envify: 1.4.0
 
   react@19.1.0: {}
+
+  reactcss@1.2.3(react@19.1.0):
+    dependencies:
+      lodash: 4.17.21
+      react: 19.1.0
 
   read-cache@1.0.0:
     dependencies:
@@ -56675,7 +56891,7 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
-      use-sync-external-store: 1.5.0(react@19.1.0)
+      use-sync-external-store: 1.6.0(react@19.1.0)
 
   symbol-tree@3.2.4: {}
 

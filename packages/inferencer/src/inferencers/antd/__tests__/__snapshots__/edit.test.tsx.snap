@@ -5,11 +5,11 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
   <div>
     <div>
       <div
-        class="ant-page-header css-dev-only-do-not-override-xbngoj ant-page-header-has-breadcrumb ant-page-header-ghost"
+        class="ant-page-header css-dev-only-do-not-override-1enej14 ant-page-header-has-breadcrumb ant-page-header-ghost"
         style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb css-dev-only-do-not-override-xbngoj css-var-root"
+          class="ant-breadcrumb css-dev-only-do-not-override-1enej14 css-var-root"
         >
           <ol>
             <li
@@ -53,21 +53,21 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
           </ol>
         </nav>
         <div
-          class="ant-page-header-heading css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-heading css-dev-only-do-not-override-1enej14"
         >
           <div
-            class="ant-page-header-heading-left css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-left css-dev-only-do-not-override-1enej14"
           >
             <div
-              class="ant-page-header-back css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-back css-dev-only-do-not-override-1enej14"
             >
               <div
                 aria-label="back"
-                class="ant-page-header-back-button css-dev-only-do-not-override-xbngoj"
+                class="ant-page-header-back-button css-dev-only-do-not-override-1enej14"
                 role="button"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only"
+                  class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only"
                   type="button"
                 >
                   <span
@@ -97,35 +97,35 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
               </div>
             </div>
             <span
-              class="ant-page-header-heading-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-title css-dev-only-do-not-override-1enej14"
             >
               <h4
-                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               >
                 Edit Post
               </h4>
             </span>
             <span
-              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-1enej14"
             >
               <h5
-                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-extra css-dev-only-do-not-override-1enej14"
           >
             <div
-              class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+              class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
             >
               <div
                 class="ant-space-item"
               >
                 <div
-                  class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+                  class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
                   style="flex-wrap: wrap;"
                 >
                   <div
@@ -135,7 +135,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       href="/posts"
                     >
                       <button
-                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-list-button"
+                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-list-button"
                         title=""
                         type="button"
                       >
@@ -172,7 +172,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                     class="ant-space-item"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-refresh-button"
+                      class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-refresh-button"
                       type="button"
                     >
                       <span
@@ -209,31 +209,33 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-content css-dev-only-do-not-override-1enej14"
         >
           <div
-            class="ant-spin-nested-loading css-dev-only-do-not-override-xbngoj css-var-root"
+            aria-busy="false"
+            aria-live="polite"
+            class="ant-spin css-dev-only-do-not-override-1enej14 css-var-root"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-card css-dev-only-do-not-override-1enej14 css-var-root"
               >
                 <div
                   class="ant-card-body"
                 >
                   <form
-                    class="ant-form ant-form-vertical css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj"
+                    class="ant-form ant-form-vertical css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14"
                   >
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -244,7 +246,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -254,7 +256,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input ant-input-disabled css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input ant-input-disabled css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 disabled=""
                                 id="id"
                                 readonly=""
@@ -267,13 +269,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -284,7 +286,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -294,7 +296,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="title"
                                 type="text"
                                 value="Nobis exercitationem officia quia est."
@@ -305,13 +307,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -322,7 +324,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -332,7 +334,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="slug"
                                 type="text"
                                 value="provident-culpa-facere"
@@ -343,13 +345,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -360,7 +362,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -370,7 +372,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <textarea
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="content"
                                 rows="5"
                               >
@@ -382,13 +384,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -399,7 +401,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -409,7 +411,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="hit"
                                 type="text"
                                 value="920557"
@@ -420,13 +422,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -437,7 +439,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -446,19 +448,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                aria-required="true"
-                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-xbngoj ant-select-single ant-select-show-arrow ant-select-show-search"
+                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-1enej14 ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
-                                  class="ant-select-content"
+                                  class="ant-select-content ant-select-content-has-value"
+                                  title="Numquam Saepe Illo"
                                 >
-                                  <div
-                                    class="ant-select-content-value"
-                                    style="visibility: visible;"
-                                    title="Numquam Saepe Illo"
-                                  >
-                                    Numquam Saepe Illo
-                                  </div>
+                                  Numquam Saepe Illo
                                   <input
                                     aria-autocomplete="list"
                                     aria-expanded="false"
@@ -502,13 +498,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -519,7 +515,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -528,19 +524,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                aria-required="true"
-                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-xbngoj ant-select-single ant-select-show-arrow ant-select-show-search"
+                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-1enej14 ant-select-single ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
-                                  class="ant-select-content"
+                                  class="ant-select-content ant-select-content-has-value"
+                                  title="Eriberto"
                                 >
-                                  <div
-                                    class="ant-select-content-value"
-                                    style="visibility: visible;"
-                                    title="Eriberto"
-                                  >
-                                    Eriberto
-                                  </div>
+                                  Eriberto
                                   <input
                                     aria-autocomplete="list"
                                     aria-expanded="false"
@@ -584,13 +574,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -601,7 +591,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -611,7 +601,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="status"
                                 type="text"
                                 value="draft"
@@ -622,13 +612,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -639,7 +629,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -649,7 +639,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="status_color"
                                 type="text"
                                 value="orange"
@@ -660,13 +650,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -677,7 +667,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -686,7 +676,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-picker ant-picker-outlined css-dev-only-do-not-override-xbngoj css-var-root ant-picker-css-var"
+                                class="ant-picker ant-picker-outlined css-dev-only-do-not-override-1enej14 css-var-root ant-picker-css-var"
                               >
                                 <div
                                   class="ant-picker-input"
@@ -756,13 +746,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -773,7 +763,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -782,7 +772,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                class="ant-picker ant-picker-outlined css-dev-only-do-not-override-xbngoj css-var-root ant-picker-css-var"
+                                class="ant-picker ant-picker-outlined css-dev-only-do-not-override-1enej14 css-var-root ant-picker-css-var"
                               >
                                 <div
                                   class="ant-picker-input"
@@ -852,13 +842,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class=""
@@ -868,7 +858,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -877,10 +867,10 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <span
-                                class="ant-upload-wrapper css-dev-only-do-not-override-xbngoj css-var-root"
+                                class="ant-upload-wrapper css-dev-only-do-not-override-1enej14 css-var-root"
                               >
                                 <div
-                                  class="css-dev-only-do-not-override-xbngoj ant-upload ant-upload-drag"
+                                  class="css-dev-only-do-not-override-1enej14 ant-upload ant-upload-drag"
                                 >
                                   <span
                                     class="ant-upload ant-upload-btn"
@@ -941,7 +931,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                                         class="ant-upload-list-item-actions picture"
                                       >
                                         <button
-                                          class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action"
+                                          class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-sm ant-btn-icon-only ant-upload-list-item-action"
                                           title="Remove file"
                                           type="button"
                                         >
@@ -981,13 +971,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -998,7 +988,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -1007,8 +997,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                               class="ant-form-item-control-input-content"
                             >
                               <div
-                                aria-required="true"
-                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-xbngoj ant-select-multiple ant-select-show-arrow ant-select-show-search"
+                                class="ant-select ant-select-outlined ant-select-in-form-item css-var-root ant-select-css-var css-dev-only-do-not-override-1enej14 ant-select-multiple ant-select-show-arrow ant-select-show-search"
                               >
                                 <div
                                   class="ant-select-content"
@@ -1104,13 +1093,13 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                       </div>
                     </div>
                     <div
-                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-xbngoj ant-form-item-vertical"
+                      class="ant-form-item css-var-root ant-form-css-var css-dev-only-do-not-override-1enej14 ant-form-item-vertical"
                     >
                       <div
-                        class="ant-row ant-form-item-row css-dev-only-do-not-override-xbngoj css-var-root"
+                        class="ant-row ant-form-item-row css-dev-only-do-not-override-1enej14 css-var-root"
                       >
                         <div
-                          class="ant-col ant-form-item-label css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-label css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <label
                             class="ant-form-item-required"
@@ -1121,7 +1110,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                           </label>
                         </div>
                         <div
-                          class="ant-col ant-form-item-control css-dev-only-do-not-override-xbngoj css-var-root"
+                          class="ant-col ant-form-item-control css-dev-only-do-not-override-1enej14 css-var-root"
                         >
                           <div
                             class="ant-form-item-control-input"
@@ -1131,7 +1120,7 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                             >
                               <input
                                 aria-required="true"
-                                class="ant-input css-dev-only-do-not-override-xbngoj ant-input-outlined css-var-root ant-input-css-var"
+                                class="ant-input css-dev-only-do-not-override-1enej14 ant-input-outlined css-var-root ant-input-css-var"
                                 id="language"
                                 type="text"
                                 value="2"
@@ -1151,14 +1140,14 @@ exports[`AntdEditInferencer > should match the snapshot 1`] = `
                   >
                     <span>
                       <div
-                        class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+                        class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
                         style="flex-wrap: wrap; float: right; margin-right: 24px;"
                       >
                         <div
                           class="ant-space-item"
                         >
                           <button
-                            class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid refine-save-button"
+                            class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid refine-save-button"
                             type="button"
                           >
                             <span

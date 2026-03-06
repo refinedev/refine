@@ -5,11 +5,11 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
   <div>
     <div>
       <div
-        class="ant-page-header css-dev-only-do-not-override-xbngoj ant-page-header-has-breadcrumb ant-page-header-ghost"
+        class="ant-page-header css-dev-only-do-not-override-1enej14 ant-page-header-has-breadcrumb ant-page-header-ghost"
         style="padding: 0px;"
       >
         <nav
-          class="ant-breadcrumb css-dev-only-do-not-override-xbngoj css-var-root"
+          class="ant-breadcrumb css-dev-only-do-not-override-1enej14 css-var-root"
         >
           <ol>
             <li
@@ -53,21 +53,21 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
           </ol>
         </nav>
         <div
-          class="ant-page-header-heading css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-heading css-dev-only-do-not-override-1enej14"
         >
           <div
-            class="ant-page-header-heading-left css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-left css-dev-only-do-not-override-1enej14"
           >
             <div
-              class="ant-page-header-back css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-back css-dev-only-do-not-override-1enej14"
             >
               <div
                 aria-label="back"
-                class="ant-page-header-back-button css-dev-only-do-not-override-xbngoj"
+                class="ant-page-header-back-button css-dev-only-do-not-override-1enej14"
                 role="button"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only"
+                  class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only"
                   type="button"
                 >
                   <span
@@ -97,35 +97,35 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
               </div>
             </div>
             <span
-              class="ant-page-header-heading-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-title css-dev-only-do-not-override-1enej14"
             >
               <h4
-                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               >
                 Show Post
               </h4>
             </span>
             <span
-              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-1enej14"
             >
               <h5
-                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-extra css-dev-only-do-not-override-1enej14"
           >
             <div
-              class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+              class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
             >
               <div
                 class="ant-space-item"
               >
                 <div
-                  class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+                  class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
                   style="flex-wrap: wrap;"
                 >
                   <div
@@ -135,7 +135,7 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
                       href="/posts"
                     >
                       <button
-                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-list-button"
+                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-list-button"
                         title=""
                         type="button"
                       >
@@ -172,7 +172,7 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
                     class="ant-space-item"
                   >
                     <button
-                      class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-refresh-button"
+                      class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined refine-refresh-button"
                       type="button"
                     >
                       <span
@@ -209,52 +209,54 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-content css-dev-only-do-not-override-1enej14"
         >
           <div
-            class="ant-spin-nested-loading css-dev-only-do-not-override-xbngoj css-var-root"
+            aria-busy="false"
+            aria-live="polite"
+            class="ant-spin css-dev-only-do-not-override-1enej14 css-var-root"
           >
             <div
               class="ant-spin-container"
             >
               <div
-                class="ant-card css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-card css-dev-only-do-not-override-1enej14 css-var-root"
               >
                 <div
                   class="ant-card-body"
                 >
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Id
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     11
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Title
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Nobis exercitationem officia quia est.
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Slug
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     provident-culpa-facere
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Content
                   </h5>
@@ -262,81 +264,81 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
                   </p>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Hit
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     920,557
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Category
                   </h5>
                   Numquam Saepe Illo
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     User
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Eriberto Leannon
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Status
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     draft
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Status Color
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     orange
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Created At
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     04/02/2022
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Published At
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     08/10/2021
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Image
                   </h5>
                   <div
-                    class="ant-image css-dev-only-do-not-override-xbngoj css-var-root ant-image-css-var"
+                    class="ant-image css-dev-only-do-not-override-1enej14 css-var-root ant-image-css-var"
                   >
                     <img
-                      class="ant-image-img css-dev-only-do-not-override-xbngoj"
+                      class="ant-image-img css-dev-only-do-not-override-1enej14"
                       src="http://loremflickr.com/640/480/abstract"
                       style="max-width: 200px;"
                     />
@@ -345,27 +347,27 @@ exports[`AntdShowInferencer > should match the snapshot 1`] = `
                     />
                   </div>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Tags
                   </h5>
                   <span
-                    class="ant-tag ant-tag-filled css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-tag ant-tag-filled css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Error Eos Et
                   </span>
                   <span
-                    class="ant-tag ant-tag-filled css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-tag ant-tag-filled css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Nobis Et Ut
                   </span>
                   <h5
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     Language
                   </h5>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                   >
                     2
                   </span>

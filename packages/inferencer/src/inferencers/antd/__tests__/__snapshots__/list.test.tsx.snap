@@ -5,39 +5,39 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
   <div>
     <div>
       <div
-        class="ant-page-header css-dev-only-do-not-override-xbngoj ant-page-header-has-breadcrumb ant-page-header-ghost"
+        class="ant-page-header css-dev-only-do-not-override-1enej14 ant-page-header-has-breadcrumb ant-page-header-ghost"
         style="padding: 0px;"
       >
         <div
-          class="ant-page-header-heading css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-heading css-dev-only-do-not-override-1enej14"
         >
           <div
-            class="ant-page-header-heading-left css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-left css-dev-only-do-not-override-1enej14"
           >
             <span
-              class="ant-page-header-heading-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-title css-dev-only-do-not-override-1enej14"
             >
               <h4
-                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography refine-pageHeader-title css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               >
                 Posts
               </h4>
             </span>
             <span
-              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-xbngoj"
+              class="ant-page-header-heading-sub-title css-dev-only-do-not-override-1enej14"
             >
               <h5
-                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-xbngoj css-var-root"
+                class="ant-typography ant-typography-secondary refine-pageHeader-subTitle css-dev-only-do-not-override-1enej14 css-var-root"
                 style="margin-bottom: 0px;"
               />
             </span>
           </div>
           <span
-            class="ant-page-header-heading-extra css-dev-only-do-not-override-xbngoj"
+            class="ant-page-header-heading-extra css-dev-only-do-not-override-1enej14"
           >
             <div
-              class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+              class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
             >
               <div
                 class="ant-space-item"
@@ -46,7 +46,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                   href="/posts/create"
                 >
                   <button
-                    class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid refine-create-button"
+                    class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid refine-create-button"
                     title=""
                     type="button"
                   >
@@ -86,20 +86,22 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
           </span>
         </div>
         <div
-          class="ant-page-header-content css-dev-only-do-not-override-xbngoj"
+          class="ant-page-header-content css-dev-only-do-not-override-1enej14"
         >
           <div>
             <div
-              class="css-var-root ant-table-css-var ant-table-wrapper css-dev-only-do-not-override-xbngoj"
+              class="css-var-root ant-table-css-var ant-table-wrapper css-dev-only-do-not-override-1enej14"
             >
               <div
-                class="ant-spin-nested-loading css-dev-only-do-not-override-xbngoj css-var-root"
+                aria-busy="false"
+                aria-live="polite"
+                class="ant-spin css-dev-only-do-not-override-1enej14 css-var-root"
               >
                 <div
                   class="ant-spin-container"
                 >
                   <div
-                    class="ant-table css-var-root ant-table-css-var css-dev-only-do-not-override-xbngoj ant-table-fix-start-shadow ant-table-fix-end-shadow ant-table-scroll-horizontal"
+                    class="ant-table css-var-root ant-table-css-var css-dev-only-do-not-override-1enej14 ant-table-fix-start-shadow ant-table-fix-end-shadow ant-table-scroll-horizontal"
                   >
                     <div
                       class="ant-table-container"
@@ -386,7 +388,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   04/02/2022
                                 </span>
@@ -395,7 +397,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   08/10/2021
                                 </span>
@@ -404,10 +406,10 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image css-dev-only-do-not-override-xbngoj css-var-root ant-image-css-var"
+                                  class="ant-image css-dev-only-do-not-override-1enej14 css-var-root ant-image-css-var"
                                 >
                                   <img
-                                    class="ant-image-img css-dev-only-do-not-override-xbngoj"
+                                    class="ant-image-img css-dev-only-do-not-override-1enej14"
                                     src="http://loremflickr.com/640/480/abstract"
                                     style="max-width: 100px;"
                                   />
@@ -420,7 +422,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -434,7 +436,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+                                  class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
                                 >
                                   <div
                                     class="ant-space-item"
@@ -443,7 +445,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                       href="/posts/edit/11"
                                     >
                                       <button
-                                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
+                                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
                                         title=""
                                         type="button"
                                       >
@@ -480,7 +482,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                       href="/posts/show/11"
                                     >
                                       <button
-                                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
+                                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
                                         title=""
                                         type="button"
                                       >
@@ -514,7 +516,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <button
-                                      class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-dangerous ant-btn-color-dangerous ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-delete-button"
+                                      class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-dangerous ant-btn-color-dangerous ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-delete-button"
                                       title=""
                                       type="button"
                                     >
@@ -596,7 +598,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   09/24/2022
                                 </span>
@@ -605,7 +607,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-typography css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-typography css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   09/01/2021
                                 </span>
@@ -614,10 +616,10 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-image css-dev-only-do-not-override-xbngoj css-var-root ant-image-css-var"
+                                  class="ant-image css-dev-only-do-not-override-1enej14 css-var-root ant-image-css-var"
                                 >
                                   <img
-                                    class="ant-image-img css-dev-only-do-not-override-xbngoj"
+                                    class="ant-image-img css-dev-only-do-not-override-1enej14"
                                     src="http://loremflickr.com/640/480/abstract"
                                     style="max-width: 100px;"
                                   />
@@ -630,12 +632,12 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <span
-                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   Error Eos Et
                                 </span>
                                 <span
-                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-xbngoj css-var-root"
+                                  class="ant-tag ant-tag-filled css-dev-only-do-not-override-1enej14 css-var-root"
                                 >
                                   Nobis Et Ut
                                 </span>
@@ -649,7 +651,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                 class="ant-table-cell"
                               >
                                 <div
-                                  class="ant-space css-dev-only-do-not-override-xbngoj ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+                                  class="ant-space css-dev-only-do-not-override-1enej14 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
                                 >
                                   <div
                                     class="ant-space-item"
@@ -658,7 +660,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                       href="/posts/edit/21"
                                     >
                                       <button
-                                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
+                                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
                                         title=""
                                         type="button"
                                       >
@@ -695,7 +697,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                       href="/posts/show/21"
                                     >
                                       <button
-                                        class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
+                                        class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
                                         title=""
                                         type="button"
                                       >
@@ -729,7 +731,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <button
-                                      class="ant-btn css-dev-only-do-not-override-xbngoj css-var-root ant-btn-default ant-btn-dangerous ant-btn-color-dangerous ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-delete-button"
+                                      class="ant-btn css-dev-only-do-not-override-1enej14 css-var-root ant-btn-default ant-btn-dangerous ant-btn-color-dangerous ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-delete-button"
                                       title=""
                                       type="button"
                                     >
@@ -767,7 +769,7 @@ exports[`AntdListInferencer > should match the snapshot 1`] = `
                     </div>
                   </div>
                   <ul
-                    class="ant-pagination ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-xbngoj css-var-root ant-pagination-simple"
+                    class="ant-pagination ant-table-pagination ant-table-pagination-center css-dev-only-do-not-override-1enej14 css-var-root ant-pagination-simple"
                   >
                     <li
                       aria-disabled="true"
