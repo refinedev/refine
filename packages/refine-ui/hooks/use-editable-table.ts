@@ -1,4 +1,6 @@
-// @ts-nocheck — React 19 / @refinedev/core v5 type compatibility
+// Note: a handful of lines below carry @ts-expect-error because
+// @refinedev/core v5 ships narrower generic constraints that don't yet
+// reflect all valid runtime usages (tracked upstream).
 import {
   useUpdate,
   type BaseKey,

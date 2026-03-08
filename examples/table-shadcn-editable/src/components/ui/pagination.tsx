@@ -38,26 +38,41 @@ PaginationItem.displayName = "PaginationItem";
 type PaginationLinkProps = {
   isActive?: boolean;
 } & Pick<ButtonProps, "size"> &
-  React.ComponentProps<"a">;
+  // Render as <a> when href is provided, otherwise as <button> for
+  // programmatic (JS-driven) pagination — avoids <a> without href.
+  (({ href: string } & React.ComponentProps<"a">) |
+    ({ href?: undefined } & React.ComponentProps<"button">));
 
 const PaginationLink = ({
   className,
   isActive,
   size = "icon",
+  href,
   ...props
-}: PaginationLinkProps) => (
-  <a
-    aria-current={isActive ? "page" : undefined}
-    className={cn(
-      buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size,
-      }),
-      className,
-    )}
-    {...props}
-  />
-);
+}: PaginationLinkProps) => {
+  const classes = cn(
+    buttonVariants({ variant: isActive ? "outline" : "ghost", size }),
+    className,
+  );
+  if (href) {
+    return (
+      <a
+        href={href}
+        aria-current={isActive ? "page" : undefined}
+        className={classes}
+        {...(props as React.ComponentProps<"a">)}
+      />
+    );
+  }
+  return (
+    <button
+      type="button"
+      aria-current={isActive ? "page" : undefined}
+      className={classes}
+      {...(props as React.ComponentProps<"button">)}
+    />
+  );
+};
 PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({
