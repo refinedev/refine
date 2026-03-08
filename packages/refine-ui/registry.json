@@ -376,6 +376,24 @@
       ]
     },
     {
+      "name": "use-editable-table",
+      "type": "registry:hook",
+      "title": "useEditableTable",
+      "description": "Companion hook for useTable that adds inline row-editing to shadcn/ui tables, mirroring the API of @refinedev/antd's useEditableTable for headless setups.",
+      "dependencies": ["@refinedev/core", "@refinedev/react-table", "@tanstack/react-table"],
+      "registryDependencies": [],
+      "author": "Refine <info@refine.dev>",
+      "docs": "https://github.com/refinedev/refine",
+      "categories": ["table", "editable", "inline-edit", "hooks", "data"],
+      "files": [
+        {
+          "path": "registry/new-york/refine-ui/data-table/use-editable-table.ts",
+          "type": "registry:hook",
+          "target": "src/hooks/use-editable-table.ts"
+        }
+      ]
+    },
+    {
       "name": "auto-save-indicator",
       "type": "registry:component",
       "title": "Auto Save Indicator",
