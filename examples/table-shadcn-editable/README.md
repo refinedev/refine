@@ -8,7 +8,7 @@ A refine example demonstrating an **inline editable table** built with [shadcn/u
 - Edit title and status fields directly in the table
 - Optimistic mutation updates via `useUpdate`
 - Pagination with shadcn/ui Pagination components
-- Fully typed with TypeScript
+- TypeScript-typed hook API; component files use `// @ts-nocheck` for React 19 / Radix UI compatibility
 
 ## Getting Started
 

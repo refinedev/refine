@@ -185,13 +185,20 @@ export const useEditableTable = <
       disabled: isPending,
       onClick: () => {
         if (editingId === undefined) return;
+        const savedId = editingId; // capture before async dispatch
         mutate(
-          { resource, id: editingId, values: editValues, mutationMode },
+          { resource, id: savedId, values: editValues, mutationMode },
           {
             onSuccess: () => {
               if (autoSaveClose) {
-                setEditingId(undefined);
-                setEditValues({} as TVariables);
+                // Only close the row that was saved; don't disturb a
+                // different row the user may have opened in the meantime.
+                setEditingId((current) =>
+                  current === savedId ? undefined : current,
+                );
+                setEditValues((current) =>
+                  current === editValues ? ({} as TVariables) : current,
+                );
               }
             },
           },
