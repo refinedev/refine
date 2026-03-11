@@ -38,7 +38,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <ListOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <Button
@@ -56,18 +58,16 @@ export const ListButton: React.FC<ListButtonProps> = ({
           onClick(e);
         }
       }}
-      startIcon={!hideText && <ListOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <ListOutlined {...svgIconProps} />)
+      }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
       data-testid={RefineButtonTestIds.ListButton}
       className={RefineButtonClassNames.ListButton}
       {...restProps}
     >
-      {hideText ? (
-        <ListOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </Button>
   );
 };

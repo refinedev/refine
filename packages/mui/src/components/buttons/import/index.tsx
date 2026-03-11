@@ -26,14 +26,18 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
   const { label } = useImportButton();
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <ImportExportOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <label htmlFor="contained-button-file">
       <input {...inputProps} id="contained-button-file" multiple hidden />
       <LoadingButton
         component="span"
-        startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
+        startIcon={
+          hideText ? undefined : (startIcon ?? <ImportExportOutlined {...svgIconProps} />)
+        }
         loadingPosition={hideText ? "center" : "start"}
         loading={loading}
         sx={{ minWidth: 0, ...sx }}
@@ -41,11 +45,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         className={RefineButtonClassNames.ImportButton}
         {...restProps}
       >
-        {hideText ? (
-          <ImportExportOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
+        {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
       </LoadingButton>
     </label>
   );

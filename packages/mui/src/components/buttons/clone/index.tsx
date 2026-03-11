@@ -41,7 +41,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <AddBoxOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <Button
@@ -59,18 +61,16 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           onClick(e);
         }
       }}
-      startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <AddBoxOutlined {...svgIconProps} />)
+      }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
       data-testid={RefineButtonTestIds.CloneButton}
       className={RefineButtonClassNames.CloneButton}
       {...restProps}
     >
-      {hideText ? (
-        <AddBoxOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </Button>
   );
 };

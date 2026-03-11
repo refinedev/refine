@@ -40,7 +40,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <VisibilityOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <Button
@@ -58,18 +60,16 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
           onClick(e);
         }
       }}
-      startIcon={!hideText && <VisibilityOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <VisibilityOutlined {...svgIconProps} />)
+      }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
       data-testid={RefineButtonTestIds.ShowButton}
       className={RefineButtonClassNames.ShowButton}
       {...restProps}
     >
-      {hideText ? (
-        <VisibilityOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </Button>
   );
 };

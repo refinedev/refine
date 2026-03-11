@@ -25,24 +25,24 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
   const { label } = useExportButton();
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <ImportExportOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <LoadingButton
       {...rest}
       loading={loading}
-      startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <ImportExportOutlined {...svgIconProps} />)
+      }
       loadingPosition={hideText ? "center" : "start"}
       sx={{ minWidth: 0, ...sx }}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
       {...restProps}
     >
-      {hideText ? (
-        <ImportExportOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </LoadingButton>
   );
 };

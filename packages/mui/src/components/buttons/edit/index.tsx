@@ -40,7 +40,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <EditOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <Button
@@ -59,9 +61,11 @@ export const EditButton: React.FC<EditButtonProps> = ({
         }
       }}
       startIcon={
-        !hideText && (
-          <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
-        )
+        hideText
+          ? undefined
+          : (startIcon ?? (
+              <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
+            ))
       }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -69,11 +73,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
       className={RefineButtonClassNames.EditButton}
       {...restProps}
     >
-      {hideText ? (
-        <EditOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </Button>
   );
 };

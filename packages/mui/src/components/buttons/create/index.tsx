@@ -39,7 +39,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = props;
+  const { sx, startIcon, ...restProps } = props;
+
+  const defaultIcon = <AddBoxOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <Button
@@ -57,7 +59,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           onClick(e);
         }
       }}
-      startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <AddBoxOutlined {...svgIconProps} />)
+      }
       title={title}
       variant="contained"
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -65,11 +69,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       className={RefineButtonClassNames.CreateButton}
       {...restProps}
     >
-      {hideText ? (
-        <AddBoxOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </Button>
   );
 };

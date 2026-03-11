@@ -24,22 +24,22 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
   const { label } = useSaveButton();
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <SaveOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <LoadingButton
-      startIcon={!hideText && <SaveOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <SaveOutlined {...svgIconProps} />)
+      }
       sx={{ minWidth: 0, ...sx }}
       variant="contained"
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...restProps}
     >
-      {hideText ? (
-        <SaveOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </LoadingButton>
   );
 };

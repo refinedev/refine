@@ -36,11 +36,15 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     dataProviderName,
   });
 
-  const { sx, ...restProps } = rest;
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <RefreshOutlined fontSize="small" {...svgIconProps} />;
 
   return (
     <LoadingButton
-      startIcon={!hideText && <RefreshOutlined {...svgIconProps} />}
+      startIcon={
+        hideText ? undefined : (startIcon ?? <RefreshOutlined {...svgIconProps} />)
+      }
       loading={loading}
       loadingPosition={hideText ? "center" : "start"}
       onClick={onClick ? onClick : onRefresh}
@@ -49,11 +53,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
       className={RefineButtonClassNames.RefreshButton}
       {...restProps}
     >
-      {hideText ? (
-        <RefreshOutlined fontSize="small" {...svgIconProps} />
-      ) : (
-        children ?? label
-      )}
+      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
     </LoadingButton>
   );
 };
