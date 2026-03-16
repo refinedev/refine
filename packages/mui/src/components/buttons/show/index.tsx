@@ -61,7 +61,9 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         }
       }}
       startIcon={
-        hideText ? undefined : (startIcon ?? <VisibilityOutlined {...svgIconProps} />)
+        hideText
+          ? undefined
+          : startIcon ?? <VisibilityOutlined {...svgIconProps} />
       }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -69,7 +71,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       className={RefineButtonClassNames.ShowButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </Button>
   );
 };

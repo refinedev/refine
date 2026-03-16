@@ -60,7 +60,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         }
       }}
       startIcon={
-        hideText ? undefined : (startIcon ?? <AddBoxOutlined {...svgIconProps} />)
+        hideText ? undefined : startIcon ?? <AddBoxOutlined {...svgIconProps} />
       }
       title={title}
       variant="contained"
@@ -69,7 +69,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       className={RefineButtonClassNames.CreateButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </Button>
   );
 };

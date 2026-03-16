@@ -31,7 +31,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   return (
     <LoadingButton
       startIcon={
-        hideText ? undefined : (startIcon ?? <SaveOutlined {...svgIconProps} />)
+        hideText ? undefined : startIcon ?? <SaveOutlined {...svgIconProps} />
       }
       sx={{ minWidth: 0, ...sx }}
       variant="contained"
@@ -39,7 +39,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       className={RefineButtonClassNames.SaveButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </LoadingButton>
   );
 };

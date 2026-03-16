@@ -59,7 +59,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         }
       }}
       startIcon={
-        hideText ? undefined : (startIcon ?? <ListOutlined {...svgIconProps} />)
+        hideText ? undefined : startIcon ?? <ListOutlined {...svgIconProps} />
       }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -67,7 +67,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
       className={RefineButtonClassNames.ListButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </Button>
   );
 };

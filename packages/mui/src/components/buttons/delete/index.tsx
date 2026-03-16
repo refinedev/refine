@@ -83,7 +83,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         disabled={isDisabled}
         loading={loading}
         startIcon={
-          hideText ? undefined : (startIcon ?? <DeleteOutline {...svgIconProps} />)
+          hideText
+            ? undefined
+            : startIcon ?? <DeleteOutline {...svgIconProps} />
         }
         title={title}
         sx={{ minWidth: 0, ...sx }}
@@ -92,7 +94,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         className={RefineButtonClassNames.DeleteButton}
         {...restProps}
       >
-        {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+        {hideText ? startIcon ?? defaultIcon : children ?? label}
       </LoadingButton>
       <Dialog
         open={open}

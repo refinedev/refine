@@ -43,7 +43,9 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
   return (
     <LoadingButton
       startIcon={
-        hideText ? undefined : (startIcon ?? <RefreshOutlined {...svgIconProps} />)
+        hideText
+          ? undefined
+          : startIcon ?? <RefreshOutlined {...svgIconProps} />
       }
       loading={loading}
       loadingPosition={hideText ? "center" : "start"}
@@ -53,7 +55,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
       className={RefineButtonClassNames.RefreshButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </LoadingButton>
   );
 };

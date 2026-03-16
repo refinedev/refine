@@ -62,7 +62,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         }
       }}
       startIcon={
-        hideText ? undefined : (startIcon ?? <AddBoxOutlined {...svgIconProps} />)
+        hideText ? undefined : startIcon ?? <AddBoxOutlined {...svgIconProps} />
       }
       title={title}
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -70,7 +70,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       className={RefineButtonClassNames.CloneButton}
       {...restProps}
     >
-      {hideText ? (startIcon ?? defaultIcon) : (children ?? label)}
+      {hideText ? startIcon ?? defaultIcon : children ?? label}
     </Button>
   );
 };
