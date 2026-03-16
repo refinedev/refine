@@ -1,5 +1,15 @@
 # @refinedev/core
 
+## 5.0.11
+
+### Patch Changes
+
+- [#7289](https://github.com/refinedev/refine/pull/7289) [`c040475723d8e2980c0b3ba6d8fae35e05525b09`](https://github.com/refinedev/refine/commit/c040475723d8e2980c0b3ba6d8fae35e05525b09) Thanks [@RonakRahane](https://github.com/RonakRahane)! - fix: useDeleteButton now passes meta params to useButtonCanAccess
+
+  useDeleteButton was not forwarding the `meta` prop to `useButtonCanAccess`, which caused custom access control rules relying on meta to fail for delete buttons.
+
+  Fixes #7285
+
 ## 5.0.10
 
 ### Patch Changes

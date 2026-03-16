@@ -5,7 +5,7 @@ slug: refine-writer-program
 authors: necati
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-20-refine-writer-program/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-20-refine-writer-program/social.jpg
 hide_table_of_contents: false
 ---
 

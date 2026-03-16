@@ -5,8 +5,9 @@ slug: typescript-dictionary
 authors: abdullah_numan
 category: "Tutorials"
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-07-ts-dictionary/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-ts-dictionary/social.png
 hide_table_of_contents: false
+last_update: 2024-11-11
 ---
 
 **This article was last updated on November 11, 2024 to include advanced techniques for TypeScript dictionary validation and best practices for ensuring type safety in dynamic and complex data structures.**

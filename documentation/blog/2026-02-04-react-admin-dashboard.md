@@ -5,7 +5,7 @@ slug: react-admin-dashboard
 authors: ozgur
 category: "Tutorials"
 tags: [react, admin-panel, dashboards]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-04-react-admin/react-admin-head.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-04-react-admin/react-admin-head.png
 hide_table_of_contents: false
 ---
 

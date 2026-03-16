@@ -5,8 +5,9 @@ slug: what-is-refine-core-how-to-use-it
 authors: salih
 category: "How To Build"
 tags: [opensource]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-what-is-refine-core/how-to-use-refine-core
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-what-is-refine-core/how-to-use-refine-core
 hide_table_of_contents: false
+last_update: 2026-01-16
 ---
 
 When it comes to creating internal tools, low-code platforms are the way to go. With Refine CORE, a React-based low-code platform, you can quickly build data-intensive applications without having to worry about scalability or ease of use. Other low-code platforms may allow you to develop your applications, but they are often limited in terms of flexibility and customizability. With Refine CORE, you have full control over your application and can add any business logic that you need. So if you're looking for a platform that will let you build internal tools quickly and easily, Refine CORE is the right choice!

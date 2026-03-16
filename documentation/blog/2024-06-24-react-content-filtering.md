@@ -5,8 +5,9 @@ slug: react-search-bar-and-filtering
 authors: madars_biss
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/social-2.png
 hide_table_of_contents: false
+last_update: 2024-06-24
 ---
 
 **This article was last updated on Jun 26, 2024, to add techniques and examples for React search bar and filtering**
@@ -19,7 +20,7 @@ You will often meet various implementations in e-commerce stores, human resource
 
 Today we will be building a filtering system that will let us sort the results through filter buttons and custom search queries.
 
-<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/final-app.jpeg" alt="Final app view" />
+<img className="border border-gray-200 rounded" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/final-app.jpeg" alt="Final app view" />
 
 We will use the [Refine](https://github.com/refinedev/refine) framework, which is based on React and allows users to build tools rapidly.
 
@@ -42,7 +43,7 @@ We will place the filtering UI on the top section of the app. There will be sepa
 The content cards will be listed directly below.
 When putting everything into the wireframe, we get the following schema:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.jpeg" alt="Filter UI wireframe" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/wireframe.jpeg" alt="Filter UI wireframe" />
 
 ## Setting up the Refine
 
@@ -73,7 +74,7 @@ npm run dev
 
 After the app has started, you should see the following page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/welcome.png" alt="Welcome Page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/welcome.png" alt="Welcome Page" />
 
 ## Add global styling
 
@@ -532,20 +533,20 @@ Check if your development server is still running in the terminal. If it is not 
 
 First, we will test the functionality of the filter buttons.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.avif" alt="Filter panel options" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/filters.avif" alt="Filter panel options" className="border border-gray-200 rounded" />
 
 If the filter button is pressed, only the corresponding cards of that category is filtered. If the filter is already active and is pressed again, the filter is disabled and all the records are shown.
 
 Now type in some search queries in the search bar.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.avif" alt="Search input with filters" className="border border-gray-200 rounded" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/search.avif" alt="Search input with filters" className="border border-gray-200 rounded" />
 
 Search results are fully dynamic, meaning the filtering is updated each time you add a new character to the query.
 
 Finally, let's test the app on mobile screen sizes.
 
 <div className="flex justify-center">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/responsive.jpeg" alt="Mobile responsive filter UI" className="border border-gray-200 rounded" style={{ height: "400px" }} />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-26-react-content-filtering/responsive.jpeg" alt="Mobile responsive filter UI" className="border border-gray-200 rounded" style={{ height: "400px" }} />
 </div>
 
 ## React filtering tips

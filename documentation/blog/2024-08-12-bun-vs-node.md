@@ -5,8 +5,9 @@ slug: bun-js-vs-node
 authors: victor_uma
 category: "Alternatives"
 tags: [javascript, comparison, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social-3.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-04-bun-vs-node/social-3.png
 hide_table_of_contents: false
+last_update: 2026-02-03
 ---
 
 **This article was last updated on August 12, 2024 to add sections for Cross-Platform Support and Comparison with Other Runtimes (e.g., Deno).**
@@ -177,7 +178,7 @@ k6 run script.js
 Here is the result for our Node server:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/node.png"  alt="bun vs node js" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-04-bun-vs-node/node.png"  alt="bun vs node js" />
 </div>
 
 <br/>
@@ -185,7 +186,7 @@ Here is the result for our Node server:
 Here is the result for our Bun server:
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/bun.png"  alt="bun vs node js" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-04-bun-vs-node/bun.png"  alt="bun vs node js" />
 </div>
 
 <br/>

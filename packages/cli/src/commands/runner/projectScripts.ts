@@ -1,6 +1,28 @@
+import path from "path";
+import fs from "fs";
 import { ProjectTypes } from "@definitions/projectTypes";
 
 function resolveBin(name: string) {
+  // Walk up from the current working directory to find node_modules/.bin/${name}.
+  // This handles monorepo/workspace setups where packages may be hoisted to a
+  // parent directory's node_modules.
+  let dir = process.cwd();
+  while (true) {
+    if (process.platform === "win32") {
+      const exePath = path.join(dir, "node_modules", ".bin", `${name}.exe`);
+      if (fs.existsSync(exePath)) return exePath;
+      const cmdPath = path.join(dir, "node_modules", ".bin", `${name}.cmd`);
+      if (fs.existsSync(cmdPath)) return cmdPath;
+    } else {
+      const binPath = path.join(dir, "node_modules", ".bin", name);
+      if (fs.existsSync(binPath)) return binPath;
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) break; // reached filesystem root
+    dir = parent;
+  }
+
+  // Fall back to require.resolve for backward compatibility
   if (process.platform === "win32") {
     try {
       return require.resolve(`.bin/${name}.exe`);

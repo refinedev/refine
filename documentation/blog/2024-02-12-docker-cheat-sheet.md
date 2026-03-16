@@ -5,7 +5,7 @@ slug: docker-cheat-sheet
 authors: muhammad_khabbab
 category: "Engineering"
 tags: [docker, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-12-docker-cheat-sheet/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-02-12-docker-cheat-sheet/social.png
 hide_table_of_contents: false
 ---
 

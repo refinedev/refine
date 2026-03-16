@@ -5,7 +5,7 @@ slug: what-is-internal-tools
 authors: ozgur
 category: "How To Build"
 tags: [admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-21-what-is-internal-tools/internal-tools-blog.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-21-what-is-internal-tools/internal-tools-blog.webp
 hide_table_of_contents: false
 ---
 

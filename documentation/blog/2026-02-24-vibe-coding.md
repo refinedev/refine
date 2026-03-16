@@ -5,7 +5,7 @@ slug: what-is-vibe-coding
 authors: ozgur
 category: "AI & Innovation"
 tags: [ai, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-24-what-is-vibe-coding/banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-24-what-is-vibe-coding/banner.png
 hide_table_of_contents: false
 ---
 
@@ -17,7 +17,7 @@ This post covers what vibe coding actually is, how the tooling landscape has evo
 
 In February 2025, [Andrej Karpathy](https://x.com/karpathy) (former head of AI at Tesla, co-founder of OpenAI) posted a tweet that gave the idea its name:
 
-![Screenshot of the tweet of Andrej Karpathy](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-24-what-is-vibe-coding/image-twitter-1.webp)
+![Screenshot of the tweet of Andrej Karpathy](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-24-what-is-vibe-coding/image-twitter-1.webp)
 
 That tweet resonated because it described something many developers were already doing but hadn't named. You open an AI tool, describe what you want in plain English, and let the model generate the code. You don't read every line. You don't plan the architecture upfront. You just see if it works, adjust your prompt, and keep going.
 

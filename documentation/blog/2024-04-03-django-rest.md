@@ -5,7 +5,7 @@ slug: django-rest-framework
 authors: muhammad_khabbab
 category: "Ecosystem / Integrations"
 tags: [backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-03-django-rest/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-04-03-django-rest/social.png
 hide_table_of_contents: false
 ---
 
@@ -168,7 +168,7 @@ python manage.py migrate
 ```
 
 <div className="centered-image">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-03-django-rest/REST-1.png" alt="Snapshot of making and applying migrations" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-04-03-django-rest/REST-1.png" alt="Snapshot of making and applying migrations" />
 </div>
 
 ### **Create Serializer**
@@ -249,7 +249,7 @@ It will return a localhost URL to open it in the browser by appending `api/` and
 **The interface provided by DRF will look like this:**
 
 <div className="centered-image">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-03-django-rest/REST-2.png" alt="Snapshot of Django REST Framework Interface" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-04-03-django-rest/REST-2.png" alt="Snapshot of Django REST Framework Interface" />
 </div>
 
 ## **Conclusion**

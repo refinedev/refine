@@ -5,7 +5,7 @@ slug: refine-new-explored-part-1
 authors: batuhan
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-07-25-refine-new-part-1/social.png
 hide_table_of_contents: false
 ---
 
@@ -21,7 +21,7 @@ This is the first of a two-part series. In part one, we will take time to share 
 
  <div className="centered-image"  >
   <a href="https://refine.new/">
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/refine-new..gif" alt="refine new" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-07-25-refine-new-part-1/refine-new..gif" alt="refine new" />
 </a>
 </div>
 
@@ -89,7 +89,7 @@ npm create refine-app@latest
 <br/>
 
  <div className="centered-image"  >
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/cli.avif" alt="refine new" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-07-25-refine-new-part-1/cli.avif" alt="refine new" />
 </div>
 
 <br/>
@@ -175,7 +175,7 @@ We can represent this flow in a diagram as follows:
 <br/>
 
  <div className="centered-image"  >
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/user-flow.png" alt="refine new user flow" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-07-25-refine-new-part-1/user-flow.png" alt="refine new user flow" />
 </div>
 
 <br/>
@@ -195,7 +195,7 @@ As mentioned earlier, we wanted to reuse `create-refine-app`. Since we are alrea
 <br/>
 
  <div className="centered-image"  >
-  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/create-refine.png" alt="cli flow" />
+  <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-07-25-refine-new-part-1/create-refine.png" alt="cli flow" />
 </div>
 
 <br/>

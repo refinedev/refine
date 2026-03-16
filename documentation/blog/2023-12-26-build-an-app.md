@@ -5,7 +5,7 @@ slug: how-to-build-a-web-app
 authors: joseph_mawa
 category: "How To Build"
 tags: [tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-26-build-an-app/social.webp
 hide_table_of_contents: false
 ---
 

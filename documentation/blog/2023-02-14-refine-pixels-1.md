@@ -5,11 +5,12 @@ slug: refine-pixels-guide
 authors: abdullah_numan
 category: "How To Build"
 tags: [refine-week]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/social.png
 hide_table_of_contents: false
+last_update: 2023-04-10
 ---
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="Refine and Supabase logos" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/refine_supabase.png" alt="Refine and Supabase logos" />
 
 This guide is a comprehensive, seven-part tutorial that walks you through building two full-stack apps with [**Refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/). By the end, you'll have a fully functional CRUD app called "**Pixels**" and an admin dashboard called "**Pixels Admin**".
 
@@ -192,7 +193,7 @@ We'll be visiting code like this often, but if you examine closely you can see t
 
 The following diagram illustrates the interactions:
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine-flow.png" alt="Refine data flow diagram" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/refine-flow.png" alt="Refine data flow diagram" />
 
 <br />
 
@@ -229,7 +230,7 @@ We'll be using **Supabase** to build our backend for **Pixels** app.
 
 ## A week of Refine ft. Supabase
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="Pixels app logo banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="Pixels app logo banner" />
 
   <br/>
   <br/>
@@ -376,7 +377,7 @@ npm run dev
 
 After that, navigate to `http://localhost:5173`, and lo and behold! we have a **Refine** app:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels app welcome screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels app welcome screen" />
 
 <br />
 
@@ -1135,7 +1136,7 @@ Creating a database server is quite intuitive in **Supabase**. Just go over to y
 For our app, we have four tables: `auth.users`, `public.users`, `canvases` and `pixels`. The entity relational diagram for our database looks like this:
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="Supabase table editor" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="Supabase table editor" />
 </div>
 
 <br/>
@@ -1158,7 +1159,7 @@ The `auth.users` table is concerned with authentication in our app. It is create
 **Supabase** doesn't allow a client to query the `auth.users` table for security reasons. So, we need to create a shadow of the `auth.users` table in `public.users` with additional columns. We need this shadow table to be able to query `user` information, such as `avatar_url` and `roles` from this table.
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/sql_editor.png"  alt="Supabase SQL editor" />
+  <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/sql_editor.png"  alt="Supabase SQL editor" />
 </div>
 
 <br/>
@@ -1260,7 +1261,7 @@ Also, `public.users` has a one-to-many relationship with `pixels`.
 For simplicity, we'll disable Row Level Security:
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/disable_rls.png"  alt="Disable RLS setting" />
+  <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/disable_rls.png"  alt="Disable RLS setting" />
 </div>
 
 <br/>
@@ -1631,7 +1632,7 @@ If you are already looking at the [`useSimpleList()` argument object's propertie
 
 With this set up - and connected to the Internet - if we run the dev server with `npm run dev` and navigate to `http://localhost:5173`, we are faced with a `<CanvasFeaturedList/>` as a home page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 
@@ -2524,7 +2525,7 @@ After registration, the user is automatically signed in and the browser redirect
 
 And now, since we are logged in, we should be able to create a canvas. After successful creation of a canvas, we should be redirected to `/canvases/:id`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="Create canvas form" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="Create canvas form" />
 
 <br />
 
@@ -2597,7 +2598,7 @@ There will not be any item in the home page because `is_featured` is set to `fal
 
 I've done that and the featured canvases are listed in the `Home` route:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 
@@ -2680,7 +2681,7 @@ And that's it! The channel for `pixels` resource that was specified above in **S
 
 Now, let's try opening the app in two browsers, one with Google account and one with GitHub. Navigate to a canvas page, the same one in both and try adding some `pixels` from each. We'll see that `pixel`s created in one are displayed in the other in real time:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/live-provider.avif"  alt="Live provider implementation for real-time updates" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/live-provider.avif"  alt="Live provider implementation for real-time updates" />
 
 <br />
 
@@ -3062,7 +3063,7 @@ npm run dev
 
 And prepare ourselves to the call-to-action at `http://localhost:5173`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
 
 <br />
 
@@ -3740,7 +3741,7 @@ export default App;
 
 Since `authProvider` prop is already passed in by default, after we added the above resources and granted we are connected to the Internet, we will be redirected to the login page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
 
 <br />
 
@@ -3763,7 +3764,7 @@ password: demodemo
 
 :::
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
 
 <br />
 
@@ -4115,7 +4116,7 @@ return (
 
 With these additions, `/canvases` looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
 
 <br />
 
@@ -4355,7 +4356,7 @@ const can = await enforcer.enforce("editor", resource, action);
 
 And if we refresh at `/canvases`, we can see that the `Delete` button on each row gets disabled.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="Delete buttons disabled for editor role" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="Delete buttons disabled for editor role" />
 
 <br />
 
@@ -4501,7 +4502,7 @@ In the `/canvases` route, an `editor` account should have the `Delete` buttons d
 
 In contrast, it is enabled for an `admin` role:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="Delete buttons enabled for admin role" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="Delete buttons enabled for admin role" />
 
 <br />
 
@@ -4998,13 +4999,13 @@ We are doing this to make sure that we are getting only the logs for the current
 
 With this completed, if we ask for the modal in the `CanvasShow` page, we should be able to see the pixels log list:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="Client audit log table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="Client audit log table" />
 
 <br />
 
 We don't have a case for creating a pixel in the **Pixels Admin** app. But we can go ahead and implement the same pixels `<LogList />` component for each `canvas` item in the `<CanvasList />` page at `/canvases`. The code is essentially the same, but the `View Changes` button appears inside each row in the table:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="Admin audit log table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="Admin audit log table" />
 
 <br />
 

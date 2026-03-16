@@ -5,8 +5,9 @@ slug: building-react-admin-dashboard-with-tremor
 authors: joseph_mawa
 category: "How To Build"
 tags: [react, dashboards, tailwind]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/social.png
 hide_table_of_contents: false
+last_update: 2026-02-06
 ---
 
 ## Introduction
@@ -57,7 +58,7 @@ Follow the steps below to create a headless Refine application using the Refine 
 Follow the steps to create a new Refine project. Select Vite as your build tool, Headless as the UI framework, REST API as the back-end service, and no authentication provider.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="refine.new dashboard builder interface" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/refine-tool.png"  alt="refine.new dashboard builder interface" />
 </div>
 
 <br/>
@@ -92,7 +93,7 @@ npm run dev
 
 Your project should look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/blog-list.png"  alt="Blog list page with table layout" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/blog-list.png"  alt="Blog list page with table layout" />
 
 <br />
 
@@ -152,7 +153,7 @@ td:last-child {
 
 ## What is Tremor
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/what-is-tremor.png"  alt="Tremor UI dashboard components preview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/what-is-tremor.png"  alt="Tremor UI dashboard components preview" />
 
 <br />
 
@@ -477,7 +478,7 @@ export default App;
 
 After successfully making the above changes, you should see the Dashboard entry in the list of resources on the sidebar on the left.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dasboard-error-message.png"  alt="Dashboard error message example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/dasboard-error-message.png"  alt="Dashboard error message example" />
 
 <br />
 
@@ -636,7 +637,7 @@ The Overview section should now look like the image below. The Overview template
 
 You can switch between the Overview and Details sections using the tab.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/overview-template.png"  alt="Dashboard overview template layout" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/overview-template.png"  alt="Dashboard overview template layout" />
 
 <br />
 
@@ -763,7 +764,7 @@ export const KpiCard = ({
 
 The component above will look like the image below after rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/p-indicator-card.png"  alt="Performance indicator card component" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/p-indicator-card.png"  alt="Performance indicator card component" />
 
 <br />
 
@@ -902,7 +903,7 @@ export const DashboardPage: React.FC = () => {
 
 After applying the above changes, your Dashboard section should look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-three-kpis.png"  alt="Dashboard with three KPI cards" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/dashboard-three-kpis.png"  alt="Dashboard with three KPI cards" />
 
 Similarly, let us create a component to visualize the daily variation of our KPIs over time. We will display it below the KPIs. Create the `src/pages/dashboard/chartView/index.tsx` file. You can copy and paste the code below into it.
 
@@ -1027,7 +1028,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
 
 The component above will look like the image below after rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="Chart visualizing KPI trends" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/chart-showing-kpis.png"  alt="Chart visualizing KPI trends" />
 
 Let us import the component above and render it in the `DashboardPage` component. Add the following changes to the `src/pages/dashboard/index.tsx` file. We are replacing the last placeholder component in the Overview section of our template.
 
@@ -1104,13 +1105,13 @@ export const DashboardPage: React.FC = () => {
 
 Your dashboard Overview section should now look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-overview-sectipn.png"  alt="Dashboard overview section layout" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/dashboard-overview-sectipn.png"  alt="Dashboard overview section layout" />
 
 ### Step 4 — Create Details section of the dashboard
 
 We have finished creating the Overview section. Let's create the Details section of the dashboard. When you click the Details button, Refine renders a blank placeholder component which, at the moment, looks like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="Dashboard details section with charts and tables" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/dashboard-details.png"  alt="Dashboard details section with charts and tables" />
 
 We will create a separate component for our Details section. Create the `src/pages/dashboard/details/index.tsx` file. Copy and paste the code below into it.
 
@@ -1477,7 +1478,7 @@ export const DashboardPage: React.FC = () => {
 
 The Details section of your dashboard should now look like the image below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="Additional dashboard details section" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-02-refine-tremor-dashboard/dashboard-details-last.png"  alt="Additional dashboard details section" />
 
 You have just built a simple dashboard using Refine and Tremor. To explore more on what you can do with Refine or Tremor, check out the [Refine](https://refine.dev/core/docs/) or [Tremor documentation](https://www.tremor.so/docs/getting-started/installation).
 

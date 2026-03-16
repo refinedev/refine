@@ -5,7 +5,7 @@ slug: ant-design-vs-mui
 authors: ozgur
 category: "Alternatives"
 tags: [react, comparison, admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-26-antd-vs-mui/banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-26-antd-vs-mui/banner.png
 hide_table_of_contents: false
 ---
 

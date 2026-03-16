@@ -5,7 +5,7 @@ slug: web-development
 authors: abdullah_numan
 category: "Engineering"
 tags: [tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/social.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-20-web-development/social.webp
 hide_table_of_contents: false
 ---
 
@@ -155,7 +155,7 @@ Using open-source tools and frameworks reduces development time and costs, as mo
 
 <a href="https://github.com/refinedev/refine">
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-20-web-development/refine-readme-banner.png" alt="Refine README banner" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-20-web-development/refine-readme-banner.png" alt="Refine README banner" />
 </div>
 </a>
 

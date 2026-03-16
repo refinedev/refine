@@ -78,7 +78,7 @@ npm install -g blitz
 
 You can quickly create the project containing **Refine** and all the features you will use with it, thanks to **Refine**'s Project Creator CLI (Superplate). No extra setup required!
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
 <br />
 
 If you want, you can manually install the Refine packages.
@@ -91,13 +91,13 @@ npm i @refinedev/core @refinedev/antd
 
 [**Refine** Admin Panel Example](https://example.admin.refine.dev/?current=1&pageSize=5)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine-admin-panel.webp" alt="Refine Admin Panel Example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-03-16-internal-tool-frameworks/refine-admin-panel.webp" alt="Refine Admin Panel Example" />
 
 <br/>
 
 [**Refine** Headless + Tailwind CSS Client(B2C) Example](https://example.refine.dev/)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine_client.webp" alt="Refine Client Example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-03-16-internal-tool-frameworks/refine_client.webp" alt="Refine Client Example" />
 
 ## 3. RedwoodJS
 
@@ -125,7 +125,7 @@ Redwood includes deploy support for Netlify, Vercel, Render.com, AWS and more. B
 
 [Link](https://github.com/redwoodjs/example-blog)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/redwood.webp" alt="Redwood Example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-03-16-internal-tool-frameworks/redwood.webp" alt="Redwood Example" />
 
 ## 4. React Admin
 
@@ -152,7 +152,7 @@ yarn add react-admin
 
 ### React Admin Example
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/react_admin.png" alt="React Admin interface example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-03-16-internal-tool-frameworks/react_admin.png" alt="React Admin interface example" />
 
 <br/>
 <br/>

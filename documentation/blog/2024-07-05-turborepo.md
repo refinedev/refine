@@ -5,8 +5,9 @@ slug: how-to-use-turborepo
 authors: muhammad_khabbab
 category: "Ecosystem / Integrations"
 tags: [dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-11-13-turborepo/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-08
 ---
 
 **This article was last updated on July 05, 2024, to add sections for Advanced Configuration Options and Integrating Turborepo with Existing Tools.**
@@ -48,7 +49,7 @@ With your remote caching, builds can achieve amazingly fast build times by provi
 <br/>
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/turbopack.png"  alt="Turbopack architecture diagram" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-11-13-turborepo/turbopack.png"  alt="Turbopack architecture diagram" />
 <em> Source - </em>
 </div>
 

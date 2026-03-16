@@ -7,6 +7,7 @@ category: "How To Build"
 tags: [supabase, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
+last_update: 2022-09-15
 ---
 
 :::caution
@@ -31,7 +32,7 @@ We will use [Supabase](https://supabase.io/) in backend. Let's start by creating
 
 We have to go to [Supabase](https://supabase.io/) and create an organization and database. Then we can start creating our tables.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="Issue tracker start screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/start.png" alt="Issue tracker start screen" />
 <br />
 
 The tables we need to create for our project are as follows:
@@ -43,7 +44,7 @@ The tables we need to create for our project are as follows:
 - `color`: varchar
 
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="Labels table view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/label_table.png" alt="Labels table view" />
 <br />
 
 > priority
@@ -52,7 +53,7 @@ The tables we need to create for our project are as follows:
 - `title` varchar
 
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="Supabase table layout for priority and status entries" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/common_table.png" alt="Supabase table layout for priority and status entries" />
 <br />
 
 > status
@@ -61,7 +62,7 @@ The tables we need to create for our project are as follows:
 - `title` varchar
 
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="Supabase table layout for priority and status entries" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/common_table.png" alt="Supabase table layout for priority and status entries" />
 <br />
 
 > users
@@ -70,7 +71,7 @@ The tables we need to create for our project are as follows:
 - `id` uuid
 
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="Users table view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/user_table.png" alt="Users table view" />
 <br />
 
 > tasks
@@ -86,7 +87,7 @@ The tables we need to create for our project are as follows:
 - `users` uuid
 
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="Tasks table view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/task_table.png" alt="Tasks table view" />
 <br />
 
 We created our database tables. The important part here is that as you can see, in our tasks table, label, priority, status and users values ​​are defined as bigint. To summarize the reason for this, we relation the label, priority, status and users tables that we created above with the corresponding values ​​in our tasks table.
@@ -113,22 +114,22 @@ Now let's go to the Supabase Table editor and create our constant values.
 
 `Label Table`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_value.png" alt="Label value field" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/label_value.png" alt="Label value field" />
 <br />
 
 `Priority Table`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="Priority value field" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/priority_value.png" alt="Priority value field" />
 <br />
 
 `Status Table`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="Status value field" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/status_value.png" alt="Status value field" />
 <br />
 
 Let's create a test task to better understand key relation.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.avif" alt="Task item example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/task_test.avif" alt="Task item example" />
 <br />
 
 As you can see, since we have defined the ids of our label, status, priority and users tables as references to our tasks table, we can now use their values.
@@ -497,7 +498,7 @@ export default App;
 
 Here we define our login and signup pages. We then use the Refine's [router-provider](https://refine.dev/core/docs/packages/documentation/routers/) and [useNavigaton](https://refine.dev/core/docs/core/hooks/navigation/useNavigation/) hooks to switch between login and signup.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.avif" alt="Login page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/login.avif" alt="Login page" />
 <br />
 
 We can now create supabase users and log in from our Refine interface.
@@ -553,7 +554,7 @@ function App() {
 export default App;
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="Issues list view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/list.png" alt="Issues list view" />
 <br />
 
 We can now create lists of tasks and make changes to them.
@@ -913,7 +914,7 @@ export interface ITaskFilterVariables {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="Task list view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/task_list.png" alt="Task list view" />
 <br />
 
 Using Refine's [tableSearch](https://refine.dev/core/docs/guides-and-concepts/search/table-search) and list, we can create our list and perform filtering.
@@ -999,7 +1000,7 @@ export const TaskCreate = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.avif" alt="Create task form" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/create_test.avif" alt="Create task form" />
 <br />
 
 ## Edit Task
@@ -1057,7 +1058,7 @@ export const EditTask = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/edit_test.gif" alt="Edit task form" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/edit_test.gif" alt="Edit task form" />
 <br />
 
 ## Show Task
@@ -1129,7 +1130,7 @@ export const TaskShow: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="Task detail view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/show.png" alt="Task detail view" />
 <br />
 
 By using Refine's basic views such as [create](https://refine.dev/core/docs/ui-frameworks/antd/components/basic-views/create), [edit](https://refine.dev/core/docs/ui-frameworks/antd/components/basic-views/edit/) and [show](https://refine.dev/core/docs/ui-frameworks/antd/components/basic-views/show/), we can now create tasks, edit these tasks and view their details.
@@ -1274,7 +1275,7 @@ export const Dashboard = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dash_overview.png" alt="Dashboard overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/dash_overview.png" alt="Dashboard overview" />
 <br/>
 
 Final version of our `<App.tsx/>`.
@@ -1340,17 +1341,17 @@ Our project is done. Lets see how its look like.
 
 `Overview`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.avif" alt="Project overview panel" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/overview-project.avif" alt="Project overview panel" />
 <br />
 
 `Task Filter`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.avif" alt="Filter panel" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/filter.avif" alt="Filter panel" />
 <br />
 
 `Dashboard Page`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.avif" alt="Issue tracker dashboard" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-12-issue-tracker-refine/dashboard.avif" alt="Issue tracker dashboard" />
 <br />
 
 As you can see, we made a simple and short task manager application using Refine on our front end and using its data-provider.

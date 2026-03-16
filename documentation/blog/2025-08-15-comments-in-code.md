@@ -5,8 +5,9 @@ slug: code-comments
 authors: ozgur
 category: "Engineering"
 tags: [tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-08-19-code-comments/code-comments.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-08-19-code-comments/code-comments.png
 hide_table_of_contents: false
+last_update: 2026-02-19
 ---
 
 # Table of Contents

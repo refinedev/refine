@@ -4,7 +4,7 @@ description: "How AI agents are transforming enterprise operations, with real-wo
 slug: future-of-enterprise-with-ai
 authors: arda
 tags: [ai, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-18-enterprise-ai-agents/ai-agents-banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-18-enterprise-ai-agents/ai-agents-banner.png
 hide_table_of_contents: false
 ---
 

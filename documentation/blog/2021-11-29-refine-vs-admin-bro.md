@@ -7,6 +7,7 @@ category: "Alternatives"
 tags: [admin-panel, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
+last_update: 2022-08-12
 ---
 
 import Tabs from '@theme/Tabs';
@@ -52,7 +53,7 @@ Although **Refine** is a newer framework, it is successful in identifying defici
 npm create refine-app@latest demo-refine-project -- -b v3
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-29-refine-vs-adminbro/project_setup.avif" alt="Refine CLI project setup output" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-29-refine-vs-adminbro/project_setup.avif" alt="Refine CLI project setup output" />
 
 ### Features
 
@@ -196,7 +197,7 @@ You just need to tell the route of your component to the routerProvider.
 
 A data provider is the place where a **Refine** app communicates with an API.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-29-refine-vs-adminbro/refine_flow.png" alt="Refine data provider flow diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2021/2021-11-29-refine-vs-adminbro/refine_flow.png" alt="Refine data provider flow diagram" />
 
 A data provider must include following methods:
 

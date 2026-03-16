@@ -5,8 +5,9 @@ slug: internal-tools
 authors: abdullah_numan
 category: "Tutorials"
 tags: [admin-panel, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-07-internal-tools-development/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-07-internal-tools-development/social.png
 hide_table_of_contents: false
+last_update: 2024-11-05
 ---
 
 ## Introduction
@@ -144,7 +145,7 @@ In addition, enterprise systems also need to consider **interoperability** of to
 ## Refine.js: a React Based Framework for Internal Tools Development
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-07-internal-tools-development/refine.jpeg" alt="Internal tools" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-07-internal-tools-development/refine.jpeg" alt="Internal tools" />
 </div>
 
 [Refine.js](https://github.com/refinedev/refine) is in the mix as a React based meta framework that empowers enterprises with wide range of technologies in building extensible and future adaptive internal tools. Refine compares to industry standard competitors in the ecosystem, such as Redwood and React Admin. It sets a benchmark with support for a wider range of state-of-the-art backend and UI systems.

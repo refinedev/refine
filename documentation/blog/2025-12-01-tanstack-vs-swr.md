@@ -5,8 +5,9 @@ slug: react-query-vs-tanstack-query-vs-swr-2025
 authors: ozgur
 category: "Alternatives"
 tags: [react, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-12-01-tanstack-vs-swr/tanstack-vs-swr-1.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-12-01-tanstack-vs-swr/tanstack-vs-swr-1.png
 hide_table_of_contents: false
+last_update: 2026-02-19
 ---
 
 If you've been building React apps, you've probably heard people mention "React Query," "TanStack Query," and "SWR." Maybe you're confused about what the difference is, or why they matter.

@@ -5,7 +5,7 @@ slug: csv-to-dashboard-no-code
 authors: ozgur
 category: "How To Build"
 tags: [ai, react, admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-27-csv-to-panel/banner.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-27-csv-to-panel/banner.webp
 hide_table_of_contents: false
 ---
 
@@ -59,7 +59,7 @@ Upload the file to [Refine](https://refine.dev), then describe what you want in 
 
 That's the whole prompt. No SQL, no config, no schema definition.
 
-![Refine prompt input with CSV attached](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-27-csv-to-panel/refine-dev-prompt.png)
+![Refine prompt input with CSV attached](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-27-csv-to-panel/refine-dev-prompt.png)
 
 Refine reads the CSV structure, understands the columns, and generates a React app — real components, real data connections, real interactivity. Not a mockup.
 
@@ -73,17 +73,17 @@ Or:
 
 The more specific you are about what you want to see, the closer the first result lands.
 
-![Refine generating the dashboard from the CSV data](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-27-csv-to-panel/data-loading-screen.png)
+![Refine generating the dashboard from the CSV data](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-27-csv-to-panel/data-loading-screen.png)
 
 ## The result
 
 When generation finishes you get a live preview: revenue total at the top, a line chart showing the trend, a status breakdown, and a table with search and filter built in. Click on it, sort it, filter by status — it all works.
 
-![The finished sales dashboard with stat card, chart, and filterable table](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-27-csv-to-panel/project-preview.png)
+![The finished sales dashboard with stat card, chart, and filterable table](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-27-csv-to-panel/project-preview.png)
 
 If you want to go deeper, you can open the code view. It's standard React. You can edit it, export it, and deploy it wherever you want. No platform lock-in.
 
-![Code view showing the generated React components](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-27-csv-to-panel/code-editor.png)
+![Code view showing the generated React components](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-27-csv-to-panel/code-editor.png)
 
 ## Who this is useful for
 

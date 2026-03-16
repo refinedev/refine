@@ -5,7 +5,7 @@ slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
 category: "Ecosystem / Integrations"
 tags: [supabase, react, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
 
@@ -143,7 +143,7 @@ Run the `npm run dev` command to start the Refine development server.
 npm run dev
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="Refine app dashboard preview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/dashboard.jpg" alt="Refine app dashboard preview" />
 
 <br/>
 
@@ -151,7 +151,7 @@ npm run dev
 
 Head over to app.supabase.com and sign in to your Supabase account. Next, create a new project by clicking on the "New Project" button.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="Supabase project setup screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="Supabase project setup screen" />
 
 <br/>
 
@@ -160,8 +160,8 @@ Add the name of the project and the database password, and wait for Supabase to 
 Once the project is created, go to Authentication -> Settings to configure the Auth providers.
 
 <div style={{display:"flex"}}>
-<img style={{alignSelf:"center", width:"50%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="Supabase project settings panel" />
-<img style={{alignSelf:"center", width:"50%", marginLeft:"8px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="Supabase API keys section" />
+<img style={{alignSelf:"center", width:"50%"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/supabase2.png" alt="Supabase project settings panel" />
+<img style={{alignSelf:"center", width:"50%", marginLeft:"8px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/supabase3.jpg" alt="Supabase API keys section" />
 </div>
 
 <br/>
@@ -176,7 +176,7 @@ You will find the Phone Auth option in the Auth providers section; enable it and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="Supabase authentication settings" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/supabase4.png" alt="Supabase authentication settings" />
 </div>
 
 <br/>
@@ -443,7 +443,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="Login form with OTP option" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/login.png" alt="Login form with OTP option" />
 </div>
 
 <br/>
@@ -453,7 +453,7 @@ To send the OTP message to the user, use the `supabase.auth.signInWithOtp()` met
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="Invalid login error message" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="Invalid login error message" />
 </div>
 
 <br/>
@@ -519,7 +519,7 @@ If the OTP is invalid, the error message will be displayed as shown below.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="OTP token entry screen" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/loginToken.png" alt="OTP token entry screen" />
 </div>
 
 <br/>
@@ -534,7 +534,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="Supabase database tables view" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="Supabase database tables view" />
 </div>
 
 <br/>
@@ -544,7 +544,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="Supabase table rows view" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="Supabase table rows view" />
 </div>
 
 <br/>
@@ -726,7 +726,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="Authenticated app dashboard after login" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-22-refine-supabase-auth/final.png" alt="Authenticated app dashboard after login" />
 </div>
 
 <br/>
