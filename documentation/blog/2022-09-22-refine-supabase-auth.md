@@ -114,12 +114,6 @@ Paste those values into the Twilio fields in Supabase and keep the rest of the O
 
 The backend setup is now complete. In the next section, you will start building the app's frontend.
 
-<div>
-<a href="https://github.com/refinedev/refine/blob/main/hackathon/refine-hackathon.md">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/hackathon-2/hackathon_cover.png" alt="Refine hackathon cover banner" />
-</a>
-</div>
-
 ## Create the Login Page
 
 In this guide, you are allowing users to access their account without requiring a password. Once the users log into their account, they will see a list of colors on the dashboard screen.
@@ -1022,9 +1016,3 @@ export default App;
 OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in **Refine** using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens.
 
 Following this article's steps, you should now have a **Refine** application with OTP-based authentication enabled.
-
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord-banner.png" alt="Join Refine on Discord banner" />
-</a>
-</div>
