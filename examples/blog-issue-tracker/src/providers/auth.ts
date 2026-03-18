@@ -1,6 +1,6 @@
 import type { AuthProvider } from "@refinedev/core";
 
-import { supabaseClient } from "utility";
+import { supabaseClient } from "./supabase-client";
 
 const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
@@ -34,6 +34,34 @@ const authProvider: AuthProvider = {
       },
     };
   },
+  register: async ({ email, password }) => {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: email ?? "",
+      password: password ?? "",
+    });
+
+    if (error) {
+      return {
+        success: false,
+        error,
+      };
+    }
+
+    if (data?.user) {
+      return {
+        success: true,
+        redirectTo: "/login",
+      };
+    }
+
+    return {
+      success: false,
+      error: {
+        message: "Register failed",
+        name: "User not created",
+      },
+    };
+  },
   logout: async () => {
     const { error } = await supabaseClient.auth.signOut();
 
@@ -43,6 +71,7 @@ const authProvider: AuthProvider = {
         error,
       };
     }
+
     return {
       success: true,
       redirectTo: "/",

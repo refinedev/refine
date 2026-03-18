@@ -1,42 +1,44 @@
+import type { Dayjs } from "dayjs";
+
 export interface IAuthUser {
   id: string;
   email: string;
 }
 
 export interface ILabel {
-  id: string;
+  id: number;
   title: string;
   color: string;
 }
 
 export interface IPriority {
-  id: string;
+  id: number;
   title: string;
 }
 
 export interface IStatus {
-  id: string;
+  id: number;
   title: string;
 }
 
 export interface ITask {
-  id: string;
+  id: number;
   title: string;
   description: string;
   start_time: string;
   end_time: string;
-  label: string;
-  priority: string;
-  status: string;
-  users: string;
+  label_id: number;
+  priority_id: number;
+  status_id: number;
+  user_id: string;
 }
 
 export interface ITaskFilterVariables {
-  title: string;
-  label: string;
-  priority: string;
-  users: string;
-  status: string;
-  start_time: [Dayjs, Dayjs];
-  end_time: [Dayjs, Dayjs];
+  title?: string;
+  label_id?: number;
+  priority_id?: number;
+  user_id?: string;
+  status_id?: number;
+  start_time?: [Dayjs, Dayjs];
+  end_time?: [Dayjs, Dayjs];
 }
