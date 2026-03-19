@@ -66,6 +66,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const [open, setOpen] = React.useState(false);
 
+  // `startIcon` is extracted from rest props so it doesn't get passed to the
+  // underlying MUI Button via `{...restProps}` (which would cause a double icon).
   const { sx, startIcon, ...restProps } = rest;
 
   const isDisabled = disabled || rest.disabled;
@@ -75,6 +77,23 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const defaultIcon = <DeleteOutline fontSize="small" {...svgIconProps} />;
 
+  // When `hideText` is true, the button renders only an icon (no startIcon prop).
+  // When `hideText` is false, the icon goes into the `startIcon` slot and text goes as children.
+  // In both modes, a user-provided `startIcon` takes priority over the default icon.
+  //
+  // | hideText | startIcon    | Button startIcon prop | Button children  |
+  // |----------|--------------|-----------------------|------------------|
+  // | false    | undefined    | <DeleteOutline>       | "Delete"         |
+  // | false    | <CustomIcon> | <CustomIcon>          | "Delete"         |
+  // | true     | undefined    | undefined             | <DeleteOutline>  |
+  // | true     | <CustomIcon> | undefined             | <CustomIcon>     |
+  const buttonStartIcon = hideText
+    ? undefined
+    : startIcon ?? <DeleteOutline {...svgIconProps} />;
+  const buttonChildren = hideText
+    ? startIcon ?? defaultIcon
+    : children ?? label;
+
   return (
     <div>
       <LoadingButton
@@ -82,11 +101,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         onClick={() => setOpen(true)}
         disabled={isDisabled}
         loading={loading}
-        startIcon={
-          hideText
-            ? undefined
-            : startIcon ?? <DeleteOutline {...svgIconProps} />
-        }
+        startIcon={buttonStartIcon}
         title={title}
         sx={{ minWidth: 0, ...sx }}
         loadingPosition={hideText ? "center" : "start"}
@@ -94,7 +109,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         className={RefineButtonClassNames.DeleteButton}
         {...restProps}
       >
-        {hideText ? startIcon ?? defaultIcon : children ?? label}
+        {buttonChildren}
       </LoadingButton>
       <Dialog
         open={open}

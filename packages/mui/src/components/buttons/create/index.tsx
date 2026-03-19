@@ -39,9 +39,28 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (isHidden) return null;
 
+  // `startIcon` is extracted from rest props so it doesn't get passed to the
+  // underlying MUI Button via `{...restProps}` (which would cause a double icon).
   const { sx, startIcon, ...restProps } = props;
 
   const defaultIcon = <AddBoxOutlined fontSize="small" {...svgIconProps} />;
+
+  // When `hideText` is true, the button renders only an icon (no startIcon prop).
+  // When `hideText` is false, the icon goes into the `startIcon` slot and text goes as children.
+  // In both modes, a user-provided `startIcon` takes priority over the default icon.
+  //
+  // | hideText | startIcon    | Button startIcon prop | Button children  |
+  // |----------|--------------|-----------------------|------------------|
+  // | false    | undefined    | <AddBoxOutlined>      | "Create"         |
+  // | false    | <CustomIcon> | <CustomIcon>          | "Create"         |
+  // | true     | undefined    | undefined             | <AddBoxOutlined> |
+  // | true     | <CustomIcon> | undefined             | <CustomIcon>     |
+  const buttonStartIcon = hideText
+    ? undefined
+    : startIcon ?? <AddBoxOutlined {...svgIconProps} />;
+  const buttonChildren = hideText
+    ? startIcon ?? defaultIcon
+    : children ?? label;
 
   return (
     <Button
@@ -59,9 +78,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           onClick(e);
         }
       }}
-      startIcon={
-        hideText ? undefined : startIcon ?? <AddBoxOutlined {...svgIconProps} />
-      }
+      startIcon={buttonStartIcon}
       title={title}
       variant="contained"
       sx={{ minWidth: 0, textDecoration: "none", ...sx }}
@@ -69,7 +86,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       className={RefineButtonClassNames.CreateButton}
       {...restProps}
     >
-      {hideText ? startIcon ?? defaultIcon : children ?? label}
+      {buttonChildren}
     </Button>
   );
 };

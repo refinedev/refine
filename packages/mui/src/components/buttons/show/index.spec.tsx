@@ -50,5 +50,17 @@ describe("Show Button", () => {
       expect(queryByTestId("custom-icon")).toBeInTheDocument();
       expect(getByText("Show")).toBeInTheDocument();
     });
+
+    it("should render default icon in startIcon slot with label when hideText is false and no startIcon provided", () => {
+      const { container, getByText } = render(<ShowButton />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(container.querySelectorAll("svg")).toHaveLength(1);
+      expect(
+        container.querySelector("svg")?.closest(".MuiButton-startIcon"),
+      ).toBeTruthy();
+      expect(getByText("Show")).toBeInTheDocument();
+    });
   });
 });
