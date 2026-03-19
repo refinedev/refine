@@ -5,8 +5,9 @@ slug: graphql-vs-rest
 authors: chidume_nnamdi
 category: "Alternatives"
 tags: [backend, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-03-graphql-vs-rest/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-03-graphql-vs-rest/social-2.png
 hide_table_of_contents: false
+last_update: 2024-09-12
 ---
 
 **This article was last updated on September 12, 2024, to add sections on Error Handling, Batching Multiple Requests, Versioning, and Caching Strategies.**

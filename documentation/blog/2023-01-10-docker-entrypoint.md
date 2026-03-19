@@ -5,7 +5,7 @@ slug: docker-entrypoint
 authors: muhammad_khabbab
 category: "Engineering"
 tags: [docker]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-10-docker-entrypoint/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-10-docker-entrypoint/social.png
 hide_table_of_contents: false
 ---
 
@@ -52,7 +52,7 @@ docker build  <directoryName>  –t testentrypoint
 ```
 
 <div className="centered-image"  >
-    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-10-docker-entrypoint/image1.png"  alt="Docker build output for the entrypoint example" />
+    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-10-docker-entrypoint/image1.png"  alt="Docker build output for the entrypoint example" />
 </div>
 
 <br/>
@@ -65,7 +65,7 @@ Docker run testentrypoint
 ```
 
 <div className="centered-image"  >
-    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-10-docker-entrypoint/image2.png"  alt="Container run output showing ab benchmark execution" />
+    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-10-docker-entrypoint/image2.png"  alt="Container run output showing ab benchmark execution" />
 </div>
 
 <br/>
@@ -89,7 +89,7 @@ Both commands are different in the following aspects:
 Here is a quick summary table that clarifies the behavior of using CMD and ENTRYPOINT:
 
 <div className="centered-image"  >
-    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-10-docker-entrypoint/image3.png"  alt="CMD and ENTRYPOINT behavior comparison table" />
+    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-10-docker-entrypoint/image3.png"  alt="CMD and ENTRYPOINT behavior comparison table" />
 </div>
 
 <br/>

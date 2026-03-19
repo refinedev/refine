@@ -5,8 +5,9 @@ slug: javascript-try-catch-finally
 authors: abdullah_numan
 category: "Tutorials"
 tags: [javascript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-22-js-try-catch/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-11-22-js-try-catch/social.png
 hide_table_of_contents: false
+last_update: 2024-10-31
 ---
 
 **This article was last updated on October 30, 2024 to clarify explanations and add sections on handling JSON operations, user input, file operations in Node.js, and scenarios for using try-catch effectively.**

@@ -8,7 +8,6 @@ import {
   ExpertIcon,
   IntegrationsIcon,
   RefineIcon,
-  RefineWeekIcon,
   TutorialIcon,
   UseCasesIcon,
 } from "./popover-icons";
@@ -72,18 +71,6 @@ export const POPOVERMENUS: NavMenu[] = [
         description: "Inspiring projects built with Refine",
         link: "/core/use-cases/",
         icon: UseCasesIcon,
-      },
-      {
-        label: "refineweek ft. Supabase",
-        description: "The official Refine event",
-        link: "/core/week-of-refine/",
-        icon: RefineWeekIcon,
-      },
-      {
-        label: "refineweek ft. Strapi",
-        description: "The official Refine event",
-        link: "/core/week-of-refine-strapi/",
-        icon: RefineWeekIcon,
       },
     ],
     imageLink: "/examples/",

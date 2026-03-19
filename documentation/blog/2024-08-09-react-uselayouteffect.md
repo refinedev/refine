@@ -5,8 +5,9 @@ slug: uselayouteffect-vs-useeffect
 authors: wisdom_ekpotu
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-02-react-uselayouteffect/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-02-react-uselayouteffect/social-2.png
 hide_table_of_contents: false
+last_update: 2024-08-12
 ---
 
 **This article was last updated on August 09, 2024, to add sections on Testing Components that Use `useLayoutEffect` and Performance Optimization Strategies.**

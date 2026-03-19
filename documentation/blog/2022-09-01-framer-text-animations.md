@@ -5,7 +5,7 @@ slug: framer-motion-react-animations
 authors: joel_ezimorah
 category: "Ecosystem / Integrations"
 tags: [react, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/social.png
 hide_table_of_contents: false
 ---
 
@@ -93,7 +93,7 @@ Finally, we use the Framer Motion `transition` prop because every effective anim
 
 The easing shows the scale at which the text animation enters before going to its original scale.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale1.avif" alt="Text scale entrance animation" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/scale1.avif" alt="Text scale entrance animation" />
 
 <br/>
 
@@ -117,7 +117,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/scale2.gif" alt="Text hover scale animation" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/scale2.gif" alt="Text hover scale animation" />
 
 <br/>
 
@@ -228,7 +228,7 @@ The inner carousel will perform the spinning and sliding effects. The framer mot
 
 This will give it a unique spinning effect, as you can see below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-1.avif" alt="Spinning carousel animation preview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/photos-1.avif" alt="Spinning carousel animation preview" />
 
 <br/>
 
@@ -263,7 +263,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-2.avif" alt="Carousel scaling animation preview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/photos-2.avif" alt="Carousel scaling animation preview" />
 
 <br/>
 
@@ -299,7 +299,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-01-framer-text-animations/photos-3.avif" alt="Hover and tap scaling effect" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-01-framer-text-animations/photos-3.avif" alt="Hover and tap scaling effect" />
 
 <br/>
 

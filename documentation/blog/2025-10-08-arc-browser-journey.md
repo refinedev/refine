@@ -5,7 +5,7 @@ slug: arc-browser
 authors: ozgur
 category: "Engineering"
 tags: [dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-10-08-arc-blog/arc-blog-1.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-10-08-arc-blog/arc-blog-1.png
 hide_table_of_contents: false
 ---
 

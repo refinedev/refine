@@ -5,8 +5,9 @@ slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
 category: "Ecosystem / Integrations"
 tags: [nextjs, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/social-2.png
 hide_table_of_contents: false
+last_update: 2024-06-24
 ---
 
 **This article was last updated on June 21, 2024, to include new sections on testing, security, error handling, and performance optimization for NextAuth.**
@@ -122,7 +123,7 @@ Next, we will be looking into how we can obtain the `clientId` and `clientSecret
 
 Navigate to your [Google console](https://console.developers.google.com/apis/credentials) credentials tab.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-create.jpeg" alt="Create a Google project" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/google-create.jpeg" alt="Create a Google project" />
 
 <br/>
 
@@ -130,13 +131,13 @@ If you have created and selected a project before now, you will see a button at 
 
 When that is done, ensure you select the project you just created when notified.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-project.png" alt="Google select project" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/google-select-project.png" alt="Google select project" />
 
 <br/>
 
 Once that is done, proceed to create credentials by clicking on the "CREATE CREDENTIALS" action button at the top, this will open a dropdown containing four items. Click on the item circled in the below image to create an OAuth client ID.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-auth.png" alt="Google select auth provider" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/google-select-auth.png" alt="Google select auth provider" />
 
 <br/>
 
@@ -146,13 +147,13 @@ If you come across anything like:
 
 Please, go ahead to configure the consent screen by providing some information on your app, and when that is done, proceed to continue creating the OAuth client ID by choosing the application type and filling up the rest of the fields.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-type.png" alt="Create an auth client" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/google-select-type.png" alt="Create an auth client" />
 
 <br/>
 
 After entering the name of your OAuth 2.0 client. You will see a section that requests adding an **"Authorized JavaScript origins"**, click on the "+ ADD URI" action button to add your app origin. Since we are working in the development environment, all we need to do is to copy/paste our app URL which is running on localhost.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/authorised-origins.png" alt="Authorized origins" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/authorised-origins.png" alt="Authorized origins" />
 
 <br/>
 
@@ -161,7 +162,7 @@ For the **"Authorized redirect URIs"**, you must include your full domain and en
 - For production: `https://{YOUR_DOMAIN}/api/auth/callback/google`
 - For development: `http://localhost:3000/api/auth/callback/google`
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/redirect-url.png" alt="Redirect URL" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/redirect-url.png" alt="Redirect URL" />
 
 <br/>
 
@@ -175,7 +176,7 @@ If you eventually push to production, you need to change the Authorized JavaScri
 
 Please verify the details provided and if they are all correct, click on "CREATE" to finally create your OAuth client ID.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/auth-client-created.png" alt="Auth client verified" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/auth-client-created.png" alt="Auth client verified" />
 
 <br/>
 
@@ -208,20 +209,20 @@ NEXTAUTH_SECRET=YOUR_SECRET
 
 To create your GithubProvider ID and SECRET, navigate to your GitHub account [developer settings](https://github.com/settings/apps) and click on the OAuth Apps tab to register a new application.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_register.png" alt="Github register" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/github_register.png" alt="Github register" />
 
 <br/>
 
 Complete application registration by filling out the fields.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_register_enable.png" alt="Github register enable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/github_register_enable.png" alt="Github register enable" />
 
 <br/>
 
 Once completed, click on the "Register application" action button to register your app.
 Remember to go back and change the URIs to your production URI once you push to production.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_client_secrets.png" alt="Github secrets" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/github_client_secrets.png" alt="Github secrets" />
 
 <br/>
 
@@ -402,7 +403,7 @@ Then add the code snippets in the `styles/Home.module.css` file to style the app
 
 So if you refresh the application, you should see the blog application as shown in the screenshot below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/result_view.png" alt="Result view" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/result_view.png" alt="Result view" />
 
 <br/>
 
@@ -487,19 +488,19 @@ Let's point out what we did in the above code. First, we `NextAuth` hooks, the `
 
 Now, if you refresh the application, it will look like the screenshot below for non-authenticated users.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/not_signed_in.png" alt="Not sign in" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/not_signed_in.png" alt="Not sign in" />
 
 <br/>
 
 When the user clicks the sign-in button, they will be redirected to the sign-in button page as shown in the screenshot below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/sign_in_box.png" alt="Sign in box" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/sign_in_box.png" alt="Sign in box" />
 
 <br/>
 
 Now when they click on any of the buttons, they will be redirected to the Google or Github page depending on which button they click. Once they are authenticated, the application will look like the screenshot below.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/result_with_sign.png" alt="Sign in result" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-18-auth-with-nextauth/result_with_sign.png" alt="Sign in result" />
 
 <br/>
 

@@ -5,8 +5,9 @@ slug: react-usememo
 authors: abdullah_numan
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/social2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-16-react-use-memo/social2.png
 hide_table_of_contents: false
+last_update: 2024-09-19
 ---
 
 **This article was last updated on September 19, 2024, to add sections on the latest changes to the React useMemo API and provide more detailed explanations of how `useMemo()` works.**
@@ -171,7 +172,7 @@ export default sortPosts;
 If we look at the console, we see that `Sorting posts...` is being logged at 1000ms intervals, i.e. with the tick of our clock:
 
 <div  class="img-container" align-items="center" >
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo1.png"  alt="Initial render output" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-16-react-use-memo/usememo1.png"  alt="Initial render output" />
 </div>
 
 <br/>
@@ -195,7 +196,7 @@ So, in `<Blog />`, Let's use the memoized version of `sortPosts` function:
 After this change, examining our browser console, we can see that `Sorting posts...` has been logged only once, indicating only one invocation of `sortPosts()` even though the component keeps re-rendering every second:
 
 <div  class="img-container" align-items="center" >
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo2.png"  alt="Memoized component output" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-16-react-use-memo/usememo2.png"  alt="Memoized component output" />
 </div>
 
 <br/>
@@ -215,7 +216,7 @@ If we check our console while clicking the button, we can clearly see `Sorting p
 <br/>
 
 <div class="img-container" align-items="center" >
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo3.png" alt="Dependency update example" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-16-react-use-memo/usememo3.png" alt="Dependency update example" />
 </div>
 
 <br/>
@@ -235,7 +236,7 @@ const sortedPosts = useMemo(() => sortPosts(updatedPosts), []);
 In other words, there is no sorting going on when we actually need it:
 
 <div class="img-container" align-items="center" >
-    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-memo/usememo4.png" alt="Final optimized output" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-16-react-use-memo/usememo4.png" alt="Final optimized output" />
 </div>
 
 <br/>

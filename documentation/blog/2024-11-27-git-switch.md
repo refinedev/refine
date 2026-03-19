@@ -5,8 +5,9 @@ slug: git-switch-and-git-checkout
 authors: muhammad_khabbab
 category: "Alternatives"
 tags: [git]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/social-2.png
 hide_table_of_contents: false
+last_update: 2025-07-04
 ---
 
 **This article was last updated on July 2, 2025, to improve the explanations of 'git switch' and align with current best practices.**
@@ -35,7 +36,7 @@ Let's try different versions of `git checkout` command.
 First, get the list of the branches through `git branch`
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image1.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image1.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -43,14 +44,14 @@ First, get the list of the branches through `git branch`
 The "\*" shows your currently selected branch, which is "test_branch". Now let's switch to BranchB.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image2.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image2.png"  alt="git switch" />
 </div>
 <br/>
 
 To confirm the successful branch switch, execute `git branch` and you will see that your current branch is now BranchB
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image3.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image3.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -60,7 +61,7 @@ To confirm the successful branch switch, execute `git branch` and you will see t
 The `git checkout` command also comes with a "-b" argument which creates a new branch and automatically switches to it. Let's try it.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image4.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image4.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -69,7 +70,7 @@ The above example shows that the new branch created is the currently selected br
 When switching branch using `git checkout` you might see an error as below.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image5.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image5.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -188,7 +189,7 @@ In modern Git practices, git switch is now favored for its improved clarity and 
 Let's try this command.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image6.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image6.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -197,7 +198,7 @@ The above command works just the same way `git checkout` switched branches.
 Switching to a branch that does not exist will throw an error:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image7.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image7.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -205,7 +206,7 @@ Switching to a branch that does not exist will throw an error:
 To create a new branch and switch to it in one go, try the following example:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image8.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image8.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -213,7 +214,7 @@ To create a new branch and switch to it in one go, try the following example:
 To verify, just run the `git branch` command to see if your current branch has been successfully switched to the newly created branch.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image9.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image9.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -221,7 +222,7 @@ To verify, just run the `git branch` command to see if your current branch has b
 Another interesting argument of this command is `git switch -`. If you have to frequently switch between two branches and typing the branch name every time is cumbersome, you can use the `git switch -` version, which switches to the previously checked out branch. Let's try.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image10.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image10.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -232,7 +233,7 @@ Another interesting argument of this command is `git switch -`. If you have to f
 `reset` resets the index without changing the working tree. The below example will reset the index to match HEAD, without touching the working tree:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image11.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image11.png"  alt="git switch" />
 </div>
 
 <br/>
@@ -241,7 +242,7 @@ Note that you will use reset to undo the staging of a modified file.
 `checkout` is mostly used with a branch, tag, or commit. It will reset HEAD and index to a specified commit, as well as perform the checkout of the index into the working tree at the same time. It is mostly used to discard the changes to your unstaged file(s).
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/image12.png"  alt="git switch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-20-git-switch/image12.png"  alt="git switch" />
 </div>
 
 <br/>

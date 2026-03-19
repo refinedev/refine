@@ -5,8 +5,8 @@ slug: refine-hackathon-winners
 authors: necati
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social.png
-social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-06-hackaton-january/social_prizes.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-06-hackaton-january/social.png
+social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-01-06-hackaton-january/social_prizes.png
 hide_table_of_contents: false
 ---
 

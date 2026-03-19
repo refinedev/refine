@@ -11,7 +11,7 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
-import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
+import { BreadcrumbJsonLd } from "@site/src/components/json-ld";
 
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {

@@ -1,7 +1,7 @@
 import { useShow, useOne } from "@refinedev/core";
 import { Show, DateField } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
-import type { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
+import type { ITask, ILabel, IPriority, IStatus, IAuthUser } from "../../types";
 
 const { Title, Text } = Typography;
 
@@ -12,31 +12,33 @@ export const TaskShow: React.FC = () => {
 
   const { result: assigned } = useOne<IAuthUser>({
     resource: "users",
-    id: record?.users || "",
+    id: record?.user_id ?? "",
+    queryOptions: { enabled: !!record?.user_id },
   });
 
   const { result: label } = useOne<ILabel>({
     resource: "label",
-    id: record?.label || "",
+    id: record?.label_id ?? "",
+    queryOptions: { enabled: !!record?.label_id },
   });
 
   const { result: priority } = useOne<IPriority>({
     resource: "priority",
-    id: record?.priority || "",
+    id: record?.priority_id ?? "",
+    queryOptions: { enabled: !!record?.priority_id },
   });
 
   const { result: status } = useOne<IStatus>({
     resource: "status",
-    id: record?.status || "",
+    id: record?.status_id ?? "",
+    queryOptions: { enabled: !!record?.status_id },
   });
-
-  console.log(status);
 
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>Task:</Title>
       <Text>{record?.title || "-"}</Text>
-      <Title level={5}>Task Desciption:</Title>
+      <Title level={5}>Task Description:</Title>
       <Text>{record?.description}</Text>
       <Title level={5}>Assigned To:</Title>
       <Text>

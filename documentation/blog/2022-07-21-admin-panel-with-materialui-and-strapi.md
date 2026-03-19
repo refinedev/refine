@@ -5,9 +5,10 @@ slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
 category: "How To Build"
 tags: [material-ui, strapi, admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
-featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
+featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
 hide_table_of_contents: false
+last_update: 2023-04-19
 ---
 
 :::caution
@@ -361,7 +362,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 
 [Refer to Refine Strapi v4 documentation for more information &#8594](https://refine.dev/core/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Posts list page in Material UI DataGrid" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Posts list page in Material UI DataGrid" />
 <br/>
 
 ### Creating a record
@@ -513,7 +514,7 @@ Try it on the browser and see if you can create new posts from scratch.
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif" alt="Create post form in Material UI" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif" alt="Create post form in Material UI" />
 
 <br/>
 
@@ -833,7 +834,7 @@ export const PostList: React.FC = () => {
 
 Now we are able to delete record by clicking delete button and confirmation.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.avif" alt="Delete post confirmation dialog" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.avif" alt="Delete post confirmation dialog" />
 
 <br/>
 <br/>
@@ -944,7 +945,7 @@ The default timeout period set to 5000ms. You can change it by setting `undoable
 
 <br/>
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif" alt="Undoable delete notification with undo action" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif" alt="Undoable delete notification with undo action" />
 
 <br/>
 

@@ -5,7 +5,7 @@ slug: node-js-developer-skills
 authors: david_herbert
 category: "Engineering"
 tags: [javascript, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-06-nodejs-developer/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-06-nodejs-developer/social.png
 hide_table_of_contents: false
 ---
 

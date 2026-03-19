@@ -5,7 +5,7 @@ slug: refine-investment-announcement
 authors: necati
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-06-investment-announce/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-06-investment-announce/social.png
 hide_table_of_contents: false
 ---
 

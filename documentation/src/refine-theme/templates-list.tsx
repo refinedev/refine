@@ -6,7 +6,7 @@ import { getImgixSrc } from "../components/image";
 import {
   BreadcrumbJsonLd,
   type BreadcrumbItem,
-} from "@site/src/components/breadcrumbs";
+} from "@site/src/components/json-ld";
 
 type Props = {
   className?: string;

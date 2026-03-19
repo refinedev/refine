@@ -5,7 +5,7 @@ slug: low-code
 authors: necati
 category: "Tutorials"
 tags: [tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/social.png
 hide_table_of_contents: false
 ---
 
@@ -44,7 +44,7 @@ In short, low-code platforms are a bit of a mixed bag. They're brilliant for sim
 ### Microsoft Powerapp
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/power-app.png" alt="low code platforms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/power-app.png" alt="low code platforms" />
 </div>
 
 Part of Microsoft's Power Platform, which includes AI Builder, Dataverse, Power Automate, and Power Pages. Offers deep integration with Office 365, Dynamics 365, and other Microsoft services.
@@ -58,7 +58,7 @@ Microsoft Power Apps stands out for its comprehensive integration within the Mic
 ### Outsystems
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/outsystems-2.png" alt="low code platforms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/outsystems-2.png" alt="low code platforms" />
 </div>
 
 It can be deployed as SaaS or on public cloud/on-premises. ODC is strictly an OutSystems-managed cloud service.
@@ -73,7 +73,7 @@ Provides web and desktop IDEs, AI-based development guidance, CI/CD pipelines, a
 ### Mendix
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/mendix.png" alt="low code platforms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/mendix.png" alt="low code platforms" />
 </div>
 
 - **Mendix LCAP**: Offers SaaS, public, private, edge, and custom/on-premises deployments. It runs on platforms like AWS, Azure, IBM, and more.
@@ -85,7 +85,7 @@ Provides web and desktop IDEs, AI-based development guidance, CI/CD pipelines, a
 ### Retool
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/retool-2.png" alt="low code platforms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/retool-2.png" alt="low code platforms" />
 </div>
 
 Offers a variety of products like Retool Mobile and Workflows. Available as Retool-hosted or self-hosted.
@@ -98,7 +98,7 @@ Offers a variety of products like Retool Mobile and Workflows. Available as Reto
 ### Appian
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-18-low-code-platforms/appian-3.png" alt="low code platforms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-18-low-code-platforms/appian-3.png" alt="low code platforms" />
 </div>
 
 Offers various deployment, including managed cloud or customer-managed setups, and hybrid options.

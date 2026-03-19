@@ -5,7 +5,7 @@ slug: hacktoberfest-refine
 authors: necati
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-04-hacktoberfest/social.png
 hide_table_of_contents: false
 ---
 
@@ -18,7 +18,7 @@ We've already labeled a bunch of **Refine** issues with `hacktoberfest` so you c
 [github.com/refinedev/refine/labels/hacktoberfest](https://github.com/refinedev/refine/labels/hacktoberfest)
 
 <div class="img-container" align-items="center" >
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-04-hacktoberfest/prize.png"  alt="Hacktoberfest prize graphic" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-04-hacktoberfest/prize.png"  alt="Hacktoberfest prize graphic" />
 
 </div>
 

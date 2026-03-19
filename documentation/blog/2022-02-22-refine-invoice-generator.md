@@ -210,7 +210,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 - email: Email
 - Website: Text
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
 <br />
 
 `Client:`
@@ -218,7 +218,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 - Name: Text
 - Contacts: Relation with Contact
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
 <br />
 
 `Contact:`
@@ -230,7 +230,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
 - Job: Text
 - Client: Relation with Client
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
 <br />
 
 We have created our collections by Strapi, now we can create Clients and their contacts with **Refine**.
@@ -386,7 +386,7 @@ function App() {
 }
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
 <br />
 
 We fetch the data of the `Company` collection that we created by Strapi, thanks to the **Refine** `dataProvider`, and put it into the card component we created.
@@ -472,7 +472,7 @@ export const ContactsList: React.FC = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_contacts.png" alt="Refine Contacts List" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/refine_contacts.png" alt="Refine Contacts List" />
 <br />
 
 ## Client List Page
@@ -857,7 +857,7 @@ export const ClientList = () => {
 
 We created our `Client` and `Contact` pages. Now, let's create a Client with **Refine** and define contacts for our clients.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.avif" alt="Refine Clients Overview" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-02-22-refine-invoice-genarator/clients_overview.avif" alt="Refine Clients Overview" />
 <br />
 
 ## Example

@@ -5,8 +5,9 @@ slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
 category: "How To Build"
 tags: [react, admin-panel, tailwind]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/daisyui.jpg
 hide_table_of_contents: false
+last_update: 2026-02-06
 ---
 
 ## Introduction
@@ -64,7 +65,7 @@ Routing in **Refine** is supported by the `react-router-dom` package. **Refine**
 ## What is daisyUI?
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisy-intro.png"  alt="DaisyUI admin panel preview" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/daisy-intro.png"  alt="DaisyUI admin panel preview" />
 </div>
 
 <br/>
@@ -538,7 +539,7 @@ We have updated our imports and passed the `resources` prop to `<Refine />`. We 
 With these additions and changes, when we navigate to `/` or `/dashboard`, we should be able to see the dashboard page. It looks somewhat dashing like this:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/dashboard.png"  alt="DaisyUI dashboard overview page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/dashboard.png"  alt="DaisyUI dashboard overview page" />
 </div>
 
 <br/>
@@ -755,7 +756,7 @@ You can find more details in the [**Refine** `useList()` docs here](https://refi
 With these changes, our dashboard page has three KPI cards displayed at the top:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/kpi-cards.png"  alt="DaisyUI KPI cards row" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/kpi-cards.png"  alt="DaisyUI KPI cards row" />
 </div>
 
 <br/>
@@ -1275,7 +1276,7 @@ Notice we are defining a `useMemoizedChartData()` hook to transform the fetched 
 With these changes, our dashboard page displays a panel of charts accessible from a top tabbed menu:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/recensales.gif"  alt="DaisyUI recent sales table animation" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/recensales.gif"  alt="DaisyUI recent sales table animation" />
 </div>
 
 <br/>
@@ -1634,7 +1635,7 @@ export const Dashboard: React.FC = () => {
 With all these updates, we have completed implementing the dashboard page. It now looks like this:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/recent_last.png"  alt="DaisyUI recent orders table" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/recent_last.png"  alt="DaisyUI recent orders table" />
 </div>
 
 <br/>
@@ -2416,7 +2417,7 @@ Notice throughout the markup that we are able to seamlessly apply regular Tailwi
 With these changes, when we navigate to the `/products` route, our products list page looks like below:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/products.png"  alt="DaisyUI products list page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/products.png"  alt="DaisyUI products list page" />
 </div>
 
 <br/>
@@ -2578,7 +2579,7 @@ Inside the `App.css` file, we are still able to compose smaller class names from
 With the above `<ProductCreate />` page, when we navigate to the `/products/create` route, we should be presented with a form to create a product:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_create.png"  alt="DaisyUI create product form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/product_create.png"  alt="DaisyUI create product form" />
 </div>
 
 <br/>
@@ -2725,7 +2726,7 @@ Additionally, we are setting the current option of the `<select />` dropdown wit
 With the `<ProductEdit />` component worked out, the page at `/product/edit/:id` looks like this:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_edit.png"  alt="DaisyUI edit product form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/product_edit.png"  alt="DaisyUI edit product form" />
 </div>
 
 <br/>
@@ -2809,7 +2810,7 @@ We are also invoking the familiar `useNavigation()` hook to access the `edit()` 
 With the `<ProductShow />` page completed, when we navigate to the `/products/show/:id` path, we can see the product details as below:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/product_show.png"  alt="DaisyUI product details page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/product_show.png"  alt="DaisyUI product details page" />
 </div>
 
 <br/>
@@ -3429,7 +3430,7 @@ export const CategoryShow = () => {
 After all these changes for the `category` resource, we should be able to navigate across the category pages as below:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/layout-gif.avif"  alt="DaisyUI dashboard responsive layout preview" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/layout-gif.avif"  alt="DaisyUI dashboard responsive layout preview" />
 </div>
 
 <br/>
@@ -3699,7 +3700,7 @@ With these changes, we should now see a sticky top navbar with items that give a
 Here's the walkthrough of all the resource list pages:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/ezgif.com-optimize-min.avif"  alt="DaisyUI layout animation preview" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-06-daisy-ui-panel/ezgif.com-optimize-min.avif"  alt="DaisyUI layout animation preview" />
 </div>
 
 <br/>

@@ -5,7 +5,7 @@ slug: mocking-api-calls-in-react
 authors: necati
 category: "Engineering"
 tags: [react, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/social.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-04-mocking-api-calls/social.webp
 hide_table_of_contents: false
 ---
 
@@ -168,7 +168,7 @@ describe("expectedData", () => {
 At this point, our test works.
 
 <div >
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/test-run.png" alt="Test run" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-04-mocking-api-calls/test-run.png" alt="Test run" />
 </div>
 
 <br/>
@@ -257,7 +257,7 @@ Comment out the nock function and let's add `nock.recorder.rec()` in to the test
 When the test runs, the console logs all the service calls that nock has recorded.
 
 <div >
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-04-mocking-api-calls/nock-recorder-log.png" alt="nock record log" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-04-mocking-api-calls/nock-recorder-log.png" alt="nock record log" />
 </div>
 
 <br/>

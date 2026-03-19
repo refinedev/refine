@@ -5,8 +5,9 @@ slug: react-suspense-guide
 authors: joel_adewole
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-react-suspense/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-23-react-suspense/social-2.png
 hide_table_of_contents: false
+last_update: 2024-10-22
 ---
 
 **_This article was last updated on October 21, to include advanced use cases of React Suspense, such as streaming data and progressive loading, along with best practices for using Suspense with server-side rendering (SSR)._**

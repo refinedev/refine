@@ -5,8 +5,9 @@ slug: javascript-ternary-operator
 authors: abdullah_numan
 category: "Tutorials"
 tags: [javascript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-15-js-ternary/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-11-15-js-ternary/social.png
 hide_table_of_contents: false
+last_update: 2024-10-08
 ---
 
 **_TThis article was last updated on October 08, 2024 to include deeper performance considerations, technical insights on how JavaScript engines process the Ternary Operator, and examples illustrating the use of the operator in complex scenarios such as handling asynchronous operations._**

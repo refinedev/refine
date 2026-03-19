@@ -15,7 +15,11 @@ const BlogListPageMetadata = () => {
   } = useDocusaurusContext();
   return (
     <>
-      <PageMetadata title={title} description={tagline} />
+      <PageMetadata
+        title={title}
+        description={tagline}
+        image="https://refine.dev/img/og-blog.png"
+      />
       <SearchMetadata tag="author_blog_posts_list" />
     </>
   );

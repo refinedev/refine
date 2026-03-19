@@ -48,6 +48,7 @@ ignore-vcs = true
 
 [default.extend-words]
 nin = "nin"
+typ = "typ"
 OT = "OT"
 prev = "prev"
 prepend = "prepend"

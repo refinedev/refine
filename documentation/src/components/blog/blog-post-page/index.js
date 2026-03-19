@@ -13,10 +13,14 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
+import {
+  BreadcrumbJsonLd,
+  BlogPostingJsonLd,
+} from "@site/src/components/json-ld";
 import { Date, ReadingTime } from "@site/src/components/blog/common";
 import { BannerBlog } from "@site/src/components/banner/banner-blog";
 import { ArrowLeft, LinkedinIcon, RedditIcon, TwitterIcon } from "../icons";
+import { CalendarArrowUpIcon } from "@site/src/refine-theme/icons/calendar";
 
 export const BlogPostPageView = ({ children }) => {
   const { metadata, isBlogPostPage } = useBlogPost();
@@ -30,6 +34,8 @@ export const BlogPostPageView = ({ children }) => {
     title,
     date,
     formattedDate,
+    formattedLastUpdateDate,
+    lastUpdate,
     readingTime,
     category,
     frontMatter,
@@ -44,6 +50,7 @@ export const BlogPostPageView = ({ children }) => {
     : undefined;
   const shareUrl = `${siteUrl}${permalink}`;
   const breadcrumbItems = getBreadcrumbItems({ permalink, title, category });
+  const isUpdated = formattedDate !== formattedLastUpdateDate;
 
   return (
     <article
@@ -60,8 +67,20 @@ export const BlogPostPageView = ({ children }) => {
       itemType="http://schema.org/BlogPosting"
     >
       {absoluteImage && <meta itemProp="image" content={absoluteImage} />}
+      <meta itemProp="datePublished" content={date} />
+      <meta itemProp="dateModified" content={lastUpdate} />
 
       <BreadcrumbJsonLd items={breadcrumbItems} />
+
+      <BlogPostingJsonLd
+        title={title}
+        description={description}
+        date={date}
+        lastUpdate={lastUpdate}
+        image={absoluteImage}
+        url={shareUrl}
+        authors={authors}
+      />
 
       <div className={clsx()}>
         <PostHeader
@@ -85,6 +104,39 @@ export const BlogPostPageView = ({ children }) => {
         title={title}
         className={clsx("mt-8", "not-prose", "blog-lg:mt-12")}
       />
+
+      {isUpdated && (
+        <div
+          className={clsx(
+            "mt-4",
+            "blog-lg:mt-6",
+            "flex",
+            "items-center",
+            "gap-2",
+            "text-xs",
+            "tracking-[-0.006em]",
+            "p-2",
+            "rounded-lg",
+            "mx-0",
+            "blog-lg:mx-4",
+            "bg-zinc-100",
+            "dark:bg-zinc-800",
+            "text-zinc-500",
+            "dark:text-zinc-400",
+          )}
+        >
+          <CalendarArrowUpIcon />
+          <div>
+            Last updated at{" "}
+            <Date
+              date={lastUpdate}
+              formattedDate={formattedLastUpdateDate.toLowerCase()}
+              itemProp="dateModified"
+              className="capitalize"
+            />
+          </div>
+        </div>
+      )}
 
       <div className={clsx("mt-8", "blog-lg:mt-10")}>
         <PostBody>{children}</PostBody>

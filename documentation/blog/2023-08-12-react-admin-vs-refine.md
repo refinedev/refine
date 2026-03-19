@@ -6,7 +6,7 @@ authors: ali_emir
 category: "Alternatives"
 tags: [react, admin-panel, comparison]
 hide_table_of_contents: false
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-12-react-admin-vs-refine/social-2.png
 ---
 
 ## Introduction
@@ -354,7 +354,7 @@ npx @refinedev/codemod@latest refine3-to-refine4
 ```
 
  <div className="centered-image">
-  <img  width="600px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/code-mod.gif"  alt="Refine vs React Admin code modification demo" />
+  <img  width="600px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-12-react-admin-vs-refine/code-mod.gif"  alt="Refine vs React Admin code modification demo" />
 </div>
 
 <br/>
@@ -384,7 +384,7 @@ When it comes to documentation, Refine CORE has more useful resources.
 ## Community Engagement
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star-history-2.png"  alt="GitHub star history comparison" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-12-react-admin-vs-refine/star-history-2.png"  alt="GitHub star history comparison" />
 </div>
 
 <br/>

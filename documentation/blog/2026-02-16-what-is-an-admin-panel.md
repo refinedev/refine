@@ -5,7 +5,7 @@ slug: what-is-an-admin-panel
 authors: arda
 category: "Tutorials"
 tags: [admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-16-what-is-an-admin-panel/what-is-an-admin-panel-banner.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-16-what-is-an-admin-panel/what-is-an-admin-panel-banner.webp
 hide_table_of_contents: false
 is_featured: true
 ---

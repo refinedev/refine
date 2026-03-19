@@ -12,7 +12,7 @@ import BlogLayout from "@theme/BlogLayout";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 import BlogListPaginator from "@theme/BlogListPaginator";
-import { BreadcrumbJsonLd } from "@site/src/components/breadcrumbs";
+import { BreadcrumbJsonLd } from "@site/src/components/json-ld";
 
 import { FeaturedBlogPostItems } from "../../components/blog";
 
@@ -34,6 +34,14 @@ function BlogListPageMetadata(props) {
       <Head>
         <title>{title}</title>
         <meta property="og:title" content={title} />
+        <meta
+          property="og:image"
+          content="https://refine.dev/img/og-blog.png"
+        />
+        <meta
+          name="twitter:image"
+          content="https://refine.dev/img/og-blog.png"
+        />
       </Head>
       <PageMetadata description={description} />
       <SearchMetadata tag="blog_posts_list" />

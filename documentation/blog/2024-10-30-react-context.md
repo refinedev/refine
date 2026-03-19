@@ -5,8 +5,9 @@ slug: usecontext-and-react-context
 authors: chibuzor_otuokwu
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-23-react-context/social-2.png
 hide_table_of_contents: false
+last_update: 2024-10-31
 ---
 
 **This article was last updated on October 30, 2024 to include sections on optimizing context performance, testing React Context, managing state with context in complex applications, and security considerations with context data.**
@@ -861,7 +862,7 @@ export default Home;
 
 If you click the favorite icon for each product, you should see it listed under the "My Favorite products" list.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="Favorite products list section" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-23-react-context/favorite-product-list.png"  alt="Favorite products list section" />
 
 <br />
 

@@ -5,7 +5,7 @@ import clsx from "clsx";
 const desktopImage =
   "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/blog-wide-banner.webp";
 const mobileImage =
-  "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/blog-wide-banner-mobile.webp";
+  "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/blog-wide-banner-mobile2.webp";
 
 const text = "Refine";
 const description =
@@ -17,7 +17,14 @@ export const BannerBlog = () => {
       to={"https://refine.dev/?ref=refine-banner"}
       target="_blank"
       rel="noopener"
-      className={clsx("flex", "w-full", "rounded-md", "overflow-hidden")}
+      className={clsx(
+        "flex",
+        "w-full",
+        "rounded-md",
+        "overflow-hidden",
+        "aspect-320/370",
+        "refine-md:aspect-720/196",
+      )}
       title={text}
       aria-label={description}
     >

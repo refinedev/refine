@@ -6,7 +6,7 @@ authors: frank_joseph
 category: "Tutorials"
 tags: [react, backend, javascript]
 hide_table_of_contents: false
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/social-2.png
 ---
 
 **This article was last updated on August 15, 2024, to add sections for WebSocket Protocols and Subprotocols, Security Considerations with WebSockets, and Error Handling and Reconnection Strategies.**
@@ -158,13 +158,13 @@ function processReceivedMessage(message, userId) {
 As you can see, the new connection is successfully received.
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/enter-name.png"  alt="Name entry screen for collaborative editor" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/enter-name.png"  alt="Name entry screen for collaborative editor" />
 </div>
 
 When User enter their name and click on Join Document the message is broadcasted to all connected clients that user have joined to collaborate. Please see the below screenshots of application:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/enter-name-2.png"  alt="User joined message in collaborative editor" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/enter-name-2.png"  alt="User joined message in collaborative editor" />
 </div>
 
 ### Establishing the Handshake at the Client Level
@@ -212,7 +212,7 @@ function App() {
 Now, when user joins, the web socket connection is established at client level. The above screenshot shows the “WebSocket connection established” in console logs when the connection is opened for client.
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/handshake.png"  alt="Console log showing WebSocket connection established" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/handshake.png"  alt="Console log showing WebSocket connection established" />
 </div>
 
 ### Real-time Message Transmission
@@ -294,7 +294,7 @@ function Document() {
 The below screenshot shows that when the client connection is established then users can collaborate and edit text in real-time, each action will be transmitted to every connection client.
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/real-time-transmitting.png"  alt="Real-time collaborative editor with shared updates" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/real-time-transmitting.png"  alt="Real-time collaborative editor with shared updates" />
 </div>
 
 ### Handling Disconnections
@@ -318,7 +318,7 @@ function handleClientDisconnection(userId) {
 When user closes the browser window or refreshes the page, application will disconnect client and notify every connected user by broadcasting the message that that user left the editor.
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/handling-disconnections.png"  alt="Disconnection notification in collaborative editor" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-08-16-react-web-socket/handling-disconnections.png"  alt="Disconnection notification in collaborative editor" />
 </div>
 
 ## Security Considerations with WebSockets

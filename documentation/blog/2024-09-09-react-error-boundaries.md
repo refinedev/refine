@@ -5,8 +5,9 @@ slug: react-error-boundaries
 authors: chidume_nnamdi
 category: "Engineering"
 tags: [react, bugs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-09-react-error-bounderies/social-2.png
 hide_table_of_contents: false
+last_update: 2024-09-10
 ---
 
 **This article was last updated on September 09, 2024, to add sections on Advanced Error Logging, Best Practices and Handling Asynchronous Errors in React Error Boundaries.**
@@ -39,7 +40,7 @@ React Error Boundary is like the `try..catch` of React. It is a React component 
 See a component tree below:
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/1.jpeg"  alt="mojo framework" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-09-react-error-bounderies/1.jpeg"  alt="mojo framework" />
 </div>
 
 <br/>
@@ -49,13 +50,13 @@ See a component tree below:
 If an error occurs in `COMP V`, it will propagate up the component tree to `COMP III`, then to `COMP I`, and finally to `root`. If there is no error boundary in the component tree, the entire component tree will be corrupted, and the application will crash.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/2.jpeg"  alt="mojo framework" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-09-react-error-bounderies/2.jpeg"  alt="mojo framework" />
 </div>
 
 <br/>
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/3.jpeg"  alt="mojo framework" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-09-react-error-bounderies/3.jpeg"  alt="mojo framework" />
 </div>
 
 <br/>
@@ -63,7 +64,7 @@ If an error occurs in `COMP V`, it will propagate up the component tree to `COMP
 However, if there is an error boundary in the component tree, it will catch the error and display a fallback UI instead of the component tree that crashed.
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-09-react-error-bounderies/4.jpeg"  alt="mojo framework" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-09-react-error-bounderies/4.jpeg"  alt="mojo framework" />
 </div>
 
 <br/>

@@ -5,7 +5,7 @@ slug: refine-react-invoice-generator-5
 authors: abdullah_numan
 category: "How To Build"
 tags: [react, refine-week]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-14-refine-invoicer-5/social.png
 hide_table_of_contents: false
 ---
 
@@ -464,7 +464,7 @@ Do take note of the `meta.populate` property of the `useTable()` hook's argument
 
 OK. With this done, we can now go ahead and test our app and should be able to view the pdf document by clicking on the pdf document icon.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-14-refine-invoicer-5/pdf.avif" alt="Generated PDF invoice preview" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-14-refine-invoicer-5/pdf.avif" alt="Generated PDF invoice preview" />
 
 <br />
 

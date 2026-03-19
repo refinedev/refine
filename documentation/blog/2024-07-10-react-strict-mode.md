@@ -5,8 +5,9 @@ slug: react-strict-mode-in-react-18
 authors: deborah_emeni
 category: "Engineering"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-24-react-strict-mode/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-11-24-react-strict-mode/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-11
 ---
 
 **This article was last updated on July 10, 2024, to add sections for React Strict Mode post.**

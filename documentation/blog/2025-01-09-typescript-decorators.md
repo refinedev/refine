@@ -5,8 +5,9 @@ slug: typescript-decorators
 authors: abdullah_numan
 category: "Tutorials"
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-24-typescript-decorators/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-24-typescript-decorators/social-2.png
 hide_table_of_contents: false
+last_update: 2025-01-09
 ---
 
 **This article was last updated on January 9, 2025, to include best practices for using TypeScript decorators, a detailed table comparing different decorator types, and tips for avoiding common mistakes when implementing decorators.**
