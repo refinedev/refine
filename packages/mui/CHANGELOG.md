@@ -1,5 +1,17 @@
 # @refinedev/mui
 
+## 8.0.2
+
+### Patch Changes
+
+- [#7345](https://github.com/refinedev/refine/pull/7345) [`af721fe26017cbe11ec997574908b40862a51a63`](https://github.com/refinedev/refine/commit/af721fe26017cbe11ec997574908b40862a51a63) Thanks [@tysoncung](https://github.com/tysoncung)! - fix(mui): respect custom `startIcon` when `hideText` is true on all button components
+
+  When `hideText={true}` is used with a custom `startIcon`, all MUI button components (`ShowButton`, `EditButton`, `DeleteButton`, `CloneButton`, `CreateButton`, `ListButton`, `RefreshButton`, `SaveButton`, `ExportButton`, `ImportButton`) ignored the custom icon and always showed the default one. This also caused two icons to appear at the same time.
+
+  Now the custom `startIcon` is used when provided, and the default icon is only used as a fallback.
+
+  Resolves #7343
+
 ## 8.0.1
 
 ### Patch Changes

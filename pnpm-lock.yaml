@@ -981,7 +981,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -1350,7 +1350,7 @@ importers:
         specifier: ^2.0.5
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -2166,7 +2166,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -3270,7 +3270,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -3540,7 +3540,7 @@ importers:
         specifier: 2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4655,7 +4655,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4725,7 +4725,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4792,7 +4792,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4859,7 +4859,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -4926,7 +4926,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -5469,7 +5469,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -5988,7 +5988,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -6601,7 +6601,7 @@ importers:
         specifier: ^2.0.5
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/nestjsx-crud':
         specifier: ^6.0.1
@@ -7009,7 +7009,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7778,7 +7778,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7854,7 +7854,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-router':
         specifier: ^2.0.4
@@ -7918,7 +7918,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -7985,7 +7985,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8052,7 +8052,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8116,7 +8116,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8180,7 +8180,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8649,7 +8649,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -8917,7 +8917,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9300,7 +9300,7 @@ importers:
         specifier: ^7.0.0
         version: link:../../packages/inferencer
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9769,7 +9769,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -9836,7 +9836,7 @@ importers:
         specifier: ^5.0.11
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -10260,7 +10260,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^5.0.4
@@ -10887,7 +10887,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: link:../../packages/mui
       '@refinedev/remix-router':
         specifier: ^4.0.4
