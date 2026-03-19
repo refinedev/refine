@@ -9,7 +9,7 @@ export const prepareQueryContext = (
   };
 
   Object.defineProperty(queryContext, "signal", {
-    enumerable: true,
+    enumerable: false,
     get: () => {
       return context.signal;
     },
