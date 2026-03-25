@@ -1,10 +1,11 @@
 import React from "react";
 import BlogLayout from "@theme/BlogLayout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Head from "@docusaurus/Head";
 import { PageMetadata } from "@docusaurus/theme-common";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
+import { BreadcrumbJsonLd } from "@site/src/components/json-ld";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
@@ -15,7 +16,18 @@ const AuthorPage = (props) => {
 
   return (
     <>
-      <BlogListPageMetadata />
+      <BlogListPageMetadata author={author} />
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Blog", href: "/blog" },
+          { label: "Authors", href: "/blog/authors" },
+          {
+            label: author?.name ?? "Author",
+            href: author?.key ? `/blog/author/${author.key}` : undefined,
+          },
+        ]}
+      />
+      <AuthorProfileJsonLd author={author} />
       <BlogLayout showSidebarBanner={false} classNameContainer="!block">
         <div
           className={clsx(
@@ -119,19 +131,41 @@ const AuthorBreadcrumbs = () => {
   );
 };
 
-const BlogListPageMetadata = () => {
-  const {
-    siteConfig: { title, tagline },
-  } = useDocusaurusContext();
+const BlogListPageMetadata = ({ author }) => {
+  const authorName = author?.name ?? "Author";
   return (
     <>
       <PageMetadata
-        title={title}
-        description={tagline}
+        title={`${authorName} - Blog Author`}
+        description={`Posts by ${authorName} on the Refine Blog.`}
         image="https://refine.dev/img/og-blog.png"
       />
       <SearchMetadata tag="author_blog_posts_list" />
     </>
+  );
+};
+
+const AuthorProfileJsonLd = ({ author }) => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      ...(author?.name && { name: author.name }),
+      ...(author?.title && { jobTitle: author.title }),
+      ...(author?.imageURL && { image: author.imageURL }),
+      ...(author?.key && {
+        url: `https://refine.dev/blog/author/${author.key}/`,
+      }),
+    },
+  };
+
+  return (
+    <Head>
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+    </Head>
   );
 };
 
