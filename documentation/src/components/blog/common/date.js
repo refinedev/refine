@@ -4,7 +4,7 @@ import clsx from "clsx";
 export function Date({
   date,
   formattedDate,
-  className,
+  className = "",
   itemProp = "datePublished",
 }) {
   return (

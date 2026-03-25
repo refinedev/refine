@@ -2,15 +2,16 @@ import React from "react";
 import { CommonLayout } from "./common-layout";
 import { BlogHeader } from "./blog-header";
 import { BlogFooter } from "./blog-footer";
-import clsx from "clsx";
+import clsx, { type ClassValue } from "clsx";
 import { BlogHero } from "./blog-hero";
 
 type Props = {
   showHero?: boolean;
+  classNameContainer?: ClassValue;
 } & Record<string, any>;
 
 export const RefineBlogLayout = (props: Props) => {
-  const { children, toc, ...layoutProps } = props;
+  const { children, toc, classNameContainer = false, ...layoutProps } = props;
 
   return (
     <CommonLayout
@@ -38,6 +39,7 @@ export const RefineBlogLayout = (props: Props) => {
             "blog-md:max-w-[672px]",
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
+            classNameContainer,
           )}
         >
           <div className={clsx("refine-prose")}>{children}</div>

@@ -33,6 +33,7 @@ const AuthorPage = (props) => {
   const breadcrumbItems = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
+    { label: "Authors", href: "/blog/authors" },
     { label: author?.name ?? "Author", href: authorHref },
   ];
 
@@ -49,11 +50,12 @@ const AuthorPage = (props) => {
             "blog-md:max-w-[656px]",
             "blog-lg:max-w-[896px]",
             "blog-max:max-w-[1200px]",
-            "px-6 blog-sm:px-0",
+            "px-6",
+            "blog-sm:px-0",
             "pt-6",
           )}
         />
-        <div className="h-8" />
+        <div className={clsx("h-8")} />
         <AuthorCardWithProps author={author} />
         <div
           className={clsx(
@@ -67,7 +69,9 @@ const AuthorPage = (props) => {
             "mx-auto",
           )}
         >
-          <h1 className="text-4xl !mb-0 px-0 lg:px-4">Posts</h1>
+          <h1 className={clsx("text-4xl", "!mb-0", "px-0", "lg:px-4")}>
+            Posts
+          </h1>
         </div>
         <div className={clsx("px-4", "blog-md:px-7", "blog-2xl:px-0")}>
           <BlogPostItems items={items} showTitle={false} isAuthorPage={true} />
