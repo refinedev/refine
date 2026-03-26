@@ -189,6 +189,7 @@ const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
             "ease-in-out",
             "hover:bg-white/50",
             "dark:hover:bg-zinc-950/50",
+            "not-prose",
           )}
         >
           <div
@@ -202,6 +203,7 @@ const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
               "dark:text-zinc-100",
               "group-hover:text-zinc-900",
               "dark:group-hover:text-white",
+              "text-balance",
             )}
           >
             {post.title}
