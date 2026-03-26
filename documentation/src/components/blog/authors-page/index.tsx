@@ -161,6 +161,8 @@ const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
             "transition-colors",
             "duration-200",
             "ease-in-out",
+            "hover:bg-white/50",
+            "dark:hover:bg-zinc-950/50",
           )}
         >
           <div className={clsx("flex", "flex-col", "items-start", "gap-3")}>
