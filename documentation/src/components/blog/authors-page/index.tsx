@@ -124,6 +124,32 @@ const AuthorsPageHeader = () => {
   );
 };
 
+const PostMetaText = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={clsx(
+        "font-semibold",
+        "text-[0.625rem]",
+        "leading-5",
+        "blog-md:leading-6",
+        "tracking-[0.01em]",
+        "uppercase",
+        "text-zinc-500",
+        "dark:text-zinc-400",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
 const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
   if (!posts.length) {
     return null;
@@ -165,22 +191,20 @@ const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
             "dark:hover:bg-zinc-950/50",
           )}
         >
-          <div className={clsx("flex", "flex-col", "items-start", "gap-3")}>
-            <div
-              className={clsx(
-                "min-w-0",
-                "text-sm",
-                "blog-md:text-base",
-                "leading-6",
-                "tracking-[-0.004em]",
-                "text-zinc-700",
-                "dark:text-zinc-100",
-                "group-hover:text-zinc-900",
-                "dark:group-hover:text-white",
-              )}
-            >
-              {post.title}
-            </div>
+          <div
+            className={clsx(
+              "min-w-0",
+              "text-sm",
+              "blog-md:text-base",
+              "leading-6",
+              "tracking-[-0.004em]",
+              "text-zinc-700",
+              "dark:text-zinc-100",
+              "group-hover:text-zinc-900",
+              "dark:group-hover:text-white",
+            )}
+          >
+            {post.title}
 
             <div
               className={clsx(
@@ -188,66 +212,41 @@ const AuthorPostsPreview = ({ posts = [] }: { posts?: BlogAuthorPost[] }) => {
                 "items-center",
                 "gap-2",
                 "blog-max:hidden",
-                "font-semibold",
-                "text-[0.625rem]",
-                "leading-4",
-                "tracking-[0.01em]",
-                "uppercase",
-                "text-zinc-500",
-                "dark:text-zinc-400",
               )}
             >
-              {post.category?.label && <span>{post.category.label}</span>}
+              {post.category?.label && (
+                <PostMetaText>{post.category.label}</PostMetaText>
+              )}
               {post.category?.label && post.date && (
                 <span className={clsx("text-zinc-400", "dark:text-zinc-500")}>
                   •
                 </span>
               )}
               {post.date && post.formattedDate && (
-                <DateComponent
-                  date={post.date}
-                  formattedDate={post.formattedDate}
-                />
+                <PostMetaText>
+                  <DateComponent
+                    date={post.date}
+                    formattedDate={post.formattedDate}
+                  />
+                </PostMetaText>
               )}
             </div>
           </div>
 
-          <div
-            className={clsx(
-              "hidden",
-              "blog-max:block",
-              "text-right",
-              "font-semibold",
-              "text-[0.625rem]",
-              "leading-4",
-              "tracking-[0.01em]",
-              "uppercase",
-              "text-zinc-500",
-              "dark:text-zinc-400",
-            )}
+          <PostMetaText
+            className={clsx("hidden", "blog-max:block", "text-right")}
           >
             {post.category?.label}
-          </div>
+          </PostMetaText>
 
-          <div
-            className={clsx(
-              "hidden",
-              "blog-max:block",
-              "text-right",
-              "font-semibold",
-              "text-[0.625rem]",
-              "leading-4",
-              "tracking-[0.01em]",
-              "uppercase",
-              "text-zinc-500",
-              "dark:text-zinc-400",
-            )}
+          <PostMetaText
+            className={clsx("hidden", "blog-max:block", "text-right")}
           >
             <DateComponent
               date={post.date}
               formattedDate={post.formattedDate}
             />
-          </div>
+          </PostMetaText>
         </Link>
       ))}
     </div>

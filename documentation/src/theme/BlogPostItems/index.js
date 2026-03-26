@@ -61,7 +61,9 @@ export default function BlogPostItems({
           "blog-sm:max-w-[592px]",
           "blog-md:max-w-[704px]",
           "blog-lg:max-w-[896px]",
-          "blog-max:max-w-[1200px]",
+          "blog-max:max-w-[1144px]",
+          "px-2",
+          "blog-sm:px-0",
           "w-full",
           "pt-4",
           "pb-6",
@@ -75,8 +77,6 @@ export default function BlogPostItems({
             viewMode === "grid" && "mb-6",
             viewMode === "list" && "mb-8",
             "w-full",
-            "px-4",
-            "blog-md:px-6",
             "flex",
             "items-center",
             "gap-3",
@@ -96,6 +96,8 @@ export default function BlogPostItems({
           {title && (
             <h2
               className={clsx(
+                "pl-4",
+                "blog-md:pl-6",
                 "m-0",
                 "text-2xl",
                 "blog-md:text-[2rem]",
@@ -115,6 +117,8 @@ export default function BlogPostItems({
           <div
             className={clsx(
               "w-full",
+              "blog-content-bleed",
+              "mx-auto",
               "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
             )}
           >

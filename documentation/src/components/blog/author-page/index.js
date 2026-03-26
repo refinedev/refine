@@ -60,7 +60,6 @@ const AuthorPage = (props) => {
         </div>
         <BlogPostItems
           items={items}
-          showTitle={false}
           isAuthorPage={true}
           title="Posts"
           containerClassName={clsx(
@@ -80,7 +79,16 @@ const AuthorPage = (props) => {
 const AuthorBreadcrumbs = () => {
   return (
     <nav
-      className={clsx("not-prose", "flex", "items-center", "py-2", "gap-[6px]")}
+      className={clsx(
+        "not-prose",
+        "flex",
+        "items-center",
+        "py-2",
+        "gap-[6px]",
+        "gap-6",
+        "px-4",
+        "blog-md:px-6",
+      )}
       aria-label="Blog breadcrumbs"
     >
       <Link
@@ -174,7 +182,15 @@ const AuthorProfile = ({ author, className }) => {
 
   return (
     <div
-      className={clsx("not-prose", "flex", "items-center", "gap-6", className)}
+      className={clsx(
+        "not-prose",
+        "flex",
+        "items-center",
+        "gap-6",
+        "px-4",
+        "blog-md:px-6",
+        className,
+      )}
     >
       <Link to={authorHref} className={clsx("flex-shrink-0", "no-underline")}>
         <img
