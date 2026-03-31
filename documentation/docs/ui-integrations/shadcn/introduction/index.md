@@ -54,15 +54,20 @@ npx shadcn@latest add https://ui.refine.dev/r/views.json
 
 Refine's shadcn/ui components are designed to work seamlessly with Refine's data hooks and provide common UI patterns needed in admin panels and data-heavy applications.
 
-Here's a simple example showing how to create a data table with sorting, filtering, and pagination using the `DataTable` component:
+Here's a simple example showing how to create a data table with sorting, filtering, and pagination using the composable DataTable primitives:
 
 ```tsx
 import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import { DataTableOverflowWrapper } from "@/components/refine-ui/data-table/data-table-overflow-wrapper";
+import { DataTableHeader } from "@/components/refine-ui/data-table/data-table-header";
+import { DataTableBody } from "@/components/refine-ui/data-table/data-table-body";
+import { DataTablePagination } from "@/components/refine-ui/data-table/data-table-pagination";
 import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-sorter";
 import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
+import { DataTableHeaderLabel } from "@/components/refine-ui/data-table/data-table-cell-helpers";
 import {
   ListView,
   ListViewHeader,
@@ -80,17 +85,17 @@ export default function PostList() {
         id: "id",
         accessorKey: "id",
         header: ({ column }) => (
-          <div className="flex items-center gap-1">
+          <DataTableHeaderLabel>
             <span>ID</span>
             <DataTableSorter column={column} />
-          </div>
+          </DataTableHeaderLabel>
         ),
       },
       {
         id: "title",
         accessorKey: "title",
         header: ({ column, table }) => (
-          <div className="flex items-center gap-1">
+          <DataTableHeaderLabel>
             <span>Title</span>
             <div>
               <DataTableFilterDropdownText
@@ -100,7 +105,7 @@ export default function PostList() {
                 placeholder="Filter by title"
               />
             </div>
-          </div>
+          </DataTableHeaderLabel>
         ),
       },
     ],
@@ -114,10 +119,42 @@ export default function PostList() {
     },
   });
 
+  const {
+    reactTable,
+    refineCore: {
+      tableQuery,
+      currentPage,
+      setCurrentPage,
+      pageCount,
+      pageSize,
+      setPageSize,
+    },
+  } = table;
+
+  const rows = reactTable.getRowModel().rows;
+
   return (
     <ListView>
       <ListViewHeader title="Posts" />
-      <DataTable table={table} />
+      <div className="flex flex-col flex-1 gap-4">
+        <DataTableOverflowWrapper deps={[tableQuery.data?.data, pageSize]}>
+          <DataTable>
+            <DataTableHeader headerGroups={reactTable.getHeaderGroups()} />
+            <DataTableBody
+              rows={rows}
+              leafColumns={reactTable.getAllLeafColumns()}
+            />
+          </DataTable>
+        </DataTableOverflowWrapper>
+        <DataTablePagination
+          currentPage={currentPage}
+          pageCount={pageCount}
+          setCurrentPage={setCurrentPage}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          total={tableQuery.data?.total}
+        />
+      </div>
     </ListView>
   );
 }

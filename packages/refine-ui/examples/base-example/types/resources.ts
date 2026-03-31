@@ -53,3 +53,13 @@ export type Tag = {
   id: number;
   title: string;
 };
+
+export type PullRequest = {
+  id: number;
+  number: number;
+  title: string;
+  state: string;
+  createdAt: string;
+  author: { login: string } | null;
+  labels: { nodes: { name: string; color: string }[] };
+};

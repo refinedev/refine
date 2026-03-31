@@ -44,7 +44,7 @@ export default function PostListPage() {
     <ListView>
       <ListViewHeader />
       <LoadingOverlay loading={isLoading}>
-        {/* Record content (e.g., DataTable) */}
+        {/* e.g., DataTableOverflowWrapper > DataTable > DataTableHeader + DataTableBody */}
       </LoadingOverlay>
     </ListView>
   );

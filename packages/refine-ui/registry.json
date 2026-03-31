@@ -162,7 +162,7 @@
       "name": "data-table",
       "type": "registry:component",
       "title": "Data Table",
-      "description": "A comprehensive data table component for Refine with sorting, filtering, pagination, and advanced features",
+      "description": "A comprehensive composable data table with overflow detection, header/body rendering, skeleton loading, empty state, loading overlay, toolbar, column visibility, sorting, filtering, page and cursor pagination, cell layout helpers, and value renderers",
       "dependencies": [
         "@refinedev/core",
         "@refinedev/react-table",
@@ -175,11 +175,13 @@
         "button",
         "input",
         "badge",
+        "select",
+        "skeleton",
+        "dropdown-menu",
         "popover",
         "command",
         "separator",
-        "calendar",
-        "select"
+        "calendar"
       ],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
@@ -191,9 +193,59 @@
           "target": "src/components/refine-ui/data-table/data-table.tsx"
         },
         {
-          "path": "registry/new-york/refine-ui/data-table/data-table-filter.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table-overflow-wrapper.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/data-table/data-table-filter.tsx"
+          "target": "src/components/refine-ui/data-table/data-table-overflow-wrapper.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-header.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-header.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-body.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-body.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-skeleton.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-skeleton.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-empty.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-empty.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-loading-overlay.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-loading-overlay.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-toolbar.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-toolbar.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-column-visibility.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-column-visibility.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-pagination.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-pagination.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cursor-pagination.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cursor-pagination.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-helpers.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-helpers.tsx"
         },
         {
           "path": "registry/new-york/refine-ui/data-table/data-table-sorter.tsx",
@@ -201,9 +253,34 @@
           "target": "src/components/refine-ui/data-table/data-table-sorter.tsx"
         },
         {
-          "path": "registry/new-york/refine-ui/data-table/data-table-pagination.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table-filter.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/data-table/data-table-pagination.tsx"
+          "target": "src/components/refine-ui/data-table/data-table-filter.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-status.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-status.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-date.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-date.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-boolean.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-boolean.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-number.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-number.tsx"
+        },
+        {
+          "path": "registry/new-york/refine-ui/data-table/data-table-cell-relation.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/data-table/data-table-cell-relation.tsx"
         }
       ]
     },

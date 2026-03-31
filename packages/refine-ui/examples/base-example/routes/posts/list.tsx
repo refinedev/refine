@@ -10,6 +10,15 @@ import {
 } from "@/registry/new-york/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import { DataTable } from "@/registry/new-york/refine-ui/data-table/data-table";
+import { DataTableOverflowWrapper } from "@/registry/new-york/refine-ui/data-table/data-table-overflow-wrapper";
+import { DataTableHeader } from "@/registry/new-york/refine-ui/data-table/data-table-header";
+import { DataTableBody } from "@/registry/new-york/refine-ui/data-table/data-table-body";
+import { DataTableSkeleton } from "@/registry/new-york/refine-ui/data-table/data-table-skeleton";
+import { DataTableEmpty } from "@/registry/new-york/refine-ui/data-table/data-table-empty";
+import { DataTableLoadingOverlay } from "@/registry/new-york/refine-ui/data-table/data-table-loading-overlay";
+import { DataTableToolbar } from "@/registry/new-york/refine-ui/data-table/data-table-toolbar";
+import { DataTableColumnVisibility } from "@/registry/new-york/refine-ui/data-table/data-table-column-visibility";
+import { DataTablePagination } from "@/registry/new-york/refine-ui/data-table/data-table-pagination";
 import { DataTableSorter } from "@/registry/new-york/refine-ui/data-table/data-table-sorter";
 import {
   DataTableFilterDropdownText,
@@ -18,6 +27,18 @@ import {
   DataTableFilterDropdownDateSinglePicker,
   DataTableFilterDropdownNumeric,
 } from "@/registry/new-york/refine-ui/data-table/data-table-filter";
+import {
+  DataTableHeaderLabel,
+  DataTableCellTruncate,
+  DataTableCellBadges,
+  DataTableCellActions,
+} from "@/registry/new-york/refine-ui/data-table/data-table-cell-helpers";
+import { DataTableCellStatus } from "@/registry/new-york/refine-ui/data-table/data-table-cell-status";
+import { DataTableCellDate } from "@/registry/new-york/refine-ui/data-table/data-table-cell-date";
+import {
+  DataTableCellRelation,
+  DataTableCellRelationProvider,
+} from "@/registry/new-york/refine-ui/data-table/data-table-cell-relation";
 import { EditButton } from "@/registry/new-york/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/new-york/refine-ui/buttons/delete";
 import {
@@ -48,7 +69,7 @@ export function PostsListPage() {
         size: 96,
         header: ({ column, table }) => {
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>ID</span>
               <div>
                 <DataTableSorter column={column} />
@@ -59,7 +80,7 @@ export function PostsListPage() {
                   placeholder="Filter by ID"
                 />
               </div>
-            </div>
+            </DataTableHeaderLabel>
           );
         },
       },
@@ -68,21 +89,23 @@ export function PostsListPage() {
         accessorKey: "title",
         size: 300,
         header: ({ column, table }) => {
-          // Added table prop for filter
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>Title</span>
               <div>
                 <DataTableFilterDropdownText
                   defaultOperator="contains"
                   column={column}
-                  table={table} // Pass table instance
+                  table={table}
                   placeholder="Filter by title"
                 />
               </div>
-            </div>
+            </DataTableHeaderLabel>
           );
         },
+        cell: ({ getValue }) => (
+          <DataTableCellTruncate>{getValue<string>()}</DataTableCellTruncate>
+        ),
       },
       {
         id: "description",
@@ -91,14 +114,17 @@ export function PostsListPage() {
         size: 400,
         enableSorting: false,
         enableColumnFilter: false,
+        cell: ({ getValue }) => (
+          <DataTableCellTruncate>{getValue<string>()}</DataTableCellTruncate>
+        ),
       },
       {
         id: "category.id",
-        accessorKey: "category.id", // Ensure this matches your data structure
+        accessorKey: "category.id",
         size: 200,
         header: ({ column }) => {
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>Category</span>
               <DataTableFilterCombobox
                 column={column}
@@ -109,38 +135,53 @@ export function PostsListPage() {
                   value: item.id.toString(),
                 }))}
               />
-            </div>
+            </DataTableHeaderLabel>
           );
         },
-        cell: ({ getValue }) => {
-          const categoryId = getValue<number>();
-          const category = categories.find((item) => item.id === categoryId);
-          return category?.title || "-";
-        },
+        cell: ({ getValue }) => (
+          <DataTableCellRelation
+            resource="categories"
+            id={getValue<number>()}
+            field="title"
+          />
+        ),
       },
       {
         id: "tags",
         accessorKey: "tags",
         size: 200,
         header: "Tags",
+        // Manual useMany + table meta approach for tags
         cell: ({ getValue, table }) => {
           const meta = table.options.meta as {
-            tagsData: GetManyResponse<Tag> | undefined;
-            tagsIsLoading: boolean;
+            tagsData: GetManyResponse<Tag>["data"] | undefined;
           };
-          const tags = meta?.tagsData?.data ?? [];
-          const tagsByPost = tags.filter((tag) =>
+          const allTags = meta?.tagsData ?? [];
+          const postTags = allTags.filter((tag) =>
             getValue<number[]>().includes(tag.id),
           );
-
           return (
-            <div className="flex flex-wrap gap-2">
-              {tagsByPost.map((tag) => (
+            <DataTableCellBadges>
+              {postTags.map((tag) => (
                 <Badge key={tag.id}>{tag.title}</Badge>
               ))}
-            </div>
+            </DataTableCellBadges>
           );
         },
+      },
+      {
+        id: "user.id",
+        accessorKey: "user.id",
+        size: 200,
+        header: "Author",
+        // No provider for "users" — falls back to useOne per cell
+        cell: ({ getValue }) => (
+          <DataTableCellRelation
+            resource="users"
+            id={getValue<number>()}
+            field="firstName"
+          />
+        ),
       },
       {
         id: "status",
@@ -148,7 +189,7 @@ export function PostsListPage() {
         size: 100,
         header: ({ column }) => {
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>Status</span>
               <DataTableFilterCombobox
                 column={column}
@@ -160,22 +201,20 @@ export function PostsListPage() {
                   { label: "Rejected", value: "rejected" },
                 ]}
               />
-            </div>
+            </DataTableHeaderLabel>
           );
         },
         cell: ({ getValue }) => {
           const status = getValue<string>();
-          const variantMap = {
-            published: "default",
-            draft: "outline",
-            rejected: "destructive",
-          };
           return (
-            <Badge
-              variant={variantMap[status as keyof typeof variantMap] as any}
-            >
-              {status}
-            </Badge>
+            <DataTableCellStatus
+              value={status}
+              variants={{
+                published: "default",
+                draft: "outline",
+                rejected: "destructive",
+              }}
+            />
           );
         },
       },
@@ -185,7 +224,7 @@ export function PostsListPage() {
         size: 220,
         header: ({ column }) => {
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>Created At</span>
               <DataTableFilterDropdownDateRangePicker
                 column={column}
@@ -199,20 +238,20 @@ export function PostsListPage() {
                   ];
                 }}
               />
-            </div>
+            </DataTableHeaderLabel>
           );
         },
         cell: ({ row }) => {
-          return <div>{row.original.createdAt}</div>;
+          return <DataTableCellDate value={row.original.createdAt} />;
         },
       },
       {
-        id: "updatedAt", // If you have an updatedAt field
-        accessorKey: "updatedAt", // Change to updatedAt if available
+        id: "updatedAt",
+        accessorKey: "updatedAt",
         size: 220,
         header: ({ column }) => {
           return (
-            <div className="flex items-center gap-1">
+            <DataTableHeaderLabel>
               <span>Updated At</span>
               <DataTableFilterDropdownDateSinglePicker
                 column={column}
@@ -222,11 +261,11 @@ export function PostsListPage() {
                   return date.toISOString().split("T")[0];
                 }}
               />
-            </div>
+            </DataTableHeaderLabel>
           );
         },
         cell: ({ row }) => {
-          return <div>{row.original.createdAt}</div>;
+          return <DataTableCellDate value={row.original.createdAt} />;
         },
       },
       {
@@ -235,13 +274,7 @@ export function PostsListPage() {
         enableSorting: false,
         enableColumnFilter: false,
         header: () => {
-          return (
-            <div
-              className={cn("flex", "w-full", "items-center", "justify-center")}
-            >
-              Actions
-            </div>
-          );
+          return <DataTableCellActions>Actions</DataTableCellActions>;
         },
         cell: ({ row }) => {
           const post = row.original;
@@ -284,7 +317,6 @@ export function PostsListPage() {
                   recordItemId={post.id}
                 />
                 <DeleteButton
-                  // add key for each button for popover to work
                   key={post.id}
                   size="sm"
                   className="w-full items-center justify-start"
@@ -301,29 +333,46 @@ export function PostsListPage() {
   );
 
   const table = useTable<Post>({
-    refineCoreProps: {
-      // Pass Refine core props for filtering, sorting, pagination
-    },
+    refineCoreProps: {},
     columns,
-    // TanStack Table options can be passed here
     initialState: {
       columnPinning: {
         left: [],
-        right: ["actions"], // Pin actions column to the right
+        right: ["actions"],
       },
     },
   });
 
-  const tableData = table.refineCore.tableQuery.data;
+  const {
+    reactTable,
+    refineCore: {
+      tableQuery,
+      currentPage,
+      setCurrentPage,
+      pageCount,
+      pageSize,
+      setPageSize,
+    },
+  } = table;
 
-  // get all tag ids from the table data to fetch all tags. we will use this to get relational data
-  const tagIds = useMemo(() => {
-    return (
-      tableData?.data?.flatMap((post) => post.tags.map((tag) => tag)) ?? []
-    );
-  }, [tableData]);
+  const isLoading = tableQuery.isLoading;
+  const isFetching = tableQuery.isFetching && !isLoading;
+  const rows = reactTable.getRowModel().rows;
 
-  // fetch all tags available in the table data
+  const tableData = tableQuery.data;
+
+  // Collect category IDs for the relation provider (batched useMany)
+  const categoryIds = useMemo(
+    () => tableData?.data?.map((post) => post.category.id) ?? [],
+    [tableData],
+  );
+
+  // Manual useMany for tags — passed to cells via table meta
+  const tagIds = useMemo(
+    () => tableData?.data?.flatMap((post) => post.tags) ?? [],
+    [tableData],
+  );
+
   const {
     result: { data: tagsData },
     query: { isLoading: tagsIsLoading },
@@ -335,18 +384,57 @@ export function PostsListPage() {
     },
   });
 
-  // set the tags data to the table meta to handle relations
   useEffect(() => {
-    table.reactTable.setOptions((prev) => ({
+    reactTable.setOptions((prev) => ({
       ...prev,
-      meta: { ...prev.meta, tagsData: tagsData, tagsIsLoading: tagsIsLoading },
+      meta: { ...prev.meta, tagsData, tagsIsLoading },
     }));
-  }, [table, tagsData, tagsIsLoading]);
+  }, [reactTable, tagsData, tagsIsLoading]);
 
   return (
     <ListView>
       <ListViewHeader />
-      <DataTable table={table} />
+      <div className="flex flex-col flex-1 gap-4">
+        <DataTableToolbar>
+          <DataTableColumnVisibility table={reactTable} />
+        </DataTableToolbar>
+        {/* Provider batches category IDs into a single useMany call.
+            Tags use manual useMany + table meta.
+            "users" has no provider — DataTableCellRelation falls back to useOne. */}
+        <DataTableCellRelationProvider resource="categories" ids={categoryIds}>
+          <DataTableOverflowWrapper deps={[tableQuery.data?.data, pageSize]}>
+            <DataTableLoadingOverlay loading={isFetching} />
+            <DataTable>
+              <DataTableHeader headerGroups={reactTable.getHeaderGroups()} />
+              <DataTableBody
+                rows={rows}
+                leafColumns={reactTable.getAllLeafColumns()}
+              >
+                {isLoading ? (
+                  <DataTableSkeleton
+                    columns={reactTable.getAllLeafColumns()}
+                    rowCount={pageSize}
+                  />
+                ) : rows.length === 0 ? (
+                  <DataTableEmpty
+                    columnCount={reactTable.getAllColumns().length}
+                  />
+                ) : null}
+              </DataTableBody>
+            </DataTable>
+          </DataTableOverflowWrapper>
+        </DataTableCellRelationProvider>
+        {!isLoading && rows.length > 0 && (
+          <DataTablePagination
+            currentPage={currentPage}
+            pageCount={pageCount}
+            setCurrentPage={setCurrentPage}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            total={tableQuery.data?.total}
+          />
+        )}
+      </div>
     </ListView>
   );
 }

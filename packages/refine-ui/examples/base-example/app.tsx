@@ -17,6 +17,7 @@ import {
   DollarSignIcon,
   FileIcon,
   FolderIcon,
+  GitCommitHorizontalIcon,
   HomeIcon,
   SettingsIcon,
   UserIcon,
@@ -24,6 +25,7 @@ import {
 import { authProvider } from "./providers/auth";
 import { useNotificationProvider } from "./providers/notification";
 import { createDataProvider } from "./providers/data";
+import { githubDataProvider } from "./providers/github-data";
 import { LoginForm } from "./components/login-form";
 import { RegisterForm } from "./components/register-form";
 import { AppLayout } from "./components/layout";
@@ -35,12 +37,16 @@ import CreatePost from "./routes/posts/create";
 import ShowPost from "./routes/posts/show";
 import EditPost from "./routes/posts/edit";
 import { ForgotPasswordForm } from "./components/forgot-password-form";
+import { PullRequestsListPage } from "./routes/pull-requests/list";
 
 export function BaseExample() {
   return (
     <BrowserRouter basename="/base-example">
       <Refine
-        dataProvider={createDataProvider(API_URL)}
+        dataProvider={{
+          default: createDataProvider(API_URL),
+          github: githubDataProvider,
+        }}
         authProvider={authProvider}
         routerProvider={routerProvider}
         notificationProvider={useNotificationProvider}
@@ -50,7 +56,7 @@ export function BaseExample() {
             list: "/",
             meta: {
               label: "Home",
-              icon: <HomeIcon />,
+              icon: <HomeIcon className="size-4" />,
             },
           },
           {
@@ -68,6 +74,15 @@ export function BaseExample() {
             name: "users",
             list: "/users",
             meta: { icon: <UserIcon /> },
+          },
+          {
+            name: "pull-requests",
+            list: "/pull-requests",
+            meta: {
+              label: "Pull Requests",
+              icon: <GitCommitHorizontalIcon />,
+              dataProviderName: "github",
+            },
           },
           {
             name: "settings",
@@ -141,6 +156,7 @@ export function BaseExample() {
             <Route path="/posts/edit/:id" element={<EditPost />} />
             <Route path="/posts/show/:id" element={<ShowPost />} />
             <Route path="/users" element={<UsersListPage />} />
+            <Route path="/pull-requests" element={<PullRequestsListPage />} />
             <Route path="/settings" element={<div>Settings List Page</div>} />
             <Route
               path="/settings/notifications"
