@@ -14,7 +14,6 @@ import {
   setInitialSorters,
   unionFilters,
   unionSorters,
-  type CursorDirection,
 } from "@definitions/table";
 import {
   useGo,
@@ -30,6 +29,7 @@ import type {
   BaseRecord,
   CrudFilter,
   CrudSort,
+  CursorDirection,
   CursorPagination,
   GetListResponse,
   HttpError,
