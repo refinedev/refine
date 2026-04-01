@@ -524,14 +524,10 @@ export function useTable<
     }
 
     setCursorState({
-      current: preferredCursor?.current,
-      direction: preferredCursor?.direction ?? "after",
+      current: undefined,
+      direction: "after",
     });
-  }, [
-    isCursorPaginationEnabled,
-    preferredCursor?.current,
-    preferredCursor?.direction,
-  ]);
+  }, [isCursorPaginationEnabled]);
 
   const setFiltersAsMerge = useCallback(
     (newFilters: CrudFilter[]) => {

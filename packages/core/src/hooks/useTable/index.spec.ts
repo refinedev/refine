@@ -792,6 +792,98 @@ describe("useTable Cursor Pagination", () => {
     expect(mockGetList).toHaveBeenCalledTimes(1);
   });
 
+  it("should clear initial cursor when filters change", async () => {
+    const mockGetList = vi
+      .fn()
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        total: 10,
+        cursor: { next: "cursor_page_3", prev: "cursor_page_1" },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        total: 10,
+        cursor: { next: "cursor_page_2" },
+      });
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+            cursor: {
+              current: "cursor_page_2",
+              direction: "after",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 1,
+          mode: "cursor",
+          cursor: {
+            current: "cursor_page_2",
+            direction: "after",
+          },
+        },
+      }),
+    );
+
+    act(() => {
+      result.current.setFilters([
+        {
+          field: "title",
+          operator: "contains",
+          value: "hello",
+        },
+      ]);
+    });
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalledTimes(2);
+    });
+
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 1,
+          mode: "cursor",
+        },
+        filters: [
+          {
+            field: "title",
+            operator: "contains",
+            value: "hello",
+          },
+        ],
+      }),
+    );
+  });
+
   it("should ignore location currentPage in cursor mode and sync pageSize", async () => {
     const mockGetList = vi.fn().mockResolvedValue({
       data: [{ id: 1 }],
