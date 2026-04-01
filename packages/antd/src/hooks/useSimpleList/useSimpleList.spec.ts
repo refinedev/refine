@@ -155,6 +155,50 @@ describe("useSimpleList Hook", () => {
     },
   );
 
+  it("when pagination mode is cursor, pagination should be false", async () => {
+    const { result } = renderHook(
+      () =>
+        useSimpleList({
+          pagination: {
+            mode: "cursor",
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.listProps.loading).toBeTruthy();
+    });
+
+    expect(result.current.listProps.pagination).toBe(false);
+  });
+
+  it("when pagination mode is cursor, should render cursor footer controls", async () => {
+    const { result } = renderHook(
+      () =>
+        useSimpleList({
+          pagination: {
+            mode: "cursor",
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.listProps.loading).toBeTruthy();
+    });
+
+    expect(result.current.listProps.footer).toBeTruthy();
+  });
+
   it("when pagination mode is off, pagination should be false", async () => {
     const { result } = renderHook(
       () =>
