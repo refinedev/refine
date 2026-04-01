@@ -169,6 +169,8 @@ export type MetaQuery = {
 } & QueryBuilderOptions &
   GraphQLQueryOptions;
 
+export type CursorDirection = "after" | "before";
+
 export interface CursorPagination {
   next?: unknown;
   prev?: unknown;

@@ -7,15 +7,22 @@ import type {
   CrudFilter,
   CrudOperators,
   CrudSort,
+  CursorDirection,
   SortOrder,
 } from "../../contexts/data/types";
 
-export type CursorDirection = "after" | "before";
+/**
+ * Depth limit for `qs.parse`. Deeply nested conditional filters
+ * (e.g. `or -> and -> { field, operator, value }`) require at least 7 levels.
+ * We use 10 to leave comfortable headroom.
+ */
+export const QS_PARSE_DEPTH = 10;
 
 export const parseTableParams = (url: string) => {
   const { currentPage, pageSize, sorters, sorter, filters, after, before } =
     qs.parse(
       url.substring(1), // remove first ? character
+      { depth: QS_PARSE_DEPTH },
     );
 
   let parsedCursor: unknown = undefined;
