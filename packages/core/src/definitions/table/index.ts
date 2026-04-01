@@ -8,6 +8,7 @@ import type {
   CrudOperators,
   CrudSort,
   CursorDirection,
+  CursorValue,
   SortOrder,
 } from "../../contexts/data/types";
 
@@ -18,6 +19,14 @@ import type {
  */
 export const QS_PARSE_DEPTH = 10;
 
+const getParsedCursorValue = (value: unknown): CursorValue | undefined => {
+  if (typeof value === "string" || typeof value === "number") {
+    return value;
+  }
+
+  return undefined;
+};
+
 export const parseTableParams = (url: string) => {
   const { currentPage, pageSize, sorters, sorter, filters, after, before } =
     qs.parse(
@@ -25,14 +34,14 @@ export const parseTableParams = (url: string) => {
       { depth: QS_PARSE_DEPTH },
     );
 
-  let parsedCursor: unknown = undefined;
+  let parsedCursor: CursorValue | undefined;
   let parsedCursorDirection: CursorDirection = "after";
 
   if (after) {
-    parsedCursor = after;
+    parsedCursor = getParsedCursorValue(after);
     parsedCursorDirection = "after";
   } else if (before) {
-    parsedCursor = before;
+    parsedCursor = getParsedCursorValue(before);
     parsedCursorDirection = "before";
   }
 
@@ -50,14 +59,14 @@ export const parseTableParamsFromQuery = (params: any) => {
   const { currentPage, pageSize, sorters, sorter, filters, after, before } =
     params;
 
-  let parsedCursor: unknown = undefined;
+  let parsedCursor: CursorValue | undefined;
   let parsedCursorDirection: CursorDirection = "after";
 
   if (after) {
-    parsedCursor = after;
+    parsedCursor = getParsedCursorValue(after);
     parsedCursorDirection = "after";
   } else if (before) {
-    parsedCursor = before;
+    parsedCursor = getParsedCursorValue(before);
     parsedCursorDirection = "before";
   }
 
@@ -76,7 +85,7 @@ export const parseTableParamsFromQuery = (params: any) => {
  */
 export const stringifyTableParams = (params: {
   pagination?: { currentPage?: number; pageSize?: number };
-  cursor?: { current: unknown; direction: CursorDirection };
+  cursor?: { current: CursorValue; direction: CursorDirection };
   sorters: CrudSort[];
   sorter?: CrudSort[];
   filters: CrudFilter[];

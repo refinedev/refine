@@ -616,20 +616,88 @@ describe("useTable Cursor Pagination", () => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.hasNextPage).toBe(true);
-    expect(result.current.hasPreviousPage).toBe(false);
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
     expect(result.current.cursor.next).toBe("cursor_abc");
     expect(result.current.cursor.prev).toBeUndefined();
   });
 
-  it("should pass cursor via meta to data provider", async () => {
-    const mockGetList = vi.fn().mockResolvedValue({
-      data: [{ id: 1 }],
-      total: 10,
-      cursor: { next: "next_cursor" },
+  it("should error when cursor mode receives offset response", async () => {
+    const { result } = renderHook(
+      () => useTable({ pagination: { mode: "cursor", pageSize: 2 } }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }, { id: 2 }],
+                total: 100,
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isError).toBeTruthy();
     });
 
-    renderHook(
+    expect(result.current.tableQuery.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining('`pagination.mode` is "cursor"'),
+    });
+  });
+
+  it("should error when server mode receives cursor response", async () => {
+    const { result } = renderHook(
+      () => useTable({ pagination: { mode: "server", pageSize: 2 } }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }, { id: 2 }],
+                total: 100,
+                cursor: { next: "cursor_abc" },
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isError).toBeTruthy();
+    });
+
+    expect(result.current.tableQuery.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining('`pagination.mode` is "server"'),
+    });
+  });
+
+  it("should pass cursor via pagination to data provider", async () => {
+    const mockGetList = vi
+      .fn()
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        total: 10,
+        cursor: { next: "next_cursor" },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 2 }],
+        total: 10,
+        cursor: { next: "next_cursor_2", prev: "prev_cursor_1" },
+      });
+
+    const { result } = renderHook(
       () => useTable({ pagination: { mode: "cursor", pageSize: 1 } }),
       {
         wrapper: TestWrapper({
@@ -646,14 +714,40 @@ describe("useTable Cursor Pagination", () => {
     );
 
     await waitFor(() => {
-      expect(mockGetList).toHaveBeenCalled();
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(mockGetList).toHaveBeenCalledWith(
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      1,
       expect.objectContaining({
-        meta: expect.objectContaining({
-          cursor: { next: undefined, prev: undefined },
-        }),
+        pagination: {
+          currentPage: 1,
+          pageSize: 1,
+          mode: "cursor",
+        },
+      }),
+    );
+
+    act(() => {
+      result.current.cursor.goToNextPage();
+    });
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalledTimes(2);
+    });
+
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 1,
+          mode: "cursor",
+          cursor: {
+            current: "next_cursor",
+            direction: "after",
+          },
+        },
       }),
     );
   });
@@ -693,21 +787,21 @@ describe("useTable Cursor Pagination", () => {
     });
 
     expect(result.current.cursor.next).toBe("cursor_page_2");
-    expect(result.current.hasNextPage).toBe(true);
-    expect(result.current.hasPreviousPage).toBe(false);
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
 
     act(() => {
-      result.current.goToNextPage();
+      result.current.cursor.goToNextPage();
     });
 
     await waitFor(() => {
-      expect(mockGetList).toHaveBeenCalledTimes(2);
+      expect(result.current.cursor.hasPreviousPage).toBe(true);
     });
 
-    expect(result.current.hasPreviousPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(true);
   });
 
-  it("goToPreviousPage should navigate back using history", async () => {
+  it("goToPreviousPage should navigate using provider cursor", async () => {
     const mockGetList = vi
       .fn()
       .mockResolvedValueOnce({
@@ -747,20 +841,86 @@ describe("useTable Cursor Pagination", () => {
     });
 
     act(() => {
-      result.current.goToNextPage();
+      result.current.cursor.goToNextPage();
     });
 
     await waitFor(() => {
-      expect(result.current.hasPreviousPage).toBe(true);
+      expect(result.current.cursor.hasPreviousPage).toBe(true);
     });
 
     act(() => {
-      result.current.goToPreviousPage();
+      result.current.cursor.goToPreviousPage();
     });
 
     await waitFor(() => {
-      expect(result.current.hasPreviousPage).toBe(false);
+      expect(mockGetList).toHaveBeenCalledTimes(3);
     });
+
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      3,
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 1,
+          mode: "cursor",
+          cursor: {
+            current: "cursor_page_1",
+            direction: "before",
+          },
+        },
+      }),
+    );
+  });
+
+  it("should not infer previous page from local history", async () => {
+    const mockGetList = vi
+      .fn()
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        total: 10,
+        cursor: { next: "cursor_page_2" },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 2 }],
+        total: 10,
+        cursor: { next: "cursor_page_3" },
+      });
+
+    const { result } = renderHook(
+      () => useTable({ pagination: { mode: "cursor", pageSize: 1 } }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    act(() => {
+      result.current.cursor.goToNextPage();
+    });
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalledTimes(2);
+    });
+
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
+
+    act(() => {
+      result.current.cursor.goToPreviousPage();
+    });
+
+    expect(mockGetList).toHaveBeenCalledTimes(2);
   });
 
   it("goToNextPage should work for offset pagination", async () => {
@@ -782,7 +942,7 @@ describe("useTable Cursor Pagination", () => {
     expect(result.current.currentPage).toBe(1);
 
     act(() => {
-      result.current.goToNextPage();
+      result.current.cursor.goToNextPage();
     });
 
     expect(result.current.currentPage).toBe(2);
@@ -810,7 +970,7 @@ describe("useTable Cursor Pagination", () => {
     expect(result.current.currentPage).toBe(3);
 
     act(() => {
-      result.current.goToPreviousPage();
+      result.current.cursor.goToPreviousPage();
     });
 
     expect(result.current.currentPage).toBe(2);
@@ -835,7 +995,7 @@ describe("useTable Cursor Pagination", () => {
     expect(result.current.currentPage).toBe(1);
 
     act(() => {
-      result.current.goToPreviousPage();
+      result.current.cursor.goToPreviousPage();
     });
 
     expect(result.current.currentPage).toBe(1);
@@ -870,8 +1030,8 @@ describe("useTable Cursor Pagination", () => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.hasNextPage).toBe(true);
-    expect(result.current.hasPreviousPage).toBe(true);
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(true);
   });
 });
 

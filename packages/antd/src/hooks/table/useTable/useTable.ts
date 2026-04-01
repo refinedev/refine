@@ -97,10 +97,6 @@ export const useTable = <
     overtime,
     result,
     cursor,
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: paginationFromProp,
     filters: filtersFromProp,
@@ -124,6 +120,8 @@ export const useTable = <
     form: form,
   });
   const liveMode = useLiveMode(liveModeFromProp);
+  const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
+    cursor;
 
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
   const isCursorPaginationEnabled = paginationFromProp?.mode === "cursor";
@@ -180,7 +178,7 @@ export const useTable = <
       setSorters(crudSorting);
     }
 
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage?.(paginationState.current || 1);
       setPageSize?.(paginationState.pageSize || 10);
     }
@@ -191,7 +189,7 @@ export const useTable = <
       const searchFilters = await onSearch(value);
       setFilters(searchFilters);
 
-      if (isPaginationEnabled) {
+      if (isPaginationEnabled && !isCursorPaginationEnabled) {
         setCurrentPage?.(1);
       }
     }
@@ -326,9 +324,5 @@ export const useTable = <
     overtime,
     result,
     cursor,
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
   };
 };

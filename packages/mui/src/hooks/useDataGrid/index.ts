@@ -182,10 +182,6 @@ export function useDataGrid<
     overtime,
     result,
     cursor,
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: {
       ...pagination,
@@ -224,6 +220,8 @@ export function useDataGrid<
     (sortersFromProp?.mode || "server") === "server";
   const isPaginationEnabled = (pagination?.mode ?? "server") !== "off";
   const isCursorPaginationEnabled = pagination?.mode === "cursor";
+  const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
+    cursor;
 
   const preferredPermanentSorters =
     sortersFromProp?.permanent ?? defaultPermanentSort;
@@ -231,12 +229,12 @@ export function useDataGrid<
     filtersFromProp?.permanent ?? defaultPermanentFilter;
 
   const handlePageChange = (page: number) => {
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage(page + 1);
     }
   };
   const handlePageSizeChange = (pageSize: number) => {
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setPageSize(pageSize);
     }
   };
@@ -258,7 +256,7 @@ export function useDataGrid<
   // Apply filters immediately to local state (and reset page if needed).
   const applyFilters = (crudFilters: CrudFilters) => {
     setFilters(crudFilters.filter((f) => f.value !== ""));
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage(1);
     }
   };
@@ -454,9 +452,5 @@ export function useDataGrid<
     overtime,
     result,
     cursor,
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
   };
 }

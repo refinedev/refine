@@ -30,7 +30,7 @@ import type {
   CrudFilter,
   CrudSort,
   CursorDirection,
-  CursorPagination,
+  CursorValue,
   GetListResponse,
   HttpError,
   MetaQuery,
@@ -141,6 +141,21 @@ type SyncWithLocationParams = {
   filters: CrudFilter[];
 };
 
+type CursorState = {
+  current?: CursorValue;
+  direction: CursorDirection;
+};
+
+type UseTableCursorType = Pick<
+  NonNullable<Pagination["cursor"]>,
+  "next" | "prev"
+> & {
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  goToNextPage: () => void;
+  goToPreviousPage: () => void;
+};
+
 export type useTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -162,11 +177,7 @@ export type useTableReturnType<
     total: number | undefined;
     [key: string]: any;
   };
-  cursor: CursorPagination;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-  goToNextPage: () => void;
-  goToPreviousPage: () => void;
+  cursor: UseTableCursorType;
 } & UseLoadingOvertimeReturnType;
 
 /**
@@ -226,6 +237,7 @@ export function useTable<
   const isCursorPaginationEnabled = pagination?.mode === "cursor";
   const prefferedCurrentPage = pagination?.currentPage;
   const prefferedPageSize = pagination?.pageSize;
+  const preferredCursor = pagination?.cursor;
   const preferredMeta = meta;
 
   // Parse table params from URL if available
@@ -252,18 +264,14 @@ export function useTable<
   let defaultPageSize: number;
   let defaultSorter: CrudSort[] | undefined;
   let defaultFilter: CrudFilter[] | undefined;
-  let defaultCursor: unknown = undefined;
-  let defaultCursorDirection: CursorDirection = "after";
+  let initialCursorCurrent = preferredCursor?.current;
+  let initialCursorDirection = preferredCursor?.direction ?? "after";
 
   if (syncWithLocation) {
     if (isCursorPaginationEnabled) {
-      // Read cursor from parsed params (after/before from URL)
-      if (parsedParams?.params?.after) {
-        defaultCursor = parsedParams.params.after;
-        defaultCursorDirection = "after";
-      } else if (parsedParams?.params?.before) {
-        defaultCursor = parsedParams.params.before;
-        defaultCursorDirection = "before";
+      if (parsedCursor !== undefined) {
+        initialCursorCurrent = parsedCursor;
+        initialCursorDirection = parsedCursorDirection;
       }
     }
     defaultCurrentPage =
@@ -314,26 +322,25 @@ export function useTable<
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
   const [currentPage, setCurrentPage] = useState<number>(defaultCurrentPage);
-  const [pageSize, setPageSize] = useState<number>(defaultPageSize);
-
-  const [cursorState, setCursorState] = useState<{
-    current: unknown;
-    direction: CursorDirection;
-    next: unknown;
-    prev: unknown;
-    history: unknown[];
-  }>({
-    current: defaultCursor,
-    direction: defaultCursorDirection,
-    next: undefined,
-    prev: undefined,
-    history: [],
+  const [pageSize, setPageSizeState] = useState<number>(defaultPageSize);
+  const [cursorState, setCursorState] = useState<CursorState>({
+    current: initialCursorCurrent,
+    direction: initialCursorDirection,
   });
 
   const getCurrentQueryParams = (): object => {
     // We get QueryString parameters that are uncontrolled by refine.
-    const { sorters, filters, pageSize, current, ...rest } =
-      parsedParams?.params ?? {};
+    const {
+      sorter,
+      sorters,
+      filters,
+      pageSize,
+      current,
+      currentPage,
+      after,
+      before,
+      ...rest
+    } = parsedParams?.params ?? {};
 
     return rest;
   };
@@ -363,15 +370,29 @@ export function useTable<
   useEffect(() => {
     if (parsedParams?.params?.search === "") {
       setCurrentPage(defaultCurrentPage);
-      setPageSize(defaultPageSize);
+      setPageSizeState(defaultPageSize);
       setSorters(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
       );
       setFilters(
         setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
       );
+      setCursorState({
+        current: preferredCursor?.current,
+        direction: preferredCursor?.direction ?? "after",
+      });
     }
-  }, [parsedParams?.params?.search]);
+  }, [
+    defaultCurrentPage,
+    defaultPageSize,
+    parsedParams?.params?.search,
+    preferredCursor?.current,
+    preferredCursor?.direction,
+    preferredPermanentFilters,
+    preferredPermanentSorters,
+    defaultFilter,
+    defaultSorter,
+  ]);
 
   useEffect(() => {
     if (syncWithLocation) {
@@ -414,21 +435,29 @@ export function useTable<
     cursorState.direction,
   ]);
 
-  const cursorMeta = isCursorPaginationEnabled
+  const paginationForQuery = isCursorPaginationEnabled
     ? {
-        ...combinedMeta,
-        cursor: {
-          current: cursorState.current,
-          direction: cursorState.direction,
-        },
+        currentPage,
+        pageSize,
+        mode: pagination?.mode,
+        ...(cursorState.current !== undefined
+          ? {
+              cursor: {
+                current: cursorState.current,
+                direction: cursorState.direction,
+              },
+            }
+          : {}),
       }
-    : combinedMeta;
+    : {
+        currentPage,
+        pageSize,
+        mode: pagination?.mode,
+      };
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
-    pagination: isCursorPaginationEnabled
-      ? { pageSize, mode: pagination?.mode }
-      : { currentPage: currentPage, pageSize, mode: pagination?.mode },
+    pagination: paginationForQuery,
     filters: isServerSideFilteringEnabled
       ? unionFilters(preferredPermanentFilters, filters)
       : undefined,
@@ -439,36 +468,54 @@ export function useTable<
     overtimeOptions,
     successNotification,
     errorNotification,
-    meta: cursorMeta,
+    meta: combinedMeta,
     liveMode,
     liveParams,
     onLiveEvent,
     dataProviderName,
   });
 
+  const resetCursorState = useCallback(() => {
+    if (!isCursorPaginationEnabled) {
+      return;
+    }
+
+    setCursorState({
+      current: preferredCursor?.current,
+      direction: preferredCursor?.direction ?? "after",
+    });
+  }, [
+    isCursorPaginationEnabled,
+    preferredCursor?.current,
+    preferredCursor?.direction,
+  ]);
+
   const setFiltersAsMerge = useCallback(
     (newFilters: CrudFilter[]) => {
+      resetCursorState();
       setFilters((prevFilters) =>
         unionFilters(preferredPermanentFilters, newFilters, prevFilters),
       );
     },
-    [preferredPermanentFilters],
+    [preferredPermanentFilters, resetCursorState],
   );
 
   const setFiltersAsReplace = useCallback(
     (newFilters: CrudFilter[]) => {
+      resetCursorState();
       setFilters(unionFilters(preferredPermanentFilters, newFilters));
     },
-    [preferredPermanentFilters],
+    [preferredPermanentFilters, resetCursorState],
   );
 
   const setFiltersWithSetter = useCallback(
     (setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => {
+      resetCursorState();
       setFilters((prev) =>
         unionFilters(preferredPermanentFilters, setter(prev)),
       );
     },
-    [preferredPermanentFilters],
+    [preferredPermanentFilters, resetCursorState],
   );
 
   const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] =
@@ -492,21 +539,23 @@ export function useTable<
 
   const setSortWithUnion = useCallback(
     (newSorter: CrudSort[]) => {
+      resetCursorState();
       setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
     },
-    [preferredPermanentSorters],
+    [preferredPermanentSorters, resetCursorState],
   );
 
-  useEffect(() => {
-    if (isCursorPaginationEnabled && queryResult.query.data) {
-      const response = queryResult.query.data;
-      setCursorState((prev) => ({
-        ...prev,
-        next: response.cursor?.next,
-        prev: response.cursor?.prev,
-      }));
-    }
-  }, [queryResult.query.data, isCursorPaginationEnabled]);
+  const setPageSize: ReactSetState<useTableReturnType["pageSize"]> =
+    useCallback(
+      (value) => {
+        resetCursorState();
+        setPageSizeState(value);
+      },
+      [resetCursorState],
+    );
+
+  const nextCursor = queryResult.result.cursor?.next;
+  const previousCursor = queryResult.result.cursor?.prev;
 
   const goToNextPage = useCallback(() => {
     if (!isCursorPaginationEnabled) {
@@ -514,16 +563,13 @@ export function useTable<
       return;
     }
 
-    if (cursorState.next) {
-      setCursorState((prev) => ({
-        current: prev.next,
+    if (nextCursor !== undefined) {
+      setCursorState({
+        current: nextCursor,
         direction: "after",
-        history: [...prev.history, prev.current],
-        next: undefined,
-        prev: undefined,
-      }));
+      });
     }
-  }, [isCursorPaginationEnabled, cursorState.next]);
+  }, [isCursorPaginationEnabled, nextCursor]);
 
   const goToPreviousPage = useCallback(() => {
     if (!isCursorPaginationEnabled) {
@@ -531,57 +577,34 @@ export function useTable<
       return;
     }
 
-    // Prefer API's prev cursor (bidirectional APIs like Stripe, GraphQL)
-    if (cursorState.prev) {
-      setCursorState((prev) => ({
-        current: prev.prev,
+    if (previousCursor !== undefined) {
+      setCursorState({
+        current: previousCursor,
         direction: "before",
-        next: undefined,
-        prev: undefined,
-        history: prev.history,
-      }));
-    } else if (cursorState.history.length > 0) {
-      // Fall back to client history (unidirectional APIs like GitHub)
-      const newHistory = [...cursorState.history];
-      const prevCursor = newHistory.pop();
-      setCursorState({
-        current: prevCursor,
-        direction: "after",
-        next: undefined,
-        prev: undefined,
-        history: newHistory,
-      });
-    } else if (cursorState.current) {
-      // Go to first page by clearing cursor
-      setCursorState({
-        current: undefined,
-        direction: "after",
-        next: undefined,
-        prev: undefined,
-        history: [],
       });
     }
-  }, [
-    isCursorPaginationEnabled,
-    cursorState.prev,
-    cursorState.history,
-    cursorState.current,
-  ]);
+  }, [isCursorPaginationEnabled, previousCursor]);
 
   const pageCount = pageSize
     ? Math.ceil((queryResult.result?.total ?? 0) / pageSize)
     : 1;
 
   const hasNextPage = isCursorPaginationEnabled
-    ? !!cursorState.next
+    ? nextCursor !== undefined
     : currentPage < pageCount;
 
-  // Can go to previous page if: has API prev cursor, has history, or has current cursor (can go to first page)
   const hasPreviousPage = isCursorPaginationEnabled
-    ? Boolean(cursorState.prev) ||
-      cursorState.history.length > 0 ||
-      Boolean(cursorState.current)
+    ? previousCursor !== undefined
     : currentPage > 1;
+
+  const cursor: UseTableCursorType = {
+    next: nextCursor,
+    prev: previousCursor,
+    hasNextPage,
+    hasPreviousPage,
+    goToNextPage,
+    goToPreviousPage,
+  };
 
   return {
     tableQuery: queryResult.query,
@@ -601,13 +624,6 @@ export function useTable<
       data: queryResult.result?.data || EMPTY_ARRAY,
       total: queryResult.result?.total,
     },
-    cursor: {
-      next: cursorState.next,
-      prev: cursorState.prev,
-    },
-    hasNextPage,
-    hasPreviousPage,
-    goToNextPage,
-    goToPreviousPage,
+    cursor,
   };
 }

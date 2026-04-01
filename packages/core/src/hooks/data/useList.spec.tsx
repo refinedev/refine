@@ -145,6 +145,147 @@ describe("useList Hook", () => {
     },
   );
 
+  it("should include cursor pagination in queryKey", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "cursor_1",
+              direction: "after",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 10,
+          mode: "cursor",
+          cursor: {
+            current: "cursor_1",
+            direction: "after",
+          },
+        },
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_1",
+                  direction: "after",
+                },
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
+  it("should error when cursor mode receives offset response", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+                total: 0,
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isError).toBeTruthy();
+    });
+
+    expect(result.current.query.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining('`pagination.mode` is "cursor"'),
+    });
+  });
+
+  it("should error when server mode receives cursor response", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "server",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+                total: 0,
+                cursor: {},
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isError).toBeTruthy();
+    });
+
+    expect(result.current.query.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining('`pagination.mode` is "server"'),
+    });
+  });
+
   it("data should be sliced when pagination mode is client", async () => {
     const { result } = renderHook(
       () =>

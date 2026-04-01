@@ -148,6 +148,23 @@ describe("definitions/table", () => {
     ]);
   });
 
+  it("should stringify and parse cursor params", () => {
+    const url = stringifyTableParams({
+      cursor: {
+        current: "cursor_1",
+        direction: "after",
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(url).toBe("after=cursor_1");
+    expect(parseTableParams(`?${url}`)).toMatchObject({
+      parsedCursor: "cursor_1",
+      parsedCursorDirection: "after",
+    });
+  });
+
   it("sorters should be prioritized over sorter", async () => {
     const pagination = {
       currentPage: 1,
@@ -621,6 +638,8 @@ describe("definitions/table", () => {
   it("parseTableParams default sorter and filters", () => {
     expect(parseTableParams("?currentPage=1&pageSize=10")).toStrictEqual({
       parsedCurrentPage: 1,
+      parsedCursor: undefined,
+      parsedCursorDirection: "after",
       parsedFilters: [],
       parsedPageSize: 10,
       parsedSorter: [],

@@ -10,16 +10,24 @@ export const dataProvider = (
   Required<DataProvider>,
   "createMany" | "updateMany" | "deleteMany"
 > => ({
-  getList: async ({ resource, meta, pagination }) => {
+  getList: async ({ resource, pagination }) => {
     let url = `${apiUrl}/${resource}?per_page=${pagination?.pageSize || 10}`;
 
-    if (meta?.cursor?.current) {
-      url = `${url}&until=${meta.cursor.current}`;
+    if (pagination?.cursor?.current !== undefined) {
+      const direction = pagination.cursor.direction ?? "after";
+      const cursorParam = direction === "before" ? "since" : "until";
+
+      url = `${url}&${cursorParam}=${pagination.cursor.current}`;
     }
 
     const { data } = await httpClient.get(url);
 
+    const firstItem = data[0];
     const lastItem = data[data.length - 1];
+    const previousCursor =
+      pagination?.cursor?.current !== undefined
+        ? firstItem?.commit?.committer?.date
+        : undefined;
     const nextCursor = lastItem?.commit?.committer?.date;
 
     return {
@@ -27,6 +35,7 @@ export const dataProvider = (
       total: 200,
       cursor: {
         next: nextCursor,
+        prev: previousCursor,
       },
     };
   },

@@ -56,4 +56,26 @@ describe("handlePaginationParams", () => {
       mode: "client",
     });
   });
+
+  it("should normalize cursor pagination", () => {
+    expect(
+      handlePaginationParams({
+        pagination: {
+          mode: "cursor",
+          pageSize: 20,
+          cursor: {
+            current: "cursor-1",
+          },
+        },
+      }),
+    ).toEqual({
+      currentPage: 1,
+      pageSize: 20,
+      mode: "cursor",
+      cursor: {
+        current: "cursor-1",
+        direction: "after",
+      },
+    });
+  });
 });

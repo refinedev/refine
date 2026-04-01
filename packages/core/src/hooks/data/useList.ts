@@ -105,6 +105,11 @@ export type UseListReturnType<TData, TError> = {
 
 const EMPTY_ARRAY = Object.freeze([]) as [];
 
+const createPaginationModeError = (message: string): HttpError => ({
+  message,
+  statusCode: 400,
+});
+
 /**
  * `useList` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
@@ -163,7 +168,9 @@ export const useList = <
   const prefferedPagination = handlePaginationParams({
     pagination,
   });
-  const isServerPagination = prefferedPagination.mode === "server";
+  const isServerPagination =
+    prefferedPagination.mode === "server" ||
+    prefferedPagination.mode === "cursor";
 
   const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
@@ -259,12 +266,33 @@ export const useList = <
         ...combinedMeta,
         ...prepareQueryContext(context),
       };
+
       return getList<TQueryFnData>({
         resource: resource?.name ?? "",
         pagination: prefferedPagination,
         filters: prefferedFilters,
         sorters: prefferedSorters,
         meta,
+      }).then((response) => {
+        if (
+          prefferedPagination.mode === "cursor" &&
+          response.cursor === undefined
+        ) {
+          throw createPaginationModeError(
+            'useList: `pagination.mode` is "cursor" but `dataProvider.getList` returned an offset response. Return a `cursor` object or use `pagination.mode: "server"`.',
+          );
+        }
+
+        if (
+          prefferedPagination.mode === "server" &&
+          response.cursor !== undefined
+        ) {
+          throw createPaginationModeError(
+            'useList: `pagination.mode` is "server" but `dataProvider.getList` returned a cursor response. Remove the `cursor` object or use `pagination.mode: "cursor"`.',
+          );
+        }
+
+        return response;
       });
     },
     ...queryOptions,

@@ -83,10 +83,6 @@ export const useSimpleList = <
     overtime,
     result,
     cursor,
-    goToNextPage,
-    goToPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
   } = useTableCore({
     resource,
     pagination: paginationFromProp,
@@ -206,9 +202,5 @@ export const useSimpleList = <
     overtime,
     result,
     cursor,
-    goToNextPage,
-    goToPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
   };
 };

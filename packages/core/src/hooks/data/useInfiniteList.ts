@@ -187,7 +187,9 @@ export const useInfiniteList = <
   const prefferedPagination = handlePaginationParams({
     pagination,
   });
-  const isServerPagination = prefferedPagination.mode === "server";
+  const isServerPagination =
+    prefferedPagination.mode === "server" ||
+    prefferedPagination.mode === "cursor";
   const notificationValues = {
     meta: preferredMeta,
     filters: prefferedFilters,

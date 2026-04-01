@@ -170,11 +170,7 @@ export type MetaQuery = {
   GraphQLQueryOptions;
 
 export type CursorDirection = "after" | "before";
-
-export interface CursorPagination {
-  next?: unknown;
-  prev?: unknown;
-}
+export type CursorValue = string | number;
 
 export interface Pagination {
   /**
@@ -192,6 +188,15 @@ export interface Pagination {
    * @default "server"
    */
   mode?: "client" | "server" | "off" | "cursor";
+  /**
+   * Cursor-based pagination values.
+   */
+  cursor?: {
+    current?: CursorValue;
+    next?: CursorValue;
+    prev?: CursorValue;
+    direction?: CursorDirection;
+  };
 }
 
 export interface IQueryKeys {
@@ -200,7 +205,7 @@ export interface IQueryKeys {
   list: (
     config?:
       | {
-          pagination?: Required<Pagination>;
+          pagination?: Pagination;
           hasPagination?: boolean;
           sorters?: CrudSort[];
           filters?: CrudFilter[];
@@ -337,6 +342,7 @@ export interface CustomResponse<TData = BaseRecord> {
 export interface GetListResponse<TData = BaseRecord> {
   data: TData[];
   total: number;
+  cursor?: Pagination["cursor"];
   [key: string]: any;
 }
 
