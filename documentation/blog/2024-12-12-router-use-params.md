@@ -5,8 +5,9 @@ slug: react-router-useparams
 authors: joseph_mawa
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use-params/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-24-router-use-params/social-2.png
 hide_table_of_contents: false
+last_update: 2024-12-12
 ---
 
 **This article was last updated on December 12, 2024, to add sections for Using Nested Routes with useParams and Validating URL Parameters.**

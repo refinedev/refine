@@ -27,11 +27,12 @@ export function BlogPostListItem() {
           "w-full",
           "min-w-0",
           "grid",
+          "items-start",
+          "blog-lg:items-center",
           "grid-cols-1",
-          "blog-md:grid-cols-[minmax(0,1fr)_180px_120px]",
-          "items-center",
-          "gap-3",
-          "blog-md:gap-6",
+          "blog-lg:grid-cols-[minmax(0,1fr)_180px_120px]",
+          "gap-2",
+          "blog-lg:gap-6",
           "px-4",
           "blog-md:px-6",
           "py-5",
@@ -61,38 +62,52 @@ export function BlogPostListItem() {
         </div>
 
         <div
-          className={clsx(
-            "uppercase",
-            "text-[0.625rem]",
-            "leading-4",
-            "font-semibold",
-            "tracking-[0.001em]",
-            "text-zinc-500",
-            "dark:text-zinc-400",
-            "truncate",
-            "group-hover:text-zinc-600",
-            "dark:group-hover:text-zinc-300",
-            "text-right",
-          )}
+          className={clsx("flex", "items-center", "gap-2", "blog-lg:contents")}
         >
-          {category.label}
-        </div>
-
-        <div
-          className={clsx(
-            "text-[0.625rem]",
-            "leading-4",
-            "font-semibold",
-            "tracking-[0.001em]",
-            "text-zinc-500",
-            "dark:text-zinc-400",
-            "uppercase",
-            "group-hover:text-zinc-600",
-            "dark:group-hover:text-zinc-300",
-            "text-right",
-          )}
-        >
-          <DateComponent date={date} formattedDate={formattedDate} />
+          <div
+            className={clsx(
+              "uppercase",
+              "text-[0.625rem]",
+              "leading-4",
+              "font-semibold",
+              "tracking-[0.001em]",
+              "text-zinc-500",
+              "dark:text-zinc-400",
+              "blog-lg:truncate",
+              "group-hover:text-zinc-600",
+              "dark:group-hover:text-zinc-300",
+              "blog-lg:text-right",
+            )}
+          >
+            {category.label}
+          </div>
+          <span
+            className={clsx(
+              "blog-lg:hidden",
+              "w-1",
+              "h-1",
+              "rounded-full",
+              "bg-zinc-500",
+              "dark:bg-zinc-400",
+              "flex-shrink-0",
+            )}
+          />
+          <div
+            className={clsx(
+              "text-[0.625rem]",
+              "leading-4",
+              "font-semibold",
+              "tracking-[0.001em]",
+              "text-zinc-500",
+              "dark:text-zinc-400",
+              "uppercase",
+              "group-hover:text-zinc-600",
+              "dark:group-hover:text-zinc-300",
+              "blog-lg:text-right",
+            )}
+          >
+            <DateComponent date={date} formattedDate={formattedDate} />
+          </div>
         </div>
       </Link>
     </article>

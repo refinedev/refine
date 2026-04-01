@@ -5,7 +5,7 @@ slug: how-to-create-react-admin-dashboard
 authors: ozgur
 category: "How To Build"
 tags: [react, admin-panel, dashboards]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-12-react-admin-dashboard/react-admin-banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-12-react-admin-dashboard/react-admin-banner.png
 hide_table_of_contents: false
 ---
 

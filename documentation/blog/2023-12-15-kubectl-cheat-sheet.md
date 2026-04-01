@@ -5,7 +5,7 @@ slug: kubectl-cheat-sheet
 authors: muhammad_khabbab
 category: "Engineering"
 tags: [kubernetes, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-15-kubectl-cheat-sheet/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-15-kubectl-cheat-sheet/social.png
 hide_table_of_contents: false
 ---
 

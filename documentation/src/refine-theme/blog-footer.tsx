@@ -84,8 +84,8 @@ export const BlogFooter = () => {
             /
           </span>
 
-          <Link
-            to="/"
+          <a
+            href="https://refine.dev"
             className={clsx(
               "h-6",
               "w-[98px]",
@@ -109,7 +109,7 @@ export const BlogFooter = () => {
             >
               Home
             </span>
-          </Link>
+          </a>
 
           <span
             className={clsx(

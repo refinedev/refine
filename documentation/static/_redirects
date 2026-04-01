@@ -1400,6 +1400,7 @@
 
 /blog/6-best- /blog/ 301
 
+/blog/internal-tools /blog/developing-internal-tools/ 301
 
 /core/docs/api-reference/core/data/hooks/useUpdate/ /core/docs/data/hooks/use-update/ 301
 
@@ -1446,3 +1447,4 @@
 /core/docs/api-reference/mui/components/auth-page/ /core/docs/ui-integrations/material-ui/components/auth-page/ 301
 
 /core/docs/3.xx.xx/tutorial/api-reference/core/data/hooks/useApiUrl/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/ 301
+

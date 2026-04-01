@@ -5,7 +5,7 @@ slug: refine-react-invoice-generator-3
 authors: abdullah_numan
 category: "How To Build"
 tags: [react, refine-week]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-12-refine-invoicer-3/social.png
 hide_table_of_contents: false
 ---
 
@@ -837,7 +837,7 @@ These are pretty much everything we need for the `list`, `create`, `edit` and `d
 
 At this point, let's run the **Refine** server and the **Strapi** server at `http://localhost:1337`. And we should be presented with a login screen at `http://localhost:3000/login`:
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/login.png" alt="Invoice app login screen" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-12-refine-invoicer-3/login.png" alt="Invoice app login screen" />
 
 <br />
 
@@ -891,7 +891,7 @@ At this point, if we attempt to log in to our **Pdf Invoice Generator** app usin
 
 When we create a few companies, they should be displayed in the page:
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/compaines.png" alt="Companies list view in the invoice app" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-12-refine-invoicer-3/compaines.png" alt="Companies list view in the invoice app" />
 
 <br />
 
@@ -1314,7 +1314,7 @@ We are invoking `useDelete()` hook and picking the `mutate()` function for delet
 
 With these views completed, now we should be able to create, list, update and delete `clients` records from within our **Refine** app.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/clients.png" alt="Clients list view in the invoice app" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-12-refine-invoicer-3/clients.png" alt="Clients list view in the invoice app" />
 
 <br />
 
@@ -1593,7 +1593,7 @@ The `delete` action is implemented inside the `<DeleteButton />` for each row in
 
 With these completed, we should now be able to create, list, edit and delete `contacts`.
 
-<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-12-refine-invoicer-3/contacts.png" alt="Contacts list view in the invoice app" />
+<img style={{alignSelf:"center"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-04-12-refine-invoicer-3/contacts.png" alt="Contacts list view in the invoice app" />
 
 <br />
 

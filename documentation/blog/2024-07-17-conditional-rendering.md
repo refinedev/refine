@@ -5,8 +5,9 @@ slug: react-conditional-rendering
 authors: deborah_emeni
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-17
 ---
 
 **This article was last updated on July 17, 2024, to add sections for Common Pitfalls and Best Practices in Conditional Rendering and Testing Conditional Rendering in React Applications.**
@@ -85,13 +86,13 @@ export default function App() {
 
 When a user logs in, the state is set to **true**, and the **welcome message** from the `HeaderComponent` is displayed to the user as follows:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-1.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-1.png"  alt="conditional rendering react" />
 
 <br />
 
 If the user is not logged in, the state is set to **false**, and the following **message** is displayed from the `NotloggedIn` component:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-2.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-2.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -156,13 +157,13 @@ export default function App() {
 
 If the user has permission, the state is set to **true** and the `EditComponent` is rendered as follows:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-3.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-3.png"  alt="conditional rendering react" />
 
 <br />
 
 If the user has no permission, the state is set to **false** and `null` is rendered as the `template`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-4.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-4.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -207,7 +208,7 @@ export default function App() {
 
 The component will render based on what the users enter as follows:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-5.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-5.png"  alt="conditional rendering react" />
 
 <br />
 
@@ -484,7 +485,7 @@ export default function App() {
 
 The result is shown below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/screen-6.png"  alt="conditional rendering react" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-14-conditional-rendering/screen-6.png"  alt="conditional rendering react" />
 
 <br />
 

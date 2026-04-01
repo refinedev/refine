@@ -7,6 +7,7 @@ category: "How To Build"
 tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
+last_update: 2025-03-24
 ---
 
 ## Introduction:

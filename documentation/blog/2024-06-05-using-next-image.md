@@ -5,8 +5,9 @@ slug: using-next-image
 authors: michael
 category: "Tutorials"
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-17-using-next-image/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-17-using-next-image/social-2.png
 hide_table_of_contents: false
+last_update: 2024-06-05
 ---
 
 **_This article was last updated on Jun 05, 2024 to add new sections on common pitfalls, advanced techniques and benefit consideration on Next.js Image Component_**

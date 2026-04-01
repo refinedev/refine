@@ -5,8 +5,9 @@ slug: kubernetes-vs-docker
 authors: muhammad_khabbab
 category: "Alternatives"
 tags: [kubernetes, docker, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-25-docker-vs-kubernates/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-25-docker-vs-kubernates/social.png
 hide_table_of_contents: false
+last_update: 2024-01-29
 ---
 
 **_This article was last updated on January 26, 2024 to add comparison table and more factors about Docker vs Kubernetes._**
@@ -28,7 +29,7 @@ A container, a fundamental unit in containerization, packages applications and t
 Technically, the container comprises of Images, and we have layers of stacked images on top of each other.
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-25-docker-vs-kubernates/pic1.png"  alt="Docker architecture diagram" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-25-docker-vs-kubernates/pic1.png"  alt="Docker architecture diagram" />
 </div>
 
 <br/>
@@ -98,7 +99,7 @@ Each worker node/machine has multiple application pods with containers running o
 #####
 
 <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-25-docker-vs-kubernates/pic2.png"  alt="Kubernetes architecture" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-25-docker-vs-kubernates/pic2.png"  alt="Kubernetes architecture" />
 </div>
 
 <br/>

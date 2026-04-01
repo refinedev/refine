@@ -5,7 +5,7 @@ slug: sveltekit-crud-app-with-svelte-mui
 authors: ekekenta_clinton
 category: "How To Build"
 tags: [material-ui]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-02-sveltekit-crud-app/social.png
 hide_table_of_contents: false
 ---
 
@@ -51,7 +51,7 @@ The above command will prompt you to select the configurations for your project.
 
 <br />
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/terminal.png" alt="SvelteKit CLI setup prompt in terminal" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-02-sveltekit-crud-app/terminal.png" alt="SvelteKit CLI setup prompt in terminal" />
 
 Now change the directory into the project folder and install the required dependencies with the command below.
 
@@ -191,7 +191,7 @@ In the above code snippet, we created a **Post** type to tell Typescript the obj
 
 Then we created the items variable to be a placeholder for the posts and created a `loadThings` function to fetch data from the API and update the `items` variable. The `loadThings` function will be called when the components mount, which are implemented in Svelte using the `onMount` decorator.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/list.png" alt="Blog posts table listing" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-02-sveltekit-crud-app/list.png" alt="Blog posts table listing" />
 
 <br/>
 
@@ -294,7 +294,7 @@ let open = false;
 
 In the above code snippets, we attached an event handler to change the value of the open variable to show the modal.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/create.png" alt="Create post dialog in SvelteKit app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-02-sveltekit-crud-app/create.png" alt="Create post dialog in SvelteKit app" />
 
 <br/>
 
@@ -372,7 +372,7 @@ In the above code snippet, we imported the components to create a UI for this pa
 
 Then we created an `editPost` function which sends a Put request to the API with the data we which to update in the payload as JSON.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-02-sveltekit-crud-app/edit.png" alt="Edit post form in SvelteKit app" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-02-sveltekit-crud-app/edit.png" alt="Edit post form in SvelteKit app" />
 
 <br/>
 

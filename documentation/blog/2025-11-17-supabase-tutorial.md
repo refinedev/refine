@@ -5,8 +5,9 @@ slug: supabase-database-setup
 authors: ozgur
 category: "Tutorials"
 tags: [supabase, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
 hide_table_of_contents: false
+last_update: 2026-02-02
 ---
 
 If you’ve ever wanted to create a backend quickly — with a real database, authentication, storage, and auto-generated APIs — **Supabase** is a practical place to start. It’s open source, runs on top of PostgreSQL, and helps you move from idea to data in minutues.
@@ -88,7 +89,7 @@ Let’s create a simple `employees` table — a common resource you might manage
 | `salary`     | `numeric(12,2)` | —                   | Optional salary field (consider storing minor units as integer if you need strict money arithmetic) |
 | `created_at` | `timestamptz`   | `now()`             | Record creation time                                                                                |
 
-![Supabase Project Editor Schema Public (1)](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
+![Supabase Project Editor Schema Public (1)](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
 
 :::tip
 The “Enable Row Level Security” toggle is ON by default in the Table Editor. Leave it enabled—your table is protected until you add explicit policies.
@@ -110,7 +111,7 @@ Let’s make another table called `departments` so you can see how relationships
 | `id`   | `uuid` | `gen_random_uuid()` |
 | `name` | `text` | —                   |
 
-![Supabase Project Editor (3)](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
+![Supabase Project Editor (3)](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
 
 Now go back to your `employees` table and click **Add Column** → name it `department_id`.
 Set its **type** to `uuid`, and under **Foreign Key**, select **departments → id**. For safer deletes, set the FK behavior to **ON DELETE SET NULL**.
@@ -127,7 +128,7 @@ This structure is now ready for Refine to analyze later and generate fully funct
 
 In the **Table Editor**, click on your `departments` table and choose **Insert Row**.
 Add a few examples:
-![Supabase Project Editor Schema Public](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-3.png)
+![Supabase Project Editor Schema Public](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-3.png)
 
 | id     | name        |
 | ------ | ----------- |
@@ -136,7 +137,7 @@ Add a few examples:
 | (auto) | HR          |
 
 Then go to your `employees` table and insert:
-![Supabase Project Editor Schema](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-4.png)
+![Supabase Project Editor Schema](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-4.png)
 
 | id     | name  | role          | salary | department_id    |
 | ------ | ----- | ------------- | ------ | ---------------- |
@@ -159,7 +160,7 @@ Here you can:
 - Save and version your SQL scripts
 
 For example, once you’ve inserted `departments` and linked employees with a real `department_id`, try:
-![Supabase SQL Editor query](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-5.png)
+![Supabase SQL Editor query](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-5.png)
 
 ```sql
 SELECT e.name, e.role, d.name AS department
@@ -223,7 +224,7 @@ to authenticated
 with check (true);
 ```
 
-![Supabase RLS policies](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-6.png)
+![Supabase RLS policies](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-6.png)
 
 Optional (dev only) broader read access:
 

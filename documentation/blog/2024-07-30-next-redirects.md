@@ -5,8 +5,9 @@ slug: next-js-redirect
 authors: michael
 category: "Tutorials"
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-16-next-redirects/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-16-next-redirects/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-30
 ---
 
 **This article was last updated on July 29, 2024, to add sections for Custom Redirects and Redirect Chains.**

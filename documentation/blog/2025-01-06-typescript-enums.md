@@ -5,8 +5,9 @@ slug: typescript-enum
 authors: abdullah_numan
 category: "Tutorials"
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript-enums/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-21-typescript-enums/social-2.png
 hide_table_of_contents: false
+last_update: 2025-01-06
 ---
 
 **This article was last updated on January 6, 2025, to include sections on Common Mistakes with TypeScript Enums and Tips for Using Enums in TypeScript Classes.**

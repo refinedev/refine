@@ -5,7 +5,7 @@ slug: svelte-vs-react
 authors: chidume_nnamdi
 category: "Alternatives"
 tags: [react, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-08-svelte-vs-react/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-08-svelte-vs-react/social.png
 hide_table_of_contents: false
 ---
 

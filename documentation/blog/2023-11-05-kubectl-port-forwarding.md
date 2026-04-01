@@ -5,7 +5,7 @@ slug: kubectl-port-forward
 authors: muhammad_khabbab
 category: "Ecosystem / Integrations"
 tags: [kubernetes]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/social.png
 hide_table_of_contents: false
 ---
 
@@ -94,7 +94,7 @@ So First of all, you have to make sure the following as a prerequisite:
 **After running the command above, the output below shows that the minikube cluster is set on your local machine:**
 
  <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/1.png"  alt="Minikube cluster starting with Docker driver" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/1.png"  alt="Minikube cluster starting with Docker driver" />
 </div>
 
 <br/>
@@ -106,7 +106,7 @@ So First of all, you have to make sure the following as a prerequisite:
 **The status command will return the output below:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/2.png"  alt="Minikube status showing control plane, kubelet, and apiserver running" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/2.png"  alt="Minikube status showing control plane, kubelet, and apiserver running" />
 </div>
 
 <br/>
@@ -134,7 +134,7 @@ As an example, let's deploy a basic Nginx web server to the previously created c
 **You can see below the output that the above command will create a deployment that will pull the nginx image from the Docker hub:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/3.png"  alt="Creating example-deployment with nginx image using kubectl" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/3.png"  alt="Creating example-deployment with nginx image using kubectl" />
 </div>
 
 <br/>
@@ -146,7 +146,7 @@ In the next step, we will expose the above-created deployment as a service so th
 **The below output confirms that the specified service is exposed on port 80:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/4.png"  alt="Exposing deployment as service on port 80" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/4.png"  alt="Exposing deployment as service on port 80" />
 </div>
 
 <br/>
@@ -158,7 +158,7 @@ In the last step, we need to retrieve a URL through which we can access the serv
 **As you can see in the below output that we have the URL in response through which we can access the nginx welcome page:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/5.png"  alt="Getting service URL from minikube for browser access" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/5.png"  alt="Getting service URL from minikube for browser access" />
 </div>
 
 <br/>
@@ -166,7 +166,7 @@ In the last step, we need to retrieve a URL through which we can access the serv
 **Nginx Welcome Page on Browser:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/6.png"  alt="Nginx welcome page displayed in browser" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/6.png"  alt="Nginx welcome page displayed in browser" />
 </div>
 
 <br/>
@@ -186,7 +186,7 @@ First, you need to verify the service details by using the command below:
 `kubectl get services`
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/7.png"  alt="Listing services with kubectl get services command" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/7.png"  alt="Listing services with kubectl get services command" />
 </div>
 
 <br/>
@@ -198,7 +198,7 @@ Now, we want the Kubernetes API to listen at port **8080** and forward the data 
 **The illustration below shows that after forwarding the port, the nginx welcome page becomes available at localhost:8080:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/8.png"  alt="Port forwarding service from local port 8080 to pod port 80, accessing nginx on localhost" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/8.png"  alt="Port forwarding service from local port 8080 to pod port 80, accessing nginx on localhost" />
 </div>
 
 <br/>
@@ -216,7 +216,7 @@ You can get the pod's name by listing all pods through the `kubectl get pods` co
 **The above command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/9.png"  alt="Port forwarding to specific pod example-deployment-5cff4bc76f-tkjzz on port 8000" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/9.png"  alt="Port forwarding to specific pod example-deployment-5cff4bc76f-tkjzz on port 8000" />
 </div>
 
 <br/>
@@ -238,7 +238,7 @@ You can get the list of all deployments by using the `kubectl get deployments` c
 **The above command will return the following output:**
 
 <div className="centered-image">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-05-kubectl-port-forwarding/10.png"  alt="Port forwarding to deployment from local port 8888 to pod port 80" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-05-kubectl-port-forwarding/10.png"  alt="Port forwarding to deployment from local port 8888 to pod port 80" />
 </div>
 
 <br/>

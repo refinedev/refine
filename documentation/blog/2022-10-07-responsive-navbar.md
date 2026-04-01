@@ -5,7 +5,7 @@ slug: react-navbar-responsive-tailwind
 authors: muhammed_arslan
 category: "Ecosystem / Integrations"
 tags: [react, tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/social.png
 hide_table_of_contents: false
 ---
 
@@ -38,7 +38,7 @@ npm create refine-app@latest refine-navbar -- -o refine-headless -b v3
 
 Navigate to the `refine-navbar` folder and run `npm run dev` command.
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-1.png" alt="Refine starter app welcome page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-1.png" alt="Refine starter app welcome page" />
 
 <br/>
 
@@ -132,7 +132,7 @@ and import it inside `App.tsx`:
 import "App.css";
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-2.png" alt="Posts page layout before adding the navbar" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-2.png" alt="Posts page layout before adding the navbar" />
 
 <br/>
 
@@ -250,7 +250,7 @@ const App: React.FC = () => {
 
 The output of the above code is as follows:
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-3.png" alt="Tailwind navbar on the posts page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-3.png" alt="Tailwind navbar on the posts page" />
 
 <br/>
 
@@ -269,7 +269,7 @@ Let's make it mobile responsive by adding the mobile menu:
 ...
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-4.png" alt="Mobile menu view of the navbar" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-4.png" alt="Mobile menu view of the navbar" />
 
 <br/>
 
@@ -377,7 +377,7 @@ Add following CSS classes to `App.css` file:
 }
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-5.png" alt="Bootstrap navbar with brand image" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-5.png" alt="Bootstrap navbar with brand image" />
 
 <br/>
 
@@ -417,7 +417,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-07-responsive-navbar/pic-6.png" alt="Bootstrap responsive navbar on posts page" />
+<img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-07-responsive-navbar/pic-6.png" alt="Bootstrap responsive navbar on posts page" />
 
 <br/>
 

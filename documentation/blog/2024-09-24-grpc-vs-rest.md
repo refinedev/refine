@@ -5,8 +5,9 @@ slug: grpc-vs-rest
 authors: deborah_emeni
 category: "Alternatives"
 tags: [backend, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/social2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-23-grpc-vs-rest/social2.png
 hide_table_of_contents: false
+last_update: 2024-09-26
 ---
 
 **_This article was last updated on September 24, 2024 to include migration strategies, security considerations, and real-world examples to provide a more comprehensive comparison between gRPC and REST._**
@@ -31,7 +32,7 @@ Let's look at a simple example that describes APIs and their importance in appli
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/illustration.png" alt="Illustration comparing gRPC and REST" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-23-grpc-vs-rest/illustration.png" alt="Illustration comparing gRPC and REST" />
 </div>
 
 For instance, let's say you are building a book application called BookFinder (that provides information about books) and want to design an API for it.
@@ -248,7 +249,7 @@ The code above creates a new gRPC client using the generated client code. The cl
 Below illustration will help you understand how both these technologies work.
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-23-grpc-vs-rest/image2.png" alt="Comparison table of REST vs gRPC" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-06-23-grpc-vs-rest/image2.png" alt="Comparison table of REST vs gRPC" />
 </div>
 
 ## How developers can use gRPC and REST

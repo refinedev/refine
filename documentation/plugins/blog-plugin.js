@@ -12,13 +12,16 @@ const DEFAULT_BLOG_CATEGORY = "Engineering";
 const DEFAULT_POSTS_PER_PAGE_MODE = "ALL";
 const PAGINATION_PATH_SEGMENT = "page";
 const RANDOM_POSTS_LIMIT = 3;
+const AUTHOR_POSTS_PREVIEW_LIMIT = 3;
 const CATEGORY_FALLBACK_SLUG = "category";
 const BLOG_BASE_PATH = "/blog";
 const BLOG_CATEGORIES_LIST_PATH = `${BLOG_BASE_PATH}/categories`;
+const BLOG_AUTHORS_LIST_PATH = `${BLOG_BASE_PATH}/authors`;
 const BLOG_AUTHORS_BASE_PATH = `${BLOG_BASE_PATH}/author`;
 const ALL_TAGS_LABEL = "All tags";
 const TAGS_DATA_SUFFIX = "-tags";
 const CATEGORIES_DATA_SUFFIX = "-categories";
+const AUTHORS_DATA_SUFFIX = "-authors";
 const CATEGORY_DATA_SUFFIX = "-category";
 const ALL_TAGS_DATA_SUFFIX = "-all-tags";
 const LIST_DATA_SUFFIX = "-list";
@@ -30,6 +33,8 @@ const IS_FEATURED_FRONTMATTER_KEY = "is_featured";
 const BLOG_POST_PAGE_COMPONENT = "@theme/BlogPostPage";
 const BLOG_LIST_PAGE_COMPONENT = "@theme/BlogListPage";
 const BLOG_AUTHOR_PAGE_COMPONENT = "@site/src/components/blog/author-page";
+const BLOG_AUTHORS_LIST_PAGE_COMPONENT =
+  "@site/src/components/blog/authors-page";
 const BLOG_TAGS_POSTS_PAGE_COMPONENT = "@theme/BlogTagsPostsPage";
 const BLOG_CATEGORIES_LIST_PAGE_COMPONENT = "@theme/BlogCategoriesListPage";
 const BLOG_CATEGORY_POSTS_PAGE_COMPONENT = "@theme/BlogCategoryPostsPage";
@@ -206,6 +211,87 @@ function toPostInfo(post) {
     lastUpdate: post.metadata.lastUpdate,
     formattedLastUpdateDate: post.metadata.formattedLastUpdateDate,
   };
+}
+
+function toComparableTimestamp(dateValue) {
+  const timestamp = new Date(dateValue).getTime();
+
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
+function sortBlogPostsByDateDescending(blogPosts) {
+  return [...blogPosts].sort((postA, postB) => {
+    const timestampDiff =
+      toComparableTimestamp(postB.metadata.date) -
+      toComparableTimestamp(postA.metadata.date);
+
+    if (timestampDiff !== 0) {
+      return timestampDiff;
+    }
+
+    return `${postA.metadata.title ?? ""}`.localeCompare(
+      `${postB.metadata.title ?? ""}`,
+    );
+  });
+}
+
+function createBlogAuthors({ allBlogPosts, blogCategories }) {
+  const authorsMap = new Map();
+
+  allBlogPosts.forEach((post) => {
+    const author = post.metadata.authors?.[0];
+
+    if (!author?.key) {
+      return;
+    }
+
+    const existingEntry = authorsMap.get(author.key);
+
+    if (existingEntry) {
+      existingEntry.posts.push(post);
+      return;
+    }
+
+    authorsMap.set(author.key, {
+      author,
+      permalink: `${BLOG_AUTHORS_BASE_PATH}/${author.key}`,
+      posts: [post],
+    });
+  });
+
+  return [...authorsMap.values()]
+    .map(({ author, permalink, posts }) => {
+      const sortedPosts = sortBlogPostsByDateDescending(posts);
+
+      return {
+        author,
+        permalink,
+        count: sortedPosts.length,
+        recentPosts: sortedPosts
+          .slice(0, AUTHOR_POSTS_PREVIEW_LIMIT)
+          .map((post) => ({
+            title: post.metadata.title,
+            permalink: post.metadata.permalink,
+            date: post.metadata.date,
+            formattedDate: post.metadata.formattedDate,
+            category: getBlogPostCategoryData({
+              frontMatter: post.metadata.frontMatter,
+              blogCategories,
+            }),
+          })),
+      };
+    })
+    .sort((authorA, authorB) => {
+      const countDiff = (authorB.count ?? 0) - (authorA.count ?? 0);
+
+      if (countDiff !== 0) {
+        return countDiff;
+      }
+
+      return `${authorA.author?.name ?? ""}`.localeCompare(
+        `${authorB.author?.name ?? ""}`,
+      );
+    });
 }
 
 function getRelatedPosts(allBlogPosts, metadata) {
@@ -731,6 +817,29 @@ async function blogPluginExtended(...pluginArgs) {
           });
         }),
       );
+
+      const blogAuthors = createBlogAuthors({
+        allBlogPosts,
+        blogCategories,
+      });
+
+      if (blogAuthors.length > 0) {
+        const authorsPropPath = await createData(
+          `${utils.docuHash(
+            `${BLOG_AUTHORS_LIST_PATH}${AUTHORS_DATA_SUFFIX}`,
+          )}${JSON_FILE_EXTENSION}`,
+          JSON.stringify(blogAuthors, null, 2),
+        );
+
+        addRoute({
+          path: BLOG_AUTHORS_LIST_PATH,
+          component: BLOG_AUTHORS_LIST_PAGE_COMPONENT,
+          exact: true,
+          modules: {
+            authors: aliasedSource(authorsPropPath),
+          },
+        });
+      }
 
       const authorsArray = allBlogPosts
         .map((post) => post.metadata.frontMatter.authors)

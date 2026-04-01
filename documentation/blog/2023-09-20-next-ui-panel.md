@@ -5,8 +5,9 @@ slug: next-ui-react-admin-panel
 authors: joseph_mawa
 category: "How To Build"
 tags: [react, admin-panel, nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/social.jpg
 hide_table_of_contents: false
+last_update: 2026-02-06
 ---
 
 It's hard to build data-intensive front-end applications such as dashboards and admin panels from the ground up without feature-rich and niche frameworks such as [Refine](https://github.com/refinedev/refine) and [NextUI](https://nextui.org/).
@@ -18,7 +19,7 @@ Any Refine project has built-in features for state management, routing, networki
 [NextUI](https://nextui.org/) is a React library for building accessible UIs. You can use NextUI in a vanilla React project or React-based frameworks like Refine and Next.js. In this article, you will learn to build a React admin panel using Refine and NextUI components library.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/next-ui.gif"  alt="NextUI admin panel preview" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/next-ui.gif"  alt="NextUI admin panel preview" />
 </div>
 
 <br/>
@@ -47,7 +48,7 @@ For this tutorial, we'll be select the following options:
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">
-    <img alt="Create Refine project prompt" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
+    <img alt="Create Refine project prompt" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-25-refine-primereact/create-refine-project.avif" className="border border-gray-200 rounded" />
 </div>
 
 Once you've completed the steps, you'll have the ability to download your project
@@ -69,7 +70,7 @@ npm run dev
 Once your project is successfully run, you will see the following page:
 
 <div className="flex justify-center">
-    <img alt="Fresh Refine project structure" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/fresh-project.webp" className="border border-gray-200 rounded" />
+    <img alt="Fresh Refine project structure" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-07-25-refine-primereact/fresh-project.webp" className="border border-gray-200 rounded" />
 </div>
 
 ### Tidy things up
@@ -174,7 +175,7 @@ export default App;
 ## What is NextUI
 
 <div className="flex justify-center">
-    <img alt="NextUI admin panel layout" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/nextui%20(1).jpeg" className="border border-gray-200 rounded" />
+    <img alt="NextUI admin panel layout" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/nextui%20(1).jpeg" className="border border-gray-200 rounded" />
 </div>
 
 [NextUI](https://nextui.org/) is a fully-featured React UI library for building accessible UI in React. It is built on top of React Aria and Tailwind CSS. It uses Framer motion internally for animating some of the built-in components.
@@ -495,7 +496,7 @@ In the code above, we imported the built-in NextUI components and applied Tailwi
 The above component will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-card.png"  alt="NextUI KPI card component" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/kpi-card.png"  alt="NextUI KPI card component" />
 </div>
 
 <br/>
@@ -690,7 +691,7 @@ export default App;
 The three `KpiCard` components we rendered in the above component will look like the image below.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/kpi-cards.png"  alt="NextUI KPI cards row" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/kpi-cards.png"  alt="NextUI KPI cards row" />
 </div>
 
 <br/>
@@ -891,7 +892,7 @@ export const DashboardPage: React.FC = () => {
 The Revenue chart will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/revenue-area-graph.png"  alt="Revenue area chart" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/revenue-area-graph.png"  alt="Revenue area chart" />
 </div>
 
 <br/>
@@ -899,7 +900,7 @@ The Revenue chart will look like the image below after rendering.
 The Orders bar chart will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/orders-bar-chart.png"  alt="Orders bar chart" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/orders-bar-chart.png"  alt="Orders bar chart" />
 </div>
 
 <br/>
@@ -907,7 +908,7 @@ The Orders bar chart will look like the image below after rendering.
 Similarly, the Customer chart will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/new-customers-area-graph.png"  alt="New customers area chart" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/new-customers-area-graph.png"  alt="New customers area chart" />
 </div>
 
 <br/>
@@ -1200,7 +1201,7 @@ export const DashboardPage: React.FC = () => {
 The `<RecentSalesTable />` component we created above will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/recent-sales.png"  alt="NextUI recent sales table" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/recent-sales.png"  alt="NextUI recent sales table" />
 </div>
 
 <br/>
@@ -1718,7 +1719,7 @@ export default App;
 The products list page should now look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-list.png"  alt="NextUI products list page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/products-list.png"  alt="NextUI products list page" />
 </div>
 
 <br/>
@@ -1957,7 +1958,7 @@ export default App;
 The above component will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-create.png"  alt="NextUI create product form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/products-create.png"  alt="NextUI create product form" />
 </div>
 
 <br/>
@@ -2191,7 +2192,7 @@ export default App;
 The above component should now look like the image below after rendering. You can edit any record in the products table by clicking the edit button under the actions column. You can also do so by pointing the browser to the `/products/edit` route.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-edit.png"  alt="NextUI edit product form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/products-edit.png"  alt="NextUI edit product form" />
 </div>
 
 <br/>
@@ -2335,7 +2336,7 @@ export default App;
 The above component will look like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/products-show.png"  alt="NextUI product details page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/products-show.png"  alt="NextUI product details page" />
 </div>
 
 <br/>
@@ -2639,7 +2640,7 @@ export const CategoryList = () => {
 The above component will look like the image below after rendering. You can search and sort the contents of the table.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-list.png"  alt="NextUI categories list page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/categories-list.png"  alt="NextUI categories list page" />
 </div>
 
 <br/>
@@ -2739,7 +2740,7 @@ export const CategoryCreate = () => {
 The above component looks like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-create.png"  alt="NextUI create category form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/categories-create.png"  alt="NextUI create category form" />
 </div>
 
 <br/>
@@ -2841,7 +2842,7 @@ export const CategoryEdit = () => {
 The above component looks like the image below after rendering. You can edit a category and save the changes using the "Save Category" button.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-edit.png"  alt="NextUI edit category form" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/categories-edit.png"  alt="NextUI edit category form" />
 </div>
 
 <br/>
@@ -2910,7 +2911,7 @@ export const CategoryShow = () => {
 The above component looks like the image below after rendering.
 
 <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-20-next-ui-panel/categories-show.png"  alt="NextUI category details page" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-20-next-ui-panel/categories-show.png"  alt="NextUI category details page" />
 </div>
 
 <br/>

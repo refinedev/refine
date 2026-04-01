@@ -5,7 +5,7 @@ slug: headless-cms
 authors: necati
 category: "Engineering"
 tags: [strapi, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-10-headless-cms/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-10-headless-cms/social.png
 hide_table_of_contents: false
 ---
 
@@ -62,7 +62,7 @@ In short, all this is made possible by APIs, bridging the gap from the content r
 ## Headless CMS's that Refine has data provider support
 
  <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-10-headless-cms/list.png" alt="headless cms" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-10-headless-cms/list.png" alt="headless cms" />
 </div>
 
 You can use these headless CMS's with Refine to manage your data. Here are some of the popular headless CMS's that Refine has data provider support:

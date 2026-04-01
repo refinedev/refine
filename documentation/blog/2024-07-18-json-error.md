@@ -5,8 +5,9 @@ slug: unexpected-token-in-json-at-position-0-error
 authors: chukwuka_reuben
 category: "Tutorials"
 tags: [javascript, bugs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-09-json-error/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-18
 ---
 
 **This article was last updated on July 18, 2024, to add sections for JSON Validation Tools and Best Practices for Working with JSON.**
@@ -45,7 +46,7 @@ JSON.parse(undefined);
 
 The code snippet above will produce this type of error:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-1.png"  alt="json error" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-09-json-error/json-error-1.png"  alt="json error" />
 
 <br />
 
@@ -92,7 +93,7 @@ fetch("https://dummyjson.com/products/1")
 
 Using the code snippet above, I want to clarify that `JSON.parse()` is being done by `res.json()` under the hood.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-2.png"  alt="json error" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-09-json-error/json-error-2.png"  alt="json error" />
 
 <br />
 
@@ -108,7 +109,7 @@ fetch("https://dummyjson.com/myProduct/1")
 
 "https://dummyjson.com/myProduct/1" that has been used as our API is an endpoint that I made up, so it is not a valid API endpoint and as you know parsing it will be you trying to parse something that isn't JSON, as it is not a formatted JSON.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-3.png"  alt="json error" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-09-json-error/json-error-3.png"  alt="json error" />
 
 <br />
 
@@ -167,7 +168,7 @@ const getLocalStorage = () => {
 };
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/json-error-4.png"  alt="json error" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-09-json-error/json-error-4.png"  alt="json error" />
 
 <br />
 

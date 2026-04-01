@@ -5,8 +5,9 @@ slug: usenavigate-react-router-redirect
 authors: joseph_mawa
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-19-router-use-navigate/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-19-router-use-navigate/social-2.png
 hide_table_of_contents: false
+last_update: 2024-06-24
 ---
 
 **This article was last updated on Jun 24, 2024, to add new examples and use cases for React Router useNavigate hook**

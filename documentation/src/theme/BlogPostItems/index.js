@@ -14,6 +14,9 @@ export default function BlogPostItems({
   tags,
   isAuthorPage,
   isTagsPage,
+  title,
+  className,
+  containerClassName,
 }) {
   const [viewMode, setViewMode] = useState(() => {
     if (typeof window === "undefined") return "grid";
@@ -52,29 +55,32 @@ export default function BlogPostItems({
     }));
 
   return (
-    <div className={clsx("w-full")}>
+    <div className={clsx("w-full", className)}>
       <div
         className={clsx(
           "blog-sm:max-w-[592px]",
           "blog-md:max-w-[704px]",
           "blog-lg:max-w-[896px]",
-          "blog-max:max-w-[1200px]",
+          "blog-max:max-w-[1144px]",
+          "px-2",
+          "blog-sm:px-0",
           "w-full",
           "pt-4",
           "pb-6",
           "mx-auto",
           "not-prose",
+          containerClassName,
         )}
       >
         <div
           className={clsx(
-            viewMode === "grid" && "mb-4",
+            viewMode === "grid" && "mb-6",
             viewMode === "list" && "mb-8",
             "w-full",
-            "px-4",
             "flex",
             "items-center",
             "gap-3",
+            "not-prose",
           )}
         >
           {!isAuthorPage && tagItems.length > 0 ? (
@@ -87,6 +93,23 @@ export default function BlogPostItems({
             !isAuthorPage &&
             !isTagsPage && <CategoryNavBar categories={categories} />
           )}
+          {title && (
+            <h2
+              className={clsx(
+                "pl-4",
+                "blog-md:pl-6",
+                "m-0",
+                "text-2xl",
+                "blog-md:text-[2rem]",
+                "blog-md:leading-[2.5rem]",
+                "font-semibold",
+                "text-zinc-900",
+                "dark:text-white",
+              )}
+            >
+              {title}
+            </h2>
+          )}
           <BlogPostViewModeToggle viewMode={viewMode} onChange={setViewMode} />
         </div>
 
@@ -94,6 +117,8 @@ export default function BlogPostItems({
           <div
             className={clsx(
               "w-full",
+              "blog-content-bleed",
+              "mx-auto",
               "grid grid-cols-1 blog-md:grid-cols-2 blog-max:grid-cols-3",
             )}
           >

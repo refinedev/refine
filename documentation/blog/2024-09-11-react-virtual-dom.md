@@ -5,8 +5,9 @@ slug: react-virtual-dom
 authors: peter_osah
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/social.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-23-react-virtual-dom/social.webp
 hide_table_of_contents: false
+last_update: 2024-09-12
 ---
 
 **This article was last updated on September 11, 2024, to add sections on Impact of Virtual DOM on Rendering Performance and Common Pitfalls with the Virtual DOM**
@@ -394,7 +395,7 @@ When we view the element with the browser's developer tools, we just see a simpl
 To see the shadow DOM, utilize Chrome DevTools and enable the `Show user agent shadow DOM` option from `preferences` in `Settings`:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virtual-dom/virtual-dom.png" alt="Virtual DOM update diagram" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-23-react-virtual-dom/virtual-dom.png" alt="Virtual DOM update diagram" />
 </div>
 
 <br/>

@@ -149,7 +149,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/core/docs//3.xx.xx/api-reference/core/providers/auth-provider)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/core/docs/3.xx.xx/api-reference/core/providers/auth-provider)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>

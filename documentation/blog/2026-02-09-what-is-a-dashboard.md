@@ -5,7 +5,7 @@ slug: what-is-a-dashboard
 authors: arda
 category: "Tutorials"
 tags: [dashboards]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/dashboard-banner.webp
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-09-what-is-a-dashboard/dashboard-banner.webp
 hide_table_of_contents: false
 ---
 
@@ -16,7 +16,7 @@ A useful dashboard does more than display numbers. It helps someone decide what 
 ## What is a Dashboard?
 
 <div className="centered-image">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/example_dashobard_1.webp" alt="Example dashboard showing key metrics and visualizations" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-09-what-is-a-dashboard/example_dashobard_1.webp" alt="Example dashboard showing key metrics and visualizations" />
 </div>
 
 <br/>
@@ -208,7 +208,7 @@ Best for teams that want speed without sacrificing flexibility.
 [Refine](https://refine.dev) uses this approach. Connect your database ([Supabase](/blog/admin-panel-with-supabase/), PostgreSQL, or a REST API), describe what you want, and get a working dashboard in minutes. The generated code is React/TypeScript that you fully own and can customize.
 
 <div className="centered-image">
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-02-09-what-is-a-dashboard/refine-ai-example-1.webp" alt="Refine AI generating a dashboard from natural language description" />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-02-09-what-is-a-dashboard/refine-ai-example-1.webp" alt="Refine AI generating a dashboard from natural language description" />
 </div>
 
 <br/>

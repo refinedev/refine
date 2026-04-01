@@ -5,7 +5,7 @@ slug: next-js-getinitialprops-and-getserversideprops
 authors: michael
 category: "Tutorials"
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-31-next-getInitial/social.png
 hide_table_of_contents: false
 ---
 
@@ -169,7 +169,7 @@ We'll go through some examples to see how both functions work in real-world appl
 
 The GIF below shows how `getInitialProps` behaves when it's used to fetch data for server-side rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.avif"  alt="getInitialProps server and client log behavior demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-31-next-getInitial/getInitProp.avif"  alt="getInitialProps server and client log behavior demo" />
 
 <br />
 
@@ -228,7 +228,7 @@ However, when we make client-side navigation to the home page `localhost:3000` u
 
 The GIF below shows the same example from the previous section using `getServerSideProps` to fetch a list of users from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API for server-side rendering.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.avif"  alt="getServerSideProps server-only log behavior demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-31-next-getInitial/getServerProp.avif"  alt="getServerSideProps server-only log behavior demo" />
 
 <br />
 

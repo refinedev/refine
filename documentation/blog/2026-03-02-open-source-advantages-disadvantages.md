@@ -5,7 +5,7 @@ slug: open-source-advantages-disadvantages
 authors: ozgur
 category: "Engineering"
 tags: [open-source, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-03-03-open-source-advantage/banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-03-03-open-source-advantage/banner.png
 hide_table_of_contents: false
 ---
 

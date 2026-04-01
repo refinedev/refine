@@ -5,7 +5,7 @@ slug: react-lazy-loading
 authors: chidume_nnamdi
 category: "Engineering"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-07-react-lazy/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-07-react-lazy/social-2.png
 hide_table_of_contents: false
 ---
 

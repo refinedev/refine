@@ -5,8 +5,9 @@ slug: css-hide-scrollbar
 authors: peter_osah
 category: "Tutorials"
 tags: [css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-20-css-scroll-bar/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-02-20-css-scroll-bar/social.png
 hide_table_of_contents: false
+last_update: 2024-03-05
 ---
 
 ## Introduction

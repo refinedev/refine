@@ -5,8 +5,9 @@ slug: tailwind-flex
 authors: abdullah_numan
 category: "Ecosystem / Integrations"
 tags: [tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-11-tailwind-flex/social-2.png
 hide_table_of_contents: false
+last_update: 2024-08-20
 ---
 
 **This article was last updated on August 19, 2024, to add sections on Flexbox Accessibility Considerations and Best Practices for Performance Optimization.**
@@ -203,7 +204,7 @@ import TailzupLogo from "../images/tailzup-logo.png";
 You can download it from [here](https://imgbox.com/eCnG8yLw) and add it to the specified directory.
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/images.png"  alt="Tailzup logo asset used in the navbar" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-11-tailwind-flex/images.png"  alt="Tailzup logo asset used in the navbar" />
 </div>
 
 <br/>
@@ -384,7 +385,7 @@ npm run start
 You can see a vertical menu and a toggle button at a screen size less than `md`. And the toggle button is functioning properly:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/icons-min.avif"  alt="Navbar icons with responsive toggle button" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-11-tailwind-flex/icons-min.avif"  alt="Navbar icons with responsive toggle button" />
 </div>
 
 <br/>
@@ -515,7 +516,7 @@ Notice we are applying flex order again with Tailwind Flex `order` classes. With
 So, with these changes, we have been able to achieve a good shape for the vertical navbar. The navbar looks almost complete, and it can now strongly flex its muscles back and forth in the horizontal position:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/vertical-menu-min.avif"  alt="Vertical mobile menu layout" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-11-tailwind-flex/vertical-menu-min.avif"  alt="Vertical mobile menu layout" />
 </div>
 
 <br/>
@@ -616,7 +617,7 @@ With `flex flex-col justify-start md:flex-row md:justify-between md:items-start`
 So, with this Tailwind Flex power, we have a pretty neat React responsive navbar we can use on any webpage:
 
  <div className="centered-image">
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/ezgif.com-optimize-min.avif"  alt="Responsive navbar layout on desktop and mobile" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-09-11-tailwind-flex/ezgif.com-optimize-min.avif"  alt="Responsive navbar layout on desktop and mobile" />
 </div>
 
 <br/>

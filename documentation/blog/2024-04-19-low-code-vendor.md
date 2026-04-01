@@ -5,7 +5,7 @@ slug: low-code-tools
 authors: necati
 category: "Engineering"
 tags: [dev-tools, tech-industry]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-04-19-low-code-vendor/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-04-19-low-code-vendor/social.png
 hide_table_of_contents: false
 ---
 

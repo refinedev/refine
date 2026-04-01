@@ -5,8 +5,9 @@ slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/social.png
 hide_table_of_contents: false
+last_update: 2024-05-24
 ---
 
 **_This article was last updated on May 23, 2024 to add more information, new sections for performance of useState hook._**
@@ -71,12 +72,12 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="Blank page error in the app UI" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/blank-page-error.png" alt="Blank page error in the app UI" />
 
 <br/>
 
 Inspecting the console would throw a similar error as shown below:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="Console error from uninitialized state" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/initialize-error.png" alt="Console error from uninitialized state" />
 <br/>
 
 Newer developers often make this mistake when initializing their state, especially when fetching data from a server or database, as the retrieved data is expected to update the state with the actual user object. However, this is bad practice and could lead to expected behavior, as shown above.
@@ -107,7 +108,7 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="UI rendering correctly after initializing state" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="UI rendering correctly after initializing state" />
 
 <br/>
 
@@ -173,7 +174,7 @@ export default App;
 
 Output error:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="Error caused by accessing nested properties without checks" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/chain-error.png" alt="Error caused by accessing nested properties without checks" />
 <br/>
 
 A typical solution to this error and UI not rendering is using conditional checks to validate the state's existence to check if it is accessible before rendering the component, e.g., `user.names && user.names.firstName`, which only evaluates the right expression if the left expression is true (if the `user.names` exist). However, this solution is a messy one as it would require several checks for each object chain.
@@ -236,7 +237,7 @@ export default App;
 
 The output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="Direct state update demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/direct-update.gif" alt="Direct state update demo" />
 
 <br/>
 
@@ -273,7 +274,7 @@ function App() {
 
 Pay attention to the bug in the output:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="State update race condition bug" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="State update race condition bug" />
 
 <br/>
 
@@ -313,7 +314,7 @@ export default App;
 ```
 
 Output:
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="Functional state update demo" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="Functional state update demo" />
 
 <br/>
 
@@ -353,13 +354,13 @@ export default function App() {
 
 Initial state before the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="Object state update example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/object-property-state.png" alt="Object state update example" />
 
 <br/>
 
 Updated state after the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="Incorrect object state update output" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="Incorrect object state update output" />
 
 <br/>
 
@@ -395,7 +396,7 @@ export default function App() {
 
 Updated state after the button is clicked:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="Object property assignment example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="Object property assignment example" />
 
 <br/>
 

@@ -5,8 +5,9 @@ slug: next-js-server-actions-and-data-fetching
 authors: victor_uma
 category: "Tutorials"
 tags: [nextjs, backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-29-next-js-server-actions/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-29-next-js-server-actions/social-2.png
 hide_table_of_contents: false
+last_update: 2024-08-09
 ---
 
 **This article was last updated on August 07, 2024, to add sections on Security Considerations and SWR.**

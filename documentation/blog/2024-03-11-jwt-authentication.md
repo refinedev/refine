@@ -5,7 +5,7 @@ slug: jwt-authentication
 authors: joseph_mawa
 category: "Ecosystem / Integrations"
 tags: [backend]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-11-jwt-authentication/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-03-11-jwt-authentication/social.png
 hide_table_of_contents: false
 ---
 

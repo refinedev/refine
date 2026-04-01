@@ -5,7 +5,7 @@ slug: neumorphic-css
 authors: joel_adewole
 category: "Tutorials"
 tags: [css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/social.png
 hide_table_of_contents: false
 ---
 
@@ -44,7 +44,7 @@ Let's see how Neumorphism affects the user interface using what we know about it
 Neumorphism requires little or no use of flashy elements. The properties needed are shadows and lights.  
 Neuomorphism makes UI elements appear inside or directly on the background layer, in contrast to other design trends that make items appear above the background.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/card.png" alt="Neumorphic card design example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/card.png" alt="Neumorphic card design example" />
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
 
@@ -53,7 +53,7 @@ Neuomorphism makes UI elements appear inside or directly on the background layer
 
 The image below illustrates the simplest UI design template for Neumorphism; feel free to modify it as you see fit.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/background.png" alt="Neumorphic background layout example" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/background.png" alt="Neumorphic background layout example" />
 
 <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"><i>From: Neumorphism in user interfaces by Michal Malewicz</i></a>
 
@@ -72,7 +72,7 @@ The main issue Neumorphism has in terms of accessibility is contrast; you'll not
 
 The image below displays an original Neumorphic design and the outcome under low vision.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/vision.png" alt="Neumorphism contrast under low vision" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/vision.png" alt="Neumorphism contrast under low vision" />
 
 <a href="https://axesslab.com/neumorphism/"><i>From: Neumorphism – the accessible and inclusive way by Hampus Sethfors</i></a>
 
@@ -118,11 +118,11 @@ You should consider the normal and hover/clicked state when making a Neumorphic 
 
 #### Normal State
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/normal_state.png" alt="Neumorphic button normal state" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/normal_state.png" alt="Neumorphic button normal state" />
 
 #### Hover State
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/hover_state.png" alt="Neumorphic button hover state" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/hover_state.png" alt="Neumorphic button hover state" />
 
 <br/>
 
@@ -170,7 +170,7 @@ Cards are a type of container used to display sections in grids or galleries. I'
 </style>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/cards.png" alt="Neumorphic card components" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/cards.png" alt="Neumorphic card components" />
 
 <br/>
 
@@ -219,7 +219,7 @@ The text box and checkbox are examples of form inputs which make up a form in HT
 </style>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/textbox.png" alt="Neumorphic text input" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/textbox.png" alt="Neumorphic text input" />
 
 <br/>
 
@@ -297,13 +297,13 @@ You can check the [codepen](https://codepen.io/wolz-codelife/pen/oNqQaav)
 
 ##### Unchecked
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/unchecked.png" alt="Unchecked neumorphic toggle" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/unchecked.png" alt="Unchecked neumorphic toggle" />
 
 <br/>
 
 ##### Checked
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-20-neumorphic-css/checked.png" alt="Checked neumorphic toggle" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/checked.png" alt="Checked neumorphic toggle" />
 
 <br/>
 

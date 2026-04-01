@@ -7,6 +7,7 @@ category: "Alternatives"
 tags: [react, admin-panel, comparison]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-15-refine-vs-blitzjs%2FGroup%20821%20(1).png
 hide_table_of_contents: false
+last_update: 2024-04-18
 ---
 
 # React Refine vs Blitz comparison

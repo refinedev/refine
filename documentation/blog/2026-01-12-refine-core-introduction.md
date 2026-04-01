@@ -5,9 +5,10 @@ slug: refine-core-introduction
 authors: ozgur
 category: "Announcement"
 tags: []
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-12-refine-core-introduction/refine-core-introduction-banner.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-12-refine-core-introduction/refine-core-introduction-banner.png
 hide_table_of_contents: false
 is_featured: true
+last_update: 2026-02-19
 ---
 
 We have an important update to share with our community.

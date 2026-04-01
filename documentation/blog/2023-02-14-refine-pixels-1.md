@@ -5,11 +5,12 @@ slug: refine-pixels-guide
 authors: abdullah_numan
 category: "How To Build"
 tags: [refine-week]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/social.png
 hide_table_of_contents: false
+last_update: 2023-04-10
 ---
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine_supabase.png" alt="Refine and Supabase logos" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/refine_supabase.png" alt="Refine and Supabase logos" />
 
 This guide is a comprehensive, seven-part tutorial that walks you through building two full-stack apps with [**Refine**](https://github.com/refinedev/refine) and [**Supabase**](https://supabase.com/). By the end, you'll have a fully functional CRUD app called "**Pixels**" and an admin dashboard called "**Pixels Admin**".
 
@@ -192,7 +193,7 @@ We'll be visiting code like this often, but if you examine closely you can see t
 
 The following diagram illustrates the interactions:
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/refine-flow.png" alt="Refine data flow diagram" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/refine-flow.png" alt="Refine data flow diagram" />
 
 <br />
 
@@ -229,7 +230,7 @@ We'll be using **Supabase** to build our backend for **Pixels** app.
 
 ## A week of Refine ft. Supabase
 
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="Pixels app logo banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-04-refine-pixels-1/pixel-logo-background.png" alt="Pixels app logo banner" />
 
   <br/>
   <br/>
@@ -254,58 +255,27 @@ This post. Hello! :wave: :wave: **Refine** welcomes you! We are here :smile: :sm
 
 ### Day Two - Setting Up the Client App
 
-We start with setting up the **Pixels** client app using `create refine-app`. We choose **Refine**'s optional **Ant Design** and **Supabase** modules as our support packages. After initialization, we explore the boilerplate code created by `create refine-app` and look into the details of the `dataProvider` and `authProvider` objects and briefly discuss their mechanisms.
+We set up the **Pixels** client app using `create refine-app` with **Ant Design** and **Supabase** modules. We explore the boilerplate code and look into the `dataProvider` and `authProvider` objects.
 
 ### Day Three - Adding CRUD Actions & Authentication
 
-On Day Three, we start adding features to our app. We activate the `resources` prop for `<Refine />` and using the `dataProvider` prop, we implement how to create a canvas, show a canvas and draw pixels on a canvas. We add a public gallery to show all canvases in a page and featured canvases in another. We also implement user authentication so that only signed in users can create and draw on a canvas - and while doing so we delve into the `authProvider` object.
-
-Here is a quick sum up of specifications we cover on Day Three:
-
-1. The **Pixels** app has a public gallery.
-2. The public gallery has a home page of featured canvases.
-3. The public gallery contains a section for all the canvases.
-4. All users can view the public gallery.
-5. All users can view a canvas.
-6. Only logged in users can create a canvas.
-7. Only logged in users can draw pixels on a canvas.
-8. A user can sign up to the app using email, Google and GitHub.
-9. A user can log in to the app using email, Google and GitHub.
+We add features: canvas creation, pixel drawing, a public gallery, featured canvases page, and user authentication with email, Google and GitHub.
 
 ### Day Four - Adding Realtime Collaboration
 
-On Day Four, we add **real time** features to our app using the `liveProvider` prop on `<Refine />`. Real time updates on a canvas will facilitate multiple users to collaborate on it at the same time.
-
-We are going to use **Supabase**'s **Realtime** [PostgreSQL CDC](https://supabase.com/docs/guides/realtime/postgres-cdc) in order to perform row level updates on the PostgreSQL database in real time.
+We add real time collaboration using the `liveProvider` prop and **Supabase**'s Realtime PostgreSQL CDC, enabling multiple users to draw on a canvas simultaneously.
 
 ### Day Five - Initialize and Build Pixels Admin App
 
-Basing on the learning from the client app, we quickly implement an admin dashboard app and explore how **Refine**'s **Ant Design** support module is geared to rapidly build CRUD pages for a **Refine** app.
-
-Here are the requirements for **Pixels Admin**:
-
-1. Allow a user to sign up to the app using email, Google and GitHub.
-2. Allow a user to log in to the app using email, Google and GitHub.
-3. Build a dashboard that lists `users` and `canvases`.
-4. The dashboard shows a list of all users at `/users` endpoint.
-5. The dashboard shows a list of all canvases at `/canvases` endpoint.
+We build an admin dashboard with **Ant Design** that lists `users` and `canvases`, implementing CRUD operations for managing these resources.
 
 ### Day Six - Add Role Based Authorization
 
-On Day Six, we implement user role based authorization to our admin app. While doing so, we analyze the `authProvider.getPermissions()` method from the standpoint of implementing authorization and customize according to our needs. We use **Casbin** for implementing a Role Based Access Control model and use it to define the `can` method of the `accessControlProvider` provider.
-
-Here are the features we implement on Day Six:
-
-1. There are two authorized roles for admin dashboard: `editor` and `admin`.
-2. An editor is able to promote a canvas to "featured" status and demote it back.
-3. An admin is able to promote a canvas to "featured" status and demote it back.
-4. An admin is able to delete a canvas.
+We implement RBAC using **Casbin** and **Refine**'s `accessControlProvider` for `editor` and `admin` roles.
 
 ### Day Seven - Add Audit Log to Client App and Admin App
 
-On the last day, with the `auditLogProvider` prop, we implement a log of all pixel drawing activities.Mutations for drawing pixels will be logged and saved in a `logs` table in our **Supabase** database.
-
-We will display these logs inside a modal for each canvas both in the client **Pixels** app and in the **Pixels Admin** dashboard app. So, we will implement audit logging on both our apps.
+We implement audit logging with the `auditLogProvider` prop to track pixel drawing activities, saving logs to a **Supabase** `logs` table.
 
 ## Summary
 
@@ -318,8 +288,6 @@ We laid out the plans for building a **Pixels** client app and an admin dashboar
 ## Part 2: Setting Up the Client App
 
 In this episode, we initialize our **Pixels** app using [**Refine**](https://github.com/refinedev/refine) and get familiar with the boilerplate code to be created with the `create refine-app` CLI tool.
-
-This is Day 2 of the [**RefineWeek**](https://refine.dev/core/week-of-refine-supabase/) series. **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ## Overview
 
@@ -376,7 +344,7 @@ npm run dev
 
 After that, navigate to `http://localhost:5173`, and lo and behold! we have a **Refine** app:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels app welcome screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels app welcome screen" />
 
 <br />
 
@@ -532,240 +500,7 @@ Normally, for our own backend API, we have to define each method we need for sen
 <summary>Show Refine supabase data provider source code</summary>
 <p>
 
-```tsx title="@refinedev/supabase/src/index.ts"
-import { DataProvider } from "@refinedev/core";
-import { SupabaseClient } from "@supabase/supabase-js";
-import { generateFilter, handleError } from "../utils";
-
-export const dataProvider = (
-  supabaseClient: SupabaseClient,
-): Required<DataProvider> => {
-  return {
-    getList: async ({ resource, pagination, filters, sorters, meta }) => {
-      const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
-
-      const query = supabaseClient.from(resource).select(meta?.select ?? "*", {
-        count: "exact",
-      });
-
-      if (mode === "server") {
-        query.range((current - 1) * pageSize, current * pageSize - 1);
-      }
-
-      sorters?.map((item) => {
-        const [foreignTable, field] = item.field.split(/\.(.*)/);
-
-        if (foreignTable && field) {
-          query
-            .select(meta?.select ?? `*, ${foreignTable}(${field})`)
-            .order(field, {
-              ascending: item.order === "asc",
-              foreignTable: foreignTable,
-            });
-        } else {
-          query.order(item.field, {
-            ascending: item.order === "asc",
-          });
-        }
-      });
-
-      filters?.map((item) => {
-        generateFilter(item, query);
-      });
-
-      const { data, count, error } = await query;
-
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: data || [],
-        total: count || 0,
-      } as any;
-    },
-
-    getMany: async ({ resource, ids, meta }) => {
-      const query = supabaseClient.from(resource).select(meta?.select ?? "*");
-
-      if (meta?.idColumnName) {
-        query.in(meta.idColumnName, ids);
-      } else {
-        query.in("id", ids);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: data || [],
-      } as any;
-    },
-
-    create: async ({ resource, variables, meta }) => {
-      const query = supabaseClient.from(resource).insert(variables);
-
-      if (meta?.select) {
-        query.select(meta.select);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: (data || [])[0] as any,
-      };
-    },
-
-    createMany: async ({ resource, variables, meta }) => {
-      const query = supabaseClient.from(resource).insert(variables);
-
-      if (meta?.select) {
-        query.select(meta.select);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: data as any,
-      };
-    },
-
-    update: async ({ resource, id, variables, meta }) => {
-      const query = supabaseClient.from(resource).update(variables);
-
-      if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
-      } else {
-        query.match({ id });
-      }
-
-      if (meta?.select) {
-        query.select(meta.select);
-      }
-
-      const { data, error } = await query;
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: (data || [])[0] as any,
-      };
-    },
-
-    updateMany: async ({ resource, ids, variables, meta }) => {
-      const response = await Promise.all(
-        ids.map(async (id) => {
-          const query = supabaseClient.from(resource).update(variables);
-
-          if (meta?.idColumnName) {
-            query.eq(meta.idColumnName, id);
-          } else {
-            query.match({ id });
-          }
-
-          if (meta?.select) {
-            query.select(meta.select);
-          }
-
-          const { data, error } = await query;
-          if (error) {
-            return handleError(error);
-          }
-
-          return (data || [])[0] as any;
-        }),
-      );
-
-      return {
-        data: response,
-      };
-    },
-
-    getOne: async ({ resource, id, meta }) => {
-      const query = supabaseClient.from(resource).select(meta?.select ?? "*");
-
-      if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
-      } else {
-        query.match({ id });
-      }
-
-      const { data, error } = await query;
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: (data || [])[0] as any,
-      };
-    },
-
-    deleteOne: async ({ resource, id, meta }) => {
-      const query = supabaseClient.from(resource).delete();
-
-      if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
-      } else {
-        query.match({ id });
-      }
-
-      const { data, error } = await query;
-      if (error) {
-        return handleError(error);
-      }
-
-      return {
-        data: (data || [])[0] as any,
-      };
-    },
-
-    deleteMany: async ({ resource, ids, meta }) => {
-      const response = await Promise.all(
-        ids.map(async (id) => {
-          const query = supabaseClient.from(resource).delete();
-
-          if (meta?.idColumnName) {
-            query.eq(meta.idColumnName, id);
-          } else {
-            query.match({ id });
-          }
-
-          const { data, error } = await query;
-          if (error) {
-            return handleError(error);
-          }
-
-          return (data || [])[0] as any;
-        }),
-      );
-
-      return {
-        data: response,
-      };
-    },
-
-    getApiUrl: () => {
-      throw Error("Not implemented on refine-supabase data provider.");
-    },
-
-    custom: () => {
-      throw Error("Not implemented on refine-supabase data provider.");
-    },
-  };
-};
-```
+The full source code for the Supabase data provider can be found in the [`@refinedev/supabase` package on GitHub](https://github.com/refinedev/refine/tree/main/packages/supabase). It implements all the CRUD methods (`getList`, `getOne`, `create`, `update`, `deleteOne`, etc.) using the Supabase client library.
 
 </p>
 </details>
@@ -830,246 +565,7 @@ Earlier on, the `authProvider` object was already created by `create refine-app`
 <summary>Show Refine supabase auth provider source code</summary>
 <p>
 
-```tsx title="src/authProvider.ts"
-import { AuthProvider } from "@refinedev/core";
-
-import { supabaseClient } from "../utility";
-
-export const authProvider: AuthProvider = {
-  login: async ({ email, password, providerName }) => {
-    try {
-      // sign in with oauth
-      if (providerName) {
-        const { data, error } = await supabaseClient.auth.signInWithOAuth({
-          provider: providerName,
-        });
-
-        if (error) {
-          return {
-            success: false,
-            error,
-          };
-        }
-
-        if (data?.url) {
-          return {
-            success: true,
-          };
-        }
-      }
-
-      // sign in with email and password
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        return {
-          success: false,
-          error,
-        };
-      }
-
-      if (data?.user) {
-        return {
-          success: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: false,
-      error: {
-        message: "Login failed",
-        name: "Invalid email or password",
-      },
-    };
-  },
-  register: async ({ email, password }) => {
-    try {
-      const { data, error } = await supabaseClient.auth.signUp({
-        email,
-        password,
-      });
-
-      if (error) {
-        return {
-          success: false,
-          error,
-        };
-      }
-
-      if (data) {
-        return {
-          success: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: false,
-      error: {
-        message: "Register failed",
-        name: "Invalid email or password",
-      },
-    };
-  },
-  forgotPassword: async ({ email }) => {
-    try {
-      const { data, error } = await supabaseClient.auth.resetPasswordForEmail(
-        email,
-        {
-          redirectTo: `${window.location.origin}/update-password`,
-        },
-      );
-
-      if (error) {
-        return {
-          success: false,
-          error,
-        };
-      }
-
-      if (data) {
-        return {
-          success: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: false,
-      error: {
-        message: "Forgot password failed",
-        name: "Invalid email",
-      },
-    };
-  },
-  updatePassword: async ({ password }) => {
-    try {
-      const { data, error } = await supabaseClient.auth.updateUser({
-        password,
-      });
-
-      if (error) {
-        return {
-          success: false,
-          error,
-        };
-      }
-
-      if (data) {
-        return {
-          success: true,
-          redirectTo: "/",
-        };
-      }
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: false,
-      error: {
-        message: "Update password failed",
-        name: "Invalid password",
-      },
-    };
-  },
-  logout: async () => {
-    const { error } = await supabaseClient.auth.signOut();
-
-    if (error) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: true,
-      redirectTo: "/",
-    };
-  },
-  onError: async (_error: any) => ({}),
-  check: async () => {
-    try {
-      const { data } = await supabaseClient.auth.getSession();
-      const { session } = data;
-
-      if (!session) {
-        return {
-          authenticated: false,
-          error: {
-            message: "Check failed",
-            name: "Session not found",
-          },
-          logout: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        authenticated: false,
-        error: error,
-        logout: true,
-      };
-    }
-
-    return {
-      authenticated: true,
-    };
-  },
-  getPermissions: async () => {
-    try {
-      const user = await supabaseClient.auth.getUser();
-
-      if (user) {
-        return user.data.user?.role;
-      }
-    } catch (error) {
-      console.error(error);
-      return;
-    }
-  },
-  getIdentity: async () => {
-    try {
-      const { data } = await supabaseClient.auth.getUser();
-
-      if (data?.user) {
-        return {
-          ...data.user,
-          name: data.user.email,
-        };
-      }
-
-      return null;
-    } catch (error: any) {
-      console.error(error);
-
-      return null;
-    }
-  },
-};
-```
+The full source code for the Supabase auth provider can be found in the [Pixels example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/providers). It implements all the auth methods (`login`, `logout`, `register`, `check`, `getPermissions`, `getIdentity`, `onError`, `forgotPassword`, `updatePassword`) using the Supabase auth client.
 
 </p>
 </details>
@@ -1099,8 +595,6 @@ In the [next article](#part-3-adding-crud-actions-and-authentication), we will u
 In this post, we build on our existing understanding of [`dataProvider`](https://refine.dev/core/docs/data/data-provider) and [`authProvider`](https://refine.dev/core/docs/authentication/auth-provider) props of [`<Refine />`](https://refine.dev/core/docs/api-reference/core/components/refine-config/) to implement CRUD operations in our **Pixels** app that we initialized in the previous post. While doing so, we discuss the roles of `<Refine />` component's [`resources`](https://refine.dev/core/docs/guides-concepts/general-concepts/#resource-concept) and `routerProvider` props as well.
 
 CRUD actions are supported by the [**Supabase**](https://supabase.com/) data provider we chose for our project and in this post we use them to build a public gallery of canvases. We implement creation and displaying of individual canvases as well as drawing on them. We also add authentication features supported by the `supabaseClient` we discussed on Day Two of the [**RefineWeek**](https://refine.dev/core/week-of-refine-supabase/) series.
-
-This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ## Overview
 
@@ -1135,7 +629,7 @@ Creating a database server is quite intuitive in **Supabase**. Just go over to y
 For our app, we have four tables: `auth.users`, `public.users`, `canvases` and `pixels`. The entity relational diagram for our database looks like this:
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="Supabase table editor" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/supabase_Table.png"  alt="Supabase table editor" />
 </div>
 
 <br/>
@@ -1158,7 +652,7 @@ The `auth.users` table is concerned with authentication in our app. It is create
 **Supabase** doesn't allow a client to query the `auth.users` table for security reasons. So, we need to create a shadow of the `auth.users` table in `public.users` with additional columns. We need this shadow table to be able to query `user` information, such as `avatar_url` and `roles` from this table.
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/sql_editor.png"  alt="Supabase SQL editor" />
+  <img style={{alignSelf:"center", width: "300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/sql_editor.png"  alt="Supabase SQL editor" />
 </div>
 
 <br/>
@@ -1260,7 +754,7 @@ Also, `public.users` has a one-to-many relationship with `pixels`.
 For simplicity, we'll disable Row Level Security:
 
 <div className="centered-image"  >
-  <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-09-refine-pixels-3/disable_rls.png"  alt="Disable RLS setting" />
+  <img style={{alignSelf:"center", width: "600px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-09-refine-pixels-3/disable_rls.png"  alt="Disable RLS setting" />
 </div>
 
 <br/>
@@ -1412,128 +906,9 @@ After creating files above you need to add some imports and [routes](/core/docs/
 <summary>Show App.tsx code</summary>
 <p>
 
-```tsx title="App.tsx"
-import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
-import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
-import { GithubOutlined } from "@ant-design/icons";
+The `App.tsx` for the Pixels client app sets up `ConfigProvider` for Ant Design theming, connects to Supabase via `dataProvider` and `liveProvider`, and defines routes for the canvas gallery (`/`), canvas list (`/canvases`), individual canvas view (`/canvases/show/:id`), and authentication pages with GitHub social login.
 
-import { Layout } from "./components/layout";
-import { CanvasFeaturedList, CanvasList, CanvasShow } from "./pages/canvases";
-import { AuthPage } from "./pages/auth";
-import { supabaseClient } from "./utility";
-import { authProvider, auditLogProvider } from "./providers";
-
-import "@refinedev/antd/dist/reset.css";
-import "./styles/style.css";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#3ecf8e",
-            colorText: "#80808a",
-            colorError: "#fa541c",
-            colorBgLayout: "#f0f2f5",
-            colorLink: "#3ecf8e",
-            colorLinkActive: "#3ecf8e",
-            colorLinkHover: "#3ecf8e",
-          },
-        }}
-      >
-        <Refine
-          authProvider={authProvider}
-          dataProvider={dataProvider(supabaseClient)}
-          liveProvider={liveProvider(supabaseClient)}
-          auditLogProvider={auditLogProvider}
-          routerProvider={routerProvider}
-          resources={[
-            {
-              name: "canvases",
-              list: "/canvases",
-              show: "/canvases/show/:id",
-            },
-          ]}
-          notificationProvider={useNotificationProvider}
-        >
-          <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route index element={<CanvasFeaturedList />} />
-
-              <Route path="/canvases">
-                <Route index element={<CanvasList />} />
-                <Route path="show/:id" element={<CanvasShow />} />
-              </Route>
-            </Route>
-            <Route
-              element={
-                <Authenticated fallback={<Outlet />}>
-                  <NavigateToResource />
-                </Authenticated>
-              }
-            >
-              <Route
-                path="/login"
-                element={
-                  <AuthPage
-                    type="login"
-                    providers={[
-                      {
-                        name: "github",
-                        icon: (
-                          <GithubOutlined
-                            style={{
-                              fontSize: "18px",
-                            }}
-                          />
-                        ),
-                        label: "Sign in with GitHub",
-                      },
-                    ]}
-                  />
-                }
-              />
-              <Route path="/register" element={<AuthPage type="register" />} />
-              <Route
-                path="/forgot-password"
-                element={<AuthPage type="forgotPassword" />}
-              />
-              <Route
-                path="/update-password"
-                element={<AuthPage type="updatePassword" />}
-              />
-            </Route>
-
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route path="*" element={<ErrorComponent />} />
-            </Route>
-          </Routes>
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
+You can find the full code in the [Pixels example on GitHub](https://github.com/refinedev/refine/blob/main/examples/pixels/src/App.tsx).
 
 </p>
 </details>
@@ -1631,7 +1006,7 @@ If you are already looking at the [`useSimpleList()` argument object's propertie
 
 With this set up - and connected to the Internet - if we run the dev server with `npm run dev` and navigate to `http://localhost:5173`, we are faced with a `<CanvasFeaturedList/>` as a home page.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 
@@ -1643,159 +1018,11 @@ We already did this implementation when we created required files before startin
 
 ### Public Routes in Refine
 
-If we revisit the `authProvider` object, we can see that the `check()` method only allows logged in users. All other attempts are rejected. We will use this logic to compose our routes.
-
-<details>
-<summary>Show `authProvider` code</summary>
-<p>
-
-```tsx title="src/authProvider.ts"
-check: async () => {
-    try {
-            // sign in with oauth
-            if (providerName) {
-                const { data, error } =
-                    await supabaseClient.auth.signInWithOAuth({
-                        provider: providerName,
-                    });
-
-                if (error) {
-                    return {
-                        success: false,
-                        error,
-                    };
-                }
-
-                if (data?.url) {
-                    return {
-                        success: true,
-                    };
-                }
-            }
-
-            // sign in with email and password
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password,
-                });
-
-            if (error) {
-                return {
-                    success: false,
-                    error,
-                };
-            }
-
-            if (data?.user) {
-                return {``
-                    success: true,
-                };
-            }
-        } catch (error: any) {
-            return {
-                success: false,
-                error,
-            };
-        }
-
-        return {
-            success: false,
-            error: {
-                message: "Login failed",
-                name: "Invalid email or password",
-            },
-        };
-},
-```
-
-</p>
-</details>
+If we revisit the `authProvider` object, we can see that the `check()` method only allows logged in users. All other attempts are rejected. We will use this logic to compose our routes. The full `authProvider` code is in the [Pixels app on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/providers).
 
 **Refine** provides [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component to protect routes from unauthenticated users. It uses `authProvider.check` method under the hood. To use this component, we need to wrap the routes we want to protect with [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component.
 
-Let's look at the routes implementation:
-
- <details>
-<summary>Show Routes implementation component code</summary>
-<p>
-
-```tsx title="src/components/layout/header/index.tsx"
-import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { GithubOutlined } from "@ant-design/icons";
-import { AuthPage } from "./pages/auth";
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Refine
-        // ...
-        routerProvider={routerProvider}
-      >
-        <Routes>
-          <Route
-            element={
-              <Layout>
-                <Outlet />
-              </Layout>
-            }
-          >
-            <Route index element={<CanvasFeaturedList />} />
-
-            <Route path="/canvases">
-              <Route index element={<CanvasList />} />
-              <Route path="show/:id" element={<CanvasShow />} />
-            </Route>
-          </Route>
-          <Route
-            element={
-              <Authenticated fallback={<Outlet />}>
-                <NavigateToResource />
-              </Authenticated>
-            }
-          >
-            <Route
-              path="/login"
-              element={
-                <AuthPage
-                  type="login"
-                  providers={[
-                    {
-                      name: "github",
-                      icon: (
-                        <GithubOutlined
-                          style={{
-                            fontSize: "18px",
-                          }}
-                        />
-                      ),
-                      label: "Sign in with GitHub",
-                    },
-                  ]}
-                />
-              }
-            />
-            <Route path="/register" element={<AuthPage type="register" />} />
-            <Route
-              path="/forgot-password"
-              element={<AuthPage type="forgotPassword" />}
-            />
-            <Route
-              path="/update-password"
-              element={<AuthPage type="updatePassword" />}
-            />
-          </Route>
-        </Routes>
-      </Refine>
-    </BrowserRouter>
-  );
-};
-```
-
-</p>
-</details>
+The routes implementation wraps canvas resource routes without `<Authenticated />` (making them public), while `login`, `register`, `forgot-password` and `update-password` routes use `<Authenticated />` as a fallback, preventing authenticated users from accessing them. See the full routing setup in the [App.tsx on GitHub](https://github.com/refinedev/refine/blob/main/examples/pixels/src/App.tsx).
 
 In this example we didn't wrap our `canvases` resource routes with [`<Authenticated/>`](/core/docs/authentication/components/authenticated/) component. This means that we can access the `canvases` resource routes without being authenticated.
 
@@ -1815,127 +1042,9 @@ The `<Header />` component looks like this:
 <summary>Show Header component code</summary>
 <p>
 
-```tsx title="src/components/layout/header/index.tsx"
-import React from "react";
-import {
-  useIsAuthenticated,
-  useLogout,
-  useMenu,
-  useNavigation,
-  useParsed,
-} from "@refinedev/core";
-import { Link } from "react-router-dom";
-import { useModalForm } from "@refinedev/antd";
+The `<Header />` component uses `useModalForm()` to manage a "Create Canvas" modal, `useIsAuthenticated()` to check login state, and `useMenu()` / `useNavigation()` for navigation. It renders a navbar with the app logo, navigation links (Featured, Canvases), a "Create" button, and Login/Logout buttons.
 
-import {
-  PlusSquareOutlined,
-  LogoutOutlined,
-  LoginOutlined,
-} from "@ant-design/icons";
-import { Button, Image, Space } from "antd";
-
-import { CreateCanvas } from "../../../components/canvas";
-import { Canvas } from "../../../types";
-
-export const Header: React.FC = () => {
-  const { data } = useIsAuthenticated();
-  const { mutate: mutateLogout } = useLogout();
-  const { push } = useNavigation();
-  const { selectedKey } = useMenu();
-  const { pathname } = useParsed();
-
-  const { modalProps, formProps, show } = useModalForm<Canvas>({
-    resource: "canvases",
-    action: "create",
-    redirect: "show",
-  });
-
-  const isAuthenticated = data?.authenticated;
-
-  const handleRedirect = () => {
-    if (!pathname) {
-      return push("/login");
-    }
-
-    if (pathname === "/") {
-      return push("/login");
-    }
-
-    push(`/login?to=${encodeURIComponent(pathname)}`);
-  };
-
-  return (
-    <div className="container">
-      <div className="layout-header">
-        <Link to="/">
-          <Image
-            width="120px"
-            src="/pixels-logo.svg"
-            alt="Pixels Logo"
-            preview={false}
-          />
-        </Link>
-        <Space size="large">
-          <Link
-            to="/"
-            className={`nav-button ${selectedKey === "/" ? "active" : ""}`}
-          >
-            <span className="dot-icon" />
-            HOME
-          </Link>
-          <Link
-            to="/canvases"
-            className={`nav-button ${
-              selectedKey === "/canvases" ? "active" : ""
-            }`}
-          >
-            <span className="dot-icon" />
-            NEW
-          </Link>
-        </Space>
-        <Space>
-          <Button
-            icon={<PlusSquareOutlined />}
-            onClick={() => {
-              if (isAuthenticated) {
-                show();
-              } else {
-                handleRedirect();
-              }
-            }}
-            title="Create a new canvas"
-          >
-            Create
-          </Button>
-          {isAuthenticated ? (
-            <Button
-              type="primary"
-              danger
-              onClick={() => {
-                mutateLogout();
-              }}
-              icon={<LogoutOutlined />}
-              title="Logout"
-            />
-          ) : (
-            <Button
-              type="primary"
-              onClick={() => {
-                handleRedirect();
-              }}
-              icon={<LoginOutlined />}
-              title="Login"
-            >
-              Login
-            </Button>
-          )}
-        </Space>
-      </div>
-      <CreateCanvas modalProps={modalProps} formProps={formProps} />
-    </div>
-  );
-};
-```
+You can find the full code in the [Pixels example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/components/layout).
 
 </p>
 </details>
@@ -1957,94 +1066,9 @@ We are using the `<Modal />` and `<Form />` inside the `<CreateCanvas />` compon
 <summary>CreateCanvas component code</summary>
 <p>
 
-```tsx title="src/components/canvas/create.tsx"
-import React, { useState } from "react";
-import { useGetIdentity } from "@refinedev/core";
-import { Form, FormProps, Input, Modal, ModalProps, Radio } from "antd";
+The `<CreateCanvas />` component renders a modal form that accepts `modalProps` and `formProps` from the parent `<Header />` component. It uses `useGetIdentity()` for the current user and has fields for canvas name (auto-generated with `getRandomName()`) and size (10x10 or 20x20). On submit, it calls `formProps.onFinish()` to trigger the `create` action.
 
-import { getRandomName, DEFAULT_CANVAS_SIZE } from "../../utility";
-import { User } from "../../types";
-
-type CreateCanvasProps = {
-  modalProps: ModalProps;
-  formProps: FormProps;
-};
-
-export const CreateCanvas: React.FC<CreateCanvasProps> = ({
-  modalProps,
-  formProps,
-}) => {
-  const { data: user } = useGetIdentity<User | null>();
-
-  const [values, setValues] = useState(() => {
-    const name = getRandomName();
-    return {
-      name: name,
-      id: name.replace(/\s/g, "-").toLowerCase(),
-      width: DEFAULT_CANVAS_SIZE,
-      height: DEFAULT_CANVAS_SIZE,
-    };
-  });
-
-  return (
-    <Modal
-      {...modalProps}
-      title="Create Canvas"
-      width={600}
-      centered
-      afterClose={() => {
-        const name = getRandomName();
-        setValues({
-          name: name,
-          id: name.replace(/\s/g, "-").toLowerCase(),
-          width: DEFAULT_CANVAS_SIZE,
-          height: DEFAULT_CANVAS_SIZE,
-        });
-      }}
-      bodyStyle={{ borderRadius: "6px" }}
-    >
-      <Form
-        {...formProps}
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 12 }}
-        onFinish={() => {
-          return (
-            formProps.onFinish &&
-            formProps.onFinish({
-              ...values,
-              user_id: user?.id,
-            })
-          );
-        }}
-      >
-        <Form.Item label="ID:">
-          <Input value={values.id} disabled />
-        </Form.Item>
-
-        <Form.Item label="Name:">
-          <Input value={values.name} disabled />
-        </Form.Item>
-
-        <Form.Item label="Size:">
-          <Radio.Group
-            options={[10, 20, 30]}
-            onChange={({ target: { value } }) =>
-              setValues((p) => ({
-                ...p,
-                height: value,
-                width: value,
-              }))
-            }
-            value={values.width}
-            optionType="button"
-            buttonStyle="solid"
-          />
-        </Form.Item>
-      </Form>
-    </Modal>
-  );
-};
-```
+You can find the full code in the [Pixels example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/components/canvas).
 
 </p>
 </details>
@@ -2089,149 +1113,9 @@ The `<CanvasShow />` component looks like this:
 <summary>CanvasShow component code</summary>
 <p>
 
-```tsx title="src/pages/canvases/show.tsx"
-import { useState } from "react";
-import {
-  useCreate,
-  useGetIdentity,
-  useNavigation,
-  useShow,
-  useParsed,
-  useIsAuthenticated,
-} from "@refinedev/core";
-import { useModal } from "@refinedev/antd";
+The `<CanvasShow />` component uses `useShow()` to fetch canvas data, `useCreate()` for pixel creation, and `useGetIdentity()` / `useIsAuthenticated()` for auth. It renders the canvas with `<DisplayCanvas />` and `<CanvasItem />`, a `<ColorSelect />` for picking colors, an `<AvatarPanel />` showing contributors, and a "View Changes" button that opens an audit log modal. The `onSubmit` handler creates pixels by calling `mutate()` with the pixel coordinates, color, and canvas metadata.
 
-import { LeftOutlined } from "@ant-design/icons";
-import { Button, Typography, Spin, Modal } from "antd";
-
-import { CanvasItem, DisplayCanvas } from "../../components/canvas";
-import { ColorSelect } from "../../components/color-select";
-import { AvatarPanel } from "../../components/avatar";
-import { colors } from "../../utility";
-import { Canvas } from "../../types";
-import { LogList } from "../../components/logs";
-
-const { Title } = Typography;
-
-type Colors = typeof colors;
-
-export const CanvasShow: React.FC = () => {
-  const { pathname } = useParsed();
-  const [color, setColor] = useState<Colors[number]>("black");
-  const { modalProps, show, close } = useModal();
-  const { data: identity } = useGetIdentity<any>();
-  const { data: { authenticated } = {} } = useIsAuthenticated();
-
-  const {
-    query: { data: { data: canvas } = {} },
-  } = useShow<Canvas>();
-  const { mutate } = useCreate();
-  const { list, push } = useNavigation();
-
-  const onSubmit = (x: number, y: number) => {
-    if (!authenticated) {
-      if (pathname) {
-        return push(`/login?to=${encodeURIComponent(pathname)}`);
-      }
-
-      return push(`/login`);
-    }
-
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-      mutate({
-        resource: "pixels",
-        values: {
-          x,
-          y,
-          color,
-          canvas_id: canvas?.id,
-          user_id: identity.id,
-        },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
-      });
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="paper">
-        <div className="paper-header">
-          <Button
-            type="text"
-            onClick={() => list("canvases")}
-            style={{ textTransform: "uppercase" }}
-          >
-            <LeftOutlined />
-            Back
-          </Button>
-          <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-          <Button type="primary" onClick={show}>
-            View Changes
-          </Button>
-        </div>
-        <Modal
-          title="Canvas Changes"
-          {...modalProps}
-          centered
-          destroyOnClose
-          onOk={close}
-          onCancel={() => {
-            close();
-          }}
-          footer={[
-            <Button type="primary" key="close" onClick={close}>
-              Close
-            </Button>,
-          ]}
-        >
-          <LogList currentCanvas={canvas} />
-        </Modal>
-
-        {canvas ? (
-          <DisplayCanvas canvas={canvas}>
-            {(pixels) =>
-              pixels ? (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 48,
-                  }}
-                >
-                  <div>
-                    <ColorSelect selected={color} onChange={setColor} />
-                  </div>
-                  <CanvasItem
-                    canvas={canvas}
-                    pixels={pixels}
-                    onPixelClick={onSubmit}
-                    scale={(20 / (canvas?.width ?? 20)) * 2}
-                    active={true}
-                  />
-                  <div style={{ width: 120 }}>
-                    <AvatarPanel pixels={pixels} />
-                  </div>
-                </div>
-              ) : (
-                <div className="spin-wrapper">
-                  <Spin />
-                </div>
-              )
-            }
-          </DisplayCanvas>
-        ) : (
-          <div className="spin-wrapper">
-            <Spin />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-```
+You can find the full code in the [Pixels example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/pages/canvases).
 
 </p>
 </details>
@@ -2383,128 +1267,7 @@ Remember, we've already replaced `App.tx` code with the following:
 <summary>Show `App.tsx` code</summary>
 <p>
 
-```tsx title="src/App.tsx"
-import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
-import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ConfigProvider } from "antd";
-import { GithubOutlined } from "@ant-design/icons";
-
-import { Layout } from "./components/layout";
-import { CanvasFeaturedList, CanvasList, CanvasShow } from "./pages/canvases";
-import { AuthPage } from "./pages/auth";
-import { supabaseClient } from "./utility";
-import { authProvider, auditLogProvider } from "./providers";
-
-import "@refinedev/antd/dist/reset.css";
-import "./styles/style.css";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#3ecf8e",
-            colorText: "#80808a",
-            colorError: "#fa541c",
-            colorBgLayout: "#f0f2f5",
-            colorLink: "#3ecf8e",
-            colorLinkActive: "#3ecf8e",
-            colorLinkHover: "#3ecf8e",
-          },
-        }}
-      >
-        <Refine
-          authProvider={authProvider}
-          dataProvider={dataProvider(supabaseClient)}
-          liveProvider={liveProvider(supabaseClient)}
-          auditLogProvider={auditLogProvider}
-          routerProvider={routerProvider}
-          resources={[
-            {
-              name: "canvases",
-              list: "/canvases",
-              show: "/canvases/show/:id",
-            },
-          ]}
-          notificationProvider={useNotificationProvider}
-        >
-          <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route index element={<CanvasFeaturedList />} />
-
-              <Route path="/canvases">
-                <Route index element={<CanvasList />} />
-                <Route path="show/:id" element={<CanvasShow />} />
-              </Route>
-            </Route>
-            <Route
-              element={
-                <Authenticated fallback={<Outlet />}>
-                  <NavigateToResource />
-                </Authenticated>
-              }
-            >
-              <Route
-                path="/login"
-                element={
-                  <AuthPage
-                    type="login"
-                    providers={[
-                      {
-                        name: "github",
-                        icon: (
-                          <GithubOutlined
-                            style={{
-                              fontSize: "18px",
-                            }}
-                          />
-                        ),
-                        label: "Sign in with GitHub",
-                      },
-                    ]}
-                  />
-                }
-              />
-              <Route path="/register" element={<AuthPage type="register" />} />
-              <Route
-                path="/forgot-password"
-                element={<AuthPage type="forgotPassword" />}
-              />
-              <Route
-                path="/update-password"
-                element={<AuthPage type="updatePassword" />}
-              />
-            </Route>
-
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                </Layout>
-              }
-            >
-              <Route path="*" element={<ErrorComponent />} />
-            </Route>
-          </Routes>
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
+See the complete `App.tsx` code in the [Adding required files](#adding-required-files) section above, which includes the full routing setup with `<Authenticated />`, custom login with GitHub, and all canvas routes.
 
 </p>
 </details>
@@ -2524,7 +1287,7 @@ After registration, the user is automatically signed in and the browser redirect
 
 And now, since we are logged in, we should be able to create a canvas. After successful creation of a canvas, we should be redirected to `/canvases/:id`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="Create canvas form" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/create-canvas.jpg"  alt="Create canvas form" />
 
 <br />
 
@@ -2597,7 +1360,7 @@ There will not be any item in the home page because `is_featured` is set to `fal
 
 I've done that and the featured canvases are listed in the `Home` route:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/featured-canvases.jpg"  alt="Featured canvases gallery" />
 
 <br />
 
@@ -2619,8 +1382,6 @@ Here's a quick rundown of the features we'll work on:
 
 1. Allow multiple users to draw pixels on a canvas.
 2. All contributors can see realtime updates on the canvas.
-
-This is Day 4 in the series titled [**RefineWeek**](https://refine.dev/core/week-of-refine/). **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
 
 ## Overview
 
@@ -2680,7 +1441,7 @@ And that's it! The channel for `pixels` resource that was specified above in **S
 
 Now, let's try opening the app in two browsers, one with Google account and one with GitHub. Navigate to a canvas page, the same one in both and try adding some `pixels` from each. We'll see that `pixel`s created in one are displayed in the other in real time:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/live-provider.avif"  alt="Live provider implementation for real-time updates" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/live-provider.avif"  alt="Live provider implementation for real-time updates" />
 
 <br />
 
@@ -2706,88 +1467,7 @@ Let's have a look.
 <summary>Show `liveProvider` code</summary>
 <p>
 
-```tsx title="@refinedev/supabase liveProvider"
-import { LiveProvider, CrudFilter, CrudFilters } from "@refinedev/core";
-import {
-  RealtimeChannel,
-  RealtimePostgresChangesPayload,
-  SupabaseClient,
-} from "@supabase/supabase-js";
-import { liveTypes, supabaseTypes } from "../types";
-import { mapOperator } from "../utils";
-
-export const liveProvider = (supabaseClient: SupabaseClient): LiveProvider => {
-  return {
-    subscribe: ({ channel, types, params, callback }): RealtimeChannel => {
-      const resource = channel.replace("resources/", "");
-
-      const listener = (payload: RealtimePostgresChangesPayload<any>) => {
-        if (
-          types.includes("*") ||
-          types.includes(liveTypes[payload.eventType])
-        ) {
-          if (
-            liveTypes[payload.eventType] !== "created" &&
-            params?.ids !== undefined &&
-            payload.new?.id !== undefined
-          ) {
-            if (params.ids.map(String).includes(payload.new.id.toString())) {
-              callback({
-                channel,
-                type: liveTypes[payload.eventType],
-                date: new Date(payload.commit_timestamp),
-                payload: payload.new,
-              });
-            }
-          } else {
-            callback({
-              channel,
-              type: liveTypes[payload.eventType],
-              date: new Date(payload.commit_timestamp),
-              payload: payload.new,
-            });
-          }
-        }
-      };
-
-      const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
-          return;
-        }
-
-        return filters
-          .map((filter: CrudFilter): string | undefined => {
-            if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
-            }
-            return;
-          })
-          .filter(Boolean)
-          .join(",");
-      };
-
-      const client = supabaseClient.channel("any").on(
-        "postgres_changes",
-        {
-          event: supabaseTypes[types[0]] as any,
-          schema: "public",
-          table: resource,
-          filter: mapFilter(params?.filters),
-        },
-        listener,
-      );
-
-      return client.subscribe();
-    },
-
-    unsubscribe: async (channel: RealtimeChannel) => {
-      supabaseClient.removeChannel(channel);
-    },
-  };
-};
-```
+The full source code for the Supabase live provider can be found in the [`@refinedev/supabase` package on GitHub](https://github.com/refinedev/refine/blob/main/packages/supabase/src/liveProvider/index.ts). It implements `subscribe` and `unsubscribe` methods using Supabase's Realtime channels to listen for PostgreSQL changes and notify the app.
 
 </p>
 </details>
@@ -3011,8 +1691,6 @@ With this now, we have enabled multiple users to draw on a canvas at the same ti
 
 This post is the first part of an admin dashboard app built using [**Refine**](https://github.com/refinedev/refine). The dashboard is an admin backend for the **Pixels** client that we built previously in the [**RefineWeek**](https://refine.dev/core/week-of-refine/) series. We are using the same [**Supabase**](https://supabase.com/) database for this app and have [**Ant Design**](https://ant.design/) as the UI framework.
 
-This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities within a week.
-
 - You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels-admin)
 - Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/main/examples/pixels)
 
@@ -3062,7 +1740,7 @@ npm run dev
 
 And prepare ourselves to the call-to-action at `http://localhost:5173`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/welcome.jpg"  alt="Pixels admin welcome screen" />
 
 <br />
 
@@ -3165,138 +1843,9 @@ After creating files above you need to add some imports and [routes](/core/docs/
 <summary>Show App.tsx code</summary>
 <p>
 
-```tsx title="App.tsx"
-import {
-  Authenticated,
-  CanAccess,
-  GitHubBanner,
-  Refine,
-} from "@refinedev/core";
-import {
-  ErrorComponent,
-  ThemedLayout,
-  useNotificationProvider,
-} from "@refinedev/antd";
-import { ConfigProvider } from "antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider, {
-  NavigateToResource,
-  UnsavedChangesNotifier,
-  DocumentTitleHandler,
-} from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+The complete `App.tsx` for the admin app includes `ConfigProvider` for Ant Design theming, `accessControlProvider` for RBAC, `auditLogProvider`, and routes for `/users`, `/canvases`, login, forgot-password, and update-password pages wrapped in `<Authenticated />` and `<CanAccess />` components.
 
-import "@refinedev/antd/dist/reset.css";
-
-import { Title } from "./components/layout";
-import { supabaseClient } from "./utility";
-import {
-  auditLogProvider,
-  authProvider,
-  accessControlProvider,
-} from "./providers";
-import { CanvasList, UserList } from "./pages";
-import { AuthPage } from "./pages/auth";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#3ecf8e",
-            colorText: "#80808a",
-            colorError: "#fa541c",
-            colorBgLayout: "#f0f2f5",
-            colorLink: "#3ecf8e",
-            colorLinkActive: "#3ecf8e",
-            colorLinkHover: "#3ecf8e",
-          },
-        }}
-      >
-        <Refine
-          auditLogProvider={auditLogProvider}
-          dataProvider={dataProvider(supabaseClient)}
-          liveProvider={liveProvider(supabaseClient)}
-          authProvider={authProvider}
-          accessControlProvider={accessControlProvider}
-          routerProvider={routerProvider}
-          notificationProvider={useNotificationProvider}
-          resources={[
-            {
-              name: "users",
-              list: "/users",
-            },
-            {
-              name: "canvases",
-              list: "/canvases",
-            },
-          ]}
-          options={{
-            syncWithLocation: true,
-            warnWhenUnsavedChanges: true,
-          }}
-        >
-          <Routes>
-            <Route
-              element={
-                <Authenticated>
-                  <ThemedLayout Title={Title}>
-                    <CanAccess>
-                      <Outlet />
-                    </CanAccess>
-                  </ThemedLayout>
-                </Authenticated>
-              }
-            >
-              <Route index element={<NavigateToResource />} />
-              <Route path="/users" element={<UserList />} />
-              <Route path="/canvases" element={<CanvasList />} />
-            </Route>
-            <Route
-              element={
-                <Authenticated fallback={<Outlet />}>
-                  <NavigateToResource resource="users" />
-                </Authenticated>
-              }
-            >
-              <Route
-                path="/login"
-                element={<AuthPage type="login" registerLink={false} />}
-              />
-              <Route
-                path="/forgot-password"
-                element={<AuthPage type="forgotPassword" />}
-              />
-              <Route
-                path="/update-password"
-                element={<AuthPage type="updatePassword" />}
-              />
-            </Route>
-
-            <Route
-              element={
-                <Authenticated>
-                  <ThemedLayout>
-                    <Outlet />
-                  </ThemedLayout>
-                </Authenticated>
-              }
-            >
-              <Route path="*" element={<ErrorComponent />} />
-            </Route>
-          </Routes>
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
+You can find the full code in the [Pixels Admin example on GitHub](https://github.com/refinedev/refine/blob/main/examples/pixels-admin/src/App.tsx).
 
 </p>
 </details>
@@ -3317,110 +1866,7 @@ Our `<UserList />` component looks like this:
 <summary>Show UserList code</summary>
 <p>
 
-```tsx title="pages/users/list.tsx"
-import { useTable, List } from "@refinedev/antd";
-import { Table, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-
-import { TUser } from "../../types/user";
-
-export const UserList = () => {
-  const { tableProps } = useTable<TUser>();
-
-  return (
-    <List>
-      <Table {...tableProps} rowKey={"id"}>
-        <Table.Column
-          dataIndex="avatar_url"
-          title={
-            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Avatar</h4>
-          }
-          render={(_, record: TUser) => (
-            <Avatar
-              icon={<UserOutlined />}
-              src={record.avatar_url}
-              size={{ xs: 24, sm: 32, md: 40 }}
-            />
-          )}
-        />
-        <Table.Column
-          dataIndex="id"
-          title={
-            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>ID</h4>
-          }
-          render={(_, record: TUser) => (
-            <p style={{ textAlign: "center" }}>{record?.id}</p>
-          )}
-        />
-        <Table.Column
-          dataIndex="email"
-          title={
-            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>Email</h4>
-          }
-          render={() => <p style={{ textAlign: "center" }}>Not listed</p>}
-        />
-        <Table.Column
-          dataIndex="full_name"
-          title={
-            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-              Full Name
-            </h4>
-          }
-          render={(_, record: TUser) =>
-            record.full_name ? (
-              <p
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                {record.full_name}
-              </p>
-            ) : (
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                --
-              </p>
-            )
-          }
-        />
-        <Table.Column
-          dataIndex="username"
-          title={
-            <h4 style={{ textAlign: "center", fontWeight: "bold" }}>
-              Username
-            </h4>
-          }
-          render={(_, record: TUser) =>
-            record.username ? (
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                {record.username}
-              </p>
-            ) : (
-              <p
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                --
-              </p>
-            )
-          }
-        />
-      </Table>
-    </List>
-  );
-};
-```
+The `<UserList />` component uses the `useTable()` hook and renders a `<Table />` with columns for avatar, ID, email, full name, and username. You can find the full code in the [Pixels Admin example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/pages/users).
 
 </p>
 </details>
@@ -3516,231 +1962,29 @@ After adding resources we need to create routes for them. For the routes, we'll 
 [Refer to the CRUD Pages tutorial for more information. →](/core/docs/ui-integrations/ant-design/introduction/)
 
 ```tsx title="App.tsx"
-// ...
-
-import { Authenticated, CanAccess, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayout } from "@refinedev/antd";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import { CanvasList, UserList } from "./pages";
-import { AuthPage } from "./pages/auth";
-
-function App() {
-  return (
-    <BrowserRouter>
-      {/* ... */}
-      <Refine
-        // ...
-        routerProvider={routerProvider}
-      >
-        <Routes>
-          <Route
-            element={
-              <Authenticated>
-                <ThemedLayout Title={Title}>
-                  <CanAccess>
-                    <Outlet />
-                  </CanAccess>
-                </ThemedLayout>
-              </Authenticated>
-            }
-          >
-            <Route index element={<NavigateToResource />} />
-            <Route path="/users" element={<UserList />} />
-            <Route path="/canvases" element={<CanvasList />} />
-          </Route>
-          <Route
-            element={
-              <Authenticated fallback={<Outlet />}>
-                <NavigateToResource resource="users" />
-              </Authenticated>
-            }
-          >
-            <Route
-              path="/login"
-              element={<AuthPage type="login" registerLink={false} />}
-            />
-            <Route
-              path="/forgot-password"
-              element={<AuthPage type="forgotPassword" />}
-            />
-            <Route
-              path="/update-password"
-              element={<AuthPage type="updatePassword" />}
-            />
-          </Route>
-
-          <Route
-            element={
-              <Authenticated>
-                <ThemedLayout>
-                  <Outlet />
-                </ThemedLayout>
-              </Authenticated>
-            }
-          >
-            <Route path="*" element={<ErrorComponent />} />
-          </Route>
-        </Routes>
-        {/* ... */}
-      </Refine>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+<Routes>
+  <Route
+    element={
+      <Authenticated>
+        <ThemedLayout Title={Title}>
+          <CanAccess>
+            <Outlet />
+          </CanAccess>
+        </ThemedLayout>
+      </Authenticated>
+    }
+  >
+    <Route index element={<NavigateToResource />} />
+    <Route path="/users" element={<UserList />} />
+    <Route path="/canvases" element={<CanvasList />} />
+  </Route>
+  {/* Auth routes and error routes... */}
+</Routes>
 ```
 
-## `<AuthPage />` Customization
+The full routing setup, including auth routes for login, forgot-password, and update-password, is shown in the [App.tsx details block above](#adding-required-files-1).
 
-At this point, it is helpful that we customize our **Ant Design** theme, the content of the `<AuthPage />` and implement GitHub authentication. We won't cover these here, as they are relatively straight forward and were covered on [Day 3](#part-3-adding-crud-actions-and-authentication).
-
-Remember, we've already replaced `App.tx` code with the following:
-
-<details>
-<summary>Show App.tsx code</summary>
-<p>
-
-```tsx title="App.tsx"
-import {
-  Authenticated,
-  CanAccess,
-  GitHubBanner,
-  Refine,
-} from "@refinedev/core";
-import {
-  ErrorComponent,
-  ThemedLayout,
-  useNotificationProvider,
-} from "@refinedev/antd";
-import { ConfigProvider } from "antd";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerProvider, {
-  NavigateToResource,
-  UnsavedChangesNotifier,
-  DocumentTitleHandler,
-} from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
-import "@refinedev/antd/dist/reset.css";
-
-import { Title } from "./components/layout";
-import { supabaseClient } from "./utility";
-import {
-  auditLogProvider,
-  authProvider,
-  accessControlProvider,
-} from "./providers";
-import { CanvasList, UserList } from "./pages";
-import { AuthPage } from "./pages/auth";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#3ecf8e",
-            colorText: "#80808a",
-            colorError: "#fa541c",
-            colorBgLayout: "#f0f2f5",
-            colorLink: "#3ecf8e",
-            colorLinkActive: "#3ecf8e",
-            colorLinkHover: "#3ecf8e",
-          },
-        }}
-      >
-        <Refine
-          auditLogProvider={auditLogProvider}
-          dataProvider={dataProvider(supabaseClient)}
-          liveProvider={liveProvider(supabaseClient)}
-          authProvider={authProvider}
-          accessControlProvider={accessControlProvider}
-          routerProvider={routerProvider}
-          notificationProvider={useNotificationProvider}
-          resources={[
-            {
-              name: "users",
-              list: "/users",
-            },
-            {
-              name: "canvases",
-              list: "/canvases",
-            },
-          ]}
-          options={{
-            syncWithLocation: true,
-            warnWhenUnsavedChanges: true,
-          }}
-        >
-          <Routes>
-            <Route
-              element={
-                <Authenticated>
-                  <ThemedLayout Title={Title}>
-                    <CanAccess>
-                      <Outlet />
-                    </CanAccess>
-                  </ThemedLayout>
-                </Authenticated>
-              }
-            >
-              <Route index element={<NavigateToResource />} />
-              <Route path="/users" element={<UserList />} />
-              <Route path="/canvases" element={<CanvasList />} />
-            </Route>
-            <Route
-              element={
-                <Authenticated fallback={<Outlet />}>
-                  <NavigateToResource resource="users" />
-                </Authenticated>
-              }
-            >
-              <Route
-                path="/login"
-                element={<AuthPage type="login" registerLink={false} />}
-              />
-              <Route
-                path="/forgot-password"
-                element={<AuthPage type="forgotPassword" />}
-              />
-              <Route
-                path="/update-password"
-                element={<AuthPage type="updatePassword" />}
-              />
-            </Route>
-
-            <Route
-              element={
-                <Authenticated>
-                  <ThemedLayout>
-                    <Outlet />
-                  </ThemedLayout>
-                </Authenticated>
-              }
-            >
-              <Route path="*" element={<ErrorComponent />} />
-            </Route>
-          </Routes>
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
-        </Refine>
-      </ConfigProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
-
-</p>
-</details>
-
-Since `authProvider` prop is already passed in by default, after we added the above resources and granted we are connected to the Internet, we will be redirected to the login page:
-
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/login.jpg"  alt="Admin login page" />
 
 <br />
 
@@ -3763,7 +2007,7 @@ password: demodemo
 
 :::
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/user-list.jpg"  alt="Users list table" />
 
 <br />
 
@@ -3777,214 +2021,14 @@ We have a `useEditableTable()` hook in action inside our `<CanvasList />` compon
 <summary>CanvasList code</summary>
 <p>
 
-```tsx title="pages/canvases/list.tsx"
-import { useState } from "react";
-import { useUpdate } from "@refinedev/core";
-import {
-  List,
-  useEditableTable,
-  useModal,
-  DeleteButton,
-} from "@refinedev/antd";
-import { Table, Form, Button, Space, Tag, Modal, Avatar } from "antd";
+The `<CanvasList />` component uses the `useEditableTable()` hook and `useUpdate()` to enable promoting/unpromoting and deleting canvases. It also includes a modal with `<LogList />` for viewing canvas changes. Key features:
 
-import { TCanvas } from "../../types/canvas";
-import { LogList } from "../../components/logs";
-import { CanvasItem } from "../../components/canvas";
+- `useEditableTable<TCanvas>()` with live mode and sorting by `created_at`
+- A "Promote/Unpromote" button using `mutate()` from `useUpdate()`
+- A `<DeleteButton />` for deleting canvases
+- A "View Changes" button that opens an audit log modal
 
-type TCanvasPromoteResult = {
-  id: number;
-  featured: boolean;
-};
-
-export const CanvasList = () => {
-  const [currentCanvas, setCurrentCanvas] = useState({});
-  const { modalProps, show, close } = useModal();
-  const { tableProps, formProps } = useEditableTable<TCanvas>({
-    liveMode: "auto",
-    sorters: {
-      initial: [
-        {
-          field: "created_at",
-          order: "desc",
-        },
-      ],
-    },
-    meta: {
-      select: "*, pixels(id, canvas_id, user_id, x, y, color)",
-    },
-  });
-  const { mutate } = useUpdate<TCanvasPromoteResult>();
-
-  return (
-    <List>
-      <Form {...formProps}>
-        <Table {...tableProps} rowKey="id">
-          <Table.Column<TCanvas>
-            key="id"
-            dataIndex="id"
-            title={
-              <h4
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Canvas
-              </h4>
-            }
-            render={(_, record) => (
-              <Avatar
-                shape="square"
-                size={64}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                icon={
-                  <CanvasItem
-                    canvas={record}
-                    pixels={record?.pixels}
-                    border={true}
-                    scale={5 / record?.width}
-                    active={false}
-                  />
-                }
-              />
-            )}
-          />
-          <Table.Column<TCanvas>
-            key="name"
-            dataIndex="name"
-            title={
-              <h4
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Name
-              </h4>
-            }
-          />
-          <Table.Column<TCanvas>
-            key="is_featured"
-            dataIndex="is_featured"
-            title={
-              <h4
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Featured
-              </h4>
-            }
-            render={(_, record) =>
-              record.is_featured ? (
-                <Tag
-                  color="success"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  Yes
-                </Tag>
-              ) : (
-                <Tag
-                  color="warning"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  No
-                </Tag>
-              )
-            }
-          />
-          <Table.Column<TCanvas>
-            title={
-              <h4
-                style={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Actions
-              </h4>
-            }
-            dataIndex="actions"
-            render={(_, record) => (
-              <Space
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Button
-                  size="small"
-                  style={{ width: "100px" }}
-                  type={record.is_featured ? "ghost" : "primary"}
-                  onClick={() =>
-                    mutate({
-                      resource: "canvases",
-                      id: record.id,
-                      values: {
-                        is_featured: !record.is_featured,
-                      },
-                      meta: {
-                        canvas: record,
-                      },
-                    })
-                  }
-                >
-                  {record.is_featured ? "Unpromote" : "Promote"}
-                </Button>
-                <>
-                  <Button
-                    size="small"
-                    type="primary"
-                    onClick={() => {
-                      setCurrentCanvas(record);
-                      show();
-                    }}
-                  >
-                    View Changes
-                  </Button>
-                </>
-                <DeleteButton size="small" recordItemId={record.id} />
-              </Space>
-            )}
-          />
-        </Table>
-      </Form>
-      <Modal
-        title={<h3 style={{ fontWeight: "bold" }}>Canvas Changes</h3>}
-        {...modalProps}
-        centered
-        destroyOnClose
-        onOk={close}
-        onCancel={() => {
-          close();
-          setCurrentCanvas({});
-        }}
-        footer={[
-          <Button type="primary" key="close" onClick={close}>
-            Close
-          </Button>,
-        ]}
-      >
-        <LogList currentCanvas={currentCanvas} />
-      </Modal>
-    </List>
-  );
-};
-```
+You can find the full code in the [Pixels Admin example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/pages/canvases).
 
 </p>
 </details>
@@ -4089,33 +2133,9 @@ We also grouped content inside a cell, with `<Button />` and `<DeleteButton />` 
 />
 ```
 
-## Adding `<CanvasList>` to the `resources`
-
-We have covered adding CRUD operations on [Day 3](#part-3-adding-crud-actions-and-authentication) in significant depth. So, here we'll quickly add `canvases` resources to `<Refine />` component:
-
-```tsx title="src/App.tsx"
-import { CanvasList } from "pages";
-...
-
-return (
-  <Refine
-    ...
-    authProvider={authProvider}
-    // highlight-start
-    resources={[
-      {
-          name: "canvases",
-          list: "/canvases",
-        },
-    ]}
-    // highlight-end
-  />
-)
-```
-
 With these additions, `/canvases` looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/canvas-list.jpg"  alt="Canvases list table" />
 
 <br />
 
@@ -4137,8 +2157,6 @@ In the next post, we will focus on implementing Role Based Access Control to our
 
 In this post, we implement Role Based Access Control (RBAC) on our **Pixels Admin** app. **Pixels Admin** serves as the admin dashboard of our **Pixels** client app that we built previously in the [**RefineWeek**](https://refine.dev/core/week-of-refine/) series.
 
-This is Day 6, and **RefineWeek** is a seven-part tutorial that aims to help developers learn the ins-and-outs of [**Refine**'](https://github.com/refinedev/refine)s powerful capabilities and get going with **Refine** within a week.
-
 ## Overview
 
 On Day 5, we implemented CRUD functionalities on our dashboard resources: `users` and `canvases`.
@@ -4155,26 +2173,13 @@ We manage RBAC and authorization using [**Casbin**](https://casbin.org/docs/over
 
 For the backend, we set and store `user` roles with the help of **Supabase Custom Claims**. **Supabase Custom Claims** are a handy mechanism to store user roles information on the `auth.users` table.
 
-We also dig into some low level code in the `<DeleteButton />` component that **Refine**'s **Ant Design** package gives us to see how authorization comes baked into some of the related components.
-
 Let's start with **Casbin**.
 
 ## Casbin with **Refine**
 
 In this app, we are implementing Role Based Access Control model with **Casbin** so we assume you are at least familiar with the RBAC related models and policies.
 
-If you are not familiar with **Casbin**, please feel free to go through [how it works](https://casbin.org/docs/how-it-works). For a complete beginner, I recommend understanding the following sections in the **Casbin** docs:
-
-1. [Get Started](https://casbin.org/docs/get-started)
-2. [How It Works](https://casbin.org/docs/how-it-works)
-3. [Supported Models](https://casbin.org/docs/supported-models)
-4. [Syntax for Models](https://casbin.org/docs/syntax-for-models)
-5. [Model Storage](https://casbin.org/docs/model-storage)
-6. [Policy Storage](https://casbin.org/docs/policy-storage)
-7. [Enforcers](https://casbin.org/docs/enforcers)
-8. [Adapters](https://casbin.org/docs/adapters)
-9. [Role Managers](https://casbin.org/docs/role-managers)
-10. [RBAC](https://casbin.org/docs/rbac)
+If you are not familiar with **Casbin**, please feel free to go through the [official documentation](https://casbin.org/docs/overview), especially the [Get Started](https://casbin.org/docs/get-started), [Supported Models](https://casbin.org/docs/supported-models), and [RBAC](https://casbin.org/docs/rbac) sections.
 
 If / when you are familiar, lovely yay! Be with me, go ahead and install **Casbin**:
 
@@ -4355,7 +2360,7 @@ const can = await enforcer.enforce("editor", resource, action);
 
 And if we refresh at `/canvases`, we can see that the `Delete` button on each row gets disabled.
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="Delete buttons disabled for editor role" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/can-access-disabled.jpg"  alt="Delete buttons disabled for editor role" />
 
 <br />
 
@@ -4501,56 +2506,11 @@ In the `/canvases` route, an `editor` account should have the `Delete` buttons d
 
 In contrast, it is enabled for an `admin` role:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="Delete buttons enabled for admin role" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/can-access-enabled.jpg"  alt="Delete buttons enabled for admin role" />
 
 <br />
 
-But, wait! We haven't used the `useCan()` hook or the `<CanAccess />` component anywhere yet. How does **Refine** get the value of `role` to decide whether to enable or disable the button? Let's find out next!
-
-## Low Level Inspection
-
-If we dig into the `@refinedev/antd` package for the `<DeleteButton />` component, we can see that `useCan()` hook is used to decide the authorization status:
-
-```tsx title="node_modules/@refinedev/antd/src/components/buttons/delete/index.ts"
-export const DeleteButton: React.FC<DeleteButtonProps> = ({
-	...
-}) => {
-	...
-
-	const { data } = useCan({
-		resource: resourceName,
-		action: "delete",
-		params: { id, resource },
-		queryOptions: {
-				enabled: accessControlEnabled,
-		},
-	});
-
-	if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-		return null;
-	}
-
-	...
-};
-```
-
-Since authorization comes baked in with `<DeleteButton />`, we didn't have to worry about it in our case.
-
-## Summary
-
-In this post, we implemented Role Based Access Control on `users` and `canvases` resources using **Refine**'s `accessControlProvider` in our **Pixels Admin** app.
-
-We used **Casbin** model and policies to enforce authorization for `editor` and `admin` roles. We saw how the `accessControlProvider.can` method is used to enforce **Casbin** policies based on roles fetched from the backend using the `authProvider.getPermissions` method. We also learned how **refine-antd** buttons like the `<DeleteButton />` implements access control via the `useCan()` access hook.
-
-In the next episode, we will explore the `auditLogProvider` prop and add audit logging for `pixels` activities to both our **Pixels** and **Pixels Admin** apps.
-
----
-
-## Part 7: Audit Log With Refine
-
-In this post, we apply **Refine**'s built-in audit logging functionality to our **Pixels Admin** app and to the **Pixels** client app that we built previously in this [**RefineWeek**](http://localhost:3000/week-of-refine/) series. **Refine**'s audit logging system comes already baked into its data hooks and inside supplemental data provider packages, like the [`@refinedev/supabase`](https://www.npmjs.com/package/@refinedev/supabase). Today we are going to get it to work by using the `auditLogProvider` prop.
-
-This is Day 7, and **RefineWeek** is a quickfire tutorial guide that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities and get going with **Refine** within a week.
+This answer lies in how `@refinedev/antd`'s special buttons like `<DeleteButton />` internally use the `useCan()` hook to check authorization. Since authorization comes baked in, we didn't have to worry about it in our case.
 
 ## Overview
 
@@ -4560,9 +2520,7 @@ We implemented CRUD actions for **Pixels** client app on [Day 3](#part-3-adding-
 
 We are using **Refine**'s supplemental [**Supabase**](https://supabase.com/) `@refinedev/supabase` package for our `dataProvider` client. The database mutation methods in **Supabase** `dataProvider` already come with audit logging mechanism implemented on them. For each successful database mutation, i.e. `create`, `update` and `delete` actions, a log event is emitted and a `params` object representing the change is made available to the `auditLogProvider.create()` method.
 
-We will store the log entries in a `logs` table in our **Supabase** database. So, we have to set up the `logs` table with a shape that complies with the `params` object sent from the mutation.
-
-We will start by examining the shape of the `params` object and specifying how the `logs` table should look like - before we go ahead and create the table with appropriate columns from our **Supabase** dashboard. We will then work on the `auditLogProvider` methods, and use the `useLogList()` hook to list `pixels` logs inside a modal for each canvas item. Finally, like we did in other parts, we will dig into the existing code to explore how **Refine** emits a log event and how mutation methods implement audit logging under the hood.
+We will store the log entries in a `logs` table in our **Supabase** database. So, we have to set up the `logs` table with a shape that complies with the `params` object sent from the mutation. We will then work on the `auditLogProvider` methods, and use the `useLogList()` hook to list `pixels` logs inside a modal for each canvas item.
 
 Let's dive in!
 
@@ -4783,149 +2741,9 @@ In the **Pixels** app, `pixels` are created by the `onSubmit()` event handler de
 <summary>Show CanvasShow code</summary>
 <p>
 
-```tsx title="pages/canvases/show.tsx"
-import { useState } from "react";
-import {
-  useCreate,
-  useGetIdentity,
-  useNavigation,
-  useShow,
-  useParsed,
-  useIsAuthenticated,
-} from "@refinedev/core";
-import { useModal } from "@refinedev/antd";
+The `<CanvasShow />` component uses `useShow()`, `useCreate()`, `useGetIdentity()`, and `useIsAuthenticated()` hooks. It displays the canvas with `<DisplayCanvas />` and `<CanvasItem />`, allows pixel drawing via the `onSubmit` handler which calls `mutate()` from `useCreate()` with `meta: { canvas }` for audit logging. It also includes a "View Changes" modal with `<LogList />`.
 
-import { LeftOutlined } from "@ant-design/icons";
-import { Button, Typography, Spin, Modal } from "antd";
-
-import { CanvasItem, DisplayCanvas } from "../../components/canvas";
-import { ColorSelect } from "../../components/color-select";
-import { AvatarPanel } from "../../components/avatar";
-import { colors } from "../../utility";
-import { Canvas } from "../../types";
-import { LogList } from "../../components/logs";
-
-const { Title } = Typography;
-
-type Colors = typeof colors;
-
-export const CanvasShow: React.FC = () => {
-  const { pathname } = useParsed();
-  const [color, setColor] = useState<Colors[number]>("black");
-  const { modalProps, show, close } = useModal();
-  const { data: identity } = useGetIdentity<any>();
-  const { data: { authenticated } = {} } = useIsAuthenticated();
-
-  const {
-    query: { data: { data: canvas } = {} },
-  } = useShow<Canvas>();
-  const { mutate } = useCreate();
-  const { list, push } = useNavigation();
-
-  const onSubmit = (x: number, y: number) => {
-    if (!authenticated) {
-      if (pathname) {
-        return push(`/login?to=${encodeURIComponent(pathname)}`);
-      }
-
-      return push(`/login`);
-    }
-
-    if (typeof x === "number" && typeof y === "number" && canvas?.id) {
-      mutate({
-        resource: "pixels",
-        values: {
-          x,
-          y,
-          color,
-          canvas_id: canvas?.id,
-          user_id: identity.id,
-        },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
-      });
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="paper">
-        <div className="paper-header">
-          <Button
-            type="text"
-            onClick={() => list("canvases")}
-            style={{ textTransform: "uppercase" }}
-          >
-            <LeftOutlined />
-            Back
-          </Button>
-          <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
-          <Button type="primary" onClick={show}>
-            View Changes
-          </Button>
-        </div>
-        <Modal
-          title="Canvas Changes"
-          {...modalProps}
-          centered
-          destroyOnClose
-          onOk={close}
-          onCancel={() => {
-            close();
-          }}
-          footer={[
-            <Button type="primary" key="close" onClick={close}>
-              Close
-            </Button>,
-          ]}
-        >
-          <LogList currentCanvas={canvas} />
-        </Modal>
-
-        {canvas ? (
-          <DisplayCanvas canvas={canvas}>
-            {(pixels) =>
-              pixels ? (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 48,
-                  }}
-                >
-                  <div>
-                    <ColorSelect selected={color} onChange={setColor} />
-                  </div>
-                  <CanvasItem
-                    canvas={canvas}
-                    pixels={pixels}
-                    onPixelClick={onSubmit}
-                    scale={(20 / (canvas?.width ?? 20)) * 2}
-                    active={true}
-                  />
-                  <div style={{ width: 120 }}>
-                    <AvatarPanel pixels={pixels} />
-                  </div>
-                </div>
-              ) : (
-                <div className="spin-wrapper">
-                  <Spin />
-                </div>
-              )
-            }
-          </DisplayCanvas>
-        ) : (
-          <div className="spin-wrapper">
-            <Spin />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-```
+You can find the full code in the [Pixels example on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels/src/pages/canvases).
 
 </p>
 </details>
@@ -4998,103 +2816,17 @@ We are doing this to make sure that we are getting only the logs for the current
 
 With this completed, if we ask for the modal in the `CanvasShow` page, we should be able to see the pixels log list:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="Client audit log table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/client-audit-log.jpg"  alt="Client audit log table" />
 
 <br />
 
 We don't have a case for creating a pixel in the **Pixels Admin** app. But we can go ahead and implement the same pixels `<LogList />` component for each `canvas` item in the `<CanvasList />` page at `/canvases`. The code is essentially the same, but the `View Changes` button appears inside each row in the table:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="Admin audit log table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-02-18-refine-pixels-5/admin-audit-log.jpg"  alt="Admin audit log table" />
 
 <br />
 
-## Low Level Inspection
-
-We are now going to examine how audit logging comes built-in inside **Refine**'s mutation hooks.
-
-### Log `params` Object
-
-We mentioned earlier that each successful mutation emits a log event and sends a `params` object to the `auditLogProvider.create()` method. Let's dig into the code to see how it is done.
-
-The log `params` object is sent to the `auditLogProvider.create()` method from inside the `log` object returned from the `useLog()` hook:
-
-```tsx title="@refinedev/core/src/hooks/auditLog/useLog/index.ts"
-// v4.5.8
-const log = useMutation<TLogData, Error, LogParams, unknown>(async (params) => {
-  const resource = resources.find((p) => p.name === params.resource);
-  const logPermissions = resource?.options?.auditLog?.permissions;
-
-  if (logPermissions) {
-    if (!hasPermission(logPermissions, params.action)) {
-      return;
-    }
-  }
-
-  let authorData;
-  if (isLoading) {
-    authorData = await refetch();
-  }
-
-  return await auditLogContext.create?.({
-    ...params,
-    author: identityData ?? authorData?.data,
-  });
-});
-```
-
-As we can see above, `params` is made available by reaching the provider via the `auditLogContext.create()` method.
-
-Prior to that, the `log` object here utilizes `react-query`'s `useMutation()` hook to catch the results of the mutation with an observer and emit the event.
-
-### Inside Mutation Hooks
-
-Inside mutation hooks, the `useLog()` hook is used to create a log automatically after a successful resource mutation. For example, the `useCreate()` data hook implements it with the `mutate` method on `log` object returned from `useLog()`:
-
-```tsx title="@refinedev/core/src/data/hooks/useCreate.ts"
-// v4.5.8
-
-log?.mutate({
-  action: "create",
-  resource,
-  data: values,
-  meta: {
-    dataProviderName: pickDataProvider(resource, dataProviderName, resources),
-    id: data?.data?.id ?? undefined,
-    ...rest,
-  },
-});
-```
-
-The code snippets above are enough to give us a peek inside what is going, but feel free to explore the entire files for more insight.
-
-## Summary
-
-In this episode, we activated **Refine**'s built-in audit logging feature by defining and passing the `auditLogProvider`prop to `<Refine />`. We we learned that **Refine** implements audit logging from its resource mutation hooks by sending a log `params` object to the `auditProvider.create()` method, and when audit logging is activated, every successful mutation creates an entry in the `logs` table.
-
-We implemented audit logging for `create` actions of the `pixels` resource in our **Pixels** app and saved the entries in a `logs` table in our **Supabase** database. We then fetched the pixel creation logs for each canvas using the `useLoglist()` hook and displayed the in a modal. We leverage the `meta` property of the log `params` object in order to filter our `auditProvider.get()` request.
-
-## Series Wrap Up
-
-In this **RefineWeek** series, built the following two apps with **Refine**:
-
-[**Pixels**](https://github.com/refinedev/refine/tree/main/examples/pixels) - the client app that allows users to create a canvas and draw collaboratively on
-[**Pixels Admin**](https://github.com/refinedev/refine/tree/main/examples/pixels-admin) - the admin dashboard that helps managers manage users and canvases
-
-While building these twp apps, we have covered core **Refine** concepts like the providers and hooks in significant depth. We had the opportunity to use majority of the providers with the features we added to these apps. Below is the brief outline of the providers we learned about:
-
-- [`authProvider`](https://refine.dev/core/docs/api-reference/core/providers/auth-provider/): used to handling authentication. We used it to implement email / password based authentication as well as social logins with Google and GitHub.
-- [`dataProvider`](https://refine.dev/core/docs/api-reference/core/providers/data-provider/): used to fetch data to and from a backend API by sending HTTP requests. We used the supplementary **Supabase** package to build a gallery of canvases, a public dashboard and a private dashboard for role based managers.
-- [`routerProvider`](https://refine.dev/core/docs/api-reference/core/providers/router-provider/): used for routing. We briefly touched over how it handles routing and resources following RESTful conventions.
-- [`liveProvider`](https://refine.dev/core/docs/api-reference/core/providers/live-provider/): used to implement real time Publish Subscribe features. We used it for allowing users to draw pixels collaboratively on a canvas.
-- [`accessControlProvider`](https://refine.dev/core/docs/api-reference/core/providers/accessControl-provider/): used to implement authorization. We implemented a Role Based Access Control authorization for `editor` and `admin` roles.
-- [`auditLogProvider`](https://refine.dev/core/docs/api-reference/core/providers/audit-log-provider/): used for logging resource mutations. We used it to log and display pixels drawing activities on a canvas.
-- [`notificationProvider`](https://refine.dev/core/docs/api-reference/core/providers/notification-provider/): used for posting notifications for resource actions. We did not cover it, but used it inside our code.
-
-There are more to **Refine** than what we have covered in this series. We have made great strides in covering these topics so far by going through the documentation, especially to understand the provider - hooks interactions.
-
-We also covered supplementary **Supabase** anhd **Ant Design** packages. **Refine** has fantastic support for **Ant Design** components. And we have seen how **refine-antd** components complement data fetching by the data providers and help readily present the response data with hooks like `useSimpleList()`, `useTable()` and `useEditableTable()`.
-
-We can always build on what we have covered so far. There are plenty of things that we can do moving froward, like customizing the layout, header, auth pages, how exactly the `notificationProvider` works, how to implement the `i18nProvider`, etc.
+In this **RefineWeek** series, we built two apps: [**Pixels**](https://github.com/refinedev/refine/tree/main/examples/pixels) (client) and [**Pixels Admin**](https://github.com/refinedev/refine/tree/main/examples/pixels-admin) (dashboard). We covered **Refine**'s core providers (`authProvider`, `dataProvider`, `routerProvider`, `liveProvider`, `accessControlProvider`, `auditLogProvider`, `notificationProvider`) along with supplementary **Supabase** and **Ant Design** packages.
 
 Please feel free to reach out to the **Refine** team or join the [**Refine** Discord channel](https://discord.gg/refine) to learn more and / or contribute!
 

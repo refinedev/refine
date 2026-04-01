@@ -5,8 +5,9 @@ slug: react-usecallback-guide
 authors: abdullah_numan
 category: "Tutorials"
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-20-react-use-callback/social-2.png
 hide_table_of_contents: false
+last_update: 2024-09-26
 ---
 
 **_This article was last updated on January 25, 2024 to include comparisons between useCallback and useMeme and how to use useCallback with other hooks._**
@@ -176,7 +177,7 @@ If we check our console now, we can see the logs showing the initial rendering o
 Then if we click the `SignOut` button on the navbar, we see batches of renders originating from `<UserPostsIndex />`, `<UserPostsList />` and `<UserPost />`:
 
 <div class="img-container" align-items="center" >
-  <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/usecallback1.png" alt="Console logs showing repeated re-renders" />
+  <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-20-react-use-callback/usecallback1.png" alt="Console logs showing repeated re-renders" />
 </div>
 
 It is possible to account for the re-render of `<UserPostsIndex />` because the value of the `signedIn` prop changed when we clicked `Sign Out`.
@@ -217,7 +218,7 @@ export default React.memo(UserPostsIndex);
 Now, if we click the `Sign Out` button a few times, we'll see in the console that `<UserPostsIndex />` is re-rendered, but `<UserPostsList />` and `<UserPost />` are not:
 
 <div class="img-container" align-items="center" >
-  <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/usecallback2.png"  alt="Console logs showing memoized callbacks" />
+  <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-20-react-use-callback/usecallback2.png"  alt="Console logs showing memoized callbacks" />
 </div>
 
 <br/>

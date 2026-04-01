@@ -5,7 +5,7 @@ slug: kubernetes-persistent-volumes
 authors: muhammad_khabbab
 category: "Engineering"
 tags: [kubernetes]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/social.png
 hide_table_of_contents: false
 ---
 
@@ -25,7 +25,7 @@ A **Persistent Volume Claim (PVC)** is a user's request for storage. Analogous t
 Here is a conceptual diagram showing difference between the two. Image credit: stackoverflow.com
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/image3.PNG" alt="Conceptual diagram showing relationship between Persistent Volumes and Persistent Volume Claims" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/image3.PNG" alt="Conceptual diagram showing relationship between Persistent Volumes and Persistent Volume Claims" />
 </div>
 
 ### Highlighting the difference between ephemeral and persistent storage in Kubernetes
@@ -48,7 +48,7 @@ Screenshot Suggestion: Diagram illustrating PV and PVC relationship
 **Enable Necessary Add-ons**: Some add-ons might be needed for PVs, like the storage-provisioner. Enable them using `minikube addons enable <addon-name>`.
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/image1.PNG" alt="Minikube environment setup with kubectl version verification" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/image1.PNG" alt="Minikube environment setup with kubectl version verification" />
 </div>
 
 ## Deep Dive into Persistent Volume Types
@@ -152,7 +152,7 @@ kubectl apply -f pv.yaml
 The output will show you following:
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/image2.PNG" alt="Kubectl apply output showing PersistentVolume example-pv created successfully" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/image2.PNG" alt="Kubectl apply output showing PersistentVolume example-pv created successfully" />
 </div>
 
 ### Configuring access modes and storage classes
@@ -193,7 +193,7 @@ spec:
 Apply it with `kubectl apply -f pvc.yaml` just like below screenshot.
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/image4.PNG" alt="Creating PersistentVolumeClaim mypvc with kubectl apply command" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/image4.PNG" alt="Creating PersistentVolumeClaim mypvc with kubectl apply command" />
 </div>
 
 You can manage it with commands like `kubectl get pvc` to list PVCs, or `kubectl delete pvc mypvc` to delete.
@@ -224,7 +224,7 @@ A Pod's successful binding to a PVC is checked by:
 `kubectl describe pod mypod`
 
 <div className="centered-image">
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-14-k8s-persistent-volumes/image5.PNG" alt="Pod description showing successful PVC binding to mypod volume mount" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-14-k8s-persistent-volumes/image5.PNG" alt="Pod description showing successful PVC binding to mypod volume mount" />
 </div>
 
 ## Advanced Scenarios and Best Practices

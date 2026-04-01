@@ -5,8 +5,9 @@ slug: react-crm-with-refine
 authors: necati
 category: "How To Build"
 tags: [react, admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/social.jpg
 hide_table_of_contents: false
+last_update: 2026-02-05
 ---
 
 ![Refine CRM application overview showing the main interface](https://refine.ams3.cdn.digitaloceanspaces.com/CRM-app/crm-general.avif)
@@ -42,7 +43,7 @@ Our CRM application is feature-rich and comes with everything you need to manage
 
 The Dashboard provides an at-a-glance overview of your CRM activities. It displays key metrics, recent customer interactions, and upcoming events, offering valuable insights to help you make informed decisions.
 
-![CRM dashboard showing key metrics, charts, and recent activity overview](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/halx7sfl9ctke1fu3w35.png)
+![CRM dashboard showing key metrics, charts, and recent activity overview](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/halx7sfl9ctke1fu3w35.png)
 
 <br/>
 <br/>
@@ -51,7 +52,7 @@ The Dashboard provides an at-a-glance overview of your CRM activities. It displa
 
 Effortlessly manage appointments, meetings, and important events with the integrated Calendar feature. Stay organized and ensure you never miss a crucial interaction with your customers.
 
-![Calendar view displaying scheduled appointments, meetings, and events](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m2v8ghazuheiznefwat9.png)
+![Calendar view displaying scheduled appointments, meetings, and events](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/m2v8ghazuheiznefwat9.png)
 
 <br/>
 <br/>
@@ -60,7 +61,7 @@ Effortlessly manage appointments, meetings, and important events with the integr
 
 Our Scrumboard or Project Kanban page streamlines project management. Visualize project progress, manage tasks, and facilitate team collaboration with ease. Move tasks through customizable boards to keep your projects on track.
 
-![Kanban board with multiple columns showing project tasks and their progress](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/0hcll7tbqx3t71i6v7a9.png)
+![Kanban board with multiple columns showing project tasks and their progress](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/0hcll7tbqx3t71i6v7a9.png)
 
 <br/>
 <br/>
@@ -69,7 +70,7 @@ Our Scrumboard or Project Kanban page streamlines project management. Visualize 
 
 Effectively manage your sales process from lead generation to deal closure. The Sales Pipeline provides a visual representation of your sales stages, helping your team prioritize leads and track conversions.
 
-![Sales pipeline visualization showing deal stages from lead to closed](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/q5uoj722wasvw2fx8z49.png)
+![Sales pipeline visualization showing deal stages from lead to closed](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/q5uoj722wasvw2fx8z49.png)
 
 <br/>
 <br/>
@@ -78,7 +79,7 @@ Effectively manage your sales process from lead generation to deal closure. The 
 
 The Companies page allows you to organize and categorize your business contacts. Maintain detailed profiles for each company, including contact information, communication history, and associated contacts.
 
-![Companies list view showing company profiles with contact details and history](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/gjlahcc1icfthu2n31ar.png)
+![Companies list view showing company profiles with contact details and history](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/gjlahcc1icfthu2n31ar.png)
 
 <br/>
 <br/>
@@ -87,7 +88,7 @@ The Companies page allows you to organize and categorize your business contacts.
 
 Manage individual contacts efficiently using the Contacts page. Keep track of customer interactions, schedule follow-ups, and access critical contact information quickly.
 
-![Contacts page displaying individual contact information and interaction history](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/4c0ef7tv7nktax4gt3oz.png)
+![Contacts page displaying individual contact information and interaction history](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/4c0ef7tv7nktax4gt3oz.png)
 
 <br/>
 <br/>
@@ -96,7 +97,7 @@ Manage individual contacts efficiently using the Contacts page. Keep track of cu
 
 Create, send, and manage quotes seamlessly with the Quotes feature. Generate professional quotes for your customers, track their status, and convert them into sales.
 
-![Quotes management interface showing quote creation and tracking](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/9rqj0pzgkrure7ov5mr9.png)
+![Quotes management interface showing quote creation and tracking](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/9rqj0pzgkrure7ov5mr9.png)
 
 <br/>
 <br/>
@@ -105,13 +106,13 @@ Create, send, and manage quotes seamlessly with the Quotes feature. Generate pro
 
 The Administration section empowers you to configure and customize your CRM application to suit your specific business needs. Manage user roles, access permissions, and system settings effortlessly.
 
-![Administration panel with user roles, permissions, and system configuration](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m5deq6ceue79kloeuryz.png)
+![Administration panel with user roles, permissions, and system configuration](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/m5deq6ceue79kloeuryz.png)
 
 <br/>
 
 ### Authentication & Authorization
 
-![Login and authentication screen with secure access control](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/m1r04i2h0cf1jegasbte.png)
+![Login and authentication screen with secure access control](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-02-refine-crm-overview/m1r04i2h0cf1jegasbte.png)
 
 This example app is a comprehensive set of features that ensures you can streamline your customer interactions, project management, and sales processes, all within a single, user-friendly platform. Whether you're managing contacts, tracking sales, or overseeing projects, our CRM app provides the tools you need for success.
 

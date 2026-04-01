@@ -5,8 +5,9 @@ slug: docker-build-args-and-env-vars
 authors: muhammad_khabbab
 category: "Engineering"
 tags: [docker]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-28-docker-build-args/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-28-docker-build-args/social.png
 hide_table_of_contents: false
+last_update: 2022-12-16
 ---
 
 ## Introduction
@@ -32,7 +33,7 @@ ARG and ENV are dockerfile instructions through which you can apply the differen
 See the below diagram to understand the difference between ARG and ENV.
 
 <div class="img-container" align-items="center" >
-   <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-28-docker-build-args/docker-environment-build-args.png"  alt="Docker build-time vs runtime environment variables comparison" />
+   <img style={{alignSelf:"center", width:"400px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-28-docker-build-args/docker-environment-build-args.png"  alt="Docker build-time vs runtime environment variables comparison" />
 
 </div>
 

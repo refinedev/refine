@@ -245,6 +245,7 @@ describe("useList Hook", () => {
     });
 
     expect(result.current.query.data?.foo).toBe("bar");
+    expect(result.current.result.foo).toBe("bar");
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
