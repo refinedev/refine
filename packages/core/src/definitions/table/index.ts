@@ -37,10 +37,10 @@ export const parseTableParams = (url: string) => {
   let parsedCursor: CursorValue | undefined;
   let parsedCursorDirection: CursorDirection = "after";
 
-  if (after) {
+  if (after !== undefined) {
     parsedCursor = getParsedCursorValue(after);
     parsedCursorDirection = "after";
-  } else if (before) {
+  } else if (before !== undefined) {
     parsedCursor = getParsedCursorValue(before);
     parsedCursorDirection = "before";
   }
@@ -62,10 +62,10 @@ export const parseTableParamsFromQuery = (params: any) => {
   let parsedCursor: CursorValue | undefined;
   let parsedCursorDirection: CursorDirection = "after";
 
-  if (after) {
+  if (after !== undefined) {
     parsedCursor = getParsedCursorValue(after);
     parsedCursorDirection = "after";
-  } else if (before) {
+  } else if (before !== undefined) {
     parsedCursor = getParsedCursorValue(before);
     parsedCursorDirection = "before";
   }

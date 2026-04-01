@@ -165,6 +165,26 @@ describe("definitions/table", () => {
     });
   });
 
+  it("should parse numeric zero cursor values from query objects", () => {
+    expect(
+      parseTableParamsFromQuery({
+        after: 0,
+      }),
+    ).toMatchObject({
+      parsedCursor: 0,
+      parsedCursorDirection: "after",
+    });
+
+    expect(
+      parseTableParamsFromQuery({
+        before: 0,
+      }),
+    ).toMatchObject({
+      parsedCursor: 0,
+      parsedCursorDirection: "before",
+    });
+  });
+
   it("sorters should be prioritized over sorter", async () => {
     const pagination = {
       currentPage: 1,

@@ -135,8 +135,17 @@ export type useTableProps<TQueryFnData, TError, TData> = {
 
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
+type SyncWithLocationPagination = Pick<
+  Pagination,
+  "currentPage" | "pageSize"
+> & {
+  cursor?: Required<
+    Pick<NonNullable<Pagination["cursor"]>, "current" | "direction">
+  >;
+};
+
 type SyncWithLocationParams = {
-  pagination: { currentPage?: number; pageSize?: number };
+  pagination: SyncWithLocationPagination;
   sorters: CrudSort[];
   filters: CrudFilter[];
 };
@@ -274,11 +283,12 @@ export function useTable<
         initialCursorDirection = parsedCursorDirection;
       }
     }
-    defaultCurrentPage =
-      parsedParams?.params?.currentPage ||
-      parsedCurrentPage ||
-      prefferedCurrentPage ||
-      1;
+    defaultCurrentPage = isCursorPaginationEnabled
+      ? prefferedCurrentPage || 1
+      : parsedParams?.params?.currentPage ||
+        parsedCurrentPage ||
+        prefferedCurrentPage ||
+        1;
     defaultPageSize =
       parsedParams?.params?.pageSize ||
       parsedPageSize ||
@@ -345,8 +355,39 @@ export function useTable<
     return rest;
   };
 
+  const getPaginationQueryForSyncWithLocation = ({
+    currentPage,
+    pageSize,
+    cursor,
+  }: SyncWithLocationPagination) => {
+    if (!isPaginationEnabled) {
+      return {
+        currentPage: undefined,
+        pageSize: undefined,
+        after: undefined,
+        before: undefined,
+      };
+    }
+
+    if (isCursorPaginationEnabled) {
+      return {
+        currentPage: undefined,
+        pageSize,
+        after: cursor?.direction === "after" ? cursor.current : undefined,
+        before: cursor?.direction === "before" ? cursor.current : undefined,
+      };
+    }
+
+    return {
+      currentPage,
+      pageSize,
+      after: undefined,
+      before: undefined,
+    };
+  };
+
   const createLinkForSyncWithLocation = ({
-    pagination: { currentPage, pageSize },
+    pagination,
     sorters,
     filters,
   }: SyncWithLocationParams) => {
@@ -358,7 +399,7 @@ export function useTable<
           keepQuery: true,
         },
         query: {
-          ...(isPaginationEnabled ? { currentPage, pageSize } : {}),
+          ...getPaginationQueryForSyncWithLocation(pagination),
           sorters,
           filters,
           ...getCurrentQueryParams(),
@@ -396,20 +437,13 @@ export function useTable<
 
   useEffect(() => {
     if (syncWithLocation) {
-      const shouldSyncPagination =
-        isPaginationEnabled && !isCursorPaginationEnabled;
-      const shouldSyncCursor = isPaginationEnabled && isCursorPaginationEnabled;
-
-      // Build cursor params: ?after=X or ?before=X (explicitly clear both when no cursor)
-      const cursorParams = shouldSyncCursor
-        ? cursorState.current !== undefined
+      const syncCursor =
+        cursorState.current !== undefined
           ? {
-              after: undefined,
-              before: undefined,
-              [cursorState.direction]: cursorState.current,
+              current: cursorState.current,
+              direction: cursorState.direction,
             }
-          : { after: undefined, before: undefined }
-        : {};
+          : undefined;
 
       go({
         type: "replace",
@@ -417,8 +451,11 @@ export function useTable<
           keepQuery: true,
         },
         query: {
-          ...(shouldSyncPagination ? { pageSize, currentPage } : {}),
-          ...cursorParams,
+          ...getPaginationQueryForSyncWithLocation({
+            currentPage,
+            pageSize,
+            cursor: syncCursor,
+          }),
           sorters: differenceWith(sorters, preferredPermanentSorters, isEqual),
           filters: differenceWith(filters, preferredPermanentFilters, isEqual),
         },
@@ -426,11 +463,12 @@ export function useTable<
     }
   }, [
     syncWithLocation,
-    currentPage,
     pageSize,
     sorters,
     filters,
     isCursorPaginationEnabled,
+    isPaginationEnabled,
+    currentPage,
     cursorState.current,
     cursorState.direction,
   ]);

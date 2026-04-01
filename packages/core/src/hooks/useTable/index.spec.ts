@@ -752,6 +752,249 @@ describe("useTable Cursor Pagination", () => {
     );
   });
 
+  it("should ignore location currentPage in cursor mode and sync pageSize", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      total: 10,
+      cursor: { next: "cursor_page_2" },
+    });
+    const mockGo = vi.fn();
+
+    renderHook(
+      () =>
+        useTable({
+          pagination: { mode: "cursor", pageSize: 1 },
+          syncWithLocation: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: mockRouterProvider({
+            resource: {
+              name: "posts",
+            },
+            params: {
+              currentPage: 5,
+              pageSize: 2,
+              search: "?currentPage=5&pageSize=2&after=cursor_page_1",
+            },
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalled();
+    });
+
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 2,
+          mode: "cursor",
+          cursor: {
+            current: "cursor_page_1",
+            direction: "after",
+          },
+        },
+      }),
+    );
+
+    await waitFor(() => {
+      expect(mockGo).toHaveBeenCalled();
+    });
+
+    expect(mockGo.mock.calls.at(-1)?.[0]).toMatchObject({
+      type: "replace",
+      query: expect.objectContaining({
+        currentPage: undefined,
+        pageSize: 2,
+        after: "cursor_page_1",
+        before: undefined,
+      }),
+    });
+  });
+
+  it("should clear cursor params from location in server mode", async () => {
+    const mockGo = vi.fn();
+
+    renderHook(
+      () =>
+        useTable({
+          pagination: { mode: "server", pageSize: 2 },
+          syncWithLocation: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+          routerProvider: mockRouterProvider({
+            resource: {
+              name: "posts",
+            },
+            params: {
+              after: "cursor_page_1",
+              search: "?after=cursor_page_1&pageSize=2",
+            },
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(mockGo).toHaveBeenCalled();
+    });
+
+    expect(mockGo.mock.calls.at(-1)?.[0]).toMatchObject({
+      type: "replace",
+      query: expect.objectContaining({
+        currentPage: 1,
+        pageSize: 2,
+        after: undefined,
+        before: undefined,
+      }),
+    });
+  });
+
+  it("createLinkForSyncWithLocation should build cursor query params", () => {
+    const mockGo = vi
+      .fn()
+      .mockReturnValue("/posts?foo=bar&pageSize=2&after=cursor_page_2");
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: { mode: "cursor", pageSize: 2 },
+          syncWithLocation: false,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+          routerProvider: mockRouterProvider({
+            resource: {
+              name: "posts",
+            },
+            params: {
+              foo: "bar",
+            },
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+        }),
+      },
+    );
+
+    const link = result.current.createLinkForSyncWithLocation({
+      pagination: {
+        currentPage: 5,
+        pageSize: 2,
+        cursor: {
+          current: "cursor_page_2",
+          direction: "after",
+        },
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(link).toBe("/posts?foo=bar&pageSize=2&after=cursor_page_2");
+    expect(mockGo).toHaveBeenCalledWith({
+      type: "path",
+      options: {
+        keepHash: true,
+        keepQuery: true,
+      },
+      query: {
+        foo: "bar",
+        currentPage: undefined,
+        pageSize: 2,
+        after: "cursor_page_2",
+        before: undefined,
+        sorters: [],
+        filters: [],
+      },
+    });
+  });
+
+  it("createLinkForSyncWithLocation should clear cursor params in server mode", () => {
+    const mockGo = vi
+      .fn()
+      .mockReturnValue("/posts?foo=bar&currentPage=3&pageSize=2");
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: { mode: "server", pageSize: 2 },
+          syncWithLocation: false,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+          routerProvider: mockRouterProvider({
+            resource: {
+              name: "posts",
+            },
+            params: {
+              foo: "bar",
+              after: "cursor_page_1",
+            },
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+        }),
+      },
+    );
+
+    const link = result.current.createLinkForSyncWithLocation({
+      pagination: {
+        currentPage: 3,
+        pageSize: 2,
+        cursor: {
+          current: "cursor_page_2",
+          direction: "after",
+        },
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(link).toBe("/posts?foo=bar&currentPage=3&pageSize=2");
+    expect(mockGo).toHaveBeenCalledWith({
+      type: "path",
+      options: {
+        keepHash: true,
+        keepQuery: true,
+      },
+      query: {
+        foo: "bar",
+        currentPage: 3,
+        pageSize: 2,
+        after: undefined,
+        before: undefined,
+        sorters: [],
+        filters: [],
+      },
+    });
+  });
+
   it("goToNextPage should update cursor state", async () => {
     const mockGetList = vi
       .fn()
