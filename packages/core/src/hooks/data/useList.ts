@@ -99,6 +99,7 @@ export type UseListReturnType<TData, TError> = {
   result: {
     data: TData[];
     total: number | undefined;
+    [key: string]: any;
   };
 } & UseLoadingOvertimeReturnType;
 
@@ -329,6 +330,7 @@ export const useList = <
   return {
     query: queryResponse,
     result: {
+      ...queryResponse?.data,
       data: queryResponse?.data?.data || EMPTY_ARRAY,
       total: queryResponse?.data?.total,
     },
