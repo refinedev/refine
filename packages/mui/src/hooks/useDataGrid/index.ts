@@ -98,6 +98,12 @@ export type UseDataGridProps<
     TError,
     TData
   >["mutationOptions"];
+  /**
+   * Debounce interval in milliseconds for server-side filter changes.
+   * Prevents API requests from firing on every keystroke.
+   * @default 500
+   */
+  filterDebounceMs?: number;
 };
 
 export type UseDataGridReturnType<
@@ -125,7 +131,7 @@ export type UseDataGridReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSort: CrudSort[] = [];
-const DEFAULT_FILTER_DEBOUNCE_MS = 300;
+const DEFAULT_FILTER_DEBOUNCE_MS = 500;
 
 export function useDataGrid<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -150,6 +156,7 @@ export function useDataGrid<
   overtimeOptions,
   editable = false,
   updateMutationOptions,
+  filterDebounceMs = DEFAULT_FILTER_DEBOUNCE_MS,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -267,7 +274,7 @@ export function useDataGrid<
       clearFilterDebounce();
       filterDebounceRef.current = setTimeout(() => {
         applyFilters(crudFilters);
-      }, DEFAULT_FILTER_DEBOUNCE_MS);
+      }, filterDebounceMs);
       return;
     }
     applyFilters(crudFilters);
