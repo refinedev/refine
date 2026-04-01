@@ -1,11 +1,5 @@
 /advanced-tutorials/mutation-mode.md /core/docs/advanced-tutorials/mutation-mode/ 301
 
-/ai / 301
-
-/become-a-refine-expert / 301
-
-/become-a-refine-expert/ /core/ 301
-
 /blog/2024/01/26/git-stash/ /blog/git-stash/ 301
 
 /blog/create-a-feedback-admin-panel-with-refine-and-strapi/ /blog/ 301
@@ -1206,22 +1200,251 @@
 
 /core/tutorial /core/tutorial/essentials/intro/ 301
 
-/enterprise / 301
-
-/headset/ /core/ 301
-
-/pricing / 301
-
 /tutorial/next-steps/cli/react-router /core/tutorial/next-steps/cli/react-router/ant-design/ 301
 
 /tutorial/next-steps/devtools/react-router /core/tutorial/next-steps/devtools/react-router/ant-design/ 301
 
 /tutorial/next-steps/summary /core/tutorial/next-steps/summary/react-router/ant-design/ 301
 
-/use-cases / 301
-
-/use-cases/ /core/ 301
-
-/week-of-refine/ /core/ 301
-
 /blog/build-internal-tools-using-low-code-with-refine /blog/what-is-refine-core-how-to-use-it/ 301
+
+/blog/supabase-refine-ai/ /blog/admin-panel-with-supabase/ 301
+
+/blog/react-admin-template/ /blog/react-admin-dashboard/ 301
+
+/blog/what-are-dashboards /blog/what-is-a-dashboard 301
+
+/blog/migrating-a-react-admin-application-to-refine /blog/react-admin-vs-refine 301
+
+/blog/refine-vs-react-admin /blog/react-admin-vs-refine 301
+
+/blog/admin-panels/ /blog/top-frameworks-for-building-admin-panel/ 301
+
+/blog/edit-crontab/ /blog/ 301
+
+/blog/new-features-in-next-js-13/ /blog/ 301
+
+/blog/code-electric-bugs /blog/ 301
+
+# 3.xx.xx versioned docs button redirects
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/list/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/list-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/delete/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/delete-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/clone/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/clone-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/create/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/create-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/save/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/save-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/edit/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/edit-button/ 301
+/core/docs/3.xx.xx/api-reference/antd/components/buttons/show/ /core/docs/3.xx.xx/api-reference/antd/components/buttons/show-button/ 301
+/core/docs/3.xx.xx/api-reference/mui/components/buttons/refresh/ /core/docs/3.xx.xx/api-reference/mui/components/buttons/refresh-button/ 301
+/core/docs/3.xx.xx/api-reference/mui/components/buttons/edit/ /core/docs/3.xx.xx/api-reference/mui/components/buttons/edit-button/ 301
+/core/docs/3.xx.xx/api-reference/mui/components/buttons/delete/ /core/docs/3.xx.xx/api-reference/mui/components/buttons/delete-button/ 301
+/core/docs/3.xx.xx/api-reference/mui/components/buttons/save/ /core/docs/3.xx.xx/api-reference/mui/components/buttons/save-button/ 301
+/core/docs/3.xx.xx/api-reference/mantine/components/buttons/save/ /core/docs/3.xx.xx/api-reference/mantine/components/buttons/save-button/ 301
+/core/docs/3.xx.xx/api-reference/mantine/components/buttons/delete/ /core/docs/3.xx.xx/api-reference/mantine/components/buttons/delete-button/ 301
+/core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/edit/ /core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/edit-button/ 301
+/core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/save/ /core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/save-button/ 301
+/core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/delete/ /core/docs/3.xx.xx/api-reference/chakra-ui/components/buttons/delete-button/ 301
+
+# 3.xx.xx other redirects
+/core/docs/3.xx.xx/api-reference/mui/components/breadcrumb/ /core/docs/3.xx.xx/api-reference/mui/components/mui-breadcrumb/ 301
+/core/docs/3.xx.xx/api-reference/core/components/layout-wrapper/refine-config/ /core/docs/3.xx.xx/api-reference/core/components/refine-config/ 301
+/core/docs/3.xx.xx/api-reference/antd/customization/layout/ /core/docs/3.xx.xx/api-reference/antd/customization/antd-custom-layout/ 301
+/core/docs/3.xx.xx/api-reference/mui/customization/layout/ /core/docs/3.xx.xx/api-reference/mui/customization/mui-custom-layout/ 301
+/core/docs/3.xx.xx/api-reference/core/interfaces/ /core/docs/3.xx.xx/api-reference/core/interfaceReferences/ 301
+/core/docs/3.xx.xx/tutorial/api-reference/core/interfaces/ /core/docs/3.xx.xx/api-reference/core/interfaceReferences/ 301
+/core/docs/3.xx.xx/tutorial/api-reference/core/hooks/import-export/useExport/ /core/docs/3.xx.xx/api-reference/core/hooks/import-export/useExport/ 301
+/core/docs/3.xx.xx/tutorial/packages/documentation/cli/ /core/docs/3.xx.xx/packages/documentation/cli/ 301
+/core/docs/3.xx.xx/tutorial/examples/core/useImport/ /core/docs/3.xx.xx/examples/core/useImport/ 301
+
+# Blog redirects
+/blog/supabase-tutorial/ /blog/supabase-database-setup/ 301
+/blog/dashboards/ /blog/what-is-a-dashboard/ 301
+
+# Resources redirects
+/resources/console/ /resources/ 301
+/resources/getting-started/ /resources/ 301
+/resources/publish-export/ /resources/ 301
+
+# Template redirects (templates → examples)
+/core/templates/auth-provider/google-auth /core/docs/examples/auth-provider/google-auth/ 301
+/core/templates/auth-provider/otpLogin /core/docs/examples/auth-provider/otpLogin/ 301
+/core/templates/auth-provider/auth0 /core/docs/examples/auth-provider/auth0/ 301
+/core/templates/auth-provider/keycloak /core/docs/examples/auth-provider/keycloak/ 301
+/core/templates/data-provider/strapi-v4/ /core/docs/examples/data-provider/strapi-v4/ 301
+/core/templateslive-provider/ably/ /core/docs/examples/ 301
+/core/templatescustomization/customSider/ /core/docs/3.xx.xx/examples/customization/customSider/ 301
+/core/templatestable/antd/useTable/ /core/docs/3.xx.xx/examples/table/antd/useTable/ 301
+/core/templatesform/chakra-ui/useForm/ /core/docs/3.xx.xx/examples/form/chakra-ui/useForm/ 301
+
+# Advanced tutorials redirects
+/core/docs/advanced-tutorials/mutation-mode/ /core/docs/3.xx.xx/advanced-tutorials/mutation-mode/ 301
+/advanced-tutorials/custom-layout/ /core/docs/3.xx.xx/advanced-tutorials/custom-layout/ 301
+/advanced-tutorials/custom-pages/ /core/docs/3.xx.xx/advanced-tutorials/custom-pages/ 301
+/advanced-tutorials/data-provider/graphql/ /core/docs/3.xx.xx/advanced-tutorials/data-provider/graphql/ 301
+
+# Examples redirects
+/core/docs/examples/ /core/docs/3.xx.xx/examples/real-world-refine-example/ 301
+/core/docs/3.xx.xx/examples/ /core/docs/3.xx.xx/examples/real-world-refine-example/ 301
+/core/docs/examples/custom-pages/ /core/docs/3.xx.xx/examples/customPages/ 301
+/core/docs/examples/customization/customSider/ /core/docs/3.xx.xx/examples/customization/customSider/ 301
+/core/docs/3.xx.xx/examples/advanced-tutorials/ssr/nextjs/ /core/docs/3.xx.xx/advanced-tutorials/ssr/nextjs/ 301
+
+# Guides-concepts redirects
+/guides-concepts/routing/index/ /core/docs/guides-concepts/routing/ 301
+/guides-concepts/general-concepts/index/ /core/docs/guides-concepts/general-concepts/ 301
+
+# Packages redirects
+/packages/documentation/react-hook-form/useForm/ /core/docs/3.xx.xx/packages/documentation/react-hook-form/useForm/ 301
+
+# Misc redirects
+/core/docs/api-reference/core/data/hooks/useList/ /core/docs/data/hooks/use-list/ 301
+/core/docs/api-reference/core/data/hooks/useOne/ /core/docs/data/hooks/use-one/ 301
+/core/docs/core/data/hooks/use-one/ /core/docs/data/hooks/use-one/ 301
+
+
+# Blog tags to categories redirects
+/blog/tags/access-control/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/announcement/ /blog/categories/announcement/ 301
+/blog/tags/arc/ /blog/categories/engineering/ 301
+/blog/tags/atlassian/ /blog/categories/engineering/ 301
+/blog/tags/browser/ /blog/categories/engineering/ 301
+/blog/tags/claude-4/ /blog/categories/announcement/ 301
+/blog/tags/comments/ /blog/categories/engineering/ 301
+/blog/tags/community/ /blog/categories/announcement/ 301
+/blog/tags/community/page/2/ /blog/categories/announcement/ 301
+/blog/tags/crud/ /blog/categories/how-to-build/ 301
+/blog/tags/data-fetching/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/database/ /blog/categories/tutorials/ 301
+/blog/tags/dev-tools/page/4/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/dev-tools/page/5/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/dev-tools/page/6/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/devlife/ /blog/categories/engineering/ 301
+/blog/tags/docker/page/3/ /blog/categories/engineering/ 301
+/blog/tags/fast/ /blog/categories/how-to-build/ 301
+/blog/tags/guides/ /blog/categories/tutorials/ 301
+/blog/tags/innovation/ /blog/categories/engineering/ 301
+/blog/tags/internal-tools/ /blog/categories/how-to-build/ 301
+/blog/tags/javascript/page/3/ /blog/categories/tutorials/ 301
+/blog/tags/kubernetes/page/3/ /blog/categories/engineering/ 301
+/blog/tags/low-code/ /blog/categories/how-to-build/ 301
+/blog/tags/mantine/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/nestjs/ /blog/categories/how-to-build/ 301
+/blog/tags/philosophy/ /blog/categories/ai-and-innovation/ 301
+/blog/tags/product/ /blog/categories/how-to-build/ 301
+/blog/tags/react-hook-form/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/react/page/9/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/refine/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/2/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/3/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/4/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/5/ /blog/categories/how-to-build/ 301
+/blog/tags/refine/page/6/ /blog/categories/how-to-build/ 301
+/blog/tags/rtk-query/ /blog/categories/ecosystem-integrations/ 301
+/blog/tags/svelte/ /blog/categories/alternatives/ 301
+/blog/tags/swr/ /blog/categories/alternatives/ 301
+/blog/tags/tanstack-query/ /blog/categories/alternatives/ 301
+/blog/tags/tutorial/ /blog/categories/how-to-build/ 301
+/blog/tags/tutorial/page/2/ /blog/categories/how-to-build/ 301
+/blog/tags/tutorial/page/3/ /blog/categories/how-to-build/ 301
+/blog/tags/software/ /blog/ 301
+
+# Refine Pixels series consolidated into master guide
+/blog/refine-pixels-1/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-2/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-3/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-4/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-5/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-6/ /blog/refine-pixels-guide/ 301
+/blog/refine-pixels-7/ /blog/refine-pixels-guide/ 301
+
+/blog/vibe-coding /blog/what-is-vibe-coding/ 301
+
+/core/week-of-refine-supabase / 301
+/core/week-of-refine / 301
+/core/week-of-refine-strapi / 301
+
+/core/templates/ant-design/graphql /core/templates/ant-design 301
+/core/templates/ant-design/appwrite /core/templates/ant-design 301
+/core/templates/ant-design/medusa /core/templates/ant-design 301
+
+/core/templates/material-ui/supabase /core/templates/material-ui 301
+/core/templates/material-ui/graphql /core/templates/material-ui 301
+/core/templates/material-ui/strapi /core/templates/material-ui 301
+/core/templates/material-ui/appwrite /core/templates/material-ui 301
+/core/templates/material-ui/medusa /core/templates/material-ui 301
+
+/core/templates/headless/graphql /core/templates/headless 301
+/core/templates/headless/strapi /core/templates/headless 301
+/core/templates/headless/appwrite /core/templates/headless 301
+/core/templates/headless/medusa /core/templates/headless 301
+
+/core/templates/chakra-ui/supabase /core/templates/chakra-ui 301
+/core/templates/chakra-ui/graphql /core/templates/chakra-ui 301
+/core/templates/chakra-ui/strapi /core/templates/chakra-ui 301
+/core/templates/chakra-ui/appwrite /core/templates/chakra-ui 301
+/core/templates/chakra-ui/medusa /core/templates/chakra-ui 301
+
+/core/templates/mantine/supabase /core/templates/mantine 301
+/core/templates/mantine/graphql /core/templates/mantine 301
+/core/templates/mantine/strapi /core/templates/mantine 301
+/core/templates/mantine/appwrite /core/templates/mantine 301
+/core/templates/mantine/medusa /core/templates/mantine 301
+
+
+
+
+/blog/use-params /blog/react-router-useparams/ 301
+
+/blog/tags/invoice-generator/ /blog/ 301
+
+/blog/best-front-end-frameworks-in- /blog/ 301
+
+/blog/6-best- /blog/ 301
+
+/blog/internal-tools /blog/developing-internal-tools/ 301
+
+/core/docs/api-reference/core/data/hooks/useUpdate/ /core/docs/data/hooks/use-update/ 301
+
+/core/docs/api-reference/core/data/hooks/useMany/ /core/docs/data/hooks/use-many/ 301
+
+/core/docs/api-reference/core/data/hooks/useDelete/ /core/docs/data/hooks/use-delete/ 301
+
+/core/docs/api-reference/core/data/hooks/useCustom/ /core/docs/data/hooks/use-custom/ 301
+
+/core/docs/api-reference/core/data/hooks/useCreate/ /core/docs/data/hooks/use-create/ 301
+
+/core/docs/api-reference/core/data/hooks/useApiUrl/ /core/docs/data/hooks/use-api-url/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdateMany/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useOne/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useOne/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useList/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useInfiniteList/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useInfiniteList/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useCustomMutation/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustomMutation/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useCustom/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/ 301
+
+/core/docs/3.xx.xx/api-reference/core/data/hooks/useApiUrl/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/ 301
+
+/core/docs/3.xx.xx/advanced-tutorials/data-provider/supabase/api-reference/core/hooks/auth/useLogin/ /core/docs/authentication/hooks/use-login/ 301
+
+/core/docs/data/hooks/useMany/ /core/docs/data/hooks/use-many/ 301
+
+/core/docs/api-reference/mui/components/auth-page/ /core/docs/ui-integrations/material-ui/components/auth-page/ 301
+
+/core/docs/3.xx.xx/tutorial/api-reference/core/data/hooks/useApiUrl/ /core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/ 301
+

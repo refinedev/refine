@@ -3,10 +3,11 @@ title: "Quality Code Generation: Multi-Agent Systems and Token Dilution"
 description: How Refine's multi-agent system architecture effectively tackles token dilution, drastically improving code generation quality.
 slug: quality-code-generation
 authors: youwei
-tags: [ai]
-is_featured: true
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/cover.png
+category: "AI & Innovation"
+tags: [ai, tech-industry]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/cover-1.png
 hide_table_of_contents: false
+last_update: 2026-02-03
 ---
 
 Refine.dev has established itself as a leader in React-based enterprise application development with their open-source framework that streamlines CRUD operations, authentication, and state management. Building on this foundation, Refine represents their next evolution—an AI-powered platform that uses natural language to generate production-ready React applications with clean architecture and thoughtful separation of concerns.
@@ -26,8 +27,7 @@ Our proposed solution enables Refine to query example projects utilizing specifi
 Our initial implementation utilized a monolithic tool, `get-reference-code`, which accepted user queries and returned complete project codebases. This approach demonstrated critical limitations in token efficiency and attention management.
 
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/iteration_1.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/iteration_1.png" alt="refineai shadcn example" />
 </div>
 
 **Theoretical Advantages**:
@@ -49,8 +49,7 @@ The fundamental issue centered on attention dilution, where the overwhelming vol
 Recognizing the attention and token efficiency challenges, we implemented a three-stage pipeline: project discovery and description analysis, file enumeration and structure mapping, and selective file content retrieval. This approach aimed to provide granular control over information flow while maintaining comprehensive access to implementation details.
 
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/iteration_2.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/iteration_2.png" alt="refineai shadcn example" />
 </div>
 
 **Theoretical Advantages**:
@@ -73,8 +72,7 @@ Despite extensive guideline refinement and constraint implementation, the model'
 To address persistent token dilution issues, we introduced a specialized `reference-implementation-agent` operating independently from the primary Refine instance. This architectural separation eliminated historical context overhead by providing the agent with only implementation objectives, reducing token inheritance from previous interactions.
 
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/iteration_3.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/iteration_3.png" alt="refineai shadcn example" />
 </div>
 
 **Theoretical Advantages**:
@@ -99,8 +97,7 @@ Our final iteration implemented a microservices-inspired architecture, decomposi
 The `reference-research-agent` executes project discovery and file identification phases, maintaining a curated list of relevant implementation files without retrieving content. The `reference-implement-agent` subsequently processes the research output, fetching specific file contents and implementing requested features. This architecture ensures that research process tokens remain isolated from implementation context, significantly reducing attention dilution.
 
 <div className="centered-image">
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/iteration_4.png
- " alt="refineai shadcn example" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/iteration_4.png" alt="refineai shadcn example" />
 </div>
 
 **Theoretical Advantages**:
@@ -124,8 +121,8 @@ The progression from monolithic to distributed architecture reveals critical ins
 Error cycle analysis indicates that token dilution creates cascading failure patterns, where initial implementation errors compound due to degraded attention on correction attempts. The distributed approach breaks this cycle by maintaining focused attention throughout the implementation pipeline.
 
 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '30px', flexWrap: 'wrap'}}>
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/chart_1.png" alt="Analysis 1" style={{width: '45%'}} />
-  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-16/chart_2.png" alt="Analysis 2" style={{width: '45%'}} />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/chart_1.png" alt="Analysis 1" style={{width: '45%'}} />
+  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-06-16/chart_2.png" alt="Analysis 2" style={{width: '45%'}} />
 </div>
 
 ## Conclusion

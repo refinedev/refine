@@ -23,7 +23,7 @@ Here is a basic example of how to use the `useInfiniteList` hook.
 
 ## Pagination
 
-`useInfiniteList` hook supports pagination properties just like [`useList`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
+`useInfiniteList` hook supports pagination properties just like [`useList`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList/). To handle pagination, the `useInfiniteList` hook passes the `pagination` property to the `getList` method from the `dataProvider`.
 
 Dynamically changing the `pagination` properties will trigger a new request. Also, the `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request.
 

@@ -39,12 +39,35 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = props;
+  // `startIcon` is extracted from rest props so it doesn't get passed to the
+  // underlying MUI Button via `{...restProps}` (which would cause a double icon).
+  const { sx, startIcon, ...restProps } = props;
+
+  const defaultIcon = <AddBoxOutlined fontSize="small" {...svgIconProps} />;
+
+  // When `hideText` is true, the button renders only an icon (no startIcon prop).
+  // When `hideText` is false, the icon goes into the `startIcon` slot and text goes as children.
+  // In both modes, a user-provided `startIcon` takes priority over the default icon.
+  //
+  // | hideText | startIcon    | Button startIcon prop | Button children  |
+  // |----------|--------------|-----------------------|------------------|
+  // | false    | undefined    | <AddBoxOutlined>      | "Create"         |
+  // | false    | <CustomIcon> | <CustomIcon>          | "Create"         |
+  // | true     | undefined    | undefined             | <AddBoxOutlined> |
+  // | true     | <CustomIcon> | undefined             | <CustomIcon>     |
+  const buttonStartIcon = hideText
+    ? undefined
+    : startIcon ?? <AddBoxOutlined {...svgIconProps} />;
+  const buttonChildren = hideText
+    ? startIcon ?? defaultIcon
+    : children ?? label;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();
@@ -55,24 +78,15 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      startIcon={buttonStartIcon}
+      title={title}
+      variant="contained"
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.CreateButton}
+      className={RefineButtonClassNames.CreateButton}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
-        title={title}
-        variant="contained"
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.CreateButton}
-        className={RefineButtonClassNames.CreateButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <AddBoxOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {buttonChildren}
+    </Button>
   );
 };

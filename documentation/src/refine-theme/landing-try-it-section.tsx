@@ -328,8 +328,7 @@ const LandingTryItWizardSection = ({
         className={clsx(
           "box-content",
           "flex-shrink-0",
-          "rounded-2xl landing-md:rounded-3xl",
-          "border border-solid",
+          "rounded-xl",
           "transition-[border-color,width,height,opacity,background-color]",
           "mx-auto",
           "duration-300",

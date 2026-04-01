@@ -431,7 +431,7 @@ const { data } = useList({
 });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useList)
+> [Refer to the useList documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useList)
 
 ### create
 
@@ -460,7 +460,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | resource  | `string`     |         |
 | variables | `TVariables` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate#type-parameters) to type `variables`
 
 <br/>
 
@@ -479,7 +479,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreate/)
+> [Refer to the useCreate documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreate/)
 
 ### update
 
@@ -509,7 +509,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | id        | [BaseKey](../../api-reference/core/interfaces#basekey) |         |
 | variables | `TVariables`                                           | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate#type-parameters) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useUpdate`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate#type-parameters) to type `variables`
 
 <br/>
 
@@ -527,7 +527,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdate/)
+> [Refer to the useUpdate documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdate/)
 
 ### deleteOne
 
@@ -559,7 +559,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | id        | [BaseKey](../../api-reference/core/interfaces#basekey) |         |
 | variables | `TVariables[]`                                         | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/) to type `variables`
 
 <br/>
 
@@ -573,7 +573,7 @@ const { mutate } = useDelete();
 mutate({ resource: "posts", id: 2 });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDelete/)
+> [Refer to the useDelete documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDelete/)
 
 ### getOne
 
@@ -612,7 +612,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne({ resource: "posts", id: 1 });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useOne/)
+> [Refer to the useOne documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useOne/)
 
 <br/>
 
@@ -638,7 +638,7 @@ import { useApiUrl } from "@pankod/refine-core";
 const { data } = useApiUrl();
 ```
 
-> [Refer to the useApiUrl documentation for more information. &#8594](../../api-reference/core/data/hooks/useApiUrl)
+> [Refer to the useApiUrl documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useApiUrl/)
 
 ### custom
 
@@ -730,7 +730,7 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCustom/)
+> [Refer to the useCustom documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCustom/)
 
 ## Bulk Actions
 
@@ -777,7 +777,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "posts", ids: [1, 2] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/)
+> [Refer to the useMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)
 
 ### createMany
 
@@ -805,7 +805,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/) to type `variables`
 
 <br/>
 
@@ -829,7 +829,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useCreateMany/)
+> [Refer to the useCreateMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useCreateMany/)
 
 ### deleteMany
 
@@ -858,7 +858,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
 | ids       | [[BaseKey](../../api-reference/core/interfaces#basekey)] |         |
 | variables | `TVariables[]`                                           | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/) to type `variables`
 
 <br/>
 
@@ -875,7 +875,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useDeleteMany/)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useDeleteMany/)
 
 ### updateMany
 
@@ -910,7 +910,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useUpdateMany/)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useUpdateMany/)
 
 ## metaData Usage
 

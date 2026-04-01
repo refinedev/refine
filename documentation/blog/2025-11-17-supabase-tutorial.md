@@ -1,12 +1,13 @@
 ---
-title: Create your own Supabase Database in 5 minutes
-description: Learn how to create and structure your Supabase database in minutes
+title: Create Your Own Supabase Database In 5 Minutes
+description: Learn how to create and configure a scalable Supabase database. A step-by-step guide to getting your backend ready for your next web project.
 slug: supabase-database-setup
 authors: ozgur
-tags: [supabase, database, backend, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
+category: "Tutorials"
+tags: [supabase, backend]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
 hide_table_of_contents: false
-is_featured: true
+last_update: 2026-02-02
 ---
 
 If you’ve ever wanted to create a backend quickly — with a real database, authentication, storage, and auto-generated APIs — **Supabase** is a practical place to start. It’s open source, runs on top of PostgreSQL, and helps you move from idea to data in minutues.
@@ -16,19 +17,6 @@ In this guide, we’ll focus entirely on **setting up your Supabase database** �
 No frontend, no API calls — just a clear, simple walkthrough of setting up a real, production-grade database the easy way.
 
 ---
-
-## Table of contents
-
-- [Step 1: Create a Supabase Project](#step-1-create-a-supabase-project)
-- [Step 2: Understanding the Table Editor](#step-2-understanding-the-table-editor)
-- [Step 3: Create Your First Table](#step-3-create-your-first-table)
-- [Step 4: Add a Related Table](#step-4-add-a-related-table)
-- [Step 5: Insert Sample Data](#step-5-insert-sample-data)
-- [Step 6: Explore the SQL Editor](#step-6-explore-the-sql-editor)
-- [Step 7: Enable APIs and Policies](#step-7-enable-apis-and-policies)
-- [Why This Matters](#why-this-matters)
-- [What to do after](#what-to-do-after)
-- [Helpful Links](#helpful-links)
 
 ---
 
@@ -59,7 +47,7 @@ For now, we’ll stay inside the **Table Editor**.
 
 ## Step 2: Understanding the Table Editor
 
-The [Table Editor](https://supabase.com/docs/guides/database/tables) is where you design your data model. You don’t have to write SQL — though you can, if you want to — Supabase gives you a clean UI for defining everything visually.
+The Table Editor is where you design your data model. You don’t have to write SQL — though you can, if you want to — Supabase gives you a clean UI for defining everything visually.
 
 Each table is like a spreadsheet, but with types, constraints, and relationships.
 
@@ -70,7 +58,7 @@ When you create a new table, you’ll define:
 - **Data types** (text, integer, timestamp, etc.)
 - **Default values** and **constraints**
 - **Relationships** (foreign keys)
-  Supabase automatically handles the SQL under the hood, and everything you build here instantly becomes accessible through a [REST API](https://supabase.com/docs/guides/api) and [GraphQL](https://supabase.com/docs/guides/api/graphql).
+  Supabase automatically handles the SQL under the hood, and everything you build here instantly becomes accessible through a REST API and GraphQL
 
 ### Row Level Security (RLS) & Policies (Quick Primer)
 
@@ -81,7 +69,7 @@ Role mapping:
 - `anon`: requests without a user JWT (public key only)
 - `authenticated`: requests with a valid user JWT (including “anonymous sessions” created via Supabase Auth; those still assume the `authenticated` role)
 
-You can always inspect or change RLS via the table’s Policies tab (see the [RLS guide](https://supabase.com/docs/guides/database/postgres/row-level-security) for details). We’ll keep schema focus first, then add policies once structure exists.
+You can always inspect or change RLS via the table’s Policies tab. We’ll keep schema focus first, then add policies once structure exists.
 
 ---
 
@@ -101,7 +89,7 @@ Let’s create a simple `employees` table — a common resource you might manage
 | `salary`     | `numeric(12,2)` | —                   | Optional salary field (consider storing minor units as integer if you need strict money arithmetic) |
 | `created_at` | `timestamptz`   | `now()`             | Record creation time                                                                                |
 
-![Supabase Project Editor Schema Public (1)](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
+![Supabase Project Editor Schema Public (1)](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
 
 :::tip
 The “Enable Row Level Security” toggle is ON by default in the Table Editor. Leave it enabled—your table is protected until you add explicit policies.
@@ -123,7 +111,7 @@ Let’s make another table called `departments` so you can see how relationships
 | `id`   | `uuid` | `gen_random_uuid()` |
 | `name` | `text` | —                   |
 
-![Supabase Project Editor (3)](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
+![Supabase Project Editor (3)](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-2.png)
 
 Now go back to your `employees` table and click **Add Column** → name it `department_id`.
 Set its **type** to `uuid`, and under **Foreign Key**, select **departments → id**. For safer deletes, set the FK behavior to **ON DELETE SET NULL**.
@@ -140,7 +128,7 @@ This structure is now ready for Refine to analyze later and generate fully funct
 
 In the **Table Editor**, click on your `departments` table and choose **Insert Row**.
 Add a few examples:
-![Supabase Project Editor Schema Public](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-3.png)
+![Supabase Project Editor Schema Public](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-3.png)
 
 | id     | name        |
 | ------ | ----------- |
@@ -149,7 +137,7 @@ Add a few examples:
 | (auto) | HR          |
 
 Then go to your `employees` table and insert:
-![Supabase Project Editor Schema](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-4.png)
+![Supabase Project Editor Schema](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-4.png)
 
 | id     | name  | role          | salary | department_id    |
 | ------ | ----- | ------------- | ------ | ---------------- |
@@ -163,7 +151,7 @@ You can view, edit, and filter it right in the dashboard — or query it using S
 
 ## Step 6: Explore the SQL Editor
 
-Even though the Table Editor is visual, Supabase lets you use full PostgreSQL SQL if you prefer. Click the **[SQL Editor](https://supabase.com/docs/guides/database/overview#the-sql-editor)** tab in the sidebar.
+Even though the Table Editor is visual, Supabase lets you use full PostgreSQL SQL if you prefer. Click the SQL Editor tab in the sidebar.
 
 Here you can:
 
@@ -172,7 +160,7 @@ Here you can:
 - Save and version your SQL scripts
 
 For example, once you’ve inserted `departments` and linked employees with a real `department_id`, try:
-![Supabase SQL Editor query](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-5.png)
+![Supabase SQL Editor query](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-5.png)
 
 ```sql
 SELECT e.name, e.role, d.name AS department
@@ -187,7 +175,8 @@ If you see `ERROR: 42P01: relation "public.employees" does not exist`:
 - Confirm the schema is `public` (default) and the table name is lowercase `employees`.
 - Refresh the browser tab—occasionally the SQL Editor metadata lags.
 - Verify you’re in the same project where the table was created.
-  :::
+
+:::
 
 :::tip No results or NULL department values?
 
@@ -235,7 +224,7 @@ to authenticated
 with check (true);
 ```
 
-![Supabase RLS policies](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-6.png)
+![Supabase RLS policies](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-17-supabase-tutorial/supabase-tutorial-6.png)
 
 Optional (dev only) broader read access:
 
@@ -293,11 +282,7 @@ The quickest win now is to connect your Supabase database to Refine and generate
 ## Helpful Links
 
 - [Supabase Docs](https://supabase.com/docs) – explore all features
-- [Supabase SQL Editor](https://supabase.com/docs/guides/database/overview#the-sql-editor) – learn to write queries
-- [Supabase Auth](https://supabase.com/docs/guides/auth) – configure access and security policies
-- [Local Development & CLI](https://supabase.com/docs/guides/local-development/overview) – run Supabase locally with migrations
-- [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) – how to enable and write policies
-- [Refine + Supabase Guide](https://refine.dev/core/docs/guides/supabase) – connect your schema to Refine
-- [Supabase Discord](https://discord.supabase.com) – join the community
+- [Refine + Supabase Guide](https://refine.dev/core/docs/data/packages/supabase/) – connect your schema to Refine
+- [Make an admin panel in 5 minutes with your Supabase database](https://refine.dev/blog/admin-panel-with-supabase/)
 
 ---

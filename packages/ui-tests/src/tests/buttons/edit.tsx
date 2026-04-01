@@ -25,7 +25,7 @@ export const buttonEditTests = (
 
       expect(container).toBeTruthy();
 
-      expect(getByText("Edit").closest("button")).not.toBeDisabled();
+      expect(getByText("Edit").closest("button, a")).not.toBeDisabled();
     });
 
     it("should be disabled by prop", async () => {
@@ -38,9 +38,9 @@ export const buttonEditTests = (
         },
       );
 
-      expect(getByText("Edit").closest("button")).toBeDisabled();
+      expect(getByText("Edit").closest("button, a")).toBeDisabled();
 
-      fireEvent.click(getByText("Edit").closest("button") as Element);
+      fireEvent.click(getByText("Edit").closest("button, a") as Element);
       expect(mockOnClick).not.toHaveBeenCalled();
     });
 
@@ -109,12 +109,12 @@ export const buttonEditTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Edit").closest("button")).toBeDisabled(),
+                expect(getByText("Edit").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("Edit").closest("button")?.getAttribute("title"),
+                  getByText("Edit").closest("button, a")?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });
@@ -145,7 +145,9 @@ export const buttonEditTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("Edit").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
 
@@ -161,7 +163,7 @@ export const buttonEditTests = (
                 },
               );
 
-              const button = getByText("Edit").closest("button");
+              const button = getByText("Edit").closest("button, a");
               expect(button).toBeDisabled();
             });
           });
@@ -212,7 +214,7 @@ export const buttonEditTests = (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Edit").closest("button")).not.toBeDisabled();
+            expect(getByText("Edit").closest("button, a")).not.toBeDisabled();
           });
         });
       });
@@ -247,7 +249,9 @@ export const buttonEditTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+                expect(
+                  getByText("Edit").closest("button, a"),
+                ).not.toBeDisabled(),
               );
             });
           });
@@ -309,12 +313,12 @@ export const buttonEditTests = (
               expect(container).toBeTruthy();
 
               await waitFor(() =>
-                expect(getByText("Edit").closest("button")).toBeDisabled(),
+                expect(getByText("Edit").closest("button, a")).toBeDisabled(),
               );
 
               waitFor(() =>
                 expect(
-                  getByText("Edit").closest("button")?.getAttribute("title"),
+                  getByText("Edit").closest("button, a")?.getAttribute("title"),
                 ).toBe("Access Denied"),
               );
             });

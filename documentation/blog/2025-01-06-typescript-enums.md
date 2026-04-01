@@ -3,9 +3,11 @@ title: A Detailed Guide on TypeScript Enum with Examples
 description: We'll explore TypeScript Enums with examples.
 slug: typescript-enum
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript-enums/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-05-21-typescript-enums/social-2.png
 hide_table_of_contents: false
+last_update: 2025-01-06
 ---
 
 **This article was last updated on January 6, 2025, to include sections on Common Mistakes with TypeScript Enums and Tips for Using Enums in TypeScript Classes.**
@@ -35,7 +37,8 @@ hide_table_of_contents: false
 5. How do enums behave at runtime?
 
 - Enums create the JavaScript object versions at runtime; this therefore includes the ability for bi-directional mapping when these are numeric enums but still only unidirectional mapping exists for string enums
-  :::
+
+:::
 
 **Enum**s are constants based data structures that store a set of named constants grouped around a central theme or intent. In TypeScript, Enums are a feature that injects runtime JavaScript objects to an application in addition to providing usual type-level extensions.
 

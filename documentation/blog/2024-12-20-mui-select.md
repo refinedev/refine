@@ -3,9 +3,11 @@ title: How to use Material UI Select in React
 description: We'll discover the Material UI select component with examples
 slug: material-ui-select-component
 authors: doro_onome
-tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social-2.png
+category: "Ecosystem / Integrations"
+tags: [material-ui]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/social-2.png
 hide_table_of_contents: false
+last_update: 2024-12-24
 ---
 
 **This article was last updated on December 20, 2024, to include advanced styling techniques for Material UI Select and integration with form libraries like Formik and React Hook Form. Also the introduction is updated for clarity.**
@@ -29,18 +31,6 @@ Material UI Select is a component to create dropdowns in React that provides nat
 - Options Grouped Together: A categorization of options contributes towards better usability. 4. Clearable Select: Add a clear button for resetting the selection. 5. - - - Accessibility: Native support for ARIA attributes.
 
 Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customizable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
-
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with Material UI Select](#getting-started-with-material-ui-select)
-- [The Option component](#the-option-component)
-- [Other Material UI Select features](#other-material-ui-select-features)
-- [Clearing the Select field](#clearing-the-select-field)
-- [Accessibility](#accessibility)
-- [Building a Sign-up Form UI with React and Material UI Select](#building-a-sign-up-form-ui-with-react-and-material-ui-select)
-- [Advanced Styling with Material UI Select](#advanced-styling-with-material-ui-select)
-- [Integration with Form Libraries (Formik and React Hook Form)](#integration-with-form-libraries-formik-and-react-hook-form)
 
 ## What is Material UI
 
@@ -90,7 +80,7 @@ The code above showcases a **Material UI Select** input field with popular car b
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/first.png"  alt="Material UI select initial" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/first.png"  alt="Material UI select initial" />
 </div>
 
 ## The Option component
@@ -167,7 +157,7 @@ The code above showcases a list of car brands as `<Option />` values. The `ListI
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-option.avif"  alt="Material UI select option" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-option.avif"  alt="Material UI select option" />
 </div>
 
 ## Other Material UI Select features
@@ -214,7 +204,7 @@ In the code above, we used the `indicator` prop to replace the standard `UnfoldM
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-indicator.gif"  alt="Material UI select indicator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-indicator.gif"  alt="Material UI select indicator" />
 </div>
 
 ### Decorator
@@ -254,7 +244,7 @@ The code above depicts a simple Select field with the start and end decorators r
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-decorator.gif"  alt="Material UI select decorator" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-decorator.gif"  alt="Material UI select decorator" />
 </div>
 
 ### Grouped Options
@@ -359,7 +349,7 @@ export default function Demo() {
 The preceding code shows a `Select` field with organized input values. As shown below, these values are represented by three modes of transportation (land, air, and water), each with its own set of values. These values are placed in an array that is mapped through to generate the output on the DOM.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-grouped.avif"  alt="Material UI select grouped" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-grouped.avif"  alt="Material UI select grouped" />
 </div>
 
 **Note**: If you wish to specify the maximum height for a list of accessible `Select` options, simply do so in the `listbox` component to ensure proper keyboard navigation.
@@ -380,7 +370,7 @@ The preceding code shows a `Select` field with organized input values. As shown 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 
@@ -441,7 +431,7 @@ export default function SelectBasic() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-clearing.gif"  alt="Material UI select clearing" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-clearing.gif"  alt="Material UI select clearing" />
 </div>
 
 ## Accessibility
@@ -541,7 +531,7 @@ export default function SelectBasic() {
 And the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.avif"  alt="Material UI select option" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-30-mui-select/mui-select-result.avif"  alt="Material UI select option" />
 </div>
 
 ## Advanced Styling with Material UI Select

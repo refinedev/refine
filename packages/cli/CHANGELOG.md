@@ -1,5 +1,20 @@
 # @refinedev/cli
 
+## 2.16.52
+
+### Patch Changes
+
+- [#7315](https://github.com/refinedev/refine/pull/7315) [`b319c8a7a2f11896008f349481b03ddcf9ed2de0`](https://github.com/refinedev/refine/commit/b319c8a7a2f11896008f349481b03ddcf9ed2de0) Thanks [@Aaron3312](https://github.com/Aaron3312)! - fix: resolve bin path from cwd to support monorepo workspace hoisting
+
+  `resolveBin()` now walks up from `process.cwd()` to find `node_modules/.bin/<name>`, fixing `MODULE_NOT_FOUND` errors when running `refine dev` in npm/bun/yarn workspaces where packages are hoisted to a parent `node_modules`.
+
+## 2.16.51
+
+### Patch Changes
+
+- Updated dependencies [[`a851672404703243df7ea150d0f918f002d1571d`](https://github.com/refinedev/refine/commit/a851672404703243df7ea150d0f918f002d1571d)]:
+  - @refinedev/devtools-server@2.0.2
+
 ## 2.16.50
 
 ### Patch Changes

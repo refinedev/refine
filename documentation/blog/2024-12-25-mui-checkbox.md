@@ -3,9 +3,11 @@ title: How to use Material UI Checkbox
 description: We'll discover the Material UI Checkbox component with examples
 slug: material-ui-checkbox-component
 authors: doro_onome
-tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/social-2.png
+category: "Ecosystem / Integrations"
+tags: [material-ui]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/social-2.png
 hide_table_of_contents: false
+last_update: 2024-12-27
 ---
 
 **This article was last updated on December 25, 2024, to include advanced Material UI Checkbox customization techniques, improved form validation patterns, and accessibility best practices.**
@@ -28,17 +30,6 @@ Key Features and Benefits
 Material UI offers a wide range of component and utilities that empowers developers with the appropriate tools to create more responsive web designs and bolster the UX of their apps. A checkbox is a small box that, when selected by the user, indicates that a specific feature or option has been enabled. Material UI provides this valuable component on a platter and makes them customizable to apply to your project fittingly.
 
 This article will deeply traverse the Material UI Checkbox component, investigate its processes and highlight its syntax application. We will also explore a potential use case in a real-world application.
-
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting started with Material UI Checkbox](#getting-started-with-material-ui-checkbox)
-- [Customizing your Material UI Checkbox](#customizing-your-material-ui-checkbox)
-- [Other handy features](#other-handy-features)
-- [Error Handling \& Validation](#error-handling--validation)
-- [Advanced Customization](#advanced-customization)
-- [When to use the Material UI Checkbox](#when-to-use-the-material-ui-checkbox)
-- [Material UI Checkbox Accessibility](#material-ui-checkbox-accessibility)
 
 ## What is Material UI?
 
@@ -74,7 +65,7 @@ export default function Checkboxes() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-1.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -104,7 +95,7 @@ export default function CheckboxLabels() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-2.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -132,7 +123,7 @@ export default function SizeCheckboxes() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-3.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -185,7 +176,7 @@ export default function BasicButtonGroup() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-4.png"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -242,7 +233,7 @@ export default function FormControlLabelPosition() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-5.avif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-5.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -273,7 +264,7 @@ export default function IconCheckboxes() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-6.gif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -403,7 +394,7 @@ The code above displays a list of subjects for students ti choose from. The Mate
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-7.avif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-7.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -465,7 +456,7 @@ export default function IndeterminateCheckbox() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-8.avif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-8.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
@@ -641,14 +632,14 @@ export default function TransitionsTooltips() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-15-mui-checkbox/mui-checkbox-9.avif"  alt="Material UI checkbox" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-12-15-mui-checkbox/mui-checkbox-9.avif"  alt="Material UI checkbox" />
 </div>
 
 <br/>
 
 ## Material UI Checkbox Accessibility
 
-All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilizing the <Label/>`component. You can also add an attribute to the input component with the`inputProps`prop. Some of these attributes include`aria-label`, `aria-labelledby`, and `title`.
+All form controls including Checkboxes, radio buttons and switches should typically have labels. In most cases, this is accomplished by utilizing the `<Label/>` component. You can also add an attribute to the input component with the `inputProps` prop. Some of these attributes include `aria-label`, `aria-labelledby` and `title`.
 
 ```ts
 <Checkbox

@@ -3,28 +3,31 @@ title: "Code Comments: The Good, The Bad, and The Hilarious"
 description: A guide to writing comments that help (and avoiding the ones that hurt), with a collection of the funniest gems from real codebases.
 slug: code-comments
 authors: ozgur
-tags: [ai, comments, bugs, devlife]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-08-19-code-comments/Frame%2021%20from%20Figma.png
+category: "Engineering"
+tags: [tech-industry]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-08-19-code-comments/code-comments.png
 hide_table_of_contents: false
+last_update: 2026-02-19
 ---
 
 # Table of Contents
 
-- [Introduction](#code-comments-the-good-the-bad-and-the-hilarious)
-- [The Good: When Comments Are Your Best Friend](#the-good-when-comments-are-your-best-friend)
-  - [1. Explaining the "Why" (The Business and Product Logic)](#1-explaining-the-why-the-business-and-product-logic)
-  - [2. Documenting Non-Obvious Solutions and Trade-offs](#2-documenting-non-obvious-solutions-and-trade-offs)
-  - [3. Formal API Documentation (Docstrings & XML Comments)](#3-formal-api-documentation-docstrings--xml-comments)
-  - [4. "Here Be Dragons" Warnings](#4-here-be-dragons-warnings)
-- [The Bad: When Comments Are a Liability](#the-bad-when-comments-are-a-liability)
-  - [1. The Redundant Comment](#1-the-redundant-comment)
-  - [2. The Zombie Comment (The Outdated Lie)](#2-the-zombie-comment-the-outdated-lie)
-  - [3. The Crutch for Bad Code](#3-the-crutch-for-bad-code)
-  - [4. Commented-Out Code](#4-commented-out-code)
-  - [5. The Rise of the AI Commentator](#5-the-rise-of-the-ai-commentator-)
-- [The Hilarious: Dispatches from the Codebase Trenches](#the-hilarious-dispatches-from-the-codebase-trenches)
-- [Linus Torvalds](#linus-torvalds)
-- [Conclusion](#conclusion)
+- [Table of Contents](#table-of-contents)
+- [Code Comments: The Good, The Bad, and The Hilarious](#code-comments-the-good-the-bad-and-the-hilarious)
+  - [The Good: When Comments Are Your Best Friend](#the-good-when-comments-are-your-best-friend)
+    - [1. Explaining the "Why" (The Business and Product Logic)](#1-explaining-the-why-the-business-and-product-logic)
+    - [2. Documenting Non-Obvious Solutions and Trade-offs](#2-documenting-non-obvious-solutions-and-trade-offs)
+    - [3. Formal API Documentation (Docstrings \& XML Comments)](#3-formal-api-documentation-docstrings--xml-comments)
+    - [4. "Here Be Dragons" Warnings](#4-here-be-dragons-warnings)
+  - [The Bad: When Comments Are a Liability](#the-bad-when-comments-are-a-liability)
+    - [1. The Redundant Comment](#1-the-redundant-comment)
+    - [2. The Zombie Comment (The Outdated Lie)](#2-the-zombie-comment-the-outdated-lie)
+    - [3. The Crutch for Bad Code](#3-the-crutch-for-bad-code)
+    - [4. Commented-Out Code](#4-commented-out-code)
+    - [5. The Rise of the AI Commentator 🤖](#5-the-rise-of-the-ai-commentator-)
+  - [The Hilarious: Dispatches from the Codebase Trenches](#the-hilarious-dispatches-from-the-codebase-trenches)
+    - [Linus Torvalds](#linus-torvalds)
+    - [Conclusion](#conclusion)
 
 ---
 

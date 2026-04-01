@@ -9,6 +9,7 @@ export {
   getDefaultSortOrder,
   parseTableParams,
   parseTableParamsFromQuery,
+  QS_PARSE_DEPTH,
   setInitialFilters,
   setInitialSorters,
   stringifyTableParams,

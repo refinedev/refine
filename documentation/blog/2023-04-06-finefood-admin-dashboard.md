@@ -3,9 +3,11 @@ title: Building a React Admin Dashboard with Refine
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: building-react-admin-dashboard
 authors: peter_osah
-tags: [refine, react, tutorial]
+category: "How To Build"
+tags: [react, admin-panel, dashboards]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
+last_update: 2025-03-24
 ---
 
 ## Introduction:
@@ -61,7 +63,7 @@ On the command above, we used the `refine-antd` prefix because we will be buildi
 On running the command, we should see a menu on the terminal as shown below:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fcli.png"  alt="react admin dashboard" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fcli.png"  alt="Refine CLI project setup prompt" />
 </div>
 
 <br/>
@@ -74,7 +76,7 @@ npm run dev
 
 The Refine application should be up on http://localhost:3000 after you run the command. To access it, go to
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fwelcome.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fwelcome.png"  alt="Finefoods dashboard welcome screen" />
 
 <br />
 
@@ -318,7 +320,7 @@ const renderAuthContent = (content: React.ReactNode) => {
         <img
           style={{ marginBottom: 26 }}
           src="/images/fine-foods-login.svg"
-          alt="Logo"
+          alt="Finefoods logo"
           width="100%"
         />
       </Link>
@@ -432,7 +434,7 @@ export default App;
 
 In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/core/docs/authentication/hooks/use-is-authenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="Finefoods login page" />
 
 <br />
 <br />
@@ -855,13 +857,13 @@ export const DailyRevenue: React.FC = () => {
 
 In the code above:
 
-- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useApiUrl/).
+- We use the use `useApiUrl()` hook to get the base url of the API endpoint. To get more information on the `useApiUrl()`, visit [here](https://refine.dev/core/docs/data/hooks/use-api-url/).
 - We used the `useCustom()` hook to handle sending a request to the endpoint. The `useCustom` hook expects a `url`, `method` and `config` properties.
   - the `url` property accepts the endpoint url.
   - the `method` property accepts the type of method of the endpoint (a "`get`" endpoint in our case)
   - the `config` property accepts values like the `headers` for the endpoint, `query` parameters, `sorters`, `filters`, `payloads` and many more.
 
-To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useCustom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
+To get more information on the `useCustom` hook, take a look at its documentation [here](https://refine.dev/core/docs/data/hooks/use-custom/). In our case, we passed `dateRange` values as query parameters into the `useCustom` hook in order to obtain daily revenue values between date intervals using a `DatePicker` component.
 
 - These parameters will be passed to the `custom` method from the `dataProvider` as a parameter. When properties are changed, the `useCustom` hook will trigger a new request.
 - On getting the data back from the endpoint using the `useCustom` hook, we add the data to the `Line` chart component from the `@ant-design charts` we installed previously.we also memoize the data represented on the chart to optimize performance.
@@ -869,7 +871,7 @@ To get more information on the `useCustom` hook, take a look at its documentatio
 **Output:**
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "450px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Frevenue.png"  alt="react admin dashboard" />
+  <img style={{alignSelf:"center", width: "450px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Frevenue.png"  alt="Revenue analytics card and chart" />
 </div>
 
 ### Building the daily orders component.
@@ -1039,7 +1041,7 @@ In the code above,
 **Output:**
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "450px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Forders.png"  alt="react admin dashboard" />
+  <img style={{alignSelf:"center", width: "450px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Forders.png"  alt="Orders summary card and chart" />
 </div>
 
 ### Building the new customers component.
@@ -1213,7 +1215,7 @@ In the code above:
 **Output:**
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fcustomers.png"  alt="react admin dashboard" />
+  <img style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fcustomers.png"  alt="Customers summary card and chart" />
 </div>
 
 ### Building the orders timeline component
@@ -1566,7 +1568,7 @@ In the code above:
 **Output:**
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width: "250px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Ftimeline.png"  alt="react admin dashboard" />
+  <img style={{alignSelf:"center", width: "250px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Ftimeline.png"  alt="Order activity timeline widget" />
 </div>
 
 ### Building the delivery map component
@@ -1822,14 +1824,14 @@ export const DeliveryMap: React.FC = () => {
 In the code above:
 
 - We used the `useList()` hook to handle sending a request to the endpoint. The `useList()` hook in Refine allows you to get data directly from the API in a list format. This is a different hook from the `useSimpleList()`hook. While the `useSimpleList()`hook returns a list compatible with Ant design's [List](https://ant.design/components/list/) component, the `useList()` hook returns a regular list.
-  To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/api-reference/core/data/hooks/useList/).
+  To get more information about the hook, visit its documentation [here](https://refine.dev/core/docs/data/hooks/use-list/).
 
 - On getting the data back from the endpoint, we render the position of the order on the map using the marker.
 
 **Output:**
 
 <div className="centered-image"  >
-   <img  style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fmap.webp"  alt="react admin dashboard" />
+  <img  style={{alignSelf:"center", width: "450px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fmap.webp"  alt="Delivery map visualization" />
 </div>
 
 <br/>
@@ -2198,13 +2200,13 @@ To read more on resources, view [here](https://refine.dev/core/docs/guides-conce
 
 Login Page:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="Finefoods login page" />
 
 <br />
 
 Admin Dashboard:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Ffinished.png"  alt="react crud app airtable" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Ffinished.png"  alt="Finefoods dashboard overview" />
 
 <br />
 

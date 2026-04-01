@@ -40,10 +40,35 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  // `startIcon` is extracted from rest props so it doesn't get passed to the
+  // underlying MUI Button via `{...restProps}` (which would cause a double icon).
+  const { sx, startIcon, ...restProps } = rest;
+
+  const defaultIcon = <EditOutlined fontSize="small" {...svgIconProps} />;
+
+  // When `hideText` is true, the button renders only an icon (no startIcon prop).
+  // When `hideText` is false, the icon goes into the `startIcon` slot and text goes as children.
+  // In both modes, a user-provided `startIcon` takes priority over the default icon.
+  //
+  // | hideText | startIcon    | Button startIcon prop | Button children |
+  // |----------|--------------|-----------------------|-----------------|
+  // | false    | undefined    | <EditOutlined>        | "Edit"          |
+  // | false    | <CustomIcon> | <CustomIcon>          | "Edit"          |
+  // | true     | undefined    | undefined             | <EditOutlined>  |
+  // | true     | <CustomIcon> | undefined             | <CustomIcon>    |
+  const buttonStartIcon = hideText
+    ? undefined
+    : startIcon ?? (
+        <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
+      );
+  const buttonChildren = hideText
+    ? startIcon ?? defaultIcon
+    : children ?? label;
 
   return (
-    <LinkComponent
+    <Button
+      disabled={isDisabled}
+      component={LinkComponent}
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -56,27 +81,14 @@ export const EditButton: React.FC<EditButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      startIcon={buttonStartIcon}
+      title={title}
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.EditButton}
+      className={RefineButtonClassNames.EditButton}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={
-          !hideText && (
-            <EditOutlined sx={{ selfAlign: "center" }} {...svgIconProps} />
-          )
-        }
-        title={title}
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.EditButton}
-        className={RefineButtonClassNames.EditButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <EditOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {buttonChildren}
+    </Button>
   );
 };

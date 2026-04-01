@@ -3,9 +3,11 @@ title: Material UI button in React
 description: A complete guide on using Material UI button in a React app
 slug: mui-button-in-react
 authors: doro_onome
+category: "Ecosystem / Integrations"
 tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/social.png
 hide_table_of_contents: false
+last_update: 2024-12-10
 ---
 
 **This article was last updated on December 10, 2024, to include new sections on Accessibility, Button Animations, and Performance Optimization for Material UI Buttons.**
@@ -24,18 +26,6 @@ Material-UI provides a customizable button with various color and size options, 
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`.
 
 In this article, we will deeply explore the Material UI `Button` component, its variants, and the different ways it can be used in a React application.
-
-Steps we'll cover:
-
-- [What is Material UI](#what-is-material-ui)
-- [Getting Started with the Material UI Button component](#getting-started-with-the-material-ui-button-component)
-- [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
-- [Creating a Calculator UI with light and dark mode using React Material UI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-material-ui-button-component)
-  - [The Navbar Component](#the-navbar-component)
-- [Advance Material UI Buttons](#advance-material-ui-buttons)
-  - [Accessibility (Making Buttons More User-Friendly)](#accessibility-making-buttons-more-user-friendly)
-  - [Button Animations](#button-animations)
-  - [The Main Component](#the-main-component)
 
 ## What is Material UI
 
@@ -88,7 +78,7 @@ Here’s what they look like:
 
 <br />
 
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/button1.png" alt="Text, contained, and outlined button variants" />
 
 ### Material UI Button Colors
 
@@ -153,7 +143,7 @@ export default ButtonSizes;
 Here’s the result:
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/buttonSize.png" alt="buttonSize" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/buttonSize.png" alt="Button sizes across variants" />
 
 ## How to use Material UI Button Component in your React project
 
@@ -170,7 +160,7 @@ Here’s a simple illustration of the Material UI Text Button
 ```
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/textButton.png" alt="textButton" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/textButton.png" alt="Material UI text button examples" />
 
 <br />
 
@@ -193,7 +183,7 @@ Here’s an example:
 ```
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/containedButton.png" alt="containedButton" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/containedButton.png" alt="Material UI contained button examples" />
 
 ### Outlined Button
 
@@ -212,7 +202,7 @@ You can use Outlined **Material UI button** by specifying the `outlined` prop wh
 ```
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/outlinedButton.png" alt="outlinedButton" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/outlinedButton.png" alt="Material UI outlined button examples" />
 
 ### IconButton
 
@@ -256,7 +246,7 @@ export default IconButtons;
 Here’s the result:
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/IconButton.png" alt="IconButton" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/IconButton.png" alt="Material UI icon button examples" />
 
 ### Loading Button
 
@@ -302,7 +292,7 @@ export default LoadingButtons;
 
 Here’s the result:
 <br />
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/loadingButton.gif" alt="loadingButton" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/loadingButton.gif" alt="Material UI loading button states" />
 
 ### Icon and Label Buttons
 
@@ -333,7 +323,7 @@ export default IconLabelButtons;
 ```
 
 <br />
- <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/labelButton.png" alt="labelButton" />
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/labelButton.png" alt="Material UI icon and label buttons" />
 
 ### Performance Optimization for Material UI Buttons
 
@@ -441,7 +431,7 @@ The code above showcases the use of Material UI toggle buttons to create an adeq
 
 Here’s the result:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/navbar.gif" alt="navbar" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/navbar.gif" alt="Light and dark mode toggle buttons" />
 
 ## Advance Material UI Buttons
 
@@ -542,7 +532,7 @@ export default Main;
 
 Here’s the result:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/mainComponent.png" alt="mainComponent" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/mainComponent.png" alt="Calculator button grid built with MUI" />
 
 <br/>
 
@@ -574,7 +564,7 @@ export default App;
 
 Here’s what our final app looks like:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/final.gif" alt="final" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-05-mui-button/final.gif" alt="Final MUI button interaction demo" />
 
 ## Conclusion
 

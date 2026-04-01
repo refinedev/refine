@@ -52,6 +52,7 @@ export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
   const { title, disabled, hidden, canAccess } = useButtonCanAccess({
     action: "delete",
     accessControl: props.accessControl,
+    meta: props.meta,
     id,
     resource,
   });

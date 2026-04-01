@@ -3,9 +3,11 @@ title: React Ecosystem in 2024 - Sustaining Popularity
 description: We'll look at the React ecosystem and the tools and libraries that have been created to support React.
 slug: react-js-ecosystem-in-2024
 authors: chidume_nnamdi
-tags: [comparison, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-01-11-react-ecosystem-2024/social.png
+category: "Engineering"
+tags: [react, tech-industry]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-01-11-react-ecosystem-2024/social.png
 hide_table_of_contents: false
+last_update: 2025-10-01
 ---
 
 **Update (September 2025): This article has been updated to include information about React 19's release, the deprecation of Create React App, new ecosystem developments, and current best practices in the React ecosystem as of late 2025.**

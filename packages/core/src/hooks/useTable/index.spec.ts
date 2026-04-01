@@ -56,6 +56,38 @@ describe("useTable Hook", () => {
     expect(tableResult.total).toBe(2);
   });
 
+  it("should preserve additional result fields from useList", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () =>
+                Promise.resolve({
+                  data: [],
+                  total: 0,
+                  foo: "bar",
+                }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.result.foo).toBe("bar");
+  });
+
   it("with initial pagination parameters", async () => {
     const { result } = renderHook(
       () =>

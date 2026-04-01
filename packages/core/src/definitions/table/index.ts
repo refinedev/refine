@@ -82,6 +82,9 @@ export const stringifyTableParams = (params: {
   filters: CrudFilter[];
   [key: string]: any;
 }): string => {
+  // Note: qs.stringify has no depth limit by default, so it correctly
+  // serialises deeply nested filters without extra configuration.
+  // The matching qs.parse call uses QS_PARSE_DEPTH to deserialise them.
   const options: IStringifyOptions = {
     skipNulls: true,
     arrayFormat: "indices",

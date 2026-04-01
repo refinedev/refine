@@ -3,8 +3,9 @@ title: How to Build Internal Tools with Low-Code in React Using Refine CORE
 description: A step-by-step guide to building low-code internal tools and admin apps using the React-based Refine CORE framework and its core features.
 slug: low-code-internal-tools-react
 authors: ozgur
-tags: [refine, react, tutorial, low-code, admin-panel]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/internal-tools-blog-banner.png
+category: "How To Build"
+tags: [react, admin-panel, tech-industry]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/internal-tools-blog-banner.png
 hide_table_of_contents: false
 ---
 
@@ -15,22 +16,6 @@ Low-code promises to fix this. And for internal tools? It actually makes sense. 
 That's why Refine CORE hits different. It's open-source React that gives you the speed of low-code platforms but keeps you in control. You're still writing React and TypeScript. You can use whatever UI library you want. Any backend API works. And when you need custom logic? You just write React, no fighting the framework or finding workarounds.
 
 <!--truncate-->
-
-## Table of Contents
-
-- [What You'll Build](#what-youll-build)
-- [Getting Started: Initialize Your Project](#getting-started-initialize-your-project)
-- [Understanding Your Project Structure](#understanding-your-project-structure)
-- [Exploring the Core Configuration](#exploring-the-core-configuration)
-- [Working with the Data Provider](#working-with-the-data-provider)
-- [Building Your First CRUD Pages](#building-your-first-crud-pages)
-- [Running Your Admin Panel](#running-your-admin-panel)
-- [Understanding the Power of Refine CORE Hooks](#understanding-the-power-of-refine-core-hooks)
-- [Key Features You Get Out of the Box](#key-features-you-get-out-of-the-box)
-- [Customization and Flexibility](#customization-and-flexibility)
-- [Connecting to Your Real Backend](#connecting-to-your-real-backend)
-- [FAQ](#faq)
-- [Conclusion](#conclusion)
 
 ## What You'll Build
 
@@ -56,7 +41,7 @@ The CLI will guide you through several configuration options. For this tutorial,
 - **Authentication logic:** `none` (we'll keep it simple for now)
 - **Package manager:** `npm` (or use your preference: yarn, pnpm)
 
-![Refine CLI selection interface](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-cli.png)
+![Refine CLI selection interface](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/refine-cli.png)
 
 Within seconds, the CLI creates a complete project structure with all necessary dependencies, configuration files, and example code. This includes a fully configured development environment with TypeScript, Tailwind CSS, and React Router v7.
 
@@ -149,7 +134,7 @@ const { getHeaderGroups, getRowModel } = useTable({
 
 This replaces dozens of lines you'd typically write for state management, API calls, loading states, and error handling. The table automatically updates when you interact with it—sorting columns, navigating pages, or applying filters all work without additional code.
 
-![Blog posts list page with data table](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-list.png)
+![Blog posts list page with data table](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/refine-list.png)
 
 The create and edit pages are equally impressive. Open `src/pages/blog-posts/create.tsx` to see form handling in action. The `useForm` hook from Refine CORE integrates with React Hook Form to provide validation, submission handling, and error management.
 
@@ -163,7 +148,7 @@ const {
 
 Forms automatically populate with existing data in edit mode, validate fields before submission, display error messages, and show loading states during API calls. Success and error notifications appear automatically when operations complete. You can add field-level validation using React Hook Form's built-in validators or integrate libraries like Zod for schema validation.
 
-![Create/Edit form with validation](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-edit.png)
+![Create/Edit form with validation](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/refine-edit.png)
 
 The show page displays detailed record information using the `useShow` hook, which fetches a single record and provides loading and error states. All these pages follow consistent patterns, making it easy to add new resources or customize existing ones.
 
@@ -181,7 +166,7 @@ The sidebar displays navigation links for your resources—Blog Posts and Catego
 
 Click the "Create" button to open the creation form. Fill in the fields—title, content, status, and category—then submit. You'll see a success notification, and the list updates automatically to include your new record. The edit button opens a pre-populated form where you can modify existing records. The show button displays detailed information in a read-only view.
 
-![Success notification toast](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-toast-notification.png)
+![Success notification toast](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/refine-toast-notification.png)
 
 Every interaction feels smooth and professional. Loading states appear during API calls, errors display helpful messages, and the interface remains responsive throughout. This level of polish typically requires significant development effort, but Refine CORE provides it automatically.
 
@@ -201,7 +186,7 @@ Let's appreciate what Refine CORE provides without additional configuration. You
 
 Form handling includes validation with helpful error messages, support for different input types, and relationship management for connected resources. The notification system shows success messages when operations complete, error messages when they fail, and supports custom notification types. The responsive layout adapts to mobile devices with a collapsible sidebar and optimized touch interactions.
 
-![Responsive mobile view](https://refine.ams3.cdn.digitaloceanspaces.com/blog/2026-01-07-internal-tools/refine-mobile.png)
+![Responsive mobile view](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2026/2026-01-07-internal-tools/refine-mobile.png)
 
 Dark mode support comes built-in with shadcn/ui, allowing users to toggle between light and dark themes. The interface persists their preference across sessions. Routing synchronizes with the URL, making the application bookmarkable and shareable. The breadcrumb navigation shows the current location and provides quick navigation to parent pages.
 
@@ -252,4 +237,4 @@ You now have a complete admin panel featuring full CRUD operations, sortable and
 
 Whether you're building admin panels, internal dashboards, B2B applications, or customer portals, Refine CORE's low-code approach accelerates development without sacrificing the control and flexibility that professional applications demand. The framework grows with your needs, supporting advanced features like access control, audit logging, real-time updates, and internationalization when you need them.
 
-Ready to start building? Check out the [Refine CORE documentation](https://refine.dev/core/docs) for advanced topics, explore the [Refine low-code examples](https://refine.dev/core/examples) for real-world use cases, and join the [community](https://discord.gg/refine) to connect with other developers building with Refine.
+Ready to start building? Check out the [Refine CORE documentation](https://refine.dev/core/docs) for advanced topics, explore the [Refine low-code examples](https://refine.dev/core/templates) for real-world use cases, and join the [community](https://discord.gg/refine) to connect with other developers building with Refine.

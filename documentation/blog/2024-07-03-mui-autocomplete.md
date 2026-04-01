@@ -3,9 +3,11 @@ title: A Guide on Material UI AutoComplete in React
 description: We'll discover the Material UI AutoComplete component with examples
 slug: material-ui-autocomplete-component
 authors: doro_onome
-tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/social-2.png
+category: "Ecosystem / Integrations"
+tags: [material-ui]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/social-2.png
 hide_table_of_contents: false
+last_update: 2024-07-03
 ---
 
 **This article was last updated on July 03, 2024, to add sections for Accessibility Features, Security Considerations, and Formik Integration with AutoComplete to Material UI AutoComplete.**
@@ -13,17 +15,6 @@ hide_table_of_contents: false
 ## Introduction
 
 Material UI provides a unique set of components and utilities to help developers have a better creative experience with web applications. One such component is the Material UI `<Autocomplete/>` component. This article will dive deep into the **Material UI Autocomplete** component, highlight its accompanied features and explore a potential use case in a real-world application.
-
-Steps we'll cover:
-
-- [What is Material UI?](#what-is-material-ui)
-- [Getting Started with Material UI Autocomplete](#getting-started-with-material-ui-autocomplete)
-- [Material UI Autocomplete props](#material-ui-autocomplete-props)
-- [Material UI Autocomplete features](#material-ui-autocomplete-features)
-- [Accessibility Features](#accessibility-features)
-- [Cloning Google’s Home Page UI with Material UI Autocomplete](#cloning-googles-home-page-ui-with-material-ui-autocomplete)
-- [Material UI Autocomplete Limitations](#material-ui-autocomplete-limitations)
-- [Using AutoComplete with Formik](#using-autocomplete-with-formik)
 
 ## What is Material UI?
 
@@ -85,7 +76,7 @@ export default function ComboBox() {
 The code above showcases an input text field that displays 5 songs as predefined option values.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/image1.png"  alt="Material UI useAutoComplete" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/image1.png"  alt="Autocomplete input with song options" />
 </div>
 
 ## Material UI Autocomplete props
@@ -128,7 +119,7 @@ The code above illustrates the use of the `renderInput` prop. Take special note 
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/renderInput.gif"  alt="Material UI useAutoComplete renderInput" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/renderInput.gif"  alt="Custom renderInput autocomplete field" />
 </div>
 
 ## GetOptionLabel
@@ -216,7 +207,7 @@ export default function FreeSolo() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/free-solo.gif"  alt="Material UI useAutoComplete freeSolo" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/free-solo.gif"  alt="Free solo autocomplete input" />
 </div>
 
 ### GroupBy
@@ -266,7 +257,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/groupby.avif"  alt="Material UI useAutoComplete groupby" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/groupby.avif"  alt="Grouped autocomplete options list" />
 </div>
 
 ## Material UI Autocomplete features
@@ -322,7 +313,7 @@ export default function ManageableStates() {
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/state-management.avif"  alt="Material UI useAutoComplete statemanagement" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/state-management.avif"  alt="Autocomplete state management example" />
 </div>
 
 ### The useAutocomplete Hook
@@ -423,7 +414,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/useAutoComplete.avif"  alt="Material UI useAutoComplete" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/useAutoComplete.avif"  alt="Autocomplete with option list" />
 </div>
 
 ### Asynchronous Requests
@@ -536,7 +527,7 @@ export default function Asynchronous() {
 The code above showcases an asynchronous DOM display of the Material UI Autocomplete component illustrating the “Load on open” feature.
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/async.gif"  alt="Material UI useAutoComplete async" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/async.gif"  alt="Async autocomplete loading options" />
 </div>
 
 ### Multiple Values
@@ -584,7 +575,7 @@ export default function Tags() {
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/multiplevalues.gif"  alt="Material UI useAutoComplete multiplevalues" />
+  <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/multiplevalues.gif"  alt="Multiple values autocomplete selection" />
 </div>
 
 ### Fixed Options
@@ -644,7 +635,7 @@ The code above illustrates how you can set a fixed default value on the `<AutoCo
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/fixedoptions.avif"  alt="Material UI useAutoComplete fixedoptions" />
+  <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/fixedoptions.avif"  alt="Fixed options autocomplete example" />
 </div>
 
 ### Checkboxes
@@ -697,7 +688,7 @@ export default function CheckboxesTags() {
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.avif"  alt="Material UI useAutoComplete checkbox" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/checkbox.avif"  alt="Checkbox autocomplete options" />
 </div>
 
 ## Accessibility Features
@@ -879,12 +870,18 @@ const Home = () => {
             <p>Images</p>
             <AppsIcon />
             <div>
-              <img src="https://refine.ams3.cdn.digitaloceanspaces.comage from " />
+              <img
+                src="https://refine.ams3.cdn.digitaloceanspaces.comage from "
+                alt="Google apps icon"
+              />
             </div>
           </nav>
 
           <div id="logo-div">
-            <img src="https://refine.ams3.cdn.digitaloceanspaces.comgo from " />
+            <img
+              src="https://refine.ams3.cdn.digitaloceanspaces.comgo from "
+              alt="Google logo"
+            />
           </div>
 
           <div id="autocomplete-div">
@@ -918,7 +915,12 @@ const Home = () => {
             </div>
 
             <div className="aside2">
-              <img src="some image" alt="" data-atf="1" data-frt="0"></img>
+              <img
+                src="some image"
+                alt="Carbon neutral icon"
+                data-atf="1"
+                data-frt="0"
+              ></img>
               <p>Carbon Neutral since 2007</p>
             </div>
 
@@ -940,13 +942,13 @@ export default Home;
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/google.avif"  alt="Material UI useAutoComplete google" />
+  <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-19-mui-autocomplete/google.avif"  alt="Google-style search UI with autocomplete" />
 </div>
 
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
+  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="Join Refine on Discord banner" />
 </a>
 </div>
 

@@ -3,9 +3,11 @@ title: How to Use Tailwind CSS Grid
 description: We look at how to implement responsive layouts with CSS Grid using TailwindCSS Grid classes.
 slug: tailwind-grid
 authors: abdullah_numan
+category: "Ecosystem / Integrations"
 tags: [tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/social-2.png
 hide_table_of_contents: false
+last_update: 2024-12-18
 ---
 
 ## Introduction
@@ -17,18 +19,6 @@ In this article we look at how to implement responsive layouts with CSS Grid usi
 TailwindCSS, or just Tailwind, is a CSS framework used for rapidly building websites. It comes with a core set of already defined CSS utility classes that can be composed and easily custom configured afterwards to implement any design with respect to repsonsivenes, layout and themes.
 
 It is possible to build multi column layouts using Tailwind with its Flexbox classes by dividing the width of the container with `w-{fraction}` classes. However, with versions 1.2 and above, we can build highly elaborate layouts with Tailwind's CSS Grid classes.
-
-Steps we'll cover:
-
-- [What is Tailwind Grid System](#what-is-tailwind-grid-system)
-- [Project Goals](#project-goals)
-- [Project Setup](#project-setup)
-- [Basic Tailwind Grid Example](#basic-tailwind-grid-example)
-- [Add Grid Formatting Context](#add-grid-formatting-context)
-- [Size and Placement](#size-and-placement)
-- [Grid Rows](#grid-rows)
-- [Reorder Regions](#reorder-regions)
-- [Customizing TailwindCSS Theme](#customizing-tailwindcss-theme)
 
 ## What is Tailwind Grid System
 
@@ -124,7 +114,7 @@ Let's add three explicit columns:
 
 Now, we have all the `div`s flowed into 3 columns according to Grid Formatting Context:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-1.png"  alt="tailwind grid 1" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-1.png"  alt="tailwind grid 1" />
 
 <br />
 
@@ -140,7 +130,7 @@ Let's add some gap with `gap-{size}` class. We have to set it to the grid contai
 
 Now we have a gap between the children `div`s:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-3.png"  alt="tailwind grid 2" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-3.png"  alt="tailwind grid 2" />
 
 <br />
 
@@ -156,7 +146,7 @@ We can add columns at larger breakpoints:
 
 Here, we're using Tailwind's default breakpoints at `md:	768px` and `lg:	1024px`. We can see the number of columns increasing at `768px` and `1024px`:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-4.avif"  alt="tailwind grid 4" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-4.avif"  alt="tailwind grid 4" />
 
 <br />
 
@@ -176,7 +166,7 @@ Below, we place the first `div` as a navbar. We are doing this with `col-span-{n
 </div>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-5.avif"  alt="tailwind grid 5" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-5.avif"  alt="tailwind grid 5" />
 
 <br />
 
@@ -231,7 +221,7 @@ Let's see an instance of it with the fourth `div`:
 </div>
 ```
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-6.png"  alt="tailwind grid 6" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-6.png"  alt="tailwind grid 6" />
 
 <br />
 
@@ -263,7 +253,7 @@ Now, we can go ahead and set the last `div` to become a footer. This footer will
 
 Here, `row-start-5` tells the footer to be placed to the bottom row. It looks like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-7.avif"  alt="tailwind grid 7" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-7.avif"  alt="tailwind grid 7" />
 
 <br />
 
@@ -281,7 +271,7 @@ We can go further and make it more structured. Let's make the second `div` span 
 
 We have it shaping into a better website layout:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-8.avif"  alt="tailwind grid 8" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-8.avif"  alt="tailwind grid 8" />
 
 <br />
 
@@ -299,7 +289,7 @@ We can change the order of a region by altering the value of `n` in `row-start-{
 
 We have something looking like this:
 
-<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/tailwind-grid-9.avif"  alt="tailwind grid 4" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-10-21-tailwind-grid/tailwind-grid-9.avif"  alt="tailwind grid 4" />
 
 <br />
 

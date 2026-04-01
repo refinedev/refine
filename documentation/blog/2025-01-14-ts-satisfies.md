@@ -3,9 +3,11 @@ title: How to Use the TypeScript satisfies Operator
 description: TypeScript classes are a superset of JavaScript classes. This post covers the fundamentals of type annotations in TypeScript Classes and their associated quirks.
 slug: typescript-satisfies-operator
 authors: abdullah_numan
+category: "Tutorials"
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-15-ts-satisfies/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-15-ts-satisfies/social-2.png
 hide_table_of_contents: false
+last_update: 2025-01-14
 ---
 
 **This article was last updated on January 14, 2025, to include best practices for using the TypeScript satisfies operator, a detailed table comparing satisfies with type annotations and assertions, and tips for avoiding common mistakes when validating nested object types, using utility types like Partial, and working with complex type structures.**

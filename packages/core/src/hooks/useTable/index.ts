@@ -160,6 +160,7 @@ export type useTableReturnType<
   result: {
     data: TData[];
     total: number | undefined;
+    [key: string]: any;
   };
   cursor: CursorPagination;
   hasNextPage: boolean;
@@ -596,6 +597,7 @@ export function useTable<
     createLinkForSyncWithLocation,
     overtime: queryResult.overtime,
     result: {
+      ...queryResult.result,
       data: queryResult.result?.data || EMPTY_ARRAY,
       total: queryResult.result?.total,
     },

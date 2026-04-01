@@ -81,7 +81,7 @@ There is a `title` field In the `categories` resource. To display the category `
 
 This hook allows us to fetch data for multiple records in a single request by providing the `id`'s of the related records. In this case, we need to provide the `id`'s of the blog posts categories. It is particularly useful when we need to fetch related data for multiple records.
 
-[Refer to the `useMany` documentation for more information &#8594](/core/docs/3.xx.xx/api-reference/core/data/hooks/useMany/)
+[Refer to the `useMany` documentation for more information &#8594](/core/docs/3.xx.xx/api-reference/core/hooks/data/useMany/)
 
 In this tutorial, each blog post record has a `category` field as below:
 

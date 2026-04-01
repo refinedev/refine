@@ -3,8 +3,9 @@ title: The Rise and Journey of Arc Browser - From The Browser Company to Atlassi
 description: Explore the complete journey of The Browser Company, Arc browser, and their innovative Dia tool - from startup vision to the recent Atlassian acquisition.
 slug: arc-browser
 authors: ozgur
-tags: [browser, arc, atlassian, tech-industry, innovation]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-10-08-arc-blog/arc-blog.png
+category: "Engineering"
+tags: [dev-tools]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-10-08-arc-blog/arc-blog-1.png
 hide_table_of_contents: false
 ---
 
@@ -15,18 +16,6 @@ The web browser market seemed settled by 2019. Chrome commanded over 60% market 
 Founded in 2019, The Browser Company spent six years building a team and product portfolio that culminated in Arc — which shipped publicly in 2022–2023 — and later the AI-first product Dia. Their journey from a small startup to being acquired by Atlassian in September 2025 offers insights into both the opportunities and challenges of competing against tech giants in mature markets.
 
 This article examines The Browser Company's complete timeline, analyzing their strategic decisions, technical innovations, market positioning, and the factors that led to their eventual acquisition. We'll explore both their successes and the obstacles they encountered along the way.
-
-Steps we'll cover:
-
-- [The Birth of The Browser Company](#the-birth-of-the-browser-company)
-- [The Vision Behind Arc Browser](#the-vision-behind-arc-browser)
-- [Arc's Revolutionary Features](#arcs-revolutionary-features)
-- [Building a Community](#building-a-community)
-- [The Introduction of Dia](#the-introduction-of-dia)
-- [Challenges and Growth](#challenges-and-growth)
-- [The Atlassian Acquisition](#the-atlassian-acquisition)
-- [What's Next for Arc and The Browser Company](#whats-next-for-arc-and-the-browser-company)
-- [Lessons from The Browser Company's Journey](#lessons-from-the-browser-companies-journey)
 
 ## The Birth of The Browser Company
 

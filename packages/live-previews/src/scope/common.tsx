@@ -3,6 +3,7 @@ import * as ReactRouter from "react-router";
 import type * as RefineCoreTypes from "@refinedev/core";
 import * as RefineReactRouter from "@refinedev/react-router";
 import * as RefineSimpleRest from "@refinedev/simple-rest";
+import { RefineRest } from "./refine-rest";
 import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as RefineReactTable from "@refinedev/react-table";
 import * as ReactHookForm from "react-hook-form";
@@ -151,6 +152,7 @@ export const RefineCommonScope = {
   },
   // Data
   RefineSimpleRest,
+  RefineRest,
   // Utilities
   setInitialRoutes,
   setRefineProps,

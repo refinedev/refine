@@ -1,21 +1,23 @@
 ---
-title: Create an admin panel with Supabase in 5 minutes
-description: Learn how Refine can help you create an admin panel with supabase in 5 minutes
-slug: supabase-refine-ai
+title: Create An Admin Panel With Supabase In 5 Minutes
+description: Build a powerful React-based admin panel with Supabase. Use Refine to automate your CRUD operations and connect your database effortlessly.
+slug: admin-panel-with-supabase
 authors: ozgur
-tags: [supabase, admin panel, AI, fast]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-ai-big.png
+category: "How To Build"
+tags: [admin-panel, supabase, backend]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/supabase-ai-big.png
 hide_table_of_contents: false
 is_featured: true
+last_update: 2026-02-02
 ---
 
 Admin panels are a must for a lot of businesses and teams. From small groups to larger organizations, being able to see all the information at a glance is incredibly helpful. The issue is how long it takes. You might have a lot of resources to wire up, dozens of pages to create and stitch together, and even if you’re using Refine, it can still take a while.
 
-That changed when I started using Refine with Supabase.
+This can, however, change if you start to use Refine with Supabase.
 
-With Refine, your days- or weeks-long admin panel project might be done in minutes.
+With Refine, your days, or weeks, long admin panel project might be done in minutes.
 
-![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.avif)
+![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/HR-gif.avif)
 
 _Demo: A finished Refine admin panel with resources like employees, expenses, and assets._
 
@@ -29,7 +31,7 @@ If you haven't used Supabase yet, think of it as a complete backend-as-a-service
 
 For admin panels specifically, Supabase is ideal because everything you need is already there. No spending a day setting up auth or figuring out how to generate API endpoints—it's done.
 
-![Supabase Database Schemas (2)](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/database-supabase.png)
+![Supabase Database Schemas (2)](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/database-supabase.png)
 
 ---
 
@@ -43,25 +45,17 @@ The code it generates isn't throw-away prototype code either—it's production-r
 
 ### Step 1: Create the project
 
-Here's where it gets fun. Head over to [refine.dev](https://refine.dev) and click "Connect to Supabase"
+Here's where it gets fun. Head over to [refine.dev](https://refine.dev/start) and click "Connect to Supabase"
 
-First, pick your UI framework. For this project, we'll use shadcn/ui, but you can choose whichever you prefer.
+Afterward, it's as simple as connecting your Supabase project. Afterwards, you just need to pick the project you want to use as your backend database.
 
-![AI Refine DevTools Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/choose-framework)
-
-Afterward, it's as simple as connecting your Supabase project to Refine—just choose the project you want to use as your backend.
-
-![develop.ai.refine.dev_v2_wizard_dy1oU4xf_backend](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/wizard-backend.png)
-
-If you don't have one, you can also use the sample HR API, which is an almost exact copy of what you'll see here.
-
-![DevTools Backend Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/backend-wizard-2.png)
+![develop.ai.refine.dev_v2_wizard_dy1oU4xf_backend](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/supabase-window-connect.webp)
 
 ### Step 2: Let the AI Analyze Your Database
 
-![DevTools Refine Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/wizard-3.png)
+![DevTools Refine Wizard](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/supabase-database.webp)
 
-After you connect to your Supabase database, click Continue and let AI analyze your schema. You can ask it questions or have it make changes, but for this walkthrough, we won't make any edits.
+After you connect to your Supabase database, click Continue and let AI analyze your schema.
 
 Give your tables a final look before pressing Continue again.
 
@@ -74,21 +68,21 @@ Give your tables a final look before pressing Continue again.
 
 Now that Refine has analyzed our schema thoroughly, we can start generating pages.
 
-![Refine project start screen](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/ai-example-1)
+![Refine project start screen](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/ai-example-1)
 _Start screen: "What would you like to do first?" with options like creating an Employee list page with a data table._
 
 You'll be greeted by a page like the one above, and the AI will offer a few options to start your project. You're free to use the chat to give your own instructions, but picking one of the suggested options is usually more than enough.
 
 For this guide, we'll first create the Employee list page, which appears at the top of the suggestions.
 
-![Generated Employee list page](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/ai-example-2)
+![Generated Employee list page](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/ai-example-2)
 _Generated Employee list with a data table alongside the chat and follow-up suggestions._
 
 In less than a minute, the AI generates the list resource page, and it's fully explorable. It's as simple as clicking a suggested action or typing what you want. AI will create pages from your resources, and if you don't like the layout or how the data is represented, just tweak it, Refine handles the wiring.
 
 If you simply go with the suggestions, you'll end up with a project like the one below in under an hour.
 
-![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/HR-gif.avif)
+![zzztweta](https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2025/2025-11-12-admin-panel-in-5-minutes/HR-gif.avif)
 
 _Demo: A working admin panel created with Refine in minutes._
 

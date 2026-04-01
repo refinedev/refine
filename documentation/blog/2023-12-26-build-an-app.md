@@ -3,8 +3,9 @@ title: How to Build a Web App in 10 steps in 2024
 description: In this article, we will explore some steps you can follow when building a web app.
 slug: how-to-build-a-web-app
 authors: joseph_mawa
-tags: [comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-26-build-an-app/social.webp
+category: "How To Build"
+tags: [tech-industry]
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-12-26-build-an-app/social.webp
 hide_table_of_contents: false
 ---
 

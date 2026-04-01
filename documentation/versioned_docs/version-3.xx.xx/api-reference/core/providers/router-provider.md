@@ -918,7 +918,7 @@ const routerProvider: IRouterProvider = {
 
 `routes` allow us to create custom pages in your **react** apps that have different paths than those defined by `resources`.
 
-[Refer to the Custom Pages documentation for detailed information. &#8594](/advanced-tutorials/custom-pages)
+[Refer to the Custom Pages documentation for detailed information. &#8594](/core/docs/3.xx.xx/advanced-tutorials/custom-pages)
 
 :::info
 
