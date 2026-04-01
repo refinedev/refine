@@ -284,7 +284,7 @@ export function useTable<
       }
     }
     defaultCurrentPage = isCursorPaginationEnabled
-      ? prefferedCurrentPage || 1
+      ? 1
       : parsedParams?.params?.currentPage ||
         parsedCurrentPage ||
         prefferedCurrentPage ||
@@ -301,7 +301,9 @@ export function useTable<
       parsedParams?.params?.filters ||
       (parsedFilters.length ? parsedFilters : preferredInitialFilters);
   } else {
-    defaultCurrentPage = prefferedCurrentPage || 1;
+    defaultCurrentPage = isCursorPaginationEnabled
+      ? 1
+      : prefferedCurrentPage || 1;
     defaultPageSize = prefferedPageSize || 10;
     defaultSorter = preferredInitialSorters;
     defaultFilter = preferredInitialFilters;
@@ -331,7 +333,8 @@ export function useTable<
   const [filters, setFilters] = useState<CrudFilter[]>(
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
-  const [currentPage, setCurrentPage] = useState<number>(defaultCurrentPage);
+  const [currentPage, setCurrentPageState] =
+    useState<number>(defaultCurrentPage);
   const [pageSize, setPageSizeState] = useState<number>(defaultPageSize);
   const [cursorState, setCursorState] = useState<CursorState>({
     current: initialCursorCurrent,
@@ -410,7 +413,7 @@ export function useTable<
 
   useEffect(() => {
     if (parsedParams?.params?.search === "") {
-      setCurrentPage(defaultCurrentPage);
+      setCurrentPageState(defaultCurrentPage);
       setPageSizeState(defaultPageSize);
       setSorters(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -473,9 +476,11 @@ export function useTable<
     cursorState.direction,
   ]);
 
+  const currentPageValue = isCursorPaginationEnabled ? 1 : currentPage;
+
   const paginationForQuery = isCursorPaginationEnabled
     ? {
-        currentPage,
+        currentPage: currentPageValue,
         pageSize,
         mode: pagination?.mode,
         ...(cursorState.current !== undefined
@@ -488,7 +493,7 @@ export function useTable<
           : {}),
       }
     : {
-        currentPage,
+        currentPage: currentPageValue,
         pageSize,
         mode: pagination?.mode,
       };
@@ -583,6 +588,18 @@ export function useTable<
     [preferredPermanentSorters, resetCursorState],
   );
 
+  const setCurrentPage: ReactSetState<useTableReturnType["currentPage"]> =
+    useCallback(
+      (value) => {
+        if (isCursorPaginationEnabled) {
+          return;
+        }
+
+        setCurrentPageState(value);
+      },
+      [isCursorPaginationEnabled],
+    );
+
   const setPageSize: ReactSetState<useTableReturnType["pageSize"]> =
     useCallback(
       (value) => {
@@ -597,7 +614,7 @@ export function useTable<
 
   const goToNextPage = useCallback(() => {
     if (!isCursorPaginationEnabled) {
-      setCurrentPage((prev) => prev + 1);
+      setCurrentPageState((prev) => prev + 1);
       return;
     }
 
@@ -611,7 +628,7 @@ export function useTable<
 
   const goToPreviousPage = useCallback(() => {
     if (!isCursorPaginationEnabled) {
-      setCurrentPage((prev) => Math.max(1, prev - 1));
+      setCurrentPageState((prev) => Math.max(1, prev - 1));
       return;
     }
 
@@ -629,11 +646,11 @@ export function useTable<
 
   const hasNextPage = isCursorPaginationEnabled
     ? nextCursor !== undefined
-    : currentPage < pageCount;
+    : currentPageValue < pageCount;
 
   const hasPreviousPage = isCursorPaginationEnabled
     ? previousCursor !== undefined
-    : currentPage > 1;
+    : currentPageValue > 1;
 
   const cursor: UseTableCursorType = {
     next: nextCursor,
@@ -650,7 +667,7 @@ export function useTable<
     setSorters: setSortWithUnion,
     filters,
     setFilters: setFiltersFn,
-    currentPage,
+    currentPage: currentPageValue,
     setCurrentPage,
     pageSize,
     setPageSize,

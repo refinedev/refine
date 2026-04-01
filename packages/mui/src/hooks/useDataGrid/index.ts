@@ -294,6 +294,12 @@ export function useDataGrid<
     "paginationModel" | "onPaginationModelChange"
   > &
     Required<Pick<DataGridProps, "paginationMode">> => {
+    if (isCursorPaginationEnabled) {
+      return {
+        paginationMode: "server" as const,
+      };
+    }
+
     if (isPaginationEnabled) {
       return {
         paginationMode: "server" as const,

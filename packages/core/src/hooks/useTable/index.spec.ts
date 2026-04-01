@@ -752,6 +752,46 @@ describe("useTable Cursor Pagination", () => {
     );
   });
 
+  it("should keep currentPage fixed in cursor mode", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      total: 10,
+      cursor: { next: "cursor_page_2" },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: { mode: "cursor", pageSize: 1, currentPage: 5 },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.currentPage).toBe(1);
+
+    act(() => {
+      result.current.setCurrentPage(3);
+    });
+
+    expect(result.current.currentPage).toBe(1);
+    expect(mockGetList).toHaveBeenCalledTimes(1);
+  });
+
   it("should ignore location currentPage in cursor mode and sync pageSize", async () => {
     const mockGetList = vi.fn().mockResolvedValue({
       data: [{ id: 1 }],

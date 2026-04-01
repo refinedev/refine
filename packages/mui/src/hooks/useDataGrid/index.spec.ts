@@ -90,6 +90,36 @@ describe("useDataGrid Hook", () => {
     },
   );
 
+  it("when pagination mode is cursor, should hide offset pagination props", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          pagination: {
+            mode: "cursor",
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    expect(result.current.currentPage).toBe(1);
+    expect(result.current.dataGridProps).toEqual(
+      expect.objectContaining({
+        paginationMode: "server",
+        hideFooterPagination: true,
+        slots: expect.objectContaining({
+          footer: expect.any(Function),
+        }),
+      }),
+    );
+    expect(result.current.dataGridProps).toEqual(
+      expect.not.objectContaining({
+        paginationModel: expect.anything(),
+      }),
+    );
+  });
+
   it("when pagination mode is off, should not set pagination props in dataGridProps", async () => {
     const { result } = renderHook(
       () =>
