@@ -55,6 +55,14 @@ export const routerProvider: RouterProvider = {
           urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
         }
 
+        if (typeof urlQuery.after === "string") {
+          urlQuery.after = encodeURIComponent(urlQuery.after);
+        }
+
+        if (typeof urlQuery.before === "string") {
+          urlQuery.before = encodeURIComponent(urlQuery.before);
+        }
+
         const hasUrlQuery = Object.keys(urlQuery).length > 0;
 
         /** Get hash */

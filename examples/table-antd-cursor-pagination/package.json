@@ -26,9 +26,11 @@
     "@refinedev/antd": "^6.0.3",
     "@refinedev/cli": "^2.16.50",
     "@refinedev/core": "^5.0.8",
+    "@refinedev/graphql": "^8.0.1",
     "@refinedev/react-router": "^2.0.3",
+    "@urql/core": "^5.0.6",
     "antd": "^5.23.0",
-    "axios": "^1.11.0",
+    "graphql-tag": "^2.12.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.0.2"

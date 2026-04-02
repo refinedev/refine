@@ -165,6 +165,28 @@ describe("definitions/table", () => {
     });
   });
 
+  it("should stringify and parse URL cursor params safely", () => {
+    const cursorUrl =
+      "https://api.github.com/repositories/331293626/commits?per_page=5&page=1";
+
+    const url = stringifyTableParams({
+      cursor: {
+        current: cursorUrl,
+        direction: "before",
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(url).toBe(
+      "before=https%3A%2F%2Fapi.github.com%2Frepositories%2F331293626%2Fcommits%3Fper_page%3D5%26page%3D1",
+    );
+    expect(parseTableParams(`?${url}`)).toMatchObject({
+      parsedCursor: cursorUrl,
+      parsedCursorDirection: "before",
+    });
+  });
+
   it("should parse numeric zero cursor values from query objects", () => {
     expect(
       parseTableParamsFromQuery({

@@ -27,6 +27,14 @@ const getParsedCursorValue = (value: unknown): CursorValue | undefined => {
   return undefined;
 };
 
+const getStringifiedCursorValue = (value: CursorValue) => {
+  if (typeof value === "string") {
+    return encodeURIComponent(value);
+  }
+
+  return value;
+};
+
 export const parseTableParams = (url: string) => {
   const { currentPage, pageSize, sorters, sorter, filters, after, before } =
     qs.parse(
@@ -106,7 +114,9 @@ export const stringifyTableParams = (params: {
 
   // Build cursor params: ?after=X or ?before=X
   const cursorParams =
-    cursor?.current !== undefined ? { [cursor.direction]: cursor.current } : {};
+    cursor?.current !== undefined
+      ? { [cursor.direction]: getStringifiedCursorValue(cursor.current) }
+      : {};
 
   const queryString = qs.stringify(
     {

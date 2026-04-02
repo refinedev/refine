@@ -11,6 +11,7 @@ import type {
   CreateParams,
   UpdateParams,
   DeleteOneParams,
+  Pagination,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import { singular } from "pluralize";
@@ -55,7 +56,11 @@ export type GraphQLDataProviderOptions = {
     getTotalCount?: (
       response: OperationResult<any>,
       params: GetListParams,
-    ) => number;
+    ) => number | undefined;
+    getCursor?: (
+      response: OperationResult<any>,
+      params: GetListParams,
+    ) => Pagination["cursor"] | undefined;
     buildVariables?: (params: GetListParams) => Record<string, any>;
   };
   getMany?: {
@@ -189,6 +194,8 @@ export const defaultOptions = {
     getTotalCount: (response: OperationResult<any>, params: GetListParams) => {
       return response.data?.[params.resource].totalCount;
     },
+    getCursor: (_response: OperationResult<any>, _params: GetListParams) =>
+      undefined,
     buildVariables: (params: GetListParams) => {
       return {
         sorting: buildSorters(params.sorters),

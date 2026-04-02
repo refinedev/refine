@@ -16,7 +16,7 @@ import { ConfigProvider, App as AntdApp } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
-import { dataProvider } from "./rest-data-provider";
+import { dataProvider } from "./providers/data";
 import { PostList } from "./pages/posts";
 
 const App: React.FC = () => {
@@ -26,11 +26,11 @@ const App: React.FC = () => {
       <ConfigProvider theme={RefineThemes.Blue}>
         <AntdApp>
           <Refine
-            dataProvider={dataProvider("https://api.github.com")}
+            dataProvider={dataProvider}
             routerProvider={routerProvider}
             resources={[
               {
-                name: "repos/refinedev/refine/commits",
+                name: "commits",
                 list: "/repos/refinedev/refine/commits",
                 meta: {
                   label: "Commits",
@@ -53,9 +53,7 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={
-                    <NavigateToResource resource="repos/refinedev/refine/commits" />
-                  }
+                  element={<NavigateToResource resource="commits" />}
                 />
 
                 <Route
