@@ -304,8 +304,11 @@ export const useDeleteMany = <
             );
 
             return {
+              ...previous,
               data,
-              total: previous.total - 1,
+              ...(previous.total !== undefined
+                ? { total: previous.total - 1 }
+                : {}),
             };
           },
         );

@@ -1,7 +1,17 @@
 import axios, { type AxiosInstance } from "axios";
-import type { DataProvider } from "@refinedev/core";
+import type { BaseRecord, DataProvider, GetListParams } from "@refinedev/core";
+import { getLinkCursor, getRequestUrl, type GitHubCommit } from "./utils";
 
-const axiosInstance = axios.create();
+const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
+const axiosInstance = axios.create(
+  githubToken
+    ? {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+        },
+      }
+    : undefined,
+);
 
 export const dataProvider = (
   apiUrl: string,
@@ -10,32 +20,34 @@ export const dataProvider = (
   Required<DataProvider>,
   "createMany" | "updateMany" | "deleteMany"
 > => ({
-  getList: async ({ resource, pagination }) => {
-    let url = `${apiUrl}/${resource}?per_page=${pagination?.pageSize || 10}`;
+  getList: async <TData extends BaseRecord = BaseRecord>({
+    resource,
+    pagination,
+  }: GetListParams) => {
+    const pageSize = pagination?.pageSize || 10;
+    const requestUrl = getRequestUrl({
+      apiUrl,
+      resource,
+      pageSize,
+      cursor: pagination?.cursor,
+    });
 
-    if (pagination?.cursor?.current !== undefined) {
-      const direction = pagination.cursor.direction ?? "after";
-      const cursorParam = direction === "before" ? "since" : "until";
-
-      url = `${url}&${cursorParam}=${pagination.cursor.current}`;
-    }
-
-    const { data } = await httpClient.get(url);
-
-    const firstItem = data[0];
-    const lastItem = data[data.length - 1];
-    const previousCursor =
-      pagination?.cursor?.current !== undefined
-        ? firstItem?.commit?.committer?.date
-        : undefined;
-    const nextCursor = lastItem?.commit?.committer?.date;
+    // Fetch the current page.
+    const response = await httpClient.get<GitHubCommit[]>(requestUrl);
+    const nextCursor = getLinkCursor({
+      linkHeader: response.headers.link,
+      rel: "next",
+    });
+    const previousCursor = getLinkCursor({
+      linkHeader: response.headers.link,
+      rel: "prev",
+    });
 
     return {
-      data,
-      total: 200,
+      data: response.data as TData[],
       cursor: {
-        next: nextCursor,
-        prev: previousCursor,
+        ...(nextCursor ? { next: nextCursor } : {}),
+        ...(previousCursor ? { prev: previousCursor } : {}),
       },
     };
   },

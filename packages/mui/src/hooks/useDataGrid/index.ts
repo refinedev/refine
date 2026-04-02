@@ -206,9 +206,9 @@ export function useDataGrid<
 
   const { data, isFetched, isLoading } = tableQuery;
 
-  const rowCountRef = useRef(data?.total || 0);
+  const rowCountRef = useRef(data?.total ?? 0);
   const rowCount = useMemo(() => {
-    if (data?.total) {
+    if (data?.total !== undefined) {
       rowCountRef.current = data.total;
     }
     return rowCountRef.current;
@@ -220,8 +220,6 @@ export function useDataGrid<
     (sortersFromProp?.mode || "server") === "server";
   const isPaginationEnabled = (pagination?.mode ?? "server") !== "off";
   const isCursorPaginationEnabled = pagination?.mode === "cursor";
-  const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
-    cursor;
 
   const preferredPermanentSorters =
     sortersFromProp?.permanent ?? defaultPermanentSort;
@@ -381,8 +379,8 @@ export function useDataGrid<
           Button,
           {
             size: "small",
-            onClick: goToPreviousPage,
-            disabled: !hasPreviousPage,
+            onClick: cursor.goToPreviousPage,
+            disabled: !cursor.hasPreviousPage,
           },
           "Previous",
         ),
@@ -390,8 +388,8 @@ export function useDataGrid<
           Button,
           {
             size: "small",
-            onClick: goToNextPage,
-            disabled: !hasNextPage,
+            onClick: cursor.goToNextPage,
+            disabled: !cursor.hasNextPage,
           },
           "Next",
         ),
@@ -399,10 +397,10 @@ export function useDataGrid<
     };
   }, [
     isCursorPaginationEnabled,
-    goToPreviousPage,
-    goToNextPage,
-    hasPreviousPage,
-    hasNextPage,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
   ]);
 
   return {

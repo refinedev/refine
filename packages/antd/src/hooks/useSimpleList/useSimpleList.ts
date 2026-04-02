@@ -112,8 +112,6 @@ export const useSimpleList = <
   const breakpoint = Grid.useBreakpoint();
 
   const liveMode = useLiveMode(liveModeFromProp);
-  const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
-    cursor;
 
   const [form] = Form.useForm<TSearchVariables>();
 
@@ -154,8 +152,8 @@ export const useSimpleList = <
         Button,
         {
           size: "small",
-          disabled: !hasPreviousPage,
-          onClick: goToPreviousPage,
+          disabled: !cursor.hasPreviousPage,
+          onClick: cursor.goToPreviousPage,
         },
         "Previous",
       ),
@@ -163,18 +161,18 @@ export const useSimpleList = <
         Button,
         {
           size: "small",
-          disabled: !hasNextPage,
-          onClick: goToNextPage,
+          disabled: !cursor.hasNextPage,
+          onClick: cursor.goToNextPage,
         },
         "Next",
       ),
     );
   }, [
     isCursorPaginationEnabled,
-    hasPreviousPage,
-    hasNextPage,
-    goToPreviousPage,
-    goToNextPage,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
   ]);
 
   const antdPagination = useMemo((): false | PaginationConfig => {

@@ -286,6 +286,76 @@ describe("useList Hook", () => {
     });
   });
 
+  it("should error when `server` mode response omits total", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "server",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isError).toBeTruthy();
+    });
+
+    expect(result.current.query.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining("did not return `total`"),
+    });
+  });
+
+  it("should error when client mode response omits total", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "client",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isError).toBeTruthy();
+    });
+
+    expect(result.current.query.error).toMatchObject({
+      statusCode: 400,
+      message: expect.stringContaining("did not return `total`"),
+    });
+  });
+
   it("data should be sliced when pagination mode is client", async () => {
     const { result } = renderHook(
       () =>
@@ -947,6 +1017,7 @@ describe("useList Hook", () => {
     it("should override `queryKey` with `queryOptions.queryKey`", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1031,6 +1102,7 @@ describe("useList Hook", () => {
   it("should support deprecated `config` property", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -1078,9 +1150,11 @@ describe("useList Hook", () => {
   it("should select correct dataProviderName", async () => {
     const getListDefaultMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
     const getListFooMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -1130,6 +1204,7 @@ describe("useList Hook", () => {
   it("should get correct `meta` of related resource", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -1174,9 +1249,11 @@ describe("useList Hook", () => {
     it("should select correct dataProviderName", async () => {
       const getListDefaultMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
       const getListFooMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1227,6 +1304,7 @@ describe("useList Hook", () => {
     it("should create queryKey with `identifier`", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1274,6 +1352,7 @@ describe("useList Hook", () => {
     it("should get correct `meta` of related resource", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1373,6 +1452,7 @@ describe("useList Hook", () => {
   it("should infer resource from the route", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(() => useList(), {

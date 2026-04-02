@@ -121,8 +121,6 @@ export const useTable = <
   });
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
-    cursor;
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
   const isCursorPaginationEnabled = paginationFromProp?.mode === "cursor";
   const preferredInitialFilters = filtersFromProp?.initial;
@@ -203,15 +201,15 @@ export const useTable = <
           style: {
             display: "flex",
             justifyContent: "flex-end",
-            padding: "16px",
+            padding: "8px",
           },
         },
         createElement(
           Button,
           {
             size: "small",
-            disabled: !hasPreviousPage,
-            onClick: goToPreviousPage,
+            disabled: !cursor.hasPreviousPage,
+            onClick: cursor.goToPreviousPage,
           },
           "Previous",
         ),
@@ -219,18 +217,18 @@ export const useTable = <
           Button,
           {
             size: "small",
-            disabled: !hasNextPage,
-            onClick: goToNextPage,
+            disabled: !cursor.hasNextPage,
+            onClick: cursor.goToNextPage,
           },
           "Next",
         ),
       );
   }, [
     isCursorPaginationEnabled,
-    hasPreviousPage,
-    hasNextPage,
-    goToPreviousPage,
-    goToNextPage,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
   ]);
 
   const antdPagination = useMemo((): false | TablePaginationConfig => {

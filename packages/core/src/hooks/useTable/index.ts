@@ -605,48 +605,45 @@ export function useTable<
       [resetCursorState],
     );
 
-  const nextCursor = queryResult.result.cursor?.next;
-  const previousCursor = queryResult.result.cursor?.prev;
+  const nextCursor = isCursorPaginationEnabled
+    ? queryResult.result.cursor?.next
+    : undefined;
+  const previousCursor = isCursorPaginationEnabled
+    ? queryResult.result.cursor?.prev
+    : undefined;
 
   const goToNextPage = useCallback(() => {
-    if (!isCursorPaginationEnabled) {
-      setCurrentPageState((prev) => prev + 1);
+    if (!isCursorPaginationEnabled || nextCursor === undefined) {
       return;
     }
 
-    if (nextCursor !== undefined) {
-      setCursorState({
-        current: nextCursor,
-        direction: "after",
-      });
-    }
+    setCursorState({
+      current: nextCursor,
+      direction: "after",
+    });
   }, [isCursorPaginationEnabled, nextCursor]);
 
   const goToPreviousPage = useCallback(() => {
-    if (!isCursorPaginationEnabled) {
-      setCurrentPageState((prev) => Math.max(1, prev - 1));
+    if (!isCursorPaginationEnabled || previousCursor === undefined) {
       return;
     }
 
-    if (previousCursor !== undefined) {
-      setCursorState({
-        current: previousCursor,
-        direction: "before",
-      });
-    }
+    setCursorState({
+      current: previousCursor,
+      direction: "before",
+    });
   }, [isCursorPaginationEnabled, previousCursor]);
 
-  const pageCount = pageSize
-    ? Math.ceil((queryResult.result?.total ?? 0) / pageSize)
-    : 1;
+  const pageCount = isCursorPaginationEnabled
+    ? 1
+    : pageSize
+      ? Math.ceil((queryResult.result?.total ?? 0) / pageSize)
+      : 1;
 
-  const hasNextPage = isCursorPaginationEnabled
-    ? nextCursor !== undefined
-    : currentPageValue < pageCount;
+  const hasNextPage = isCursorPaginationEnabled && nextCursor !== undefined;
 
-  const hasPreviousPage = isCursorPaginationEnabled
-    ? previousCursor !== undefined
-    : currentPageValue > 1;
+  const hasPreviousPage =
+    isCursorPaginationEnabled && previousCursor !== undefined;
 
   const cursor: UseTableCursorType = {
     next: nextCursor,

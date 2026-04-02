@@ -294,6 +294,16 @@ export const useList = <
           );
         }
 
+        if (
+          (prefferedPagination.mode === "server" ||
+            prefferedPagination.mode === "client") &&
+          response.total === undefined
+        ) {
+          throw createPaginationModeError(
+            `useList: \`pagination.mode\` is "${prefferedPagination.mode}" but \`dataProvider.getList\` did not return \`total\`. Return a \`total\` value or use \`pagination.mode: "cursor"\`.`,
+          );
+        }
+
         return response;
       });
     },

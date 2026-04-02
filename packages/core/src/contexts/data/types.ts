@@ -341,7 +341,7 @@ export interface CustomResponse<TData = BaseRecord> {
 }
 export interface GetListResponse<TData = BaseRecord> {
   data: TData[];
-  total: number;
+  total?: number;
   cursor?: Pagination["cursor"];
   [key: string]: any;
 }
