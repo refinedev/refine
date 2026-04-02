@@ -120,14 +120,12 @@ export const useTable = <
     form: form,
   });
   const liveMode = useLiveMode(liveModeFromProp);
+
   const { hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage } =
     cursor;
-
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
   const isCursorPaginationEnabled = paginationFromProp?.mode === "cursor";
-
   const preferredInitialFilters = filtersFromProp?.initial;
-
   const { data, isFetched, isLoading } = tableQuery;
 
   React.useEffect(() => {
