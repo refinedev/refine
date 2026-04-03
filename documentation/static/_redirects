@@ -3,8 +3,8 @@
 # so current deploy assets are served normally.
 # Google treats 410 as "permanently removed" and drops the URL from its crawl queue
 # much faster than with a 404.
-/assets/js/_ /gone.js 410
-/assets/css/_ /gone.css 410
+/assets/js/* /gone.js 410
+/assets/css/* /gone.css 410
 
 /advanced-tutorials/mutation-mode.md /core/docs/advanced-tutorials/mutation-mode/ 301
 
