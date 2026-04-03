@@ -1,3 +1,11 @@
+# Return 410 Gone for old hashed assets that no longer exist after a new deploy.
+# Without the trailing "!" (force), Netlify only applies this when the file is NOT found,
+# so current deploy assets are served normally.
+# Google treats 410 as "permanently removed" and drops the URL from its crawl queue
+# much faster than with a 404.
+/assets/js/_ /gone.js 410
+/assets/css/_ /gone.css 410
+
 /advanced-tutorials/mutation-mode.md /core/docs/advanced-tutorials/mutation-mode/ 301
 
 /blog/2024/01/26/git-stash/ /blog/git-stash/ 301
