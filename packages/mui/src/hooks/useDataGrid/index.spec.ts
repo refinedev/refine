@@ -368,4 +368,142 @@ describe("useDataGrid Hook", () => {
       },
     ]);
   });
+
+  it("should debounce server-side filter updates with the default delay", async () => {
+    vi.useFakeTimers();
+
+    const setFilters = vi.fn();
+    const setCurrentPage = vi.fn();
+    const useTableSpy = vi.spyOn(core, "useTable").mockReturnValue({
+      tableQuery: {
+        data: { data: [], total: 0 },
+        isFetched: true,
+        isLoading: false,
+      },
+      currentPage: 1,
+      setCurrentPage,
+      pageSize: 25,
+      setPageSize: vi.fn(),
+      filters: [],
+      setFilters,
+      sorters: [],
+      setSorters: vi.fn(),
+      pageCount: 0,
+      createLinkForSyncWithLocation: vi.fn(),
+      overtime: {},
+      result: {},
+    } as any);
+
+    const { result, unmount } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange({
+        items: [
+          {
+            field: "title",
+            operator: "contains",
+            value: "john",
+          },
+        ],
+      } as any);
+    });
+
+    expect(setFilters).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(499);
+    });
+
+    expect(setFilters).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+
+    expect(setFilters).toHaveBeenCalledWith([
+      {
+        field: "title",
+        operator: "contains",
+        value: "john",
+      },
+    ]);
+    expect(setCurrentPage).toHaveBeenCalledWith(1);
+    expect(result.current.dataGridProps.filterDebounceMs).toBe(0);
+
+    unmount();
+    useTableSpy.mockRestore();
+    vi.useRealTimers();
+  });
+
+  it("should respect custom filterDebounceMs for server-side filtering", async () => {
+    vi.useFakeTimers();
+
+    const setFilters = vi.fn();
+    const useTableSpy = vi.spyOn(core, "useTable").mockReturnValue({
+      tableQuery: {
+        data: { data: [], total: 0 },
+        isFetched: true,
+        isLoading: false,
+      },
+      currentPage: 1,
+      setCurrentPage: vi.fn(),
+      pageSize: 25,
+      setPageSize: vi.fn(),
+      filters: [],
+      setFilters,
+      sorters: [],
+      setSorters: vi.fn(),
+      pageCount: 0,
+      createLinkForSyncWithLocation: vi.fn(),
+      overtime: {},
+      result: {},
+    } as any);
+
+    const { result, unmount } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filterDebounceMs: 1000,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange({
+        items: [
+          {
+            field: "title",
+            operator: "contains",
+            value: "john",
+          },
+        ],
+      } as any);
+    });
+
+    act(() => {
+      vi.advanceTimersByTime(999);
+    });
+
+    expect(setFilters).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+
+    expect(setFilters).toHaveBeenCalledTimes(1);
+
+    unmount();
+    useTableSpy.mockRestore();
+    vi.useRealTimers();
+  });
 });
