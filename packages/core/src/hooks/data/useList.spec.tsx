@@ -214,6 +214,8 @@ describe("useList Hook", () => {
   });
 
   it("should error when cursor mode receives offset response", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
     const { result } = renderHook(
       () =>
         useList({
@@ -240,16 +242,19 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.query.isError).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.query.error).toMatchObject({
-      statusCode: 400,
-      message: expect.stringContaining('`pagination.mode` is "cursor"'),
-    });
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining('`pagination.mode` is "cursor"'),
+    );
+
+    consoleSpy.mockRestore();
   });
 
   it("should error when server mode receives cursor response", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
     const { result } = renderHook(
       () =>
         useList({
@@ -277,16 +282,19 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.query.isError).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.query.error).toMatchObject({
-      statusCode: 400,
-      message: expect.stringContaining('`pagination.mode` is "server"'),
-    });
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining('`pagination.mode` is "server"'),
+    );
+
+    consoleSpy.mockRestore();
   });
 
   it("should error when `server` mode response omits total", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
     const { result } = renderHook(
       () =>
         useList({
@@ -312,16 +320,19 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.query.isError).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.query.error).toMatchObject({
-      statusCode: 400,
-      message: expect.stringContaining("did not return `total`"),
-    });
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("did not return `total`"),
+    );
+
+    consoleSpy.mockRestore();
   });
 
   it("should error when client mode response omits total", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
     const { result } = renderHook(
       () =>
         useList({
@@ -347,13 +358,132 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.query.isError).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.query.error).toMatchObject({
-      statusCode: 400,
-      message: expect.stringContaining("did not return `total`"),
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("did not return `total`"),
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  it("should succeed when cursor mode receives cursor response", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 10,
+            cursor: {
+              current: "abc",
+              direction: "after",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }],
+                cursor: { next: "def", prev: "xyz" },
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
+
+    expect(result.current.query.data?.cursor).toEqual({
+      next: "def",
+      prev: "xyz",
+    });
+  });
+
+  it("should not error when cursor mode response has no total", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 5,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }],
+                cursor: { next: "cursor_2" },
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query.data?.data).toHaveLength(1);
+  });
+
+  it("should pass cursor direction 'before' to data provider", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      cursor: {},
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "prev_cursor",
+              direction: "before",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: expect.objectContaining({
+          mode: "cursor",
+          cursor: {
+            current: "prev_cursor",
+            direction: "before",
+          },
+        }),
+      }),
+    );
   });
 
   it("data should be sliced when pagination mode is client", async () => {

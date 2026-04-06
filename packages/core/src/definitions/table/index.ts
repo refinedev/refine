@@ -11,6 +11,7 @@ import type {
   CursorValue,
   SortOrder,
 } from "../../contexts/data/types";
+import { parseCursorFromParams } from "../helpers/handlePaginationParams";
 
 /**
  * Depth limit for `qs.parse`. Deeply nested conditional filters
@@ -18,14 +19,6 @@ import type {
  * We use 10 to leave comfortable headroom.
  */
 export const QS_PARSE_DEPTH = 10;
-
-const getParsedCursorValue = (value: unknown): CursorValue | undefined => {
-  if (typeof value === "string" || typeof value === "number") {
-    return value;
-  }
-
-  return undefined;
-};
 
 const getStringifiedCursorValue = (value: CursorValue) => {
   if (typeof value === "string") {
@@ -42,16 +35,10 @@ export const parseTableParams = (url: string) => {
       { depth: QS_PARSE_DEPTH },
     );
 
-  let parsedCursor: CursorValue | undefined;
-  let parsedCursorDirection: CursorDirection = "after";
-
-  if (after !== undefined) {
-    parsedCursor = getParsedCursorValue(after);
-    parsedCursorDirection = "after";
-  } else if (before !== undefined) {
-    parsedCursor = getParsedCursorValue(before);
-    parsedCursorDirection = "before";
-  }
+  const { parsedCursor, parsedCursorDirection } = parseCursorFromParams(
+    after,
+    before,
+  );
 
   return {
     parsedCurrentPage: currentPage && Number(currentPage),
@@ -67,16 +54,10 @@ export const parseTableParamsFromQuery = (params: any) => {
   const { currentPage, pageSize, sorters, sorter, filters, after, before } =
     params;
 
-  let parsedCursor: CursorValue | undefined;
-  let parsedCursorDirection: CursorDirection = "after";
-
-  if (after !== undefined) {
-    parsedCursor = getParsedCursorValue(after);
-    parsedCursorDirection = "after";
-  } else if (before !== undefined) {
-    parsedCursor = getParsedCursorValue(before);
-    parsedCursorDirection = "before";
-  }
+  const { parsedCursor, parsedCursorDirection } = parseCursorFromParams(
+    after,
+    before,
+  );
 
   return {
     parsedCurrentPage: currentPage && Number(currentPage),

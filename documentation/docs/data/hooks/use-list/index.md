@@ -161,7 +161,12 @@ useList({
 
 #### mode
 
-This property can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
+This property can be `"off"`, `"client"`, `"server"` or `"cursor"`. It is used to determine whether to use server-side pagination or not.
+
+- **"server"**: Pagination is done on the server side using `currentPage` and `pageSize`.
+- **"client"**: All records are fetched and paginated on the client side.
+- **"off"**: Pagination is disabled. All records will be fetched.
+- **"cursor"**: Cursor-based pagination. The data provider's `getList` response must include a `cursor` object with `next` and/or `prev` values.
 
 ```tsx
 useList({

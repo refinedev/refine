@@ -752,4 +752,101 @@ describe("definitions/table", () => {
     expect(stringified).not.toContain("[operator]");
     expect(stringified).not.toContain("[value]");
   });
+
+  it("should stringify cursor with other params combined", () => {
+    const url = stringifyTableParams({
+      cursor: {
+        current: "cursor_abc",
+        direction: "after",
+      },
+      pagination: { currentPage: 1, pageSize: 20 },
+      sorters: [{ field: "id", order: "desc" }],
+      filters: [],
+    });
+
+    expect(url).toContain("after=cursor_abc");
+    expect(url).toContain("pageSize=20");
+    expect(url).toContain("sorters");
+  });
+
+  it("should stringify before cursor direction", () => {
+    const url = stringifyTableParams({
+      cursor: {
+        current: "cursor_xyz",
+        direction: "before",
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(url).toBe("before=cursor_xyz");
+    expect(url).not.toContain("after=");
+  });
+
+  it("should not stringify cursor when current is undefined", () => {
+    const url = stringifyTableParams({
+      cursor: {
+        current: undefined,
+        direction: "after",
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(url).not.toContain("after=");
+    expect(url).not.toContain("before=");
+  });
+
+  it("parseTableParams should handle after param with no other params", () => {
+    const result = parseTableParams("?after=my_cursor");
+    expect(result.parsedCursor).toBe("my_cursor");
+    expect(result.parsedCursorDirection).toBe("after");
+  });
+
+  it("parseTableParams should handle before param", () => {
+    const result = parseTableParams("?before=prev_cursor");
+    expect(result.parsedCursor).toBe("prev_cursor");
+    expect(result.parsedCursorDirection).toBe("before");
+  });
+
+  it("parseTableParamsFromQuery should handle string cursor values", () => {
+    const result = parseTableParamsFromQuery({
+      after: "string_cursor",
+    });
+    expect(result.parsedCursor).toBe("string_cursor");
+    expect(result.parsedCursorDirection).toBe("after");
+  });
+
+  it("parseTableParamsFromQuery should handle before key", () => {
+    const result = parseTableParamsFromQuery({
+      before: "prev_string_cursor",
+    });
+    expect(result.parsedCursor).toBe("prev_string_cursor");
+    expect(result.parsedCursorDirection).toBe("before");
+  });
+
+  it("parseTableParamsFromQuery should default to after when no cursor params", () => {
+    const result = parseTableParamsFromQuery({
+      pageSize: 10,
+    });
+    expect(result.parsedCursor).toBeUndefined();
+    expect(result.parsedCursorDirection).toBe("after");
+  });
+
+  it("should stringify and roundtrip numeric cursor value 0", () => {
+    const url = stringifyTableParams({
+      cursor: {
+        current: 0,
+        direction: "after",
+      },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(url).toBe("after=0");
+
+    const parsed = parseTableParams(`?${url}`);
+    // Note: parseTableParams parses from URL string, so 0 may come as string "0"
+    expect(parsed.parsedCursorDirection).toBe("after");
+  });
 });

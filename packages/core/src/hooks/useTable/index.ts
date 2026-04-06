@@ -30,6 +30,7 @@ import type {
   CrudFilter,
   CrudSort,
   CursorDirection,
+  CursorResponse,
   CursorValue,
   GetListResponse,
   HttpError,
@@ -155,10 +156,7 @@ type CursorState = {
   direction: CursorDirection;
 };
 
-type UseTableCursorType = Pick<
-  NonNullable<Pagination["cursor"]>,
-  "next" | "prev"
-> & {
+export type UseTableCursorType = Pick<CursorResponse, "next" | "prev"> & {
   hasNextPage: boolean;
   hasPreviousPage: boolean;
   goToNextPage: () => void;
@@ -274,15 +272,15 @@ export function useTable<
   let defaultSorter: CrudSort[] | undefined;
   let defaultFilter: CrudFilter[] | undefined;
   let initialCursorCurrent = preferredCursor?.current;
-  let initialCursorDirection = preferredCursor?.direction ?? "after";
+  let initialCursorDirection: CursorDirection =
+    preferredCursor?.direction ?? "after";
 
   if (syncWithLocation) {
-    if (isCursorPaginationEnabled) {
-      if (parsedCursor !== undefined) {
-        initialCursorCurrent = parsedCursor;
-        initialCursorDirection = parsedCursorDirection;
-      }
+    if (isCursorPaginationEnabled && parsedCursor !== undefined) {
+      initialCursorCurrent = parsedCursor;
+      initialCursorDirection = parsedCursorDirection;
     }
+
     defaultCurrentPage = isCursorPaginationEnabled
       ? 1
       : parsedParams?.params?.currentPage ||
@@ -588,6 +586,11 @@ export function useTable<
     useCallback(
       (value) => {
         if (isCursorPaginationEnabled) {
+          if (process.env.NODE_ENV !== "production") {
+            console.warn(
+              'useTable: `setCurrentPage` has no effect when `pagination.mode` is "cursor". Use `cursor.goToNextPage` / `cursor.goToPreviousPage` instead.',
+            );
+          }
           return;
         }
 

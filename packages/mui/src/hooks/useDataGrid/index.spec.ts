@@ -120,6 +120,81 @@ describe("useDataGrid Hook", () => {
     );
   });
 
+  it("cursor mode should expose cursor navigation state", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      cursor: { next: "cursor_page_2" },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
+    expect(result.current.cursor.next).toBe("cursor_page_2");
+    expect(result.current.dataGridProps.hideFooterPagination).toBe(true);
+    expect(result.current.dataGridProps.slots?.footer).toBeDefined();
+  });
+
+  it("cursor mode footer slot should be a component function", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      cursor: { next: "cursor_page_2" },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    const footer = result.current.dataGridProps.slots?.footer;
+    expect(typeof footer).toBe("function");
+  });
+
   it("when pagination mode is off, should not set pagination props in dataGridProps", async () => {
     const { result } = renderHook(
       () =>

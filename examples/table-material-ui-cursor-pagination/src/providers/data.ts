@@ -1,4 +1,4 @@
-import type { GetListParams, Pagination } from "@refinedev/core";
+import type { CursorResponse, GetListParams } from "@refinedev/core";
 import createDataProvider, {
   buildPagination,
   defaultOptions,
@@ -121,7 +121,7 @@ const getHistoryConnection = (
 const getCursor = (
   response: OperationResult<GitHubHistoryResponse>,
   params: GetListParams,
-): Pagination["cursor"] | undefined => {
+): CursorResponse | undefined => {
   const pageInfo = getHistoryConnection(response, params)?.pageInfo;
 
   if (!pageInfo) {

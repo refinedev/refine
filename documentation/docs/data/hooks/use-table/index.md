@@ -178,11 +178,12 @@ useTable({
 
 ### pagination.mode
 
-It can be `"off"`, `"server"` or `"client"`. Defaults to `"server"`.
+It can be `"off"`, `"server"`, `"client"` or `"cursor"`. Defaults to `"server"`.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
-- **"server":**: Pagination is done on the server side. Records will be fetched by using the `currentPage` and `pageSize` values.
+- **"server":** Pagination is done on the server side. Records will be fetched by using the `currentPage` and `pageSize` values.
+- **"cursor":** Cursor-based pagination. Instead of page numbers, navigation is done via `cursor.goToNextPage` and `cursor.goToPreviousPage` returned by the hook. The data provider's `getList` response must include a `cursor` object with `next` and/or `prev` values.
 
 ```tsx
 import { useTable } from "@refinedev/core";
@@ -192,6 +193,41 @@ useTable({
   },
 });
 ```
+
+### pagination.cursor
+
+> Only available when `pagination.mode` is `"cursor"`.
+
+The `cursor` property is used to configure the initial cursor state for cursor-based pagination.
+
+| Property    | Type                  | Description                                                    |
+| ----------- | --------------------- | -------------------------------------------------------------- |
+| `current`   | `string \| number`    | The initial cursor value. Used to resume from a specific page. |
+| `next`      | `string \| number`    | The cursor value for the next page.                            |
+| `prev`      | `string \| number`    | The cursor value for the previous page.                        |
+| `direction` | `"after" \| "before"` | The initial cursor direction. Defaults to `"after"`.           |
+
+```tsx
+import { useTable } from "@refinedev/core";
+useTable({
+  pagination: {
+    mode: "cursor",
+    cursor: {
+      current: "abc123",
+      direction: "after",
+    },
+  },
+});
+```
+
+:::note Cursor pagination behavior
+
+- `setCurrentPage` is a **no-op** in cursor mode. Use `cursor.goToNextPage()` and `cursor.goToPreviousPage()` instead.
+- `pageCount` is always `1` in cursor mode since the total page count is unknown.
+- Cursor state **resets** when filters, sorters, or page size change.
+- When `syncWithLocation` is enabled, cursor values are synced as `?after=` and `?before=` query parameters.
+
+:::
 
 ### sorters.mode
 
@@ -556,6 +592,39 @@ A function to set the current page size state. If pagination is disabled, it wil
 
 Total page count state. If pagination is disabled, it will be `undefined`.
 
+> In cursor pagination mode, `pageCount` is always `1`.
+
+### cursor
+
+> Only available when `pagination.mode` is `"cursor"`.
+
+The `cursor` object provides cursor-based pagination state and navigation functions.
+
+| Property           | Type               | Description                                           |
+| ------------------ | ------------------ | ----------------------------------------------------- |
+| `next`             | `string \| number` | The cursor value for the next page from the response. |
+| `prev`             | `string \| number` | The cursor value for the previous page.               |
+| `hasNextPage`      | `boolean`          | Whether a next page is available.                     |
+| `hasPreviousPage`  | `boolean`          | Whether a previous page is available.                 |
+| `goToNextPage`     | `() => void`       | Navigate to the next page.                            |
+| `goToPreviousPage` | `() => void`       | Navigate to the previous page.                        |
+
+```tsx
+import { useTable } from "@refinedev/core";
+
+const { cursor } = useTable({
+  pagination: { mode: "cursor" },
+});
+
+// Navigate
+cursor.goToNextPage();
+cursor.goToPreviousPage();
+
+// Check availability
+console.log(cursor.hasNextPage); // true / false
+console.log(cursor.hasPreviousPage); // true / false
+```
+
 ### createLinkForSyncWithLocation
 
 ```tsx
@@ -728,6 +797,7 @@ errorNotification-default='"There was an error creating resource (status code: `
 | ~~setSorter~~                 | A function that accepts a new sorters state.                                             | `(sorters: CrudSorting) => void`                                                                                                                  |
 | filters                       | Current filters state                                                                    | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters                    | A function that accepts a new filter state                                               | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| cursor                        | Cursor pagination state and navigation (only in `mode: "cursor"`)                        | `{ next, prev, hasNextPage, hasPreviousPage, goToNextPage, goToPreviousPage }`                                                                    |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                  | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |
 | overtime                      | Overtime loading props                                                                   | `{ elapsedTime?: number }`                                                                                                                        |
 

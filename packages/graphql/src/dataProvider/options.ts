@@ -12,6 +12,7 @@ import type {
   UpdateParams,
   DeleteOneParams,
   Pagination,
+  CursorResponse,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import { singular } from "pluralize";
@@ -60,7 +61,7 @@ export type GraphQLDataProviderOptions = {
     getCursor?: (
       response: OperationResult<any>,
       params: GetListParams,
-    ) => Pagination["cursor"] | undefined;
+    ) => CursorResponse | undefined;
     buildVariables?: (params: GetListParams) => Record<string, any>;
   };
   getMany?: {

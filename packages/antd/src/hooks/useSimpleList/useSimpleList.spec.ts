@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -165,6 +166,16 @@ describe("useSimpleList Hook", () => {
         }),
       {
         wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: vi.fn().mockResolvedValue({
+                data: [{ id: 1 }],
+                cursor: { next: "cursor_2" },
+              }),
+            },
+          },
           routerProvider,
         }),
       },
@@ -187,6 +198,16 @@ describe("useSimpleList Hook", () => {
         }),
       {
         wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: vi.fn().mockResolvedValue({
+                data: [{ id: 1 }],
+                cursor: { next: "cursor_2" },
+              }),
+            },
+          },
           routerProvider,
         }),
       },
@@ -197,6 +218,43 @@ describe("useSimpleList Hook", () => {
     });
 
     expect(result.current.listProps.footer).toBeTruthy();
+  });
+
+  it("cursor mode should expose cursor navigation state", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      cursor: { next: "cursor_page_2" },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useSimpleList({
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.listProps.loading).toBeTruthy();
+    });
+
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
+    expect(result.current.cursor.next).toBe("cursor_page_2");
   });
 
   it("when pagination mode is off, pagination should be false", async () => {

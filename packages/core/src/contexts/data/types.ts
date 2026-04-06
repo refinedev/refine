@@ -172,6 +172,14 @@ export type MetaQuery = {
 export type CursorDirection = "after" | "before";
 export type CursorValue = string | number;
 
+/**
+ * Cursor values returned by the data provider in `getList` response.
+ */
+export type CursorResponse = {
+  next?: CursorValue;
+  prev?: CursorValue;
+};
+
 export interface Pagination {
   /**
    * Initial page index
@@ -189,12 +197,12 @@ export interface Pagination {
    */
   mode?: "client" | "server" | "off" | "cursor";
   /**
-   * Cursor-based pagination values.
+   * Cursor-based pagination input values.
+   * - `current`: The cursor value to fetch from.
+   * - `direction`: The direction of the cursor (`"after"` or `"before"`).
    */
   cursor?: {
     current?: CursorValue;
-    next?: CursorValue;
-    prev?: CursorValue;
     direction?: CursorDirection;
   };
 }
@@ -342,7 +350,7 @@ export interface CustomResponse<TData = BaseRecord> {
 export interface GetListResponse<TData = BaseRecord> {
   data: TData[];
   total?: number;
-  cursor?: Pagination["cursor"];
+  cursor?: CursorResponse;
   [key: string]: any;
 }
 
