@@ -1,5 +1,13 @@
 # @refinedev/core
 
+## 5.0.12
+
+### Patch Changes
+
+- [#7372](https://github.com/refinedev/refine/pull/7372) [`59c6470ca0ecff0588f749ef4530312e7537bfdd`](https://github.com/refinedev/refine/commit/59c6470ca0ecff0588f749ef4530312e7537bfdd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix(core): preserve custom `getList` response fields in `useList` and `useTable` results.
+
+  We had an edge case where custom fields returned from `getList` were available on `query.data` but dropped from `result`. Now those extra fields are preserved in both `useList` and `useTable`.
+
 ## 5.0.11
 
 ### Patch Changes
