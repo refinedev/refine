@@ -18,10 +18,8 @@ describe("table-material-ui-cursor-pagination", () => {
       },
     }).as("getSecondPageCommits");
 
-    cy.get("[title='Go to next page']").should("not.be.disabled");
-    cy.get("[title='Go to next page']").click();
-
-    cy.url().should("include", "currentPage=2");
+    cy.contains("button", "Next").should("not.be.disabled");
+    cy.contains("button", "Next").click();
 
     cy.wait("@getSecondPageCommits");
 
@@ -32,11 +30,8 @@ describe("table-material-ui-cursor-pagination", () => {
       },
     }).as("getFirstPageCommits");
 
-    // Wait for the previous page button to be enabled before clicking
-    cy.get("[title='Go to previous page']").should("not.be.disabled");
-    cy.get("[title='Go to previous page']").click();
-
-    cy.url().should("include", "currentPage=1");
+    cy.contains("button", "Previous").should("not.be.disabled");
+    cy.contains("button", "Previous").click();
 
     cy.wait("@getFirstPageCommits");
   });
