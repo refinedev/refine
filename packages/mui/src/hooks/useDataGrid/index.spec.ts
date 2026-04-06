@@ -10,6 +10,65 @@ import { posts } from "@test/dataMocks";
 import * as core from "@refinedev/core";
 
 describe("useDataGrid Hook", () => {
+  it("should debounce server-side filter updates with the configured duration", async () => {
+    const getList = vi.fn(MockJSONServer.getList);
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filterDebounceMs: 50,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            getList,
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(getList).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange({
+        items: [
+          {
+            field: "title",
+            operator: "contains",
+            value: "refine",
+          },
+        ],
+      });
+    });
+
+    expect(result.current.dataGridProps.filterModel?.items).toEqual([
+      {
+        field: "title",
+        operator: "contains",
+        value: "refine",
+        id: "titlecontains",
+      },
+    ]);
+    expect(getList).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 40));
+    });
+
+    expect(getList).toHaveBeenCalledTimes(1);
+
+    await waitFor(() => {
+      expect(getList).toHaveBeenCalledTimes(2);
+    });
+  });
+
   it("controlled filtering with 'onSubmit' and 'onSearch'", async () => {
     type SearchVariables = { title: string; status: string };
 

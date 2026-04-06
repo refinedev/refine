@@ -93,6 +93,12 @@ export type UseDataGridProps<
     }
   >;
   editable?: boolean;
+  /**
+   * Debounce duration in milliseconds for server-side filter updates.
+   * Set to `0` to disable debouncing.
+   * @default 300
+   */
+  filterDebounceMs?: number;
   updateMutationOptions?: UseUpdateProps<
     TData,
     TError,
@@ -149,6 +155,7 @@ export function useDataGrid<
   dataProviderName,
   overtimeOptions,
   editable = false,
+  filterDebounceMs = DEFAULT_FILTER_DEBOUNCE_MS,
   updateMutationOptions,
 }: UseDataGridProps<
   TQueryFnData,
@@ -267,7 +274,7 @@ export function useDataGrid<
       clearFilterDebounce();
       filterDebounceRef.current = setTimeout(() => {
         applyFilters(crudFilters);
-      }, DEFAULT_FILTER_DEBOUNCE_MS);
+      }, filterDebounceMs);
       return;
     }
     applyFilters(crudFilters);
