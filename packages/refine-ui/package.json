@@ -43,6 +43,7 @@
     "@refinedev/react-table": "^6.0.0",
     "@refinedev/simple-rest": "^6.0.0",
     "@refinedev/ui-types": "^2.0.0",
+    "@tanstack/react-query": "^5.81.5",
     "@tanstack/react-table": "^8.2.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -71,27 +71,23 @@ const PULL_REQUESTS_QUERY = `
   }
 `;
 
-type CursorParam =
-  | { after: string }
-  | { before: string }
-  | Record<string, never>;
-
 export const githubDataProvider: DataProvider = {
-  getList: async ({ pagination, meta }) => {
+  getList: async ({ pagination }) => {
     const pageSize = pagination?.pageSize || 10;
-    const cursor = (meta?.cursor ?? {}) as CursorParam;
+    const cursorValue = pagination?.cursor?.current;
+    const direction = pagination?.cursor?.direction;
 
     // Forward pagination uses `first` + `after`
     // Backward pagination uses `last` + `before`
-    const isBackward = "before" in cursor;
+    const isBackward = direction === "before";
 
     const data = await graphql<PullRequestsResponse>(PULL_REQUESTS_QUERY, {
       owner: "refinedev",
       name: "refine",
       first: isBackward ? null : pageSize,
       last: isBackward ? pageSize : null,
-      after: "after" in cursor ? cursor.after : null,
-      before: "before" in cursor ? cursor.before : null,
+      after: !isBackward && cursorValue ? String(cursorValue) : null,
+      before: isBackward && cursorValue ? String(cursorValue) : null,
     });
 
     const { nodes, pageInfo } = data.repository.pullRequests;
@@ -105,13 +101,14 @@ export const githubDataProvider: DataProvider = {
     return {
       data: records as any,
       total: 0,
-      // Extra fields — accessible via tableQuery.data
       cursor: {
-        next: pageInfo.endCursor,
-        prev: pageInfo.startCursor,
+        next: pageInfo.hasNextPage
+          ? pageInfo.endCursor ?? undefined
+          : undefined,
+        prev: pageInfo.hasPreviousPage
+          ? pageInfo.startCursor ?? undefined
+          : undefined,
       },
-      hasNextPage: pageInfo.hasNextPage,
-      hasPreviousPage: pageInfo.hasPreviousPage,
     };
   },
   getOne: async () => {

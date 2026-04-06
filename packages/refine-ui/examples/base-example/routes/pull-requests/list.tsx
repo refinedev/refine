@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/registry/new-york/ui/badge";
@@ -23,11 +23,7 @@ import {
 } from "@/registry/new-york/refine-ui/views/list-view";
 import type { PullRequest } from "../../types/resources";
 
-type Cursor = { after: string } | { before: string } | Record<string, never>;
-
 export function PullRequestsListPage() {
-  const [cursor, setCursor] = useState<Cursor>({});
-
   const columns = useMemo<ColumnDef<PullRequest>[]>(
     () => [
       {
@@ -106,40 +102,19 @@ export function PullRequestsListPage() {
       dataProviderName: "github",
       pagination: {
         pageSize: 10,
-        mode: "off",
-      },
-      meta: {
-        cursor,
+        mode: "cursor",
       },
     },
   });
 
   const {
     reactTable,
-    refineCore: { tableQuery, pageSize, setPageSize },
+    refineCore: { tableQuery, pageSize, setPageSize, cursor },
   } = table;
 
   const isLoading = tableQuery.isLoading;
-  const isFetching = tableQuery.isFetching && !isLoading;
+  const isFetching = tableQuery.isFetching;
   const rows = reactTable.getRowModel().rows;
-
-  // Read cursor and pagination info from the data provider's extra response field
-  const hasNextPage = tableQuery.data?.hasNextPage ?? false;
-  const hasPreviousPage = tableQuery.data?.hasPreviousPage ?? false;
-  const cursorNext = tableQuery.data?.cursor?.next ?? undefined;
-  const cursorPrev = tableQuery.data?.cursor?.prev ?? undefined;
-
-  const onNext = useCallback(() => {
-    if (cursorNext) {
-      setCursor({ after: cursorNext });
-    }
-  }, [cursorNext]);
-
-  const onPrevious = useCallback(() => {
-    if (cursorPrev) {
-      setCursor({ before: cursorPrev });
-    }
-  }, [cursorPrev]);
 
   return (
     <ListView>
@@ -168,10 +143,10 @@ export function PullRequestsListPage() {
         </DataTableOverflowWrapper>
         {!isLoading && (
           <DataTableCursorPagination
-            hasNextPage={hasNextPage}
-            hasPreviousPage={hasPreviousPage}
-            onNext={onNext}
-            onPrevious={onPrevious}
+            hasNextPage={cursor.hasNextPage}
+            hasPreviousPage={cursor.hasPreviousPage}
+            onNext={cursor.goToNextPage}
+            onPrevious={cursor.goToPreviousPage}
             isFetching={isFetching}
             pageSize={pageSize}
             setPageSize={setPageSize}

@@ -13624,6 +13624,9 @@ importers:
       '@refinedev/ui-types':
         specifier: ^2.0.0
         version: link:../ui-types
+      '@tanstack/react-query':
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
