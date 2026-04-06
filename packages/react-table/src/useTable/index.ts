@@ -70,6 +70,8 @@ export function useTable<
     (refineCoreProps.sorters?.mode || "server") === "server";
 
   const isPaginationEnabled = refineCoreProps.pagination?.mode !== "off";
+  const isCursorPaginationEnabled =
+    refineCoreProps.pagination?.mode === "cursor";
 
   const {
     tableQuery: { data },
@@ -121,7 +123,7 @@ export function useTable<
   const { pageIndex, pageSize } = pagination ?? {};
 
   useEffect(() => {
-    if (pageIndex !== undefined) {
+    if (pageIndex !== undefined && !isCursorPaginationEnabled) {
       setCurrentPage(pageIndex + 1);
     }
   }, [pageIndex]);
@@ -143,7 +145,12 @@ export function useTable<
         setSorters(newSorters);
       }
 
-      if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
+      if (
+        sorting.length > 0 &&
+        isPaginationEnabled &&
+        !isCursorPaginationEnabled &&
+        !isFirstRender
+      ) {
         setCurrentPage(1);
       }
     }
@@ -170,7 +177,12 @@ export function useTable<
       setFilters(crudFilters);
     }
 
-    if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
+    if (
+      crudFilters.length > 0 &&
+      isPaginationEnabled &&
+      !isCursorPaginationEnabled &&
+      !isFirstRender
+    ) {
       setCurrentPage(1);
     }
   }, [columnFilters, columns]);

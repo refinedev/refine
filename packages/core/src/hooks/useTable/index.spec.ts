@@ -790,6 +790,126 @@ describe("useTable Cursor Pagination", () => {
     );
   });
 
+  it("should produce unique queryKeys for different cursor values", async () => {
+    const mockGetList = vi
+      .fn()
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        cursor: { next: "cursor_A", prev: undefined },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 2 }],
+        cursor: { next: "cursor_B", prev: "cursor_A_prev" },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        cursor: { next: "cursor_A", prev: undefined },
+      });
+
+    const { result } = renderHook(
+      () => useTable({ pagination: { mode: "cursor", pageSize: 1 } }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider: routerProviderForCursor,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    // 1st call: no cursor in queryKey
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            expect.objectContaining({
+              pagination: {
+                currentPage: 1,
+                pageSize: 1,
+                mode: "cursor",
+              },
+            }),
+          ]),
+        }),
+      }),
+    );
+
+    act(() => {
+      result.current.cursor.goToNextPage();
+    });
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalledTimes(2);
+    });
+
+    // 2nd call: cursor with "after" direction
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            expect.objectContaining({
+              pagination: {
+                currentPage: 1,
+                pageSize: 1,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_A",
+                  direction: "after",
+                },
+              },
+            }),
+          ]),
+        }),
+      }),
+    );
+
+    // Wait for 2nd query to finish so cursor.prev is available
+    await waitFor(() => {
+      expect(result.current.cursor.prev).toBe("cursor_A_prev");
+    });
+
+    act(() => {
+      result.current.cursor.goToPreviousPage();
+    });
+
+    await waitFor(() => {
+      expect(mockGetList).toHaveBeenCalledTimes(3);
+    });
+
+    // 3rd call: cursor with "before" direction
+    expect(mockGetList).toHaveBeenNthCalledWith(
+      3,
+      expect.objectContaining({
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            expect.objectContaining({
+              pagination: {
+                currentPage: 1,
+                pageSize: 1,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_A_prev",
+                  direction: "before",
+                },
+              },
+            }),
+          ]),
+        }),
+      }),
+    );
+  });
+
   it("should keep currentPage fixed in cursor mode", async () => {
     const mockGetList = vi.fn().mockResolvedValue({
       data: [{ id: 1 }],

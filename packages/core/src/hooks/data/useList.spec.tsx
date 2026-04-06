@@ -213,6 +213,118 @@ describe("useList Hook", () => {
     );
   });
 
+  it("should not include cursor property in queryKey when cursor mode has no cursor value", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+      cursor: { next: "abc" },
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
+  it("should include 'before' direction in queryKey", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+      cursor: { prev: "prev_cursor" },
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "cursor_xyz",
+              direction: "before",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_xyz",
+                  direction: "before",
+                },
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
   it("should error when cursor mode receives offset response", async () => {
     const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
