@@ -14,7 +14,8 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Box, Button } from "@mui/material";
 
 import type {
   DataGridProps,
@@ -59,6 +60,8 @@ type DataGridPropsType = Required<
     | "filterModel"
     | "filterDebounceMs"
     | "processRowUpdate"
+    | "slots"
+    | "hideFooterPagination"
   >;
 
 export type UseDataGridProps<
@@ -178,6 +181,7 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     result,
+    cursor,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: {
       ...pagination,
@@ -202,9 +206,9 @@ export function useDataGrid<
 
   const { data, isFetched, isLoading } = tableQuery;
 
-  const rowCountRef = useRef(data?.total || 0);
+  const rowCountRef = useRef(data?.total ?? 0);
   const rowCount = useMemo(() => {
-    if (data?.total) {
+    if (data?.total !== undefined) {
       rowCountRef.current = data.total;
     }
     return rowCountRef.current;
@@ -215,6 +219,7 @@ export function useDataGrid<
   const isServerSideSortingEnabled =
     (sortersFromProp?.mode || "server") === "server";
   const isPaginationEnabled = (pagination?.mode ?? "server") !== "off";
+  const isCursorPaginationEnabled = pagination?.mode === "cursor";
 
   const preferredPermanentSorters =
     sortersFromProp?.permanent ?? defaultPermanentSort;
@@ -222,12 +227,12 @@ export function useDataGrid<
     filtersFromProp?.permanent ?? defaultPermanentFilter;
 
   const handlePageChange = (page: number) => {
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage(page + 1);
     }
   };
   const handlePageSizeChange = (pageSize: number) => {
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setPageSize(pageSize);
     }
   };
@@ -249,7 +254,7 @@ export function useDataGrid<
   // Apply filters immediately to local state (and reset page if needed).
   const applyFilters = (crudFilters: CrudFilters) => {
     setFilters(crudFilters.filter((f) => f.value !== ""));
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage(1);
     }
   };
@@ -287,6 +292,12 @@ export function useDataGrid<
     "paginationModel" | "onPaginationModelChange"
   > &
     Required<Pick<DataGridProps, "paginationMode">> => {
+    if (isCursorPaginationEnabled) {
+      return {
+        paginationMode: "server" as const,
+      };
+    }
+
     if (isPaginationEnabled) {
       return {
         paginationMode: "server" as const,
@@ -347,6 +358,51 @@ export function useDataGrid<
     [sorters, preferredPermanentSorters],
   );
 
+  const CursorPaginationFooter = useMemo(() => {
+    if (!isCursorPaginationEnabled) return undefined;
+
+    return function CursorPaginationFooterComponent() {
+      return React.createElement(
+        Box,
+        {
+          sx: {
+            p: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1,
+            borderTop: 1,
+            borderColor: "divider",
+          },
+        },
+        React.createElement(
+          Button,
+          {
+            size: "small",
+            onClick: cursor.goToPreviousPage,
+            disabled: !cursor.hasPreviousPage,
+          },
+          "Previous",
+        ),
+        React.createElement(
+          Button,
+          {
+            size: "small",
+            onClick: cursor.goToNextPage,
+            disabled: !cursor.hasNextPage,
+          },
+          "Next",
+        ),
+      );
+    };
+  }, [
+    isCursorPaginationEnabled,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
+  ]);
+
   return {
     tableQuery,
     dataGridProps: {
@@ -379,6 +435,12 @@ export function useDataGrid<
         }
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
+      ...(isCursorPaginationEnabled && {
+        hideFooterPagination: true,
+        slots: {
+          footer: CursorPaginationFooter,
+        },
+      }),
     },
     currentPage,
     setCurrentPage,
@@ -393,5 +455,6 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     result,
+    cursor,
   };
 }

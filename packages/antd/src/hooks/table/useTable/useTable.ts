@@ -1,10 +1,12 @@
-import React, { Children, createElement, Fragment } from "react";
+import React, { Children, createElement, Fragment, useMemo } from "react";
 import {
   Grid,
   type FormProps,
   Form,
   type TablePaginationConfig,
   type TableProps,
+  Button,
+  Space,
 } from "antd";
 import { useForm as useFormSF } from "sunflower-antd";
 
@@ -94,6 +96,7 @@ export const useTable = <
     pageCount,
     overtime,
     result,
+    cursor,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: paginationFromProp,
     filters: filtersFromProp,
@@ -119,9 +122,8 @@ export const useTable = <
   const liveMode = useLiveMode(liveModeFromProp);
 
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
-
+  const isCursorPaginationEnabled = paginationFromProp?.mode === "cursor";
   const preferredInitialFilters = filtersFromProp?.initial;
-
   const { data, isFetched, isLoading } = tableQuery;
 
   React.useEffect(() => {
@@ -172,7 +174,7 @@ export const useTable = <
       setSorters(crudSorting);
     }
 
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage?.(paginationState.current || 1);
       setPageSize?.(paginationState.pageSize || 10);
     }
@@ -183,63 +185,113 @@ export const useTable = <
       const searchFilters = await onSearch(value);
       setFilters(searchFilters);
 
-      if (isPaginationEnabled) {
+      if (isPaginationEnabled && !isCursorPaginationEnabled) {
         setCurrentPage?.(1);
       }
     }
   };
 
-  const antdPagination = (): false | TablePaginationConfig => {
-    if (isPaginationEnabled) {
-      return {
-        itemRender: (page, type, element) => {
-          const link = createLinkForSyncWithLocation({
-            pagination: {
-              pageSize,
-              currentPage: page,
-            },
-            sorters,
-            filters,
-          });
+  const cursorPaginationFooter = useMemo(() => {
+    if (!isCursorPaginationEnabled) return undefined;
 
-          if (type === "page") {
-            return createElement(PaginationLink, {
-              to: link,
-              element: `${page}`,
-            });
-          }
-          if (type === "next" || type === "prev") {
-            return createElement(PaginationLink, {
-              to: link,
-              element: element,
-            });
-          }
-
-          if (type === "jump-next" || type === "jump-prev") {
-            const elementChildren = (element as React.ReactElement<any>)?.props
-              ?.children;
-
-            return createElement(PaginationLink, {
-              to: link,
-              element:
-                Children.count(elementChildren) > 1
-                  ? createElement(Fragment, {}, elementChildren)
-                  : elementChildren,
-            });
-          }
-
-          return element;
+    return () =>
+      createElement(
+        Space,
+        {
+          style: {
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "8px",
+          },
         },
-        pageSize,
-        current: currentPage,
-        simple: !breakpoint.sm,
-        position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
-        total: data?.total,
-      };
+        createElement(
+          Button,
+          {
+            size: "small",
+            disabled: !cursor.hasPreviousPage,
+            onClick: cursor.goToPreviousPage,
+          },
+          "Previous",
+        ),
+        createElement(
+          Button,
+          {
+            size: "small",
+            disabled: !cursor.hasNextPage,
+            onClick: cursor.goToNextPage,
+          },
+          "Next",
+        ),
+      );
+  }, [
+    isCursorPaginationEnabled,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
+  ]);
+
+  const antdPagination = useMemo((): false | TablePaginationConfig => {
+    if (!isPaginationEnabled || isCursorPaginationEnabled) {
+      return false;
     }
 
-    return false;
-  };
+    return {
+      itemRender: (page, type, element) => {
+        const link = createLinkForSyncWithLocation({
+          pagination: {
+            pageSize,
+            currentPage: page,
+          },
+          sorters,
+          filters,
+        });
+
+        if (type === "page") {
+          return createElement(PaginationLink, {
+            to: link,
+            element: `${page}`,
+          });
+        }
+        if (type === "next" || type === "prev") {
+          return createElement(PaginationLink, {
+            to: link,
+            element: element,
+          });
+        }
+
+        if (type === "jump-next" || type === "jump-prev") {
+          const elementChildren = (element as React.ReactElement<any>)?.props
+            ?.children;
+
+          return createElement(PaginationLink, {
+            to: link,
+            element:
+              Children.count(elementChildren) > 1
+                ? createElement(Fragment, {}, elementChildren)
+                : elementChildren,
+          });
+        }
+
+        return element;
+      },
+      pageSize,
+      current: currentPage,
+      simple: !breakpoint.sm,
+      position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
+      total: data?.total,
+    };
+  }, [
+    isPaginationEnabled,
+    isCursorPaginationEnabled,
+    pageSize,
+    breakpoint.sm,
+    createLinkForSyncWithLocation,
+    sorters,
+    filters,
+    currentPage,
+    data?.total,
+  ]);
 
   return {
     searchFormProps: {
@@ -250,8 +302,9 @@ export const useTable = <
       dataSource: data?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
       onChange,
-      pagination: antdPagination(),
+      pagination: antdPagination,
       scroll: { x: true },
+      ...(cursorPaginationFooter && { footer: cursorPaginationFooter }),
     },
     tableQuery,
     sorters,
@@ -266,5 +319,6 @@ export const useTable = <
     createLinkForSyncWithLocation,
     overtime,
     result,
+    cursor,
   };
 };

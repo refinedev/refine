@@ -118,6 +118,9 @@ const createDataProvider = (
       return {
         data: options.getList.dataMapper(response, params),
         total: options.getList.getTotalCount(response, params),
+        ...(params.pagination?.mode === "cursor"
+          ? { cursor: options.getList.getCursor(response, params) }
+          : {}),
       };
     },
     getMany: async (params) => {
@@ -128,7 +131,9 @@ const createDataProvider = (
       }
 
       const response = await client
-        .query(meta.gqlQuery, { filter: options.getMany.buildFilter(params) })
+        .query(meta.gqlQuery, {
+          filter: options.getMany.buildFilter(params),
+        })
         .toPromise();
 
       if (response?.error) {

@@ -2,6 +2,7 @@ import dataProvider from "./dataProvider/index.js";
 
 export * from "./dataProvider/index.js";
 export * from "./dataProvider/options.js";
+export * from "./utils/index.js";
 
 export * from "./liveProvider/index.js";
 

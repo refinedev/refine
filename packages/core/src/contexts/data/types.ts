@@ -169,6 +169,17 @@ export type MetaQuery = {
 } & QueryBuilderOptions &
   GraphQLQueryOptions;
 
+export type CursorDirection = "after" | "before";
+export type CursorValue = string | number;
+
+/**
+ * Cursor values returned by the data provider in `getList` response.
+ */
+export type CursorResponse = {
+  next?: CursorValue;
+  prev?: CursorValue;
+};
+
 export interface Pagination {
   /**
    * Initial page index
@@ -184,7 +195,16 @@ export interface Pagination {
    * Whether to use server side pagination or not.
    * @default "server"
    */
-  mode?: "client" | "server" | "off";
+  mode?: "client" | "server" | "off" | "cursor";
+  /**
+   * Cursor-based pagination input values.
+   * - `current`: The cursor value to fetch from.
+   * - `direction`: The direction of the cursor (`"after"` or `"before"`).
+   */
+  cursor?: {
+    current?: CursorValue;
+    direction?: CursorDirection;
+  };
 }
 
 export interface IQueryKeys {
@@ -193,7 +213,7 @@ export interface IQueryKeys {
   list: (
     config?:
       | {
-          pagination?: Required<Pagination>;
+          pagination?: Pagination;
           hasPagination?: boolean;
           sorters?: CrudSort[];
           filters?: CrudFilter[];
@@ -329,7 +349,8 @@ export interface CustomResponse<TData = BaseRecord> {
 }
 export interface GetListResponse<TData = BaseRecord> {
   data: TData[];
-  total: number;
+  total?: number;
+  cursor?: CursorResponse;
   [key: string]: any;
 }
 

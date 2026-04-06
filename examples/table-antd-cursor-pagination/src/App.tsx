@@ -1,20 +1,20 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
+  useNotificationProvider,
   ThemedLayout,
   ErrorComponent,
   RefineThemes,
-  useNotificationProvider,
-  RefineSnackbarProvider,
-} from "@refinedev/mui";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { ThemeProvider } from "@mui/material/styles";
+} from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+
+import { ConfigProvider, App as AntdApp } from "antd";
+import "@ant-design/v5-patch-for-react-19";
+import "@refinedev/antd/dist/reset.css";
 
 import { dataProvider } from "./providers/data";
 import { PostList } from "./pages/posts";
@@ -23,14 +23,11 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <GitHubBanner />
-      <ThemeProvider theme={RefineThemes.Blue}>
-        <CssBaseline />
-        <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-        <RefineSnackbarProvider>
+      <ConfigProvider theme={RefineThemes.Blue}>
+        <AntdApp>
           <Refine
-            routerProvider={routerProvider}
             dataProvider={dataProvider}
-            notificationProvider={useNotificationProvider}
+            routerProvider={routerProvider}
             resources={[
               {
                 name: "commits",
@@ -40,6 +37,7 @@ const App: React.FC = () => {
                 },
               },
             ]}
+            notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
@@ -69,8 +67,8 @@ const App: React.FC = () => {
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
           </Refine>
-        </RefineSnackbarProvider>
-      </ThemeProvider>
+        </AntdApp>
+      </ConfigProvider>
     </BrowserRouter>
   );
 };
