@@ -800,6 +800,10 @@ describe("useUpdate Hook [with params]", () => {
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
 
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
+
       act(() => {
         result.current.mutate({
           resource: "posts",
@@ -817,6 +821,10 @@ describe("useUpdate Hook [with params]", () => {
       await assertOne(useOneResult, "title", initialTitle);
       await assertList(useListResult, "title", initialTitle);
       await assertList(useManyResult, "title", initialTitle);
+
+      await waitFor(() => {
+        expect(result.current.mutation.isError).toEqual(true);
+      });
     });
 
     it("when pass `true`", async () => {
@@ -837,6 +845,10 @@ describe("useUpdate Hook [with params]", () => {
       const useOneResult = renderUseOne();
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
+
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
 
       act(() => {
         result.current.mutate({
@@ -876,6 +888,10 @@ describe("useUpdate Hook [with params]", () => {
       const useOneResult = renderUseOne();
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
+
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
 
       act(() => {
         result.current.mutate({
@@ -1982,6 +1998,10 @@ describe("useUpdate Hook [with props]", () => {
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
 
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
+
       act(() => {
         result.current.mutate({
           values: { title: updatedTitle },
@@ -1991,6 +2011,10 @@ describe("useUpdate Hook [with props]", () => {
       await assertOne(useOneResult, "title", initialTitle);
       await assertList(useListResult, "title", initialTitle);
       await assertList(useManyResult, "title", initialTitle);
+
+      await waitFor(() => {
+        expect(result.current.mutation.isError).toEqual(true);
+      });
     });
 
     it("when pass `true`", async () => {
@@ -2024,6 +2048,10 @@ describe("useUpdate Hook [with props]", () => {
       const useOneResult = renderUseOne();
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
+
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
 
       act(() => {
         result.current.mutate({
@@ -2121,6 +2149,10 @@ describe("useUpdate Hook [with props]", () => {
       const useOneResult = renderUseOne();
       const useListResult = renderUseList();
       const useManyResult = renderUseMany();
+
+      await assertOne(useOneResult, "title", initialTitle);
+      await assertList(useListResult, "title", initialTitle);
+      await assertList(useManyResult, "title", initialTitle);
 
       act(() => {
         result.current.mutate({
