@@ -203,8 +203,6 @@ The `cursor` property is used to configure the initial cursor state for cursor-b
 | Property    | Type                  | Description                                                    |
 | ----------- | --------------------- | -------------------------------------------------------------- |
 | `current`   | `string \| number`    | The initial cursor value. Used to resume from a specific page. |
-| `next`      | `string \| number`    | The cursor value for the next page.                            |
-| `prev`      | `string \| number`    | The cursor value for the previous page.                        |
 | `direction` | `"after" \| "before"` | The initial cursor direction. Defaults to `"after"`.           |
 
 ```tsx
@@ -762,6 +760,71 @@ const List = () => {
     </div>
   );
 };
+```
+
+### How to use cursor-based pagination?
+
+Cursor-based pagination uses cursor values (e.g. `"Y3Vyc29yOjE="`) instead of page numbers to navigate between pages. This is common with GraphQL APIs (Relay-style) and some REST APIs.
+
+**1. Set up your data provider's `getList` to return a `cursor` object:**
+
+```ts
+const myDataProvider: DataProvider = {
+  getList: async ({ resource, pagination }) => {
+    const { pageSize, cursor } = pagination;
+
+    const response = await fetchAPI(resource, {
+      limit: pageSize,
+      after: cursor?.direction === "after" && cursor?.current,
+      before: cursor?.direction === "before" && cursor?.current,
+    });
+
+    return {
+      data: response.items,
+      cursor: {
+        // Return `next` only if there is a next page
+        next: response.hasNextPage ? response.endCursor : undefined,
+        // Return `prev` only if there is a previous page
+        prev: response.hasPreviousPage ? response.startCursor : undefined,
+      },
+    };
+  },
+  // ...
+};
+```
+
+:::caution Important
+Only return `next` / `prev` when the corresponding page actually exists. The hook uses the **presence** of these values to determine if `goToNextPage` / `goToPreviousPage` should be enabled.
+:::
+
+**2. Use `useTable` with `pagination.mode: "cursor"`:**
+
+`useTable` automatically picks up the `next` and `prev` values from the data provider response. When the user calls `goToNextPage()`, the hook sends `next` as `cursor.current` with `direction: "after"` to the data provider. Similarly, `goToPreviousPage()` sends `prev` with `direction: "before"`.
+
+```tsx
+import { useTable } from "@refinedev/core";
+
+const {
+  tableQuery,
+  cursor: { goToNextPage, goToPreviousPage, hasNextPage, hasPreviousPage },
+} = useTable({
+  pagination: {
+    mode: "cursor",
+    pageSize: 10,
+  },
+});
+
+return (
+  <div>
+    <table>{/* render tableQuery.data.data */}</table>
+    <button onClick={goToPreviousPage} disabled={!hasPreviousPage}>
+      Previous
+    </button>
+    <button onClick={goToNextPage} disabled={!hasNextPage}>
+      Next
+    </button>
+  </div>
+);
 ```
 
 ## API Reference
