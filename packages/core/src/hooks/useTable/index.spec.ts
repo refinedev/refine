@@ -911,6 +911,8 @@ describe("useTable Cursor Pagination", () => {
   });
 
   it("should keep currentPage fixed in cursor mode", async () => {
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
     const mockGetList = vi.fn().mockResolvedValue({
       data: [{ id: 1 }],
       total: 10,
@@ -948,6 +950,11 @@ describe("useTable Cursor Pagination", () => {
 
     expect(result.current.currentPage).toBe(1);
     expect(mockGetList).toHaveBeenCalledTimes(1);
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining("setCurrentPage"),
+    );
+
+    warnSpy.mockRestore();
   });
 
   it("should clear initial cursor when filters change", async () => {
