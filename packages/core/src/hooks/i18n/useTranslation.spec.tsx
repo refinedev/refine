@@ -50,14 +50,18 @@ describe("useTranslation", () => {
 
       return (
         <div>
-          {translate("title-key", { opiton1: "option1" }, "fallback-title")}
+          {translate(
+            "products.title.key",
+            { opiton1: "option1" },
+            "fallback-title",
+          )}
         </div>
       );
     };
 
     render(<TestComponentWithNs />, {
       wrapper: TestWrapper({
-        resources: [{ name: "product" }],
+        resources: [{ name: "products" }],
         i18nProvider: {
           translate: translateMock,
           changeLocale: vi.fn(),
@@ -68,7 +72,7 @@ describe("useTranslation", () => {
 
     expect(translateMock).toHaveBeenCalledTimes(1);
     expect(translateMock).toHaveBeenCalledWith(
-      "title-key",
+      "products.title.key",
       { ns: "common", opiton1: "option1" },
       "fallback-title",
     );

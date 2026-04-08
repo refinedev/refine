@@ -56,7 +56,11 @@ describe("useTranslate", () => {
 
       return (
         <div>
-          {translate("title-key", { option1: "option1" }, "fallback-title")}
+          {translate(
+            "products.title.key",
+            { option1: "option1" },
+            "fallback-title",
+          )}
         </div>
       );
     };
@@ -74,7 +78,7 @@ describe("useTranslate", () => {
 
     expect(getByText("hello")).toBeTruthy();
     expect(translateMock).toHaveBeenCalledWith(
-      "title-key",
+      "products.title.key",
       { ns: "common", option1: "option1" },
       "fallback-title",
     );
