@@ -6,9 +6,8 @@ import {
   makeGithubCommitNodes,
 } from "../../utils/graphql";
 
-describe("table-material-ui-cursor-pagination", () => {
+describe("table-antd-cursor-pagination", () => {
   it("should work with pagination", () => {
-    // Mock first page
     cy.intercept("POST", "https://api.github.com/graphql", (req) => {
       const { variables } = req.body;
       if (variables.first === 5 && !variables.after && !variables.before) {
@@ -73,26 +72,32 @@ describe("table-material-ui-cursor-pagination", () => {
 
     cy.wait("@graphql");
 
-    cy.get(".MuiDataGrid-root").should("be.visible");
-    cy.get(".MuiDataGrid-row").should("have.length", 5);
+    cy.get(".ant-table").should("be.visible");
+    cy.get(".ant-table-row").should("have.length", 5);
 
     // Next should be enabled, Previous disabled
-    cy.contains("button", "Next").should("not.be.disabled");
-    cy.contains("button", "Previous").should("be.disabled");
+    cy.get(".ant-table-footer").within(() => {
+      cy.contains("button", "Next").should("not.be.disabled");
+      cy.contains("button", "Previous").should("be.disabled");
+    });
 
     // Go to page 2
-    cy.contains("button", "Next").click();
+    cy.get(".ant-table-footer").contains("button", "Next").click();
     cy.wait("@graphql");
 
-    cy.get(".MuiDataGrid-row").should("have.length", 5);
-    cy.contains("button", "Previous").should("not.be.disabled");
+    cy.get(".ant-table-row").should("have.length", 5);
+    cy.get(".ant-table-footer").within(() => {
+      cy.contains("button", "Previous").should("not.be.disabled");
+    });
 
     // Go back to page 1
-    cy.contains("button", "Previous").click();
+    cy.get(".ant-table-footer").contains("button", "Previous").click();
     cy.wait("@graphql");
 
-    cy.get(".MuiDataGrid-row").should("have.length", 5);
-    cy.contains("button", "Previous").should("be.disabled");
-    cy.contains("button", "Next").should("not.be.disabled");
+    cy.get(".ant-table-row").should("have.length", 5);
+    cy.get(".ant-table-footer").within(() => {
+      cy.contains("button", "Previous").should("be.disabled");
+      cy.contains("button", "Next").should("not.be.disabled");
+    });
   });
 });
