@@ -39,6 +39,17 @@ export const useStyles = createStyles(({ token }) => ({
     borderRadius: "50%",
     cursor: "pointer",
     backgroundColor: token.colorBgTextHover,
+    padding: "0 !important",
+    border: "none",
+    transition: "background-color 0.3s ease",
+    "& > span": {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    "&:hover": {
+      backgroundColor: token.colorBgTextActive,
+    },
   },
   userName: {
     display: "flex !important",

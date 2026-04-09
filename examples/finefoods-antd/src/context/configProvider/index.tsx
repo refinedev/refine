@@ -48,7 +48,7 @@ export const ConfigProvider = ({
   useEffect(() => {
     const html = document.querySelector("html");
     html?.setAttribute("data-theme", mode);
-  }, []);
+  }, [mode]);
 
   return (
     <ConfigProviderContext.Provider value={{ mode, setMode: handleSetMode }}>
