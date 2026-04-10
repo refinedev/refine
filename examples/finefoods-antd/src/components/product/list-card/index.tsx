@@ -184,7 +184,7 @@ export const ProductListCard = () => {
           <List.Item style={{ height: "100%" }}>
             <Card
               hoverable
-              bordered={false}
+              variant={"borderless"}
               className={styles.card}
               styles={{
                 body: {

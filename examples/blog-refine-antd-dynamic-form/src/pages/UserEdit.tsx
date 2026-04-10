@@ -65,7 +65,7 @@ export default function UserEdit() {
                   return (
                     <Space
                       key={field.key}
-                      direction="horizontal"
+                      orientation="horizontal"
                       style={{
                         display: "flex",
                         position: "relative",

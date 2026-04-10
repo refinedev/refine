@@ -113,7 +113,7 @@ export const InvoicesPageCreate = () => {
         <Flex vertical gap={32}>
           <Typography.Title level={3}>New Invoice</Typography.Title>
           <Card
-            bordered={false}
+            variant={"borderless"}
             styles={{
               body: {
                 padding: 0,
@@ -166,7 +166,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Title
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -176,7 +176,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Unit Price
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -186,7 +186,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Quantity
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -196,7 +196,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Discount
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>

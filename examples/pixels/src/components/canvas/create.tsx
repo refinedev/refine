@@ -48,7 +48,9 @@ export const CreateCanvas: React.FC<CreateCanvasProps> = ({
           height: DEFAULT_CANVAS_SIZE,
         });
       }}
-      bodyStyle={{ borderRadius: "6px" }}
+      styles={{
+        body: { borderRadius: "6px" },
+      }}
     >
       <Form
         {...formProps}

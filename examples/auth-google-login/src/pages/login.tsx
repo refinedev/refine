@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
         alignItems: "center",
       }}
     >
-      <Space direction="vertical" align="center" size="large">
+      <Space orientation="vertical" align="center" size="large">
         <ThemedTitleV2
           collapsed={false}
           wrapperStyles={{

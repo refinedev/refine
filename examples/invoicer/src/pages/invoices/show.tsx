@@ -61,7 +61,7 @@ export const InvoicesPageShow = () => {
     >
       <div id="invoice-pdf" className={styles.container}>
         <Card
-          bordered={false}
+          variant={"borderless"}
           title={
             <Typography.Text
               style={{

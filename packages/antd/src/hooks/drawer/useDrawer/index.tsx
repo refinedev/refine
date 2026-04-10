@@ -27,7 +27,7 @@ export const useDrawer = ({
   return {
     drawerProps: {
       ...drawerProps,
-      onClose: (e: React.MouseEvent | React.KeyboardEvent) => {
+      onClose: (e: React.MouseEvent | React.KeyboardEvent | KeyboardEvent) => {
         drawerProps.onClose?.(e);
         close();
       },

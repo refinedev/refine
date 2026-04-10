@@ -9,7 +9,7 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.1.1",
     "@ant-design/nextjs-registry": "^1.0.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^6.0.3",
@@ -20,7 +20,7 @@
     "@refinedev/kbar": "^2.0.1",
     "@refinedev/nextjs-router": "^7.0.5",
     "@refinedev/simple-rest": "^6.0.1",
-    "antd": "^5.23.0",
+    "antd": "^6.3.5",
     "cross-env": "^7.0.3",
     "js-cookie": "^3.0.1",
     "next": "^14.2.26",

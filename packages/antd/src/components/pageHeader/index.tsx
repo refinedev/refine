@@ -2,7 +2,7 @@ import React, { useContext, type FC } from "react";
 import {
   PageHeader as AntdPageHeader,
   type PageHeaderProps as AntdPageHeaderProps,
-} from "@ant-design/pro-layout";
+} from "@ant-design/pro-components";
 import { Button, ConfigProvider, Typography } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";

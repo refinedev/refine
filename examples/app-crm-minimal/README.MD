@@ -1373,11 +1373,15 @@ export const CompanyContactsTable = () => {
 
   return (
     <Card
-      headStyle={{
+    styles={{
+      header: {
         borderBottom: "1px solid #D9D9D9",
         marginBottom: "1px",
-      }}
-      bodyStyle={{ padding: 0 }}
+      },
+      body: {
+        padding: 0
+      }
+    }}
       title={
         <Space size="middle">
           <TeamOutlined />

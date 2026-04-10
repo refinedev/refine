@@ -36,8 +36,8 @@ export const EditClient: React.FC<EditClientProps> = ({
   return (
     <Drawer
       {...drawerProps}
-      width={breakpoint.sm ? "500px" : "100%"}
-      bodyStyle={{ padding: 0 }}
+      size={breakpoint.sm ? "500px" : "100%"}
+      styles={{ body: { padding: 0 } }}
     >
       <Edit saveButtonProps={saveButtonProps}>
         <Form

@@ -84,7 +84,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
     </Menu>
   );
   return (
-    <Dropdown overlay={moreMenu(record)} trigger={["click"]}>
+    <Dropdown popupRender={moreMenu(record)} trigger={["click"]}>
       <TableActionButton />
     </Dropdown>
   );

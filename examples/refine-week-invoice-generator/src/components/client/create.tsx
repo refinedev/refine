@@ -50,7 +50,7 @@ export const CreateClient: React.FC<CreateClientProps> = ({
     <>
       <Drawer
         {...drawerProps}
-        width={breakpoint.sm ? "500px" : "100%"}
+        size={breakpoint.sm ? "500px" : "100%"}
         styles={{ body: { padding: 0 } }}
       >
         <Create saveButtonProps={saveButtonProps}>

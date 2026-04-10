@@ -58,8 +58,10 @@ export const CourierCreate = () => {
   return (
     <Modal
       open
-      destroyOnClose
-      maskClosable={false}
+      destroyOnHidden
+      mask={{
+        closable: false,
+      }}
       title={t("couriers.actions.add")}
       styles={{
         header: {
@@ -72,7 +74,7 @@ export const CourierCreate = () => {
           margin: 0,
           borderTop: `1px solid ${token.colorBorderSecondary}`,
         },
-        content: {
+        body: {
           padding: 0,
         },
       }}
@@ -196,7 +198,7 @@ const useFormList = (props: UseFormListProps) => {
           ]}
         >
           <InputMask mask="(999) 999 99 99">
-            {/* 
+            {/*
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     // @ts-ignore */}
             {(props: InputProps) => (

@@ -70,7 +70,7 @@ export const OrderDeliveryDetails = ({ order }: Props) => {
   return (
     <Flex vertical>
       <Steps
-        direction={breakpoints.xl ? "vertical" : "horizontal"}
+        orientation={breakpoints.xl ? "vertical" : "horizontal"}
         current={getCurrentStep(order)}
         style={{
           padding: "24px",

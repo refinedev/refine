@@ -189,7 +189,7 @@ export const CanvasList = () => {
         title={<h3 style={{ fontWeight: "bold" }}>Canvas Changes</h3>}
         {...modalProps}
         centered
-        destroyOnClose
+        destroyOnHidden
         onOk={close}
         onCancel={() => {
           close();

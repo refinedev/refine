@@ -68,11 +68,15 @@ export const CompanyContactsTable = () => {
 
   return (
     <Card
-      headStyle={{
-        borderBottom: "1px solid #D9D9D9",
-        marginBottom: "1px",
+      styles={{
+        header: {
+          borderBottom: "1px solid #D9D9D9",
+          marginBottom: "1px",
+        },
+        body: {
+          padding: 0,
+        },
       }}
-      bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
           <TeamOutlined />

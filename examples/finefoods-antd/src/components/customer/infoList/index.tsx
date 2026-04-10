@@ -23,7 +23,7 @@ export const CustomerInfoList = ({ customer }: Props) => {
 
   return (
     <Card
-      bordered={false}
+      variant={"borderless"}
       styles={{
         body: {
           padding: "0 16px 0 16px",
@@ -42,7 +42,7 @@ export const CustomerInfoList = ({ customer }: Props) => {
             title: t("users.fields.addresses"),
             icon: <EnvironmentOutlined />,
             value: (
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 {customer?.addresses.map((address, index) => {
                   const isFirst = index === 0;
 
