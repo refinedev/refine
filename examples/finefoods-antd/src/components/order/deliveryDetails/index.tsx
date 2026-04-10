@@ -75,36 +75,29 @@ export const OrderDeliveryDetails = ({ order }: Props) => {
         style={{
           padding: "24px",
         }}
-      >
-        {order?.events.map((event, index) => {
+        items={order?.events.map((event, index) => {
           const status = getStepStatus(order, event, index);
           const isLast = index === order?.events.length - 1;
 
-          return (
-            <Steps.Step
-              key={index}
-              style={{
-                paddingBottom: isLast ? "0" : "24px",
-              }}
-              status={status}
-              title={t(`enum.orderStatuses.${event.status}`)}
-              icon={
-                getNotFinishedCurrentStep(order, event, index) && (
-                  <LoadingOutlined />
-                )
-              }
-              description={
-                event.date && (
-                  <Flex wrap={"wrap"} gap={4}>
-                    <div>{dayjs(event.date).format("L")}</div>
-                    <div>{dayjs(event.date).format("LT")}</div>
-                  </Flex>
-                )
-              }
-            />
-          );
+          return {
+            key: `${index}`,
+            style: {
+              paddingBottom: isLast ? "0" : "24px",
+            },
+            status,
+            title: t(`enum.orderStatuses.${event.status}`),
+            icon: getNotFinishedCurrentStep(order, event, index) ? (
+              <LoadingOutlined />
+            ) : undefined,
+            description: event.date ? (
+              <Flex wrap={"wrap"} gap={4}>
+                <div>{dayjs(event.date).format("L")}</div>
+                <div>{dayjs(event.date).format("LT")}</div>
+              </Flex>
+            ) : undefined,
+          };
         })}
-      </Steps>
+      />
       <List
         size="large"
         dataSource={details}

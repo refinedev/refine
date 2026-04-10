@@ -50,7 +50,7 @@ export const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const customTheme: ThemeConfig = {
     // you can change the theme colors here. example: ...RefineThemes.Magenta,
     ...RefineThemes.Purple,
-    cssVar: true,
+    cssVar: {},
     algorithm,
     components: {
       Card: {
