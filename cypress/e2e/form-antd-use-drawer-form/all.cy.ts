@@ -17,11 +17,16 @@ describe("form-antd-use-drawer-form", () => {
   };
 
   const isDrawerVisible = () => {
-    return cy.get(".ant-drawer-content").should("be.visible");
+    return cy
+      .get(".ant-drawer-content-wrapper")
+      .should("be.visible")
+      .and("not.have.class", "ant-drawer-content-wrapper-hidden");
   };
 
   const isDrawerNotVisible = () => {
-    return cy.get(".ant-drawer-content").should("not.be.visible");
+    return cy
+      .get(".ant-drawer-content-wrapper")
+      .should("have.class", "ant-drawer-content-wrapper-hidden");
   };
 
   const assertSuccessResponse = (response: any) => {
@@ -82,11 +87,11 @@ describe("form-antd-use-drawer-form", () => {
 
       cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
       cy.get("input#status")
-        .get(".ant-select-selection-item")
-        .should(
-          "contain",
-          body?.status[0].toUpperCase() + body?.status.slice(1),
-        );
+        .closest(".ant-select-content")
+        .invoke("text")
+        .then((text) => {
+          expect(text.trim().toLowerCase()).to.eq(body?.status);
+        });
     });
 
     cy.get("#title.ant-input").eq(1).clear();

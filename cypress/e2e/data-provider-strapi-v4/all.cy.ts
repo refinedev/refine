@@ -133,7 +133,7 @@ describe("data-provider-strapi-v4", () => {
       cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.getAntdFilterTrigger(0).click();
-      cy.get(".ant-select-selector").eq(1).click();
+      cy.get(".ant-select-content").eq(1).click();
 
       // Wait for dropdown options to be visible and have proper dimensions
       cy.get(".ant-select-dropdown").should("be.visible");

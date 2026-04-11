@@ -30,7 +30,7 @@ export const useStyles = createStyles((props) => {
 
     formItemDisabled: {
       ".ant-select-disabled": {
-        ".ant-select-selector": {
+        ".ant-select-content": {
           backgroundColor: "transparent !important",
           borderColor: "transparent !important",
           background: "transparent !important",
