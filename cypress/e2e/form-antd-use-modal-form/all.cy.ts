@@ -81,6 +81,8 @@ describe("form-antd-use-modal-form", () => {
       isModalVisible();
       cy.getAntdLoadingOverlay().should("not.exist");
 
+      // arbitrary wait for field to be populated
+      cy.wait(1000);
       cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
       cy.get("input#status")
         .closest(".ant-select-content")
