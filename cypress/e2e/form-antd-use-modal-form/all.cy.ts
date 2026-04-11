@@ -77,13 +77,12 @@ describe("form-antd-use-modal-form", () => {
       const response = interception?.response;
       const body = response?.body;
 
-      // wait loading state and render to be finished
-      isModalVisible();
-      cy.getAntdLoadingOverlay().should("not.exist");
+      cy.get(".ant-modal-container:visible").last().as("editModal");
+      cy.get("@editModal").find(".ant-spin-spinning").should("not.exist");
+      cy.get("@editModal")
+        .find("input#title")
+        .should("have.value", body?.title);
 
-      // arbitrary wait for field to be populated
-      cy.wait(1000);
-      cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
       cy.get("input#status")
         .closest(".ant-select-content")
         .invoke("text")
