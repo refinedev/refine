@@ -264,32 +264,11 @@ export const useForm = <
   const warnWhenUnsavedChanges =
     warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
-  // populate form with data when id changes
+  // populate form with data when query is ready or id changes
   // form populated via initialValues prop
   React.useEffect(() => {
     form.resetFields();
-  }, [id]);
-
-  // populate form with data when query is ready
-  // ensures form fields are updated when data arrives
-  React.useEffect(() => {
-    const isEditAction = action === "edit" || action === "clone";
-    const queryValues = query?.data?.data;
-
-    if (!isEditAction) {
-      return;
-    }
-
-    if (typeof id === "undefined") {
-      return;
-    }
-
-    if (!queryValues) {
-      return;
-    }
-
-    form.setFieldsValue(queryValues as any);
-  }, [action, id, query?.data?.data, form]);
+  }, [query?.data?.data, id]);
 
   const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
     if (submitOnEnter && event.key === "Enter") {
