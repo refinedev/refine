@@ -34,6 +34,19 @@ describe("form-antd-use-modal-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
+    cy.intercept(
+      {
+        method: "GET",
+        hostname: "api.fake-rest.refine.dev",
+        pathname: "/posts/*",
+      },
+      (req) => {
+        req.on("response", (res) => {
+          res.setDelay(250);
+        });
+      },
+    ).as("getPostDelayed");
+
     cy.visit("/");
   });
 
