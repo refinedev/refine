@@ -368,4 +368,148 @@ describe("useDataGrid Hook", () => {
       },
     ]);
   });
+
+  // ============================================================================
+  // NEW TESTS: Filter Debouncing
+  // ============================================================================
+
+  it("should debounce text filters in smart mode", async () => {
+    vi.useFakeTimers();
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: { mode: "server" },
+          filterDebounceMs: 300,
+          filterDebounceMode: "smart",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange?.(
+        { items: [{ field: "title", operator: "contains", value: "test" }] },
+        {} as any,
+      );
+    });
+
+    expect(result.current.isPendingFilters).toBe(true);
+
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    await waitFor(() => {
+      expect(result.current.isPendingFilters).toBe(false);
+    });
+
+    vi.useRealTimers();
+  });
+
+  it("should apply categorical filters immediately in smart mode", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: { mode: "server" },
+          filterDebounceMode: "smart",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange?.(
+        { items: [{ field: "status", operator: "eq", value: "active" }] },
+        {} as any,
+      );
+    });
+
+    expect(result.current.isPendingFilters).toBe(false);
+  });
+
+  it("should disable debouncing when mode is 'off'", async () => {
+    vi.useFakeTimers();
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: { mode: "server" },
+          filterDebounceMode: "off",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange?.(
+        { items: [{ field: "title", operator: "contains", value: "test" }] },
+        {} as any,
+      );
+    });
+
+    expect(result.current.isPendingFilters).toBe(false);
+
+    vi.useRealTimers();
+  });
+
+  it("should call debounce callbacks", async () => {
+    vi.useFakeTimers();
+
+    const onStart = vi.fn();
+    const onEnd = vi.fn();
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: { mode: "server" },
+          filterDebounceMs: 300,
+          onFilterDebounceStart: onStart,
+          onFilterDebounceEnd: onEnd,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    act(() => {
+      result.current.dataGridProps.onFilterModelChange?.(
+        { items: [{ field: "title", operator: "contains", value: "test" }] },
+        {} as any,
+      );
+    });
+
+    expect(onStart).toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    expect(onEnd).toHaveBeenCalled();
+
+    vi.useRealTimers();
+  });
 });

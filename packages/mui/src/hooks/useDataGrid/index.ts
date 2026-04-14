@@ -14,7 +14,7 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react"; // ADD useCallback
 
 import type {
   DataGridProps,
@@ -32,6 +32,35 @@ import {
   transformSortModelToCrudSorting,
 } from "@definitions";
 
+
+// ============================================================================
+// HELPER: Filter utilities (ADD THIS)
+// ============================================================================
+function isTextFilter(filter: CrudFilter): boolean {
+ if (!("operator" in filter)) return false;
+const textOperators = new Set([
+  "contains",
+  "ncontains",
+  "startswith",
+  "endswith",
+  "like",
+  "regex",
+  "eq",
+  "ne",
+]);
+return textOperators.has(filter.operator as string);
+}
+
+function partitionFiltersByType(filters: CrudFilters) {
+  return {
+    text: filters.filter((f) => isTextFilter(f)),
+    categorical: filters.filter((f) => !isTextFilter(f)),
+  };
+}
+
+// ============================================================================
+// EXISTING TYPE DEFINITIONS (Keep as is)
+// ============================================================================
 type DataGridPropsOverride = Omit<DataGridProps, "onFilterModelChange"> & {
   onFilterModelChange: (model: GridFilterModel) => void;
 };
@@ -61,6 +90,9 @@ type DataGridPropsType = Required<
     | "processRowUpdate"
   >;
 
+// ============================================================================
+// UPDATE: Add new props to UseDataGridProps (MODIFY THIS)
+// ============================================================================
 export type UseDataGridProps<
   TQueryFnData,
   TError extends HttpError,
@@ -98,8 +130,37 @@ export type UseDataGridProps<
     TError,
     TData
   >["mutationOptions"];
+  
+  // NEW: Add configurable debounce options
+  /**
+   * Debounce delay for filter changes in milliseconds
+   * @default 500
+   */
+  filterDebounceMs?: number;
+
+  /**
+   * Filter debounce mode
+   * - 'smart': Only debounce text-based filters, apply categorical filters immediately
+   * - 'all': Debounce all filter changes
+   * - 'off': No debouncing
+   * @default 'smart'
+   */
+  filterDebounceMode?: 'smart' | 'all' | 'off';
+
+  /**
+   * Callback fired when debounced filters are about to be applied
+   */
+  onFilterDebounceStart?: () => void;
+
+  /**
+   * Callback fired when debounced filter application completes
+   */
+  onFilterDebounceEnd?: () => void;
 };
 
+// ============================================================================
+// UPDATE: Add isPendingFilters to return type (MODIFY THIS)
+// ============================================================================
 export type UseDataGridReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -107,6 +168,8 @@ export type UseDataGridReturnType<
 > = useTableReturnTypeCore<TData, TError> & {
   dataGridProps: DataGridPropsType;
   search: (value: TSearchVariables) => Promise<void>;
+  /** True when filters are being debounced and API call is pending */
+  isPendingFilters?: boolean;
 };
 
 /**
@@ -125,7 +188,6 @@ export type UseDataGridReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSort: CrudSort[] = [];
-const DEFAULT_FILTER_DEBOUNCE_MS = 300;
 
 export function useDataGrid<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -150,6 +212,10 @@ export function useDataGrid<
   overtimeOptions,
   editable = false,
   updateMutationOptions,
+  filterDebounceMs = 500,           // NEW
+  filterDebounceMode = 'smart',     // NEW
+  onFilterDebounceStart,            // NEW
+  onFilterDebounceEnd,              // NEW
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -159,8 +225,8 @@ export function useDataGrid<
   const liveMode = useLiveMode(liveModeFromProp);
 
   const columnsTypes = useRef<Record<string, string>>({});
-  // Debounce server-side filter fetches so UI input stays responsive.
   const filterDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isPendingFilters, setIsPendingFilters] = useState(false); // NEW
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
@@ -259,19 +325,65 @@ export function useDataGrid<
     setSorters(crudSorting);
   };
 
-  const handleFilterModelChange = (filterModel: GridFilterModel) => {
-    const crudFilters = transformFilterModelToCrudFilters(filterModel);
-    setMuiCrudFilters(crudFilters);
-    if (isServerSideFilteringEnabled) {
-      // Let the input update immediately; debounce only the server query.
+  // ============================================================================
+  // UPDATE: Enhanced handleFilterModelChange with debouncing (MODIFY THIS)
+  // ============================================================================
+ const handleFilterModelChange = (filterModel: GridFilterModel) => {
+  const crudFilters = transformFilterModelToCrudFilters(filterModel);
+  setMuiCrudFilters(crudFilters);
+
+  if (isServerSideFilteringEnabled) {
+    if (filterDebounceMode === 'off') {
+      // No debouncing - apply immediately
       clearFilterDebounce();
+      if (isPendingFilters) {
+        setIsPendingFilters(false);
+        onFilterDebounceEnd?.();
+      }
+      applyFilters(crudFilters);
+    } else if (filterDebounceMode === 'smart') {
+      // Smart mode: only debounce text filters
+      const { text, categorical } = partitionFiltersByType(crudFilters);
+
+      if (text.length === 0) {
+        // No text filters - clear debounce and apply categorical immediately
+        clearFilterDebounce();
+        if (isPendingFilters) {
+          setIsPendingFilters(false);
+          onFilterDebounceEnd?.();
+        }
+        if (categorical.length > 0) {
+          applyFilters(categorical);
+        }
+      } else {
+        // Has text filters - debounce the entire combined filter
+        clearFilterDebounce();
+        setIsPendingFilters(true);
+        onFilterDebounceStart?.();
+
+        filterDebounceRef.current = setTimeout(() => {
+          applyFilters([...categorical, ...text]);
+          setIsPendingFilters(false);
+          onFilterDebounceEnd?.();
+        }, filterDebounceMs);
+      }
+    } else {
+      // All mode: debounce all filter changes
+      clearFilterDebounce();
+      setIsPendingFilters(true);
+      onFilterDebounceStart?.();
+
       filterDebounceRef.current = setTimeout(() => {
         applyFilters(crudFilters);
-      }, DEFAULT_FILTER_DEBOUNCE_MS);
-      return;
+        setIsPendingFilters(false);
+        onFilterDebounceEnd?.();
+      }, filterDebounceMs);
     }
-    applyFilters(crudFilters);
-  };
+    return;
+  }
+
+  applyFilters(crudFilters);
+};
 
   const search = async (value: TSearchVariables) => {
     if (onSearchProp) {
@@ -393,5 +505,6 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     result,
+    isPendingFilters, // NEW: Add to return
   };
 }

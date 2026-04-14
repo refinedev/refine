@@ -7,7 +7,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sorters) => {
   const sorts: string[] = [];
 
   if (sorters) {
-    sorters.map((item) => {
+    sorters.map((item:any) => {
       const field = item.field === "id" ? "$id" : item.field;
       if (item.order === "asc") {
         sorts.push(Query.orderAsc(field));
