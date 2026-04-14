@@ -32,23 +32,22 @@ import {
   transformSortModelToCrudSorting,
 } from "@definitions";
 
-
 // ============================================================================
 // HELPER: Filter utilities (ADD THIS)
 // ============================================================================
 function isTextFilter(filter: CrudFilter): boolean {
- if (!("operator" in filter)) return false;
-const textOperators = new Set([
-  "contains",
-  "ncontains",
-  "startswith",
-  "endswith",
-  "like",
-  "regex",
-  "eq",
-  "ne",
-]);
-return textOperators.has(filter.operator as string);
+  if (!("operator" in filter)) return false;
+  const textOperators = new Set([
+    "contains",
+    "ncontains",
+    "startswith",
+    "endswith",
+    "like",
+    "regex",
+    "eq",
+    "ne",
+  ]);
+  return textOperators.has(filter.operator as string);
 }
 
 function partitionFiltersByType(filters: CrudFilters) {
@@ -130,7 +129,7 @@ export type UseDataGridProps<
     TError,
     TData
   >["mutationOptions"];
-  
+
   // NEW: Add configurable debounce options
   /**
    * Debounce delay for filter changes in milliseconds
@@ -145,7 +144,7 @@ export type UseDataGridProps<
    * - 'off': No debouncing
    * @default 'smart'
    */
-  filterDebounceMode?: 'smart' | 'all' | 'off';
+  filterDebounceMode?: "smart" | "all" | "off";
 
   /**
    * Callback fired when debounced filters are about to be applied
@@ -212,10 +211,10 @@ export function useDataGrid<
   overtimeOptions,
   editable = false,
   updateMutationOptions,
-  filterDebounceMs = 500,           // NEW
-  filterDebounceMode = 'smart',     // NEW
-  onFilterDebounceStart,            // NEW
-  onFilterDebounceEnd,              // NEW
+  filterDebounceMs = 500, // NEW
+  filterDebounceMode = "smart", // NEW
+  onFilterDebounceStart, // NEW
+  onFilterDebounceEnd, // NEW
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -226,6 +225,7 @@ export function useDataGrid<
 
   const columnsTypes = useRef<Record<string, string>>({});
   const filterDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previousCategoricalFiltersRef = useRef<CrudFilters>([]);
   const [isPendingFilters, setIsPendingFilters] = useState(false); // NEW
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
@@ -328,62 +328,74 @@ export function useDataGrid<
   // ============================================================================
   // UPDATE: Enhanced handleFilterModelChange with debouncing (MODIFY THIS)
   // ============================================================================
- const handleFilterModelChange = (filterModel: GridFilterModel) => {
-  const crudFilters = transformFilterModelToCrudFilters(filterModel);
-  setMuiCrudFilters(crudFilters);
+  const handleFilterModelChange = (filterModel: GridFilterModel) => {
+    const crudFilters = transformFilterModelToCrudFilters(filterModel);
+    setMuiCrudFilters(crudFilters);
 
-  if (isServerSideFilteringEnabled) {
-    if (filterDebounceMode === 'off') {
-      // No debouncing - apply immediately
-      clearFilterDebounce();
-      if (isPendingFilters) {
-        setIsPendingFilters(false);
-        onFilterDebounceEnd?.();
-      }
-      applyFilters(crudFilters);
-    } else if (filterDebounceMode === 'smart') {
-      // Smart mode: only debounce text filters
-      const { text, categorical } = partitionFiltersByType(crudFilters);
-
-      if (text.length === 0) {
-        // No text filters - clear debounce and apply categorical immediately
+    if (isServerSideFilteringEnabled) {
+      if (filterDebounceMode === "off") {
+        // No debouncing - apply immediately
         clearFilterDebounce();
         if (isPendingFilters) {
           setIsPendingFilters(false);
           onFilterDebounceEnd?.();
         }
-        if (categorical.length > 0) {
-          applyFilters(categorical);
+        applyFilters(crudFilters);
+      } else if (filterDebounceMode === "smart") {
+        // Smart mode: only debounce text filters, apply categorical immediately only if changed
+        const { text, categorical } = partitionFiltersByType(crudFilters);
+
+        // Check if categorical filters have changed
+        const categoricalChanged = !isEqual(
+          categorical,
+          previousCategoricalFiltersRef.current,
+        );
+
+        if (text.length === 0) {
+          // No text filters - clear debounce and apply categorical immediately if changed
+          clearFilterDebounce();
+          if (isPendingFilters) {
+            setIsPendingFilters(false);
+            onFilterDebounceEnd?.();
+          }
+          if (categoricalChanged && categorical.length > 0) {
+            previousCategoricalFiltersRef.current = categorical;
+            applyFilters(categorical);
+          }
+        } else {
+          // Has text filters - debounce the entire combined filter
+          // Only apply categorical immediately if they changed (not on every keystroke)
+          if (categoricalChanged) {
+            previousCategoricalFiltersRef.current = categorical;
+          }
+
+          clearFilterDebounce();
+          setIsPendingFilters(true);
+          onFilterDebounceStart?.();
+
+          filterDebounceRef.current = setTimeout(() => {
+            applyFilters([...categorical, ...text]);
+            setIsPendingFilters(false);
+            onFilterDebounceEnd?.();
+          }, filterDebounceMs);
         }
       } else {
-        // Has text filters - debounce the entire combined filter
+        // All mode: debounce all filter changes
         clearFilterDebounce();
         setIsPendingFilters(true);
         onFilterDebounceStart?.();
 
         filterDebounceRef.current = setTimeout(() => {
-          applyFilters([...categorical, ...text]);
+          applyFilters(crudFilters);
           setIsPendingFilters(false);
           onFilterDebounceEnd?.();
         }, filterDebounceMs);
       }
-    } else {
-      // All mode: debounce all filter changes
-      clearFilterDebounce();
-      setIsPendingFilters(true);
-      onFilterDebounceStart?.();
-
-      filterDebounceRef.current = setTimeout(() => {
-        applyFilters(crudFilters);
-        setIsPendingFilters(false);
-        onFilterDebounceEnd?.();
-      }, filterDebounceMs);
+      return;
     }
-    return;
-  }
 
-  applyFilters(crudFilters);
-};
+    applyFilters(crudFilters);
+  };
 
   const search = async (value: TSearchVariables) => {
     if (onSearchProp) {
