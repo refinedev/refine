@@ -93,6 +93,7 @@ export type UseDataGridProps<
     }
   >;
   editable?: boolean;
+  filterDebounceMs?: number;
   updateMutationOptions?: UseUpdateProps<
     TData,
     TError,
@@ -125,7 +126,7 @@ export type UseDataGridReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSort: CrudSort[] = [];
-const DEFAULT_FILTER_DEBOUNCE_MS = 300;
+const DEFAULT_FILTER_DEBOUNCE_MS = 500;
 
 export function useDataGrid<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -149,6 +150,7 @@ export function useDataGrid<
   dataProviderName,
   overtimeOptions,
   editable = false,
+  filterDebounceMs = DEFAULT_FILTER_DEBOUNCE_MS,
   updateMutationOptions,
 }: UseDataGridProps<
   TQueryFnData,
@@ -267,7 +269,7 @@ export function useDataGrid<
       clearFilterDebounce();
       filterDebounceRef.current = setTimeout(() => {
         applyFilters(crudFilters);
-      }, DEFAULT_FILTER_DEBOUNCE_MS);
+      }, filterDebounceMs);
       return;
     }
     applyFilters(crudFilters);
