@@ -51,7 +51,7 @@ module.exports = {
                     const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
                       /* ... */
                     });
-                  
+
                     const App = () => {
                         return (
                             <Refine

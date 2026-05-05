@@ -41,7 +41,7 @@ Let's see how Neumorphism affects the user interface using what we know about it
 
 ## Neumorphism in User Interface
 
-Neumorphism requires little or no use of flashy elements. The properties needed are shadows and lights.  
+Neumorphism requires little or no use of flashy elements. The properties needed are shadows and lights.
 Neuomorphism makes UI elements appear inside or directly on the background layer, in contrast to other design trends that make items appear above the background.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-08-20-neumorphic-css/card.png" alt="Neumorphic card design example" />

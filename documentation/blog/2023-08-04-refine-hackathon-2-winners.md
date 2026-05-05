@@ -33,7 +33,7 @@ Refine Native, the empowering library for Refine, opens up a world of possibilit
 
 Inside this project, you'll discover two awesome libraries: [@refinenative/expo-router](https://www.npmjs.com/package/@refinenative/expo-router) and [@refinenative/react-native-paper](https://www.npmjs.com/package/@refinenative/react-native-paper). The first one seamlessly integrates Refine with your expo-router project, while the second one provides handy components built with react-native-paper, speeding up the creation of CRUD pages.
 
-**Author**: [Abdellah](https://github.com/abdellah711) - [GitHub Repo](https://github.com/abdellah711/refinenative) - [Project Details](https://dev.to/abdellah711/refine-native-2p1d)  
+**Author**: [Abdellah](https://github.com/abdellah711) - [GitHub Repo](https://github.com/abdellah711/refinenative) - [Project Details](https://dev.to/abdellah711/refine-native-2p1d)
 **Prize**: **$1000 + Refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 ## ⭐ Most Technically Impressive
@@ -46,7 +46,7 @@ Inside this project, you'll discover two awesome libraries: [@refinenative/expo-
 
 Introducing Supaheroes, the AI-powered platform that crafts character biographies from your favorite games, comics, and movies. Unleash the power of AI to bring your beloved characters to life!
 
-**Author**: [Luis](https://twitter.com/asyncerror) - [GitHub Repo](https://github.com/lvisb/versus-heroes) - [Project Details](https://dev.to/asyncerror/supaheroes-ai-powered-heroes-3f3j)  
+**Author**: [Luis](https://twitter.com/asyncerror) - [GitHub Repo](https://github.com/lvisb/versus-heroes) - [Project Details](https://dev.to/asyncerror/supaheroes-ai-powered-heroes-3f3j)
 **Prize**: **$1000 + Refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 ## ⭐ Most Visually Pleasing
@@ -61,7 +61,7 @@ TripStash is designed to help users plan their trips efficiently and easily. Col
 
 Creating a project, inviting travel companions, and building a shared itinerary for accommodation, flights, sightseeing, dining, and more is a breeze! Travel planning has never been this easy.
 
-**Authors**: [Brinda](https://twitter.com/brindashree6) - [Akshay](https://github.com/aKshayKadam03) - [Rahul](https://www.linkedin.com/in/rahul-nadendla-34212252) - [GitHub Repo](https://github.com/brindashree/trip-stash) - [Project Details](https://dev.to/brindashree/tripstash-2o7k)  
+**Authors**: [Brinda](https://twitter.com/brindashree6) - [Akshay](https://github.com/aKshayKadam03) - [Rahul](https://www.linkedin.com/in/rahul-nadendla-34212252) - [GitHub Repo](https://github.com/brindashree/trip-stash) - [Project Details](https://dev.to/brindashree/tripstash-2o7k)
 **Prize**: **$1000 + Refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 ## ⭐ Best Project Using Supabase
@@ -74,7 +74,7 @@ Creating a project, inviting travel companions, and building a shared itinerary 
 
 Anisong, a web app that lets you curate personalized playlists filled with the most captivating opening and ending theme songs from your beloved anime series. Enjoy the perfect anime soundtrack tailored just for you!
 
-**Author**: [Darius Pasca](https://twitter.com/pasca_darius) - [GitHub Repo](https://github.com/dariuspasca/anisong) - [Project Details](https://dev.to/dariuspasca/anisong-your-personal-anime-playlist-creator-3cmd)  
+**Author**: [Darius Pasca](https://twitter.com/pasca_darius) - [GitHub Repo](https://github.com/dariuspasca/anisong) - [Project Details](https://dev.to/dariuspasca/anisong-your-personal-anime-playlist-creator-3cmd)
 **Prize**: **$1000 + Refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 ## ⭐ Best Project Using Material UI
@@ -87,7 +87,7 @@ Anisong, a web app that lets you curate personalized playlists filled with the m
 
 RSVP Plus, your one-stop solution for creating and sending personalized online RSVP invitations with optional surveys and questions to gather valuable insights from your potential attendees in no time!
 
-**Author**: [Ansell Maximilian](https://twitter.com/AnsellMax) - [GitHub Repo](https://github.com/AnsellMaximilian/rsvquick) - [Project Details](https://dev.to/ansellmaximilian/rsvquick-online-invitation-app-made-using-refine-148e)  
+**Author**: [Ansell Maximilian](https://twitter.com/AnsellMax) - [GitHub Repo](https://github.com/AnsellMaximilian/rsvquick) - [Project Details](https://dev.to/ansellmaximilian/rsvquick-online-invitation-app-made-using-refine-148e)
 **Prize**: **$1000 + Refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 ## 👼 Runners-Up, in random order!

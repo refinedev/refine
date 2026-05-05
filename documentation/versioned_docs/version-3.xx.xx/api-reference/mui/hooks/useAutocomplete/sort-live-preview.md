@@ -46,9 +46,9 @@ const PostCreate: React.FC = () => {
                     />
                 )}
             />
-            <Button 
-                onClick={() => setOrder(order === "asc" ? "desc" : "asc")} 
-                variant="contained" 
+            <Button
+                onClick={() => setOrder(order === "asc" ? "desc" : "asc")}
+                variant="contained"
                 size="small"
             >Toggle Order</Button>
         </>

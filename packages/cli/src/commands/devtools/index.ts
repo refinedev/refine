@@ -149,7 +149,7 @@ const devtoolsInstaller = async () => {
                         "dev": "${scriptDev} & refine devtools",
                         "refine": "refine"
                     }
-                }  
+                }
         `),
         ),
         {

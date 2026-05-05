@@ -90,7 +90,7 @@ We can also benchmark typical tasks to find performance bottlenecks. Here is a s
 
 ```bash
 # time_list.sh
-#!/bin/bash
+# !/bin/bash
 
 start_time=$(date +%s%N)
 ls -l

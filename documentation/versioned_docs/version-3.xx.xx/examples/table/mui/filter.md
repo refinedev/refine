@@ -10,4 +10,3 @@ The `Table Filter` option allows you to apply filters to the data in your table.
 By filtering your table's data you may only see the fields you want.
 
 <CodeSandboxExample path="table-material-ui-table-filter" />
-

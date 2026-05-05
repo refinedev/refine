@@ -32,7 +32,7 @@ It is the leading open source headless CMS for your applications after [Strapi](
 Strapi is an open source platform and has many contributors. It is easy to customize the API and admin panel. It has become more powerful with plugins. It has an advanced and developer-oriented SDK.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-05-05-open-source-headless-cms/strapi.jpg" alt="Strapi logo" />
- 
+
 Free service with limited features. Get more benefits with the paid plan starting at $9/month.
 
 ### Directus

@@ -8,17 +8,17 @@
 
 ## 🏆 Hackathon Winners
 
-🎉 Congratulations to all the participants. 
+🎉 Congratulations to all the participants.
 
 The hackathon has officially wrapped up, and we're seriously blown away by the incredible results you've achieved. Picking the winners from all the outstanding submissions was quite a challenge!
 
-A big shoutout to our awesome sponsors - [Supabase](https://supabase.com/) and [MUI](https://mui.com/)! Thanks for teaming up with us to make this hackathon a massive hit. 
+A big shoutout to our awesome sponsors - [Supabase](https://supabase.com/) and [MUI](https://mui.com/)! Thanks for teaming up with us to make this hackathon a massive hit.
 
-🥳 To all the participants, you're all superstars! 
+🥳 To all the participants, you're all superstars!
 
- After much consideration, we're thrilled to announce the well-deserved winners who really stood out from the crowd. 
- 
-  Let's celebrate their success together! 
+ After much consideration, we're thrilled to announce the well-deserved winners who really stood out from the crowd.
+
+  Let's celebrate their success together!
 
 
 ## ⭐ Best Overall Project
@@ -35,9 +35,9 @@ A big shoutout to our awesome sponsors - [Supabase](https://supabase.com/) and [
 
 refine Native, the empowering library for refine, opens up a world of possibilities for creating cross-platform apps. You can build web and native crud apps 3x faster by leveraging the power of React Native and refine.
 
-Inside this project, you'll discover two awesome libraries: [@refinenative/expo-router](https://www.npmjs.com/package/@refinenative/expo-router) and [@refinenative/react-native-paper](https://www.npmjs.com/package/@refinenative/react-native-paper). The first one seamlessly integrates refine with your expo-router project, while the second one provides handy components built with react-native-paper, speeding up the creation of CRUD pages. 
+Inside this project, you'll discover two awesome libraries: [@refinenative/expo-router](https://www.npmjs.com/package/@refinenative/expo-router) and [@refinenative/react-native-paper](https://www.npmjs.com/package/@refinenative/react-native-paper). The first one seamlessly integrates refine with your expo-router project, while the second one provides handy components built with react-native-paper, speeding up the creation of CRUD pages.
 
-**Author**: [Abdellah](https://github.com/abdellah711) - [GitHub Repo](https://github.com/abdellah711/refinenative) - [Project Details](https://dev.to/abdellah711/refine-native-2p1d)  
+**Author**: [Abdellah](https://github.com/abdellah711) - [GitHub Repo](https://github.com/abdellah711/refinenative) - [Project Details](https://dev.to/abdellah711/refine-native-2p1d)
 **Prize**: **$1000 + refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 
@@ -54,7 +54,7 @@ Inside this project, you'll discover two awesome libraries: [@refinenative/expo-
 Introducing Supaheroes, the AI-powered platform that crafts character biographies from your favorite games, comics, and movies. Unleash the power of AI to bring your beloved characters to life!
 
 
-**Author**: [Luis](https://twitter.com/asyncerror) - [GitHub Repo](https://github.com/lvisb/versus-heroes) - [Project Details](https://dev.to/asyncerror/supaheroes-ai-powered-heroes-3f3j)  
+**Author**: [Luis](https://twitter.com/asyncerror) - [GitHub Repo](https://github.com/lvisb/versus-heroes) - [Project Details](https://dev.to/asyncerror/supaheroes-ai-powered-heroes-3f3j)
 **Prize**: **$1000 + refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 
@@ -67,15 +67,15 @@ Introducing Supaheroes, the AI-powered platform that crafts character biographie
 </div>
 
 
-### TripStash: Travel planning tool 
+### TripStash: Travel planning tool
 
 
-TripStash is designed to help users plan their trips efficiently and easily. Collaborate seamlessly, plan effortlessly, and manage your trips like never before—all in one place. 
+TripStash is designed to help users plan their trips efficiently and easily. Collaborate seamlessly, plan effortlessly, and manage your trips like never before—all in one place.
 
 
 Creating a project, inviting travel companions, and building a shared itinerary for accommodation, flights, sightseeing, dining, and more is a breeze! Travel planning has never been this easy.
 
-**Authors**: [Brinda](https://twitter.com/brindashree6) - [Akshay](https://github.com/aKshayKadam03) - [Rahul](https://www.linkedin.com/in/rahul-nadendla-34212252) - [GitHub Repo](https://github.com/brindashree/trip-stash) - [Project Details](https://dev.to/brindashree/tripstash-2o7k)  
+**Authors**: [Brinda](https://twitter.com/brindashree6) - [Akshay](https://github.com/aKshayKadam03) - [Rahul](https://www.linkedin.com/in/rahul-nadendla-34212252) - [GitHub Repo](https://github.com/brindashree/trip-stash) - [Project Details](https://dev.to/brindashree/tripstash-2o7k)
 **Prize**: **$1000 + refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 
@@ -94,7 +94,7 @@ Creating a project, inviting travel companions, and building a shared itinerary 
 
 Anisong, a web app that lets you curate personalized playlists filled with the most captivating opening and ending theme songs from your beloved anime series. Enjoy the perfect anime soundtrack tailored just for you!
 
-**Author**: [Darius Pasca](https://twitter.com/pasca_darius) - [GitHub Repo](https://github.com/dariuspasca/anisong) - [Project Details](https://dev.to/dariuspasca/anisong-your-personal-anime-playlist-creator-3cmd)  
+**Author**: [Darius Pasca](https://twitter.com/pasca_darius) - [GitHub Repo](https://github.com/dariuspasca/anisong) - [Project Details](https://dev.to/dariuspasca/anisong-your-personal-anime-playlist-creator-3cmd)
 **Prize**: **$1000 + refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 
@@ -107,11 +107,11 @@ Anisong, a web app that lets you curate personalized playlists filled with the m
 </div>
 
 
-### RSVQuick: Online Invitation App 
+### RSVQuick: Online Invitation App
 
 RSVP Plus, your one-stop solution for creating and sending personalized online RSVP invitations with optional surveys and questions to gather valuable insights from your potential attendees in no time!
 
-**Author**: [Ansell Maximilian](https://twitter.com/AnsellMax) - [GitHub Repo](https://github.com/AnsellMaximilian/rsvquick) - [Project Details](https://dev.to/ansellmaximilian/rsvquick-online-invitation-app-made-using-refine-148e)  
+**Author**: [Ansell Maximilian](https://twitter.com/AnsellMax) - [GitHub Repo](https://github.com/AnsellMaximilian/rsvquick) - [Project Details](https://dev.to/ansellmaximilian/rsvquick-online-invitation-app-made-using-refine-148e)
 **Prize**: **$1000 + refine, Supabase, MUI Swag kits, $300 USD credit to the DEV Shop!**
 
 
@@ -167,7 +167,7 @@ Dev-Gym is a testing platform with a hacker-inspired design, designed to assist 
 ### Stream discovery - find a streamer
 
  With Stream Discovery, you can easily discover, create, and rate Twitch streamers to enhance your streaming experience!
- 
+
  **Author**: [Ondra Šimanovský](https://twitter.com/OndraSimanovsky) - [GitHub Repo](https://github.com/JustOndra/stream-discovery) - [Project Details](https://dev.to/simanovskyondrej/stream-discovery-find-a-streamer-5eoh)
 
 
@@ -176,15 +176,15 @@ Dev-Gym is a testing platform with a hacker-inspired design, designed to assist 
 This platform is a product of the LOG (Local Open GovLab) project, which is an innovative initiative under the AfricTivists Strategic Program. Its primary goal is to support, empower, train, and assist local administrations in incorporating digital tools for budget transparency, open and inclusive governance, information accessibility, and collaborative citizen engagement.
 
 **Author**: [NioulBoy](https://twitter.com/mbayedione10) - [GitHub Repo](https://github.com/localopengovlab/gtfc-admin) -  [Project Details](https://dev.to/mbayedione10/transparent-and-organized-governance-gtfc-municipalitys-monitoring-and-evaluation-platform-e61)
- 
+
 
 ### Keronote UI: Create Animations
 
 A simple, but fun animated canvas, with several tools and others features in web.
 
-**Author**: [Media-Collab](https://twitter.com/Media__Collab)- [GitHub Repo](https://github.com/Media-Collab/keronoteui) - [Project Details](https://dev.to/gregoryinnovo/keronote-ui-30in) 
+**Author**: [Media-Collab](https://twitter.com/Media__Collab)- [GitHub Repo](https://github.com/Media-Collab/keronoteui) - [Project Details](https://dev.to/gregoryinnovo/keronote-ui-30in)
 
-### React-Analytics 
+### React-Analytics
 A library that tracks the analytics of your react-website. Easy to use with a single line of code.
 
 **Author**: [Jatin Rawat](https://www.linkedin.com/in/rawat-jatin/) - [GitHub Repo](https://github.com/Kaku-g/react-analytics) - [Project Details](https://dev.to/kakug/react-analytics-20fd)
@@ -197,15 +197,15 @@ A library that tracks the analytics of your react-website. Easy to use with a si
 Below are the raffle winners who generated hackathon participant tickets. The prizes include a refine cap and coaster set.
 
 - Rishabh Raj Kumar - rajrishabh377@gmail.com - https://github.com/Rishabh-raj-kumar
-- Leonel Pech - jleonelpm@hotmail.com - https://github.com/jleonelpm	
-- Harsh Singh -	harshsinghcs01@gmail.com - https://github.com/harshsinghcs	
-- Muhammed Nazeem - nazeemnob18@gmail.com - https://github.com/n4ze3m	
+- Leonel Pech - jleonelpm@hotmail.com - https://github.com/jleonelpm
+- Harsh Singh -	harshsinghcs01@gmail.com - https://github.com/harshsinghcs
+- Muhammed Nazeem - nazeemnob18@gmail.com - https://github.com/n4ze3m
 - Maaz Khan - maaz.masood@inaequostudios.com - https://github.com/maazkhan2023
-- Gokul nath - gokulnath634@gmail.com - https://github.com/grroott	
-- Marvel Ken-Anele - marvelken2000@gmail.com - https://github.com/marvelken	
-- Teri Eyenike - teyenike1@gmail.com - https://github.com/Terieyenike	
-- Arpan Chowdhury - arpanchowdhury003@gmail.com	 -	https://github.com/apu52	
-- astitva -	astitv87@gmail.com - https://github.com/astitva0011	
+- Gokul nath - gokulnath634@gmail.com - https://github.com/grroott
+- Marvel Ken-Anele - marvelken2000@gmail.com - https://github.com/marvelken
+- Teri Eyenike - teyenike1@gmail.com - https://github.com/Terieyenike
+- Arpan Chowdhury - arpanchowdhury003@gmail.com	 -	https://github.com/apu52
+- astitva -	astitv87@gmail.com - https://github.com/astitva0011
 
 <br/>
 
@@ -213,11 +213,11 @@ Below are the raffle winners who generated hackathon participant tickets. The pr
 
 ## 🏆 Hackathon Post
 
-We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon! 
+We're back with another exciting event for the open-source community - the 2nd refine Open Source Hackathon!
 
 As with the first, this Hackathon is about showcasing your skills, creativity, and innovation using refine.
 
-**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry-standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts. 
+**[refine](https://github.com/refinedev/refine)** is a React-based framework for the rapid ✨ development of CRUD web applications. It eliminates the repetitive tasks demanded by CRUD operations and provides industry-standard solutions for critical parts like authentication, access control, routing, networking, state management, and i18n. refine shines on data-intensive applications like admin panels, dashboards, internal tools and storefronts.
 
 
 ⏰ The Hackathon kicked off on June 21, and we're proud to host it in collaboration with the DEV platform.
@@ -254,7 +254,7 @@ We are organizing a raffle for those who create a ticket and share it on Twitter
 
 
 
-refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/), which has significant contributions to the community. We're proud to host our second Hackathon on collaboration with the [DEV](https://dev.to/refine) platform. 
+refine draws its strength from the open-source community, and we are grateful to have the support of [Supabase](https://supabase.com/) and [MUI](https://mui.com/material-ui/getting-started/overview/), which has significant contributions to the community. We're proud to host our second Hackathon on collaboration with the [DEV](https://dev.to/refine) platform.
 
 It's worth noting that refine has built-in [data provider support](https://refine.dev/docs/packages/documentation/data-providers/supabase) for Supabase and [UI framework integration](https://refine.dev/docs/api-reference/mui/) for Material UI. So we believe they will be excellent backend and UI solutions for your hackathon project.
 
@@ -285,18 +285,18 @@ Supabase and MUI will also be providing swag kits for the winners.
 
 ### Prizes 🎁
 
-The total prize pool amount is **$10,000**. The distribution of prizes will be announced on the [DEV](https://dev.to/) platform on the launch day. There are five categories in which participants can win, and prizes will be awarded for each category. 
-#### Main Prize Categories 
-- **Best Overall Project**   
-- **Most Visually Pleasing**  
-- **Most Technically Impressive** 
+The total prize pool amount is **$10,000**. The distribution of prizes will be announced on the [DEV](https://dev.to/) platform on the launch day. There are five categories in which participants can win, and prizes will be awarded for each category.
+#### Main Prize Categories
+- **Best Overall Project**
+- **Most Visually Pleasing**
+- **Most Technically Impressive**
 
 You can use any data provider or UI framework in the refine app for the three main  prize categories above.
 
 #### Sponsor's Special prize categories
-- **Best Project built using [Supabase](https://supabase.com/)** 
+- **Best Project built using [Supabase](https://supabase.com/)**
   - The project must use Supabase as a data provider in the refine app
-- **Best Project built using [Material UI](https://mui.com/material-ui/getting-started/overview/)** 
+- **Best Project built using [Material UI](https://mui.com/material-ui/getting-started/overview/)**
   - The project must use Material UI as the UI framework in the refine app
 
 
@@ -328,7 +328,7 @@ Runner-Up Prizes (10 Total – across all categories):
 
 
 ## Submission
-- Submissions activated on [DEV](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn) platform 
+- Submissions activated on [DEV](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn) platform
 - All detailed information on submissions will be explained on the [refine + DEV Hackathon Announcement Post](https://dev.to/devteam/announcing-the-refine-dev-hackathon-29fn).
 
 
@@ -343,7 +343,7 @@ Runner-Up Prizes (10 Total – across all categories):
 
 ## Community
 
-The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week. 
+The **refine** team will be taking part in the Hackathon and you'll find us live building in our Discord all week.
 
 - Join us in our [Discord](https://discord.gg/refine) to get help, ask questions, and share your progress. You can also find a potential teammate on Discord hackathon channel.
   - Forum channel: **Hackathon**
@@ -357,7 +357,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - For the **Best refine Project built using Material UI** category, you need to use Material UI as the UI framework in the refine app.
 
 ### How are the prizes given?
-- Prizes will be distributed by DEV platform. 
+- Prizes will be distributed by DEV platform.
 
 ### What are the judging criteria?
 -  The Judges will be senior staff from the refine DevRel, Marketing, and Engineering Teams.
@@ -378,12 +378,7 @@ The **refine** team will be taking part in the Hackathon and you'll find us live
 - Check out the refine Supabase integration docs:
   - https://refine.dev/docs/packages/documentation/data-providers/supabase/
 - Check out the Material UI docs on refine
-  - https://refine.dev/docs/api-reference/mui/ 
+  - https://refine.dev/docs/api-reference/mui/
 - [Refer to Supabase Docs](https://supabase.com/docs)
 - [Refer to Material UI Docs](https://mui.com/material-ui/getting-started/overview/)
 - [refine 7/24 Discord Support Channel](https://discord.gg/refine)
-
-
-
-
-

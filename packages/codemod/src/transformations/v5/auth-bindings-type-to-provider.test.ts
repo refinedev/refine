@@ -68,18 +68,18 @@ describe("auth-bindings-type-to-provider", () => {
   // Mixed imports scenarios
   it("should handle mixed imports with other types and values", () => {
     const source = `
-      import { 
-        Refine, 
+      import {
+        Refine,
         type AuthBindings,
-        type DataProvider 
+        type DataProvider
       } from "@refinedev/core";
     `;
 
     const expected = `
-      import { 
-        Refine, 
+      import {
+        Refine,
         type AuthProvider as AuthBindings,
-        type DataProvider 
+        type DataProvider
       } from "@refinedev/core";
     `;
 
@@ -104,7 +104,7 @@ describe("auth-bindings-type-to-provider", () => {
   it("should preserve type usage in function parameters", () => {
     const source = `
       import { type AuthBindings } from "@refinedev/core";
-      
+
       function setupAuth(auth: AuthBindings) {
         return auth;
       }
@@ -112,7 +112,7 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import { type AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       function setupAuth(auth: AuthBindings) {
         return auth;
       }
@@ -124,7 +124,7 @@ describe("auth-bindings-type-to-provider", () => {
   it("should preserve type usage in variable declarations", () => {
     const source = `
       import type { AuthBindings } from "@refinedev/core";
-      
+
       const myAuth: AuthBindings = {
         login: async () => ({ success: true }),
         check: async () => ({ authenticated: true }),
@@ -135,7 +135,7 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import type { AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       const myAuth: AuthBindings = {
         login: async () => ({ success: true }),
         check: async () => ({ authenticated: true }),
@@ -150,7 +150,7 @@ describe("auth-bindings-type-to-provider", () => {
   it("should preserve type usage in interface definitions", () => {
     const source = `
       import { type AuthBindings } from "@refinedev/core";
-      
+
       interface AppConfig {
         auth: AuthBindings;
         title: string;
@@ -159,7 +159,7 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import { type AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       interface AppConfig {
         auth: AuthBindings;
         title: string;
@@ -172,7 +172,7 @@ describe("auth-bindings-type-to-provider", () => {
   it("should preserve type usage in generic types", () => {
     const source = `
       import type { AuthBindings } from "@refinedev/core";
-      
+
       type CustomAuth<T extends AuthBindings> = T & {
         custom: boolean;
       };
@@ -180,7 +180,7 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import type { AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       type CustomAuth<T extends AuthBindings> = T & {
         custom: boolean;
       };
@@ -192,20 +192,20 @@ describe("auth-bindings-type-to-provider", () => {
   it("should preserve type usage in class implementations", () => {
     const source = `
       import { type AuthBindings } from "@refinedev/core";
-      
+
       class AuthService implements AuthBindings {
         async login() {
           return { success: true };
         }
-        
+
         async check() {
           return { authenticated: true };
         }
-        
+
         async logout() {
           return { success: true };
         }
-        
+
         async onError() {
           return {};
         }
@@ -214,20 +214,20 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import { type AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       class AuthService implements AuthBindings {
         async login() {
           return { success: true };
         }
-        
+
         async check() {
           return { authenticated: true };
         }
-        
+
         async logout() {
           return { success: true };
         }
-        
+
         async onError() {
           return {};
         }
@@ -267,18 +267,18 @@ describe("auth-bindings-type-to-provider", () => {
   it("should handle complex mixed scenarios", () => {
     const source = `
       import React from "react";
-      import { 
+      import {
         Refine,
         type AuthBindings,
         type DataProvider,
         type RouterProvider
       } from "@refinedev/core";
-      
+
       interface MyAppProps {
         auth: AuthBindings;
         data: DataProvider;
       }
-      
+
       function MyApp(props: MyAppProps) {
         const { auth }: { auth: AuthBindings } = props;
         return <Refine authProvider={auth} />;
@@ -287,18 +287,18 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import React from "react";
-      import { 
+      import {
         Refine,
         type AuthProvider as AuthBindings,
         type DataProvider,
         type RouterProvider
       } from "@refinedev/core";
-      
+
       interface MyAppProps {
         auth: AuthBindings;
         data: DataProvider;
       }
-      
+
       function MyApp(props: MyAppProps) {
         const { auth }: { auth: AuthBindings } = props;
         return <Refine authProvider={auth} />;
@@ -327,7 +327,7 @@ describe("auth-bindings-type-to-provider", () => {
   it("should handle auth provider implementation patterns", () => {
     const source = `
       import type { AuthBindings } from "@refinedev/core";
-      
+
       const authProvider: AuthBindings = {
         login: async ({ email, password }) => {
           // login logic
@@ -359,7 +359,7 @@ describe("auth-bindings-type-to-provider", () => {
 
     const expected = `
       import type { AuthProvider as AuthBindings } from "@refinedev/core";
-      
+
       const authProvider: AuthBindings = {
         login: async ({ email, password }) => {
           // login logic

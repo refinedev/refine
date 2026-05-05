@@ -30,7 +30,7 @@ In bash scripting, positional parameters are a fundamental concept. They’re th
 Let’s understand this in detail through an example. Let's say you have a bash script that needs to process three pieces of input data and you want to make use of positional parameters. The below snippet shows how you might use positional parameters to handle this:
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 echo "Arg 1: $1"
 echo "Arg 2: $2"
 echo "Arg 3: $3"
@@ -53,7 +53,7 @@ In bash scripting, there are special parameters that provide additional ways to 
 The `$*` and `$@` parameters represent all arguments that were passed to the script. While they might seem identical, their behavior diverges when you try to iterate over them in a script. Let’s illustrate this with an example:
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 echo "Iterating with \$*"
 for arg in "$*"
 do
@@ -72,7 +72,7 @@ If you run this script with the arguments `./myscript.sh one two three`, you’l
 The `$#` parameter is different - it doesn’t represent the arguments themselves, but the number of arguments. This can be useful when your script needs to know how many arguments were passed. Here’s a simple script that uses `$#`:
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 echo "You provided $# arguments."
 ```
 
@@ -83,7 +83,7 @@ If you run `./myscript.sh apple banana cherry`, the script will output `You prov
 Bash scripts often require input parameters to customize behavior, and `getopts` is a utility that can be used to parse positional parameters.
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 
 # Initialize our own variables
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
@@ -132,7 +132,7 @@ In this example, the `-v` flag sets verbose mode, and `-n` sets the name to “E
 Bash scripts often need to accept a variable number of arguments. This is where `$@` comes into play. It’s a special shell variable that holds all the arguments provided to the script.
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 
 # Initialize an empty string
 concatenated=""

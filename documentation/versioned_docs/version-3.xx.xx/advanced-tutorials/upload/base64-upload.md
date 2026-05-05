@@ -3,7 +3,7 @@ id: base64-upload
 title: Base64 Upload
 ---
 
-By encoding your files and images from your forms to Base64 you can change all files needed for the upload to Base64 format before the submit. This can be done via the `onFinish` property of the [`<Form>`](https://ant.design/components/form/#Form) component that comes with [Ant Design](https://ant.design/) 
+By encoding your files and images from your forms to Base64 you can change all files needed for the upload to Base64 format before the submit. This can be done via the `onFinish` property of the [`<Form>`](https://ant.design/components/form/#Form) component that comes with [Ant Design](https://ant.design/)
 
 # Example
 
@@ -129,4 +129,3 @@ An edit form can be made by using the `<Edit>` component instead of `<Create>` w
 ## Example
 
 <CodeSandboxExample path="upload-antd-multipart" />
- 

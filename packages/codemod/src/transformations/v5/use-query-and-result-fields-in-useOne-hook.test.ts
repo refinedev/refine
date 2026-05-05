@@ -58,8 +58,8 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
       import { useOne } from "@refinedev/core";
 
       export const EditProduct = () => {
-        const { 
-          data, 
+        const {
+          data,
           isLoading,
           refetch,
           error,

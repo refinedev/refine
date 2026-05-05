@@ -11,7 +11,7 @@ Refine supports all the features that come with [Strapi-v4](https://docs.strapi.
 
 :::note Demo Credentials
 
-**Username**: demo@refine.dev  
+**Username**: demo@refine.dev
 **Password**: demodemo
 
 :::

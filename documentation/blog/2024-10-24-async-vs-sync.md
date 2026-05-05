@@ -109,27 +109,27 @@ Differences between synchronous and asynchronous programming in terms of perform
 
 ### Execution
 
-**Synchronous:** Tasks are executed sequentially, one after the other, in a synchronous system. The result is a control flow that is easy to foresee and implement.  
+**Synchronous:** Tasks are executed sequentially, one after the other, in a synchronous system. The result is a control flow that is easy to foresee and implement.
 **Asynchronous:** Tasks can be executed simultaneously in an asynchronous environment. This eliminates the need for the software to wait for one task to finish before proceeding to the next.
 
 ### Performance
 
-**Synchronous:** With synchronous performance, if a single job takes too long to finish, the whole system could freeze or become unresponsive.  
+**Synchronous:** With synchronous performance, if a single job takes too long to finish, the whole system could freeze or become unresponsive.
 **Asynchronous:** The non-blocking aspect of asynchronous programming can result in a more responsive and seamless user experience, especially when it comes to user interface development.
 
 ### Application suitability
 
-**Synchronous:** Ideal for situations requiring the execution of steps in a predetermined sequence.  
+**Synchronous:** Ideal for situations requiring the execution of steps in a predetermined sequence.
 **Asynchronous:** When jobs are I/O bound instead of CPU bound, they are considered asynchronous.
 
 ### When to use asynchronous programming
 
-**Web based applications**  
-To avoid interrupting the main thread of execution, asynchronous tasks can be utilized to do operations like performing API queries.  
-**Database Management**  
-Data reading and writing operations might be tedious and don't necessarily have to be finished before going on to other tasks.  
+**Web based applications**
+To avoid interrupting the main thread of execution, asynchronous tasks can be utilized to do operations like performing API queries.
+**Database Management**
+Data reading and writing operations might be tedious and don't necessarily have to be finished before going on to other tasks.
 **UI programming**
-A more responsive and fluid user experience is possible with asynchronous programming when dealing with user input.  
+A more responsive and fluid user experience is possible with asynchronous programming when dealing with user input.
 **File I/O operations**
 As a general rule, you don't have to finish time-consuming file I/O operations before going on to the next step.
 
@@ -162,10 +162,10 @@ onmessage = function (event) {
 
 ### When to use synchronous programming
 
-**Sequential data retrieval and processing**  
-For certain programs, retrieving data from a database is a prerequisite to processing that data.  
+**Sequential data retrieval and processing**
+For certain programs, retrieving data from a database is a prerequisite to processing that data.
 **Composing basic scripts**
-When working with small scripts, synchronous programming might be more understandable and debug-friendly.  
+When working with small scripts, synchronous programming might be more understandable and debug-friendly.
 **CPU-bound tasks**
 Carrying out operations that are CPU-intensive. Synchronous programming may be more efficient if a task is CPU-bound instead than I/O-bound.
 

@@ -57,7 +57,7 @@ For instance, you should probably take care of any networking problems preventin
 
 ### Quick definition of the error
 
-When creating a pod, Kubernetes will attempt to obtain container images defined in the pod definition from the containers registry. Kubernetes will mark the Pod as ImagePullBackOff and stop attempting to pull an image if it is not available or cannot be pulled.  
+When creating a pod, Kubernetes will attempt to obtain container images defined in the pod definition from the containers registry. Kubernetes will mark the Pod as ImagePullBackOff and stop attempting to pull an image if it is not available or cannot be pulled.
 A variety of reasons, such as network connectivity problems, incorrect image names or tags, and invalid credentials and permissions, are responsible for causing this error.
 
  <div className="centered-image">

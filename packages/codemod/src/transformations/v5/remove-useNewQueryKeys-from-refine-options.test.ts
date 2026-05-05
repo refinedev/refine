@@ -17,7 +17,7 @@ const transform = (source: string) => {
 describe("remove-useNewQueryKeys-from-refine-options", () => {
   it("should remove useNewQueryKeys from options with single property", () => {
     const source = `
-      <Refine 
+      <Refine
         options={{
           useNewQueryKeys: true
         }}
@@ -25,7 +25,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         options={{}}
       />
     `;
@@ -35,7 +35,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
 
   it("should remove useNewQueryKeys from options with multiple properties", () => {
     const source = `
-      <Refine 
+      <Refine
         dataProvider={dataProvider}
         options={{
           syncWithLocation: true,
@@ -46,7 +46,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         dataProvider={dataProvider}
         options={{
           syncWithLocation: true,
@@ -60,7 +60,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
 
   it("should remove useNewQueryKeys from options preserving other props", () => {
     const source = `
-      <Refine 
+      <Refine
         routerProvider={routerProvider}
         dataProvider={dataProvider}
         authProvider={authProvider}
@@ -74,7 +74,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         routerProvider={routerProvider}
         dataProvider={dataProvider}
         authProvider={authProvider}
@@ -91,13 +91,13 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
 
   it("should handle Refine without options prop", () => {
     const source = `
-      <Refine 
+      <Refine
         dataProvider={dataProvider}
       />
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         dataProvider={dataProvider}
       />
     `;
@@ -107,7 +107,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
 
   it("should handle options without useNewQueryKeys property", () => {
     const source = `
-      <Refine 
+      <Refine
         options={{
           syncWithLocation: true,
           warnWhenUnsavedChanges: true,
@@ -116,7 +116,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         options={{
           syncWithLocation: true,
           warnWhenUnsavedChanges: true,
@@ -176,7 +176,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
 
   it("should handle useNewQueryKeys as false", () => {
     const source = `
-      <Refine 
+      <Refine
         options={{
           syncWithLocation: true,
           useNewQueryKeys: false,
@@ -185,7 +185,7 @@ describe("remove-useNewQueryKeys-from-refine-options", () => {
     `;
 
     const expected = `
-      <Refine 
+      <Refine
         options={{
           syncWithLocation: true,
         }}

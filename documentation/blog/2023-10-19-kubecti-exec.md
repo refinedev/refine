@@ -259,7 +259,7 @@ kubectl describe pod my-demo-pod
 
 1. Often, the first step in troubleshooting is to see your pod's logs. To obtain container logs and analyze them for messages of errors or abnormal behavior, run the `kubectl log` command.
 2. In order to find detailed information about a container, including all events or warnings recorded by Kubernetes, use the `kubectl describe pod` command.
-3. The `kubectl-debug` tool also provides improved debugging capabilities. Using the command `kubectl debug [NAME_OF_POD] -it --image=[Debugging_Tool_Image]` you can start a debugging session on a problematic pod.  
+3. The `kubectl-debug` tool also provides improved debugging capabilities. Using the command `kubectl debug [NAME_OF_POD] -it --image=[Debugging_Tool_Image]` you can start a debugging session on a problematic pod.
    Keep in mind that kubectl-debug is an extension and needs to be installed separately. `[Debugging_Tool_Image]` is a container image that has the necessary debugging tools installed. For Example, you can use a debug image that offers tools such as ping, netstat, curl and nslookup if you are trying to look at some kind of pod with network problems.
 
 ## Conclusion & Best Practices

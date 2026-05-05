@@ -213,10 +213,10 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
 
 - <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
-- <code>list</code> is now always a string route.  
+- <code>list</code> is now always a string route.
    <code>list.path</code> is gone and <code>list</code> is no longer a function.
 
-**Why:**  
+**Why:**
 Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
 
 ```diff
@@ -999,10 +999,10 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
 
 - <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
-- <code>list</code> is now always a string route.  
+- <code>list</code> is now always a string route.
   <code>list.path</code> is gone and <code>list</code> is no longer a function.
 
-**Why:**  
+**Why:**
 Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
 
 ```diff

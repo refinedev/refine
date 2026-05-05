@@ -14,7 +14,7 @@ const PostCreate: React.FC = () => {
     });
 
     return (
-        <Select 
+        <Select
             placeholder="Select a category" style={{ width: 300 }}
             {...selectProps}
         />

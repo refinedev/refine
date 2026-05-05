@@ -13,7 +13,7 @@ interface ICategory {
 }
 
 const PostCreate: React.FC = () => {
-    
+
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         // highlight-next-line

@@ -11,13 +11,13 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle destructuring mutation properties from useUpdate", () => {
     const source = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const { mutate, isLoading, isError, data } = useUpdate();
-      
+
       if (isLoading) {
         return <div>Loading...</div>;
       }
-      
+
       if (isError) {
         return <div>Error occurred</div>;
       }
@@ -25,7 +25,7 @@ describe("mutation-result-to-mutation-property", () => {
 
     const expected = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const {
         mutate,
 
@@ -35,11 +35,11 @@ describe("mutation-result-to-mutation-property", () => {
           data
         }
       } = useUpdate();
-      
+
       if (isPending) {
         return <div>Loading...</div>;
       }
-      
+
       if (isError) {
         return <div>Error occurred</div>;
       }
@@ -51,9 +51,9 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle destructuring with renamed variables from useCreate", () => {
     const source = `
       import { useCreate } from "@refinedev/core";
-      
+
       const { mutate, isLoading: isCreating, error: createError } = useCreate();
-      
+
       if (isCreating) {
         return <div>Creating...</div>;
       }
@@ -61,7 +61,7 @@ describe("mutation-result-to-mutation-property", () => {
 
     const expected = `
       import { useCreate } from "@refinedev/core";
-      
+
       const {
         mutate,
 
@@ -70,7 +70,7 @@ describe("mutation-result-to-mutation-property", () => {
           error: createError
         }
       } = useCreate();
-      
+
       if (isCreating) {
         return <div>Creating...</div>;
       }
@@ -82,10 +82,10 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle multiple mutation hooks", () => {
     const source = `
       import { useUpdate, useDelete } from "@refinedev/core";
-      
+
       const { mutate: updateMutate, isLoading: updatePending } = useUpdate();
       const { mutate: deleteMutate, isLoading: deletePending } = useDelete();
-      
+
       if (updatePending || deletePending) {
         return <div>Loading...</div>;
       }
@@ -93,14 +93,14 @@ describe("mutation-result-to-mutation-property", () => {
 
     const expected = `
       import { useUpdate, useDelete } from "@refinedev/core";
-      
+
       const { mutate: updateMutate, mutation: {
         isPending: updatePending
       } } = useUpdate();
       const { mutate: deleteMutate, mutation: {
         isPending: deletePending
       } } = useDelete();
-      
+
       if (updatePending || deletePending) {
         return <div>Loading...</div>;
       }
@@ -112,26 +112,26 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle direct variable assignment and property access", () => {
     const source = `
       import { useCustomMutation } from "@refinedev/core";
-      
+
       const mutation = useCustomMutation();
-      
+
       if (mutation.isLoading) {
         return <div>Loading...</div>;
       }
-      
+
       const error = mutation.error;
       const data = mutation.data;
     `;
 
     const expected = `
       import { useCustomMutation } from "@refinedev/core";
-      
+
       const mutation = useCustomMutation();
-      
+
       if (mutation.mutation.isPending) {
         return <div>Loading...</div>;
       }
-      
+
       const error = mutation.mutation.error;
       const data = mutation.mutation.data;
     `;
@@ -142,18 +142,18 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle optional chaining", () => {
     const source = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const updateMutation = useUpdate();
-      
+
       const isPending = updateMutation?.isLoading;
       const errorMessage = updateMutation?.error?.message;
     `;
 
     const expected = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const updateMutation = useUpdate();
-      
+
       const isPending = updateMutation.mutation.isPending;
       const errorMessage = updateMutation.mutation.error?.message;
     `;
@@ -164,17 +164,17 @@ describe("mutation-result-to-mutation-property", () => {
   it("should not affect properties that remain at the top level", () => {
     const source = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const { mutate, mutateAsync, overtime } = useUpdate();
-      
+
       mutate({ id: 1, values: { name: "Test" } });
     `;
 
     const expected = `
       import { useUpdate } from "@refinedev/core";
-      
+
       const { mutate, mutateAsync, overtime } = useUpdate();
-      
+
       mutate({ id: 1, values: { name: "Test" } });
     `;
 
@@ -184,17 +184,17 @@ describe("mutation-result-to-mutation-property", () => {
   it("should handle mixed properties (top-level and mutation)", () => {
     const source = `
       import { useCreateMany } from "@refinedev/core";
-      
+
       const { mutate, mutateAsync, isLoading, error, overtime } = useCreateMany();
-      
+
       if (isLoading) {
         return <div>Creating records...</div>;
       }
-      
+
       if (error) {
         console.error(error);
       }
-      
+
       const handleCreate = () => {
         mutate({ values: [{ name: "Item 1" }, { name: "Item 2" }] });
       };
@@ -202,7 +202,7 @@ describe("mutation-result-to-mutation-property", () => {
 
     const expected = `
       import { useCreateMany } from "@refinedev/core";
-      
+
       const {
         mutate,
         mutateAsync,
@@ -213,15 +213,15 @@ describe("mutation-result-to-mutation-property", () => {
           error
         }
       } = useCreateMany();
-      
+
       if (isPending) {
         return <div>Creating records...</div>;
       }
-      
+
       if (error) {
         console.error(error);
       }
-      
+
       const handleCreate = () => {
         mutate({ values: [{ name: "Item 1" }, { name: "Item 2" }] });
       };
@@ -232,16 +232,16 @@ describe("mutation-result-to-mutation-property", () => {
 
   it("should handle all affected mutation hooks", () => {
     const source = `
-      import { 
-        useCreate, 
-        useUpdate, 
-        useDelete, 
-        useCreateMany, 
-        useUpdateMany, 
-        useDeleteMany, 
-        useCustomMutation 
+      import {
+        useCreate,
+        useUpdate,
+        useDelete,
+        useCreateMany,
+        useUpdateMany,
+        useDeleteMany,
+        useCustomMutation
       } from "@refinedev/core";
-      
+
       const { isLoading: createPending } = useCreate();
       const { isLoading: updatePending } = useUpdate();
       const { isLoading: deletePending } = useDelete();
@@ -249,22 +249,22 @@ describe("mutation-result-to-mutation-property", () => {
       const { isLoading: updateManyPending } = useUpdateMany();
       const { isLoading: deleteManyPending } = useDeleteMany();
       const { isLoading: customPending } = useCustomMutation();
-      
-      const isAnyPending = createPending || updatePending || deletePending || 
+
+      const isAnyPending = createPending || updatePending || deletePending ||
                            createManyPending || updateManyPending || deleteManyPending || customPending;
     `;
 
     const expected = `
-      import { 
-        useCreate, 
-        useUpdate, 
-        useDelete, 
-        useCreateMany, 
-        useUpdateMany, 
-        useDeleteMany, 
-        useCustomMutation 
+      import {
+        useCreate,
+        useUpdate,
+        useDelete,
+        useCreateMany,
+        useUpdateMany,
+        useDeleteMany,
+        useCustomMutation
       } from "@refinedev/core";
-      
+
       const { mutation: {
         isPending: createPending
       } } = useCreate();
@@ -286,8 +286,8 @@ describe("mutation-result-to-mutation-property", () => {
       const { mutation: {
         isPending: customPending
       } } = useCustomMutation();
-      
-      const isAnyPending = createPending || updatePending || deletePending || 
+
+      const isAnyPending = createPending || updatePending || deletePending ||
                            createManyPending || updateManyPending || deleteManyPending || customPending;
     `;
 
@@ -301,7 +301,7 @@ describe("mutation-result-to-mutation-property", () => {
       export const ProductEdit = () => {
         const { mutate: updateMutate, isLoading: updatePending, error: updateError } = useUpdate();
         const { mutate: deleteMutate, isLoading: deletePending } = useDelete();
-        
+
         const deleteProduct = useDelete();
 
         if (updatePending || deletePending) {
@@ -344,7 +344,7 @@ describe("mutation-result-to-mutation-property", () => {
         const { mutate: deleteMutate, mutation: {
           isPending: deletePending
         } } = useDelete();
-        
+
         const deleteProduct = useDelete();
 
         if (updatePending || deletePending) {

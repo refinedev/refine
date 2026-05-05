@@ -50,7 +50,7 @@ Let’s see some of the core features of React Slick:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/1-min.gif" alt="Autoplay carousel demo" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/1-min.gif" alt="Autoplay carousel demo" />
 </div>
 
 - **Lazy loading**: This [feature](https://react-slick.neostack.com/docs/example/lazy-load/) allows developers to implement lazy loading for their images, which means that images load only when they become visible to the user. This reduces the initial data load and improves the performance of sliders by reducing page load times, particularly on mobile devices.
@@ -483,7 +483,7 @@ Run your application to view your carousel. It should look like this:
         <div class="control green"></div>
     </div>
     <img src="
-  https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/66-min.gif" alt="Fashion carousel animation" /> 
+  https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/66-min.gif" alt="Fashion carousel animation" />
 </div>
 
 ### Adding Arrow Navigation
@@ -650,7 +650,7 @@ Run your application to see how thumbnails look:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/88-min.avif" alt="Carousel with thumbnail navigation" /> 
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-10-29-react-slick/88-min.avif" alt="Carousel with thumbnail navigation" />
 </div>
 
 ### Adding Responsiveness

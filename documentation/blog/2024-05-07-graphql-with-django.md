@@ -55,7 +55,7 @@ Now, we need to add `graphene-django` and `school` to `INSTALLED_APPS` located i
 <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-graphql-with-django/graphql_1.png" alt="Snapshot of django installed apps" />
 </div>
- 
+
 *At this stage, our Development environment is set and we are ready to create GraphQL API.*
 
 ## Step-by-Step Guide to Creating GraphQL API
@@ -69,7 +69,7 @@ In the `school_management/settings.py` file, you can add the configurations for 
 <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-graphql-with-django/graphql_2.png" alt="Snapshot of default sqlite configuration in django" />
 </div>
- 
+
 #### Define Models for Students, Teachers, and Courses in Django.
 
 We will create Models with their relationships in `school/models.py` file for Django’s ORM. We will add three classes i.e., `teacher`, `student`, and `course`. Each will have their column names and types.
@@ -112,8 +112,8 @@ class Course(models.Model):
 <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-graphql-with-django/sms_school_schema.png" alt="Schema Diagram for scenario" />
 </div>
- 
-#### Brief explanation of inserting sample data. 
+
+#### Brief explanation of inserting sample data.
 We will create sample data for student, teacher and course object. There are multiple ways to do it, we will Django admin by following the steps below:
 
 **1. Migrate Models using the commands:**
@@ -151,7 +151,7 @@ admin.site.register(Course)
  <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-graphql-with-django/graphql_3.png" alt="Snapshot of django admin interface for adding data" />
 </div>
- 
+
 ## Step-by-Step implementation of GraphQL API
 ### Instructions on integrating Graphene-Django with Django for GraphQL schema creation.
 To create a schema of GeaphQL API, we will create a schema.py file in the `school/` directory where we will have two main sections:
@@ -164,7 +164,7 @@ After adding the `schema.py` file, the directory structure of our project will l
 <div className="centered-image">
   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2024/2024-05-07-graphql-with-django/graphql_4.png" alt="Snapshot of directory structure after adding files for graphql schema" />
 </div>
- 
+
 ### Define GraphQL types for Students, Teachers, and Courses using Graphene-Django.
 We will create the classes as GraphQL types using `DjangoObjectType` to define each field of the `student`, `teacher`, and `course` class in Django models. To do that, we will implement the following code:
 

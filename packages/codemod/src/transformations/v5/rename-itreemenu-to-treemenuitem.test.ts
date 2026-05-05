@@ -41,22 +41,22 @@ describe("rename-itreemenu-to-treemenuitem", () => {
 
   it("should handle multiple imports including ITreeMenu", () => {
     const source = `
-      import { 
-        ITreeMenu, 
-        CanAccess, 
+      import {
+        ITreeMenu,
+        CanAccess,
         useMenu,
         useResource,
-        useOne 
+        useOne
       } from "@refinedev/core";
     `;
 
     const expected = `
-      import { 
-        TreeMenuItem as ITreeMenu, 
-        CanAccess, 
+      import {
+        TreeMenuItem as ITreeMenu,
+        CanAccess,
         useMenu,
         useResource,
-        useOne 
+        useOne
       } from "@refinedev/core";
     `;
 

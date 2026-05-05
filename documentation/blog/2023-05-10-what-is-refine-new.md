@@ -16,7 +16,7 @@ I would like to introduce our new open source browser tool - [refine.new](https:
 
 Let's recap the Refine architecture first 💙
 
-As you know, [Refine](https://github.com/refinedev/refine) is an open-source React-based framework designed to simplify and accelerate the development of web applications with SSR support with [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).  
+As you know, [Refine](https://github.com/refinedev/refine) is an open-source React-based framework designed to simplify and accelerate the development of web applications with SSR support with [Next.js](https://nextjs.org/) or [Remix](https://remix.run/).
 It is specifically tailored for data-intensive applications like admin panels, dashboards, and internal tools, but can also power customer-facing applications like storefronts and any type of CRUD apps.
 
  <div className="centered-image"  >

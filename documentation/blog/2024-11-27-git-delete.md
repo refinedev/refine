@@ -163,7 +163,7 @@ We can take advantage of Git hooks to automatically delete branches upon merging
 2. Insert the script below:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 BRANCH=$(git symbolic-ref --short HEAD)
 if [ "$BRANCH" != "main" ]; then
   git branch -d $BRANCH

@@ -60,7 +60,7 @@ The production environment benefits from more scalable and secure solutions such
 
 ### Quick overview of port forwarding in general networking
 
-Port forwarding, or port mapping, allows private local-area network (LAN) devices to communicate with external servers on the internet by redirecting communication requests through a network gateway, like a router.  
+Port forwarding, or port mapping, allows private local-area network (LAN) devices to communicate with external servers on the internet by redirecting communication requests through a network gateway, like a router.
 Without port forwarding, internal devices can only communicate with each other. With port forwarding, they can interact with external systems, solving numerous network issues. However, it carries a risk; for example, an unprotected remote desktop connection could allow unauthorized access to your local machine.
 
 ### Significance in local development and testing

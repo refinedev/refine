@@ -11,7 +11,7 @@ This example demonstrates how to quickly connect your [Strapi](https://strapi.io
 
 :::note Demo Credentials
 
-**Username**: demo@refine.dev  
+**Username**: demo@refine.dev
 **Password**: demodemo
 
 :::

@@ -81,9 +81,9 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-antd/BooleanField" 
-title-description="The text shown in the tooltip" 
-title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
+<PropsTable module="@pankod/refine-antd/BooleanField"
+title-description="The text shown in the tooltip"
+title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`"
 trueIcon-default="[`<CheckOutlined />`](https://ant.design/components/icon/)"
 falseIcon-default="[`<CloseOutlined />`](https://ant.design/components/icon/)"
 />

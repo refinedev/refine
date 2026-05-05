@@ -71,7 +71,7 @@ root.render(
 
 ### Configure routes
 
-After installing and connecting your application like in the previous steps, configure the routes to start using React router. Since we are using React router version 6, we will import the `Routes` and `Route` components.  
+After installing and connecting your application like in the previous steps, configure the routes to start using React router. Since we are using React router version 6, we will import the `Routes` and `Route` components.
 After that, you can set up the routes like in the example below.
 
 ```tsx

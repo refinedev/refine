@@ -17,8 +17,8 @@ const transform = (source: string) => {
 describe("remove-v3LegacyAuthProviderCompatible-from-auth-hooks", () => {
   it("should remove v3LegacyAuthProviderCompatible from object with single property", () => {
     const source = `
-      const result = useLogin({ 
-        v3LegacyAuthProviderCompatible: true 
+      const result = useLogin({
+        v3LegacyAuthProviderCompatible: true
       });
     `;
 
@@ -31,7 +31,7 @@ describe("remove-v3LegacyAuthProviderCompatible-from-auth-hooks", () => {
 
   it("should remove v3LegacyAuthProviderCompatible from object with multiple properties", () => {
     const source = `
-      const result = useLogin({ 
+      const result = useLogin({
         redirect: "/dashboard",
         v3LegacyAuthProviderCompatible: true,
         onSuccess: () => {}
@@ -50,9 +50,9 @@ describe("remove-v3LegacyAuthProviderCompatible-from-auth-hooks", () => {
 
   it("should remove v3LegacyAuthProviderCompatible from object with spread operator", () => {
     const source = `
-      const result = useLogin({ 
+      const result = useLogin({
         ...config,
-        v3LegacyAuthProviderCompatible: true 
+        v3LegacyAuthProviderCompatible: true
       });
     `;
 
@@ -79,13 +79,13 @@ describe("remove-v3LegacyAuthProviderCompatible-from-auth-hooks", () => {
 
   it("should handle objects without v3LegacyAuthProviderCompatible property", () => {
     const source = `
-      const result = useLogin({ 
+      const result = useLogin({
         redirect: "/dashboard"
       });
     `;
 
     const expected = `
-      const result = useLogin({ 
+      const result = useLogin({
         redirect: "/dashboard"
       });
     `;

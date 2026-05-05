@@ -122,22 +122,22 @@ describe("rename-themed-v2-imports", () => {
   describe("Multiple components", () => {
     it("should handle multiple V2 components in single import", () => {
       const source = `
-        import { 
-          ThemedLayoutV2, 
+        import {
+          ThemedLayoutV2,
           ThemedTitleV2,
           ThemedSiderV2,
           ThemedHeaderV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 
       const expected = `
-        import { 
-          ThemedLayout as ThemedLayoutV2, 
+        import {
+          ThemedLayout as ThemedLayoutV2,
           ThemedTitle as ThemedTitleV2,
           ThemedSider as ThemedSiderV2,
           ThemedHeader as ThemedHeaderV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 
@@ -146,18 +146,18 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle mixed type and regular imports", () => {
       const source = `
-        import { 
-          type ThemedLayoutV2, 
+        import {
+          type ThemedLayoutV2,
           ThemedTitleV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/mui";
       `;
 
       const expected = `
-        import { 
-          type ThemedLayout as ThemedLayoutV2, 
+        import {
+          type ThemedLayout as ThemedLayoutV2,
           ThemedTitle as ThemedTitleV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/mui";
       `;
 
@@ -262,18 +262,18 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle multiple V2 components with different aliases", () => {
       const source = `
-        import { 
-          ThemedLayoutV2 as CustomLayout, 
+        import {
+          ThemedLayoutV2 as CustomLayout,
           ThemedTitleV2 as CustomTitle,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/mui";
       `;
 
       const expected = `
-        import { 
-          ThemedLayout as CustomLayout, 
+        import {
+          ThemedLayout as CustomLayout,
           ThemedTitle as CustomTitle,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/mui";
       `;
 
@@ -282,18 +282,18 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle mix of aliased and non-aliased V2 imports", () => {
       const source = `
-        import { 
-          ThemedLayoutV2 as MyLayout, 
+        import {
+          ThemedLayoutV2 as MyLayout,
           ThemedTitleV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 
       const expected = `
-        import { 
-          ThemedLayout as MyLayout, 
+        import {
+          ThemedLayout as MyLayout,
           ThemedTitle as ThemedTitleV2,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 
@@ -340,7 +340,7 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle multiple V2 type imports from ui-types", () => {
       const source = `
-        import type { 
+        import type {
           RefineThemedLayoutV2Props,
           RefineThemedLayoutV2SiderProps,
           RefineThemedLayoutV2HeaderProps,
@@ -349,7 +349,7 @@ describe("rename-themed-v2-imports", () => {
       `;
 
       const expected = `
-        import type { 
+        import type {
           RefineThemedLayoutProps as RefineThemedLayoutV2Props,
           RefineThemedLayoutSiderProps as RefineThemedLayoutV2SiderProps,
           RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps,
@@ -374,18 +374,18 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle mixed regular and type imports with aliases", () => {
       const source = `
-        import type { 
+        import type {
           RefineThemedLayoutV2Props as MyLayoutProps,
           RefineThemedLayoutV2SiderProps as MySiderProps,
-          RefineLayoutTitleProps 
+          RefineLayoutTitleProps
         } from "@refinedev/ui-types";
       `;
 
       const expected = `
-        import type { 
+        import type {
           RefineThemedLayoutProps as MyLayoutProps,
           RefineThemedLayoutSiderProps as MySiderProps,
-          RefineLayoutTitleProps 
+          RefineLayoutTitleProps
         } from "@refinedev/ui-types";
       `;
 
@@ -458,16 +458,16 @@ describe("rename-themed-v2-imports", () => {
 
     it("should rename types from @refinedev/chakra-ui", () => {
       const source = `
-        import type { 
+        import type {
           RefineThemedLayoutV2Props,
-          RefineThemedLayoutV2SiderProps 
+          RefineThemedLayoutV2SiderProps
         } from "@refinedev/chakra-ui";
       `;
 
       const expected = `
-        import type { 
+        import type {
           RefineThemedLayoutProps as RefineThemedLayoutV2Props,
-          RefineThemedLayoutSiderProps as RefineThemedLayoutV2SiderProps 
+          RefineThemedLayoutSiderProps as RefineThemedLayoutV2SiderProps
         } from "@refinedev/chakra-ui";
       `;
 
@@ -476,16 +476,16 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle mixed components and types from UI packages", () => {
       const source = `
-        import { 
+        import {
           ThemedLayoutV2,
-          type RefineThemedLayoutV2Props 
+          type RefineThemedLayoutV2Props
         } from "@refinedev/antd";
       `;
 
       const expected = `
-        import { 
+        import {
           ThemedLayout as ThemedLayoutV2,
-          type RefineThemedLayoutProps as RefineThemedLayoutV2Props 
+          type RefineThemedLayoutProps as RefineThemedLayoutV2Props
         } from "@refinedev/antd";
       `;
 
@@ -494,16 +494,16 @@ describe("rename-themed-v2-imports", () => {
 
     it("should preserve aliases for type imports from UI packages", () => {
       const source = `
-        import type { 
+        import type {
           RefineThemedLayoutV2Props as MyLayoutProps,
-          RefineThemedLayoutV2SiderProps as MySiderProps 
+          RefineThemedLayoutV2SiderProps as MySiderProps
         } from "@refinedev/mui";
       `;
 
       const expected = `
-        import type { 
+        import type {
           RefineThemedLayoutProps as MyLayoutProps,
-          RefineThemedLayoutSiderProps as MySiderProps 
+          RefineThemedLayoutSiderProps as MySiderProps
         } from "@refinedev/mui";
       `;
 
@@ -512,22 +512,22 @@ describe("rename-themed-v2-imports", () => {
 
     it("should handle complex mixed imports", () => {
       const source = `
-        import { 
+        import {
           ThemedLayoutV2 as Layout,
           ThemedTitleV2,
           type RefineThemedLayoutV2Props as LayoutProps,
           type RefineThemedLayoutV2SiderProps,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 
       const expected = `
-        import { 
+        import {
           ThemedLayout as Layout,
           ThemedTitle as ThemedTitleV2,
           type RefineThemedLayoutProps as LayoutProps,
           type RefineThemedLayoutSiderProps as RefineThemedLayoutV2SiderProps,
-          ErrorComponent 
+          ErrorComponent
         } from "@refinedev/antd";
       `;
 

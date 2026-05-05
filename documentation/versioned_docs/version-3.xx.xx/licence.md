@@ -9,7 +9,7 @@ title: Licence
 
 ## Permissions
 
--    ✅ Commercial use 
+-    ✅ Commercial use
 -    ✅ Modification
 -    ✅ Distribution
 -    ✅ Private use

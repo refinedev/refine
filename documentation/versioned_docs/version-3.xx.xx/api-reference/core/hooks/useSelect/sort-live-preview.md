@@ -23,7 +23,7 @@ const ProductCreate: React.FC = () => {
     });
 
     return (
-        <> 
+        <>
             <label>
                 Select a category:
                 <select>
@@ -34,9 +34,9 @@ const ProductCreate: React.FC = () => {
                     ))}
                 </select>
                 <button onClick={() => setOrder(order === "asc" ? "desc" : "asc")}>Toggle</button>
-            </label>            
+            </label>
         </>
-        
+
     );
 };
 // visible-block-end

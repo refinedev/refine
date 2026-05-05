@@ -191,12 +191,12 @@ describe("rename-useResource-useResourceParams", () => {
   it("should handle multiple useResource calls in same file", () => {
     const source = `
       import { useResource } from "@refinedev/core";
-      
+
       const Component1 = () => {
         const { resource } = useResource("posts");
         return null;
       };
-      
+
       const Component2 = () => {
         const { resource } = useResource({
           resourceName: "users",
@@ -207,14 +207,14 @@ describe("rename-useResource-useResourceParams", () => {
     `;
     const expected = `
       import { useResourceParams } from "@refinedev/core";
-      
+
       const Component1 = () => {
         const { resource } = useResourceParams({
             resource: "posts",
         });
         return null;
       };
-      
+
       const Component2 = () => {
         const { resource } = useResourceParams({
             resource: "users",

@@ -51,7 +51,7 @@ module.exports = {
                 // title: App.tsx
                 import { dataProvider, liveProvider } from "./providers/appwrite";
                 import { appwriteClient } from "utility";
-                
+
                 const App = () => {
                     return (
                         <Refine

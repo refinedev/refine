@@ -4,15 +4,15 @@ import visit from "unist-util-visit";
 /*
   This plugin wraps children of each heading with thumbs up-down feedback widget.
   Example of result after transformation:
-  
+
   before:
   <h2>Heading 1</h2>
-  
+
   <p>Paragraph 1</p>
   <p>Paragraph 2</p>
-  
+
   <h2>Heading 2</h2>
-  
+
   <p>Paragraph 3</p>
   <p>Paragraph 4</p>
 

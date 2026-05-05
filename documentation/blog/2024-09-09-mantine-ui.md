@@ -431,7 +431,7 @@ export default App;
 ```
 
 <br/>
-   
+
  <div className="centered-image">
    <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2023/2023-11-11-mantine-ui/tab.gif"  alt="mojo framework" />
 </div>

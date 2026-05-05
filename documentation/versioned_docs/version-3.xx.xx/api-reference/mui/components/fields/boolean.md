@@ -119,9 +119,9 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mui/BooleanField" 
-title-description="The text shown in the tooltip" 
-title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
+<PropsTable module="@pankod/refine-mui/BooleanField"
+title-description="The text shown in the tooltip"
+title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`"
 trueIcon-default="[`<CheckOutlined />`](https://mui.com/material-ui/material-icons/)"
 falseIcon-default="[`<CloseOutlined />`](https://mui.com/material-ui/material-icons/)"
 />

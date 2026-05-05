@@ -25,7 +25,7 @@ const PostCreate: React.FC = () => {
 
     return (
         <>
-            <Select 
+            <Select
                 placeholder={`Ordered Categories: ${order}`} style={{ width: 300 }}
                 {...selectProps}
             />

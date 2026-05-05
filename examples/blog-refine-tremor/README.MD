@@ -31,4 +31,3 @@ npm run dev
 ## Learn More
 
 To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
-

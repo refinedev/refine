@@ -33,5 +33,5 @@ Any REST or GraphQL custom backend work integrated with **refine**. **refine** [
      idType: (resource) => idTypeMap[resource] ?? "uuid",
  });
  ```
- 
+
 <CodeSandboxExample path="data-provider-hasura" />

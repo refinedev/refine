@@ -68,18 +68,18 @@ describe("router-bindings-type-to-provider", () => {
   // Mixed imports scenarios
   it("should handle mixed imports with other types and values", () => {
     const source = `
-      import { 
-        Refine, 
+      import {
+        Refine,
         type RouterBindings,
-        type DataProvider 
+        type DataProvider
       } from "@refinedev/core";
     `;
 
     const expected = `
-      import { 
-        Refine, 
+      import {
+        Refine,
         type RouterProvider as RouterBindings,
-        type DataProvider 
+        type DataProvider
       } from "@refinedev/core";
     `;
 
@@ -104,7 +104,7 @@ describe("router-bindings-type-to-provider", () => {
   it("should preserve type usage in function parameters", () => {
     const source = `
       import { type RouterBindings } from "@refinedev/core";
-      
+
       function setupRouter(router: RouterBindings) {
         return router;
       }
@@ -112,7 +112,7 @@ describe("router-bindings-type-to-provider", () => {
 
     const expected = `
       import { type RouterProvider as RouterBindings } from "@refinedev/core";
-      
+
       function setupRouter(router: RouterBindings) {
         return router;
       }
@@ -124,7 +124,7 @@ describe("router-bindings-type-to-provider", () => {
   it("should preserve type usage in variable declarations", () => {
     const source = `
       import type { RouterBindings } from "@refinedev/core";
-      
+
       const myRouter: RouterBindings = {
         go: () => {},
         back: () => {},
@@ -134,7 +134,7 @@ describe("router-bindings-type-to-provider", () => {
 
     const expected = `
       import type { RouterProvider as RouterBindings } from "@refinedev/core";
-      
+
       const myRouter: RouterBindings = {
         go: () => {},
         back: () => {},
@@ -148,7 +148,7 @@ describe("router-bindings-type-to-provider", () => {
   it("should preserve type usage in interface definitions", () => {
     const source = `
       import { type RouterBindings } from "@refinedev/core";
-      
+
       interface AppConfig {
         router: RouterBindings;
         title: string;
@@ -157,7 +157,7 @@ describe("router-bindings-type-to-provider", () => {
 
     const expected = `
       import { type RouterProvider as RouterBindings } from "@refinedev/core";
-      
+
       interface AppConfig {
         router: RouterBindings;
         title: string;
@@ -170,7 +170,7 @@ describe("router-bindings-type-to-provider", () => {
   it("should preserve type usage in generic types", () => {
     const source = `
       import type { RouterBindings } from "@refinedev/core";
-      
+
       type CustomRouter<T extends RouterBindings> = T & {
         custom: boolean;
       };
@@ -178,7 +178,7 @@ describe("router-bindings-type-to-provider", () => {
 
     const expected = `
       import type { RouterProvider as RouterBindings } from "@refinedev/core";
-      
+
       type CustomRouter<T extends RouterBindings> = T & {
         custom: boolean;
       };
@@ -217,18 +217,18 @@ describe("router-bindings-type-to-provider", () => {
   it("should handle complex mixed scenarios", () => {
     const source = `
       import React from "react";
-      import { 
+      import {
         Refine,
         type RouterBindings,
         type DataProvider,
         type AuthProvider
       } from "@refinedev/core";
-      
+
       interface MyAppProps {
         router: RouterBindings;
         auth: AuthProvider;
       }
-      
+
       function MyApp(props: MyAppProps) {
         const { router }: { router: RouterBindings } = props;
         return <Refine routerProvider={router} />;
@@ -237,18 +237,18 @@ describe("router-bindings-type-to-provider", () => {
 
     const expected = `
       import React from "react";
-      import { 
+      import {
         Refine,
         type RouterProvider as RouterBindings,
         type DataProvider,
         type AuthProvider
       } from "@refinedev/core";
-      
+
       interface MyAppProps {
         router: RouterBindings;
         auth: AuthProvider;
       }
-      
+
       function MyApp(props: MyAppProps) {
         const { router }: { router: RouterBindings } = props;
         return <Refine routerProvider={router} />;

@@ -46,7 +46,7 @@ export type UseStepsFormProps<
   /**
      * @description Configuration object for the steps.
      * `defaultStep`: Allows you to set the initial step.
-     * 
+     *
      * `isBackValidate`: Whether to validation the current step when going back.
      * @type `{
       defaultStep?: number;
