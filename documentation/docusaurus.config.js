@@ -38,6 +38,17 @@ const siteConfig = {
   tagline: "Build your React-based CRUD applications, without constraints",
   url: "https://refine.dev",
   baseUrl: "/",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    localeConfigs: {
+      es: {
+        label: "Español",
+        direction: "ltr",
+        htmlLang: "es-ES",
+      },
+    },
+  },
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
