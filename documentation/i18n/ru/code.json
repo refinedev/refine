@@ -1,0 +1,34 @@
+{
+  "theme.ErrorPageContent.title": {
+    "message": "На этой странице произошла ошибка.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.NotFound.title": {
+    "message": "Страница не найдена",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "Мы не смогли найти то, что вы ищете.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Вернуться наверх",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Главная",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription": {
+    "message": "{count} элементов",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Навигация по списку статей",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Навигация по статьям блога",
+    "description": "The ARIA label for the blog posts pagination"
+  }
+}
