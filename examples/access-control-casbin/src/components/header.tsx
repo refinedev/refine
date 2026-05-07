@@ -1,5 +1,5 @@
 import { Layout as AntdLayout, Radio } from "antd";
-import { IHeaderProps } from "../interfaces/IHeaderProps"
+import type { IHeaderProps } from "../interfaces/IHeaderProps";
 
 export const Header: React.FC<IHeaderProps> = ({ role }) => {
   return (
