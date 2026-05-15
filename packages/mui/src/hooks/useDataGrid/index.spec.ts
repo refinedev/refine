@@ -308,6 +308,215 @@ describe("useDataGrid Hook", () => {
     });
   });
 
+  it("keeps sortModel reference stable across re-renders when sorters are unchanged", async () => {
+    const { result, rerender } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          sorters: {
+            initial: [
+              {
+                field: "title",
+                order: "asc",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    const firstSortModel = result.current.dataGridProps.sortModel;
+
+    rerender();
+
+    expect(result.current.dataGridProps.sortModel).toBe(firstSortModel);
+  });
+
+  it("returns a new sortModel reference when sorters change", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          sorters: {
+            initial: [
+              {
+                field: "title",
+                order: "asc",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    const initialSortModel = result.current.dataGridProps.sortModel;
+
+    await act(async () => {
+      result.current.dataGridProps.onSortModelChange!(
+        [{ field: "title", sort: "desc" }],
+        {} as any,
+      );
+    });
+
+    await waitFor(() => {
+      expect(result.current.dataGridProps.sortModel).not.toBe(initialSortModel);
+    });
+    expect(result.current.dataGridProps.sortModel).toEqual([
+      { field: "title", sort: "desc" },
+    ]);
+  });
+
+  it("keeps filterModel reference stable across re-renders when filters are unchanged", async () => {
+    const { result, rerender } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: {
+            initial: [
+              {
+                field: "title",
+                operator: "contains",
+                value: "hello",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    const firstFilterModel = result.current.dataGridProps.filterModel;
+
+    rerender();
+
+    expect(result.current.dataGridProps.filterModel).toBe(firstFilterModel);
+  });
+
+  it("returns a new filterModel reference when filters change", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: {
+            initial: [
+              {
+                field: "title",
+                operator: "contains",
+                value: "hello",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    const initialFilterModel = result.current.dataGridProps.filterModel;
+
+    await act(async () => {
+      result.current.dataGridProps.onFilterModelChange({
+        items: [
+          {
+            field: "title",
+            operator: "contains",
+            value: "world",
+            id: "titlecontains",
+          },
+        ],
+      });
+    });
+
+    await waitFor(() => {
+      expect(result.current.dataGridProps.filterModel).not.toBe(
+        initialFilterModel,
+      );
+    });
+  });
+
+  it("refreshes filterModel when column types change via onStateChange", async () => {
+    const { result, rerender } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: {
+            initial: [
+              {
+                field: "age",
+                operator: "eq",
+                value: 25,
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    // Before onStateChange fires, column types are unknown so the "eq"
+    // operator falls back to the string default ("equals").
+    expect(result.current.dataGridProps.filterModel?.items[0]).toEqual(
+      expect.objectContaining({ field: "age", operator: "equals" }),
+    );
+
+    // Simulate the DataGrid reporting its column metadata.
+    act(() => {
+      result.current.dataGridProps.onStateChange!({
+        columns: { lookup: { age: { type: "number" } } },
+      } as any);
+    });
+
+    // onStateChange mutates a ref and does not schedule a re-render on
+    // its own — matching real usage, the next render (here forced via
+    // rerender) picks up the new column-type map and the memoized
+    // filterModel reflects it: "eq" on a number column maps to "=".
+    rerender();
+    expect(result.current.dataGridProps.filterModel?.items[0]).toEqual(
+      expect.objectContaining({ field: "age", operator: "=" }),
+    );
+  });
+
   it("should not change sortModel when page changes", async () => {
     const { result } = renderHook(
       () =>
