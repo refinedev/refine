@@ -161,6 +161,9 @@ export function useDataGrid<
   const columnsTypes = useRef<Record<string, string>>({});
   // Debounce server-side filter fetches so UI input stays responsive.
   const filterDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Tracks the last filter model seen by `onFilterModelChange` so we can detect
+  // when the user swapped a row's `field` and clear the now-stale `value`.
+  const previousFilterModelRef = useRef<GridFilterModel | null>(null);
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
@@ -260,7 +263,32 @@ export function useDataGrid<
   };
 
   const handleFilterModelChange = (filterModel: GridFilterModel) => {
-    const crudFilters = transformFilterModelToCrudFilters(filterModel);
+    // When the user changes a row's `field` in the filter panel, MUI keeps the
+    // previous `value` — which is meaningless under the new field (enums,
+    // foreign-key refs, booleans, etc). Clear it before translating to a
+    // CrudFilter so we don't ship an invalid query to the data provider.
+    const previousModel = previousFilterModelRef.current;
+    let normalizedModel = filterModel;
+    if (
+      previousModel &&
+      previousModel.items.length === filterModel.items.length
+    ) {
+      let mutated = false;
+      const items = filterModel.items.map((newItem, i) => {
+        const oldItem = previousModel.items[i];
+        if (oldItem && oldItem.field !== newItem.field) {
+          mutated = true;
+          return { ...newItem, value: null };
+        }
+        return newItem;
+      });
+      if (mutated) {
+        normalizedModel = { ...filterModel, items };
+      }
+    }
+    previousFilterModelRef.current = normalizedModel;
+
+    const crudFilters = transformFilterModelToCrudFilters(normalizedModel);
     setMuiCrudFilters(crudFilters);
     if (isServerSideFilteringEnabled) {
       // Let the input update immediately; debounce only the server query.
