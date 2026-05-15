@@ -90,6 +90,16 @@ export type UseDataGridProps<
        * @default "replace"
        */
       defaultBehavior?: "replace" | "merge";
+      /**
+       * When `true`, changes to `filters` made outside the DataGrid (via the
+       * returned `setFilters`, `search`, or `syncWithLocation`) are reflected
+       * in `dataGridProps.filterModel`. Defaults to `false` to preserve
+       * compatibility with apps that mix DataGrid column-header filtering and
+       * external filter inputs, where forcing a sync would clobber in-progress
+       * header edits.
+       * @default false
+       */
+      syncFilterModel?: boolean;
     }
   >;
   editable?: boolean;
@@ -199,6 +209,13 @@ export function useDataGrid<
   });
 
   const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
+
+  const syncFilterModel = filtersFromProp?.syncFilterModel ?? false;
+
+  useEffect(() => {
+    if (!syncFilterModel) return;
+    setMuiCrudFilters((prev) => (isEqual(prev, filters) ? prev : filters));
+  }, [filters, syncFilterModel]);
 
   const { data, isFetched, isLoading } = tableQuery;
 

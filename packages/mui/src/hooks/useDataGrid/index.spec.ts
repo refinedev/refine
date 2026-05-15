@@ -308,6 +308,78 @@ describe("useDataGrid Hook", () => {
     });
   });
 
+  it("when filters.syncFilterModel is true, external setFilters updates dataGridProps.filterModel", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          filters: {
+            syncFilterModel: true,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    await act(async () => {
+      result.current.setFilters([
+        {
+          field: "title",
+          operator: "contains",
+          value: "test",
+        },
+      ]);
+    });
+
+    await waitFor(() => {
+      expect(result.current.dataGridProps.filterModel?.items).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            field: "title",
+            value: "test",
+          }),
+        ]),
+      );
+    });
+  });
+
+  it("by default, external setFilters does not update dataGridProps.filterModel", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
+    });
+
+    const initialItems = result.current.dataGridProps.filterModel?.items;
+
+    await act(async () => {
+      result.current.setFilters([
+        {
+          field: "title",
+          operator: "contains",
+          value: "test",
+        },
+      ]);
+    });
+
+    expect(result.current.dataGridProps.filterModel?.items).toEqual(
+      initialItems,
+    );
+  });
+
   it("should not change sortModel when page changes", async () => {
     const { result } = renderHook(
       () =>
