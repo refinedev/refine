@@ -26,6 +26,7 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
     <Link to="/" style={{ textDecoration: "none" }}>
       <MuiLink
         underline="none"
+        component="div"
         sx={{
           display: "flex",
           alignItems: "center",
