@@ -7,7 +7,7 @@ description: "Implement Routing in Refine v5. Learn the key steps. Learn best pr
 
 Routing is essential for any CRUD application. Refine's headless architecture allows you to use any router solution, without being locked into a specific router/framework.
 
-Refine also offers built-in router integrations for the most popular frameworks such as **React Router**, **Next.js** and **Remix**.
+Refine also offers built-in router integrations for the most popular frameworks such as **TanStack Router**, **React Router**, **Next.js** and **Remix**.
 
 These integrations makes it easier to use Refine with these frameworks and offers a lot of benefits such as:
 
@@ -18,6 +18,7 @@ These integrations makes it easier to use Refine with these frameworks and offer
 Since Refine is router agnostic, you are responsible for creating your own routes.
 
 If you are using **React Router**, you'll be defining your routes under the `Routes` component.<br />
+If you are using **TanStack Router**, you'll be defining your routes in a route tree created with `createRootRoute`, `createRoute` and `createRouter`.<br />
 If you are using **Next.js**, you'll be defining your routes in the `pages` or `app` directory.<br />
 If you are using **Remix**, you'll be defining your routes in the `app/routes` directory.
 
@@ -26,7 +27,45 @@ If you are using **Remix**, you'll be defining your routes in the `app/routes` d
 To integrate a router provider with Refine, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
 
 <Tabs>
-<TabItem value="react-router-v6" label="React Router" default>
+<TabItem value="tanstack-router" label="TanStack Router" default>
+
+```tsx title="App.tsx"
+import { Outlet, RouterProvider, createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
+import { Refine } from "@refinedev/core";
+// highlight-next-line
+import routerProvider from "@refinedev/tanstack-router";
+
+const rootRoute = createRootRoute({
+  component: () => (
+    <Refine routerProvider={routerProvider}>
+      <Outlet />
+    </Refine>
+  ),
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: () => <div>Home</div>,
+});
+
+const router = createRouter({
+  routeTree: rootRoute.addChildren([indexRoute]),
+});
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+const App = () => <RouterProvider router={router} />;
+```
+
+[Check out TanStack Router documentation for detailed information](/core/docs/routing/integrations/tanstack-router/)
+
+</TabItem>
+<TabItem value="react-router-v6" label="React Router">
 
 ```tsx title="App.tsx"
 import { BrowserRouter, Routes } from "react-router";
@@ -183,6 +222,12 @@ import { ReactRouterResourceAndRoutesUsage } from "./react-router/resource-and-r
 
 <ReactRouterResourceAndRoutesUsage />
 
+#### TanStack Router
+
+import { TanStackRouterResourceAndRoutesUsage } from "./tanstack-router/resource-and-routes-usage";
+
+<TanStackRouterResourceAndRoutesUsage />
+
 #### Next.js
 
 import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage";
@@ -208,6 +253,14 @@ import { RemixResourceAndRoutesUsage } from "./remix/resource-and-routes-usage";
 Router integration of Refine allows you to use `useForm` without passing **resource**, **id** and **action** parameters.
 It will also redirect you to resource's action route defined in `redirect` prop. `redirect` prop is `list` by default.
 
+#### TanStack Router
+
+import { TanStackRouterUseFormUsage } from "./tanstack-router/use-form-usage";
+
+<TanStackRouterUseFormUsage />
+
+#### React Router
+
 import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 
 <ReactRouterUseFormUsage />
@@ -215,6 +268,55 @@ import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 Additionally, router integrations exposes an `<UnsavedChangesNotifier />` component which can be used to notify the user about unsaved changes before navigating away from the current page. This component provides this feature which can be enabled by setting `warnWhenUnsavedChanges` to `true` in `useForm` hooks.
 
 <Tabs wrapContent={false}>
+<TabItem value="tanstack-router" label="TanStack Router">
+
+```tsx title="app.tsx"
+import { Refine } from "@refinedev/core";
+import routerProvider, {
+  UnsavedChangesNotifier,
+} from "@refinedev/tanstack-router";
+import { Outlet, RouterProvider, createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
+
+const rootRoute = createRootRoute({
+  component: () => (
+    <Refine
+      // ...
+      routerProvider={routerProvider}
+      options={{
+        // highlight-next-line
+        warnWhenUnsavedChanges: true,
+      }}
+    >
+      <UnsavedChangesNotifier />
+      <Outlet />
+    </Refine>
+  ),
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: () => <div>Home</div>,
+});
+
+const router = createRouter({
+  routeTree: rootRoute.addChildren([indexRoute]),
+});
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+Check out the [`UnsavedChangesNotifier` section of the TanStack Router integration documentation](/core/docs/routing/integrations/tanstack-router#unsavedchangesnotifier) for more information.
+
+</TabItem>
 <TabItem value="react-router" label="React Router">
 
 ```tsx title="app.tsx"
@@ -383,6 +485,8 @@ const { ... } = useTable(
 /my-products?currentPage=1&pageSize=2&sorters[0][field]=id&sorters[0][order]=asc&filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=1
 ```
 
+TanStack Router uses its own search-param serialization, so the exact URL string can differ there even though Refine will infer the same pagination, sorting, and filtering state.
+
 And you will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
@@ -405,6 +509,12 @@ Notice how `components/products/list.tsx` is the same, regardless of the router 
 import { ReactRouterUseTableUsage } from "./react-router/use-table-usage";
 
 <ReactRouterUseTableUsage />
+
+#### TanStack Router
+
+import { TanStackRouterUseTableUsage } from "./tanstack-router/use-table-usage";
+
+<TanStackRouterUseTableUsage />
 
 #### Next.js
 
@@ -439,6 +549,14 @@ Once the modal is visible, current route will look like this:
 ```
 
 You can see the example below for usage.
+
+#### TanStack Router
+
+import { TanStackRouterUseModalFormUsage } from "./tanstack-router/use-modal-form-usage";
+
+<TanStackRouterUseModalFormUsage />
+
+#### React Router
 
 import { ReactRouterUseModalFormUsage } from "./react-router/use-modal-form-usage";
 

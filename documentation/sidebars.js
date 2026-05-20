@@ -303,7 +303,7 @@ module.exports = {
             type: "generated-index",
             slug: "/routing/integrations",
             description:
-              "Router integrations for React Router, Next.js, and Remix.",
+              "Router integrations for TanStack Router, React Router, Next.js, and Remix.",
           },
           items: [
             {
@@ -317,6 +317,7 @@ module.exports = {
                 "routing/integrations/react-router/migration-guide-v6-to-v7",
               ],
             },
+            "routing/integrations/tanstack-router/index",
             "routing/integrations/next-js/index",
             "routing/integrations/remix/index",
           ],

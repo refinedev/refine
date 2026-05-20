@@ -11,9 +11,9 @@ import AddBoxOutlined from "@mui/icons-material/AddBoxOutlined";
 import type { CreateButtonProps } from "../types";
 
 /**
- * <CreateButton> uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button> component`}.
+ * `<CreateButton>` uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button>`} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
- * It can be useful to redirect the app to the create page route of resource}.
+ * It can be useful when redirecting the app to the create page route of resource.
  *
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/create-button} for more details.
  */

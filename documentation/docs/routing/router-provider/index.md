@@ -15,6 +15,7 @@ Rather than restricting and limiting our users to specific routing libraries or 
 :::simple Out of the Box Router Providers
 
 - [React Router][react-router]
+- [TanStack Router][tanstack-router]
 - [Next.js Router][nextjs-router]
 - [Remix Router][remix-router]
 - [Expo Router (Community)][expo-router]
@@ -63,6 +64,7 @@ To activate router provider in Refine, we have to pass the `routerProvider` to t
 defaultValue="react-router-v6"
 values={[
 {label: 'React Router', value: 'react-router-v6'},
+{label: 'TanStack Router', value: 'tanstack-router'},
 {label: 'Next.js Router', value: 'nextjs'},
 {label: 'Remix Router', value: 'remix'},
 {label: 'React Router V5 (Legacy)', value: 'react-router'},
@@ -88,6 +90,53 @@ const App: React.FC = () => {
       </Refine>
     </BrowserRouter>
   );
+};
+```
+
+</TabItem>
+<TabItem value="tanstack-router">
+
+```tsx title="App.tsx"
+import { Refine } from "@refinedev/core";
+import routerProvider from "@refinedev/tanstack-router";
+import {
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
+
+const rootRoute = createRootRoute({
+  component: () => (
+    <Refine
+      // highlight-next-line
+      routerProvider={routerProvider}
+      /* ... */
+    >
+      <Outlet />
+    </Refine>
+  ),
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: () => <div>Home</div>,
+});
+
+const router = createRouter({
+  routeTree: rootRoute.addChildren([indexRoute]),
+});
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+const App: React.FC = () => {
+  return <RouterProvider router={router} />;
 };
 ```
 
@@ -204,6 +253,7 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 ### Source Code for the Existing Router Providers
 
 - [React Router](https://github.com/refinedev/refine/blob/main/packages/react-router/src/bindings.tsx)
+- [TanStack Router](https://github.com/refinedev/refine/blob/main/packages/tanstack-router/src/bindings.tsx)
 - [Next.js Router](https://github.com/refinedev/refine/blob/main/packages/nextjs-router/src/pages/bindings.tsx)
 - [Remix Router](https://github.com/refinedev/refine/blob/main/packages/remix-router/src/bindings.tsx)
 
@@ -215,5 +265,6 @@ If you want to use a legacy router provider, you can pass them to the `<Refine /
 
 [expo-router]: https://www.npmjs.com/package/@refinenative/expo-router
 [react-router]: https://github.com/refinedev/refine/tree/main/packages/react-router
+[tanstack-router]: https://github.com/refinedev/refine/tree/main/packages/tanstack-router
 [nextjs-router]: https://github.com/refinedev/refine/tree/main/packages/nextjs-router
 [remix-router]: https://github.com/refinedev/refine/tree/main/packages/remix-router
