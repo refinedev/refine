@@ -22,14 +22,14 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.1.1",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^6.0.3",
     "@refinedev/cli": "^2.16.52",
     "@refinedev/core": "^5.0.12",
     "@refinedev/react-router": "^2.0.4",
     "@refinedev/supabase": "^6.0.2",
-    "antd": "^5.23.0",
+    "antd": "^6.3.5",
     "casbin": "^5.15.2",
     "dayjs": "^1.10.7",
     "dotenv": "^16.0.3",

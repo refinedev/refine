@@ -206,7 +206,7 @@ export const PostList = () => {
       <Drawer
         open={visibleShowDrawer}
         onClose={() => setVisibleShowDrawer(false)}
-        width="500"
+        size="500"
       >
         <Show
           isLoading={showIsLoading}

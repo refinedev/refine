@@ -144,7 +144,7 @@ describe("data-provider-supabase", () => {
       cy.getAntdLoadingOverlay().should("not.exist");
 
       cy.getAntdFilterTrigger(0).click();
-      cy.get(".ant-select-selector").click();
+      cy.get(".ant-select-content").click();
       cy.fixture("categories").then((categories) => {
         const category = categories[0];
 

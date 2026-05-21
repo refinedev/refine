@@ -48,7 +48,7 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = (props) => {
   return (
     <Space
-      direction="vertical"
+      orientation="vertical"
       align="end"
       style={{
         padding: "1rem",

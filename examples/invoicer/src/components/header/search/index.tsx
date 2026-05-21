@@ -74,7 +74,9 @@ export const Search = () => {
         width: "100%",
         maxWidth: "360px",
       }}
-      filterOption={false}
+      showSearch={{
+        filterOption: false,
+      }}
       options={options}
       value={searchText}
       onChange={(text) => setSearchText(text)}

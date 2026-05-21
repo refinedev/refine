@@ -197,13 +197,15 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           onClose={() => setMobileSiderOpen(false)}
           placement={direction === "rtl" ? "right" : "left"}
           closable={false}
-          width={200}
+          size={200}
           styles={{
             body: {
               padding: 0,
             },
           }}
-          maskClosable={true}
+          mask={{
+            closable: true,
+          }}
         >
           <Layout>
             <Layout.Sider

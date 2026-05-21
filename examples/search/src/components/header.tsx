@@ -110,8 +110,10 @@ export const Header: React.FC = () => {
       <AutoComplete
         style={{ width: "100%", maxWidth: "550px" }}
         options={options}
-        filterOption={false}
-        onSearch={debounce((value: string) => setValue(value), 500)}
+        showSearch={{
+          filterOption: false,
+          onSearch: debounce((value: string) => setValue(value), 500),
+        }}
       >
         <Input
           size="large"

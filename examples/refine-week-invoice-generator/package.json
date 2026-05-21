@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.1.1",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@react-pdf/renderer": "^3.1.8",
     "@refinedev/antd": "^6.0.3",
@@ -32,7 +32,7 @@
     "@refinedev/kbar": "^2.0.1",
     "@refinedev/react-router": "^2.0.4",
     "@refinedev/strapi-v4": "^7.0.1",
-    "antd": "^5.23.0",
+    "antd": "^6.3.5",
     "axios": "^1.11.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

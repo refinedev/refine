@@ -22,11 +22,11 @@ describe("form-antd-use-modal-form", () => {
   };
 
   const isModalVisible = () => {
-    return cy.get(".ant-modal-content").should("be.visible");
+    return cy.get(".ant-modal-container").should("be.visible");
   };
 
   const isModalNotVisible = () => {
-    return cy.get(".ant-modal-content").should("not.be.visible");
+    return cy.get(".ant-modal-container").should("not.be.visible");
   };
 
   beforeEach(() => {
@@ -77,17 +77,18 @@ describe("form-antd-use-modal-form", () => {
       const response = interception?.response;
       const body = response?.body;
 
-      // wait loading state and render to be finished
-      isModalVisible();
-      cy.getAntdLoadingOverlay().should("not.exist");
+      cy.get(".ant-modal-container:visible").last().as("editModal");
+      cy.get("@editModal").find(".ant-spin-spinning").should("not.exist");
+      cy.get("@editModal")
+        .find("input#title")
+        .should("have.value", body?.title);
 
-      cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
       cy.get("input#status")
-        .get(".ant-select-selection-item")
-        .should(
-          "contain",
-          body?.status[0].toUpperCase() + body?.status.slice(1),
-        );
+        .closest(".ant-select-content")
+        .invoke("text")
+        .then((text) => {
+          expect(text.trim().toLowerCase()).to.eq(body?.status);
+        });
     });
 
     cy.get("#title.ant-input")

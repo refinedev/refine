@@ -69,8 +69,14 @@ export const DashboardDealsChart = () => {
   return (
     <Card
       style={{ height: "100%" }}
-      headStyle={{ padding: "8px 16px" }}
-      bodyStyle={{ padding: "24px 24px 0px 24px" }}
+      styles={{
+        header: {
+          padding: "8px 16px",
+        },
+        body: {
+          padding: "24px 24px 0px 24px",
+        },
+      }}
       title={
         <div
           style={{

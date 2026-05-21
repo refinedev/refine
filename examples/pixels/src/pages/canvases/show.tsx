@@ -91,7 +91,7 @@ export const CanvasShow: React.FC = () => {
           title="Canvas Changes"
           {...modalProps}
           centered
-          destroyOnClose
+          destroyOnHidden
           onOk={close}
           onCancel={() => {
             close();

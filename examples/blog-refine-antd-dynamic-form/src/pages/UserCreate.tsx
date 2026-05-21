@@ -62,7 +62,7 @@ export default function UserCreate() {
                   return (
                     <Space
                       key={field.key}
-                      direction="horizontal"
+                      orientation="horizontal"
                       style={{
                         position: "relative",
                         marginRight: "13px",

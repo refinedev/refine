@@ -154,7 +154,7 @@
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "@ant-design/icons": "^5.5.1",
+    "@ant-design/icons": "^6.1.1",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
@@ -175,7 +175,7 @@
     "@tanstack/react-table": "^8.2.6",
     "@types/react": "^18.0.0 || ^19.0.0",
     "@types/react-dom": "^18.0.0 || ^19.0.0",
-    "antd": "^5.0.3",
+    "antd": "^6.3.5",
     "dayjs": "^1.10.7",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",

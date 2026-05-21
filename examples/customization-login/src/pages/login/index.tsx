@@ -46,7 +46,7 @@ export const Login: React.FC = () => {
             <div className="imageContainer">
               <img src="./refine.svg" alt="Refine Logo" />
             </div>
-            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+            <Card title={CardTitle} styles={{ header: { borderBottom: 0 } }}>
               <Form<ILoginForm>
                 layout="vertical"
                 form={form}

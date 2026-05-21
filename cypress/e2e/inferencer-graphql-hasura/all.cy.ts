@@ -86,7 +86,7 @@ describe("inferencer-antd", () => {
         const category = categories.data.categories.find(
           (category: any) => category.id === data?.category_id,
         );
-        cy.get(`.ant-select-selection-item[title="${category?.title}"]`).should(
+        cy.get(`.ant-select-content[title="${category?.title}"]`).should(
           "exist",
         );
       });

@@ -100,7 +100,7 @@ export const AccountsPageEdit = () => {
         >
           <Col xs={{ span: 24 }} xl={{ span: 8 }}>
             <Card
-              bordered={false}
+              variant={"borderless"}
               styles={{ body: { padding: 0 } }}
               title={
                 <Flex gap={12} align="center">
@@ -169,7 +169,7 @@ export const AccountsPageEdit = () => {
 
           <Col xs={{ span: 24 }} xl={{ span: 16 }}>
             <Card
-              bordered={false}
+              variant={"borderless"}
               title={
                 <Flex gap={12} align="center">
                   <ShopOutlined />
@@ -221,7 +221,7 @@ export const AccountsPageEdit = () => {
             </Card>
 
             <Card
-              bordered={false}
+              variant={"borderless"}
               title={
                 <Flex gap={12} align="center">
                   <ContainerOutlined />

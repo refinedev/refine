@@ -230,8 +230,10 @@ export const Header: React.FC = () => {
               maxWidth: "550px",
             }}
             options={options}
-            filterOption={false}
-            onSearch={debounce((value: string) => setValue(value), 300)}
+            showSearch={{
+              filterOption: false,
+              onSearch: debounce((value: string) => setValue(value), 300),
+            }}
           >
             <Input
               size="large"
