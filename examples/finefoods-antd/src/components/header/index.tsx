@@ -27,6 +27,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 import debounce from "lodash/debounce";
+import { flushSync } from "react-dom";
 
 import { useConfigProvider } from "../../context";
 import { IconMoon, IconSun } from "../../components/icons";
@@ -262,9 +263,51 @@ export const Header: React.FC = () => {
             <Button
               className={styles.themeSwitch}
               type="text"
+              shape="circle"
               icon={mode === "light" ? <IconMoon /> : <IconSun />}
-              onClick={() => {
-                setMode(mode === "light" ? "dark" : "light");
+              onClick={async (e) => {
+                const nextMode = mode === "light" ? "dark" : "light";
+                if (!document.startViewTransition) {
+                  setMode(nextMode);
+                  return;
+                }
+                const x = e.clientX || window.innerWidth / 2;
+                const y = e.clientY || window.innerHeight / 2;
+                document.documentElement.style.setProperty(
+                  "--click-x",
+                  `${x}px`,
+                );
+                document.documentElement.style.setProperty(
+                  "--click-y",
+                  `${y}px`,
+                );
+                document.documentElement.classList.remove(
+                  "light-transition",
+                  "dark-transition",
+                );
+                document.documentElement.classList.add(
+                  `${nextMode}-transition`,
+                );
+                const styleId = "theme-transition-styles";
+                let styleElement = document.getElementById(
+                  styleId,
+                ) as HTMLStyleElement;
+                if (!styleElement) {
+                  styleElement = document.createElement("style");
+                  styleElement.id = styleId;
+                  document.head.appendChild(styleElement);
+                }
+                styleElement.textContent = "* { transition: none !important; }";
+                const transition = document.startViewTransition(() => {
+                  flushSync(() => {
+                    setMode(nextMode);
+                  });
+                });
+                await transition.finished;
+                document.documentElement.classList.remove(
+                  `${nextMode}-transition`,
+                );
+                styleElement.textContent = "";
               }}
             />
 
