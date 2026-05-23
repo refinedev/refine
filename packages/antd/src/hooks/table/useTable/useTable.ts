@@ -29,6 +29,7 @@ import type { FilterValue, SorterResult } from "../../../definitions/table";
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    onParse?: (filters: CrudFilters) => Partial<TSearchVariables>;
   };
 
 export type useTableReturnType<
@@ -61,6 +62,7 @@ export const useTable = <
   TData extends BaseRecord = TQueryFnData,
 >({
   onSearch,
+  onParse,
   pagination: paginationFromProp,
   filters: filtersFromProp,
   sorters: sortersFromProp,
@@ -126,6 +128,12 @@ export const useTable = <
 
   React.useEffect(() => {
     if (shouldSyncWithLocation) {
+      if (onParse) {
+        formSF.form.setFieldsValue(onParse(filters) as any);
+
+        return;
+      }
+
       // get registered fields of form
       const registeredFields = formSF.form.getFieldsValue() as Record<
         string,
@@ -149,7 +157,7 @@ export const useTable = <
       // set values to form
       formSF.form.setFieldsValue(filterFilterMap as any);
     }
-  }, [shouldSyncWithLocation]);
+  }, [shouldSyncWithLocation, filters, formSF.form, onParse]);
 
   const onChange = (
     paginationState: TablePaginationConfig,

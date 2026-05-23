@@ -1,5 +1,5 @@
 import React from "react";
-import type { CrudFilters } from "@refinedev/core";
+import type { CrudFilters, HttpError } from "@refinedev/core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
 import { Form, Input } from "antd";
@@ -336,7 +336,112 @@ describe("useTable Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getByDisplayValue("Some Name To Look For")).toBeInTheDocument();
+      expect(getByDisplayValue("Some Name To Look For")).toBeTruthy();
+    });
+  });
+
+  it("should parse form values from filters with `onParse`", async () => {
+    type SearchVariables = {
+      category?: number;
+      createdAt?: [string, string];
+    };
+
+    let formInstance:
+      | ReturnType<typeof Form.useForm<SearchVariables>>[0]
+      | undefined;
+
+    const Component = () => {
+      const { searchFormProps } = useTable<
+        { id: number },
+        HttpError,
+        SearchVariables
+      >({
+        resource: "posts",
+        syncWithLocation: true,
+        onParse: (filters) => {
+          const categoryFilter = filters.find(
+            (filter) =>
+              "field" in filter &&
+              filter.field === "category.id" &&
+              filter.operator === "eq",
+          );
+          const createdAtGte = filters.find(
+            (filter) =>
+              "field" in filter &&
+              filter.field === "createdAt" &&
+              filter.operator === "gte",
+          );
+          const createdAtLte = filters.find(
+            (filter) =>
+              "field" in filter &&
+              filter.field === "createdAt" &&
+              filter.operator === "lte",
+          );
+
+          return {
+            category: categoryFilter ? Number(categoryFilter.value) : undefined,
+            createdAt:
+              createdAtGte && createdAtLte
+                ? [String(createdAtGte.value), String(createdAtLte.value)]
+                : undefined,
+          };
+        },
+      });
+
+      formInstance = searchFormProps.form;
+
+      return (
+        <Form {...searchFormProps}>
+          <Form.Item name="category" noStyle>
+            <Input />
+          </Form.Item>
+          <Form.Item name="createdAt" noStyle>
+            <Input />
+          </Form.Item>
+        </Form>
+      );
+    };
+
+    render(<Component />, {
+      wrapper: TestWrapper({
+        routerProvider: {
+          parse: () => {
+            return () => ({
+              resource: {
+                name: "posts",
+              },
+              params: {
+                filters: [
+                  {
+                    field: "category.id",
+                    operator: "eq",
+                    value: "1",
+                  },
+                  {
+                    field: "createdAt",
+                    operator: "gte",
+                    value: "2026-04-07T18:30:00.000Z",
+                  },
+                  {
+                    field: "createdAt",
+                    operator: "lte",
+                    value: "2026-05-08T18:30:00.000Z",
+                  },
+                ],
+              },
+            });
+          },
+        },
+      }),
+    });
+
+    await waitFor(() => {
+      expect(formInstance).toBeDefined();
+      expect(formInstance!.getFieldValue("category")).toBe(1);
+      expect(formInstance!.getFieldValue("createdAt")).toEqual([
+        "2026-04-07T18:30:00.000Z",
+        "2026-05-08T18:30:00.000Z",
+      ]);
     });
   });
 
