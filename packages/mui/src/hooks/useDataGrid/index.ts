@@ -347,6 +347,15 @@ export function useDataGrid<
     [sorters, preferredPermanentSorters],
   );
 
+  const transformedFilterModel = useMemo(
+    () =>
+      transformCrudFiltersToFilterModel(
+        differenceWith(muiCrudFilters, preferredPermanentFilters, isEqual),
+        columnsTypes.current,
+      ),
+    [muiCrudFilters, preferredPermanentFilters, columnsTypes.current],
+  );
+
   return {
     tableQuery,
     dataGridProps: {
@@ -361,10 +370,7 @@ export function useDataGrid<
       filterMode: isServerSideFilteringEnabled ? "server" : "client",
       // Disable DataGrid's debounce for server filtering to prevent input resets.
       filterDebounceMs: isServerSideFilteringEnabled ? 0 : undefined,
-      filterModel: transformCrudFiltersToFilterModel(
-        differenceWith(muiCrudFilters, preferredPermanentFilters, isEqual),
-        columnsTypes.current,
-      ),
+      filterModel: transformedFilterModel,
       onFilterModelChange: handleFilterModelChange,
       onStateChange: (state) => {
         const newColumnsTypes = Object.fromEntries(
