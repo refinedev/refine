@@ -8,6 +8,7 @@ import SkipToContent from "@theme/SkipToContent";
 import { LivePreviewProvider } from "../components/live-preview-context";
 import useRouteFavicon from "../hooks/use-route-favicon";
 import clsx from "clsx";
+import { ScrollToTop } from "./scroll-to-top";
 
 type Props = {
   className?: string;
@@ -35,6 +36,7 @@ export const CommonLayout = (props: Props) => {
         <ErrorBoundary fallback={(params) => <ErrorPageContent {...params} />}>
           <LivePreviewProvider>{children}</LivePreviewProvider>
         </ErrorBoundary>
+        <ScrollToTop />
       </div>
     </LayoutProvider>
   );
