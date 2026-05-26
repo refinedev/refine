@@ -1,5 +1,12 @@
-import { Children, createElement, Fragment } from "react";
-import { type ListProps, type FormProps, Form, Grid } from "antd";
+import { Children, createElement, Fragment, useMemo } from "react";
+import {
+  type ListProps,
+  type FormProps,
+  Form,
+  Grid,
+  Button,
+  Space,
+} from "antd";
 
 import {
   type BaseRecord,
@@ -82,6 +89,7 @@ export const useSimpleList = <
     tableQuery,
     overtime,
     result,
+    cursor,
   } = useTableCore({
     resource,
     pagination: paginationFromProp,
@@ -99,6 +107,7 @@ export const useSimpleList = <
   });
 
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
+  const isCursorPaginationEnabled = paginationFromProp?.mode === "cursor";
 
   const breakpoint = Grid.useBreakpoint();
 
@@ -109,7 +118,7 @@ export const useSimpleList = <
   const { data, isFetched, isLoading } = tableQuery;
 
   const onChange = (page: number, pageSize?: number): void => {
-    if (isPaginationEnabled) {
+    if (isPaginationEnabled && !isCursorPaginationEnabled) {
       setCurrentPage(page);
       setPageSize(pageSize || 10);
     }
@@ -118,64 +127,115 @@ export const useSimpleList = <
   const onFinish = async (values: TSearchVariables) => {
     if (onSearch) {
       const searchFilters = await onSearch(values);
-      if (isPaginationEnabled) {
+      if (isPaginationEnabled && !isCursorPaginationEnabled) {
         setCurrentPage?.(1);
       }
       return setFilters(searchFilters);
     }
   };
 
-  const antdPagination = (): false | PaginationConfig => {
-    if (isPaginationEnabled) {
-      return {
-        itemRender: (page, type, element) => {
-          const link = createLinkForSyncWithLocation({
-            pagination: {
-              pageSize,
-              currentPage: page,
-            },
-            sorters,
-            filters,
-          });
-
-          if (type === "page") {
-            return createElement(PaginationLink, {
-              to: link,
-              element: `${page}`,
-            });
-          }
-          if (type === "next" || type === "prev") {
-            return createElement(PaginationLink, {
-              to: link,
-              element: element,
-            });
-          }
-
-          if (type === "jump-next" || type === "jump-prev") {
-            const elementChildren = (element as React.ReactElement<any>)?.props
-              ?.children;
-
-            return createElement(PaginationLink, {
-              to: link,
-              element:
-                Children.count(elementChildren) > 1
-                  ? createElement(Fragment, {}, elementChildren)
-                  : elementChildren,
-            });
-          }
-
-          return element;
-        },
-        pageSize,
-        current: currentPage,
-        simple: !breakpoint.sm,
-        total: data?.total,
-        onChange,
-      };
+  const cursorPaginationFooter = useMemo(() => {
+    if (!isCursorPaginationEnabled) {
+      return undefined;
     }
 
-    return false;
-  };
+    return createElement(
+      Space,
+      {
+        style: {
+          display: "flex",
+          justifyContent: "flex-end",
+          width: "100%",
+        },
+      },
+      createElement(
+        Button,
+        {
+          size: "small",
+          disabled: !cursor.hasPreviousPage,
+          onClick: cursor.goToPreviousPage,
+        },
+        "Previous",
+      ),
+      createElement(
+        Button,
+        {
+          size: "small",
+          disabled: !cursor.hasNextPage,
+          onClick: cursor.goToNextPage,
+        },
+        "Next",
+      ),
+    );
+  }, [
+    isCursorPaginationEnabled,
+    cursor.hasPreviousPage,
+    cursor.hasNextPage,
+    cursor.goToPreviousPage,
+    cursor.goToNextPage,
+  ]);
+
+  const antdPagination = useMemo((): false | PaginationConfig => {
+    if (!isPaginationEnabled || isCursorPaginationEnabled) {
+      return false;
+    }
+
+    return {
+      itemRender: (page, type, element) => {
+        const link = createLinkForSyncWithLocation({
+          pagination: {
+            pageSize,
+            currentPage: page,
+          },
+          sorters,
+          filters,
+        });
+
+        if (type === "page") {
+          return createElement(PaginationLink, {
+            to: link,
+            element: `${page}`,
+          });
+        }
+        if (type === "next" || type === "prev") {
+          return createElement(PaginationLink, {
+            to: link,
+            element: element,
+          });
+        }
+
+        if (type === "jump-next" || type === "jump-prev") {
+          const elementChildren = (element as React.ReactElement<any>)?.props
+            ?.children;
+
+          return createElement(PaginationLink, {
+            to: link,
+            element:
+              Children.count(elementChildren) > 1
+                ? createElement(Fragment, {}, elementChildren)
+                : elementChildren,
+          });
+        }
+
+        return element;
+      },
+      pageSize,
+      current: currentPage,
+      simple: !breakpoint.sm,
+      total: data?.total,
+      onChange,
+    };
+  }, [
+    isPaginationEnabled,
+    isCursorPaginationEnabled,
+    pageSize,
+    currentPage,
+    breakpoint.sm,
+    data?.total,
+    createLinkForSyncWithLocation,
+    sorters,
+    filters,
+  ]);
 
   return {
     searchFormProps: {
@@ -185,7 +245,8 @@ export const useSimpleList = <
     listProps: {
       dataSource: data?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
-      pagination: antdPagination(),
+      pagination: antdPagination,
+      ...(cursorPaginationFooter && { footer: cursorPaginationFooter }),
     },
     query: tableQuery,
     filters,
@@ -200,5 +261,6 @@ export const useSimpleList = <
     createLinkForSyncWithLocation,
     overtime,
     result,
+    cursor,
   };
 };

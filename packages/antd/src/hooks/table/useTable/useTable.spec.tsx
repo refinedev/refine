@@ -4,6 +4,7 @@ import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
 import { Form, Input } from "antd";
 import { act, TestWrapper, render, MockJSONServer } from "@test";
+import { vi } from "vitest";
 
 import { useTable } from "./useTable";
 
@@ -292,6 +293,146 @@ describe("useTable Hook", () => {
     expect(result.current.tableProps.pagination).toBeFalsy();
   });
 
+  it("when pagination mode is cursor, should use footer controls instead of offset pagination", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      total: 10,
+      cursor: {
+        next: "cursor_page_2",
+      },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.tableProps.pagination).toBe(false);
+    expect(result.current.tableProps.footer).toBeTruthy();
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.cursor.next).toBe("cursor_page_2");
+  });
+
+  it("cursor navigation should update data via footer controls", async () => {
+    const mockGetList = vi
+      .fn()
+      .mockResolvedValueOnce({
+        data: [{ id: 1 }],
+        cursor: { next: "cursor_page_2" },
+      })
+      .mockResolvedValueOnce({
+        data: [{ id: 2 }],
+        cursor: { next: "cursor_page_3", prev: "cursor_page_1" },
+      });
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.cursor.hasPreviousPage).toBe(false);
+
+    act(() => {
+      result.current.cursor.goToNextPage();
+    });
+
+    await waitFor(() => {
+      expect(result.current.cursor.hasPreviousPage).toBe(true);
+    });
+
+    expect(result.current.cursor.hasNextPage).toBe(true);
+    expect(result.current.tableProps.dataSource).toEqual([{ id: 2 }]);
+  });
+
+  it("cursor mode should not call setCurrentPage on table onChange", async () => {
+    const mockGetList = vi.fn().mockResolvedValue({
+      data: [{ id: 1 }],
+      cursor: { next: "cursor_page_2" },
+    });
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: {
+            mode: "cursor",
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            default: {
+              ...MockJSONServer.default,
+              getList: mockGetList,
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    // Calling onChange should not change currentPage in cursor mode
+    expect(result.current.currentPage).toBe(1);
+    act(() => {
+      result.current.tableProps.onChange?.(
+        { current: 3, pageSize: 10 },
+        {},
+        {},
+      );
+    });
+    expect(result.current.currentPage).toBe(1);
+  });
+
   it("should pass form values to search form from params (syncWithLocation)", async () => {
     const Component = () => {
       const { searchFormProps } = useTable({
@@ -336,7 +477,7 @@ describe("useTable Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getByDisplayValue("Some Name To Look For")).toBeInTheDocument();
+      expect(getByDisplayValue("Some Name To Look For")).toBeTruthy();
     });
   });
 

@@ -3,32 +3,38 @@ import React from "react";
 
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
-import type { ICommit } from "../../interfaces";
+import type { GitHubCommit } from "../../types";
+import { COMMITS_LIST_QUERY } from "./queries";
+
+const githubRepositoryVariables = {
+  owner: "refinedev",
+  name: "refine",
+};
 
 export const PostList: React.FC = () => {
-  const [next, setNext] = React.useState<string | undefined>(undefined);
-  const { dataGridProps, tableQuery: tableQueryResult } = useDataGrid<ICommit>({
-    meta: {
-      cursor: {
-        next,
-      },
-    },
-
+  const { dataGridProps } = useDataGrid<GitHubCommit>({
     pagination: {
+      mode: "cursor",
       pageSize: 5,
     },
+    meta: {
+      gqlQuery: COMMITS_LIST_QUERY,
+      gqlVariables: githubRepositoryVariables,
+    },
+    syncWithLocation: true,
   });
 
-  const { data } = tableQueryResult;
-
-  const columns: GridColDef<ICommit>[] = [
+  const columns: GridColDef<GitHubCommit>[] = [
     {
-      field: "sha",
-      headerName: "SHA",
+      field: "oid",
+      headerName: "OID",
       type: "string",
       width: 100,
       filterable: false,
       sortable: false,
+      renderCell: ({ value }) => {
+        return typeof value === "string" ? value.substring(0, 7) : "";
+      },
     },
     {
       field: "message",
@@ -38,9 +44,6 @@ export const PostList: React.FC = () => {
       filterable: false,
       sortable: false,
       display: "flex",
-      renderCell: ({ row }) => {
-        return row.commit.message;
-      },
     },
     {
       field: "author",
@@ -51,36 +54,26 @@ export const PostList: React.FC = () => {
       sortable: false,
       display: "flex",
       renderCell: ({ row }) => {
-        return row.commit.author.name;
+        return row.author?.name ?? "Unknown";
       },
     },
     {
-      field: "date",
-      headerName: "Date",
+      field: "committedDate",
+      headerName: "Committed At",
       minWidth: 140,
       flex: 1,
       filterable: false,
       sortable: false,
-      display: "flex",
-      renderCell: ({ row }) => {
-        return row.commit.author.date;
-      },
     },
   ];
 
   return (
     <List>
       <DataGrid
-        getRowId={(row) => row.sha}
-        {...dataGridProps}
-        onPaginationModelChange={(model, details) => {
-          const lastRow = data?.data[data.data.length - 1];
-          const next = lastRow?.commit.committer.date;
-          if (next) {
-            setNext(next);
-          }
-          dataGridProps.onPaginationModelChange?.(model, details);
+        getRowId={(row) => {
+          return row.oid;
         }}
+        {...dataGridProps}
         columns={columns}
       />
     </List>

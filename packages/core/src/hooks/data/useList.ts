@@ -163,7 +163,11 @@ export const useList = <
   const prefferedPagination = handlePaginationParams({
     pagination,
   });
-  const isServerPagination = prefferedPagination.mode === "server";
+  const isServerPagination =
+    prefferedPagination.mode === "server" ||
+    prefferedPagination.mode === "cursor";
+  const prefferedCurrentPage = prefferedPagination.currentPage ?? 1;
+  const prefferedPageSize = prefferedPagination.pageSize ?? 10;
 
   const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
@@ -205,6 +209,7 @@ export const useList = <
   // Memoize the select function to prevent it from running multiple times
   // Note: If queryOptions.select is not memoized by the user, this will still
   // re-run on every render. Users should wrap their select function in useCallback.
+
   const memoizedSelect = useMemo(() => {
     return (rawData: GetListResponse<TQueryFnData>): GetListResponse<TData> => {
       let data = rawData;
@@ -213,9 +218,8 @@ export const useList = <
         data = {
           ...data,
           data: data.data.slice(
-            (prefferedPagination.currentPage - 1) *
-              prefferedPagination.pageSize,
-            prefferedPagination.currentPage * prefferedPagination.pageSize,
+            (prefferedCurrentPage - 1) * prefferedPageSize,
+            prefferedCurrentPage * prefferedPageSize,
           ),
           total: data.total,
         };
@@ -228,8 +232,8 @@ export const useList = <
       return data as unknown as GetListResponse<TData>;
     };
   }, [
-    prefferedPagination.currentPage,
-    prefferedPagination.pageSize,
+    prefferedCurrentPage,
+    prefferedPageSize,
     prefferedPagination.mode,
     queryOptions?.select,
   ]);
@@ -259,12 +263,16 @@ export const useList = <
         ...combinedMeta,
         ...prepareQueryContext(context),
       };
+
       return getList<TQueryFnData>({
         resource: resource?.name ?? "",
         pagination: prefferedPagination,
         filters: prefferedFilters,
         sorters: prefferedSorters,
         meta,
+      }).then((response) => {
+        handlePaginationModeError(prefferedPagination, response);
+        return response;
       });
     },
     ...queryOptions,
@@ -336,4 +344,30 @@ export const useList = <
     },
     overtime: { elapsedTime },
   };
+};
+
+export const handlePaginationModeError = (
+  pagination: Pagination,
+  response: Pick<GetListResponse<unknown>, "cursor" | "total">,
+) => {
+  if (pagination.mode === "cursor" && response.cursor === undefined) {
+    console.error(
+      'useList: `pagination.mode` is "cursor" but `dataProvider.getList` returned an offset response. Return a `cursor` object or use `pagination.mode: "server"`.',
+    );
+  }
+
+  if (pagination.mode === "server" && response.cursor !== undefined) {
+    console.error(
+      'useList: `pagination.mode` is "server" but `dataProvider.getList` returned a cursor response. Remove the `cursor` object or use `pagination.mode: "cursor"`.',
+    );
+  }
+
+  if (
+    (pagination.mode === "server" || pagination.mode === "client") &&
+    response.total === undefined
+  ) {
+    console.error(
+      `useList: \`pagination.mode\` is "${pagination.mode}" but \`dataProvider.getList\` did not return \`total\`. Return a \`total\` value or use \`pagination.mode: "cursor"\`.`,
+    );
+  }
 };

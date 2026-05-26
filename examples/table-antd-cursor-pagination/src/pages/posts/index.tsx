@@ -1,0 +1,1 @@
+export { PostList } from "./list";

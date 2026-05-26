@@ -145,6 +145,459 @@ describe("useList Hook", () => {
     },
   );
 
+  it("should include cursor pagination in queryKey", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "cursor_1",
+              direction: "after",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: {
+          currentPage: 1,
+          pageSize: 10,
+          mode: "cursor",
+          cursor: {
+            current: "cursor_1",
+            direction: "after",
+          },
+        },
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_1",
+                  direction: "after",
+                },
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
+  it("should not include cursor property in queryKey when cursor mode has no cursor value", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+      cursor: { next: "abc" },
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
+  it("should include 'before' direction in queryKey", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      total: 0,
+      cursor: { prev: "prev_cursor" },
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "cursor_xyz",
+              direction: "before",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        meta: {
+          queryKey: [
+            "data",
+            "default",
+            "posts",
+            "list",
+            {
+              filters: undefined,
+              pagination: {
+                currentPage: 1,
+                pageSize: 10,
+                mode: "cursor",
+                cursor: {
+                  current: "cursor_xyz",
+                  direction: "before",
+                },
+              },
+            },
+          ],
+          signal: new AbortController().signal,
+        },
+      }),
+    );
+  });
+
+  it("should error when cursor mode receives offset response", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+                total: 0,
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining('`pagination.mode` is "cursor"'),
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  it("should error when server mode receives cursor response", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "server",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+                total: 0,
+                cursor: {},
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining('`pagination.mode` is "server"'),
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  it("should error when `server` mode response omits total", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "server",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("did not return `total`"),
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  it("should error when client mode response omits total", async () => {
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "client",
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [],
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      expect.stringContaining("did not return `total`"),
+    );
+
+    consoleSpy.mockRestore();
+  });
+
+  it("should succeed when cursor mode receives cursor response", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 10,
+            cursor: {
+              current: "abc",
+              direction: "after",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }],
+                cursor: { next: "def", prev: "xyz" },
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query.data?.cursor).toEqual({
+      next: "def",
+      prev: "xyz",
+    });
+  });
+
+  it("should not error when cursor mode response has no total", async () => {
+    const { result } = renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            mode: "cursor",
+            pageSize: 5,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: (async () => ({
+                data: [{ id: 1 }],
+                cursor: { next: "cursor_2" },
+              })) as typeof MockJSONServer.default.getList,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query.data?.data).toHaveLength(1);
+  });
+
+  it("should pass cursor direction 'before' to data provider", () => {
+    const getListMock = vi.fn().mockResolvedValue({
+      data: [],
+      cursor: {},
+    });
+
+    renderHook(
+      () =>
+        useList({
+          resource: "posts",
+          pagination: {
+            pageSize: 10,
+            mode: "cursor",
+            cursor: {
+              current: "prev_cursor",
+              direction: "before",
+            },
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: getListMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: expect.objectContaining({
+          mode: "cursor",
+          cursor: {
+            current: "prev_cursor",
+            direction: "before",
+          },
+        }),
+      }),
+    );
+  });
+
   it("data should be sliced when pagination mode is client", async () => {
     const { result } = renderHook(
       () =>
@@ -806,6 +1259,7 @@ describe("useList Hook", () => {
     it("should override `queryKey` with `queryOptions.queryKey`", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -890,6 +1344,7 @@ describe("useList Hook", () => {
   it("should support deprecated `config` property", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -937,9 +1392,11 @@ describe("useList Hook", () => {
   it("should select correct dataProviderName", async () => {
     const getListDefaultMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
     const getListFooMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -989,6 +1446,7 @@ describe("useList Hook", () => {
   it("should get correct `meta` of related resource", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(
@@ -1033,9 +1491,11 @@ describe("useList Hook", () => {
     it("should select correct dataProviderName", async () => {
       const getListDefaultMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
       const getListFooMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1086,6 +1546,7 @@ describe("useList Hook", () => {
     it("should create queryKey with `identifier`", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1133,6 +1594,7 @@ describe("useList Hook", () => {
     it("should get correct `meta` of related resource", async () => {
       const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
+        total: 1,
       });
 
       const { result } = renderHook(
@@ -1232,6 +1694,7 @@ describe("useList Hook", () => {
   it("should infer resource from the route", async () => {
     const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
+      total: 1,
     });
 
     const { result } = renderHook(() => useList(), {

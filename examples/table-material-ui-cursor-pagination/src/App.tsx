@@ -16,7 +16,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
-import { dataProvider } from "./rest-data-provider";
+import { dataProvider } from "./providers/data";
 import { PostList } from "./pages/posts";
 
 const App: React.FC = () => {
@@ -29,11 +29,11 @@ const App: React.FC = () => {
         <RefineSnackbarProvider>
           <Refine
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.github.com")}
+            dataProvider={dataProvider}
             notificationProvider={useNotificationProvider}
             resources={[
               {
-                name: "repos/refinedev/refine/commits",
+                name: "commits",
                 list: "/repos/refinedev/refine/commits",
                 meta: {
                   label: "Commits",
@@ -55,9 +55,7 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={
-                    <NavigateToResource resource="repos/refinedev/refine/commits" />
-                  }
+                  element={<NavigateToResource resource="commits" />}
                 />
 
                 <Route

@@ -161,7 +161,12 @@ useList({
 
 #### mode
 
-This property can be `"off"`, `"client"` or `"server"`. It is used to determine whether to use server-side pagination or not.
+This property can be `"off"`, `"client"`, `"server"` or `"cursor"`. It is used to determine whether to use server-side pagination or not.
+
+- **"server"**: Pagination is done on the server side using `currentPage` and `pageSize`.
+- **"client"**: All records are fetched and paginated on the client side.
+- **"off"**: Pagination is disabled. All records will be fetched.
+- **"cursor"**: Cursor-based pagination. The data provider's `getList` response must include a `cursor` object with `next` and/or `prev` values.
 
 ```tsx
 useList({
@@ -170,6 +175,45 @@ useList({
   },
 });
 ```
+
+#### cursor
+
+> Only available when `pagination.mode` is `"cursor"`.
+
+The `cursor` property is used to pass the current cursor value and direction to the data provider.
+
+| Property    | Type                  | Description                                         |
+| ----------- | --------------------- | --------------------------------------------------- |
+| `current`   | `string \| number`    | The cursor value to fetch from.                     |
+| `direction` | `"after" \| "before"` | The direction of the cursor. Defaults to `"after"`. |
+
+```tsx
+useList({
+  pagination: {
+    mode: "cursor",
+    pageSize: 10,
+    cursor: {
+      current: "cursor_abc",
+      direction: "after",
+    },
+  },
+});
+```
+
+When `mode` is `"cursor"`, your data provider's `getList` method receives `pagination.cursor` and should return a `cursor` object in the response:
+
+```ts
+// Data provider response
+return {
+  data: items,
+  cursor: {
+    next: hasNextPage ? endCursor : undefined,
+    prev: hasPreviousPage ? startCursor : undefined,
+  },
+};
+```
+
+> For a full example with `useTable`, see the [How to use cursor-based pagination?](/core/docs/data/hooks/use-table#how-to-use-cursor-based-pagination) guide.
 
 ### queryOptions
 
@@ -364,10 +408,12 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return Values
 
-| Description                               | Type                                                                                                                            |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v5/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                                                      |
+| Description                               | Type                                                                                                                                                     |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; cursor?: CursorResponse; }, TError>`](https://tanstack.com/query/v5/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                                                               |
+
+When `pagination.mode` is `"cursor"`, the query response data includes a `cursor` object with `next` and/or `prev` values returned by the data provider.
 
 [baserecord]: /core/docs/core/interface-references#baserecord
 [httperror]: /core/docs/core/interface-references#httperror

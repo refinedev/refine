@@ -280,7 +280,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
 
 :::tip
 
-`getList` can also support cursor-based pagination. Refer to [related section in the `useInfiniteList` documentation](/core/docs/data/hooks/use-infinite-list#how-to-use-cursor-based-pagination) for more information.
+`getList` can also support cursor-based pagination. You can use it with [`useInfiniteList`](/core/docs/data/hooks/use-infinite-list#how-to-use-cursor-based-pagination) or with [`useTable`](/core/docs/data/hooks/use-table#how-to-use-cursor-based-pagination) by setting `pagination.mode` to `"cursor"`. When using cursor mode, the `getList` response should include a `cursor` object with `next` and/or `prev` values.
 
 :::
 
