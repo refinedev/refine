@@ -9,7 +9,6 @@ import {
 import {
   handleMultiple,
   pickDataProvider,
-  prepareQueryContext,
 } from "@definitions/helpers";
 import {
   useDataProvider,
@@ -190,8 +189,14 @@ export const useMany = <
     queryFn: (context) => {
       const meta = {
         ...combinedMeta,
-        ...prepareQueryContext(context as any),
+        queryKey: context.queryKey,
       };
+      Object.defineProperty(meta, "signal", {
+        enumerable: true,
+        get() {
+          return context.signal;
+        },
+      });
 
       if (getMany) {
         return getMany({

@@ -6,7 +6,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { prepareQueryContext } from "@definitions/helpers";
+
 import {
   useDataProvider,
   useHandleNotification,
@@ -168,16 +168,24 @@ export const useCustom = <
           ...(preferredMeta || {}),
         })
         .get(),
-      queryFn: (context) =>
-        custom<TQueryFnData>({
+      queryFn: (context) => {
+        const meta = {
+          ...combinedMeta,
+          queryKey: context.queryKey,
+        };
+        Object.defineProperty(meta, "signal", {
+          enumerable: true,
+          get() {
+            return context.signal;
+          },
+        });
+        return custom<TQueryFnData>({
           url,
           method,
           ...config,
-          meta: {
-            ...combinedMeta,
-            ...prepareQueryContext(context as any),
-          },
-        }),
+          meta,
+        });
+      },
       ...queryOptions,
       meta: {
         ...queryOptions?.meta,
