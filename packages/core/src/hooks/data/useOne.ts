@@ -6,7 +6,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { pickDataProvider, prepareQueryContext } from "@definitions";
+import { pickDataProvider } from "@definitions";
 import {
   useDataProvider,
   useHandleNotification,
@@ -181,15 +181,23 @@ export const useOne = <
         ...(preferredMeta || {}),
       })
       .get(),
-    queryFn: (context) =>
-      getOne<TQueryFnData>({
+    queryFn: (context) => {
+      const meta = {
+        ...combinedMeta,
+        queryKey: context.queryKey,
+      };
+      Object.defineProperty(meta, "signal", {
+        enumerable: true,
+        get() {
+          return context.signal;
+        },
+      });
+      return getOne<TQueryFnData>({
         resource: resource?.name ?? "",
         id: id!,
-        meta: {
-          ...combinedMeta,
-          ...prepareQueryContext(context as any),
-        },
-      }),
+        meta,
+      });
+    },
     ...queryOptions,
     enabled: isEnabled,
     meta: {

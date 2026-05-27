@@ -12,7 +12,6 @@ import {
   getPreviousPageParam,
   handlePaginationParams,
   pickDataProvider,
-  prepareQueryContext,
 } from "@definitions/helpers";
 import {
   useDataProvider,
@@ -256,8 +255,14 @@ export const useInfiniteList = <
 
       const meta = {
         ...combinedMeta,
-        ...prepareQueryContext(context),
+        queryKey: context.queryKey,
       };
+      Object.defineProperty(meta, "signal", {
+        enumerable: true,
+        get() {
+          return context.signal;
+        },
+      });
 
       return getList<TQueryFnData>({
         resource: resource?.name || "",
