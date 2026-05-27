@@ -268,7 +268,7 @@ export const useForm = <
     const applyQueryValues = () => {
       if (!isActive) return;
 
-      applyValuesToFields(getRegisteredFields(), data, false);
+      reset(data, { keepDirtyValues: true });
     };
 
     queryDataRef.current = data;
