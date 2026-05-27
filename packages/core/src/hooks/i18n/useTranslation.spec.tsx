@@ -41,4 +41,40 @@ describe("useTranslation", () => {
     expect(changeLocale).toHaveBeenCalledTimes(1);
     expect(changeLocale).toHaveBeenCalledWith("en");
   });
+
+  it("should pass ns option to translate", () => {
+    const translateMock = vi.fn();
+
+    const TestComponentWithNs: React.FC = () => {
+      const { translate } = useTranslation({ ns: "common" });
+
+      return (
+        <div>
+          {translate(
+            "products.title.key",
+            { opiton1: "option1" },
+            "fallback-title",
+          )}
+        </div>
+      );
+    };
+
+    render(<TestComponentWithNs />, {
+      wrapper: TestWrapper({
+        resources: [{ name: "products" }],
+        i18nProvider: {
+          translate: translateMock,
+          changeLocale: vi.fn(),
+          getLocale: vi.fn(),
+        },
+      }),
+    });
+
+    expect(translateMock).toHaveBeenCalledTimes(1);
+    expect(translateMock).toHaveBeenCalledWith(
+      "products.title.key",
+      { ns: "common", opiton1: "option1" },
+      "fallback-title",
+    );
+  });
 });
