@@ -119,6 +119,20 @@ const App: React.FC = () => {
       return { error };
     },
     check: async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get("error");
+
+      if (error === "access_denied") {
+        return {
+          authenticated: false,
+          redirectTo: "/login",
+          error: {
+            message: "Login cancelled by user",
+            name: "Authorization denied",
+          },
+        };
+      }
+
       return localStorage.getItem("email")
         ? { authenticated: true }
         : {
