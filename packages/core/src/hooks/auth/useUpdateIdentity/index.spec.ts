@@ -524,11 +524,32 @@ describe("useUpdateIdentity Hook", () => {
       result.current.mutate({});
     });
 
-    expect(openNotificationMock).toHaveBeenCalledWith({
-      key: "update-identity-success",
-      type: "success",
-      message: "Success!",
-      description: "Operation completed successfully",
+    await waitFor(() => {
+      expect(openNotificationMock).toHaveBeenCalledWith({
+        key: "update-identity-success",
+        type: "success",
+        message: "Success!",
+        description: "Operation completed successfully",
+      });
+    });
+  });
+
+  it("should surface an error state when `updateIdentity` is not implemented", async () => {
+    // `updateIdentity` is optional on the auth provider. When it is not
+    // implemented, the mutation resolves `undefined` and the hook ends up in
+    // an error state instead of silently succeeding.
+    const { result } = renderHook(() => useUpdateIdentity(), {
+      wrapper: TestWrapper({
+        authProvider: mockAuthProvider,
+      }),
+    });
+
+    await act(async () => {
+      result.current.mutate({});
+    });
+
+    await waitFor(() => {
+      expect(result.current.isError).toBeTruthy();
     });
   });
 });
