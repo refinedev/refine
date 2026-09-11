@@ -1,7 +1,9 @@
 import type { AxiosInstance } from "axios";
-import { stringify } from "query-string";
+import queryString from "query-string";
 import type { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
+
+const { stringify } = queryString;
 
 type MethodTypes = "get" | "delete" | "head" | "options";
 type MethodTypesWithBody = "post" | "put" | "patch";
