@@ -13779,9 +13779,9 @@ importers:
       axios:
         specifier: ^1.11.0
         version: 1.11.0
-      query-string:
-        specifier: ^7.1.1
-        version: 7.1.3
+      qs:
+        specifier: ^6.10.1
+        version: 6.14.0
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13795,6 +13795,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.5.1
+      '@types/qs':
+        specifier: ^6.9.15
+        version: 6.9.15
       '@vitest/ui':
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
@@ -46697,7 +46700,7 @@ snapshots:
       is-string: 1.0.7
       is-typed-array: 1.1.13
       is-weakref: 1.0.2
-      object-inspect: 1.13.1
+      object-inspect: 1.13.4
       object-keys: 1.1.1
       object.assign: 4.1.5
       regexp.prototype.flags: 1.5.2
@@ -49391,7 +49394,7 @@ snapshots:
     dependencies:
       es-errors: 1.3.0
       hasown: 2.0.2
-      side-channel: 1.0.6
+      side-channel: 1.1.0
 
   internal-slot@1.1.0:
     dependencies:
@@ -54176,7 +54179,7 @@ snapshots:
 
   qs@6.10.4:
     dependencies:
-      side-channel: 1.0.6
+      side-channel: 1.1.0
 
   qs@6.11.0:
     dependencies:
@@ -56926,7 +56929,7 @@ snapshots:
       internal-slot: 1.0.7
       regexp.prototype.flags: 1.5.2
       set-function-name: 2.0.2
-      side-channel: 1.0.6
+      side-channel: 1.1.0
 
   string.prototype.matchall@4.0.12:
     dependencies:
