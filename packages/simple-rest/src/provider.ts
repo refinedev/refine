@@ -1,5 +1,5 @@
 import type { AxiosInstance } from "axios";
-import { stringify } from "query-string";
+import { stringify } from "qs";
 import type { DataProvider } from "@refinedev/core";
 import { axiosInstance, generateSort, generateFilter } from "./utils";
 
@@ -48,7 +48,7 @@ export const dataProvider = (
 
     const combinedQuery = { ...query, ...queryFilters };
     const urlWithQuery = Object.keys(combinedQuery).length
-      ? `${url}?${stringify(combinedQuery)}`
+      ? `${url}?${stringify(combinedQuery, { arrayFormat: "repeat" })}`
       : url;
 
     const { data, headers } = await httpClient[requestMethod](urlWithQuery, {
@@ -68,7 +68,7 @@ export const dataProvider = (
     const requestMethod = (method as MethodTypes) ?? "get";
 
     const { data } = await httpClient[requestMethod](
-      `${apiUrl}/${resource}?${stringify({ id: ids })}`,
+      `${apiUrl}/${resource}?${stringify({ id: ids }, { arrayFormat: "repeat" })}`,
       { headers },
     );
 
@@ -159,17 +159,17 @@ export const dataProvider = (
           _sort: _sort.join(","),
           _order: _order.join(","),
         };
-        requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+        requestUrl = `${requestUrl}&${stringify(sortQuery, { arrayFormat: "repeat" })}`;
       }
     }
 
     if (filters) {
       const filterQuery = generateFilter(filters);
-      requestUrl = `${requestUrl}&${stringify(filterQuery)}`;
+      requestUrl = `${requestUrl}&${stringify(filterQuery, { arrayFormat: "repeat" })}`;
     }
 
     if (query) {
-      requestUrl = `${requestUrl}&${stringify(query)}`;
+      requestUrl = `${requestUrl}&${stringify(query, { arrayFormat: "repeat" })}`;
     }
 
     let axiosResponse;
