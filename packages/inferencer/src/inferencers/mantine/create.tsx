@@ -11,6 +11,7 @@ import {
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   printImports,
   isIDKey,
@@ -82,7 +83,7 @@ export const renderer = ({
                   "SelectProps",
                 )} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
@@ -121,10 +122,9 @@ export const renderer = ({
                       resource,
                       field,
                       i18n,
-                    })} {...getInputProps("${dotAccessor(
-                      field.key,
-                      undefined,
-                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                    })} {...getInputProps(${stringLiteral(
+                      dotAccessor(field.key, undefined),
+                    )})} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
                 `;
       }
 
@@ -135,11 +135,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} {...${variableName}} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} {...${variableName}} />
             `;
     }
     return undefined;
@@ -172,11 +170,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} />
             `;
     }
     return undefined;
@@ -214,11 +210,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}", { type: 'checkbox' })} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )}, { type: 'checkbox' })} />
             `;
     }
     return undefined;
@@ -259,11 +253,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} autosize {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} />
+                })} autosize {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} />
             `;
     }
 
@@ -292,11 +284,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")}/>
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})}/>
             `;
     }
 
@@ -348,7 +338,7 @@ export const renderer = ({
             ${
               isCustomPage
                 ? `refineCoreProps: {
-                        resource: "${resource.name}",
+                        resource: ${stringLiteral(resource.name)},
                         action: "create",
                         ${getMetaProps(
                           resource.identifier ?? resource.name,

@@ -1,6 +1,7 @@
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -88,7 +89,7 @@ export const renderer = ({
                   query: { isLoading: ${getVariableName(field.key, "IsLoading")} },
                 } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${ids} || [],
                     queryOptions: {
                         enabled: !!${recordName} && !!${ids}?.length,
@@ -111,7 +112,7 @@ export const renderer = ({
                   "IsLoading",
                 )} }}  =
                 useOne({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     id: ${accessor(
                       recordName,
                       field.key,
@@ -172,7 +173,10 @@ export const renderer = ({
                                 field.relationInfer.accessor,
                               );
                               return jsx`
-                                            {record?.${field.key}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <li key={${val}}>{${val}}</li>) : <></>}
+                                            {${accessor(
+                                              "record",
+                                              field.key,
+                                            )}?.length ? ${variableName}?.data?.map((${mapItemName}: any) => <li key={${val}}>{${val}}</li>) : <></>}
                                         `;
                             }
                             console.log(
@@ -238,7 +242,11 @@ export const renderer = ({
                                   ' + " " + ',
                                 )}}`;
                               }
-                              return `{${variableName}?.${field.relationInfer.accessor}}`;
+                              return `{${accessor(
+                                variableName,
+                                undefined,
+                                field.relationInfer.accessor,
+                              )}}`;
                             }
                             const cannotRender =
                               field?.relationInfer?.type === "object" &&
@@ -650,7 +658,7 @@ export const renderer = ({
     query: { isLoading }, } = useShow(${
       isCustomPage
         ? `{ 
-                    resource: "${resource.name}", 
+                    resource: ${stringLiteral(resource.name)},
                     id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                       resource?.identifier ?? resource?.name,
@@ -689,7 +697,9 @@ export const renderer = ({
                 }
                 ${
                   canEdit
-                    ? jsx`<button onClick={() => edit("${resource.name}", ${
+                    ? jsx`<button onClick={() => edit(${stringLiteral(
+                        resource.name,
+                      )}, ${
                         isCustomPage ? `"${id}"` : "id ?? ''"
                       })}>${translateButtonTitle({
                         action: "edit",

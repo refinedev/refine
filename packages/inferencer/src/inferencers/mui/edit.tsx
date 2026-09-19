@@ -12,6 +12,7 @@ import { Controller } from "react-hook-form";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -100,7 +101,7 @@ export const renderer = ({
                   "AutocompleteProps",
                 )} } =
                 useAutocomplete({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     defaultValue: ${val},
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
@@ -130,13 +131,6 @@ export const renderer = ({
           : "title"
         : "title";
 
-      // check optionLabelProperty can be accessed via dot notation
-      const isBracketNotation =
-        optionLabelProperty.includes(".") ||
-        optionLabelProperty.includes("[") ||
-        optionLabelProperty.includes("]") ||
-        optionLabelProperty.includes("-");
-
       const optionLabelItemValue = field.accessor
         ? accessor("item", undefined, field.accessor, false)
         : "(item?.id ?? item)";
@@ -154,7 +148,7 @@ export const renderer = ({
       return jsx`
                 <Controller
                     control={control}
-                    name="${dotAccessor(field.key, undefined)}"
+                    name={${stringLiteral(dotAccessor(field.key, undefined))}}
                     rules={{ required: "This field is required" }}
                     // eslint-disable-next-line
                     ${
@@ -176,11 +170,7 @@ export const renderer = ({
                                         (p) =>
                                             p?.id?.toString() ===
                                             ${optionLabelItemValue}?.toString(),
-                                    )?.${
-                                      isBracketNotation
-                                        ? `["${optionLabelProperty}"]`
-                                        : optionLabelProperty
-                                    } ?? ""
+                                    )?.[${stringLiteral(optionLabelProperty)}] ?? ""
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
@@ -234,7 +224,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Box", "@mui/material"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         const errorVal = `${accessor(
           "(errors as any)",
@@ -248,7 +242,7 @@ export const renderer = ({
                         {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                             <TextField
                                 key={index}
-                                {...register(\`${val}\`, {
+                                {...register(${val}, {
                                     required: "This field is required",
                                     ${
                                       field.type === "number"
@@ -277,11 +271,13 @@ export const renderer = ({
                                   field,
                                   i18n,
                                 })}
-                                name={\`${dotAccessor(
-                                  field.key,
-                                  undefined,
-                                  field.accessor,
-                                )}.\${index}\`}
+                                name={${stringLiteral(
+                                  `${dotAccessor(
+                                    field.key,
+                                    undefined,
+                                    field.accessor,
+                                  )}.`,
+                                )} + index}
                             />
                         ))}
                     </Box>
@@ -289,11 +285,9 @@ export const renderer = ({
       }
       return jsx`
                 <TextField
-                    {...register("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", {
+                    {...register(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, {
                         required: "This field is required",
                         ${field.type === "number" ? "valueAsNumber: true," : ""}
                     })}
@@ -327,7 +321,9 @@ export const renderer = ({
                       field,
                       i18n,
                     })}
-                    name="${dotAccessor(field.key, undefined, field.accessor)}"
+                    name={${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}}
                     ${isIDKey(field.key) ? "disabled" : ""}
                 />
             `;
@@ -346,7 +342,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Box", "@mui/material"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         return `
                     <Box sx={{display: "flex", gap: 1}}>
@@ -354,7 +354,7 @@ export const renderer = ({
                             <Controller
                                 key={index}
                                 control={control}
-                                name={\`${val}\`}
+                                name={${val}}
                                 // eslint-disable-next-line
                                 defaultValue={null as any}
                                 render={({ field }) => (
@@ -383,7 +383,9 @@ export const renderer = ({
       return jsx`
                 <Controller
                     control={control}
-                    name="${dotAccessor(field.key, undefined, field.accessor)}"
+                    name={${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}}
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
@@ -462,7 +464,7 @@ export const renderer = ({
               isCustomPage
                 ? `{
                 refineCoreProps: {
-                    resource: "${resource.name}",
+                    resource: ${stringLiteral(resource.name)},
                     id: ${idQuoteWrapper(id)},
                     action: "edit",
                     ${getMetaProps(

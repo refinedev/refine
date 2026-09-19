@@ -9,6 +9,7 @@ export { pickInferredField } from "./pick-inferred-field";
 export { prettierFormat } from "./prettier-format";
 export { prettySpaces } from "./pretty-spaces";
 export { prettyString } from "./pretty-string";
+export { stringLiteral } from "./string-literal";
 export { translatePrettyString } from "./translate-pretty-string";
 export { translateActionTitle } from "./translate-action-title";
 export { translateButtonTitle } from "./translate-button-title";

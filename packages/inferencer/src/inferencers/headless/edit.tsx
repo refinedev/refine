@@ -3,6 +3,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -92,7 +93,7 @@ export const renderer = ({
         return `
                 const { options: ${getVariableName(field.key, "Options")} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     defaultValue: ${val},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
@@ -103,11 +104,9 @@ export const renderer = ({
                 });
 
                 React.useEffect(() => {
-                    setValue("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", ${val});
+                    setValue(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, ${val});
                 }, [${getVariableName(field.key, "Options")}]);
             `;
       }
@@ -130,12 +129,12 @@ export const renderer = ({
                   noQuotes: true,
                 })}</span>
                 <select
-                    placeholder="Select ${toSingular(field.resource.name)}"
-                    {...register("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", {
+                    placeholder={${stringLiteral(
+                      `Select ${toSingular(field.resource.name)}`,
+                    )}}
+                    {...register(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, {
                         required: ${
                           field.multiple ? "false" : '"This field is required"'
                         },
@@ -171,7 +170,11 @@ export const renderer = ({
       field.type === "richtext"
     ) {
       if (field.multiple) {
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         const valError = accessor(
           `${accessor(
@@ -204,7 +207,7 @@ export const renderer = ({
                                 }"
                                 `
                                     : ""
-                                } {...register(\`${val}\`, { required: "This field is required", ${
+                                } {...register(${val}, { required: "This field is required", ${
                                   field.type === "number"
                                     ? "valueAsNumber: true,"
                                     : ""
@@ -242,11 +245,9 @@ export const renderer = ({
                 `
                     : ""
                 }
-                {...register("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}", {
+                {...register(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )}, {
                     required: "This field is required",
                     ${field.type === "number" ? "valueAsNumber: true," : ""}
                 })}
@@ -291,7 +292,7 @@ export const renderer = ({
                             </span>
                             <input
                                 type="checkbox"
-                                {...register(\`${val}.\${index}\`, {
+                                {...register(${stringLiteral(`${val}.`)} + index, {
                                     required: "This field is required",
                                 })}
                             />
@@ -311,11 +312,9 @@ export const renderer = ({
                   i18n,
                   noQuotes: true,
                 })}</span>
-                <input type="checkbox" {...register("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}", {
+                <input type="checkbox" {...register(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )}, {
                     required: "This field is required",
                 })} />
                 <span style={{ color: "red" }}>
@@ -374,7 +373,7 @@ export const renderer = ({
                 ? `
             { 
                 refineCoreProps: {
-                    resource: "${resource.name}",
+                    resource: ${stringLiteral(resource.name)},
                     id: ${idQuoteWrapper(id)},
                     action: "edit",
                     ${getMetaProps(
@@ -419,7 +418,7 @@ export const renderer = ({
                     <div>
                         <button
                                 onClick={() => {
-                                    list("${resource.name}");
+                                    list(${stringLiteral(resource.name)});
                                 }}
                         >
                             ${translateActionTitle({

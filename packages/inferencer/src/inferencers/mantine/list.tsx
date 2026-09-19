@@ -17,10 +17,11 @@ import { flexRender } from "@tanstack/react-table";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
-  dotAccessor,
+  getAccessorKey,
   noOp,
   getVariableName,
   translatePrettyString,
@@ -38,14 +39,6 @@ import type {
   InferField,
   RendererContext,
 } from "../../types";
-
-const getAccessorKey = (field: InferField) => {
-  return Array.isArray(field.accessor) || field.multiple
-    ? `accessorKey: "${field.key}"`
-    : field.accessor
-      ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
-      : `accessorKey: "${field.key}"`;
-};
 
 /**
  * a renderer function for list page in Mantine
@@ -119,7 +112,7 @@ export const renderer = ({
         return `
                 const { result: ${getVariableName(field.key, "Data")} } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${idsString},
                     queryOptions: {
                         enabled: !!${recordName},
@@ -154,7 +147,7 @@ export const renderer = ({
         return undefined;
       }
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const header = `header: ${translatePrettyString({
         resource,
         field,
@@ -280,7 +273,7 @@ export const renderer = ({
     if (field.type === "image") {
       imports.push(["Image", "@mantine/core"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -345,7 +338,7 @@ export const renderer = ({
     if (field.type === "email") {
       imports.push(["EmailField", "@refinedev/mantine"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -401,7 +394,7 @@ export const renderer = ({
     if (field.type === "url") {
       imports.push(["UrlField", "@refinedev/mantine"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -457,7 +450,7 @@ export const renderer = ({
     if (field?.type === "boolean") {
       imports.push(["BooleanField", "@refinedev/mantine"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -512,7 +505,7 @@ export const renderer = ({
     if (field.type === "date") {
       imports.push(["DateField", "@refinedev/mantine"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -566,7 +559,7 @@ export const renderer = ({
     if (field?.type === "richtext") {
       imports.push(["MarkdownField", "@refinedev/mantine"]);
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -618,7 +611,7 @@ export const renderer = ({
 
   const basicFields = (field: InferField) => {
     if (field && (field.type === "text" || field.type === "number")) {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -790,7 +783,7 @@ export const renderer = ({
               isCustomPage
                 ? `
             refineCoreProps: {
-                resource: "${resource.name}",
+                resource: ${stringLiteral(resource.name)},
                 ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
                   "getList",
                 ])}

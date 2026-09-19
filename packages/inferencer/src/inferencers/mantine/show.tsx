@@ -14,6 +14,7 @@ import { Title, Group, Image } from "@mantine/core";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -100,7 +101,7 @@ export const renderer = ({
                   query: { isLoading: ${getVariableName(field.key, "IsLoading")} },
                 } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${ids} || [],
                     queryOptions: {
                         enabled: !!${recordName} && !!${ids}?.length,
@@ -124,7 +125,7 @@ export const renderer = ({
                   "IsLoading",
                 )} }}  =
                 useOne({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     id: ${accessor(
                       recordName,
                       field.key,
@@ -188,7 +189,7 @@ export const renderer = ({
                             field.relationInfer.accessor,
                           );
                           return `
-                                    {record?.${field.key}?.length ? <Group spacing="xs">
+                                    {${accessor("record", field.key)}?.length ? <Group spacing="xs">
                                         {${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}
                                     </Group> : <></>}
                                     `;
@@ -251,7 +252,11 @@ export const renderer = ({
                               ' + " " + ',
                             )}}`;
                           }
-                          return `{${variableName}?.${field.relationInfer.accessor}}`;
+                          return `{${accessor(
+                            variableName,
+                            undefined,
+                            field.relationInfer.accessor,
+                          )}}`;
                         }
                         const cannotRender =
                           field?.relationInfer?.type === "object" &&
@@ -650,7 +655,7 @@ export const renderer = ({
     query: { isLoading }, } = useShow(${
       isCustomPage
         ? `{ 
-                    resource: "${resource.name}", 
+                    resource: ${stringLiteral(resource.name)},
                     id: ${idQuoteWrapper(id)},
                     ${getMetaProps(
                       resource?.identifier ?? resource?.name,

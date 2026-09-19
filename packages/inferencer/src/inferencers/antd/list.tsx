@@ -17,6 +17,7 @@ import { Table, Space } from "antd";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   translatePrettyString,
   accessor,
@@ -107,7 +108,7 @@ export const renderer = ({
                   query: { isLoading: ${getVariableName(field.key, "IsLoading")} },
                 } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${idsString},
                     queryOptions: {
                         enabled: !!${recordName},
@@ -138,9 +139,9 @@ export const renderer = ({
       const loadingCondition = `${variableIsLoading} ? <>Loading...</> : `;
 
       const dataIndex = field.multiple
-        ? `dataIndex="${field.key}"`
-        : `dataIndex={["${field.key}", ${
-            field.accessor ? `"${field.accessor}"` : ""
+        ? `dataIndex={${stringLiteral(field.key)}}`
+        : `dataIndex={[${stringLiteral(field.key)}, ${
+            field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
           }]}`;
 
       const title = `title=${translatePrettyString({
@@ -240,9 +241,9 @@ export const renderer = ({
 
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
-          : `dataIndex={["${field.key}", ${
-              field.accessor ? `"${field.accessor}"` : ""
+          ? `dataIndex={${stringLiteral(field.key)}}`
+          : `dataIndex={[${stringLiteral(field.key)}, ${
+              field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
             }]}`;
 
       const title = `title=${translatePrettyString({
@@ -278,9 +279,9 @@ export const renderer = ({
       );
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
-          : `dataIndex={["${field.key}", ${
-              field.accessor ? `"${field.accessor}"` : ""
+          ? `dataIndex={${stringLiteral(field.key)}}`
+          : `dataIndex={[${stringLiteral(field.key)}, ${
+              field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
             }]}`;
 
       const title = `title=${translatePrettyString({
@@ -317,9 +318,9 @@ export const renderer = ({
 
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
-          : `dataIndex={["${field.key}", ${
-              field.accessor ? `"${field.accessor}"` : ""
+          ? `dataIndex={${stringLiteral(field.key)}}`
+          : `dataIndex={[${stringLiteral(field.key)}, ${
+              field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
             }]}`;
 
       const title = `title=${translatePrettyString({
@@ -353,9 +354,9 @@ export const renderer = ({
 
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
-          : `dataIndex={["${field.key}", ${
-              field.accessor ? `"${field.accessor}"` : ""
+          ? `dataIndex={${stringLiteral(field.key)}}`
+          : `dataIndex={[${stringLiteral(field.key)}, ${
+              field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
             }]}`;
 
       const title = `title=${translatePrettyString({
@@ -390,9 +391,9 @@ export const renderer = ({
 
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
-          : `dataIndex={["${field.key}", ${
-              field.accessor ? `"${field.accessor}"` : ""
+          ? `dataIndex={${stringLiteral(field.key)}}`
+          : `dataIndex={[${stringLiteral(field.key)}, ${
+              field.accessor ? `${stringLiteral(String(field.accessor))}` : ""
             }]}`;
 
       const title = `title=${translatePrettyString({
@@ -426,10 +427,12 @@ export const renderer = ({
 
       const dataIndex =
         Array.isArray(field.accessor) || field.multiple
-          ? `dataIndex="${field.key}"`
+          ? `dataIndex={${stringLiteral(field.key)}}`
           : field.accessor
-            ? `dataIndex={["${field.key}", "${field.accessor}"]}`
-            : `dataIndex="${field.key}"`;
+            ? `dataIndex={[${stringLiteral(field.key)}, ${stringLiteral(
+                String(field.accessor),
+              )}]}`
+            : `dataIndex={${stringLiteral(field.key)}}`;
 
       const title = `title=${translatePrettyString({
         resource,
@@ -460,8 +463,10 @@ export const renderer = ({
     if (field && (field.type === "text" || field.type === "number")) {
       const dataIndex =
         field.accessor && !Array.isArray(field.accessor) && !field.multiple
-          ? `dataIndex={["${field.key}", "${field.accessor}"]}`
-          : `dataIndex="${field.key}"`;
+          ? `dataIndex={[${stringLiteral(field.key)}, ${stringLiteral(
+              String(field.accessor),
+            )}]}`
+          : `dataIndex={${stringLiteral(field.key)}}`;
 
       const title = `title=${translatePrettyString({
         resource,
@@ -591,7 +596,7 @@ export const renderer = ({
         ${useTranslateHook}
         const { tableProps } = useTable({
             syncWithLocation: true,
-            ${isCustomPage ? ` resource: "${resource.name}",` : ""}
+            ${isCustomPage ? ` resource: ${stringLiteral(resource.name)},` : ""}
             ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
               "getList",
             ])}

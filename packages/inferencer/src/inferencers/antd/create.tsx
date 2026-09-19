@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   prettyString,
   accessor,
@@ -79,7 +80,7 @@ export const renderer = ({
                   "SelectProps",
                 )} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
@@ -100,9 +101,11 @@ export const renderer = ({
 
       const name = field.accessor
         ? field.multiple
-          ? `"${field.key}"`
-          : `["${field.key}", "${field.accessor}"]`
-        : `"${field.key}"`;
+          ? stringLiteral(field.key)
+          : `[${stringLiteral(field.key)}, ${stringLiteral(
+              String(field.accessor),
+            )}]`
+        : stringLiteral(field.key);
 
       let valueProps = "";
       let valueEvent = "";
@@ -111,7 +114,9 @@ export const renderer = ({
         const canDot = shouldDotAccess(`${field.accessor}`);
         valueEvent = `getValueFromEvent={(selected: string[]) => {
                     return selected?.map((item) => ({ ${
-                      canDot ? field.accessor : `["${field.accessor}"]`
+                      canDot
+                        ? field.accessor
+                        : `[${stringLiteral(String(field.accessor))}]`
                     }: item }));
                 }}`;
         valueProps = `getValueProps={(value: any[]) => {
@@ -172,8 +177,10 @@ export const renderer = ({
                       field,
                       i18n,
                     })}
-                    name={["${field.key}"${
-                      field.accessor ? `, "${field.accessor}"` : ""
+                    name={[${stringLiteral(field.key)}${
+                      field.accessor
+                        ? `, ${stringLiteral(String(field.accessor))}`
+                        : ""
                     }]}
                     rules={[
                         {
@@ -218,7 +225,7 @@ export const renderer = ({
                   i18n,
                 })}>
                     <Form.Item
-                        name="${field.key}"
+                        name={${stringLiteral(field.key)}}
                         ${valueProps}
                         getValueFromEvent={getValueFromEvent}
                         noStyle
@@ -260,8 +267,10 @@ export const renderer = ({
                       i18n,
                     })}
                     valuePropName="checked"
-                    name={["${field.key}"${
-                      field.accessor ? `, "${field.accessor}"` : ""
+                    name={[${stringLiteral(field.key)}${
+                      field.accessor
+                        ? `, ${stringLiteral(String(field.accessor))}`
+                        : ""
                     }]}
                     rules={[
                         {
@@ -269,7 +278,7 @@ export const renderer = ({
                         },
                     ]}
                 >
-                    <Checkbox>${prettyString(field.key)}</Checkbox>
+                    <Checkbox>{${stringLiteral(prettyString(field.key))}}</Checkbox>
                 </Form.Item>
             `;
     }
@@ -291,8 +300,10 @@ export const renderer = ({
                       field,
                       i18n,
                     })}
-                    name={["${field.key}"${
-                      field.accessor ? `, "${field.accessor}"` : ""
+                    name={[${stringLiteral(field.key)}${
+                      field.accessor
+                        ? `, ${stringLiteral(String(field.accessor))}`
+                        : ""
                     }]}
                     rules={[
                         {
@@ -317,7 +328,7 @@ export const renderer = ({
                   field,
                   i18n,
                 })}
-                name="${field.key}"
+                name={${stringLiteral(field.key)}}
                 rules={[
                     {
                         required: true,
@@ -366,7 +377,7 @@ export const renderer = ({
         const { formProps, saveButtonProps, query } = useForm(${
           isCustomPage
             ? `{
-                      resource: "${resource.name}",
+                      resource: ${stringLiteral(resource.name)},
                       action: "create",
                       ${getMetaProps(
                         resource.identifier ?? resource.name,

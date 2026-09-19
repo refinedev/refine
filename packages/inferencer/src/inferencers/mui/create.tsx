@@ -14,6 +14,7 @@ import { createInferencer } from "../../create-inferencer";
 
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -84,7 +85,7 @@ export const renderer = ({
                   "AutocompleteProps",
                 )} } =
                 useAutocomplete({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
                       meta,
@@ -113,13 +114,6 @@ export const renderer = ({
           : "title"
         : "title";
 
-      // check optionLabelProperty can be accessed via dot notation
-      const isBracketNotation =
-        optionLabelProperty.includes(".") ||
-        optionLabelProperty.includes("[") ||
-        optionLabelProperty.includes("]") ||
-        optionLabelProperty.includes("-");
-
       const optionLabelItemValue = field.accessor
         ? accessor("item", undefined, field.accessor, false)
         : "(item?.id ?? item)";
@@ -137,7 +131,7 @@ export const renderer = ({
       return jsx`
                 <Controller
                     control={control}
-                    name="${dotAccessor(field.key, undefined)}"
+                    name={${stringLiteral(dotAccessor(field.key, undefined))}}
                     rules={{ required: "This field is required" }}
                     // eslint-disable-next-line
                     ${
@@ -159,11 +153,7 @@ export const renderer = ({
                                         (p) =>
                                             p?.id?.toString() ===
                                             ${optionLabelItemValue}?.toString(),
-                                    )?.${
-                                      isBracketNotation
-                                        ? `["${optionLabelProperty}"]`
-                                        : optionLabelProperty
-                                    } ?? ""
+                                    )?.[${stringLiteral(optionLabelProperty)}] ?? ""
                                 );
                             }}
                             isOptionEqualToValue={(option, value) =>
@@ -224,11 +214,9 @@ export const renderer = ({
 
       return jsx`
                 <TextField
-                    {...register("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", {
+                    {...register(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, {
                         required: "This field is required",
                         ${field.type === "number" ? "valueAsNumber: true," : ""}
                     })}
@@ -262,7 +250,9 @@ export const renderer = ({
                       field,
                       i18n,
                     })}
-                    name="${dotAccessor(field.key, undefined, field.accessor)}"
+                    name={${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}}
                 />
             `;
     }
@@ -284,7 +274,9 @@ export const renderer = ({
       return jsx`
                 <Controller
                     control={control}
-                    name="${dotAccessor(field.key, undefined, field.accessor)}"
+                    name={${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}}
                     // eslint-disable-next-line
                     defaultValue={null as any}
                     render={({ field }) => (
@@ -363,7 +355,7 @@ export const renderer = ({
               isCustomPage
                 ? `{
                 refineCoreProps: {
-                    resource: "${resource.name}",
+                    resource: ${stringLiteral(resource.name)},
                     action: "create",
                     ${getMetaProps(resource.identifier ?? resource.name, meta, [
                       "create",

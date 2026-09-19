@@ -12,6 +12,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -83,7 +84,7 @@ export const renderer = ({
         return `
                 const { options: ${getVariableName(field.key, "Options")} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
@@ -105,10 +106,7 @@ export const renderer = ({
       const variableName = getVariableName(field.key, "Options");
 
       return jsx`
-            <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(
-              field.key,
-              undefined,
-            )}}>
+            <FormControl mb="3" isInvalid={!!${accessor("errors", field.key)}}>
                 <FormLabel>${translatePrettyString({
                   resource,
                   field,
@@ -116,12 +114,12 @@ export const renderer = ({
                   noQuotes: true,
                 })}</FormLabel>
                 <Select
-                    placeholder="Select ${toSingular(field.resource.name)}"
-                    {...register("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", {
+                    placeholder={${stringLiteral(
+                      `Select ${toSingular(field.resource.name)}`,
+                    )}}
+                    {...register(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, {
                         required: "This field is required",
                     })}
                 >
@@ -183,11 +181,9 @@ export const renderer = ({
                             ? `type="${field.type}"`
                             : ""
                         }
-                        {...register("${dotAccessor(
-                          field.key,
-                          undefined,
-                          field.accessor,
-                        )}", {
+                        {...register(${stringLiteral(
+                          dotAccessor(field.key, undefined, field.accessor),
+                        )}, {
                             required: "This field is required",
                             ${
                               field.type === "number"
@@ -232,11 +228,9 @@ export const renderer = ({
                       noQuotes: true,
                     })}</FormLabel>
                     <Checkbox
-                        {...register("${dotAccessor(
-                          field.key,
-                          undefined,
-                          field.accessor,
-                        )}", {
+                        {...register(${stringLiteral(
+                          dotAccessor(field.key, undefined, field.accessor),
+                        )}, {
                             required: "This field is required",
                         })}
                     />
@@ -307,7 +301,7 @@ export const renderer = ({
                 ? `
             { 
                 refineCoreProps: {
-                    resource: "${resource.name}",
+                    resource: ${stringLiteral(resource.name)},
                     action: "create",
                     ${getMetaProps(resource.identifier ?? resource.name, meta, [
                       "create",

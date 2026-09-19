@@ -4,10 +4,11 @@ import { flexRender } from "@tanstack/react-table";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
-  dotAccessor,
+  getAccessorKey,
   noOp,
   getVariableName,
   translatePrettyString,
@@ -27,14 +28,6 @@ import type {
   ImportElement,
   RendererContext,
 } from "../../types";
-
-const getAccessorKey = (field: InferField) => {
-  return Array.isArray(field.accessor) || field.multiple
-    ? `accessorKey: "${field.key}"`
-    : field.accessor
-      ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
-      : `accessorKey: "${field.key}"`;
-};
 
 /**
  * a renderer function for list page with unstyled html elements
@@ -102,7 +95,7 @@ export const renderer = ({
         return `
                 const { result: ${getVariableName(field.key, "Data")} } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${idsString},
                     queryOptions: {
                         enabled: !!${recordName},
@@ -136,7 +129,7 @@ export const renderer = ({
         return undefined;
       }
 
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const header = `header: ${translatePrettyString({
         resource,
         field,
@@ -275,7 +268,7 @@ export const renderer = ({
 
   const imageFields = (field: InferField) => {
     if (field.type === "image") {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -337,7 +330,7 @@ export const renderer = ({
 
   const emailFields = (field: InferField) => {
     if (field.type === "email") {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -398,7 +391,7 @@ export const renderer = ({
 
   const urlFields = (field: InferField) => {
     if (field.type === "url") {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -459,7 +452,7 @@ export const renderer = ({
 
   const booleanFields = (field: InferField) => {
     if (field?.type === "boolean") {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -514,7 +507,7 @@ export const renderer = ({
 
   const dateFields = (field: InferField) => {
     if (field.type === "date") {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -573,7 +566,7 @@ export const renderer = ({
         field.type === "number" ||
         field.type === "richtext")
     ) {
-      const id = `id: "${field.key}"`;
+      const id = `id: ${stringLiteral(field.key)}`;
       const accessorKey = getAccessorKey(field);
       const header = `header: ${translatePrettyString({
         resource,
@@ -656,7 +649,7 @@ export const renderer = ({
                     ? jsx`
                     <button
                         onClick={() => {
-                            show("${resource.name}", getValue() as string);
+                            show(${stringLiteral(resource.name)}, getValue() as string);
                         }}
                     >
                         ${translateButtonTitle({
@@ -673,7 +666,7 @@ export const renderer = ({
                         ? jsx`
                             <button
                             onClick={() => {
-                                edit("${resource.name}", getValue() as string);
+                                edit(${stringLiteral(resource.name)}, getValue() as string);
                             }}
                         >
                             ${translateButtonTitle({
@@ -762,7 +755,7 @@ export const renderer = ({
               isCustomPage
                 ? `
             refineCoreProps: {
-                resource: "${resource.name}",
+                resource: ${stringLiteral(resource.name)},
                 ${getMetaProps(resource?.identifier ?? resource?.name, meta, [
                   "getList",
                 ])}

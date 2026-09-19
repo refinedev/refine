@@ -1,4 +1,5 @@
 import type { InferField } from "../../types";
+import { stringLiteral } from "../string-literal";
 
 const dotAccessableRegex = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
 
@@ -14,7 +15,7 @@ function accessorSingle(variableName: string, key?: string, accessor?: string) {
     if (shouldDotAccess(key)) {
       base += key;
     } else {
-      base += `['${key}']`;
+      base += `[${stringLiteral(key)}]`;
     }
   }
 
@@ -23,7 +24,7 @@ function accessorSingle(variableName: string, key?: string, accessor?: string) {
     if (shouldDotAccess(accessor)) {
       base += accessor;
     } else {
-      base += `['${accessor}']`;
+      base += `[${stringLiteral(accessor)}]`;
     }
   }
 
@@ -79,9 +80,10 @@ export const dotAccessor = (
 };
 
 export const getAccessorKey = (field: InferField) => {
-  return Array.isArray(field.accessor) || field.multiple
-    ? `accessorKey: "${field.key}"`
-    : field.accessor
-      ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
-      : `accessorKey: "${field.key}"`;
+  const key =
+    Array.isArray(field.accessor) || field.multiple || !field.accessor
+      ? field.key
+      : dotAccessor(field.key, undefined, field.accessor);
+
+  return `accessorKey: ${stringLiteral(key)}`;
 };

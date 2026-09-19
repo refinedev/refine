@@ -12,6 +12,7 @@ import {
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -101,7 +102,7 @@ export const renderer = ({
 
         if (field.multiple && field.accessor) {
           effect = `React.useEffect(() => {
-                        setFieldValue("${field.key}", ${val});
+                        setFieldValue(${stringLiteral(field.key)}, ${val});
                     }, [${recordName}]);`;
         }
 
@@ -111,7 +112,7 @@ export const renderer = ({
                   "SelectProps",
                 )} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     defaultValue: ${val},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
@@ -153,10 +154,9 @@ export const renderer = ({
                       resource,
                       field,
                       i18n,
-                    })} {...getInputProps("${dotAccessor(
-                      field.key,
-                      undefined,
-                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                    })} {...getInputProps(${stringLiteral(
+                      dotAccessor(field.key, undefined),
+                    )})} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
                 `;
       }
 
@@ -167,11 +167,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} {...${variableName}} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} {...${variableName}} />
             `;
     }
     return undefined;
@@ -194,7 +192,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Group", "@mantine/core"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         return `
                 <Group spacing="xs">
@@ -205,7 +207,7 @@ export const renderer = ({
                             field,
                             i18n,
                           },
-                        )} {...getInputProps(\`${val}\`)} />
+                        )} {...getInputProps(${val})} />
                     ))}
                 </Group>
                 `;
@@ -218,11 +220,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} />
             `;
     }
     return undefined;
@@ -254,7 +254,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Group", "@mantine/core"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         return `
                 <Group spacing="xs">
@@ -265,7 +269,7 @@ export const renderer = ({
                             field,
                             i18n,
                           },
-                        )} {...getInputProps(\`${val}\`, { type: 'checkbox' })} />
+                        )} {...getInputProps(${val}, { type: 'checkbox' })} />
                     ))}
                 </Group>
                 `;
@@ -276,11 +280,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}", { type: 'checkbox' })} />
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )}, { type: 'checkbox' })} />
             `;
     }
     return undefined;
@@ -315,7 +317,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Group", "@mantine/core"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         return `
                 <Group spacing="xs">
@@ -326,7 +332,7 @@ export const renderer = ({
                             field,
                             i18n,
                           },
-                        )} {...getInputProps(\`${val}\`)} />
+                        )} {...getInputProps(${val})} />
                     ))}
                 </Group>
                 `;
@@ -337,11 +343,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} autosize {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")} />
+                })} autosize {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})} />
             `;
     }
 
@@ -360,7 +364,11 @@ export const renderer = ({
       if (field.multiple) {
         imports.push(["Group", "@mantine/core"]);
 
-        const val = dotAccessor(field.key, "${index}", field.accessor);
+        const val = `${stringLiteral(
+          `${field.key}.`,
+        )} + index + ${stringLiteral(
+          dotAccessor("", undefined, field.accessor),
+        )}`;
 
         return `
                 <Group spacing="xs">
@@ -371,7 +379,7 @@ export const renderer = ({
                             field,
                             i18n,
                           },
-                        )} {...getInputProps(\`${val}\`)} />
+                        )} {...getInputProps(${val})} />
                     ))}
                 </Group>
                 `;
@@ -384,11 +392,9 @@ export const renderer = ({
                   resource,
                   field,
                   i18n,
-                })} {...getInputProps("${dotAccessor(
-                  field.key,
-                  undefined,
-                  field.accessor,
-                )}")}/>
+                })} {...getInputProps(${stringLiteral(
+                  dotAccessor(field.key, undefined, field.accessor),
+                )})}/>
             `;
     }
 
@@ -440,7 +446,7 @@ export const renderer = ({
             ${
               isCustomPage
                 ? `refineCoreProps: {
-                        resource: "${resource.name}",
+                        resource: ${stringLiteral(resource.name)},
                         id: ${idQuoteWrapper(id)},
                         action: "edit",
                         ${getMetaProps(

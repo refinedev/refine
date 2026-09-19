@@ -24,6 +24,7 @@ import {
   getVariableName,
   isIDKey,
   jsx,
+  stringLiteral,
   noOp,
   printImports,
   translatePrettyString,
@@ -111,7 +112,7 @@ export const renderer = ({
                   query: { isLoading: ${getVariableName(field.key, "IsLoading")} },
                 } =
                 useMany({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ids: ${idsString},
                     queryOptions: {
                         enabled: !!${recordName},
@@ -149,7 +150,7 @@ export const renderer = ({
 
       const loadingCondition = `${variableIsLoading} ? <>Loading...</> : `;
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
@@ -277,7 +278,7 @@ export const renderer = ({
 
   const imageFields = (field: InferField) => {
     if (field.type === "image") {
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -342,7 +343,7 @@ export const renderer = ({
     if (field.type === "email") {
       imports.push(["EmailField", "@refinedev/mui"]);
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -409,7 +410,7 @@ export const renderer = ({
     if (field.type === "url") {
       imports.push(["UrlField", "@refinedev/mui"]);
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -476,7 +477,7 @@ export const renderer = ({
     if (field?.type) {
       imports.push(["Checkbox", "@mui/material"]);
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -541,7 +542,7 @@ export const renderer = ({
     if (field.type === "date") {
       imports.push(["DateField", "@refinedev/mui"]);
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -596,7 +597,7 @@ export const renderer = ({
     if (field?.type === "richtext") {
       imports.push(["MarkdownField", "@refinedev/mui"]);
 
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -650,7 +651,7 @@ export const renderer = ({
 
   const basicFields = (field: InferField) => {
     if (field && (field.type === "text" || field.type === "number")) {
-      const fieldProperty = `field: "${field.key}"`;
+      const fieldProperty = `field: ${stringLiteral(field.key)}`;
 
       const headerProperty = `headerName: ${translatePrettyString({
         resource,
@@ -717,7 +718,7 @@ export const renderer = ({
   const customId = fields?.[0]?.key ?? "id";
   const getRowIdProp = fields?.find((field) => field?.key === "id")
     ? ""
-    : `getRowId={(row) => row?.${customId}}`;
+    : `getRowId={(row) => ${accessor("row", customId)}}`;
 
   const { meta: resourceMeta, edit, show } = resource ?? {};
 
@@ -806,7 +807,7 @@ export const renderer = ({
         const { dataGridProps } = useDataGrid(
             ${
               isCustomPage
-                ? `{ resource: "${resource.name}",
+                ? `{ resource: ${stringLiteral(resource.name)},
                         ${getMetaProps(
                           resource?.identifier ?? resource?.name,
                           meta,

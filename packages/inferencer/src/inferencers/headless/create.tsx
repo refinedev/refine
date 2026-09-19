@@ -3,6 +3,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { createInferencer } from "../../create-inferencer";
 import {
   jsx,
+  stringLiteral,
   componentName,
   accessor,
   printImports,
@@ -74,7 +75,7 @@ export const renderer = ({
         return `
                 const { options: ${getVariableName(field.key, "Options")} } =
                 useSelect({
-                    resource: "${field.resource.name}",
+                    resource: ${stringLiteral(field.resource.name)},
                     ${getOptionLabel(field)}
                     ${getMetaProps(
                       field?.resource?.identifier ?? field?.resource?.name,
@@ -105,12 +106,12 @@ export const renderer = ({
                     })}
                 </span>
                 <select
-                    placeholder="Select ${toSingular(field.resource.name)}"
-                    {...register("${dotAccessor(
-                      field.key,
-                      undefined,
-                      field.accessor,
-                    )}", {
+                    placeholder={${stringLiteral(
+                      `Select ${toSingular(field.resource.name)}`,
+                    )}}
+                    {...register(${stringLiteral(
+                      dotAccessor(field.key, undefined, field.accessor),
+                    )}, {
                         required: ${
                           field.multiple ? "false" : '"This field is required"'
                         },
@@ -180,11 +181,9 @@ export const renderer = ({
                         `
                             : ""
                         }
-                        {...register("${dotAccessor(
-                          field.key,
-                          undefined,
-                          field.accessor,
-                        )}", {
+                        {...register(${stringLiteral(
+                          dotAccessor(field.key, undefined, field.accessor),
+                        )}, {
                             required: "This field is required",
                             ${
                               field.type === "number"
@@ -226,11 +225,9 @@ export const renderer = ({
                     </span>
                     <input
                         type="checkbox"
-                        {...register("${dotAccessor(
-                          field.key,
-                          undefined,
-                          field.accessor,
-                        )}", {
+                        {...register(${stringLiteral(
+                          dotAccessor(field.key, undefined, field.accessor),
+                        )}, {
                             required: "This field is required",
                         })}
                     />
@@ -290,7 +287,7 @@ export const renderer = ({
                 ? `
             { 
                 refineCoreProps: {
-                    resource: "${resource.name}",
+                    resource: ${stringLiteral(resource.name)},
                     action: "create",
                     ${getMetaProps(resource.identifier ?? resource.name, meta, [
                       "create",
@@ -331,7 +328,7 @@ export const renderer = ({
                             <div>
                         <button
                                 onClick={() => {
-                                    list("${resource.name}");
+                                    list(${stringLiteral(resource.name)});
                                 }}
                         >
                             ${translateActionTitle({
