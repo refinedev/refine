@@ -122,6 +122,60 @@ describe("useImport hook", () => {
     });
   });
 
+  it("should not import the empty line at the end of a csv file", async () => {
+    const fileWithTrailingNewline = new File(
+      [
+        `"id","title"
+"35ad97dd-9379-480a-b6ac-6fc9c13e9224","Viral Strategist Local"
+"9a428977-1b03-4c3e-8cdd-1e4e2813528a","Concrete Soap Neural"
+`,
+      ],
+      "data.csv",
+      { type: "text/csv" },
+    );
+
+    const mockDataProvider = {
+      default: {
+        ...MockJSONServer.default,
+        create: vi.fn(async ({ variables }) => ({ data: variables })),
+      },
+    } as DataProviders;
+
+    const { result } = renderHook(() => useImport({ batchSize: 1 }), {
+      wrapper: TestWrapper({
+        dataProvider: mockDataProvider,
+        resources: [{ name: "posts" }],
+        routerProvider: mockRouterProvider({
+          pathname: "/posts",
+          resource: { name: "posts" },
+        }),
+      }),
+    });
+
+    let createdValues: any[] = [];
+    await act(async () => {
+      createdValues = await result.current.handleChange({
+        file: fileWithTrailingNewline,
+      });
+    });
+
+    expect(mockDataProvider.default?.create).toHaveBeenCalledTimes(2);
+    expect(createdValues.map((item) => item.request)).toEqual([
+      [
+        {
+          id: "35ad97dd-9379-480a-b6ac-6fc9c13e9224",
+          title: "Viral Strategist Local",
+        },
+      ],
+      [
+        {
+          id: "9a428977-1b03-4c3e-8cdd-1e4e2813528a",
+          title: "Concrete Soap Neural",
+        },
+      ],
+    ]);
+  });
+
   it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async () => {
     const mockDataProvider = {
       default: {
