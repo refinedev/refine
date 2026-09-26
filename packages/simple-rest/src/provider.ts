@@ -124,12 +124,27 @@ export const dataProvider = (
     const url = `${apiUrl}/${resource}/${id}`;
 
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypesWithBody) ?? "delete";
+    const requestMethod =
+      (method as MethodTypes | MethodTypesWithBody) ?? "delete";
 
-    const { data } = await httpClient[requestMethod](url, {
-      data: variables,
-      headers,
-    });
+    let axiosResponse;
+    switch (requestMethod) {
+      case "post":
+      case "put":
+      case "patch":
+        axiosResponse = await httpClient[requestMethod](url, variables, {
+          headers,
+        });
+        break;
+      default:
+        axiosResponse = await httpClient[requestMethod](url, {
+          data: variables,
+          headers,
+        });
+        break;
+    }
+
+    const { data } = axiosResponse;
 
     return {
       data,
