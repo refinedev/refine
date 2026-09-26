@@ -198,6 +198,9 @@ export const useImport = <
     return new Promise<CreatedValuesType<TVariables, TData>[]>((resolve) => {
       setIsLoading(true);
       papaparse.parse(file as any, {
+        // A CSV file usually ends with a line break; without this, Papa Parse
+        // returns that last empty line as a row and it is imported as a record.
+        skipEmptyLines: true,
         complete: async ({ data }: { data: unknown[][] }) => {
           const values = importCSVMapper(data, mapData);
 
