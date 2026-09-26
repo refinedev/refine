@@ -30,3 +30,31 @@ nock("https://api.fake-rest.refine.dev:443", { encodedQueryParams: true })
     "ETag",
     'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"',
   ]);
+
+nock("https://api.fake-rest.refine.dev:443", {
+  encodedQueryParams: true,
+  reqheaders: { "x-custom": "1" },
+})
+  .delete("/posts/2", { reason: "spam" })
+  .reply(200, { id: 2 });
+
+nock("https://api.fake-rest.refine.dev:443", {
+  encodedQueryParams: true,
+  reqheaders: { "x-custom": "1" },
+})
+  .post("/posts/3", { reason: "spam" })
+  .reply(200, { id: 3 });
+
+nock("https://api.fake-rest.refine.dev:443", {
+  encodedQueryParams: true,
+  reqheaders: { "x-custom": "1" },
+})
+  .put("/posts/4", { reason: "spam" })
+  .reply(200, { id: 4 });
+
+nock("https://api.fake-rest.refine.dev:443", {
+  encodedQueryParams: true,
+  reqheaders: { "x-custom": "1" },
+})
+  .patch("/posts/5", { reason: "spam" })
+  .reply(200, { id: 5 });
