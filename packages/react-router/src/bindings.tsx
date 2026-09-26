@@ -22,7 +22,8 @@ export const stringifyConfig = {
   addQueryPrefix: true,
   skipNulls: true,
   arrayFormat: "indices" as const,
-  encode: false,
+  // Keep keys like `filters[0][value]` readable, but encode values so
+  // characters such as `+`, `&` and `#` survive the round trip through the URL.
   encodeValuesOnly: true,
 };
 
@@ -50,10 +51,6 @@ export const routerProvider: RouterProvider = {
 
           ...query,
         };
-
-        if (urlQuery.to) {
-          urlQuery.to = encodeURIComponent(`${urlQuery.to}`);
-        }
 
         const hasUrlQuery = Object.keys(urlQuery).length > 0;
 
