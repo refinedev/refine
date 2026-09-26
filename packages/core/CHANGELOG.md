@@ -1,5 +1,30 @@
 # @refinedev/core
 
+## 5.2.0
+
+### Minor Changes
+
+- [#7531](https://github.com/refinedev/refine/pull/7531) [`b86bca45d3883b91dcebe71408a884f8bc6c0948`](https://github.com/refinedev/refine/commit/b86bca45d3883b91dcebe71408a884f8bc6c0948) Thanks [@Bugrabugra](https://github.com/Bugrabugra)! - Converted `MetaQuery` and `GraphQLQueryOptions` from type aliases to interfaces.
+
+  This is structurally identical and fully backward compatible, but it unlocks TypeScript's [declaration merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html) for `MetaQuery`. Consumers can now extend it in their own apps to get autocompletion and type-checking for custom `meta` fields (e.g. `meta.queryParams` used by custom data providers) across every hook that accepts `meta`:
+
+  ```ts
+  declare module "@refinedev/core" {
+    interface MetaQuery {
+      queryParams?: {
+        _pull?: string;
+        [key: string]: unknown;
+      };
+    }
+  }
+  ```
+
+  Previously this was not possible because declaration merging only applies to interfaces, not type aliases.
+
+- [#7448](https://github.com/refinedev/refine/pull/7448) [`67425784542fc6356268b98a5a39538ad4c8c3fd`](https://github.com/refinedev/refine/commit/67425784542fc6356268b98a5a39538ad4c8c3fd) Thanks [@KakiDhonesh](https://github.com/KakiDhonesh)! - Add generic type support to `useDataProvider` so custom data providers keep their assigned types when accessed through the hook.
+
+  This is a type-only improvement. Existing runtime behavior is unchanged, and consumers can opt into the stronger type by passing a generic argument when calling `useDataProvider`.
+
 ## 5.1.0
 
 ### Minor Changes
