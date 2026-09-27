@@ -84,4 +84,4 @@ import { MUISandpack } from './example/sandpack';
 
 👉 Continue with the [Quickstart guide](/core/docs/getting-started/quickstart/) to setup and run your first **Refine** project.
 
-👉 Jump directly to the [Tutorial](/core/tutorial) to learn Refine by building a full-blown CRUD application.
+👉 Jump directly to the [Tutorial](/core/tutorial/essentials/intro/)  to learn Refine by building a full-blown CRUD application.
