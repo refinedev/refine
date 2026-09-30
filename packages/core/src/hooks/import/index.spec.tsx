@@ -122,6 +122,37 @@ describe("useImport hook", () => {
     });
   });
 
+  it("should skip empty records from a trailing newline", async () => {
+    const mockDataProvider = {
+      default: {
+        ...MockJSONServer.default,
+        createMany: vi.fn(),
+      },
+    } as DataProviders;
+    const csvWithTrailingNewline = `"id","title"
+"1","First"
+`;
+
+    const { result } = renderHook(() => useImport({ resource: "posts" }), {
+      wrapper: TestWrapper({
+        dataProvider: mockDataProvider,
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    await act(async () => {
+      await result.current.handleChange({
+        file: csvWithTrailingNewline as any,
+      });
+    });
+
+    expect(mockDataProvider.default?.createMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        variables: [{ id: "1", title: "First" }],
+      }),
+    );
+  });
+
   it("should call mutate method of result of useCreateMany many times with correct values in if batchSize is 2", async () => {
     const mockDataProvider = {
       default: {

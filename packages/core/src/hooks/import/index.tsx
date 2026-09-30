@@ -295,6 +295,7 @@ export const useImport = <
           }
         },
 
+        skipEmptyLines: "greedy",
         ...paparseOptions,
       });
     }).then((createdValues) => {
