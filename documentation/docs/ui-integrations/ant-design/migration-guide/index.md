@@ -22,12 +22,27 @@ Some of the changes are:
 
 :::info A little more clarification
 
-| Refine package                                                   | Ant Design version |
-| ---------------------------------------------------------------- | ------------------ |
-| &#64;pankod/refine-antd&#64;3.x.x                                | antd&#64;4.x.x     |
-| &#64;pankod/refine-antd&#64;4.x.x, &#64;refinedev/antd&#64;5.x.x | antd&#64;5.x.x     |
+| Refine package                                                                 | Ant Design version              |
+| ------------------------------------------------------------------------------ | ------------------------------- |
+| &#64;pankod/refine-antd&#64;3.x.x                                              | antd&#64;4.x.x                  |
+| &#64;pankod/refine-antd&#64;4.x.x, &#64;refinedev/antd&#64;5.x.x               | antd&#64;5.x.x                  |
+| &#64;refinedev/antd&#64;6.x.x                                                  | antd&#64;5.x.x, antd&#64;6.x.x  |
 
 :::
+
+## Upgrading to Ant Design v6
+
+`@refinedev/antd` supports **Ant Design v6** (`^6.0.0`) as a peer dependency alongside Ant Design v5 (`^5.0.0`).
+
+### Requirements & Steps for Ant Design v6:
+
+1. **React Version**: Ant Design v6 requires React 18 or above (React 18 or 19).
+2. **Icons Package**: `@ant-design/icons` must be upgraded to `^6.0.0` when upgrading to `antd@^6.0.0`:
+   ```bash
+   npm install @refinedev/antd antd@^6.0.0 @ant-design/icons@^6.0.0
+   ```
+3. **React 19 Compatibility**: If your project previously used `@ant-design/v5-patch-for-react-19`, you can safely remove it when upgrading to Ant Design v6 as v6 provides native React 19 support.
+4. For additional details on Ant Design v6 API changes and performance optimizations, refer to the [official Ant Design v5 to v6 Migration Guide](https://ant.design/docs/react/migration-v6).
 
 ## Updating the packages
 

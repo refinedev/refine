@@ -43,11 +43,13 @@ Refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 
 ## Installation
 
-To use Refine with Ant Design, you need to install the following package `@refinedev/antd` along with the Ant Design packages:
+To use Refine with Ant Design, you need to install the following package `@refinedev/antd` along with the Ant Design packages (supports both Ant Design v5 and v6):
 
 ```sh
 npm install @refinedev/antd antd
 ```
+
+> **Note**: `@refinedev/antd` supports both **Ant Design v5** (`^5.0.0`) and **Ant Design v6** (`^6.0.0`).
 
 ## ⚡ Try Refine
 

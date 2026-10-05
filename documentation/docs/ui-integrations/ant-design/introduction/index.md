@@ -17,6 +17,16 @@ Installing the package is as simple as just by running the following command wit
 
 <InstallPackagesCommand args="@refinedev/antd antd"/>
 
+:::info Compatibility
+`@refinedev/antd` supports both **Ant Design v5** (`^5.0.0`) and **Ant Design v6** (`^6.0.0`).
+
+If using or upgrading to Ant Design v6, make sure to also update `@ant-design/icons` to `^6.0.0`:
+
+```bash
+npm install @refinedev/antd antd@^6.0.0 @ant-design/icons@^6.0.0
+```
+:::
+
 ## Usage
 
 We'll wrap our app with the [`<ConfigProvider />`](https://ant.design/components/config-provider) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Ant Design integration.
