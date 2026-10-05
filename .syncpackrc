@@ -22,6 +22,12 @@
       "isIgnored": true
     },
     {
+      "dependencies": ["antd", "@ant-design/icons"],
+      "packages": ["@refinedev/antd"],
+      "isIgnored": true,
+      "label": "@refinedev/antd supports multiple major versions of antd."
+    },
+    {
       "dependencies": ["nock"],
       "dependencyTypes": ["dev"],
       "packages": [
