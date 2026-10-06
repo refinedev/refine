@@ -35,7 +35,7 @@ Refine's browser-based scaffolder has the same set of options as the CLI-based s
 
 ## Next Steps
 
-👉 Jump to [Tutorials](/core/tutorial) and continue your work to turn your example project into a full-blown CRUD application! 🚀
+👉 Jump to [Tutorials](/core/tutorial/essentials/intro/) and continue your work to turn your example project into a full-blown CRUD application! 🚀
 
 👉 See [real-life examples](/core/templates) built using **Refine**
 
