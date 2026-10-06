@@ -111,8 +111,7 @@
         66.67% 50% at 50% 100%,
         rgba(217, 217, 217, 0.05) 0%,
         rgba(217, 217, 217, 0) 100%
-      ),
-      #27272a;
+      ), #27272a;
   }
 }
 
@@ -173,7 +172,8 @@
   /* var(--ifm-font-size-base)/var(--ifm-line-height-base) var(--ifm-font-family-base) */
   --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a8a8a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
   --primary-font-sans: "Inter";
-  --ifm-font-family-base: var(--primary-font-sans), system-ui, -apple-system,
+  --ifm-font-family-base:
+    var(--primary-font-sans), system-ui, -apple-system,
     "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif,
     BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -567,8 +567,9 @@ html[data-theme="dark"] [data-rmiz-modal-overlay="visible"] {
   @apply font-montserrat mb-4 text-center font-semibold text-[#2a2a42];
 }
 
-#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/refinedev/refine"]::after
-{
+#__docusaurus
+  .navbar-sidebar__item.menu
+  a[href="https://github.com/refinedev/refine"]::after {
   display: none;
 }
 
@@ -1120,8 +1121,7 @@ html[data-theme="dark"] .sourcecode-badge {
       218.19% 111.8% at 0% 0%,
       rgba(71, 235, 235, 0.1) 0%,
       rgba(71, 235, 235, 0.2) 100%
-    ),
-    #14141f;
+    ), #14141f;
 }
 
 .top-announcement-mask {

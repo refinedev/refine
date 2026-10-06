@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "extends": "@docusaurus/tsconfig.json",
   "exclude": [
     "node_modules",
     "./plugins",
@@ -9,7 +9,8 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["@types/gtag.js"],
+    "ignoreDeprecations": "6.0",
+    "types": [],
     "resolveJsonModule": true
   }
 }

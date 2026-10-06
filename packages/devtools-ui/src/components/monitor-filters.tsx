@@ -89,9 +89,9 @@ export const MonitorFilters = ({
   const [panelVisible, setPanelVisible] = React.useState(false);
 
   const filterParent = useMemo(() => {
-    const traces = activities
-      .map((activity) => activity.trace?.map((t) => t.function))
-      .flatMap((t) => t);
+    const traces = activities.flatMap((activity) =>
+      activity.trace?.map((t) => t.function),
+    );
 
     const tracesUnique = Array.from(new Set(traces)).filter(
       (t) => !!t,

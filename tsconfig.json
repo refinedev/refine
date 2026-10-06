@@ -1,8 +1,10 @@
 {
-  "extends": "./tsconfig.build.json",
-  "include": ["packages", "example"],
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "allowJs": false,
+    "moduleResolution": "bundler",
+    "types": ["@types/gtag.js"],
+    "resolveJsonModule": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": "."
   }
 }
