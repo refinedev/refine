@@ -110,7 +110,7 @@ export const InvoiceList: React.FC = () => {
           />
         </Table>
       </List>
-      <Modal visible={visible} onCancel={close} width="80%" footer={null}>
+      <Modal open={visible} onCancel={close} width="80%" footer={null}>
         <PdfLayout record={record} />
       </Modal>
     </>

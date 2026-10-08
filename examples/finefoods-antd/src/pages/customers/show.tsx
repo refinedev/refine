@@ -20,7 +20,7 @@ export const CustomerShow = () => {
     <Drawer
       open
       onClose={() => list("users")}
-      width={breakpoint.sm ? "736px" : "100%"}
+      size={breakpoint.sm ? "736px" : "100%"}
     >
       <Flex
         vertical

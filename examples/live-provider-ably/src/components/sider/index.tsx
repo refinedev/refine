@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { isValidElement, useState } from "react";
 import {
   type TreeMenuItem,
-  CanAccess,
   useIsExistAuthentication,
   useTranslate,
   useLogout,
@@ -12,9 +11,19 @@ import {
 import { Link } from "react-router";
 import {
   type ThemedSider as ThemedSiderV2,
+  type ThemedSiderMenuItem,
+  CanAccessMenuItems,
   ThemedTitle as ThemedTitleV2,
 } from "@refinedev/antd";
-import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
+import {
+  Layout as AntdLayout,
+  Menu,
+  type MenuProps,
+  Grid,
+  theme,
+  Button,
+  Badge,
+} from "antd";
 import {
   LogoutOutlined,
   UnorderedListOutlined,
@@ -26,6 +35,42 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 const { useToken } = theme;
 
+type SiderMenuItem = {
+  key: string;
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+  children?: SiderMenuItem[];
+};
+
+// `render` may return menu item data (e.g. `[...menuItems, logoutItem]`) or, the legacy way, elements.
+const isMenuItemList = (
+  value: unknown,
+): value is (ThemedSiderMenuItem | undefined | false)[] =>
+  Array.isArray(value) &&
+  value.every(
+    (entry) =>
+      !entry ||
+      (typeof entry === "object" &&
+        !Array.isArray(entry) &&
+        !isValidElement(entry)),
+  );
+
+// The legacy `items` and `logout` render props are elements, so items are converted back for them.
+const toMenuElements = (items: SiderMenuItem[]): React.JSX.Element[] =>
+  items.map(({ key, label, icon, style, onClick, children }) =>
+    children ? (
+      <Menu.SubMenu key={key} icon={icon} title={label}>
+        {toMenuElements(children)}
+      </Menu.SubMenu>
+    ) : (
+      <Menu.Item key={key} icon={icon} style={style} onClick={onClick}>
+        {label}
+      </Menu.Item>
+    ),
+  );
+
 export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
   const { token } = useToken();
   const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -34,7 +79,6 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
   const { mutate: mutateLogout } = useLogout();
   const translate = useTranslate();
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
-  const { SubMenu } = Menu;
   const [subscriptionCount, setSubscriptionCount] = useState(0);
 
   const breakpoint = Grid.useBreakpoint();
@@ -48,8 +92,11 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
     onLiveEvent: () => setSubscriptionCount((prev) => prev + 1),
   });
 
-  const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
-    return tree.map((item: TreeMenuItem) => {
+  const buildMenuItems = (
+    tree: TreeMenuItem[],
+    canAccess: (item: TreeMenuItem) => boolean,
+  ): SiderMenuItem[] => {
+    return tree.filter(canAccess).map((item: TreeMenuItem) => {
       const { name, children, meta, key, list } = item;
 
       const icon = meta?.icon;
@@ -63,50 +110,33 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
             : key;
 
       if (children.length > 0) {
-        return (
-          <SubMenu
-            key={key}
-            icon={icon ?? <UnorderedListOutlined />}
-            title={label}
-          >
-            {renderTreeView(children, selectedKey)}
-          </SubMenu>
-        );
+        return {
+          key,
+          icon: icon ?? <UnorderedListOutlined />,
+          label,
+          children: buildMenuItems(children, canAccess),
+        };
       }
       const isSelected = route === selectedKey;
       const isRoute = !(parent !== undefined && children.length === 0);
-      return (
-        <CanAccess
-          key={key}
-          resource={name}
-          action="list"
-          params={{ resource: item }}
-        >
-          <Menu.Item
-            key={route}
-            style={{
-              textTransform: "capitalize",
-            }}
-            icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-          >
+      return {
+        key: route ?? key,
+        style: {
+          textTransform: "capitalize",
+        },
+        icon: icon ?? (isRoute && <UnorderedListOutlined />),
+        label: (
+          <>
             {route ? <Link to={route || "/"}>{label}</Link> : label}
-            {route && (
-              <>
-                {label.toLowerCase() === "posts" && (
-                  <Badge
-                    size="small"
-                    count={subscriptionCount}
-                    offset={[2, -15]}
-                  />
-                )}
-              </>
+            {route && label.toLowerCase() === "posts" && (
+              <Badge size="small" count={subscriptionCount} offset={[2, -15]} />
             )}
             {!collapsed && isSelected && (
               <div className="ant-menu-tree-arrow" />
             )}
-          </Menu.Item>
-        </CanAccess>
-      );
+          </>
+        ),
+      };
     });
   };
 
@@ -128,27 +158,61 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
     }
   };
 
-  const logout = isExistAuthentication && (
-    <Menu.Item key="logout" onClick={handleLogout} icon={<LogoutOutlined />}>
-      {translate("buttons.logout", "Logout")}
-    </Menu.Item>
-  );
+  const logoutItem: SiderMenuItem | undefined = isExistAuthentication
+    ? {
+        key: "logout",
+        onClick: handleLogout,
+        icon: <LogoutOutlined />,
+        label: translate("buttons.logout", "Logout"),
+      }
+    : undefined;
 
-  const items = renderTreeView(menuItems, selectedKey);
+  const menuProps: MenuProps = {
+    defaultOpenKeys,
+    selectedKeys: [selectedKey],
+    mode: "inline",
+    style: {
+      marginTop: "8px",
+      border: "none",
+    },
+    onClick: ({ key }) => {
+      if (!breakpoint.lg) {
+        setCollapsed(true);
+      }
 
-  const renderSider = () => {
+      if (key === "/posts") {
+        setSubscriptionCount(0);
+      }
+    },
+  };
+
+  const renderMenu = (canAccess: (item: TreeMenuItem) => boolean) => {
+    const items = buildMenuItems(menuItems, canAccess);
+
     if (render) {
-      return render({
-        items,
-        logout,
+      const rendered = render({
+        items: toMenuElements(items),
+        logout: logoutItem && toMenuElements([logoutItem])[0],
         collapsed,
+        menuItems: items,
+        logoutItem,
       });
+
+      return isMenuItemList(rendered) ? (
+        <Menu
+          {...menuProps}
+          items={rendered.filter((item): item is ThemedSiderMenuItem => !!item)}
+        />
+      ) : (
+        <Menu {...menuProps}>{rendered}</Menu>
+      );
     }
+
     return (
-      <>
-        {items}
-        {logout}
-      </>
+      <Menu
+        {...menuProps}
+        items={logoutItem ? [...items, logoutItem] : items}
+      />
     );
   };
 
@@ -208,26 +272,9 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
       >
         <ThemedTitleV2 collapsed={collapsed} />
       </div>
-      <Menu
-        defaultOpenKeys={defaultOpenKeys}
-        selectedKeys={[selectedKey]}
-        mode="inline"
-        style={{
-          marginTop: "8px",
-          border: "none",
-        }}
-        onClick={({ key }) => {
-          if (!breakpoint.lg) {
-            setCollapsed(true);
-          }
-
-          if (key === "/posts") {
-            setSubscriptionCount(0);
-          }
-        }}
-      >
-        {renderSider()}
-      </Menu>
+      <CanAccessMenuItems menuItems={menuItems}>
+        {renderMenu}
+      </CanAccessMenuItems>
     </AntdLayout.Sider>
   );
 };

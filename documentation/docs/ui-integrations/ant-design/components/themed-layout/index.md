@@ -160,15 +160,14 @@ const App: React.FC = () => {
         Sider={() => (
           <ThemedSider
             Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
-            render={({ items, logout, collapsed }) => {
-              return (
-                <>
-                  <div>My Custom Element</div>
-                  {items}
-                  {logout}
-                </>
-              );
-            }}
+            render={({ menuItems, logoutItem }) => [
+              {
+                key: "custom-item",
+                label: <div>My Custom Element</div>,
+              },
+              ...menuItems,
+              logoutItem,
+            ]}
           />
         )}
         // highlight-end
@@ -179,6 +178,14 @@ const App: React.FC = () => {
   );
 };
 ```
+
+`render` can return an array of Ant Design [menu items](https://ant.design/components/menu#itemtype), which `<ThemedSider>` renders with the `items` API of `<Menu>`. `menuItems` contains only the resources the user can access, and `logoutItem` is `undefined` when no `authProvider` is provided. Falsy entries in the returned array are skipped.
+
+:::note
+
+Returning elements built from the `items` and `logout` props (for example `<>{items}{logout}</>`) still works, but they are rendered as `<Menu>` children, which Ant Design v6 reports with a `[antd: Menu] children is deprecated` warning. Prefer the array form.
+
+:::
 
 Also, you can make the sidebar fixed by passing the `fixed` property, which is optional and `false` by default. You can see the usage as follows:
 
@@ -216,13 +223,24 @@ const App: React.FC = () => {
 | `siderItemsAreCollapsed` | `boolean`                                     | Whether nested sider items are by default expanded or collapsed                 |
 
 ```tsx
+import type { MenuProps } from "antd";
+
+type ThemedSiderMenuItem = NonNullable<MenuProps["items"]>[number];
+
 type SiderRenderFunction = (props: {
-  items: JSX.Element[];
-  logout: React.ReactNode;
-  dashboard: React.ReactNode;
+  // menu items as Ant Design `<Menu>` `items` data, filtered by access control
+  menuItems: ThemedSiderMenuItem[];
+  // `undefined` when no `authProvider` is provided
+  logoutItem?: ThemedSiderMenuItem;
   collapsed: boolean;
-}) => React.ReactNode;
+  // element form of `menuItems`, rendered as `<Menu>` children (deprecated by Ant Design v6)
+  items: React.JSX.Element[];
+  // element form of `logoutItem`, rendered as `<Menu>` children (deprecated by Ant Design v6)
+  logout: React.ReactNode;
+}) => React.ReactNode | (ThemedSiderMenuItem | undefined | false)[];
 ```
+
+`ThemedSiderRenderProps` and `ThemedSiderMenuItem` are exported from `@refinedev/antd` for typing your own render function.
 
 ### initialSiderCollapsed
 

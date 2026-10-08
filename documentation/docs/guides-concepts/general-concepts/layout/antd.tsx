@@ -13,7 +13,7 @@ export function AntdLayout() {
         "@refinedev/react-router": "latest",
         "@refinedev/inferencer": "latest",
         "react-router": "^7.0.2",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/my-products"
       files={{

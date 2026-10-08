@@ -23,7 +23,7 @@ export const Header = () => {
 
   return (
     <Layout.Header style={headerStyles}>
-      <Space align="center" size="middle">
+      <Space align="center" size="medium">
         <CurrentUser />
       </Space>
     </Layout.Header>

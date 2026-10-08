@@ -58,8 +58,8 @@ export const CourierCreate = () => {
   return (
     <Modal
       open
-      destroyOnClose
-      maskClosable={false}
+      destroyOnHidden
+      mask={{ closable: false }}
       title={t("couriers.actions.add")}
       styles={{
         header: {
@@ -72,7 +72,7 @@ export const CourierCreate = () => {
           margin: 0,
           borderTop: `1px solid ${token.colorBorderSecondary}`,
         },
-        content: {
+        container: {
           padding: 0,
         },
       }}
@@ -108,11 +108,15 @@ export const CourierCreate = () => {
       onCancel={handleModalClose}
     >
       <Flex style={{ padding: "20px 24px" }}>
-        <Steps {...stepsProps} responsive>
-          <Steps.Step title={t("couriers.steps.personal")} />
-          <Steps.Step title={t("couriers.steps.company")} />
-          <Steps.Step title={t("couriers.steps.vehicle")} />
-        </Steps>
+        <Steps
+          {...stepsProps}
+          responsive
+          items={[
+            { title: t("couriers.steps.personal") },
+            { title: t("couriers.steps.company") },
+            { title: t("couriers.steps.vehicle") },
+          ]}
+        />
       </Flex>
       <Form {...formProps} layout="vertical">
         {formList[current]}

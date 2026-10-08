@@ -10,7 +10,7 @@ export default function NotificationAntd() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/"
       files={{

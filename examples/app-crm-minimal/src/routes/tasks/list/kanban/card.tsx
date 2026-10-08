@@ -172,7 +172,9 @@ export const ProjectCard = ({
                   dueDateOptions.color === "default" ? "transparent" : "unset",
               }}
               color={dueDateOptions.color}
-              bordered={dueDateOptions.color !== "default"}
+              variant={
+                dueDateOptions.color !== "default" ? "outlined" : "filled"
+              }
             >
               {dueDateOptions.text}
             </Tag>
@@ -181,7 +183,7 @@ export const ProjectCard = ({
             <Space
               size={4}
               wrap
-              direction="horizontal"
+              orientation="horizontal"
               align="center"
               style={{
                 display: "flex",
@@ -209,10 +211,12 @@ export const ProjectCardSkeleton = () => {
   return (
     <Card
       size="small"
-      bodyStyle={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "8px",
+      styles={{
+        body: {
+          display: "flex",
+          justifyContent: "center",
+          gap: "8px",
+        },
       }}
       title={
         <Skeleton.Button

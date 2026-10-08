@@ -60,7 +60,7 @@ export const PostShow = () => {
     >
       {isDeprecated && (
         <Alert
-          message="This post is changed. Reload to see it's latest version."
+          title="This post is changed. Reload to see it's latest version."
           type="warning"
           style={{
             marginBottom: 20,

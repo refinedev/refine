@@ -13,6 +13,13 @@ const mockNotification: OpenNotificationParams = {
   type: "success",
 };
 
+// What antd's `notification.open` receives: refine's `message` goes to
+// `description`, so it must not be forwarded as antd's (deprecated) `message`.
+const expectedNotification = {
+  key: mockNotification.key,
+  type: mockNotification.type,
+};
+
 const cancelMutation = vi.fn();
 
 describe("Antd useNotificationProvider", () => {
@@ -31,8 +38,8 @@ describe("Antd useNotificationProvider", () => {
 
       expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
       expect(notificationOpenSpy).toHaveBeenCalledWith({
-        ...mockNotification,
-        message: null,
+        ...expectedNotification,
+        title: null,
         description: mockNotification.message,
       });
     });
@@ -47,8 +54,8 @@ describe("Antd useNotificationProvider", () => {
 
       expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
       expect(notificationOpenSpy).toHaveBeenCalledWith({
-        ...mockNotification,
-        message: null,
+        ...expectedNotification,
+        title: null,
         description: mockNotification.message,
         type: "error",
       });
@@ -64,8 +71,8 @@ describe("Antd useNotificationProvider", () => {
 
       expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
       expect(notificationOpenSpy).toHaveBeenCalledWith({
-        ...mockNotification,
-        message: "Notification Description",
+        ...expectedNotification,
+        title: "Notification Description",
         description: "Test Notification Message",
       });
     });
@@ -83,7 +90,7 @@ describe("Antd useNotificationProvider", () => {
       expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
       expect(notificationOpenSpy).toHaveBeenCalledWith({
         key: "test-notification",
-        message: null,
+        title: null,
         closeIcon: <React.Fragment />,
         description: (
           <UndoableNotification
@@ -134,8 +141,8 @@ describe("Antd useNotificationProvider", () => {
       await waitFor(() => {
         expect(openFn).toHaveBeenCalledTimes(1);
         expect(openFn).toHaveBeenCalledWith({
-          ...mockNotification,
-          message: null,
+          ...expectedNotification,
+          title: null,
           description: mockNotification.message,
         });
       });
@@ -154,8 +161,8 @@ describe("Antd useNotificationProvider", () => {
       await waitFor(() => {
         expect(openFn).toHaveBeenCalledTimes(1);
         expect(openFn).toHaveBeenCalledWith({
-          ...mockNotification,
-          message: null,
+          ...expectedNotification,
+          title: null,
           description: mockNotification.message,
           type: "error",
         });
@@ -175,8 +182,8 @@ describe("Antd useNotificationProvider", () => {
       await waitFor(() => {
         expect(openFn).toHaveBeenCalledTimes(1);
         expect(openFn).toHaveBeenCalledWith({
-          ...mockNotification,
-          message: "Notification Description",
+          ...expectedNotification,
+          title: "Notification Description",
           description: "Test Notification Message",
         });
       });
@@ -198,7 +205,7 @@ describe("Antd useNotificationProvider", () => {
         expect(openFn).toHaveBeenCalledTimes(1);
         expect(openFn).toHaveBeenCalledWith({
           key: "test-notification",
-          message: null,
+          title: null,
           closeIcon: <React.Fragment />,
           description: (
             <UndoableNotification

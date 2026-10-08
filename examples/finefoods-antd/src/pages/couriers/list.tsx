@@ -12,10 +12,11 @@ import {
   useTable,
 } from "@refinedev/antd";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { Table, Avatar, Typography, theme, InputNumber, Input } from "antd";
+import { Table, Avatar, Typography, theme, Input } from "antd";
 import InputMask from "react-input-mask";
 import type { ICourier } from "../../interfaces";
 import {
+  InputNumberAddon,
   PaginationTotal,
   CourierStatus,
   CourierTableColumnRating,
@@ -121,7 +122,7 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             defaultFilteredValue={getDefaultFilter("id", filters, "eq")}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
-                <InputNumber
+                <InputNumberAddon
                   addonBefore="#"
                   style={{ width: "100%" }}
                   placeholder={t("products.filter.id.placeholder")}

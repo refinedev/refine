@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router";
+import { vi } from "vitest";
 
 import {
   Refine,
@@ -166,6 +167,28 @@ export const TestWrapper: (
     );
   };
 };
+
+/**
+ * Collects antd's development warnings (e.g. deprecated props) logged while rendering.
+ * Used to make sure the inferred antd code only uses non-deprecated APIs.
+ */
+export const spyOnAntdWarnings = () => {
+  const spies = [vi.spyOn(console, "error"), vi.spyOn(console, "warn")];
+
+  return {
+    getWarnings: () =>
+      spies
+        .flatMap((spy) => spy.mock.calls)
+        .map((args) => args.map(String).join(" "))
+        .filter((message) => message.includes("[antd:")),
+    restore: () => {
+      for (const spy of spies) {
+        spy.mockRestore();
+      }
+    },
+  };
+};
+
 export {
   MockJSONServer,
   MockRouterProvider,

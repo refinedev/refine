@@ -31,7 +31,7 @@ export const authProvider: AuthProvider = {
   },
   updatePassword: async () => {
     notification.success({
-      message: "Updated Password",
+      title: "Updated Password",
       description: "Password updated successfully",
     });
     return {
@@ -40,7 +40,7 @@ export const authProvider: AuthProvider = {
   },
   forgotPassword: async ({ email }) => {
     notification.success({
-      message: "Reset Password",
+      title: "Reset Password",
       description: `Reset password link sent to "${email}"`,
     });
     return {

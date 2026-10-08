@@ -42,7 +42,7 @@ const { tableProps } = useTable<IPost>();
   // highlight-start
   pagination={{
     ...tableProps.pagination,
-    position: ["bottomCenter"],
+    placement: ["bottomCenter"],
     size: "small",
   }}
   // highlight-end

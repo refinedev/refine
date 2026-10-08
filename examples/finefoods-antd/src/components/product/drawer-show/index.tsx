@@ -81,7 +81,7 @@ export const ProductDrawerShow = (props: Props) => {
   return (
     <Drawer
       open={true}
-      width={breakpoint.sm ? "378px" : "100%"}
+      size={breakpoint.sm ? "378px" : "100%"}
       zIndex={1001}
       onClose={handleDrawerClose}
     >

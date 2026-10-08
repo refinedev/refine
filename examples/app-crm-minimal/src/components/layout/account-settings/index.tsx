@@ -49,7 +49,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     return (
       <Drawer
         open={opened}
-        width={756}
+        size={756}
         styles={{
           body: {
             background: "#f5f5f5",
@@ -68,7 +68,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
     <Drawer
       onClose={closeModal}
       open={opened}
-      width={756}
+      size={756}
       styles={{
         body: { background: "#f5f5f5", padding: 0 },
         header: { display: "none" },

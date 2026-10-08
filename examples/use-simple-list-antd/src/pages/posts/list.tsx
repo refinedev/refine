@@ -77,7 +77,7 @@ export const PostList: React.FC = () => {
     return (
       <AntdList.Item
         actions={[
-          <Space key={item.id} direction="vertical" align="end">
+          <Space key={item.id} orientation="vertical" align="end">
             <NumberField
               value={hit}
               options={{

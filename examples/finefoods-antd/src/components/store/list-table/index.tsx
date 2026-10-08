@@ -6,9 +6,9 @@ import {
   getDefaultSortOrder,
   EditButton,
 } from "@refinedev/antd";
-import { Input, InputNumber, Select, Table, Typography, theme } from "antd";
+import { Input, Select, Table, Typography, theme } from "antd";
 import type { IStore } from "../../../interfaces";
-import { PaginationTotal } from "../../../components";
+import { InputNumberAddon, PaginationTotal } from "../../../components";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { StoreStatus } from "../../../components/store";
 
@@ -78,7 +78,7 @@ export const StoreListTable = () => {
         defaultFilteredValue={getDefaultFilter("id", filters, "eq")}
         filterDropdown={(props) => (
           <FilterDropdown {...props}>
-            <InputNumber
+            <InputNumberAddon
               addonBefore="#"
               style={{ width: "100%" }}
               placeholder={t("stores.filter.id.placeholder")}
@@ -150,14 +150,11 @@ export const StoreListTable = () => {
               allowClear
               mode="multiple"
               placeholder={t("stores.filter.isActive.placeholder")}
-            >
-              <Select.Option value="true">
-                {t("stores.fields.isActive.true")}
-              </Select.Option>
-              <Select.Option value="false">
-                {t("stores.fields.isActive.false")}
-              </Select.Option>
-            </Select>
+              options={[
+                { value: "true", label: t("stores.fields.isActive.true") },
+                { value: "false", label: t("stores.fields.isActive.false") },
+              ]}
+            />
           </FilterDropdown>
         )}
         render={(value) => <StoreStatus value={value} />}

@@ -17,11 +17,11 @@ describe("form-antd-use-drawer-form", () => {
   };
 
   const isDrawerVisible = () => {
-    return cy.get(".ant-drawer-content").should("be.visible");
+    return cy.get(".ant-drawer-section").should("be.visible");
   };
 
   const isDrawerNotVisible = () => {
-    return cy.get(".ant-drawer-content").should("not.be.visible");
+    return cy.get(".ant-drawer-section").should("not.be.visible");
   };
 
   const assertSuccessResponse = (response: any) => {
@@ -82,7 +82,7 @@ describe("form-antd-use-drawer-form", () => {
 
       cy.get("#title.ant-input").eq(1).should("have.value", body?.title);
       cy.get("input#status")
-        .get(".ant-select-selection-item")
+        .get(".ant-select-content-has-value")
         .should(
           "contain",
           body?.status[0].toUpperCase() + body?.status.slice(1),

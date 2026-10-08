@@ -58,7 +58,7 @@ export const PostEdit = () => {
     >
       {deprecated === "deleted" && (
         <Alert
-          message="This post is deleted."
+          title="This post is deleted."
           type="warning"
           style={{
             marginBottom: 20,
@@ -69,7 +69,7 @@ export const PostEdit = () => {
 
       {deprecated === "updated" && (
         <Alert
-          message="This post is updated. Refresh to see changes."
+          title="This post is updated. Refresh to see changes."
           type="warning"
           style={{
             marginBottom: 20,

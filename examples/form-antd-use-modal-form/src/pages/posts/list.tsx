@@ -184,7 +184,7 @@ export const PostList = () => {
         </Spin>
       </Modal>
       <Modal
-        visible={visibleShowModal}
+        open={visibleShowModal}
         onCancel={() => setVisibleShowModal(false)}
         title="Show post"
       >

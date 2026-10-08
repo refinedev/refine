@@ -11,7 +11,7 @@ export default function LayoutNextjs() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/nextjs-router": "latest",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       // template="nextjs"
       startRoute="/products"

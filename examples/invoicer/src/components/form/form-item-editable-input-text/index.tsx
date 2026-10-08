@@ -5,12 +5,23 @@ import {
   Form,
   type FormItemProps,
   Input,
+  type InputProps,
   Skeleton,
+  Space,
   Typography,
 } from "antd";
 import InputMask from "react-input-mask";
 import { EditOutlined } from "@ant-design/icons";
 import { useStyles } from "./styled";
+
+const InputWithSpacer = (props: InputProps) => (
+  <Space.Compact block>
+    <Space.Addon>
+      <div style={{ width: "8px" }} />
+    </Space.Addon>
+    <Input {...props} />
+  </Space.Compact>
+);
 
 type Props = {
   icon?: React.ReactNode;
@@ -88,21 +99,16 @@ export const FormItemEditableInputText = ({
           <InputMask mask="(999) 999-9999">
             {/* @ts-expect-error  <InputMask /> expects React.JSX.Element but we are using React.ReactNode */}
             {(props: InputProps) => (
-              <Input
+              <InputWithSpacer
                 {...props}
                 disabled={disabled}
                 placeholder={placeholder}
-                addonBefore={<div style={{ width: "8px" }} />}
               />
             )}
           </InputMask>
         )}
         {!loading && variant === "text" && (
-          <Input
-            disabled={disabled}
-            placeholder={placeholder}
-            addonBefore={<div style={{ width: "8px" }} />}
-          />
+          <InputWithSpacer disabled={disabled} placeholder={placeholder} />
         )}
       </Form.Item>
       {disabled && <Button icon={<EditOutlined />} onClick={handleEdit} />}

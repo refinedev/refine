@@ -1,6 +1,7 @@
 import { useTranslate, useUpdate } from "@refinedev/core";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { Dropdown, Menu } from "antd";
+import { Dropdown } from "antd";
+import type { MenuProps } from "antd";
 import { TableActionButton } from "../../tableActionButton";
 import type { IOrder } from "../../../interfaces";
 
@@ -12,21 +13,20 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
   const t = useTranslate();
   const { mutate } = useUpdate({ resource: "orders", id: record.id });
 
-  const moreMenu = (record: IOrder) => (
-    <Menu
-      mode="vertical"
-      onClick={({ domEvent }) => domEvent.stopPropagation()}
-    >
-      <Menu.Item
-        key="accept"
-        style={{
+  const moreMenu = (record: IOrder): MenuProps => ({
+    mode: "vertical",
+    onClick: ({ domEvent }) => domEvent.stopPropagation(),
+    items: [
+      {
+        key: "accept",
+        style: {
           fontSize: 15,
           display: "flex",
           alignItems: "center",
           fontWeight: 500,
-        }}
-        disabled={record.status.text !== "Pending"}
-        icon={
+        },
+        disabled: record.status.text !== "Pending",
+        icon: (
           <CheckCircleOutlined
             style={{
               color: "#52c41a",
@@ -34,8 +34,9 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
               fontWeight: 500,
             }}
           />
-        }
-        onClick={() => {
+        ),
+        label: t("buttons.accept"),
+        onClick: () => {
           mutate({
             values: {
               status: {
@@ -44,31 +45,29 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
               },
             },
           });
-        }}
-      >
-        {t("buttons.accept")}
-      </Menu.Item>
-      <Menu.Item
-        key="reject"
-        style={{
+        },
+      },
+      {
+        key: "reject",
+        style: {
           fontSize: 15,
           display: "flex",
           alignItems: "center",
           fontWeight: 500,
-        }}
-        icon={
+        },
+        icon: (
           <CloseCircleOutlined
             style={{
               color: "#EE2A1E",
               fontSize: 17,
             }}
           />
-        }
-        disabled={
+        ),
+        disabled:
           record.status.text === "Delivered" ||
-          record.status.text === "Cancelled"
-        }
-        onClick={() =>
+          record.status.text === "Cancelled",
+        label: t("buttons.reject"),
+        onClick: () =>
           mutate({
             values: {
               status: {
@@ -76,15 +75,12 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
                 text: "Cancelled",
               },
             },
-          })
-        }
-      >
-        {t("buttons.reject")}
-      </Menu.Item>
-    </Menu>
-  );
+          }),
+      },
+    ],
+  });
   return (
-    <Dropdown overlay={moreMenu(record)} trigger={["click"]}>
+    <Dropdown menu={moreMenu(record)} trigger={["click"]}>
       <TableActionButton />
     </Dropdown>
   );

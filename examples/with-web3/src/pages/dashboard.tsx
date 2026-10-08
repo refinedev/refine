@@ -62,9 +62,9 @@ export const DashboardPage: React.FC = () => {
           <Card
             title="Ethereum Public ID"
             style={{ height: "150px", borderRadius: "15px" }}
-            headStyle={{ textAlign: "center" }}
+            styles={{ header: { textAlign: "center" } }}
           >
-            <Space align="center" direction="horizontal">
+            <Space align="center" orientation="horizontal">
               <Text>{isLoading ? "loading" : data?.address}</Text>
             </Space>
           </Card>
@@ -73,7 +73,7 @@ export const DashboardPage: React.FC = () => {
           <Card
             title="Account Balance"
             style={{ height: "150px", borderRadius: "15px" }}
-            headStyle={{ textAlign: "center" }}
+            styles={{ header: { textAlign: "center" } }}
           >
             <Text>{`${isLoading ? "loading" : data?.balance} Ether`}</Text>
           </Card>

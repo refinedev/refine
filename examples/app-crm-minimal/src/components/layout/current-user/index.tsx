@@ -58,13 +58,12 @@ export const CurrentUser = () => {
         placement="bottomRight"
         content={content}
         trigger="click"
-        overlayInnerStyle={{ padding: 0 }}
-        overlayStyle={{ zIndex: 999 }}
+        styles={{ container: { padding: 0 }, root: { zIndex: 999 } }}
       >
         <CustomAvatar
           name={user?.name}
           src={user?.avatarUrl}
-          size="default"
+          size="medium"
           style={{ cursor: "pointer" }}
         />
       </Popover>
