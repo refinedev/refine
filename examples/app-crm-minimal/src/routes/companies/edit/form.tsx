@@ -6,7 +6,7 @@ import type {
   GetVariables,
 } from "@refinedev/nestjs-query";
 
-import { Form, Input, InputNumber, Select } from "antd";
+import { Form, Input, InputNumber, Select, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
@@ -95,16 +95,20 @@ export const CompanyForm = () => {
         <Form.Item label="Company size" name="companySize">
           <Select options={companySizeOptions} />
         </Form.Item>
-        <Form.Item label="Total revenue" name="totalRevenue">
-          <InputNumber
-            autoFocus
-            addonBefore={"$"}
-            min={0}
-            placeholder="0,00"
-            formatter={(value) =>
-              `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-          />
+        <Form.Item label="Total revenue">
+          <Space.Compact>
+            <Space.Addon>$</Space.Addon>
+            <Form.Item noStyle name="totalRevenue">
+              <InputNumber
+                autoFocus
+                min={0}
+                placeholder="0,00"
+                formatter={(value) =>
+                  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+              />
+            </Form.Item>
+          </Space.Compact>
         </Form.Item>
         <Form.Item label="Industry" name="industry">
           <Select options={industryOptions} />

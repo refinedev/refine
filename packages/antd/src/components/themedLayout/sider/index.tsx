@@ -7,6 +7,7 @@ import {
   Button,
   theme,
   ConfigProvider,
+  type MenuProps,
 } from "antd";
 import {
   LogoutOutlined,
@@ -19,7 +20,6 @@ import {
   type TreeMenuItem,
   useTranslate,
   useLogout,
-  CanAccess,
   useIsExistAuthentication,
   useMenu,
   useLink,
@@ -27,9 +27,58 @@ import {
 } from "@refinedev/core";
 
 import { drawerButtonStyles } from "./styles";
-import type { RefineThemedLayoutSiderProps } from "../types";
+import type {
+  RefineThemedLayoutSiderProps,
+  ThemedSiderMenuItem,
+} from "../types";
 import { ThemedTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
+import { CanAccessMenuItems } from "../../canAccessMenuItems";
+
+type SiderMenuItem = {
+  key: string;
+  label: React.ReactNode;
+  icon?: React.ReactNode;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+  children?: SiderMenuItem[];
+};
+
+/**
+ * Tells menu item data returned by `render` apart from elements.
+ * Plain objects are never valid React children, so an array holding only objects
+ * (or empty slots like `undefined` from `[...menuItems, logoutItem]`) cannot be a legacy element result.
+ */
+const isMenuItemList = (
+  value: unknown,
+): value is (ThemedSiderMenuItem | undefined | false)[] =>
+  Array.isArray(value) &&
+  value.every(
+    (entry) =>
+      entry === null ||
+      entry === undefined ||
+      entry === false ||
+      (typeof entry === "object" &&
+        !Array.isArray(entry) &&
+        !React.isValidElement(entry)),
+  );
+
+/**
+ * Converts menu items back to `<Menu.Item>`/`<Menu.SubMenu>` elements for the element based `items`
+ * and `logout` render props.
+ */
+const toMenuElements = (items: SiderMenuItem[]): React.JSX.Element[] =>
+  items.map(({ key, label, icon, style, onClick, children }) =>
+    children ? (
+      <Menu.SubMenu key={key} icon={icon} title={label}>
+        {toMenuElements(children)}
+      </Menu.SubMenu>
+    ) : (
+      <Menu.Item key={key} icon={icon} style={style} onClick={onClick}>
+        {label}
+      </Menu.Item>
+    ),
+  );
 
 export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
   Title: TitleFromProps,
@@ -61,8 +110,11 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
 
   const RenderToTitle = TitleFromProps ?? ThemedTitle;
 
-  const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
-    return tree.map((item: TreeMenuItem) => {
+  const buildMenuItems = (
+    tree: TreeMenuItem[],
+    canAccess: (item: TreeMenuItem) => boolean,
+  ): SiderMenuItem[] => {
+    return tree.filter(canAccess).map((item: TreeMenuItem) => {
       const { key, name, children, meta, list } = item;
       const parentName = meta?.parent;
       const label = item?.label ?? meta?.label ?? name;
@@ -70,24 +122,12 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
       const route = list;
 
       if (children.length > 0) {
-        return (
-          <CanAccess
-            key={item.key}
-            resource={name}
-            action="list"
-            params={{
-              resource: item,
-            }}
-          >
-            <Menu.SubMenu
-              key={item.key}
-              icon={icon ?? <UnorderedListOutlined />}
-              title={label}
-            >
-              {renderTreeView(children, selectedKey)}
-            </Menu.SubMenu>
-          </CanAccess>
-        );
+        return {
+          key,
+          icon: icon ?? <UnorderedListOutlined />,
+          label,
+          children: buildMenuItems(children, canAccess),
+        };
       }
       const isSelected = key === selectedKey;
       const isRoute = !(parentName !== undefined && children.length === 0);
@@ -95,29 +135,21 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
       const linkStyle: React.CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
 
-      return (
-        <CanAccess
-          key={item.key}
-          resource={name}
-          action="list"
-          params={{
-            resource: item,
-          }}
-        >
-          <Menu.Item
-            key={item.key}
-            icon={icon ?? (isRoute && <UnorderedListOutlined />)}
-            style={linkStyle}
-          >
+      return {
+        key,
+        icon: icon ?? (isRoute && <UnorderedListOutlined />),
+        style: linkStyle,
+        label: (
+          <>
             <Link to={route ?? ""} style={linkStyle}>
               {label}
             </Link>
             {!siderCollapsed && isSelected && (
               <div className="ant-menu-tree-arrow" />
             )}
-          </Menu.Item>
-        </CanAccess>
-      );
+          </>
+        ),
+      };
     });
   };
 
@@ -139,15 +171,14 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     }
   };
 
-  const logout = isExistAuthentication && (
-    <Menu.Item
-      key="logout"
-      onClick={() => handleLogout()}
-      icon={<LogoutOutlined />}
-    >
-      {translate("buttons.logout", "Logout")}
-    </Menu.Item>
-  );
+  const logoutItem: SiderMenuItem | undefined = isExistAuthentication
+    ? {
+        key: "logout",
+        onClick: () => handleLogout(),
+        icon: <LogoutOutlined />,
+        label: translate("buttons.logout", "Logout"),
+      }
+    : undefined;
 
   const defaultExpandMenuItems = (() => {
     if (siderItemsAreCollapsed) return [];
@@ -155,37 +186,58 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     return menuItems.map(({ key }) => key);
   })();
 
-  const items = renderTreeView(menuItems, selectedKey);
-
-  const renderSider = () => {
-    if (render) {
-      return render({
-        items,
-        logout,
-        collapsed: siderCollapsed,
-      });
-    }
-    return [...items, logout].filter(Boolean);
+  const menuProps: MenuProps = {
+    selectedKeys: selectedKey ? [selectedKey] : [],
+    defaultOpenKeys: [...defaultOpenKeys, ...defaultExpandMenuItems],
+    mode: "inline",
+    style: {
+      paddingTop: "8px",
+      border: "none",
+      overflow: "auto",
+      height: "calc(100% - 72px)",
+    },
+    onClick: () => {
+      setMobileSiderOpen(false);
+    },
   };
 
   const renderMenu = () => {
     return (
-      <Menu
-        selectedKeys={selectedKey ? [selectedKey] : []}
-        defaultOpenKeys={[...defaultOpenKeys, ...defaultExpandMenuItems]}
-        mode="inline"
-        style={{
-          paddingTop: "8px",
-          border: "none",
-          overflow: "auto",
-          height: "calc(100% - 72px)",
+      <CanAccessMenuItems menuItems={menuItems}>
+        {(canAccess) => {
+          const items = buildMenuItems(menuItems, canAccess);
+
+          if (render) {
+            const rendered = render({
+              items: toMenuElements(items),
+              logout: logoutItem && toMenuElements([logoutItem])[0],
+              collapsed: siderCollapsed,
+              menuItems: items,
+              logoutItem,
+            });
+
+            if (isMenuItemList(rendered)) {
+              return (
+                <Menu
+                  {...menuProps}
+                  items={rendered.filter(
+                    (item): item is ThemedSiderMenuItem => !!item,
+                  )}
+                />
+              );
+            }
+
+            return <Menu {...menuProps}>{rendered}</Menu>;
+          }
+
+          return (
+            <Menu
+              {...menuProps}
+              items={logoutItem ? [...items, logoutItem] : items}
+            />
+          );
         }}
-        onClick={() => {
-          setMobileSiderOpen(false);
-        }}
-      >
-        {renderSider()}
-      </Menu>
+      </CanAccessMenuItems>
     );
   };
 
@@ -197,13 +249,13 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           onClose={() => setMobileSiderOpen(false)}
           placement={direction === "rtl" ? "right" : "left"}
           closable={false}
-          width={200}
+          size={200}
           styles={{
             body: {
               padding: 0,
             },
           }}
-          maskClosable={true}
+          mask={{ closable: true }}
         >
           <Layout>
             <Layout.Sider

@@ -5,6 +5,12 @@ sidebar_label: "Migration Guide"
 description: "Integrate Migration Guide in Refine v5. Learn best practices. Learn integrate enterprise UI, components for polished admin UIs. See practical code samples."
 ---
 
+:::info Looking for the Ant Design v6 migration?
+
+See the [Migration Guide for Ant Design from v5 to v6](/core/docs/ui-integrations/ant-design/migration-guide/ant-design-v5-to-v6/).
+
+:::
+
 Ant Design released a new major version, v5. This document will help you upgrade from antd 4.x version to antd 5.x version.
 
 Ant Design removed `less` and adopted `CSS-in-JS` for better support of dynamic themes. So now, the bottom layer uses [`@ant-design/cssinjs`](https://github.com/ant-design/cssinjs) instead of `less` as a solution.

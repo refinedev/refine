@@ -13,7 +13,7 @@ export const Login: React.FC = () => {
         alignItems: "center",
       }}
     >
-      <Space direction="vertical" align="center" size="large">
+      <Space orientation="vertical" align="center" size="large">
         <ThemedTitleV2
           collapsed={false}
           wrapperStyles={{
@@ -22,7 +22,7 @@ export const Login: React.FC = () => {
         />
         <Button
           type="primary"
-          size="middle"
+          size="medium"
           onClick={() => loginWithRedirect()}
           style={{ width: "240px" }}
         >

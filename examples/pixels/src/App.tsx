@@ -12,7 +12,6 @@ import { AuthPage } from "./pages/auth";
 import { supabaseClient } from "./utility";
 import { authProvider, auditLogProvider } from "./providers";
 
-import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/style.css";
 

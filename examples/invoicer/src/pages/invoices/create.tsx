@@ -11,6 +11,7 @@ import {
   InputNumber,
   Row,
   Select,
+  Space,
   Typography,
 } from "antd";
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
@@ -113,7 +114,7 @@ export const InvoicesPageCreate = () => {
         <Flex vertical gap={32}>
           <Typography.Title level={3}>New Invoice</Typography.Title>
           <Card
-            bordered={false}
+            variant="borderless"
             styles={{
               body: {
                 padding: 0,
@@ -166,7 +167,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Title
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -176,7 +177,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Unit Price
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -186,7 +187,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Quantity
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -196,7 +197,7 @@ export const InvoicesPageCreate = () => {
                     >
                       Discount
                       <Divider
-                        type="vertical"
+                        orientation="vertical"
                         className={styles.serviceHeaderDivider}
                       />
                     </Col>
@@ -239,20 +240,22 @@ export const InvoicesPageCreate = () => {
                             xs={{ span: 5 }}
                             className={styles.serviceRowColumn}
                           >
-                            <InputNumber
-                              addonBefore="$"
-                              style={{ width: "100%" }}
-                              placeholder="Unit Price"
-                              min={0}
-                              value={service.unitPrice}
-                              onChange={(value) => {
-                                handleServiceNumbersChange(
-                                  index,
-                                  "unitPrice",
-                                  value || 0,
-                                );
-                              }}
-                            />
+                            <Space.Compact style={{ width: "100%" }}>
+                              <Space.Addon>$</Space.Addon>
+                              <InputNumber
+                                style={{ width: "100%" }}
+                                placeholder="Unit Price"
+                                min={0}
+                                value={service.unitPrice}
+                                onChange={(value) => {
+                                  handleServiceNumbersChange(
+                                    index,
+                                    "unitPrice",
+                                    value || 0,
+                                  );
+                                }}
+                              />
+                            </Space.Compact>
                           </Col>
                           <Col
                             xs={{ span: 4 }}
@@ -276,20 +279,22 @@ export const InvoicesPageCreate = () => {
                             xs={{ span: 4 }}
                             className={styles.serviceRowColumn}
                           >
-                            <InputNumber
-                              addonAfter="%"
-                              style={{ width: "100%" }}
-                              placeholder="Discount"
-                              min={0}
-                              value={service.discount}
-                              onChange={(value) => {
-                                handleServiceNumbersChange(
-                                  index,
-                                  "discount",
-                                  value || 0,
-                                );
-                              }}
-                            />
+                            <Space.Compact style={{ width: "100%" }}>
+                              <InputNumber
+                                style={{ width: "100%" }}
+                                placeholder="Discount"
+                                min={0}
+                                value={service.discount}
+                                onChange={(value) => {
+                                  handleServiceNumbersChange(
+                                    index,
+                                    "discount",
+                                    value || 0,
+                                  );
+                                }}
+                              />
+                              <Space.Addon>%</Space.Addon>
+                            </Space.Compact>
                           </Col>
                           <Col
                             xs={{ span: 3 }}
@@ -387,15 +392,17 @@ export const InvoicesPageCreate = () => {
                   <Typography.Text className={styles.labelTotal}>
                     Sales tax:
                   </Typography.Text>
-                  <InputNumber
-                    addonAfter="%"
-                    style={{ width: "96px" }}
-                    value={tax}
-                    min={0}
-                    onChange={(value) => {
-                      setTax(value || 0);
-                    }}
-                  />
+                  <Space.Compact style={{ width: "96px" }}>
+                    <InputNumber
+                      style={{ width: "100%" }}
+                      value={tax}
+                      min={0}
+                      onChange={(value) => {
+                        setTax(value || 0);
+                      }}
+                    />
+                    <Space.Addon>%</Space.Addon>
+                  </Space.Compact>
                 </Flex>
                 <Divider
                   style={{

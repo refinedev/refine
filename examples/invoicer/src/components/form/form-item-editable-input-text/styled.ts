@@ -19,12 +19,12 @@ export const useStyles = createStyles((props) => {
     },
 
     formItem: {
-      ".ant-input-group >.ant-input:last-child": {
+      ".ant-space-compact >.ant-input:last-child": {
         borderStartStartRadius: "6px",
         borderEndStartRadius: "6px",
       },
 
-      ".ant-input-group-addon": {
+      ".ant-space-addon": {
         opacity: "0 !important",
       },
     },

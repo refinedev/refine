@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ErrorComponent, RefineThemes, ThemedLayout } from "@refinedev/antd";
 
 import { ConfigProvider, App as AntdApp } from "antd";
-import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";

@@ -51,11 +51,11 @@ export const ThemeSettings: FC<Props> = ({ currentTheme, onThemeClick }) => {
       <Modal
         open={visible}
         onCancel={close}
-        destroyOnClose
+        destroyOnHidden
         title="Theme Settings"
         footer={null}
       >
-        <Space direction="vertical" size="large">
+        <Space orientation="vertical" size="large">
           <Space
             style={{
               flexWrap: "wrap",

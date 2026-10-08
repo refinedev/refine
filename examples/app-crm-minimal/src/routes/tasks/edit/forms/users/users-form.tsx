@@ -74,7 +74,7 @@ export const UsersForm = ({ initialValues, cancelForm }: Props) => {
           <Select
             {...selectProps}
             className="kanban-users-form-select"
-            dropdownStyle={{ padding: "0px" }}
+            styles={{ popup: { root: { padding: "0px" } } }}
             style={{ width: "100%" }}
             mode="multiple"
           />

@@ -233,7 +233,7 @@ export const useTable = <
         pageSize,
         current: currentPage,
         simple: !breakpoint.sm,
-        position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
+        placement: !breakpoint.sm ? ["bottomCenter"] : ["bottomEnd"],
         total: data?.total,
       };
     }

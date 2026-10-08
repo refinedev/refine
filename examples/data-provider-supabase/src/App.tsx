@@ -22,7 +22,6 @@ import { ConfigProvider, notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
-import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
@@ -137,7 +136,7 @@ const authProvider: AuthProvider = {
       if (data) {
         notification.open({
           type: "success",
-          message: "Success",
+          title: "Success",
           description:
             "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
         });

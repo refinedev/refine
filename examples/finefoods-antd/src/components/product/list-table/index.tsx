@@ -13,18 +13,10 @@ import {
   useTable,
 } from "@refinedev/antd";
 import type { ICategory, IProduct } from "../../../interfaces";
-import {
-  Avatar,
-  Button,
-  Input,
-  InputNumber,
-  Select,
-  Table,
-  Typography,
-  theme,
-} from "antd";
+import { Avatar, Button, Input, Select, Table, Typography, theme } from "antd";
 import { ProductStatus } from "../status";
 import { PaginationTotal } from "../../paginationTotal";
+import { InputNumberAddon } from "../../form";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router";
 
@@ -120,7 +112,7 @@ export const ProductListTable = () => {
         defaultFilteredValue={getDefaultFilter("id", filters, "eq")}
         filterDropdown={(props) => (
           <FilterDropdown {...props}>
-            <InputNumber
+            <InputNumberAddon
               addonBefore="#"
               style={{ width: "100%" }}
               placeholder={t("products.filter.id.placeholder")}
@@ -283,14 +275,11 @@ export const ProductListTable = () => {
               allowClear
               mode="multiple"
               placeholder={t("products.filter.isActive.placeholder")}
-            >
-              <Select.Option value="true">
-                {t("products.fields.isActive.true")}
-              </Select.Option>
-              <Select.Option value="false">
-                {t("products.fields.isActive.false")}
-              </Select.Option>
-            </Select>
+              options={[
+                { value: "true", label: t("products.fields.isActive.true") },
+                { value: "false", label: t("products.fields.isActive.false") },
+              ]}
+            />
           </FilterDropdown>
         )}
         render={(isActive: boolean) => {

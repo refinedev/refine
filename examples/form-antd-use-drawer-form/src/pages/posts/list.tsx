@@ -101,8 +101,10 @@ export const PostList = () => {
             style: {
               boxShadow: "none",
             },
-            bodyStyle: {
-              padding: 0,
+            styles: {
+              body: {
+                padding: 0,
+              },
             },
           }}
         >
@@ -157,8 +159,10 @@ export const PostList = () => {
             style: {
               boxShadow: "none",
             },
-            bodyStyle: {
-              padding: 0,
+            styles: {
+              body: {
+                padding: 0,
+              },
             },
           }}
         >
@@ -206,7 +210,7 @@ export const PostList = () => {
       <Drawer
         open={visibleShowDrawer}
         onClose={() => setVisibleShowDrawer(false)}
-        width="500"
+        size="500"
       >
         <Show
           isLoading={showIsLoading}

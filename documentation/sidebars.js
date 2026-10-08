@@ -941,7 +941,17 @@ module.exports = {
               ],
             },
             "ui-integrations/ant-design/theming/index",
-            "ui-integrations/ant-design/migration-guide/index",
+            {
+              type: "category",
+              label: "Migration Guide",
+              link: {
+                type: "doc",
+                id: "ui-integrations/ant-design/migration-guide/index",
+              },
+              items: [
+                "ui-integrations/ant-design/migration-guide/ant-design-v5-to-v6",
+              ],
+            },
           ],
         },
         // Material UI

@@ -9,7 +9,7 @@ export function NextJSPagesAntdLayout() {
       showFiles
       dependencies={{
         "@refinedev/antd": "latest",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/"
       files={{
@@ -46,10 +46,6 @@ const nextConfig = {
     "@refinedev/nextjs-router",
     "@refinedev/antd",
     "antd",
-    "@ant-design/pro-components",
-    "@ant-design/pro-layout",
-    "@ant-design/pro-utils",
-    "@ant-design/pro-provider",
     "rc-pagination",
     "rc-picker",
     "rc-util",

@@ -13,7 +13,7 @@ export default function AuthPage() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router": "latest",
         "react-router": "^7.0.2",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/login"
       files={{

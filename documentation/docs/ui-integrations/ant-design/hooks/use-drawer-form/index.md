@@ -511,9 +511,9 @@ If you're customizing the data before submitting it to your data provider, it's 
 
 It's required to manage [`<Drawer>`](https://ant.design/components/drawer/#API) state and actions.
 
-#### width
+#### size
 
-It's the width of the `<Drawer>`. Default value is `"500px"`.
+It's the size (width) of the `<Drawer>`. Default value is `"500px"`. Ant Design v6 gives `size` priority over `width`, so override `size` to change the drawer width.
 
 #### onClose
 

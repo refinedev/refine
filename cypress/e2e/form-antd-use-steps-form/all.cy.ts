@@ -77,8 +77,8 @@ describe("form-antd-use-steps-form", () => {
   it("should preserve form data when navigating between steps", () => {
     cy.getCreateButton().click();
 
-    cy.get(".ant-select-selection-item").should("not.exist");
-    cy.get(`.ant-select-selection-item[title="${mockPost.status}"]`).should(
+    cy.get(".ant-select-content-has-value").should("not.exist");
+    cy.get(`.ant-select-content-has-value[title="${mockPost.status}"]`).should(
       "not.exist",
     );
 
@@ -88,8 +88,8 @@ describe("form-antd-use-steps-form", () => {
       .click();
 
     cy.get("#title").should("have.value", mockPost.title);
-    cy.get(".ant-select-selection-item").eq(0).should("exist");
-    cy.get(`.ant-select-selection-item[title="${mockPost.status}"]`).should(
+    cy.get(".ant-select-content-has-value").eq(0).should("exist");
+    cy.get(`.ant-select-content-has-value[title="${mockPost.status}"]`).should(
       "exist",
     );
 

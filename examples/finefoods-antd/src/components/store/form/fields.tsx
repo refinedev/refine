@@ -18,7 +18,6 @@ import {
   Card,
   Flex,
   Divider,
-  InputNumber,
   Button,
   type InputRef,
 } from "antd";
@@ -32,7 +31,11 @@ import {
   PhoneOutlined,
   RightCircleOutlined,
 } from "@ant-design/icons";
-import { FormItemEditable, FormItemHorizontal } from "../../form";
+import {
+  FormItemEditable,
+  FormItemHorizontal,
+  InputNumberAddon,
+} from "../../form";
 import { StoreStatus } from "../status";
 
 type Props = {
@@ -267,7 +270,7 @@ export const StoreFormFields = ({
             },
           ]}
         >
-          <InputNumber
+          <InputNumberAddon
             style={{
               width: "100%",
             }}
@@ -285,7 +288,7 @@ export const StoreFormFields = ({
             },
           ]}
         >
-          <InputNumber
+          <InputNumberAddon
             addonBefore="Lng"
             style={{
               width: "100%",

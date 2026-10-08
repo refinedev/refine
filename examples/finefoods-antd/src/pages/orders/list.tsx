@@ -17,9 +17,10 @@ import {
   FilterDropdown,
 } from "@refinedev/antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { Table, Input, Select, Typography, theme, InputNumber } from "antd";
+import { Table, Input, Select, Typography, theme } from "antd";
 
 import {
+  InputNumberAddon,
   OrderStatus,
   OrderActions,
   PaginationTotal,
@@ -135,7 +136,7 @@ export const OrderList = () => {
           defaultFilteredValue={getDefaultFilter("orderNumber", filters, "eq")}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
-              <InputNumber
+              <InputNumberAddon
                 addonBefore="#"
                 style={{ width: "100%" }}
                 placeholder={t("orders.filter.orderNumber.placeholder")}

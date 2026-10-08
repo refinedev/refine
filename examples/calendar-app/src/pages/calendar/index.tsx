@@ -1,7 +1,7 @@
 import { useList } from "@refinedev/core";
 
 import { Show } from "@refinedev/antd";
-import { Badge, type BadgeProps, Calendar } from "antd";
+import { Badge, type BadgeProps, Calendar, type CalendarProps } from "antd";
 import type { CalendarMode } from "antd/lib/calendar/generateCalendar";
 import dayjs from "dayjs";
 
@@ -51,13 +51,18 @@ export const CalendarPage = () => {
     );
   };
 
+  const cellRender: CalendarProps<dayjs.Dayjs>["cellRender"] = (
+    value,
+    info,
+  ) => {
+    if (info.type === "date") return dateCellRender(value);
+    if (info.type === "month") return monthCellRender(value);
+    return info.originNode;
+  };
+
   return (
     <Show headerProps={{ extra: null }}>
-      <Calendar
-        onPanelChange={panelChange}
-        dateCellRender={dateCellRender}
-        monthCellRender={monthCellRender}
-      />
+      <Calendar onPanelChange={panelChange} cellRender={cellRender} />
     </Show>
   );
 };

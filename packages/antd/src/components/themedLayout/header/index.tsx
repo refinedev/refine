@@ -34,7 +34,7 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = ({
   return (
     <AntdLayout.Header style={headerStyles}>
       <Space>
-        <Space size="middle">
+        <Space size="medium">
           {user?.name && <Typography.Text strong>{user.name}</Typography.Text>}
           {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
         </Space>

@@ -86,9 +86,9 @@ describe("inferencer-antd", () => {
         const category = categories.data.categories.find(
           (category: any) => category.id === data?.category_id,
         );
-        cy.get(`.ant-select-selection-item[title="${category?.title}"]`).should(
-          "exist",
-        );
+        cy.get(
+          `.ant-select-content-has-value[title="${category?.title}"]`,
+        ).should("exist");
       });
       cy.get("#created_at").should(($createdAt) => {
         const inputDateValue = new Date($createdAt.val() as string);

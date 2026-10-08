@@ -17,6 +17,12 @@ Installing the package is as simple as just by running the following command wit
 
 <InstallPackagesCommand args="@refinedev/antd antd"/>
 
+:::info
+
+`@refinedev/antd@7` supports Ant Design v6 (`antd@^6.6.5` and `@ant-design/icons@^6.3.4`) with React 18 or 19. Upgrading from Ant Design v5? See the [migration guide](/core/docs/ui-integrations/ant-design/migration-guide/ant-design-v5-to-v6/).
+
+:::
+
 ## Usage
 
 We'll wrap our app with the [`<ConfigProvider />`](https://ant.design/components/config-provider) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Ant Design integration.

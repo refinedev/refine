@@ -9,7 +9,7 @@ export function NextJSAppAntdLayout() {
       showNavigator
       dependencies={{
         "@refinedev/antd": "latest",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/"
       files={{

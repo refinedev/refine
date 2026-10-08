@@ -1,10 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
-import { render, act, TestWrapper } from "@test";
+import { render, act, TestWrapper, spyOnAntdWarnings } from "@test";
 import { AntdInferencer } from "../index";
 
 describe("AntdInferencer", () => {
+  let antdWarnings: ReturnType<typeof spyOnAntdWarnings>;
+
+  beforeEach(() => {
+    antdWarnings = spyOnAntdWarnings();
+  });
+
+  afterEach(() => {
+    antdWarnings.restore();
+  });
+
   it("should match the snapshot", async () => {
     const Wrapper = TestWrapper({
       routerInitialEntries: ["/custom-page"],
@@ -69,6 +79,7 @@ describe("AntdInferencer", () => {
     const nodeEdit = renderingEdit.asFragment();
     const nodeShow = renderingShow.asFragment();
 
+    expect(antdWarnings.getWarnings()).toEqual([]);
     expect(nodeList).toMatchSnapshot();
     expect(nodeCreate).toMatchSnapshot();
     expect(nodeEdit).toMatchSnapshot();

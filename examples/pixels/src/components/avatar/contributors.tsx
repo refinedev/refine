@@ -17,7 +17,7 @@ export const Contributors: React.FC<ContributorsProps> = ({ pixels }) => {
   }
 
   return (
-    <Avatar.Group maxCount={2}>
+    <Avatar.Group max={{ count: 2 }}>
       {avatarURls.map((avatar_url) => (
         <Avatar key={avatar_url} icon={<UserOutlined />} src={avatar_url} />
       ))}

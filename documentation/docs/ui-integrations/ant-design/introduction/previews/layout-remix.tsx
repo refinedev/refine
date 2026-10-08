@@ -11,7 +11,7 @@ export default function LayoutRemix() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/remix-router": "latest",
-        antd: "^5.0.5",
+        antd: "^6.6.5",
       }}
       startRoute="/products"
       files={{

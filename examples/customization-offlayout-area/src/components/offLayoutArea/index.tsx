@@ -1,5 +1,5 @@
-import { BackTop } from "antd";
+import { FloatButton } from "antd";
 
 export const OffLayoutArea = () => {
-  return <BackTop />;
+  return <FloatButton.BackTop />;
 };

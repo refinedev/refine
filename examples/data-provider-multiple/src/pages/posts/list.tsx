@@ -65,7 +65,7 @@ export const PostList = () => {
 
   return (
     <List>
-      <Collapse defaultActiveKey={["1"]} expandIconPosition="end">
+      <Collapse defaultActiveKey={["1"]} expandIconPlacement="end">
         <Panel header="Default Data Provider" key="1">
           <Table {...tableProps} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />

@@ -14,20 +14,15 @@ import {
   getDefaultSortOrder,
   ExportButton,
 } from "@refinedev/antd";
-import {
-  Table,
-  Avatar,
-  Typography,
-  theme,
-  InputNumber,
-  Input,
-  Select,
-  Button,
-} from "antd";
+import { Table, Avatar, Typography, theme, Input, Select, Button } from "antd";
 
 import type { IUser, IUserFilterVariables } from "../../interfaces";
 import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
-import { PaginationTotal, UserStatus } from "../../components";
+import {
+  InputNumberAddon,
+  PaginationTotal,
+  UserStatus,
+} from "../../components";
 import type { PropsWithChildren } from "react";
 import { useLocation } from "react-router";
 
@@ -122,7 +117,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
           defaultFilteredValue={getDefaultFilter("orderNumber", filters, "eq")}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
-              <InputNumber
+              <InputNumberAddon
                 addonBefore="#"
                 style={{ width: "100%" }}
                 placeholder={t("orders.filter.id.placeholder")}
@@ -191,14 +186,11 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
               <Select
                 style={{ width: "100%" }}
                 placeholder={t("users.filter.isActive.placeholder")}
-              >
-                <Select.Option value="true">
-                  {t("users.fields.isActive.true")}
-                </Select.Option>
-                <Select.Option value="false">
-                  {t("users.fields.isActive.false")}
-                </Select.Option>
-              </Select>
+                options={[
+                  { value: "true", label: t("users.fields.isActive.true") },
+                  { value: "false", label: t("users.fields.isActive.false") },
+                ]}
+              />
             </FilterDropdown>
           )}
         />

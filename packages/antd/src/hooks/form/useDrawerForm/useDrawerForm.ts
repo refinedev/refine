@@ -318,7 +318,7 @@ export const useDrawerForm = <
     },
     drawerProps: {
       ...drawerProps,
-      width: "500px",
+      size: "500px",
       onClose: handleClose,
       open: visible,
       forceRender: true,

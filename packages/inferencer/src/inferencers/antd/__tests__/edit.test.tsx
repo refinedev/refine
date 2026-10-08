@@ -1,10 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
-import { render, act, TestWrapper } from "@test";
+import { render, act, TestWrapper, spyOnAntdWarnings } from "@test";
 import { EditInferencer, renderer } from "../edit";
 
 describe("AntdEditInferencer", () => {
+  let antdWarnings: ReturnType<typeof spyOnAntdWarnings>;
+
+  beforeEach(() => {
+    antdWarnings = spyOnAntdWarnings();
+  });
+
+  afterEach(() => {
+    antdWarnings.restore();
+  });
+
   it("should match the snapshot", async () => {
     const Wrapper = TestWrapper({
       routerInitialEntries: ["/posts/edit/11"],
@@ -47,6 +57,7 @@ describe("AntdEditInferencer", () => {
 
     const node = rendering.asFragment();
 
+    expect(antdWarnings.getWarnings()).toEqual([]);
     expect(node).toMatchSnapshot();
   });
 });

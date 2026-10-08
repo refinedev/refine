@@ -77,7 +77,7 @@ export const RecentOrders: React.FC = () => {
           return (
             <Space
               size={0}
-              direction="vertical"
+              orientation="vertical"
               style={{
                 maxWidth: "220px",
               }}
@@ -117,7 +117,7 @@ export const RecentOrders: React.FC = () => {
           return (
             <Space
               size={0}
-              direction="vertical"
+              orientation="vertical"
               style={{
                 maxWidth: "220px",
               }}

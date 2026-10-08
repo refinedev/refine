@@ -40,7 +40,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
       status="404"
       title="404"
       extra={
-        <Space direction="vertical" size="large">
+        <Space orientation="vertical" size="large">
           <Space>
             <Typography.Text>
               {translate(

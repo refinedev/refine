@@ -12,7 +12,7 @@ const defaultPagination = {
   current: 1,
   total: 2,
   simple: true,
-  position: ["bottomCenter"],
+  placement: ["bottomCenter"],
 };
 
 const customPagination = {
@@ -20,7 +20,7 @@ const customPagination = {
   pageSize: 1,
   total: 2,
   simple: true,
-  position: ["bottomCenter"],
+  placement: ["bottomCenter"],
 };
 
 const routerProvider = {

@@ -11,7 +11,7 @@ export const ErrorComponent: CreateInferencerConfig["errorComponent"] = ({
       <Row justify="center" align="middle" style={{ minHeight: "200px" }}>
         <Col>
           <Alert
-            message="Error"
+            title="Error"
             description={
               <div
                 // biome-ignore lint/security/noDangerouslySetInnerHtml: explicitly disabled

@@ -34,7 +34,7 @@ export const useNotificationProvider = (): NotificationProvider => {
               undoableTimeout={undoableTimeout}
             />
           ),
-          message: null,
+          title: null,
           duration: 0,
           closeIcon: <></>,
         });
@@ -42,7 +42,7 @@ export const useNotificationProvider = (): NotificationProvider => {
         notification.open({
           key,
           description: message,
-          message: description ?? null,
+          title: description ?? null,
           type,
         });
       }
