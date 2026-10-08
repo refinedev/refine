@@ -292,7 +292,7 @@ export function useTable<
 
   const getCurrentQueryParams = (): object => {
     // We get QueryString parameters that are uncontrolled by refine.
-    const { sorters, filters, pageSize, current, ...rest } =
+    const { sorters, filters, pageSize, currentPage, ...rest } =
       parsedParams?.params ?? {};
 
     return rest;

@@ -1552,4 +1552,106 @@ describe("useTable Filters", () => {
       }),
     );
   });
+
+  it("createLinkForSyncWithLocation should use provided currentPage and preserve uncontrolled query params", async () => {
+    const goMock = vi
+      .fn()
+      .mockReturnValue("/posts?currentPage=3&pageSize=20&foo=bar");
+
+    const { result } = renderHook(() => useTable({ resource: "posts" }), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterProvider({
+          resource: { name: "posts" },
+          params: {
+            currentPage: 2,
+            pageSize: 10,
+            sorters: [{ field: "id", order: "asc" }],
+            filters: [{ field: "status", operator: "eq", value: "draft" }],
+            foo: "bar",
+          },
+          fns: {
+            go: () => goMock,
+          },
+        }),
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    const newSorters: CrudSort[] = [{ field: "title", order: "desc" }];
+    const newFilters: CrudFilter[] = [
+      { field: "status", operator: "eq", value: "published" },
+    ];
+
+    const link = result.current.createLinkForSyncWithLocation({
+      pagination: { currentPage: 3, pageSize: 20 },
+      sorters: newSorters,
+      filters: newFilters,
+    });
+
+    expect(link).toBe("/posts?currentPage=3&pageSize=20&foo=bar");
+    expect(goMock).toHaveBeenCalledWith({
+      type: "path",
+      options: {
+        keepHash: true,
+        keepQuery: true,
+      },
+      query: {
+        currentPage: 3,
+        pageSize: 20,
+        sorters: newSorters,
+        filters: newFilters,
+        foo: "bar",
+      },
+    });
+  });
+
+  it("createLinkForSyncWithLocation should omit currentPage and pageSize when pagination mode is off", async () => {
+    const goMock = vi.fn().mockReturnValue("/posts?foo=bar");
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+          pagination: { mode: "off" },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          routerProvider: mockRouterProvider({
+            resource: { name: "posts" },
+            params: {
+              currentPage: 2,
+              pageSize: 10,
+              foo: "bar",
+            },
+            fns: {
+              go: () => goMock,
+            },
+          }),
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    const link = result.current.createLinkForSyncWithLocation({
+      pagination: { currentPage: 3, pageSize: 20 },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(link).toBe("/posts?foo=bar");
+    expect(goMock).toHaveBeenCalledWith({
+      type: "path",
+      options: {
+        keepHash: true,
+        keepQuery: true,
+      },
+      query: {
+        sorters: [],
+        filters: [],
+        foo: "bar",
+      },
+    });
+  });
 });
