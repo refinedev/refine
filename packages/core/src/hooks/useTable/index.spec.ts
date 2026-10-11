@@ -1654,4 +1654,53 @@ describe("useTable Filters", () => {
       },
     });
   });
+
+  it("createLinkForSyncWithLocation should strip legacy current and modern currentPage params", async () => {
+    const goMock = vi
+      .fn()
+      .mockReturnValue("/posts?currentPage=3&pageSize=20&foo=bar");
+
+    const { result } = renderHook(() => useTable({ resource: "posts" }), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        routerProvider: mockRouterProvider({
+          resource: { name: "posts" },
+          params: {
+            current: 2,
+            currentPage: 2,
+            pageSize: 10,
+            sorters: [{ field: "id", order: "asc" }],
+            filters: [{ field: "status", operator: "eq", value: "draft" }],
+            foo: "bar",
+          },
+          fns: {
+            go: () => goMock,
+          },
+        }),
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    const link = result.current.createLinkForSyncWithLocation({
+      pagination: { currentPage: 3, pageSize: 20 },
+      sorters: [],
+      filters: [],
+    });
+
+    expect(link).toBe("/posts?currentPage=3&pageSize=20&foo=bar");
+    expect(goMock).toHaveBeenCalledWith({
+      type: "path",
+      options: {
+        keepHash: true,
+        keepQuery: true,
+      },
+      query: {
+        currentPage: 3,
+        pageSize: 20,
+        sorters: [],
+        filters: [],
+        foo: "bar",
+      },
+    });
+  });
 });
