@@ -292,7 +292,8 @@ export function useTable<
 
   const getCurrentQueryParams = (): object => {
     // We get QueryString parameters that are uncontrolled by refine.
-    const { sorters, filters, pageSize, current, ...rest } =
+    // Strip both v5 `currentPage` and legacy v4 `current` to prevent stale pagination params from leaking into generated links.
+    const { sorters, filters, pageSize, current, currentPage, ...rest } =
       parsedParams?.params ?? {};
 
     return rest;
