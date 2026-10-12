@@ -616,7 +616,7 @@ The first thing we need to do is to create a manifest for our application. This 
 
 Generating a manifest file manually is tedious. Fortunately for us, we can use several PWA manifest generators online to speed up the process.
 
-Head over to [SimiCart manifest generator](https://www.simicart.com/manifest-generator.html/) or any site you trust and generate your manifest with the following example:
+Head over to [PWA Stack manifest generator](https://pwastack.com/tools/manifest-generator) or any site you trust and generate your manifest with the following example:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog-yearly/2022/2022-09-11-next-refine-pwa/manifest.png" alt="Web app manifest settings" />
 
