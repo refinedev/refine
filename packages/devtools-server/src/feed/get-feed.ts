@@ -1,6 +1,6 @@
-import fetch from "node-fetch";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import { marked } from "marked";
+import fetch from "node-fetch";
 import sanitizeHtml from "sanitize-html";
 
 import type { Feed, FeedSection } from "@refinedev/devtools-shared";
