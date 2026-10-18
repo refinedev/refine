@@ -1,6 +1,6 @@
-import React from "react";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import boxen from "boxen";
+import React from "react";
 
 import type { Announcement } from "../../definitions/announcement";
 import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
