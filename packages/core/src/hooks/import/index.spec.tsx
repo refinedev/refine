@@ -523,5 +523,38 @@ describe("useImport hook", () => {
         });
       });
     });
+
+    it('should pass skipEmptyLines: true by default to papaparse', async () => {
+      const { result } = renderHook(
+        () =>
+          useImport({
+            batchSize: 1,
+            resource: 'posts',
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: 'posts' }],
+            routerProvider: mockRouterProvider({
+              pathname: '/posts',
+              resource: { name: 'posts' },
+            }),
+          }),
+        },
+      );
+
+      await act(async () => {
+        await result.current.handleChange({
+          file: file,
+        });
+      });
+
+      expect(papaparse.parse).toHaveBeenCalledWith(
+        file,
+        expect.objectContaining({
+          skipEmptyLines: true,
+        }),
+      );
+    });
   });
 });

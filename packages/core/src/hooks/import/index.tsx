@@ -198,6 +198,7 @@ export const useImport = <
     return new Promise<CreatedValuesType<TVariables, TData>[]>((resolve) => {
       setIsLoading(true);
       papaparse.parse(file as any, {
+        skipEmptyLines: true,
         complete: async ({ data }: { data: unknown[][] }) => {
           const values = importCSVMapper(data, mapData);
 
