@@ -1,7 +1,7 @@
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 import { cookies } from "next/headers";
 
-export const authProviderServer: Pick<AuthBindings, "check"> = {
+export const authProviderServer: Pick<AuthProvider, "check"> = {
   check: async () => {
     const cookieStore = cookies();
     const auth = cookieStore.get("auth");
