@@ -1,5 +1,5 @@
 * {
-  font-family: 'Manrope', sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
 }
 
 a {
@@ -23,17 +23,17 @@ a {
 
 @media screen and (max-width: 900px) {
   .my_profile-bg {
-      width: 100%;
-      border-radius: 15px;
+    width: 100%;
+    border-radius: 15px;
   }
 
   .my_profile_user-img {
-      margin-left: 0px;
-      margin-top: -64px;
+    margin-left: 0px;
+    margin-top: -64px;
   }
 
   .property_details-img {
-      width: 100%;
-      height: auto;
+    width: 100%;
+    height: auto;
   }
 }

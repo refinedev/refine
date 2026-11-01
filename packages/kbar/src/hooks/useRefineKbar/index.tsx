@@ -59,7 +59,7 @@ export const useRefineKbar = (): void => {
     };
 
     preaparedActions().then((actions) => {
-      return setActions(actions.flatMap((action) => action));
+      return setActions(actions.flat());
     });
   }, [resources, idFromParams, resourceFromParams, actionFromParams]);
 

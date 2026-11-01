@@ -4,8 +4,10 @@ node_modules
 .cache
 dist
 .rpt2_cache
+.static
 coverage
-build
+.plugins
+.build
 .docusaurus
 .svelte-kit
 

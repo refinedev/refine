@@ -25,6 +25,10 @@ The ecosystem has matured considerably. [Expo](https://expo.dev/), the recommend
 
 React Native's New Architecture, which has been stable since 2024, brought significant performance improvements through synchronous native module calls and a new rendering system. The practical result is that the performance gap between React Native and fully native apps has shrunk to the point where most users can't tell the difference.
 
+### Core Architecture and Rendering
+
+React Native’s architecture centers around the JavaScript Interface (JSI), a C++ abstraction layer that completely replaces the legacy asynchronous JSON bridge. JSI exposes native C++ Host Objects directly to the JavaScript engine (Hermes), enabling direct, synchronous, bidirectional function calls between JavaScript and native platform threads. Operating on top of JSI is Fabric, React Native’s modern rendering pipeline. When UI state updates, Fabric executes a three-phase pipeline: first, React renders an element tree in JavaScript; second, Fabric creates a immutable C++ Shadow Tree to represent layout intent; and third, it uses the Yoga layout engine to compute flexbox dimensions before mounting actual platform-native views (UIView on iOS, android.view.View on Android) on the main thread.
+
 ### When to use it
 
 React Native makes sense when your team already knows React, when you need to ship on both iOS and Android without maintaining two separate codebases, or when you want to share logic between your web and mobile apps. The JavaScript ecosystem is enormous, and most web libraries either work directly or have React Native equivalents.
@@ -37,11 +41,15 @@ If your app is heavily dependent on platform-specific APIs, custom native UI, or
 
 [Flutter](https://flutter.dev/) is Google's cross-platform framework, and it takes a fundamentally different approach than React Native. Instead of rendering with platform-native UI components, Flutter draws everything on its own canvas using the Skia (now Impeller) rendering engine. The result is pixel-perfect consistency across platforms and smooth animations out of the box.
 
-Flutter uses Dart, a language developed by Google. If your team doesn't already know Dart, there's a learning curve, but Dart is straightforward for anyone coming from Java, JavaScript, or C#. The language is well-designed for UI work with features like named parameters, const constructors, and strong null safety.
+Flutter uses Dart, a language developed by Google. If your team doesn't already know Dart, there's a learning curve, but Dart is straightforward for anyone coming from Java, JavaScript, C#, as well as C++ enviornment. The language is well-designed for UI work with features like named parameters, const constructors, and strong null safety.
 
 The framework has expanded well beyond mobile. Flutter now targets iOS, Android, web, macOS, Windows, Linux, and embedded devices from the same codebase. The latest stable release (Flutter 3.41, Dart 3.11) continues to Refine performance and add platform-specific capabilities.
 
 Flutter's widget system is its strongest feature. Everything is a widget, layouts are composed by nesting widgets, and the hot reload cycle is fast enough that you can iterate on UI in real time. Google's own apps (Google Pay, Google Ads) use Flutter in production, which provides some confidence about long-term commitment.
+
+### Core Architecture and Rendering
+
+At the heart of Flutter’s architecture is its hardware-accelerated rendering engine (Impeller, which replaced Skia). Impeller pre-compiles a finite set of XML shaders during the build phase, virtually eliminating runtime shader compilation stutter ("jank") on platforms like iOS and modern Android. Above the engine sits Flutter’s reactive framework, where everything is a widget. Layouts are constructed through declarative composition—nesting structural, visual, and functional widgets (like Container, Padding, Row, and GestureDetector) to form immutable UI trees. When application state changes, Flutter efficiently recalculates diffs in the widget tree and redraws only the necessary canvas regions.
 
 ### When to use it
 
@@ -59,6 +67,10 @@ This means you write your shared logic in Kotlin (networking, data models, busin
 
 JetBrains and Google both back KMP. Google officially recommended it for sharing business logic in Android apps, and the tooling has improved significantly. The Kotlin language itself is well-liked by developers, consistently ranking high in satisfaction surveys.
 
+### Core Architecture and Rendering
+
+Kotlin Multiplatform adopts a modular architecture that separates shared business logic from host UI, while Compose Multiplatform extends Jetpack Compose to share actual UI rendering across platforms. When sharing pure business logic via KMP, shared Kotlin code compiles down directly to native target formats: Java bytecode for Android/JVM, and native machine binaries (.framework) via Kotlin/Native and the LLVM compiler toolchain for iOS. This enables Swift code in iOS to call shared Kotlin functions directly with zero bridging overhead or runtime translation tax. For platform-specific APIs (such as Bluetooth or secure storage), KMP uses the expect/actual mechanism—a compile-time contract where a commonMain declaration (expect) is fulfilled by platform-specific implementations (actual) compiled natively into each target binary.
+
 ### When to use it
 
 KMP is ideal when your team includes Android developers who know Kotlin and iOS developers who know Swift. Rather than asking everyone to learn a new framework, KMP lets each platform team keep working in their preferred UI toolkit while sharing the logic layer. It's also a good fit when native platform UX is non-negotiable.
@@ -74,6 +86,10 @@ KMP requires maintaining two separate UI layers, which means you still need deve
 SwiftUI's declarative syntax is clean and expressive. You describe what your UI should look like, and the framework handles the rendering. It integrates deeply with Apple's platform features, including widgets, Live Activities, App Intents, and the latest APIs from each year's WWDC. No cross-platform framework can match this level of platform integration.
 
 The framework has matured significantly since its introduction in 2019. Early versions had gaps that forced developers to fall back to UIKit, but in 2026, SwiftUI covers the vast majority of use cases natively. Navigation, data flow, animations, and accessibility are all well-supported.
+
+### Core Architecture and Rendering
+
+SwiftUI is Apple’s declarative framework powered by Swift value-types (structs) and an internal C++ dependency graph engine called AttributeGraph (AGAttributeGraph). Every view hierarchy, structural layout modifier, and reactive property binding (@State, @Binding) maps directly to a node within AttributeGraph. When state changes occur, the graph uses dependency tracing to selectively invalidate and recalculate only the specific nodes that changed, preserving component state through structural position in the view hierarchy. For layout and rendering, SwiftUI uses a strict child-parent proposal loop where parents propose sizes and children determine their own bounds. Once layout bounds are resolved, SwiftUI translates the view hierarchy into a Core Animation Layer Tree (CALayer), passing render commands directly to the platform's Render Server to execute GPU-accelerated drawing via Metal.
 
 ### When to use it
 
@@ -91,6 +107,10 @@ For teams already invested in the .NET ecosystem, MAUI is a natural fit. You wri
 
 MAUI is backed by Microsoft and has corporate adoption, particularly in enterprise environments where .NET is already the standard technology stack.
 
+### Core Architecture and Rendering
+
+.NET MAUI uses a decoupled, handler-based architecture built on top of the unified .NET Mono/Core runtime wrappers. UI structures are defined using lightweight, cross-platform virtual views (IView), each of which is paired with a platform-specific Handler class (such as ButtonHandler). Handlers utilize fast, dictionary-based property mappers (PropertyMapper) to route cross-platform property changes directly to native OS controls. During rendering, MAUI’s layout engine (LayoutManager) calculates bounds and triggers native OS layout passes. Standard components map 1:1 to platform-native controls (UIButton on iOS, MaterialButton on Android, UIElement on WinUI 3). For custom graphics, MAUI uses its Microsoft.Maui.Graphics subsystem, an abstraction engine that vectors 2D primitives directly onto platform-native drawing backends like CoreGraphics on iOS, Android Canvas on Android, and Direct2D or Skia on desktop platforms.
+
 ### When to use it
 
 .NET MAUI makes sense when your team is experienced with C# and .NET, or when your organization is heavily invested in the Microsoft ecosystem. It's a pragmatic choice for enterprise teams that want to extend existing .NET backend skills to mobile without learning an entirely new stack.
@@ -106,6 +126,10 @@ The community and ecosystem around MAUI are smaller than React Native's or Flutt
 If you're building an Android-only app, Compose is the standard in 2026. It's fully declarative, integrates deeply with Android's lifecycle and architecture components, and has strong tooling in Android Studio. Google has made it clear that Compose is the future of Android UI development, and the majority of new Android apps use it.
 
 Compose has also expanded beyond mobile. Compose Multiplatform, developed by JetBrains, brings the same API to desktop (Windows, macOS, Linux) and web. Combined with Kotlin Multiplatform for shared logic, you can build apps that share both UI and business logic across platforms, though the iOS support for Compose Multiplatform is still maturing.
+
+### Core Architecture and Rendering
+
+Jetpack Compose is Android’s unbundled declarative toolkit that bypasses traditional android.view.View class hierarchies completely. At its core, the Compose Kotlin compiler plugin transforms @Composable functions to inject calls into the Composer runtime, which manages a dynamic underlying data structure called the Slot Table. This table tracks state, caches function outputs, and enables smart recomposition by skipping execution for unchanged parameters. Composables emit a light tree of LayoutNode objects, which are processed through a strict single-pass layout pipeline containing three distinct phases: Composition (building nodes), Layout (measuring and placing children in a single $O(1)$ pass), and Draw. Rendering is hosted inside a single root host view (AndroidComposeView), which executes drawing instructions directly onto GPU hardware buffers using Android’s HardwareRenderer and native Skia/Impeller pipelines.
 
 ### When to use it
 
@@ -153,4 +177,4 @@ Progressive Web Apps work well for content-focused applications but still can't 
 
 **Is Flutter's Dart language hard to learn?**
 
-If you know any C-style language (Java, JavaScript, C#, TypeScript), Dart will feel familiar within a day or two. The learning curve is more about Flutter's widget system and patterns than the language itself.
+If you know any C-style language (Java, JavaScript, C#, TypeScript, C++), Dart will feel familiar within a day or two. The learning curve is more about Flutter's widget system and patterns than the language itself.It is based on the Object-Oriented Programming Concepts.

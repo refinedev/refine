@@ -14,5 +14,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "tailwindCSS.experimental.configFile": "documentation/tailwind.config.js",
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

@@ -605,10 +605,12 @@ h4 > del:has(code:only-child) code {
   );
   max-width: var(--applied-full-table-width);
   margin-left: calc(
-    (-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px
+    (-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) +
+    16px
   );
   margin-right: calc(
-    (-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) + 16px
+    (-1 * ((var(--applied-full-table-width, 100%) - 100%) / 2)) +
+    16px
   );
 }
 
