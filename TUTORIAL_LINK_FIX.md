@@ -79,11 +79,21 @@ Create a README file documenting the changes made for future reference (see `TUT
    - Build the documentation site locally
    - Verify no build errors related to broken links
 
-## Additional Notes
+## Changeset Added
 
-- The direct `/core/tutorial` URL redirects to `/core/tutorial/essentials/intro`, but this automatic redirection may not work in all contexts (especially in static site generation)
-- Using the explicit path ensures consistent behavior across all environments
-- All tutorial links in the documentation should now consistently point to the current tutorial structure
+A changeset file has been created at `.changeset/tutorial-link-fix.md` to document this patch update.
+
+## PR Checklist Completed
+
+- [x] Commit message follows guidelines: `fix: update Tutorial link to correct route`
+- [x] Related issue(s) linked: #7608
+- [x] Tests for the changes: N/A (documentation-only change)
+- [x] Docs have been added/updated
+- [x] Changesets have been added
+
+## Notes for Reviewers
+
+This PR only includes documentation changes (markdown files) and a changeset. No code changes are required. The Build & Test and TSDoc Links checks will run but may take some time to complete as they test the entire monorepo.
 
 ## Related Issues
 - Issue #7608: [DOC] Fix broken Tutorial link under Next Steps
