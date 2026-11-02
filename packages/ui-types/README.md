@@ -222,7 +222,7 @@ You can get the auto-generated pages codes by clicking the `Show Code` button on
 
 ## Next Steps
 
-👉 Jump to [Tutorial](https://refine.dev/docs/tutorial/introduction/index/) to continue your work and turn the example into a full-blown CRUD application.
+👉 Jump to [Tutorial](/core/tutorial/essentials/intro) to continue your work and turn the example into a full-blown CRUD application.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 
