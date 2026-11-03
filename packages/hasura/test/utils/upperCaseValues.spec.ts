@@ -21,4 +21,20 @@ describe("upperCaseValues", () => {
 
     expect(upperCaseValues(input)).toEqual(expectedOutput);
   });
+
+  it("should convert string values inside nested objects to upper case", () => {
+    const input = {
+      category: {
+        title: "asc",
+      },
+    };
+
+    const expectedOutput = {
+      category: {
+        title: "ASC",
+      },
+    };
+
+    expect(upperCaseValues(input)).toEqual(expectedOutput);
+  });
 });

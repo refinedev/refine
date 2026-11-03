@@ -1,11 +1,36 @@
 import gql from "graphql-tag";
 import type { DocumentNode } from "graphql";
+import { GraphQLClient } from "graphql-request";
 import dataProvider from "../../src/index";
 import { createClient } from "../gqlClient";
 import "./index.mock";
 
 // import nock from "nock";
 // nock.recorder.rec();
+
+describe("nested sorting", () => {
+  it("sends nested order by with graphql-default naming convention", async () => {
+    const client = new GraphQLClient("https://example.com/graphql");
+    const request = vi.spyOn(client, "request").mockResolvedValue({
+      posts: [],
+      postsAggregate: { aggregate: { count: 0 } },
+    });
+
+    await dataProvider(client, {
+      namingConvention: "graphql-default",
+    }).getList({
+      resource: "posts",
+      sorters: [{ field: "category.title", order: "asc" }],
+    });
+
+    expect(request).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        orderBy: { category: { title: "ASC" } },
+      }),
+    );
+  });
+});
 
 describe("with meta.fields", () => {
   describe.each(["hasura-default", "graphql-default"] as const)(
