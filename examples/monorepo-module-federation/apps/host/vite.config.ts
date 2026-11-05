@@ -1,4 +1,4 @@
-import federation from "@originjs/vite-plugin-federation";
+import { federation } from "@module-federation/vite";
 import react from "@vitejs/plugin-react";
 import * as dns from "dns";
 import { defineConfig } from "vite";
@@ -12,26 +12,20 @@ export default defineConfig({
     react(),
     federation({
       name: "host",
-      remotes: [
-        {
-          blog_posts: {
-            external: "http://localhost:4001/assets/blog_posts.js",
-            from: "vite",
-            externalType: "url",
-          },
+      // Static remote: its URL is known at build time.
+      // The `categories` remote's URL is only known at runtime, so it is
+      // registered with `registerRemotes()` in src/remotes.ts instead.
+      remotes: {
+        blog_posts: {
+          name: "blog_posts",
+          entry: "http://localhost:4001/assets/blog_posts.js",
+          type: "module",
         },
-        {
-          categories: {
-            external: "Promise.resolve(window.categoriesUrl)",
-            from: "vite",
-            externalType: "promise",
-          },
-        },
-      ],
+      },
       shared: [
         "react",
         "react-dom",
-        "react-router-dom",
+        "react-router",
         "@refinedev/core",
         "@refinedev/antd",
         "antd",
