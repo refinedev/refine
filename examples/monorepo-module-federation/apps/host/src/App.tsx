@@ -25,6 +25,7 @@ import { ColorModeContextProvider } from "./contexts/color-mode";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { loadCategories } from "./remotes";
 import type { ExtendedWindow } from "./types";
 
 const BlogPostList = React.lazy(() => import("blog_posts/BlogPostList"));
@@ -32,10 +33,10 @@ const BlogPostShow = React.lazy(() => import("blog_posts/BlogPostShow"));
 const BlogPostEdit = React.lazy(() => import("blog_posts/BlogPostEdit"));
 const BlogPostCreate = React.lazy(() => import("blog_posts/BlogPostCreate"));
 
-const CategoryList = React.lazy(() => import("categories/CategoryList"));
-const CategoryShow = React.lazy(() => import("categories/CategoryShow"));
-const CategoryEdit = React.lazy(() => import("categories/CategoryEdit"));
-const CategoryCreate = React.lazy(() => import("categories/CategoryCreate"));
+const CategoryList = React.lazy(() => loadCategories("CategoryList"));
+const CategoryShow = React.lazy(() => loadCategories("CategoryShow"));
+const CategoryEdit = React.lazy(() => loadCategories("CategoryEdit"));
+const CategoryCreate = React.lazy(() => loadCategories("CategoryCreate"));
 
 declare let window: ExtendedWindow;
 
