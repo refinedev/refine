@@ -34,6 +34,78 @@ const routerProvider = {
 };
 
 describe("useTable Hook", () => {
+  it("marks empty results produced by onSearch", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+          onSearch: () => [
+            { field: "title", operator: "contains", value: "missing" },
+          ],
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    await act(async () => {
+      await result.current.searchFormProps.onFinish?.({});
+    });
+
+    await waitFor(() => {
+      expect(result.current.emptyState?.reason).toBe("no-search-results");
+    });
+  });
+
+  it("supports a custom context-aware empty state", async () => {
+    let emptyReason: string | undefined;
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+          emptyState: ({ reason }) => {
+            emptyReason = reason;
+            return "custom empty state";
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    expect(emptyReason).toBe("no-data");
+    expect(result.current.tableProps.locale?.emptyText).toBe(
+      "custom empty state",
+    );
+  });
+
   it("default", async () => {
     const { result } = renderHook(() => useTable(), {
       wrapper: TestWrapper({

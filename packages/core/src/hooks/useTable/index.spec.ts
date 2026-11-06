@@ -27,6 +27,101 @@ const routerProvider = mockRouterProvider({
 });
 
 describe("useTable Hook", () => {
+  it("exposes a context-aware empty state with a safe filter reset", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+          filters: {
+            initial: [
+              {
+                field: "title",
+                operator: "contains",
+                value: "missing",
+              },
+            ],
+            permanent: [
+              {
+                field: "status",
+                operator: "eq",
+                value: "published",
+              },
+            ],
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    expect(result.current.emptyState?.reason).toBe("no-filter-results");
+    expect(typeof result.current.emptyState?.resetFilters).toBe("function");
+
+    act(() => {
+      result.current.emptyState?.resetFilters();
+    });
+
+    await waitFor(() => {
+      expect(result.current.filters).toEqual([
+        {
+          field: "status",
+          operator: "eq",
+          value: "published",
+        },
+      ]);
+    });
+    expect(result.current.emptyState?.reason).toBe("no-filter-results");
+  });
+
+  it("uses explicit search-filter provenance for empty search results", async () => {
+    const searchFilter: CrudFilter = {
+      field: "title",
+      operator: "contains",
+      value: "missing",
+    };
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+          filters: { initial: [searchFilter] },
+          searchFilters: [searchFilter],
+          searchActive: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    expect(result.current.emptyState?.reason).toBe("no-search-results");
+  });
+
   it("default", async () => {
     const { result } = renderHook(() => useTable(), {
       wrapper: TestWrapper({

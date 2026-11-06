@@ -10,6 +10,84 @@ import { posts } from "@test/dataMocks";
 import * as core from "@refinedev/core";
 
 describe("useDataGrid Hook", () => {
+  it("supports an optional custom empty-state overlay", async () => {
+    let emptyReason: string | undefined;
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          emptyState: ({ reason }) => {
+            emptyReason = reason;
+            return "custom empty state";
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    expect(emptyReason).toBeUndefined();
+    expect(result.current.dataGridProps.slots?.noRowsOverlay).toBeDefined();
+    expect(result.current.dataGridProps.slots?.noResultsOverlay).toBeDefined();
+  });
+
+  it("marks empty results produced by search", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          onSearch: ({ title }: { title: string }) =>
+            title
+              ? [{ field: "title", operator: "contains", value: title }]
+              : [],
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBe(true);
+    });
+
+    await act(async () => {
+      await result.current.search({ title: "missing" });
+    });
+
+    await waitFor(() => {
+      expect(result.current.emptyState?.reason).toBe("no-search-results");
+    });
+
+    await act(async () => {
+      await result.current.search({ title: "" });
+    });
+
+    await waitFor(() => {
+      expect(result.current.emptyState?.reason).toBe("no-data");
+    });
+  });
+
   it("controlled filtering with 'onSubmit' and 'onSearch'", async () => {
     type SearchVariables = { title: string; status: string };
 

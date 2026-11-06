@@ -1,4 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
+import type { BaseRecord, HttpError } from "@refinedev/core";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -21,6 +23,87 @@ const routerProvider = {
 };
 
 describe("useSimpleList Hook", () => {
+  it("tracks search-result and cleared-search states", async () => {
+    const { result } = renderHook(
+      () =>
+        useSimpleList<BaseRecord, HttpError, { title: string }>({
+          resource: "posts",
+          onSearch: ({ title }) =>
+            title
+              ? [{ field: "title", operator: "contains", value: title }]
+              : [],
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBe(true);
+    });
+
+    await act(async () => {
+      await result.current.searchFormProps.onFinish?.({ title: "missing" });
+    });
+
+    await waitFor(() => {
+      expect(result.current.emptyState?.reason).toBe("no-search-results");
+    });
+
+    await act(async () => {
+      await result.current.searchFormProps.onFinish?.({ title: "" });
+    });
+
+    await waitFor(() => {
+      expect(result.current.emptyState?.reason).toBe("no-data");
+    });
+  });
+
+  it("supports a custom context-aware empty state", async () => {
+    let emptyReason: string | undefined;
+
+    const { result } = renderHook(
+      () =>
+        useSimpleList({
+          resource: "posts",
+          emptyState: ({ reason }) => {
+            emptyReason = reason;
+            return "custom empty state";
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBe(true);
+    });
+
+    expect(emptyReason).toBe("no-data");
+    expect(result.current.listProps.locale?.emptyText).toBe(
+      "custom empty state",
+    );
+  });
+
   it("default", async () => {
     const { result } = renderHook(() => useSimpleList(), {
       wrapper: TestWrapper({

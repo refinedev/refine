@@ -12,8 +12,10 @@ import {
   useLiveMode,
   type BaseRecord,
   type CrudFilters,
+  type EmptyStateRenderer,
   type HttpError,
   useTable as useTableCore,
+  getEmptyState,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableCoreReturnType,
   useSyncWithLocation,
@@ -27,8 +29,12 @@ import { PaginationLink } from "./paginationLink";
 import type { FilterValue, SorterResult } from "../../../definitions/table";
 
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
-  useTablePropsCore<TQueryFnData, TError, TData> & {
+  Omit<
+    useTablePropsCore<TQueryFnData, TError, TData>,
+    "searchFilters" | "searchActive"
+  > & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    emptyState?: EmptyStateRenderer;
   };
 
 export type useTableReturnType<
@@ -61,6 +67,7 @@ export const useTable = <
   TData extends BaseRecord = TQueryFnData,
 >({
   onSearch,
+  emptyState,
   pagination: paginationFromProp,
   filters: filtersFromProp,
   sorters: sortersFromProp,
@@ -80,6 +87,9 @@ export const useTable = <
   TSearchVariables,
   TData
 > = {}): useTableReturnType<TData, TError, TSearchVariables> => {
+  const [searchFilters, setSearchFilters] = React.useState<CrudFilters>([]);
+  const [searchActive, setSearchActive] = React.useState(false);
+
   const {
     tableQuery,
     currentPage,
@@ -94,6 +104,7 @@ export const useTable = <
     pageCount,
     overtime,
     result,
+    emptyState: emptyStateContext,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: paginationFromProp,
     filters: filtersFromProp,
@@ -108,6 +119,8 @@ export const useTable = <
     liveParams,
     meta,
     dataProviderName,
+    searchFilters,
+    searchActive,
   });
   const { syncWithLocation: defaultSyncWithLocation } = useSyncWithLocation();
   const shouldSyncWithLocation = syncWithLocation ?? defaultSyncWithLocation;
@@ -123,6 +136,34 @@ export const useTable = <
   const preferredInitialFilters = filtersFromProp?.initial;
 
   const { data, isFetched, isLoading } = tableQuery;
+  const clientEmptyState =
+    filtersFromProp?.mode === "off"
+      ? getEmptyState({
+          data: [],
+          total: data?.total,
+          filters: [...(filtersFromProp?.permanent ?? []), ...filters],
+          searchFilters,
+          searchActive,
+          filterOriginUnknown:
+            isPaginationEnabled &&
+            paginationFromProp?.mode !== "client" &&
+            paginationFromProp?.mode !== "off",
+          currentPage,
+          isLoading,
+          isFetching: tableQuery.isFetching,
+          isError: tableQuery.isError,
+          clientFiltered: true,
+        })
+      : undefined;
+  const resolvedEmptyState =
+    filtersFromProp?.mode === "off"
+      ? clientEmptyState
+        ? {
+            ...clientEmptyState,
+            resetFilters: () => setFilters([], "replace"),
+          }
+        : undefined
+      : emptyStateContext;
 
   React.useEffect(() => {
     if (shouldSyncWithLocation) {
@@ -181,6 +222,8 @@ export const useTable = <
   const onFinish = async (value: TSearchVariables) => {
     if (onSearch) {
       const searchFilters = await onSearch(value);
+      setSearchFilters(searchFilters);
+      setSearchActive(searchFilters.length > 0);
       setFilters(searchFilters);
 
       if (isPaginationEnabled) {
@@ -249,6 +292,18 @@ export const useTable = <
     tableProps: {
       dataSource: data?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
+      ...(emptyState !== undefined && {
+        locale: {
+          emptyText:
+            tableQuery.isError
+              ? null
+              : resolvedEmptyState === undefined
+                ? undefined
+                : typeof emptyState === "function"
+                  ? emptyState(resolvedEmptyState)
+                  : emptyState,
+        },
+      }),
       onChange,
       pagination: antdPagination(),
       scroll: { x: true },

@@ -6,6 +6,7 @@ import {
   type CrudFilter,
   type CrudFilters,
   type CrudSort,
+  type EmptyStateRenderer,
   type HttpError,
   type Pagination,
   type Prettify,
@@ -13,6 +14,7 @@ import {
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
+  getEmptyState,
 } from "@refinedev/core";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -59,6 +61,7 @@ type DataGridPropsType = Required<
     | "filterModel"
     | "filterDebounceMs"
     | "processRowUpdate"
+    | "slots"
   >;
 
 export type UseDataGridProps<
@@ -68,9 +71,11 @@ export type UseDataGridProps<
   TData extends BaseRecord,
 > = Omit<
   useTablePropsCore<TQueryFnData, TError, TData>,
-  "pagination" | "filters"
+  "pagination" | "filters" | "searchFilters" | "searchActive"
 > & {
   onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+  emptyState?: EmptyStateRenderer;
+  slots?: DataGridProps["slots"];
   pagination?: Prettify<
     Omit<Pagination, "pageSize"> & {
       /**
@@ -150,6 +155,8 @@ export function useDataGrid<
   overtimeOptions,
   editable = false,
   updateMutationOptions,
+  emptyState,
+  slots,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -159,6 +166,8 @@ export function useDataGrid<
   const liveMode = useLiveMode(liveModeFromProp);
 
   const columnsTypes = useRef<Record<string, string>>({});
+  const [searchFilters, setSearchFilters] = useState<CrudFilters>([]);
+  const [searchActive, setSearchActive] = useState(false);
   // Debounce server-side filter fetches so UI input stays responsive.
   const filterDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -178,6 +187,7 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     result,
+    emptyState: emptyStateContext,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: {
       ...pagination,
@@ -196,6 +206,8 @@ export function useDataGrid<
     meta,
     dataProviderName,
     overtimeOptions,
+    searchFilters,
+    searchActive,
   });
 
   const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
@@ -276,11 +288,50 @@ export function useDataGrid<
   const search = async (value: TSearchVariables) => {
     if (onSearchProp) {
       const searchFilters = await onSearchProp(value);
+      setSearchFilters(searchFilters);
+      setSearchActive(searchFilters.length > 0);
       clearFilterDebounce();
       setMuiCrudFilters(searchFilters);
       applyFilters(searchFilters);
     }
   };
+
+  const clientEmptyStateFromFilters =
+    filtersFromProp?.mode === "off"
+      ? getEmptyState({
+          data: [],
+          total: data?.total,
+          filters: [...preferredPermanentFilters, ...filters],
+          searchFilters,
+          searchActive,
+          filterOriginUnknown:
+            pagination?.mode !== "client" && pagination?.mode !== "off",
+          currentPage,
+          isLoading,
+          isFetching: tableQuery.isFetching,
+          isError: tableQuery.isError,
+          clientFiltered: true,
+        })
+      : emptyStateContext;
+  const clientEmptyState = clientEmptyStateFromFilters
+    ? {
+        ...clientEmptyStateFromFilters,
+        resetFilters: () => setFilters([], "replace"),
+      }
+    : undefined;
+
+  const EmptyOverlay =
+    emptyState === undefined
+      ? undefined
+      : () => (
+          <div>
+            {clientEmptyState === undefined
+              ? null
+              : typeof emptyState === "function"
+                ? emptyState(clientEmptyState)
+                : emptyState}
+          </div>
+        );
 
   const dataGridPaginationValues = (): Pick<
     DataGridProps,
@@ -379,6 +430,13 @@ export function useDataGrid<
         }
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
+      ...(emptyState !== undefined && {
+        slots: {
+          noRowsOverlay: EmptyOverlay,
+          noResultsOverlay: EmptyOverlay,
+          ...slots,
+        },
+      }),
     },
     currentPage,
     setCurrentPage,
@@ -393,5 +451,8 @@ export function useDataGrid<
     createLinkForSyncWithLocation,
     overtime,
     result,
+    emptyState: clientEmptyState,
+    searchFilters,
+    searchActive,
   };
 }

@@ -4,7 +4,9 @@ import {
   type BaseRecord,
   type CrudFilter,
   type CrudSorting,
+  type EmptyStateRenderContext,
   type HttpError,
+  getEmptyState,
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
@@ -31,6 +33,7 @@ export type UseTableReturnType<
 > = {
   reactTable: Table<TData>;
   refineCore: useTableReturnTypeCore<TData, TError>;
+  emptyState: EmptyStateRenderContext | undefined;
 };
 
 export type UseTableProps<
@@ -119,6 +122,31 @@ export function useTable<
   const { pagination, sorting, columnFilters } = state;
 
   const { pageIndex, pageSize } = pagination ?? {};
+  const emptyStateContext = getEmptyState({
+    data: reactTableResult.getFilteredRowModel().rows,
+    total: data?.total,
+    filters: [
+      ...(refineCoreProps.filters?.permanent ?? []),
+      ...filtersCore,
+    ],
+    searchFilters: useTableResult.searchFilters,
+    searchActive: useTableResult.searchActive,
+    filterOriginUnknown:
+      !isServerSideFilteringEnabled &&
+      refineCoreProps.pagination?.mode !== "client" &&
+      refineCoreProps.pagination?.mode !== "off",
+    currentPage,
+    isLoading: useTableResult.tableQuery.isLoading,
+    isFetching: useTableResult.tableQuery.isFetching,
+    isError: useTableResult.tableQuery.isError,
+    clientFiltered: !isServerSideFilteringEnabled,
+  });
+  const emptyState = emptyStateContext
+    ? {
+        ...emptyStateContext,
+        resetFilters: () => setFilters([], "replace"),
+      }
+    : undefined;
 
   useEffect(() => {
     if (pageIndex !== undefined) {
@@ -178,5 +206,6 @@ export function useTable<
   return {
     reactTable: reactTableResult,
     refineCore: useTableResult,
+    emptyState,
   };
 }

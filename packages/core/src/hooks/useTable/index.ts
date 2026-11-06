@@ -35,6 +35,11 @@ import type {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
+import { getEmptyState } from "./empty-state";
+import type {
+  EmptyStateContext,
+  EmptyStateRenderContext,
+} from "./empty-state";
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { BaseListProps } from "../data/useList";
@@ -100,6 +105,15 @@ export type useTableProps<TQueryFnData, TError, TData> = {
     mode?: "server" | "off";
   };
   /**
+   * Search filters produced by an explicit search action. Pass these filters
+   * separately so an empty result can be distinguished from ordinary filters.
+   */
+  searchFilters?: CrudFilter[];
+  /**
+   * Whether a search has been submitted, including when it produced no filters.
+   */
+  searchActive?: boolean;
+  /**
    * Sortings, filters, page index and records shown per page are tracked by browser history
    * @default Value set in [Refine](/docs/api-reference/core/components/refine-config/#syncwithlocation). If a custom resource is given, it will be `false`
    */
@@ -160,6 +174,9 @@ export type useTableReturnType<
     total: number | undefined;
     [key: string]: any;
   };
+  emptyState: EmptyStateRenderContext | undefined;
+  searchFilters: CrudFilter[];
+  searchActive: boolean;
 } & UseLoadingOvertimeReturnType;
 
 /**
@@ -186,6 +203,8 @@ export function useTable<
 >({
   pagination,
   filters: filtersFromProp,
+  searchFilters = [],
+  searchActive = false,
   sorters: sortersFromProp,
   syncWithLocation: syncWithLocationProp,
   resource: resourceFromProp,
@@ -420,6 +439,21 @@ export function useTable<
     [preferredPermanentSorters],
   );
 
+  const emptyStateContext = getEmptyState({
+    data: queryResult.query.data?.data,
+    total: queryResult.query.data?.total,
+    filters: unionFilters(preferredPermanentFilters, filters),
+    searchFilters,
+    searchActive,
+    filterOriginUnknown:
+      (syncWithLocation && parsedFilters.length > 0) ||
+      (!isServerSideFilteringEnabled && filters.length > 0),
+    currentPage,
+    isLoading: queryResult.query.isLoading,
+    isFetching: queryResult.query.isFetching,
+    isError: queryResult.query.isError,
+  });
+
   return {
     tableQuery: queryResult.query,
     sorters,
@@ -440,5 +474,22 @@ export function useTable<
       data: queryResult.result?.data || EMPTY_ARRAY,
       total: queryResult.result?.total,
     },
+    emptyState: emptyStateContext
+      ? {
+          ...emptyStateContext,
+          resetFilters: () => setFiltersFn([], "replace"),
+        }
+      : undefined,
+    searchFilters,
+    searchActive,
   };
 }
+
+export { getEmptyState } from "./empty-state";
+export type {
+  EmptyStateContext,
+  EmptyStateRenderContext,
+  EmptyStateRenderer,
+  EmptyStateReason,
+  GetEmptyStateOptions,
+} from "./empty-state";
