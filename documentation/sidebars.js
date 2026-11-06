@@ -821,6 +821,7 @@ module.exports = {
                 "ui-integrations/ant-design/components/breadcrumb/index",
                 "ui-integrations/ant-design/components/filter-dropdown/index",
                 "ui-integrations/ant-design/components/auto-save-indicator/index",
+                "ui-integrations/ant-design/components/empty/index",
                 "ui-integrations/ant-design/components/inferencer/index",
                 // "ui-integrations/ant-design/components/custom-inputs/index", // This should be included in the guide
                 {
@@ -971,6 +972,7 @@ module.exports = {
                 "ui-integrations/material-ui/components/auth-page/index",
                 "ui-integrations/material-ui/components/breadcrumb/index",
                 "ui-integrations/material-ui/components/auto-save-indicator/index",
+                "ui-integrations/material-ui/components/empty/index",
                 "ui-integrations/material-ui/components/inferencer/index",
                 {
                   type: "category",
@@ -1117,6 +1119,7 @@ module.exports = {
                 "ui-integrations/chakra-ui/components/auth-page/index",
                 "ui-integrations/chakra-ui/components/breadcrumb/index",
                 "ui-integrations/chakra-ui/components/auto-save-indicator/index",
+                "ui-integrations/chakra-ui/components/empty/index",
                 "ui-integrations/chakra-ui/components/inferencer/index",
                 {
                   type: "category",
@@ -1230,6 +1233,7 @@ module.exports = {
                 "ui-integrations/mantine/components/auth-page/index",
                 "ui-integrations/mantine/components/breadcrumb/index",
                 "ui-integrations/mantine/components/auto-save-indicator/index",
+                "ui-integrations/mantine/components/empty/index",
                 "ui-integrations/mantine/components/inferencer/index",
                 {
                   type: "category",
