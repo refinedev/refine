@@ -1,6 +1,11 @@
 "use client";
 
-import type { HttpError, BaseRecord } from "@refinedev/core";
+import type {
+  HttpError,
+  BaseRecord,
+  EmptyStateRenderContext,
+  EmptyStateRenderer,
+} from "@refinedev/core";
 import type { UseTableReturnType } from "@refinedev/react-table";
 import type { Column } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
@@ -20,10 +25,12 @@ import { cn } from "@/lib/utils";
 
 type DataTableProps<TData extends BaseRecord> = {
   table: UseTableReturnType<TData, HttpError>;
+  emptyState?: EmptyStateRenderer;
 };
 
 export function DataTable<TData extends BaseRecord>({
   table,
+  emptyState,
 }: DataTableProps<TData>) {
   const {
     reactTable: { getHeaderGroups, getRowModel, getAllColumns },
@@ -39,7 +46,9 @@ export function DataTable<TData extends BaseRecord>({
 
   const columns = getAllColumns();
   const leafColumns = table.reactTable.getAllLeafColumns();
-  const isLoading = tableQuery.isLoading;
+  const isLoading =
+    tableQuery.isLoading ||
+    (tableQuery.isFetching && getRowModel().rows.length === 0);
 
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
@@ -190,10 +199,22 @@ export function DataTable<TData extends BaseRecord>({
                 );
               })
             ) : (
-              <DataTableNoData
-                isOverflowing={isOverflowing}
-                columnsLength={columns.length}
-              />
+              tableQuery.isError ? null : (
+                <DataTableNoData
+                  isOverflowing={isOverflowing}
+                  columnsLength={columns.length}
+                  emptyState={
+                    table.emptyState ?? {
+                      reason: "unknown",
+                      filters: [],
+                      searchFilters: [],
+                      resetFilters: () =>
+                        table.refineCore.setFilters([], "replace"),
+                    }
+                  }
+                  renderEmptyState={emptyState}
+                />
+              )
             )}
           </TableBody>
         </Table>
@@ -215,9 +236,13 @@ export function DataTable<TData extends BaseRecord>({
 function DataTableNoData({
   isOverflowing,
   columnsLength,
+  emptyState,
+  renderEmptyState,
 }: {
   isOverflowing: { horizontal: boolean; vertical: boolean };
   columnsLength: number;
+  emptyState: EmptyStateRenderContext;
+  renderEmptyState?: EmptyStateRenderer;
 }) {
   return (
     <TableRow className="hover:bg-transparent">
@@ -246,12 +271,22 @@ function DataTableNoData({
             minWidth: "300px",
           }}
         >
-          <div className={cn("text-lg", "font-semibold", "text-foreground")}>
-            No data to display
-          </div>
-          <div className={cn("text-sm", "text-muted-foreground")}>
-            This table is empty for the time being.
-          </div>
+          {renderEmptyState !== undefined ? (
+            typeof renderEmptyState === "function" ? (
+              renderEmptyState(emptyState)
+            ) : (
+              renderEmptyState
+            )
+          ) : (
+            <>
+              <div className={cn("text-lg", "font-semibold", "text-foreground")}>
+                No data to display
+              </div>
+              <div className={cn("text-sm", "text-muted-foreground")}>
+                This table is empty for the time being.
+              </div>
+            </>
+          )}
         </div>
       </TableCell>
     </TableRow>

@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { TestWrapper } from "../../test";
+import { MockJSONServer, TestWrapper } from "../../test";
 import { useTable } from "./index";
 
 type Post = {
@@ -27,6 +27,34 @@ const columns: ColumnDef<Post>[] = [
 ];
 
 describe("useTable Hook", () => {
+  it("exposes the empty-state context for its filtered row model", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          columns,
+          refineCoreProps: { resource: "posts" },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => Promise.resolve({ data: [], total: 0 }),
+            },
+          },
+          routerInitialEntries: ["/posts"],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.refineCore.tableQuery.isSuccess).toBe(true);
+    });
+
+    expect(result.current.emptyState?.reason).toBe("no-data");
+    expect(typeof result.current.emptyState?.resetFilters).toBe("function");
+  });
+
   it("It should work successfully with no properties", async () => {
     const { result } = renderHook(
       () => useTable({ columns, refineCoreProps: { resource: "posts" } }),

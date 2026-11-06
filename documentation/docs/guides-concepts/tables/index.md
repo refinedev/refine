@@ -160,6 +160,100 @@ For example we can fetch product with the name that contains the search value.
 
 </Tabs>
 
+## Context-aware empty states
+
+The core `useTable` hook returns `emptyState` when a successful query has no visible rows. Its `reason` is one of:
+
+- `no-data`: the first page of an unfiltered query returned no records and the data provider reported a total of `0`.
+- `no-search-results`: the filters explicitly identified as search filters are the only active filters and returned no records.
+- `no-filter-results`: active filters returned no records.
+- `unknown`: the result cannot be attributed safely, for example when search and ordinary filters are mixed, a URL-restored filter has no known origin, the current page is stale, or the data provider did not return a total.
+
+The hook does not make an extra request to check for unfiltered records. A total only describes the query that was sent to the data provider; if the result is filtered or its origin is uncertain, Refine avoids claiming that the whole resource is empty.
+
+### Customize an Ant Design empty state
+
+Pass the optional `emptyState` renderer to Ant Design's `useTable` or `useSimpleList`. The renderer receives the reason and a `resetFilters` action. Resetting filters preserves permanent filters. Search clearing is application-specific, so wire it to your own search form or state.
+
+```tsx
+import { Button, Empty, Form, Input, Table } from "antd";
+import { useTable } from "@refinedev/antd";
+import type { HttpError } from "@refinedev/core";
+
+type Post = {
+  id: number;
+  title: string;
+};
+
+export const PostList = () => {
+  const { tableProps, searchFormProps } = useTable<
+    Post,
+    HttpError,
+    { title: string }
+  >({
+    resource: "posts",
+    onSearch: ({ title }) => [
+      { field: "title", operator: "contains", value: title },
+    ],
+    emptyState: ({ reason, resetFilters }) => {
+      if (reason === "no-filter-results") {
+        return (
+          <Empty description="No posts match these filters">
+            <Button onClick={resetFilters}>Reset filters</Button>
+          </Empty>
+        );
+      }
+
+      if (reason === "no-search-results") {
+        return <Empty description="No posts match your search" />;
+      }
+
+      if (reason === "no-data") {
+        return <Empty description="There are no posts yet" />;
+      }
+
+      return <Empty description="No posts to display" />;
+    },
+  });
+
+  return (
+    <>
+      <Form {...searchFormProps}>
+        <Form.Item name="title">
+          <Input.Search placeholder="Search post titles" />
+        </Form.Item>
+      </Form>
+      <Table
+        {...tableProps}
+        rowKey="id"
+        columns={[{ title: "Title", dataIndex: "title" }]}
+      />
+    </>
+  );
+};
+```
+
+The Ant Design and MUI table hooks identify search filters returned by their `onSearch` callback. For a headless core `useTable` consumer, pass the current search provenance explicitly:
+
+```tsx
+const table = useTable({
+  resource: "posts",
+  filters: { initial: activeFilters },
+  searchFilters: submittedSearchFilters,
+  searchActive: hasSubmittedSearch,
+});
+```
+
+Keep `searchFilters` synchronized with the filters submitted to the query. If the search source is not known (for example, filters restored from a shared URL), leave it unidentified; the empty state will be `unknown` rather than guessing from field names or operators.
+
+### Other table integrations
+
+- MUI `useDataGrid` accepts the same optional `emptyState` renderer and installs it as the grid's no-rows and no-filtered-results overlays. Existing `slots` take precedence.
+- `@refinedev/react-table` returns an `emptyState` value. For client-side filtering, it classifies the TanStack filtered row model; render that context in the table body or use the Refine UI scaffold.
+- The Refine UI `DataTable` preserves its generic message unless you pass an `emptyState` React node or renderer; a renderer receives the classified reason and reset action.
+
+Creating a record and clearing a search are not automatic: not every resource supports creation, and only the application knows how its search form should be reset. Add those buttons or links in your renderer when they are appropriate. The renderer can use `resetFilters` for filter results; permanent filters are retained.
+
 ## Integrating with Routers
 
 ### Resource <RouterBadge id="guides-concepts/routing/#relationship-between-resources-and-routes-"/>

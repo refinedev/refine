@@ -1,9 +1,10 @@
-import { Children, createElement, Fragment } from "react";
+import { Children, createElement, Fragment, useState } from "react";
 import { type ListProps, type FormProps, Form, Grid } from "antd";
 
 import {
   type BaseRecord,
   type CrudFilters,
+  type EmptyStateRenderer,
   type HttpError,
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
@@ -14,8 +15,12 @@ import { PaginationLink } from "@hooks/table/useTable/paginationLink";
 import type { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TQueryFnData, TError, TSearchVariables, TData> =
-  useTablePropsCore<TQueryFnData, TError, TData> & {
+  Omit<
+    useTablePropsCore<TQueryFnData, TError, TData>,
+    "searchFilters" | "searchActive"
+  > & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    emptyState?: EmptyStateRenderer;
   };
 
 export type useSimpleListReturnType<
@@ -53,6 +58,7 @@ export const useSimpleList = <
   filters: filtersFromProp,
   sorters: sortersFromProp,
   onSearch,
+  emptyState,
   queryOptions,
   syncWithLocation,
   successNotification,
@@ -68,6 +74,9 @@ export const useSimpleList = <
   TSearchVariables,
   TData
 > = {}): useSimpleListReturnType<TData, TSearchVariables> => {
+  const [searchFilters, setSearchFilters] = useState<CrudFilters>([]);
+  const [searchActive, setSearchActive] = useState(false);
+
   const {
     sorters,
     filters,
@@ -82,6 +91,7 @@ export const useSimpleList = <
     tableQuery,
     overtime,
     result,
+    emptyState: emptyStateContext,
   } = useTableCore({
     resource,
     pagination: paginationFromProp,
@@ -96,6 +106,8 @@ export const useSimpleList = <
     meta,
     syncWithLocation,
     dataProviderName,
+    searchFilters,
+    searchActive,
   });
 
   const isPaginationEnabled = paginationFromProp?.mode !== "off";
@@ -118,6 +130,8 @@ export const useSimpleList = <
   const onFinish = async (values: TSearchVariables) => {
     if (onSearch) {
       const searchFilters = await onSearch(values);
+      setSearchFilters(searchFilters);
+      setSearchActive(searchFilters.length > 0);
       if (isPaginationEnabled) {
         setCurrentPage?.(1);
       }
@@ -185,6 +199,18 @@ export const useSimpleList = <
     listProps: {
       dataSource: data?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
+      ...(emptyState !== undefined && {
+        locale: {
+          emptyText:
+            tableQuery.isError
+              ? null
+              : emptyStateContext === undefined
+                ? undefined
+                : typeof emptyState === "function"
+                  ? emptyState(emptyStateContext)
+                  : emptyState,
+        },
+      }),
       pagination: antdPagination(),
     },
     query: tableQuery,
@@ -197,6 +223,9 @@ export const useSimpleList = <
     pageSize,
     setPageSize,
     pageCount,
+    emptyState: emptyStateContext,
+    searchFilters,
+    searchActive,
     createLinkForSyncWithLocation,
     overtime,
     result,
