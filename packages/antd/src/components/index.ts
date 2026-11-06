@@ -6,6 +6,7 @@ export * from "./themedLayout/types";
 
 export * from "./buttons";
 export * from "./crud";
+export * from "./empty";
 export * from "./fields";
 export * from "./table";
 export * from "./pages";

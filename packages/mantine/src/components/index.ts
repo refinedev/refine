@@ -6,6 +6,8 @@ export * from "./buttons";
 
 export * from "./crud";
 
+export * from "./empty";
+
 export * from "./pages";
 
 export * from "./breadcrumb";
