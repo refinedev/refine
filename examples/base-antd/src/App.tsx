@@ -1,16 +1,9 @@
-import {
-  BaseRecord,
-  DataProvider,
-  GetListParams,
-  GetListResponse,
-  GitHubBanner,
-  Refine,
-} from "@refinedev/core";
+import React from "react";
+import { Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   ThemedLayout,
   ErrorComponent,
-  RefineThemes,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
@@ -23,8 +16,10 @@ import { ConfigProvider, App as AntdApp } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { modernTheme } from "./theme/themeConfig";
+import { CustomHeader } from "./components/CustomHeader";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -32,8 +27,7 @@ const App: React.FC = () => {
   return (
     <DevtoolsProvider>
       <BrowserRouter>
-        <GitHubBanner />
-        <ConfigProvider theme={RefineThemes.Blue}>
+        <ConfigProvider theme={modernTheme}>
           <AntdApp>
             <Refine
               routerProvider={routerProvider}
@@ -59,7 +53,49 @@ const App: React.FC = () => {
               <Routes>
                 <Route
                   element={
-                    <ThemedLayout>
+                    <ThemedLayout
+                      Header={CustomHeader}
+                      Title={({ collapsed }) => (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 10,
+                            padding: "16px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: 22,
+                              height: 22,
+                              borderRadius: 5,
+                              backgroundColor: "#0f172a",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              color: "#ffffff",
+                              fontSize: 12,
+                              fontWeight: 700,
+                              lineHeight: 1,
+                            }}
+                          >
+                            R
+                          </div>
+                          {!collapsed && (
+                            <span
+                              style={{
+                                fontSize: 14,
+                                fontWeight: 600,
+                                color: "#0f172a",
+                                letterSpacing: "-0.01em",
+                              }}
+                            >
+                              Refine Studio
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    >
                       <Outlet />
                     </ThemedLayout>
                   }
