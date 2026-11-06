@@ -17,8 +17,6 @@ export interface EmptyProps {
  * `action` that fit your context.
  *
  * It uses Ant Design's {@link https://ant.design/components/empty `<Empty>`} component.
- *
- * @see {@link https://refine.dev/docs/api-reference/antd/components/empty} for more details.
  */
 export const Empty: React.FC<EmptyProps> = ({
   title,

@@ -17,8 +17,6 @@ export interface EmptyProps {
  * no data to display. It does not detect *why* the data is empty (no records at all, no
  * search results, no results after filtering) - pass the `title`, `description`, and
  * `action` that fit your context.
- *
- * @see {@link https://refine.dev/docs/api-reference/mui/components/empty} for more details.
  */
 export const Empty: React.FC<EmptyProps> = ({
   title,
