@@ -332,13 +332,13 @@ export const useUpdate = <
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
+          // `id` comes from the edit route's params (via `useMeta`) and is not part of the list query keys.
+          const { id: _id, ...listMeta } = preferredMeta;
+
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
             {
-              queryKey: resourceKeys
-                .action("list")
-                .params(preferredMeta ?? {})
-                .get(),
+              queryKey: resourceKeys.action("list").params(listMeta).get(),
             },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
