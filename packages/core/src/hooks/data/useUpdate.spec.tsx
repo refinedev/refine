@@ -857,6 +857,39 @@ describe("useUpdate Hook [with params]", () => {
       await assertList(useManyResult, "title", updatedTitle);
     });
 
+    it("should update list queries when `meta` has the route `id`", async () => {
+      const { result } = renderHook(() => useUpdate(), {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer.default,
+            update: async () => {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  return reject(new Error("Error"));
+                }, 500);
+              });
+            },
+          },
+        }),
+      });
+      const useListResult = renderUseList();
+
+      await assertList(useListResult, "title", initialTitle);
+
+      act(() => {
+        result.current.mutate({
+          resource: "posts",
+          mutationMode: "optimistic",
+          id: "1",
+          values: { title: updatedTitle },
+          // `useForm` passes the edit route's params (e.g. `/posts/edit/1`) in `meta`
+          meta: { id: "1" },
+        });
+      });
+
+      await assertList(useListResult, "title", updatedTitle);
+    });
+
     it("when pass custom mapper function", async () => {
       const { result } = renderHook(() => useUpdate(), {
         wrapper: TestWrapper({
