@@ -122,6 +122,16 @@ describe("auth-chakra-ui", () => {
 
   describe("get identity", () => {
     it("should render getIdentity response on header", () => {
+      cy.intercept("**/photos/**", {
+        statusCode: 200,
+        headers: { "content-type": "image/png" },
+        body: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      });
+      cy.intercept("**/unsplash.com/**", {
+        statusCode: 200,
+        headers: { "content-type": "image/png" },
+        body: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+      });
       login();
       cy.get(".chakra-text").contains(/jane doe/i);
       cy.get(".chakra-avatar__img").should("have.attr", "src");

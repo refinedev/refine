@@ -146,7 +146,7 @@ const App: React.FC = () => {
       id: 1,
       name: "Jane Doe",
       avatar:
-        "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
+        "https://images.unsplash.com/photo-1611405156710-ff6c7841b990?w=640",
     }),
   };
 
