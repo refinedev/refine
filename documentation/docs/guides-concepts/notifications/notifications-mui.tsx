@@ -11,9 +11,11 @@ export default function NotificationMui() {
         "@refinedev/simple-rest": "latest",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
-        "@mui/system": "latest",
+        "@mui/utils": "^7.1.0",
+        "@mui/lab": "^6.0.0-beta.14",
+        "@mui/material": "^6.1.7",
+        "@mui/system": "^6.4.11",
+        "@mui/x-data-grid": "^7.23.5",
         "@refinedev/mui": "latest",
       }}
       startRoute="/"
@@ -69,7 +71,7 @@ export default App;
 
 const HomePageTsxCode = /* jsx */ `
 import React from "react";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import { useNotification } from "@refinedev/core";
 
@@ -85,7 +87,7 @@ export const HomePage = () => {
                 height: "100vh",
             }}
         >
-            <Grid item>
+            <Grid>
                 <Button
                     variant="contained"
                     onClick={() => {
@@ -101,7 +103,7 @@ export const HomePage = () => {
                     Open Notification
                 </Button>
             </Grid>
-            <Grid item>
+            <Grid>
                 <Button
                     variant="outlined"
                     onClick={() => {

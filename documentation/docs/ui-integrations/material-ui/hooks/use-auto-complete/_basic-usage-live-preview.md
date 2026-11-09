@@ -1,5 +1,6 @@
 ```tsx live url=http://localhost:3000 previewHeight=300px
 setInitialRoutes(["/posts/create"]);
+
 // visible-block-start
 import { useAutocomplete } from "@refinedev/mui";
 import { Autocomplete, TextField } from "@mui/material";
@@ -36,13 +37,20 @@ const PostCreate: React.FC = () => {
   );
 };
 // visible-block-end
-setRefineProps({
-  resources: [
-    {
-      name: "posts",
-      create: PostCreate,
-    },
-  ],
-});
-render(<RefineMuiDemo />);
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          create: "posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="posts/create" element={<PostCreate />} />
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```

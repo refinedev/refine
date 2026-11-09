@@ -125,12 +125,22 @@ export const useForm = <
   });
 
   const {
+    control,
     watch,
     setValue,
     getValues,
+    reset,
     handleSubmit: handleSubmitReactHookForm,
     setError,
+    formState: { dirtyFields },
   } = useHookFormResult;
+
+  // Keep query data and sync registered fields as they mount (e.g. Controller), without overriding dirty values.
+  const queryDataRef = React.useRef<TData | undefined>(undefined);
+  // Track which fields have already been synced to avoid repeated setValue calls.
+  const syncedFieldsRef = React.useRef<Set<string>>(new Set());
+  // Track mounted field names so late-registered fields can be detected.
+  const mountedFieldsRef = React.useRef<Set<string>>(new Set());
 
   const useFormCoreResult = useFormCore<
     TQueryFnData,
@@ -195,31 +205,62 @@ export const useForm = <
 
   const { query, onFinish, formLoading, onFinishAutoSave } = useFormCoreResult;
 
-  useEffect(() => {
-    const data = query?.data?.data;
-    if (!data) return;
+  const getMountedFields = () => {
+    const mounted =
+      (
+        control as {
+          _names?: {
+            mount?: Set<string>;
+          };
+        }
+      )._names?.mount ?? new Set<string>();
 
-    /**
-     * get registered fields from react-hook-form
-     */
-    const registeredFields = Object.keys(flattenObjectKeys(getValues()));
+    return new Set(mounted);
+  };
 
-    /**
-     * set values from query result as default values
-     */
-    registeredFields.forEach((path) => {
-      const hasValue = has(data, path);
-      const dataValue = get(data, path);
+  const applyValuesToFields = (
+    fieldNames: Set<string>,
+    data: TData,
+    respectDirty = false,
+  ) => {
+    fieldNames.forEach((path) => {
+      if (syncedFieldsRef.current.has(path)) {
+        return;
+      }
 
-      /**
-       * set value if the path exists in the query result even if the value is null
-       */
-      if (hasValue) {
-        setValue(path as Path<TVariables>, dataValue);
+      if (respectDirty && get(dirtyFields, path)) {
+        syncedFieldsRef.current.add(path);
+        return;
+      }
+
+      syncedFieldsRef.current.add(path);
+
+      if (has(data, path)) {
+        setValue(path as Path<TVariables>, get(data, path));
       }
     });
-  }, [query?.data, setValue, getValues]);
+  };
 
+  // On query data changes (such as navigating back to an edit page),
+  // leverage native reset() to hydrate fields cleanly without dynamic race conditions.
+  useEffect(() => {
+    const data = query?.data?.data;
+    if (!data) {
+      queryDataRef.current = undefined;
+      syncedFieldsRef.current = new Set();
+      mountedFieldsRef.current = new Set();
+      return;
+    }
+
+    queryDataRef.current = data;
+    syncedFieldsRef.current = new Set();
+    mountedFieldsRef.current = getMountedFields();
+
+    // Native reset naturally targets field arrays even if they register late inside a microtask frame.
+    reset(data as unknown as TVariables, { keepDirtyValues: true });
+  }, [query?.data, reset]);
+
+  // Re-sync when new fields register; do not override user edits.
   useEffect(() => {
     const subscription = watch((values: any, { type }: { type?: any }) => {
       if (type === "change") {
@@ -228,6 +269,35 @@ export const useForm = <
     });
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  // Detect late-registered fields (e.g. Controller) and sync once they mount.
+  // Intentionally no deps: RHF mutates the mount set in place and doesn't notify React,
+  // so we check per-render and only apply values when new field names appear.
+  useEffect(() => {
+    const data = queryDataRef.current;
+    if (!data) {
+      return;
+    }
+
+    const mountedFieldNames = getMountedFields();
+    if (!mountedFieldNames.size) {
+      return;
+    }
+
+    let hasNewField = false;
+    mountedFieldNames.forEach((name) => {
+      if (!mountedFieldsRef.current.has(name)) {
+        hasNewField = true;
+      }
+    });
+
+    if (!hasNewField) {
+      return;
+    }
+
+    mountedFieldsRef.current = new Set(mountedFieldNames);
+    applyValuesToFields(mountedFieldNames, data, true);
+  });
 
   const onValuesChange = (changeValues: TVariables) => {
     if (warnWhenUnsavedChanges) {
