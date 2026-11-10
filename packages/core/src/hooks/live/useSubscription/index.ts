@@ -73,5 +73,13 @@ export const useSubscription = ({
         liveProvider?.unsubscribe(subscription);
       }
     };
-  }, [enabled]);
+  }, [
+    enabled,
+    channel,
+    liveProvider,
+    onLiveEvent,
+    JSON.stringify(params),
+    JSON.stringify(types),
+    JSON.stringify(meta),
+  ]);
 };
