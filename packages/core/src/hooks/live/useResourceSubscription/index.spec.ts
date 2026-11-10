@@ -267,11 +267,13 @@ describe("useResourceSubscription Hook", () => {
 
     expect(onSubscribeMock).toHaveBeenCalled();
     expect(onLiveEventMock).toHaveBeenCalledWith(mockCallbackEventPayload);
-    expect(invalidateQueriesMock).toHaveBeenCalledWith({
-      queryKey: ["data", "default", "featured-posts"],
-      type: "active",
-      refetchType: "active",
-      cancelRefetch: false,
-    });
+    expect(invalidateQueriesMock).toHaveBeenCalledWith(
+      {
+        queryKey: ["data", "default", "featured-posts"],
+        type: "active",
+        refetchType: "active",
+      },
+      { cancelRefetch: false },
+    );
   });
 });
