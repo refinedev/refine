@@ -24,6 +24,37 @@ describe("useInvalidate", () => {
     vi.clearAllMocks();
   });
 
+  it.each([undefined, false, true])(
+    "passes cancelRefetch %s as options for every invalidation key",
+    async (cancelRefetch) => {
+      const { result } = renderHook(() => useInvalidate(), {
+        wrapper: TestWrapper({}),
+      });
+      const invalidationOptions =
+        cancelRefetch === undefined ? undefined : { cancelRefetch };
+
+      await result.current({
+        resource: "posts",
+        invalidates: ["all", "list", "many", "resourceAll", "detail"],
+        dataProviderName: "rest",
+        id: "1",
+        invalidationFilters: { type: "active", refetchType: "none" },
+        invalidationOptions,
+      });
+
+      expect(mockInvalidateQueries).toHaveBeenCalledTimes(5);
+      for (const [filters, options] of mockInvalidateQueries.mock.calls) {
+        expect(filters).toEqual({
+          queryKey: expect.any(Array),
+          type: "active",
+          refetchType: "none",
+        });
+        expect(filters).not.toHaveProperty("cancelRefetch");
+        expect(options).toEqual({ cancelRefetch: cancelRefetch ?? false });
+      }
+    },
+  );
+
   it("with empty invalidations array", async () => {
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
@@ -69,6 +100,7 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
   });
 
@@ -88,12 +120,14 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
 
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "one", "1"],
       }),
+      { cancelRefetch: false },
     );
   });
 
@@ -113,21 +147,25 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "one", "1"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "many"],
       }),
+      { cancelRefetch: false },
     );
   });
 
