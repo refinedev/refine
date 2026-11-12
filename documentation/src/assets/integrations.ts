@@ -36,6 +36,7 @@ import {
   ShadCnUI,
   PostgREST,
   Chakrav3,
+  Hibira,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -426,6 +427,20 @@ export const integrations: IntegrationsType = {
         {
           name: "ferdiunal",
           url: "https://github.com/ferdiunal",
+        },
+      ],
+    },
+    {
+      name: "Hibira Live Provider",
+      icon: Hibira,
+      description:
+        "<strong>Hibira</strong> and other <strong>Pusher-compatible</strong> servers for <strong>live/realtime</strong> projects, over pusher-js. Includes a server helper to publish live events.",
+      url: "https://www.npmjs.com/package/@hibira-io/refine",
+      status: "stable",
+      contributors: [
+        {
+          name: "hibira-io",
+          url: "https://github.com/hibira-io/refine",
         },
       ],
     },
