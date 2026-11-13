@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -60,26 +60,31 @@ export const useResourceSubscription = ({
   const dataProviderName =
     meta?.dataProviderName ?? resource?.meta?.dataProviderName;
 
+  // Keep the latest handler in a ref so an inline `onLiveEvent` doesn't
+  // trigger a resubscription on every render.
+  const callbackRef = useRef<((event: LiveEvent) => void) | undefined>(
+    undefined,
+  );
+  callbackRef.current = (event: LiveEvent) => {
+    if (liveMode === "auto") {
+      invalidate({
+        resource: identifier,
+        dataProviderName,
+        invalidates: ["resourceAll"],
+        invalidationFilters: {
+          type: "active",
+          refetchType: "active",
+        },
+        invalidationOptions: { cancelRefetch: false },
+      });
+    }
+
+    onLiveEvent?.(event);
+    onLiveEventContextCallback?.(event);
+  };
+
   useEffect(() => {
     let subscription: any;
-
-    const callback = (event: LiveEvent) => {
-      if (liveMode === "auto") {
-        invalidate({
-          resource: identifier,
-          dataProviderName,
-          invalidates: ["resourceAll"],
-          invalidationFilters: {
-            type: "active",
-            refetchType: "active",
-          },
-          invalidationOptions: { cancelRefetch: false },
-        });
-      }
-
-      onLiveEvent?.(event);
-      onLiveEventContextCallback?.(event);
-    };
 
     if (liveMode && liveMode !== "off" && enabled) {
       subscription = liveProvider?.subscribe({
@@ -89,7 +94,7 @@ export const useResourceSubscription = ({
           ...params,
         },
         types,
-        callback,
+        callback: (event) => callbackRef.current?.(event),
         meta: {
           ...meta,
           dataProviderName,
@@ -102,5 +107,15 @@ export const useResourceSubscription = ({
         liveProvider?.unsubscribe(subscription);
       }
     };
-  }, [enabled]);
+  }, [
+    enabled,
+    liveMode,
+    liveProvider,
+    channel,
+    resource?.name,
+    dataProviderName,
+    JSON.stringify(params),
+    JSON.stringify(types),
+    JSON.stringify(meta),
+  ]);
 };
