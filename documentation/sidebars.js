@@ -517,6 +517,7 @@ module.exports = {
           items: [
             "realtime/hooks/use-publish/index",
             "realtime/hooks/use-subscription/index",
+            "realtime/hooks/use-resource-subscription/index",
           ],
         },
         {
