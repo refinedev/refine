@@ -348,6 +348,7 @@ module.exports = {
             "routing/hooks/use-parsed/index",
             "routing/hooks/use-link/index",
             "routing/hooks/use-get-to-path/index",
+            "routing/hooks/use-to-path/index",
             "routing/hooks/use-navigation/index",
           ],
         },
