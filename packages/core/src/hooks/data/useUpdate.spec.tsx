@@ -857,6 +857,45 @@ describe("useUpdate Hook [with params]", () => {
       await assertList(useManyResult, "title", updatedTitle);
     });
 
+    it("when pass `true` with meta containing id (e.g. from route params)", async () => {
+      const { result } = renderHook(() => useUpdate(), {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer.default,
+            update: async () => {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  return reject(new Error("Error"));
+                }, 500);
+              });
+            },
+          },
+        }),
+      });
+      const useOneResult = renderUseOne();
+      const useListResult = renderUseList();
+      const useManyResult = renderUseMany();
+
+      act(() => {
+        result.current.mutate({
+          resource: "posts",
+          mutationMode: "optimistic",
+          id: "1",
+          values: { title: updatedTitle },
+          meta: { id: "1", foo: "bar" },
+          optimisticUpdateMap: {
+            list: true,
+            detail: true,
+            many: true,
+          },
+        });
+      });
+
+      await assertOne(useOneResult, "title", updatedTitle);
+      await assertList(useListResult, "title", updatedTitle);
+      await assertList(useManyResult, "title", updatedTitle);
+    });
+
     it("when pass custom mapper function", async () => {
       const { result } = renderHook(() => useUpdate(), {
         wrapper: TestWrapper({
@@ -2028,6 +2067,45 @@ describe("useUpdate Hook [with props]", () => {
       act(() => {
         result.current.mutate({
           values: { title: updatedTitle },
+        });
+      });
+
+      await assertOne(useOneResult, "title", updatedTitle);
+      await assertList(useListResult, "title", updatedTitle);
+      await assertList(useManyResult, "title", updatedTitle);
+    });
+
+    it("when pass `true` with meta containing id (e.g. from route params)", async () => {
+      const { result } = renderHook(() => useUpdate(), {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer.default,
+            update: async () => {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  return reject(new Error("Error"));
+                }, 500);
+              });
+            },
+          },
+        }),
+      });
+      const useOneResult = renderUseOne();
+      const useListResult = renderUseList();
+      const useManyResult = renderUseMany();
+
+      act(() => {
+        result.current.mutate({
+          resource: "posts",
+          mutationMode: "optimistic",
+          id: "1",
+          values: { title: updatedTitle },
+          meta: { id: "1", foo: "bar" },
+          optimisticUpdateMap: {
+            list: true,
+            detail: true,
+            many: true,
+          },
         });
       });
 
