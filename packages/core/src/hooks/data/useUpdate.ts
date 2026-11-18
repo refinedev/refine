@@ -257,7 +257,10 @@ export const useUpdate = <
       }
       const updatePromise = new Promise<UpdateResponse<TData>>(
         (resolve, reject) => {
+          let isSettled = false;
           const doMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             dataProvider(
               pickDataProvider(identifier, dataProviderName, resources),
             )
@@ -272,6 +275,8 @@ export const useUpdate = <
           };
 
           const cancelMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             reject({ message: "mutationCancelled" });
           };
 
@@ -335,10 +340,7 @@ export const useUpdate = <
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
             {
-              queryKey: resourceKeys
-                .action("list")
-                .params(preferredMeta ?? {})
-                .get(),
+              queryKey: resourceKeys.action("list").get(),
             },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
@@ -403,11 +405,7 @@ export const useUpdate = <
         if (optimisticUpdateMap.detail) {
           queryClient.setQueriesData(
             {
-              queryKey: resourceKeys
-                .action("one")
-                .id(id)
-                .params(preferredMeta ?? {})
-                .get(),
+              queryKey: resourceKeys.action("one").id(id).get(),
             },
             (previous?: GetOneResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.detail === "function") {

@@ -213,7 +213,10 @@ export const useDelete = <
 
       const deletePromise = new Promise<DeleteOneResponse<TData>>(
         (resolve, reject) => {
+          let isSettled = false;
           const doMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             dataProvider(
               pickDataProvider(identifier, dataProviderName, resources),
             )
@@ -228,6 +231,8 @@ export const useDelete = <
           };
 
           const cancelMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             reject({ message: "mutationCancelled" });
           };
 
@@ -280,10 +285,7 @@ export const useDelete = <
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
           {
-            queryKey: resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(),
+            queryKey: resourceKeys.action("list").get(),
           },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {

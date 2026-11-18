@@ -229,13 +229,18 @@ export const useDeleteMany = <
 
       const updatePromise = new Promise<DeleteManyResponse<TData>>(
         (resolve, reject) => {
+          let isSettled = false;
           const doMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             mutationFn()
               .then((result) => resolve(result))
               .catch((err) => reject(err));
           };
 
           const cancelMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             reject({ message: "mutationCancelled" });
           };
 
@@ -288,10 +293,7 @@ export const useDeleteMany = <
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
           {
-            queryKey: resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(),
+            queryKey: resourceKeys.action("list").get(),
           },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {

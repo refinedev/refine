@@ -23,6 +23,17 @@ const initialState: IUndoableQueue[] = [];
 export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
   switch (action.type) {
     case ActionTypes.ADD: {
+      const existing = state.find((notificationItem: IUndoableQueue) => {
+        return (
+          isEqual(notificationItem.id, action.payload.id) &&
+          notificationItem.resource === action.payload.resource
+        );
+      });
+
+      if (existing) {
+        existing.doMutation?.();
+      }
+
       const newState = state.filter((notificationItem: IUndoableQueue) => {
         return !(
           isEqual(notificationItem.id, action.payload.id) &&

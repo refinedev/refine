@@ -274,13 +274,18 @@ export const useUpdateMany = <
 
       const updatePromise = new Promise<UpdateManyResponse<TData>>(
         (resolve, reject) => {
+          let isSettled = false;
           const doMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             mutationFn()
               .then((result) => resolve(result))
               .catch((err) => reject(err));
           };
 
           const cancelMutation = () => {
+            if (isSettled) return;
+            isSettled = true;
             reject({ message: "mutationCancelled" });
           };
 
@@ -346,10 +351,7 @@ export const useUpdateMany = <
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
             {
-              queryKey: resourceKeys
-                .action("list")
-                .params(preferredMeta ?? {})
-                .get(),
+              queryKey: resourceKeys.action("list").get(),
             },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
@@ -426,11 +428,7 @@ export const useUpdateMany = <
           for (const id of ids) {
             queryClient.setQueriesData(
               {
-                queryKey: resourceKeys
-                  .action("one")
-                  .id(id)
-                  .params(preferredMeta ?? {})
-                  .get(),
+                queryKey: resourceKeys.action("one").id(id).get(),
               },
               (previous?: GetOneResponse<TData> | null) => {
                 if (typeof optimisticUpdateMap.detail === "function") {

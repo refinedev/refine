@@ -86,4 +86,40 @@ describe("Notification Reducer", () => {
       providerProps.notifications[0].seconds - 1000,
     );
   });
+
+  it("should trigger doMutation for existing notification item when ADD is called for the same id and resource", () => {
+    const doMutation = vi.fn();
+    const initialNotification = {
+      id: "1",
+      resource: "posts",
+      seconds: 5000,
+      isRunning: true,
+      doMutation,
+    };
+
+    const { result } = renderHook(() =>
+      React.useReducer(undoableQueueReducer, [initialNotification as any]),
+    );
+    const [, dispatch] = result.current;
+
+    const newDoMutation = vi.fn();
+    act(() => {
+      dispatch({
+        type: "ADD",
+        payload: {
+          id: "1",
+          resource: "posts",
+          seconds: 5000,
+          doMutation: newDoMutation,
+        },
+      });
+    });
+
+    expect(doMutation).toHaveBeenCalledTimes(1);
+    expect(newDoMutation).not.toHaveBeenCalled();
+
+    const [state] = result.current;
+    expect(state).toHaveLength(1);
+    expect(state[0].doMutation).toBe(newDoMutation);
+  });
 });
