@@ -683,6 +683,7 @@ module.exports = {
             "core/hooks/utilities/use-breadcrumb/index",
             "core/hooks/utilities/use-import/index",
             "core/hooks/utilities/use-export/index",
+            "core/hooks/utilities/use-refine-options/index",
             "core/hooks/utilities/buttons/index",
           ],
         },
