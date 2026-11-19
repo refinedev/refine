@@ -82,7 +82,7 @@ export const routerProvider: RouterProvider = {
 
         return undefined;
       },
-      [searchParamsObj, push, replace],
+      [pathname, searchParamsObj, push, replace],
     );
 
     return fn;
