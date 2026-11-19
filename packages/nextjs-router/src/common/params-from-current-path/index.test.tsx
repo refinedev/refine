@@ -30,4 +30,13 @@ describe("paramsFromCurrentPath", () => {
 
     expect(paramsFromCurrentPath(currentPath, matchingRoute)).toEqual({});
   });
+
+  it("handles multiple leading and trailing slashes", () => {
+    const currentPath = "//posts/123//";
+    const matchingRoute = "//posts/:id//";
+
+    expect(paramsFromCurrentPath(currentPath, matchingRoute)).toEqual({
+      id: "123",
+    });
+  });
 });

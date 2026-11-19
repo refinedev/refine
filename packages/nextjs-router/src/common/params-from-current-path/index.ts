@@ -5,8 +5,8 @@ export const paramsFromCurrentPath = (
   const params: Record<string, string> = {};
 
   // remove leading and trailing slashes
-  const sanitizedMatchingRoute = matchingRoute.replace(/^\/|\/$/g, "");
-  const sanitizedPathname = pathname.replace(/^\/|\/$/g, "");
+  const sanitizedMatchingRoute = matchingRoute.replace(/^\/+|\/+$/g, "");
+  const sanitizedPathname = pathname.replace(/^\/+|\/+$/g, "");
 
   const matchingRouteParts = sanitizedMatchingRoute.split("/");
   const pathnameParts = sanitizedPathname.split("/");
