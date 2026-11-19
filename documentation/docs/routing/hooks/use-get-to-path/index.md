@@ -65,3 +65,10 @@ This is the name of the action that you want to navigate to.
 ### meta
 
 This is the meta object that you want to use to compose the URL. It will be merged with the `params` object that is parsed from the URL.
+
+## Related
+
+- [useToPath](/core/docs/routing/hooks/use-to-path/)
+- [useGo](/core/docs/routing/hooks/use-go/)
+- [useParsed](/core/docs/routing/hooks/use-parsed/)
+
