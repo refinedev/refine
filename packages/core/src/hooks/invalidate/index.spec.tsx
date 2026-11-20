@@ -69,6 +69,7 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
   });
 
@@ -88,12 +89,14 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
 
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "one", "1"],
       }),
+      { cancelRefetch: false },
     );
   });
 
@@ -113,21 +116,53 @@ describe("useInvalidate", () => {
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "one", "1"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
+      { cancelRefetch: false },
     );
     expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "many"],
       }),
+      { cancelRefetch: false },
+    );
+  });
+
+  it("with custom invalidationOptions", async () => {
+    const { result } = renderHook(() => useInvalidate(), {
+      wrapper: TestWrapper({}),
+    });
+
+    await result.current({
+      resource: "posts",
+      invalidates: ["list", "detail"],
+      dataProviderName: "rest",
+      id: "1",
+      invalidationOptions: { cancelRefetch: true, throwOnError: true },
+    });
+
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "list"],
+      }),
+      { cancelRefetch: true, throwOnError: true },
+    );
+
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "one", "1"],
+      }),
+      { cancelRefetch: true, throwOnError: true },
     );
   });
 
