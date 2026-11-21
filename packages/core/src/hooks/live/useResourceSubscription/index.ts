@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -60,10 +60,13 @@ export const useResourceSubscription = ({
   const dataProviderName =
     meta?.dataProviderName ?? resource?.meta?.dataProviderName;
 
+  // Keep the latest event handler in a ref so an inline `onLiveEvent`
+  // doesn't force a resubscription on every render. Updating the ref inside
+  // an effect keeps it compatible with concurrent rendering and React 19's
+  // useEffectEvent semantics.
+  const eventHandlerRef = useRef<(event: LiveEvent) => void>(() => {});
   useEffect(() => {
-    let subscription: any;
-
-    const callback = (event: LiveEvent) => {
+    eventHandlerRef.current = (event: LiveEvent) => {
       if (liveMode === "auto") {
         invalidate({
           resource: identifier,
@@ -80,6 +83,10 @@ export const useResourceSubscription = ({
       onLiveEvent?.(event);
       onLiveEventContextCallback?.(event);
     };
+  });
+
+  useEffect(() => {
+    let subscription: any;
 
     if (liveMode && liveMode !== "off" && enabled) {
       subscription = liveProvider?.subscribe({
@@ -89,7 +96,7 @@ export const useResourceSubscription = ({
           ...params,
         },
         types,
-        callback,
+        callback: (event: LiveEvent) => eventHandlerRef.current(event),
         meta: {
           ...meta,
           dataProviderName,
@@ -102,5 +109,21 @@ export const useResourceSubscription = ({
         liveProvider?.unsubscribe(subscription);
       }
     };
-  }, [enabled]);
+    // Serialize the object/array inputs so meaningful value changes trigger
+    // a resubscribe without firing on every render when a caller passes a new
+    // literal with the same contents. `types` is normalized by sorting so a
+    // reorder does not force a resubscribe.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    enabled,
+    liveMode,
+    liveProvider,
+    channel,
+    resource?.name,
+    identifier,
+    dataProviderName,
+    JSON.stringify(params),
+    JSON.stringify([...(types ?? [])].sort()),
+    JSON.stringify(meta),
+  ]);
 };

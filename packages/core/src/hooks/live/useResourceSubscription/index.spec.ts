@@ -274,4 +274,185 @@ describe("useResourceSubscription Hook", () => {
       cancelRefetch: false,
     });
   });
+
+  describe("dependency changes", () => {
+    const resources = [{ name: "posts" }, { name: "comments" }];
+
+    const createLiveProvider = () => {
+      let counter = 0;
+      return {
+        subscribe: vi.fn(() => `subscription-${++counter}`),
+        unsubscribe: vi.fn(),
+        publish: vi.fn(),
+      };
+    };
+
+    it("resubscribes when params.id changes", async () => {
+      const liveProvider = createLiveProvider();
+      const { rerender } = renderHook(
+        ({ id }: { id: string }) =>
+          useResourceSubscription({
+            channel: "resources/posts",
+            resource: "posts",
+            types: ["*"],
+            liveMode: "auto",
+            params: { id, subscriptionType: "useOne" },
+          }),
+        {
+          initialProps: { id: "1" },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      rerender({ id: "2" });
+
+      expect(liveProvider.unsubscribe).toHaveBeenCalledWith("subscription-1");
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(2);
+      expect(liveProvider.subscribe).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          params: expect.objectContaining({ id: "2" }),
+        }),
+      );
+    });
+
+    it("does not resubscribe on a same-value rerender with new object references", async () => {
+      const liveProvider = createLiveProvider();
+      const { rerender } = renderHook(
+        ({ id }: { id: string }) =>
+          useResourceSubscription({
+            channel: "resources/posts",
+            resource: "posts",
+            types: ["created", "updated"],
+            liveMode: "auto",
+            params: { id, subscriptionType: "useOne" },
+            meta: { fields: ["title"] },
+            onLiveEvent: () => undefined,
+          }),
+        {
+          initialProps: { id: "1" },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      rerender({ id: "1" });
+      rerender({ id: "1" });
+
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(1);
+      expect(liveProvider.unsubscribe).not.toHaveBeenCalled();
+    });
+
+    it("does not resubscribe when types is reordered", async () => {
+      const liveProvider = createLiveProvider();
+      const { rerender } = renderHook(
+        ({ types }: { types: ("created" | "updated")[] }) =>
+          useResourceSubscription({
+            channel: "resources/posts",
+            resource: "posts",
+            types,
+            liveMode: "auto",
+            params: { subscriptionType: "useList" },
+          }),
+        {
+          initialProps: { types: ["created", "updated"] },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      rerender({ types: ["updated", "created"] });
+
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(1);
+      expect(liveProvider.unsubscribe).not.toHaveBeenCalled();
+    });
+
+    it("resubscribes when channel and resource change", async () => {
+      const liveProvider = createLiveProvider();
+      const { rerender } = renderHook(
+        ({ resource }: { resource: string }) =>
+          useResourceSubscription({
+            channel: `resources/${resource}`,
+            resource,
+            types: ["*"],
+            liveMode: "auto",
+            params: { subscriptionType: "useList" },
+          }),
+        {
+          initialProps: { resource: "posts" },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      rerender({ resource: "comments" });
+
+      expect(liveProvider.unsubscribe).toHaveBeenCalledWith("subscription-1");
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(2);
+      expect(liveProvider.subscribe).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          channel: "resources/comments",
+          params: expect.objectContaining({ resource: "comments" }),
+        }),
+      );
+    });
+
+    it("unsubscribes when liveMode switches from auto to off", async () => {
+      const liveProvider = createLiveProvider();
+      const { rerender } = renderHook(
+        ({ liveMode }: { liveMode: "auto" | "off" }) =>
+          useResourceSubscription({
+            channel: "resources/posts",
+            resource: "posts",
+            types: ["*"],
+            liveMode,
+            params: { subscriptionType: "useList" },
+          }),
+        {
+          initialProps: { liveMode: "auto" as "auto" | "off" },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(1);
+
+      rerender({ liveMode: "off" });
+
+      expect(liveProvider.unsubscribe).toHaveBeenCalledWith("subscription-1");
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls the latest onLiveEvent without resubscribing", async () => {
+      const liveProvider = createLiveProvider();
+      const first = vi.fn();
+      const second = vi.fn();
+      const { rerender } = renderHook(
+        ({ onLiveEvent }: { onLiveEvent: (event: any) => void }) =>
+          useResourceSubscription({
+            channel: "resources/posts",
+            resource: "posts",
+            types: ["*"],
+            liveMode: "manual",
+            params: { subscriptionType: "useList" },
+            onLiveEvent,
+          }),
+        {
+          initialProps: { onLiveEvent: first },
+          wrapper: TestWrapper({ liveProvider, resources }),
+        },
+      );
+
+      rerender({ onLiveEvent: second });
+
+      expect(liveProvider.subscribe).toHaveBeenCalledTimes(1);
+      expect(liveProvider.unsubscribe).not.toHaveBeenCalled();
+
+      const { callback } = (liveProvider.subscribe.mock.calls[0] as any[])[0];
+      callback({
+        channel: "resources/posts",
+        type: "created",
+        payload: {},
+        date: new Date(),
+      });
+
+      expect(first).not.toHaveBeenCalled();
+      expect(second).toHaveBeenCalledTimes(1);
+    });
+  });
 });
