@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -60,12 +60,23 @@ export const useResourceSubscription = ({
   const dataProviderName =
     meta?.dataProviderName ?? resource?.meta?.dataProviderName;
 
+  // Keep the latest callbacks in refs so that inline arrow functions passed by
+  // callers (e.g. useOne, useList) don't cause a resubscription on every render.
+  const onLiveEventRef = useRef(onLiveEvent);
+  onLiveEventRef.current = onLiveEvent;
+  const onLiveEventContextCallbackRef = useRef(onLiveEventContextCallback);
+  onLiveEventContextCallbackRef.current = onLiveEventContextCallback;
+
+  // Keep the latest invalidate function in a ref for the same reason.
+  const invalidateRef = useRef(invalidate);
+  invalidateRef.current = invalidate;
+
   useEffect(() => {
     let subscription: any;
 
     const callback = (event: LiveEvent) => {
       if (liveMode === "auto") {
-        invalidate({
+        invalidateRef.current({
           resource: identifier,
           dataProviderName,
           invalidates: ["resourceAll"],
@@ -77,8 +88,8 @@ export const useResourceSubscription = ({
         });
       }
 
-      onLiveEvent?.(event);
-      onLiveEventContextCallback?.(event);
+      onLiveEventRef.current?.(event);
+      onLiveEventContextCallbackRef.current?.(event);
     };
 
     if (liveMode && liveMode !== "off" && enabled) {
@@ -102,5 +113,16 @@ export const useResourceSubscription = ({
         liveProvider?.unsubscribe(subscription);
       }
     };
-  }, [enabled]);
+  }, [
+    enabled,
+    liveMode,
+    liveProvider,
+    channel,
+    resource?.name,
+    identifier,
+    dataProviderName,
+    JSON.stringify(params),
+    JSON.stringify(types),
+    JSON.stringify(meta),
+  ]);
 };

@@ -5,7 +5,7 @@ import { TestWrapper } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import type { IRefineContextProvider } from "../../../contexts/refine/types";
-import { useResourceSubscription } from "./";
+import { useResourceSubscription, type UseResourceSubscriptionProps } from "./";
 
 const invalidateQueriesMock = vi.fn();
 vi.mock("@tanstack/react-query", async () => {
@@ -28,6 +28,110 @@ const onLiveEventMock = vi.fn();
 describe("useResourceSubscription Hook", () => {
   beforeEach(() => {
     invalidateQueriesMock.mockReset();
+  });
+
+  it.each([
+    ["channel", { channel: "comments" }],
+    ["params", { params: { subscriptionType: "useOne" as const, id: "2" } }],
+    ["types", { types: ["created"] as UseResourceSubscriptionProps["types"] }],
+    ["meta", { meta: { dataProviderName: "other" } }],
+  ] satisfies [string, Partial<UseResourceSubscriptionProps>][])(
+    "replaces the subscription when %s changes",
+    (_, changes) => {
+      const oldSubscription = { id: "old" };
+      const newSubscription = { id: "new" };
+      const subscribe = vi
+        .fn()
+        .mockReturnValueOnce(oldSubscription)
+        .mockReturnValueOnce(newSubscription);
+      const unsubscribe = vi.fn();
+      const initialProps: UseResourceSubscriptionProps = {
+        channel: "resources/posts",
+        params: { subscriptionType: "useOne", id: "1" },
+        types: ["updated"],
+        meta: { dataProviderName: "default" },
+        onLiveEvent: vi.fn(),
+        resource: "posts",
+        liveMode: "auto",
+      };
+      const { rerender, unmount } = renderHook(useResourceSubscription, {
+        initialProps,
+        wrapper: TestWrapper({
+          liveProvider: { subscribe, unsubscribe, publish: vi.fn() },
+          refineProvider: { ...mockRefineProvider, liveMode: "auto" },
+        }),
+      });
+
+      expect(subscribe).toHaveBeenCalledTimes(1);
+      rerender({ ...initialProps, ...changes });
+
+      expect(unsubscribe).toHaveBeenCalledTimes(1);
+      expect(unsubscribe).toHaveBeenCalledWith(oldSubscription);
+      expect(subscribe).toHaveBeenCalledTimes(2);
+      expect(unsubscribe.mock.invocationCallOrder[0]).toBeLessThan(
+        subscribe.mock.invocationCallOrder[1],
+      );
+
+      unmount();
+      expect(unsubscribe).toHaveBeenCalledTimes(2);
+      expect(unsubscribe).toHaveBeenLastCalledWith(newSubscription);
+    },
+  );
+
+  it("keeps the subscription when params, types and meta are equivalent objects", () => {
+    const subscribe = vi.fn(() => ({ id: "subscription" }));
+    const unsubscribe = vi.fn();
+    const { rerender } = renderHook(
+      () =>
+        useResourceSubscription({
+          channel: "resources/posts",
+          params: { subscriptionType: "useOne", id: "1" },
+          types: ["updated"],
+          meta: { dataProviderName: "default" },
+          onLiveEvent: onLiveEventMock,
+          resource: "posts",
+          liveMode: "auto",
+        }),
+      {
+        wrapper: TestWrapper({
+          liveProvider: { subscribe, unsubscribe, publish: vi.fn() },
+          refineProvider: { ...mockRefineProvider, liveMode: "auto" },
+        }),
+      },
+    );
+
+    rerender();
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).not.toHaveBeenCalled();
+  });
+
+  it("unsubscribes immediately when liveMode changes to 'off'", () => {
+    const oldSubscription = { id: "sub" };
+    const subscribe = vi.fn().mockReturnValue(oldSubscription);
+    const unsubscribe = vi.fn();
+    const initialProps: UseResourceSubscriptionProps = {
+      channel: "resources/posts",
+      params: { subscriptionType: "useOne", id: "1" },
+      types: ["*"],
+      onLiveEvent: onLiveEventMock,
+      resource: "posts",
+      liveMode: "auto",
+    };
+    const { rerender } = renderHook(useResourceSubscription, {
+      initialProps,
+      wrapper: TestWrapper({
+        liveProvider: { subscribe, unsubscribe, publish: vi.fn() },
+        refineProvider: { ...mockRefineProvider, liveMode: "auto" },
+      }),
+    });
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+
+    rerender({ ...initialProps, liveMode: "off" });
+
+    expect(unsubscribe).toHaveBeenCalledWith(oldSubscription);
+    expect(subscribe).toHaveBeenCalledTimes(1);
   });
 
   it("useResourceSubscription enabled and all types", async () => {
