@@ -4,6 +4,11 @@ import { renderHook } from "@testing-library/react";
 
 import { TestWrapper, mockRouterProvider } from "@test";
 
+import { ResourceContextProvider } from "@contexts/resource";
+import { RouterContextProvider } from "@contexts/router";
+import type { IResourceItem } from "@contexts/resource/types";
+import type { RouterProvider } from "@contexts/router/types";
+
 import { useMenu } from ".";
 
 describe("useMenu Hook", () => {
@@ -188,6 +193,74 @@ describe("useMenu Hook", () => {
         "/CMS/categories",
         "/CMS/categories/posts",
       ]),
+    );
+  });
+
+  it("should recompute defaultOpenKeys when the active resource changes without unmounting", async () => {
+    // Regression test for https://github.com/refinedev/refine/issues/5432-style staleness:
+    // `defaultOpenKeys` used to be memoized with an empty dependency array, so once computed
+    // on mount it never reflected a later client-side navigation to a different resource
+    // (e.g. a persistent sidebar in a single-page app).
+    const resources: IResourceItem[] = [
+      {
+        name: "CMS",
+      },
+      {
+        name: "posts",
+        list: "/posts",
+        meta: { parent: "CMS" },
+      },
+      {
+        name: "categories",
+        list: "/categories",
+        meta: { parent: "CMS" },
+      },
+    ];
+
+    const currentRoute = {
+      pathname: "/CMS/posts",
+      resource: { name: "posts" } as IResourceItem,
+    };
+
+    const routerProvider: RouterProvider = {
+      ...mockRouterProvider(),
+      parse: () => () => ({
+        params: {},
+        pathname: currentRoute.pathname,
+        resource: currentRoute.resource,
+        action: undefined,
+        id: undefined,
+      }),
+    };
+
+    const DynamicWrapper: React.FC<{ children: React.ReactNode }> = ({
+      children,
+    }) => (
+      <ResourceContextProvider resources={resources}>
+        <RouterContextProvider router={routerProvider}>
+          {children}
+        </RouterContextProvider>
+      </ResourceContextProvider>
+    );
+
+    const { result, rerender } = renderHook(() => useMenu(), {
+      wrapper: DynamicWrapper,
+    });
+
+    expect(result.current.defaultOpenKeys).toEqual(
+      expect.arrayContaining(["/CMS", "/CMS/posts"]),
+    );
+
+    currentRoute.pathname = "/CMS/categories";
+    currentRoute.resource = { name: "categories" };
+
+    rerender();
+
+    expect(result.current.defaultOpenKeys).toEqual(
+      expect.arrayContaining(["/CMS", "/CMS/categories"]),
+    );
+    expect(result.current.defaultOpenKeys).not.toEqual(
+      expect.arrayContaining(["/CMS/posts"]),
     );
   });
 
