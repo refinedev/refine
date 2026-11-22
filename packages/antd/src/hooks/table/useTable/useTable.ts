@@ -29,6 +29,17 @@ import type { FilterValue, SorterResult } from "../../../definitions/table";
 export type useTableProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+    /**
+     * Maps the current `CrudFilters` back to `searchFormProps`'s form values.
+     * This is the reverse of `onSearch` and is useful when a filter's value
+     * can't be assigned to a form field as-is (e.g. restoring a date range
+     * picker's array value from two separate `gte`/`lte` filters, or
+     * converting a URL-stringified value back to a number).
+     *
+     * When omitted, falls back to assigning each filter's raw value to the
+     * form field that shares its name.
+     */
+    onParse?: (filters: CrudFilters) => Partial<TSearchVariables>;
   };
 
 export type useTableReturnType<
@@ -61,6 +72,7 @@ export const useTable = <
   TData extends BaseRecord = TQueryFnData,
 >({
   onSearch,
+  onParse,
   pagination: paginationFromProp,
   filters: filtersFromProp,
   sorters: sortersFromProp,
@@ -124,32 +136,43 @@ export const useTable = <
 
   const { data, isFetched, isLoading } = tableQuery;
 
+  // kept in a ref (rather than the effect's dependency array) so that an
+  // inline `onParse` function doesn't force a resync on every render of the
+  // consumer - only an actual change to `filters` should do that.
+  const onParseRef = React.useRef(onParse);
+  onParseRef.current = onParse;
+
   React.useEffect(() => {
-    if (shouldSyncWithLocation) {
-      // get registered fields of form
-      const registeredFields = formSF.form.getFieldsValue() as Record<
-        string,
-        any
-      >;
-      // map `filters` for registered fields
-      const filterFilterMap = Object.keys(registeredFields).reduce(
-        (acc, curr) => {
-          // find filter for current field
-          const filter = filters.find(
-            (filter) => "field" in filter && filter.field === curr,
-          );
-          // if filter exists, set value to filter value
-          if (filter) {
-            acc[curr] = filter?.value;
-          }
-          return acc;
-        },
-        {} as Record<string, any>,
-      );
-      // set values to form
-      formSF.form.setFieldsValue(filterFilterMap as any);
+    if (!shouldSyncWithLocation) return;
+
+    if (onParseRef.current) {
+      formSF.form.setFieldsValue(onParseRef.current(filters) as any);
+      return;
     }
-  }, [shouldSyncWithLocation]);
+
+    // get registered fields of form
+    const registeredFields = formSF.form.getFieldsValue() as Record<
+      string,
+      any
+    >;
+    // map `filters` for registered fields
+    const filterFilterMap = Object.keys(registeredFields).reduce(
+      (acc, curr) => {
+        // find filter for current field
+        const filter = filters.find(
+          (filter) => "field" in filter && filter.field === curr,
+        );
+        // if filter exists, set value to filter value
+        if (filter) {
+          acc[curr] = filter?.value;
+        }
+        return acc;
+      },
+      {} as Record<string, any>,
+    );
+    // set values to form
+    formSF.form.setFieldsValue(filterFilterMap as any);
+  }, [shouldSyncWithLocation, filters, formSF.form]);
 
   const onChange = (
     paginationState: TablePaginationConfig,
