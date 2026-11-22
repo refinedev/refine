@@ -76,7 +76,7 @@ export const useMenu = (
       parent = getParentResource(parent, resources);
     }
     return keys;
-  }, []);
+  }, [resource, resources]);
 
   const prepareItem = React.useCallback(
     (item: FlatTreeItem): TreeMenuItem | undefined => {
