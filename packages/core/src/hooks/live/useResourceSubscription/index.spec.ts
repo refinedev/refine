@@ -5,7 +5,7 @@ import { TestWrapper } from "@test";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import type { IRefineContextProvider } from "../../../contexts/refine/types";
-import { useResourceSubscription } from "./";
+import { useResourceSubscription, type UseResourceSubscriptionProps } from "./";
 
 const invalidateQueriesMock = vi.fn();
 vi.mock("@tanstack/react-query", async () => {
@@ -273,5 +273,178 @@ describe("useResourceSubscription Hook", () => {
       refetchType: "active",
       cancelRefetch: false,
     });
+  });
+
+  it.each([
+    ["channel", { channel: "comments" }],
+    ["params", { params: { id: "2", subscriptionType: "useOne" as const } }],
+    ["types", { types: ["created"] as const }],
+    ["meta", { meta: { dataProviderName: "other" } }],
+    ["resource", { resource: "comments" }],
+  ] satisfies [string, Partial<UseResourceSubscriptionProps>][])(
+    "replaces the subscription when %s changes",
+    (_, changes) => {
+      const oldSubscription = { id: "old" };
+      const newSubscription = { id: "new" };
+      const subscribe = vi
+        .fn()
+        .mockReturnValueOnce(oldSubscription)
+        .mockReturnValueOnce(newSubscription);
+      const unsubscribe = vi.fn();
+      const initialProps: UseResourceSubscriptionProps = {
+        channel: "posts",
+        resource: "posts",
+        params: { id: "1", subscriptionType: "useOne" },
+        types: ["updated"],
+        meta: { dataProviderName: "default" },
+        onLiveEvent: vi.fn(),
+      };
+      const { rerender, unmount } = renderHook(
+        (props: UseResourceSubscriptionProps) => useResourceSubscription(props),
+        {
+          initialProps,
+          wrapper: TestWrapper({
+            liveProvider: {
+              subscribe,
+              unsubscribe,
+            },
+            refineProvider: {
+              ...mockRefineProvider,
+              liveMode: "auto",
+            },
+          }),
+        },
+      );
+
+      expect(subscribe).toHaveBeenCalledTimes(1);
+      rerender({ ...initialProps, ...changes });
+
+      expect(unsubscribe).toHaveBeenCalledTimes(1);
+      expect(unsubscribe).toHaveBeenCalledWith(oldSubscription);
+      expect(subscribe).toHaveBeenCalledTimes(2);
+      expect(unsubscribe.mock.invocationCallOrder[0]).toBeLessThan(
+        subscribe.mock.invocationCallOrder[1],
+      );
+
+      unmount();
+      expect(unsubscribe).toHaveBeenCalledTimes(2);
+      expect(unsubscribe).toHaveBeenLastCalledWith(newSubscription);
+    },
+  );
+
+  it("unsubscribes when liveMode changes to off and resubscribes when liveMode changes back to auto", () => {
+    const subscription = { id: "sub-1" };
+    const subscription2 = { id: "sub-2" };
+    const subscribe = vi
+      .fn()
+      .mockReturnValueOnce(subscription)
+      .mockReturnValueOnce(subscription2);
+    const unsubscribe = vi.fn();
+    const initialProps: UseResourceSubscriptionProps = {
+      channel: "posts",
+      resource: "posts",
+      types: ["*"],
+      liveMode: "auto",
+    };
+    const { rerender } = renderHook(
+      (props: UseResourceSubscriptionProps) => useResourceSubscription(props),
+      {
+        initialProps,
+        wrapper: TestWrapper({
+          liveProvider: {
+            subscribe,
+            unsubscribe,
+          },
+        }),
+      },
+    );
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).not.toHaveBeenCalled();
+
+    rerender({ ...initialProps, liveMode: "off" });
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledWith(subscription);
+    expect(subscribe).toHaveBeenCalledTimes(1);
+
+    rerender({ ...initialProps, liveMode: "auto" });
+    expect(subscribe).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps the subscription when params, types, and meta are equivalent", () => {
+    const subscribe = vi.fn(() => ({ id: "subscription" }));
+    const unsubscribe = vi.fn();
+    const { rerender } = renderHook(
+      () =>
+        useResourceSubscription({
+          channel: "posts",
+          resource: "posts",
+          params: { id: "1", subscriptionType: "useOne" },
+          types: ["updated"],
+          meta: { dataProviderName: "default" },
+          onLiveEvent: onLiveEventMock,
+          liveMode: "auto",
+        }),
+      {
+        wrapper: TestWrapper({
+          liveProvider: { subscribe, unsubscribe },
+        }),
+      },
+    );
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    rerender();
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).not.toHaveBeenCalled();
+  });
+
+  it("keeps the subscription when onLiveEvent changes but calls the latest callback", () => {
+    let capturedCallback: ((event: any) => void) | undefined;
+    const subscribe = vi.fn(({ callback }) => {
+      capturedCallback = callback;
+      return { id: "subscription" };
+    });
+    const unsubscribe = vi.fn();
+
+    const callback1 = vi.fn();
+    const callback2 = vi.fn();
+
+    const initialProps: UseResourceSubscriptionProps = {
+      channel: "posts",
+      resource: "posts",
+      types: ["*"],
+      liveMode: "auto",
+      onLiveEvent: callback1,
+    };
+
+    const { rerender } = renderHook(
+      (props: UseResourceSubscriptionProps) => useResourceSubscription(props),
+      {
+        initialProps,
+        wrapper: TestWrapper({
+          liveProvider: { subscribe, unsubscribe },
+        }),
+      },
+    );
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).not.toHaveBeenCalled();
+
+    rerender({ ...initialProps, onLiveEvent: callback2 });
+
+    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).not.toHaveBeenCalled();
+
+    const mockEvent = {
+      type: "updated",
+      payload: { id: "1" },
+      channel: "posts",
+      date: new Date(),
+    };
+    capturedCallback?.(mockEvent);
+
+    expect(callback1).not.toHaveBeenCalled();
+    expect(callback2).toHaveBeenCalledWith(mockEvent);
   });
 });

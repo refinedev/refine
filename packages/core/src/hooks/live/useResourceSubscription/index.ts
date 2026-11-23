@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
@@ -60,14 +60,29 @@ export const useResourceSubscription = ({
   const dataProviderName =
     meta?.dataProviderName ?? resource?.meta?.dataProviderName;
 
+  const onLiveEventRef = useRef(onLiveEvent);
+  onLiveEventRef.current = onLiveEvent;
+
+  const onLiveEventContextCallbackRef = useRef(onLiveEventContextCallback);
+  onLiveEventContextCallbackRef.current = onLiveEventContextCallback;
+
+  const liveModeRef = useRef(liveMode);
+  liveModeRef.current = liveMode;
+
+  const identifierRef = useRef(identifier);
+  identifierRef.current = identifier;
+
+  const dataProviderNameRef = useRef(dataProviderName);
+  dataProviderNameRef.current = dataProviderName;
+
   useEffect(() => {
     let subscription: any;
 
     const callback = (event: LiveEvent) => {
-      if (liveMode === "auto") {
+      if (liveModeRef.current === "auto") {
         invalidate({
-          resource: identifier,
-          dataProviderName,
+          resource: identifierRef.current,
+          dataProviderName: dataProviderNameRef.current,
           invalidates: ["resourceAll"],
           invalidationFilters: {
             type: "active",
@@ -77,8 +92,8 @@ export const useResourceSubscription = ({
         });
       }
 
-      onLiveEvent?.(event);
-      onLiveEventContextCallback?.(event);
+      onLiveEventRef.current?.(event);
+      onLiveEventContextCallbackRef.current?.(event);
     };
 
     if (liveMode && liveMode !== "off" && enabled) {
@@ -102,5 +117,15 @@ export const useResourceSubscription = ({
         liveProvider?.unsubscribe(subscription);
       }
     };
-  }, [enabled]);
+  }, [
+    enabled,
+    liveMode,
+    channel,
+    liveProvider,
+    resource?.name,
+    dataProviderName,
+    JSON.stringify(params),
+    JSON.stringify(types),
+    JSON.stringify(meta),
+  ]);
 };
