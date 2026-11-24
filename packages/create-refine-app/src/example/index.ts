@@ -140,7 +140,7 @@ const run = async (
     installSpinner.succeed("Packages installed successfully.");
   } else {
     installSpinner.fail(
-      "Failed to install packages. You can try again manually.",
+      `Failed to install packages. Run "${pm} install" in the project directory to see the error and retry.`,
     );
   }
 
@@ -187,14 +187,26 @@ const run = async (
       [
         chalk`Created {cyan ${example}} at {cyan ${cdPath}}`,
         "",
-        chalk`Start using your new {bold refine} app by running:`,
+        installStatus
+          ? chalk`Start using your new {bold refine} app by running:`
+          : chalk`Dependencies were not installed, so the project will not run yet. Install them, then start the app:`,
         "",
-        chalk`  {bold cd} {cyan ${cdPath}}`,
-        chalk`  {bold ${pm} ${pmRun}}{cyan dev}`,
+        ...(installStatus
+          ? [
+              chalk`  {bold cd} {cyan ${cdPath}}`,
+              chalk`  {bold ${pm} ${pmRun}}{cyan dev}`,
+            ]
+          : [
+              chalk`  {bold cd} {cyan ${cdPath}}`,
+              chalk`  {bold ${pm} install}`,
+              chalk`  {bold ${pm} ${pmRun}}{cyan dev}`,
+            ]),
       ].join("\n"),
       {
         // title: `create-refine-app${version ? ` v${version}` : ""}`,
-        title: chalk`{bold.green Success!}`,
+        title: installStatus
+          ? chalk`{bold.green Success!}`
+          : chalk`{bold.yellow Incomplete}`,
         titleAlignment: "center",
         borderStyle: "round",
         padding: 1,
@@ -204,6 +216,10 @@ const run = async (
       },
     ),
   );
+
+  if (!installStatus) {
+    process.exitCode = 1;
+  }
 };
 
 export default run;
