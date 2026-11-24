@@ -39,7 +39,8 @@
     "@types/tar": "^6.1.11",
     "@types/which-pm-runs": "^1.0.0",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=20"
